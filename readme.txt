@@ -2,8 +2,9 @@
 Contributors: davidvongries
 Tags: Wordpress dashboard, admin, widget, widgets, custom, remove, default
 Requires at least: 4.0
-Tested up to: 4.9
-Stable tag: 2.2
+Tested up to: 5.0
+Requires PHP: 5.6
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +53,11 @@ For multisite, third party Widget support & more check out [Ultimate Dashboard P
 3. Ultimate Dashboard Settings
 
 == Changelog ==
+= 2.3 | November 30, 2018 =
+* Tweak: set required PHP version to 5.6
+* Tweak: tested up to 5.0
+* Tweak: highlighted pro link
+* Fixed: internationalization
 = 2.2 | August 1, 2018 =
 * Tweak: Updated Settings Page UI
 * Tweak: Updated Links & Descriptions under Widgets -> PRO
