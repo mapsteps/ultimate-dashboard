@@ -1,0 +1,57 @@
+/* Dashboard Widget */
+[id*='ms-'] { 
+	text-align: center;
+}
+
+[id*='ms-'] .fa,
+[id*='ms-'] .dashicons {
+	font-size: 68px;
+	width: auto;
+	height: auto;
+	display: block;
+	padding: 0 0 40px 0;
+	box-shadow: none;
+	color: #555;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	-moz-transform-style: preserve-3d;
+	-webkit-transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+}
+
+[id*='ms-'] .fa:hover,
+[id*='ms-'] .dashicons:hover {
+	color: #555;
+	opacity:.8;
+	-webkit-transform: scale(1.08);
+	-moz-transform: scale(1.08);
+	-ms-transform: scale(1.08);
+	-o-transform: scale(1.08);
+	transform: scale(1.08);
+}
+
+[id*='ms-'] a:focus {
+	box-shadow: none;
+}
+
+[id*='ms-'] .handlediv {
+	display: none !important;
+}
+
+[id*='ms-'] .hndle {
+	font-weight: 400;
+	border-bottom: 0;
+	font-size: 22px !important;
+	padding: 40px 30px !important;
+}
+
+[id*='ms-'] .inside {
+	position: static;
+	margin-top: 0;
+	border-bottom: 0;
+	padding: 0 30px 30px 30px;
+}

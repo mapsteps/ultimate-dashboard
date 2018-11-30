@@ -1,0 +1,316 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-12 16:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. Name of the plugin
+#: inc/ultimate-dashboard-fields.php:15
+msgid "Ultimate Dashboard"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:21
+msgid "Position"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:27
+msgid "Priority"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:49
+msgid "Default"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:54
+msgid "Low"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:59
+msgid "High"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:79
+msgid "Left column"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:84
+msgid "Right column"
+msgstr ""
+
+#: inc/ultimate-dashboard-fields.php:96
+msgid "Icon Widget"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:30
+msgid "WordPress Dashboard Widgets"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:34
+msgid "Remove all Widgets"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:35
+msgid "Remove individual Widgets"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:43
+msgid "All"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:51
+msgid "Welcome Panel"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:55
+msgid "Incoming Links"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:59
+msgid "Plugins"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:63
+msgid "WordPress News"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:67
+msgid "Secondary"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:71
+msgid "QuickPress"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:75
+msgid "Quick Draft"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:79
+msgid "Comments"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:83
+msgid "Right now"
+msgstr ""
+
+#: inc/ultimate-dashboard-settings.php:87
+msgid "Activity"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:19
+msgid "Extras Addon"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:25
+msgid ""
+"The Extras Addon is an essential extension that adds various options to "
+"Ultimate Dashboard. Remove 3rd Party Widgets, create Text Widgets, add "
+"Tooltips to your Widgets & more!"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:27
+#: inc/ultimate-dashboard-addons-template.php:43
+msgid "More Details"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:35
+msgid "Multisite Addon"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:41
+msgid ""
+"Take your WordPress network to the next level with the multisite Addon for "
+"Ultimate Dashboard. Show the same Widgets throughout all sites, reorder "
+"Widgets globally & more!"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:51
+msgid "Video Widget Addon"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:57
+#: inc/ultimate-dashboard-addons-template.php:59
+#: inc/ultimate-dashboard-addons-template.php:73
+#: inc/ultimate-dashboard-addons-template.php:75
+msgid "Coming Soon!"
+msgstr ""
+
+#: inc/ultimate-dashboard-addons-template.php:67
+msgid "Branding Addon"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:23
+msgid "Add Dashboard Widget"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:24
+msgid "New Dashboard Widget"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:25
+msgid "Edit Dashboard Widget"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:26
+msgid "View Dashboard Widget"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:27
+msgid "All Widgets"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:28
+msgid "Search Dashboard Widgets"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:29
+msgid "No Dashboard Widgets found."
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:30
+msgid "No Dashboard Widgets in Trash."
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:72
+msgid "Widget Title"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:73
+#: inc/widgets/ultimate-dashboard-icon-widget.php:19
+msgid "Icon"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:79
+msgid "Link Target"
+msgstr ""
+
+#: inc/ultimate-dashboard-cpt.php:80
+msgid "Date"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:34
+msgid "Search"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:40
+msgid "WordPress Dashicons"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:48
+msgid "Admin Menu"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:66
+msgid "Welcome Screen"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:84
+msgid "Post Formats"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:102
+msgid "Media"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:120
+msgid "Image Editing"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:138
+msgid "Tiny MCE"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:156
+msgid "Posts Screen"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:174
+msgid "Sorting"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:192
+msgid "Social"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:210
+msgid "WordPress.org specific"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:228
+msgid "Products"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:246
+msgid "Taxonomies"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:264
+msgid "Widgets"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:282
+msgid "Notifications"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:300
+msgid "Misc"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:325
+msgid "Font Awesome"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:331
+msgid "Font Awesome Icons"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:353
+msgid "Link"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:369
+msgid "URL"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:370
+msgid ""
+"Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php)"
+" are allowed."
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:378
+msgid "Target"
+msgstr ""
+
+#: inc/widgets/ultimate-dashboard-icon-widget.php:379
+msgid "Open link in a new tab."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Ultimate Dashboard gives you full control over your WordPress Dashboard. "
+"Remove the default Dashboard Widgets and and create your own for a better "
+"user experience."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://mapsteps.com/en/downloads/"
+msgstr ""
+
+#. Author of the plugin
+msgid "MapSteps"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://mapsteps.com/"
+msgstr ""
