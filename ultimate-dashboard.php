@@ -3,7 +3,7 @@
  * Plugin Name: Ultimate Dashboard
  * Plugin URI: https://ultimatedashboard.io/
  * Description: Ultimate Dashboard gives you full control over your WordPress Dashboard. Remove the default Dashboard Widgets and and create your own for a better user experience.
- * Version: 2.2
+ * Version: 2.3
  * Author: MapSteps
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimatedashboard
