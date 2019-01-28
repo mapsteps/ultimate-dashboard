@@ -8,10 +8,8 @@
 // exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// vars
 $udb_settings = get_option( 'udb_settings' );
 
-// default widgets
 if( !$udb_settings ) {
 	update_option( 'udb_settings', array() );
 }

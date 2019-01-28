@@ -8,25 +8,32 @@
 // exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Ultimate Dashboard Settings Page
+/**
+ * Ultimate Dashboard Settings Page
+ */
 function udb_options_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Settings', 'Settings', 'manage_options', 'settings', 'udb_options_page_callback' );
 }
 add_action( 'admin_menu', 'udb_options_page', 20 );
 
-// Ultimate Dashboard Addons Page
+/**
+ * Ultimate Dashboard Addons Page
+ */
 function udb_addons_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Ultimate Dashboard PRO', 'PRO', 'manage_options', 'addons', 'udb_addons_page_callback' );
 }
 add_action( 'admin_menu', 'udb_addons_page', 10 );
 
-
-// Ultimate Dashboard Settings Page Template
+/**
+ * Ultimate Dashboard Settings Page Template
+ */
 function udb_options_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-settings-template.php';
 }
 
-// Ultimate Dashboard Addon Page Template
+/**
+ * Ultimate Dashboard Addon Page Template
+ */
 function udb_addons_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-addons-template.php';
 }

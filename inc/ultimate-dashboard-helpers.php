@@ -8,6 +8,9 @@
 // exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Get DB Widgets
+ */
 function udb_get_db_widgets() {
 
 	global $wp_meta_boxes;
@@ -37,6 +40,9 @@ function udb_get_db_widgets() {
 
 }
 
+/**
+ * Get Widgets
+ */
 function udb_get_widgets() {
 
 	$widgets = udb_get_db_widgets();
@@ -45,7 +51,7 @@ function udb_get_widgets() {
 		foreach ( $priority as $data ) {
 			foreach ( $data as $id => $widget ) {
 				$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
-				$widget['context'] = $context;
+				$widget['context']        = $context;
 
 				$flat_widgets[ $id ] = $widget;
 			}
@@ -58,11 +64,24 @@ function udb_get_widgets() {
 
 }
 
+/**
+ * Get Default Widgets
+ */
 function udb_get_default_widgets() {
 
 	$widgets = udb_get_widgets();
 
-	$default_widgets = array( 'dashboard_primary' => array(), 'dashboard_quick_press' => array(), 'dashboard_right_now' => array(), 'dashboard_activity' => array(), 'dashboard_incoming_links' => array(), 'dashboard_plugins' => array(), 'dashboard_secondary' => array(), 'dashboard_recent_drafts' => array(), 'dashboard_recent_comments' => array() );
+	$default_widgets = array(
+		'dashboard_primary'         => array(),
+		'dashboard_quick_press'     => array(),
+		'dashboard_right_now'       => array(),
+		'dashboard_activity'        => array(),
+		'dashboard_incoming_links'  => array(),
+		'dashboard_plugins'         => array(),
+		'dashboard_secondary'       => array(),
+		'dashboard_recent_drafts'   => array(),
+		'dashboard_recent_comments' => array(),
+	);
 
 	$widgets = array_intersect_key( $widgets, $default_widgets );
 
@@ -70,6 +89,9 @@ function udb_get_default_widgets() {
 
 }
 
+/**
+ * Get Saved Default Widgets
+ */
 function udb_get_saved_default_widgets() {
 
 	$widgets = udb_get_widgets();

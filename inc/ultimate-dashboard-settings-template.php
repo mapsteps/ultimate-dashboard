@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
 	<form method="post" action="options.php">
-		<?php 
+		<?php
 			settings_fields( 'udb-settings-group' );
 			do_settings_sections( 'ultimate-dashboard' );
 			submit_button();
