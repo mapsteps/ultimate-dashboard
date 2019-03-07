@@ -4,13 +4,12 @@
  *
  * @package Ultimate Dashboard PRO
  */
- 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 $udb_settings = get_option( 'udb_settings' );
 
-if( !$udb_settings ) {
+if ( ! $udb_settings ) {
 	update_option( 'udb_settings', array() );
 }
 
@@ -78,4 +77,10 @@ if ( get_option( 'comments' ) ) {
 	$udb_settings['dashboard_recent_comments'] = 1;
 	update_option( 'udb_settings', $udb_settings );
 	delete_option( 'comments' );
+}
+
+if ( get_option( 'phpnag' ) ) {
+	$udb_settings['dashboard_php_nag'] = 1;
+	update_option( 'udb_settings', $udb_settings );
+	delete_option( 'phpnag' );
 }

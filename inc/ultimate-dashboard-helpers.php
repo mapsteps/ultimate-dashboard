@@ -4,9 +4,8 @@
  *
  * @package Ultimate Dashboard PRO
  */
- 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Get DB Widgets
@@ -81,6 +80,7 @@ function udb_get_default_widgets() {
 		'dashboard_secondary'       => array(),
 		'dashboard_recent_drafts'   => array(),
 		'dashboard_recent_comments' => array(),
+		'dashboard_php_nag'         => array(),
 	);
 
 	$widgets = array_intersect_key( $widgets, $default_widgets );
@@ -96,7 +96,7 @@ function udb_get_saved_default_widgets() {
 
 	$widgets = udb_get_widgets();
 
-	if( get_option( 'udb_settings' ) ) {
+	if ( get_option( 'udb_settings' ) ) {
 		$settings = get_option( 'udb_settings' );
 	} else {
 		$settings = array();
