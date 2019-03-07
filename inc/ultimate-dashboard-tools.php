@@ -5,17 +5,20 @@
  * @package Ultimate Dashboard
  */
 
-defined( 'ABSPATH' ) || die( "Can't access directly" );
+// exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Settings
  */
-add_action( 'admin_init', 'udb_settings' );
+add_action( 'admin_init', 'udb_exports' );
 
 /**
  * Register setting
  */
-function udb_settings() {
+function udb_exports() {
 
 	register_setting( 'udb-settings-group', 'udb_settings' );
 
@@ -24,15 +27,15 @@ function udb_settings() {
 	add_settings_section( 'udb-remove-single-widgets', '', '', 'ultimate-dashboard' );
 
 	// Settings Fields.
-	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
-	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback2', 'ultimate-dashboard', 'udb-remove-all-widgets' );
+	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback2', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 
 }
 
 /**
  * Output Settings
  */
-function remove_all_widgets_callback() {
+function remove_all_widgets_callback2() {
 
 	$udb_settings = get_option( 'udb_settings' );
 
@@ -49,7 +52,7 @@ function remove_all_widgets_callback() {
 /**
  * Remove Single Widgets Callback
  */
-function remove_single_widgets_callback() {
+function remove_single_widgets_callback2() {
 
 	$udb_settings = get_option( 'udb_settings' );
 

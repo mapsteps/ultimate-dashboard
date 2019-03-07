@@ -11,6 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Ultimate Dashboard Exports Page
+ */
+function udb_exports_page() {
+	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
+}
+add_action( 'admin_menu', 'udb_exports_page', 20 );
+
+/**
  * Ultimate Dashboard Settings Page
  */
 function udb_options_page() {
@@ -25,6 +33,13 @@ function udb_addons_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Ultimate Dashboard PRO', 'PRO', 'manage_options', 'addons', 'udb_addons_page_callback' );
 }
 add_action( 'admin_menu', 'udb_addons_page', 10 );
+
+/**
+ * Ultimate Dashboard Tools Page Template
+ */
+function udb_tools_page_callback() {
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-tools-template.php';
+}
 
 /**
  * Ultimate Dashboard Settings Page Template
@@ -48,6 +63,9 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-cpt.php';
 
 // Helpers.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-helpers.php';
+
+// Ultimate Dashboard Tools.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-tools.php';
 
 // Ultimate Dashboard Settings.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-settings.php';

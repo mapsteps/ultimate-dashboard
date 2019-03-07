@@ -1,72 +1,155 @@
-/* Overview Styles */
-td.icon .dashicons {
-	font-size: 22px;
+/* General */
+.clearfix::before,
+.clearfix::after {
+  display: table;
 }
-td.icon .fa {
-	font-size: 18px;
+
+.clearfix::after {
+  clear: both;
+}
+
+.left-col,
+.right-col {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.left-col {
+  float: left;
+  padding-right: 8px;
+  width: 50%;
+}
+
+.right-col {
+  float: right;
+  padding-left: 8px;
+  width: 50%;
+}
+
+.block-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 /* Settings Page */
 form h2 {
-	border-bottom: 1px solid #eee;
-	background: #fff;
-	margin-bottom: 0;
-	padding: 20px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  margin-bottom: 0;
+  padding: 20px;
 }
 
 .form-table {
-	margin-top: 0;
-	background: #fff;
+  margin-top: 0;
+  background: #fff;
 }
 
 .form-table th {
-	padding: 20px;
+  padding: 20px;
+}
+
+.settingstuff .postbox {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.settingstuff .postbox.is-gapless {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.settingstuff .hndle {
+  margin: 0;
+  padding: 15px;
+  line-height: 1em;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.settingstuff .hndle.is-gapless {
+  padding: 8px 12px;
+  line-height: 1.4;
+}
+
+.settingstuff .hndle.is-undraggable {
+  cursor: default;
+}
+
+.settingstuff .postbox .inside {
+  margin-top: 22px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.settingstuff .postbox .inside.is-gapless {
+  margin-top: 13px;
+  margin-bottom: 0;
+}
+
+.settingstuff .fields-wrapper {
+  padding: 15px 12px;
+  background-color: #fafafa;
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+}
+
+.settingstuff .buttons {
+  margin-top: 13px;
+}
+
+/* Overview Styles */
+td.icon .dashicons {
+  font-size: 22px;
+}
+td.icon .fa {
+  font-size: 18px;
 }
 
 /* Addon Styles */
 .udb-addon {
-	position: relative;
-	min-height: 400px;
-	float: left;
-	border-radius: 2px;
-	margin: 20px 20px 0 0;
-	padding: 15px;
-	border: 1px solid #ddd;
-	max-width: 350px;
-	background: #fff;
+  position: relative;
+  min-height: 400px;
+  float: left;
+  border-radius: 2px;
+  margin: 20px 20px 0 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  max-width: 350px;
+  background: #fff;
 }
 
 .udb-addon-title {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 .udb-addon img {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .udb-addon .udb-addon-button {
-	position: absolute;
-	bottom: 15px;
-	left: 15px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
 }
 
 /* License Styles */
 .udb-license {
-	position: relative;
-	float: left;
-	border-radius: 2px;
-	margin: 20px 20px 0 0;
-	padding: 15px;
-	border: 1px solid #ddd;
-	max-width: 300px;
-	background: #fff;
+  position: relative;
+  float: left;
+  border-radius: 2px;
+  margin: 20px 20px 0 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  max-width: 300px;
+  background: #fff;
 }
 
 .udb-license-title {
-	margin-top: 0;
+  margin-top: 0;
 }
 
-.udb-license input[type=text] {
-	width: 100%;
+.udb-license input[type="text"] {
+  width: 100%;
 }
