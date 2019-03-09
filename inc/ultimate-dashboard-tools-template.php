@@ -8,52 +8,40 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 ?>
 
-<div class="wrap">
-	<h1 class="wp-heading-inline"><?php echo esc_html( get_admin_page_title() ); ?></h1>
-	<hr class="wp-header-end">
+<div class="wrap settingstuff">
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+	<?php settings_errors(); ?>
 
-	<div class="settingstuff">
-		<form method="post" action="options.php">
-			<div class="clearfix">
-				<div class="left-col">
+	<?php if (isset($_GET['updated'])) ?>
 
-					<div class="postbox">
-						<h2 class="hndle is-undraggable">
-							<span><?php esc_html_e( 'Export Widgets', 'ultimate-dashboard' ); ?></span>
-						</h2>
-						<div class="inside">
-							<p><?php esc_html_e( ' Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
+	<div class="clearfix">
+		<div class="left-col">
 
-							<div class="buttons">
-								<a target="_blank" href="<?php echo esc_url( $export_url ); ?>" class="button button-primary">Export File</a>
-							</div>
-						</div>
-					</div>
-
+			<form method="post" action="options.php">
+				<div class="postbox">
+					<?php
+					settings_fields( 'udb-export-group' );
+					do_settings_sections( 'ultimate-dashboard-export' );
+					submit_button( __( 'Export File', 'ultimate-dashboard' ) );
+					?>
 				</div>
-				<div class="right-col">
+			</form>
 
-					<div class="postbox">
-						<h2 class="hndle is-undraggable">
-							<span><?php esc_html_e( 'Import Widgets', 'ultimate-dashboard' ); ?></span>
-						</h2>
-						<div class="inside">
-							<p><?php esc_html_e( 'Select the Widgets JSON file you would like to import. When you click the import button below, Ultimate Dashboard will import the widgets.', 'ultimate-dashboard' ); ?></p>
+		</div><!-- /left-col -->
+		<div class="right-col">
 
-							<div class="fields-wrapper">
-								<label class="block-label" for="udb_import_file"><?php esc_html_e( 'Select File', 'ultimate-dashboard' ); ?></label>
-								<input type="file" name="udb_import_file">
-							</div>
-
-							<div class="buttons">
-								<a target="_blank" href="<?php echo esc_url( $export_url ); ?>" class="button button-primary">Import File</a>
-							</div>
-						</div>
-					</div>
-
+			<form method="post" action="options.php" enctype="multipart/form-data">
+				<div class="postbox">
+					<?php
+					settings_fields( 'udb-import-group' );
+					do_settings_sections( 'ultimate-dashboard-import' );
+					submit_button( __( 'Import File', 'ultimate-dashboard' ) );
+					?>
 				</div>
-			</div>
-		</form>
-	</div> <!-- /settingstuff -->
-</div> <!-- /wrap -->
+			</form>
+
+		</div><!-- /right-col -->
+	</div><!-- /clearfix -->
+
+</div><!-- /wrap -->
 

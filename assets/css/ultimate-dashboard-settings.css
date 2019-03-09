@@ -33,20 +33,9 @@
 }
 
 /* Settings Page */
-form h2 {
-  border-bottom: 1px solid #eee;
-  background: #fff;
+.settingstuff.wrap .notice {
+  margin-top: 10px;
   margin-bottom: 0;
-  padding: 20px;
-}
-
-.form-table {
-  margin-top: 0;
-  background: #fff;
-}
-
-.form-table th {
-  padding: 20px;
 }
 
 .settingstuff .postbox {
@@ -59,12 +48,16 @@ form h2 {
   margin-bottom: 10px;
 }
 
-.settingstuff .hndle {
+.settingstuff .postbox h2 {
   margin: 0;
   padding: 15px;
   line-height: 1em;
   font-size: 14px;
   border-bottom: 1px solid #eee;
+}
+
+.settingstuff .has-bigger-heading h2 {
+  font-size: 15px;
 }
 
 .settingstuff .hndle.is-gapless {
@@ -87,6 +80,28 @@ form h2 {
   margin-bottom: 0;
 }
 
+.settingstuff .postbox .form-table th:empty {
+  padding-right: 0;
+  width: 0;
+}
+
+.settingstuff .postbox .form-table th:empty ~ td {
+  padding-left: 0;
+}
+
+.settingstuff .postbox .form-table th {
+  padding-left: 15px;
+}
+
+.form-table .is-gapless td {
+  padding-top: 11px;
+  padding-bottom: 0;
+}
+
+.form-table .has-small-text td p {
+  font-size: 13px;
+}
+
 .settingstuff .fields-wrapper {
   padding: 15px 12px;
   background-color: #fafafa;
@@ -94,8 +109,24 @@ form h2 {
   border-radius: 3px;
 }
 
+.settingstuff .fields-wrapper.has-top-gap {
+  margin-top: 13px;
+}
+
 .settingstuff .buttons {
   margin-top: 13px;
+}
+
+.settingstuff p.submit {
+  margin-top: 13px;
+  margin-bottom: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.settingstuff .buttons p.submit {
+  margin: 0;
+  padding: 0;
 }
 
 /* Overview Styles */
