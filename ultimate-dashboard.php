@@ -91,4 +91,4 @@ function udb_add_action_links( $links ) {
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'udb_add_action_links' );
 
 // Required Files.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-init.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/init.php';

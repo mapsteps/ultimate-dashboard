@@ -38,43 +38,43 @@ add_action( 'admin_menu', 'udb_addons_page', 10 );
  * Ultimate Dashboard Tools Page Template
  */
 function udb_tools_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-tools-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/tools-template.php';
 }
 
 /**
  * Ultimate Dashboard Settings Page Template
  */
 function udb_options_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-settings-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings-template.php';
 }
 
 /**
  * Ultimate Dashboard Addon Page Template
  */
 function udb_addons_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-addons-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/addons-template.php';
 }
 
 // Backwards Compatibility.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-backwards-compatibility.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/backwards-compatibility.php';
 
 // Ultimate Dashboard Custom Post Type.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-cpt.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/cpt.php';
 
 // Helpers.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-helpers.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/helpers.php';
 
 // Ultimate Dashboard Tools.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-tools.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/tools.php';
 
 // Ultimate Dashboard Settings.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-settings.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings.php';
 
 // Ultimate Dashboard Fields.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-fields.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/fields.php';
 
 // Ultimate Dashboard Widget Types.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/ultimate-dashboard-icon-widget.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
 
 // Ultimate Dashboard Output.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/ultimate-dashboard-output.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';

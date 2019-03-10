@@ -78,9 +78,3 @@ if ( get_option( 'comments' ) ) {
 	update_option( 'udb_settings', $udb_settings );
 	delete_option( 'comments' );
 }
-
-if ( get_option( 'phpnag' ) ) {
-	$udb_settings['dashboard_php_nag'] = 1;
-	update_option( 'udb_settings', $udb_settings );
-	delete_option( 'phpnag' );
-}
