@@ -2,7 +2,7 @@
 /**
  * Backwards Compatibility
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
