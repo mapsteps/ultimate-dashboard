@@ -12,8 +12,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 	<?php settings_errors(); ?>
 
-	<?php if (isset($_GET['updated'])) ?>
-
 	<div class="clearfix">
 		<div class="left-col">
 

@@ -12,10 +12,7 @@
  * @package Ultimate Dashboard
  */
 
-// exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 // Plugin constants.
 define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -41,15 +38,15 @@ function udb_admin_scripts() {
 	// Widget edit screen & create a new Widget screen.
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
-		// FontAwesome
+		// FontAwesome.
 		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
-		// Custom Post Type CSS
+		// Custom Post Type CSS.
 		wp_register_style( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-cpt.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'ultimate-dashboard-cpt' );
 
-		// Custom Post Type JS
+		// Custom Post Type JS.
 		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
 		wp_enqueue_script( 'ultimate-dashboard-cpt' );
 	}
@@ -57,11 +54,11 @@ function udb_admin_scripts() {
 	// Dashboard Widget Overview & Settings.
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
-		// FontAwesome
+		// FontAwesome.
 		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
-		// Settings CSS
+		// Settings CSS.
 		wp_register_style( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-settings.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'ultimate-dashboard-settings' );
 
@@ -70,16 +67,16 @@ function udb_admin_scripts() {
 	// WordPress Dashboard.
 	if ( 'index.php' === $pagenow ) {
 
-		// FontAwesome
+		// FontAwesome.
 		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
-		// Dashboard CSS
+		// Dashboard CSS.
 		wp_register_style( 'ultimate-dashboard-index', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-index.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'ultimate-dashboard-index' );
 
-		// Dashboard JS
-		wp_register_script( 'ultimate-dashboard-index', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-index.js', array( 'jquery' ), '', true );
+		// Dashboard JS.
+		wp_register_script( 'ultimate-dashboard-index', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-index.js', array( 'jquery' ), $plugin_data['Version'], true );
 		wp_enqueue_script( 'ultimate-dashboard-index' );
 
 	}
