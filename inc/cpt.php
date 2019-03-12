@@ -66,7 +66,7 @@ add_action( 'init', 'udb_post_type' );
 /*
  * Update Messages
  */
-function udb_widgets_updated_messages( $messages ) {
+function udb_widgets_update_messages( $messages ) {
 
 	$post = get_post();
 
@@ -92,7 +92,7 @@ function udb_widgets_updated_messages( $messages ) {
 	return $messages;
 
 }
-add_filter( 'post_updated_messages', 'udb_widgets_updated_messages' );
+add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 
 /**
  * Setup Columns
