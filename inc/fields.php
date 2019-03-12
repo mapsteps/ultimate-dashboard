@@ -5,10 +5,7 @@
  * @package Ultimate Dashboard
  */
 
-// exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Icon Metabox
@@ -134,7 +131,7 @@ function udb_main_meta_callback() {
 
 /**
  * Save postmeta data function
- * 
+ *
  * @param int $post_id The post ID.
  */
 function udb_save_postmeta( $post_id ) {

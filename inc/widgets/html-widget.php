@@ -4,10 +4,12 @@
  *
  * @package Ultimate Dashboard
  */
- 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
 
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+/**
+ * HTML Widget
+ */
 function udb_html_widget() { ?>
 
 	<?php global $post; ?>
@@ -20,21 +22,21 @@ function udb_html_widget() { ?>
 
 			<?php
 
-			$content = get_post_meta( $post->ID, 'udb_html', true );
-			$editor = 'udb_html';
+			$content  = get_post_meta( $post->ID, 'udb_html', true );
+			$editor   = 'udb_html';
 			$settings = array(
 				'media_buttons' => true,
 				'editor_height' => 300,
-				'tinymce' => false,
+				'tinymce'       => false,
 			);
 			wp_editor( $content, $editor, $settings );
-
 			?>
 
 		</div>
 
 	</div>
 
-<?php }
+	<?php
+}
 
 add_action( 'udb_metabox_widgets', 'udb_html_widget' );
