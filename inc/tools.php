@@ -99,11 +99,15 @@ function udb_process_export() {
 			);
 
 			$widget->meta = [
-				'udb_link'         => get_post_meta( $widget->ID, 'udb_link', true ),
-				'udb_link_target'  => get_post_meta( $widget->ID, 'udb_link_target', true ),
-				'udb_icon_key'     => get_post_meta( $widget->ID, 'udb_icon_key', true ),
-				'udb_position_key' => get_post_meta( $widget->ID, 'udb_position_key', true ),
-				'udb_priority_key' => get_post_meta( $widget->ID, 'udb_priority_key', true ),
+				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
+				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
+				'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
+				'udb_position_key'   => get_post_meta( $widget->ID, 'udb_position_key', true ),
+				'udb_priority_key'   => get_post_meta( $widget->ID, 'udb_priority_key', true ),
+				'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
+				'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
+				'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
+				'udb_html'           => get_post_meta( $widget->ID, 'udb_html', true ),
 			];
 		}
 	}
