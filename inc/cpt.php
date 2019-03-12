@@ -63,6 +63,37 @@ function udb_post_type() {
 }
 add_action( 'init', 'udb_post_type' );
 
+/*
+ * Update Messages
+ */
+function udb_widgets_updated_messages( $messages ) {
+
+	$post = get_post();
+
+	$messages['udb_widgets'] = array(
+		0  => '', // Unused. Messages start at index 1.
+		1  => __( 'Widget updated.', 'ultimate-dashboard' ),
+		2  => __( 'Custom field updated.', 'ultimate-dashboard' ),
+		3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
+		4  => __( 'Widget updated.', 'ultimate-dashboard' ),
+		/* translators: %s: date and time of the revision */
+		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+		6  => __( 'Widget published.', 'ultimate-dashboard' ),
+		7  => __( 'Widget saved.', 'ultimate-dashboard' ),
+		8  => __( 'Widget submitted.', 'ultimate-dashboard' ),
+		9  => sprintf(
+			__( 'Widget scheduled for: <strong>%1$s</strong>.', 'ultimate-dashboard' ),
+			// translators: Publish box date format, see http://php.net/date
+			date_i18n( __( 'M j, Y @ G:i', 'ultimate-dashboard' ), strtotime( $post->post_date ) )
+		),
+		10 => __( 'Widget draft updated.', 'ultimate-dashboard' )
+	);
+
+	return $messages;
+
+}
+add_filter( 'post_updated_messages', 'udb_widgets_updated_messages' );
+
 /**
  * Setup Columns
  */
@@ -71,9 +102,8 @@ function set_udb_widget_columns( $columns ) {
 	$columns = array(
 		'cb'    => '<input type="checkbox" />',
 		'title' => __( 'Widget Title', 'ultimate-dashboard' ),
-		'icon'  => __( 'Icon', 'ultimate-dashboard' ),
-		'link'  => __( 'Link Target', 'ultimate-dashboard' ),
-		'date'  => __( 'Date', 'ultimate-dashboard' ),
+		'type'  => __( 'Widget Type', 'ultimate-dashboard' ),
+		'date'  => __( 'Date', 'ultimate-dashboard' )
 	);
 
 	return $columns;
@@ -85,28 +115,20 @@ add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
  * Widget Columns
  */
 function udb_widget_columns( $column, $post_id ) {
-
 	switch ( $column ) {
 
-		case 'icon' :
+		case 'type' :
 
 			$content = get_post_meta( $post_id, 'udb_content', true );
+			$html    = get_post_meta( $post_id, 'udb_html', true );
 
-			if ( !$content ) {
-
-				$icon = get_post_meta( $post_id, 'udb_icon_key', true );
-				echo '<i class="'. esc_attr( $icon ) .'"></i>';
-
+			if( $html ) {
+				_e( 'HTML', 'ultimate-dashboard' );
+			} elseif( $content ) {
+				_e( 'Text', 'ultimate-dashboard' );
+			} else {
+				echo '<i class="'. get_post_meta( $post_id , 'udb_icon_key', true ) .'"></i>';
 			}
-
-		break;
-
-		case 'link' :
-
-			$link    = get_post_meta( $post_id, 'udb_link', true ); 
-			$replace = array( "http://", "https://", "www." );
-
-			echo str_replace( $replace, '', $link );
 
 		break;
 

@@ -16,6 +16,10 @@
 		$('.udb-text-wrapper').addClass('active');
 	});
 
+	$('.udb-html-tab').click(function() {
+		$('.udb-html-wrapper').addClass('active');
+	});
+
 	// Accordion
 	$('.ca-accordion-title').click(function() {
 		if($(this).hasClass('active')) {

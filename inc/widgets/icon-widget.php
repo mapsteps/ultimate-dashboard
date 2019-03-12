@@ -388,8 +388,32 @@ function udb_icon_widget() { ?>
 
 		</div>
 
-		<?php do_action( 'udb_tooltip' ); ?>
+		<div class="udb-metabox-section">
 
+			<h3><?php _e( 'Tooltip', 'ultimate-dashboard' ); ?></h3>
+
+			<?php $udb_stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true ); ?>
+
+			<table class="form-table">
+
+				<tbody>
+					
+					<tr>
+						<th>
+							<label for="udb-tooltip"><?php _e( 'Text', 'ultimate-dashboard' ); ?><br>
+								<span class="description"><?php _e( 'Leave empty for no Tooltip.', 'ultimate-dashboard' ); ?></span>
+							</label>
+						</th>
+						<td>
+							<textarea style="width: 100%" id="udb-tooltip" name="udb_tooltip" rows="5"><?php echo $udb_stored_meta ? $udb_stored_meta : false; ?></textarea>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
 	</div>
 
 

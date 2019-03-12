@@ -99,6 +99,8 @@ function udb_main_meta_callback() {
 
 	$nav_tabs = array(
 		'<a class="nav-tab udb-icon-tab nav-tab-active" href="#">'. __( 'Icon Widget', 'ultimate-dashboard' ) .'</a>',
+		'<a class="nav-tab udb-text-tab" href="#">'. __( 'Text Widget', 'ultimate-dashboard' ) .'</a>',
+		'<a class="nav-tab udb-html-tab" href="#">'. __( 'HTML Widget', 'ultimate-dashboard' ) .'</a>'
 	);
 
 	$nav_tabs = apply_filters( 'udb_extend_tab_nav', $nav_tabs );
@@ -151,6 +153,22 @@ function udb_save_postmeta( $post_id ) {
 
 	if (isset( $_POST['udb_metabox_priority'] ) ) {
 		update_post_meta( $post_id, 'udb_priority_key', sanitize_text_field( $_POST['udb_metabox_priority'] ) );
+	}
+
+	if ( isset( $_POST['udb_tooltip'] ) ) {
+		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST[ 'udb_tooltip' ] ) );
+	}
+
+	if ( isset( $_POST['udb_content'] ) ) {
+		update_post_meta( $post_id, 'udb_content', $_POST[ 'udb_content' ] );
+	}
+
+	if ( isset( $_POST['udb_content_height'] ) ) {
+		update_post_meta( $post_id, 'udb_content_height', $_POST[ 'udb_content_height' ] );
+	}
+
+	if ( isset( $_POST['udb_html'] ) ) {
+		update_post_meta( $post_id, 'udb_html', $_POST[ 'udb_html' ] );
 	}
 
 }

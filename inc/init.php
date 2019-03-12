@@ -73,8 +73,16 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings.php';
 // Ultimate Dashboard Fields.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/fields.php';
 
-// Ultimate Dashboard Widget Types.
+/* Widgets */
+
+// Icon Widget
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
+
+// Text Widget
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
+
+// HTML Widget
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/html-widget.php';
 
 // Ultimate Dashboard Output.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';
