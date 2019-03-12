@@ -4,9 +4,8 @@
  *
  * @package Ultimate Dashboard
  */
- 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Icon Metabox
@@ -34,6 +33,8 @@ add_action( 'add_meta_boxes', 'udb_priority_metabox' );
 
 /**
  * Priority Metabox Callback
+ *
+ * @param object $post The post object.
  */
 function udb_priority_meta_callback( $post ) {
 
@@ -41,7 +42,7 @@ function udb_priority_meta_callback( $post ) {
 
 	$udb_stored_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
 
-	if( !$udb_stored_meta ) { 
+	if ( ! $udb_stored_meta ) {
 		$udb_stored_meta = 'default';
 	}
 
@@ -61,11 +62,14 @@ function udb_priority_meta_callback( $post ) {
 		<input id="udb-metabox-priority-high" type="radio" name="udb_metabox_priority" value="high" <?php checked( $udb_stored_meta, 'high' ); ?> />
 		<label for="udb-metabox-priority-high"><?php _e( 'High', 'ultimate-dashboard' ); ?></label>
 	</div>
-	
-<?php }
+
+	<?php
+}
 
 /**
  * Position Metabox Callback
+ *
+ * @param object $post The post object.
  */
 function udb_position_meta_callback( $post ) {
 
@@ -73,7 +77,7 @@ function udb_position_meta_callback( $post ) {
 
 	$udb_stored_meta = get_post_meta( $post->ID, 'udb_position_key', true );
 
-	if( !$udb_stored_meta ) {
+	if ( ! $udb_stored_meta ) {
 		$udb_stored_meta = 'normal';
 	}
 
@@ -90,7 +94,8 @@ function udb_position_meta_callback( $post ) {
 	</div>
 
 
-<?php }
+	<?php
+}
 
 /**
  * Main Metabox Callback
@@ -98,9 +103,9 @@ function udb_position_meta_callback( $post ) {
 function udb_main_meta_callback() {
 
 	$nav_tabs = array(
-		'<a class="nav-tab udb-icon-tab nav-tab-active" href="#">'. __( 'Icon Widget', 'ultimate-dashboard' ) .'</a>',
-		'<a class="nav-tab udb-text-tab" href="#">'. __( 'Text Widget', 'ultimate-dashboard' ) .'</a>',
-		'<a class="nav-tab udb-html-tab" href="#">'. __( 'HTML Widget', 'ultimate-dashboard' ) .'</a>'
+		'<a class="nav-tab udb-icon-tab nav-tab-active" href="#">' . __( 'Icon Widget', 'ultimate-dashboard' ) . '</a>',
+		'<a class="nav-tab udb-text-tab" href="#">' . __( 'Text Widget', 'ultimate-dashboard' ) . '</a>',
+		'<a class="nav-tab udb-html-tab" href="#">' . __( 'HTML Widget', 'ultimate-dashboard' ) . '</a>',
 	);
 
 	$nav_tabs = apply_filters( 'udb_extend_tab_nav', $nav_tabs );
@@ -109,9 +114,11 @@ function udb_main_meta_callback() {
 
 	<div id="udb-metabox-tab-nav">
 		<h2 class="nav-tab-wrapper">
-			<?php foreach ( $nav_tabs as $nav_tab ) {
+			<?php
+			foreach ( $nav_tabs as $nav_tab ) {
 				echo $nav_tab;
-			} ?>
+			}
+			?>
 		</h2>
 	</div>
 
@@ -119,10 +126,13 @@ function udb_main_meta_callback() {
 
 	<div style="clear: both;"></div>
 
-<?php }
+	<?php
+}
 
 /**
  * Save postmeta data function
+ *
+ * @param int $post_id The post ID.
  */
 function udb_save_postmeta( $post_id ) {
 
@@ -132,7 +142,7 @@ function udb_save_postmeta( $post_id ) {
 	$is_valid_position_nonce = ( isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false'; // phpcs:ignore -- is ok
 	$is_valid_priority_nonce = ( isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false'; // phpcs:ignore -- is ok
 
-	if ( $is_autosave || $is_revision || !$is_valid_metabox_nonce || !$is_valid_position_nonce || !$is_valid_priority_nonce ) {
+	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
 	}
 
@@ -147,28 +157,28 @@ function udb_save_postmeta( $post_id ) {
 	$check = isset( $_POST['udb_link_target'] ) && $_POST['udb_link_target'] ? '_blank' : '_self';
 	update_post_meta( $post_id, 'udb_link_target', $check );
 
-	if (isset( $_POST['udb_metabox_position'] ) ) {
+	if ( isset( $_POST['udb_metabox_position'] ) ) {
 		update_post_meta( $post_id, 'udb_position_key', sanitize_text_field( $_POST['udb_metabox_position'] ) );
 	}
 
-	if (isset( $_POST['udb_metabox_priority'] ) ) {
+	if ( isset( $_POST['udb_metabox_priority'] ) ) {
 		update_post_meta( $post_id, 'udb_priority_key', sanitize_text_field( $_POST['udb_metabox_priority'] ) );
 	}
 
 	if ( isset( $_POST['udb_tooltip'] ) ) {
-		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST[ 'udb_tooltip' ] ) );
+		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST['udb_tooltip'] ) );
 	}
 
 	if ( isset( $_POST['udb_content'] ) ) {
-		update_post_meta( $post_id, 'udb_content', $_POST[ 'udb_content' ] );
+		update_post_meta( $post_id, 'udb_content', $_POST['udb_content'] );
 	}
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
-		update_post_meta( $post_id, 'udb_content_height', $_POST[ 'udb_content_height' ] );
+		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
 	}
 
 	if ( isset( $_POST['udb_html'] ) ) {
-		update_post_meta( $post_id, 'udb_html', $_POST[ 'udb_html' ] );
+		update_post_meta( $post_id, 'udb_html', $_POST['udb_html'] );
 	}
 
 }

@@ -37,6 +37,15 @@ function udb_tools() {
 function udb_render_export_field( $args ) {
 	?>
 	<p><?php esc_html_e( ' Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
+
+	<div class="fields-area">
+		<p>
+			<label>
+				<input type="checkbox" name="udb_export_settings" value="1" />
+				<?php esc_html_e( 'Include settings' ); ?>
+			</label>
+		</p>
+	</div>
 	<?php
 }
 
@@ -62,6 +71,12 @@ function udb_render_import_field( $args ) {
  * @return void
  */
 function udb_process_export() {
+	$settings = [];
+
+	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
+		$settings = get_option( 'udb_settings' );
+	}
+
 	$widgets = get_posts(
 		[
 			'post_type'   => 'udb_widgets',
@@ -84,18 +99,27 @@ function udb_process_export() {
 			);
 
 			$widget->meta = [
-				'udb_link'         => get_post_meta( $widget->ID, 'udb_link', true ),
-				'udb_link_target'  => get_post_meta( $widget->ID, 'udb_link_target', true ),
-				'udb_icon_key'     => get_post_meta( $widget->ID, 'udb_icon_key', true ),
-				'udb_position_key' => get_post_meta( $widget->ID, 'udb_position_key', true ),
-				'udb_priority_key' => get_post_meta( $widget->ID, 'udb_priority_key', true ),
+				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
+				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
+				'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
+				'udb_position_key'   => get_post_meta( $widget->ID, 'udb_position_key', true ),
+				'udb_priority_key'   => get_post_meta( $widget->ID, 'udb_priority_key', true ),
+				'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
+				'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
+				'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
+				'udb_html'           => get_post_meta( $widget->ID, 'udb_html', true ),
 			];
 		}
 	}
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
 	header( 'Content-type: application/json' );
-	echo wp_json_encode( $widgets );
+	echo wp_json_encode(
+		[
+			'widgets'  => $widgets,
+			'settings' => $settings,
+		]
+	);
 	exit;
 }
 
@@ -132,12 +156,14 @@ function udb_process_import() {
 	}
 
 	// phpcs:ignore -- im just fetching internal tmp_file, not url.
-	$widgets = file_get_contents( $tmp_file, true );
+	$imports = file_get_contents( $tmp_file, true );
+	$imports = (array) json_decode( $imports, true );
 
-	// Retrieve the settings from the file and convert the json object to an array.
-	$widgets = (array) json_decode( $widgets, true );
+	// Retrieve settings & widgets.
+	$settings = isset( $imports['settings'] ) ? $imports['settings'] : [];
+	$widgets  = isset( $imports['widgets'] ) ? $imports['widgets'] : [];
 
-	if ( ! $widgets ) {
+	if ( ! $imports && ! $widgets ) {
 		add_settings_error(
 			'udb_export',
 			esc_attr( 'udb-import' ),
@@ -146,35 +172,48 @@ function udb_process_import() {
 		return;
 	}
 
-	foreach ( $widgets as $widget ) {
-		$widget['post_type'] = 'udb_widgets';
+	if ( $settings ) {
+		update_option( 'udb_settings', $settings );
 
-		$post = get_page_by_path( $widget['post_name'], OBJECT, 'udb_widgets' );
-		$meta = $widget['meta'];
-
-		unset( $widget['meta'] );
-
-		// if post exists.
-		if ( $post ) {
-			$post_id      = $post->ID;
-			$widget['ID'] = $post->ID;
-
-			wp_update_post( $widget );
-		} else {
-			unset( $widget['ID'] );
-
-			$post_id = wp_insert_post( $widget );
-		}
-
-		foreach ( $meta as $meta_key => $meta_value ) {
-			update_post_meta( $post_id, $meta_key, $meta_value );
-		}
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'Settings imported', 'ultimate-dashboard' ),
+			'updated'
+		);
 	}
 
-	add_settings_error(
-		'udb_export',
-		esc_attr( 'udb-import' ),
-		__( 'Widgets imported', 'ultimate-dashboard' ),
-		'updated'
-	);
+	if ( $widgets ) {
+		foreach ( $widgets as $widget ) {
+			$widget['post_type'] = 'udb_widgets';
+
+			$post = get_page_by_path( $widget['post_name'], OBJECT, 'udb_widgets' );
+			$meta = $widget['meta'];
+
+			unset( $widget['meta'] );
+
+			// if post exists.
+			if ( $post ) {
+				$post_id      = $post->ID;
+				$widget['ID'] = $post->ID;
+
+				wp_update_post( $widget );
+			} else {
+				unset( $widget['ID'] );
+
+				$post_id = wp_insert_post( $widget );
+			}
+
+			foreach ( $meta as $meta_key => $meta_value ) {
+				update_post_meta( $post_id, $meta_key, $meta_value );
+			}
+		}
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'Widgets imported', 'ultimate-dashboard' ),
+			'updated'
+		);
+	}
 }

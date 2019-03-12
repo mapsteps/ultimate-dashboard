@@ -5,9 +5,11 @@
  * @package Ultimate Dashboard
  */
  
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+/**
+ * Icon Widget
+ */
 function udb_icon_widget() { ?>
 
 	<?php global $post; ?>
