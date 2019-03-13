@@ -144,19 +144,13 @@ td.icon .fa {
 
 /* Addon Styles */
 .udb-addon {
-  position: relative;
-  min-height: 400px;
   float: left;
-  border-radius: 2px;
   margin: 20px 20px 0 0;
-  padding: 15px;
-  border: 1px solid #ddd;
   max-width: 350px;
-  background: #fff;
 }
 
-.udb-addon-title {
-  margin-top: 0;
+.udb-addon a {
+  box-shadow: none;
 }
 
 .udb-addon img {
@@ -164,28 +158,6 @@ td.icon .fa {
   height: auto;
 }
 
-.udb-addon .udb-addon-button {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-}
-
-/* License Styles */
-.udb-license {
-  position: relative;
-  float: left;
-  border-radius: 2px;
-  margin: 20px 20px 0 0;
-  padding: 15px;
-  border: 1px solid #ddd;
-  max-width: 300px;
-  background: #fff;
-}
-
-.udb-license-title {
-  margin-top: 0;
-}
-
-.udb-license input[type="text"] {
-  width: 100%;
+.udb-addon-content {
+  padding: 0 15px 15px 15px;
 }
