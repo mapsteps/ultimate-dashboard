@@ -38,7 +38,7 @@ function udb_render_export_field( $args ) {
 	?>
 	<p><?php esc_html_e( ' Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
 
-	<div class="fields-area">
+	<div class="fields">
 		<p>
 			<label>
 				<input type="checkbox" name="udb_export_settings" value="1" />

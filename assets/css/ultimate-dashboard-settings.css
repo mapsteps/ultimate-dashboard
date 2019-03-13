@@ -38,21 +38,24 @@
   margin-bottom: 0;
 }
 
-.settingstuff .postbox {
+.settingstuff .neatbox.is-single-box {
   margin-top: 20px;
   margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
 }
 
-.settingstuff .postbox.is-gapless {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.settingstuff .neatbox.is-single-box h2 {
+  margin-top: 0;
 }
 
-.settingstuff .postbox h2 {
-  margin: 0;
+.settingstuff .neatbox h2 {
+  margin-top: 20px;
+  margin-bottom: 0;
   padding: 15px;
   line-height: 1em;
   font-size: 14px;
+  background-color: #fff;
   border-bottom: 1px solid #eee;
 }
 
@@ -60,36 +63,25 @@
   font-size: 15px;
 }
 
-.settingstuff .hndle.is-gapless {
-  padding: 8px 12px;
-  line-height: 1.4;
+.settingstuff .is-single-box .form-table {
+  margin-top: 7px;
 }
 
-.settingstuff .hndle.is-undraggable {
-  cursor: default;
+.settingstuff .form-table {
+  margin-top: 0;
+  background-color: #fff;
 }
 
-.settingstuff .postbox .inside {
-  margin-top: 22px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.settingstuff .postbox .inside.is-gapless {
-  margin-top: 13px;
-  margin-bottom: 0;
-}
-
-.settingstuff .postbox .form-table th:empty {
+.settingstuff .neatbox .form-table th:empty {
   padding-right: 0;
   width: 0;
 }
 
-.settingstuff .postbox .form-table th:empty ~ td {
+.settingstuff .neatbox .form-table th:empty ~ td {
   padding-left: 0;
 }
 
-.settingstuff .postbox .form-table th {
+.settingstuff .neatbox .form-table th {
   padding-left: 15px;
 }
 
@@ -102,7 +94,7 @@
   font-size: 13px;
 }
 
-.settingstuff .fields-area {
+.settingstuff .fields {
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -118,15 +110,19 @@
   margin-top: 13px;
 }
 
-.settingstuff .buttons {
-  margin-top: 13px;
+.settingstuff .neatbox p.submit {
+  margin-top: 20px;
 }
 
-.settingstuff p.submit {
+.settingstuff .neatbox.is-single-box p.submit {
   margin-top: 13px;
   margin-bottom: 2px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.settingstuff .buttons {
+  margin-top: 13px;
 }
 
 .settingstuff .buttons p.submit {
