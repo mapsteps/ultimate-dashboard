@@ -62,6 +62,13 @@ function udb_admin_scripts() {
 		wp_register_style( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-settings.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'ultimate-dashboard-settings' );
 
+		// CodeMirror.
+		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
+
+		// Settings Page JS.
+		wp_register_script( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-settings.js', array( 'jquery' ), $plugin_data['Version'], true );
+		wp_enqueue_script( 'ultimate-dashboard-settings' );
+
 	}
 
 	// WordPress Dashboard.
