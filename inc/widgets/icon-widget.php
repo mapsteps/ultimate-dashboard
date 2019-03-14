@@ -25,7 +25,10 @@ function udb_icon_widget() {
 			$fontawesome = json_decode( $fontawesome, true );
 			$fontawesome = $fontawesome ? $fontawesome : [];
 			$udb_icons   = [];
-			$selected    = [];
+			$selected    = [
+				'id'   => 'dashicons dashicons-menu',
+				'text' => 'Menu',
+			];
 
 			// loop over dashicons.
 			foreach ( $dashicons as $icon_category => $icons ) {
@@ -50,6 +53,7 @@ function udb_icon_widget() {
 							'id'   => $icon_class,
 							'text' => $icon_text,
 						];
+
 					}
 
 					array_push(
