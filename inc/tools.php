@@ -99,6 +99,7 @@ function udb_process_export() {
 			);
 
 			$widget->meta = [
+				'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
 				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
 				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
 				'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
