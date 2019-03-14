@@ -272,10 +272,15 @@
 }
 
 /* CodeMirror Fix */
-.CodeMirror-sizer {
+.neatbox .input-control .CodeMirror-sizer {
   margin-left: 46px;
 }
 
-.CodeMirror-linenumbers {
+.neatbox .input-control .CodeMirror-linenumbers {
   width: 29px;
+}
+
+/* Select2 Fix */
+.neatbox .input-control .select2-container {
+  width: 100% !important;
 }
