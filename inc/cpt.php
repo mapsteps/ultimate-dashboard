@@ -126,12 +126,16 @@ function udb_widget_columns( $column, $post_id ) {
 		case 'type':
 			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
-			if ( 'html' === $widget_type ) {
-				esc_html_e( 'HTML', 'ultimate-dashboard' );
-			} elseif ( 'text' === $widget_type ) {
-				esc_html_e( 'Text', 'ultimate-dashboard' );
-			} elseif ( 'icon' === $widget_type ) {
-				echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
+			if ( ! $widget_type ) {
+				do_action( 'udb_compat_widget_type', $post_id );
+			} else {
+				if ( 'html' === $widget_type ) {
+					esc_html_e( 'HTML', 'ultimate-dashboard' );
+				} elseif ( 'text' === $widget_type ) {
+					esc_html_e( 'Text', 'ultimate-dashboard' );
+				} elseif ( 'icon' === $widget_type ) {
+					echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
+				}
 			}
 
 			break;

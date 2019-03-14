@@ -80,9 +80,36 @@ if ( get_option( 'comments' ) ) {
 }
 
 /**
- * Check widget type compatibility if necessary
+ * Handle udb_widget_type
+ * Can be used for "whole checking" or "partial checking"
+ *
+ * @param int $post_id The post ID.
+ */
+function udb_handle_widget_type( $post_id ) {
+	$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
+
+	if ( ! $widget_type ) {
+		$html    = get_post_meta( $post_id, 'udb_html', true );
+		$content = get_post_meta( $post_id, 'udb_content', true );
+
+		if ( $html ) {
+			$widget_type = 'html';
+		} elseif ( $content ) {
+			$widget_type = 'text';
+		} else {
+			$widget_type = 'icon';
+		}
+
+		update_post_meta( $post_id, 'udb_widget_type', $widget_type );
+	}
+}
+add_action( 'udb_compat_widget_type', 'udb_handle_widget_type' );
+
+/**
+ * Whole checking udb_widget_type compatibility
  */
 function udb_compat_widget_type() {
+	// no need to check more if ever checked.
 	if ( get_option( 'udb_compat_widget_type' ) ) {
 		return;
 	}
@@ -100,24 +127,10 @@ function udb_compat_widget_type() {
 	}
 
 	foreach ( $widgets as $widget ) {
-		$widget_type = get_post_meta( $widget->ID, 'udb_widget_type', true );
-
-		if ( ! $widget_type ) {
-			$html    = get_post_meta( $widget->ID, 'udb_html', true );
-			$content = get_post_meta( $widget->ID, 'udb_content', true );
-
-			if ( $html ) {
-				$widget_type = 'html';
-			} elseif ( $content ) {
-				$widget_type = 'text';
-			} else {
-				$widget_type = 'icon';
-			}
-
-			update_post_meta( $widget->ID, 'udb_widget_type', $widget_type );
-		}
+		do_action( 'udb_compat_widget_type', $widget->ID );
 	}
 
+	// mark it, so no need to check more next time.
 	update_option( 'udb_compat_widget_type', 1 );
 }
 add_action( 'admin_init', 'udb_compat_widget_type' );
