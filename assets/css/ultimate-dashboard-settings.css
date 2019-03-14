@@ -38,19 +38,25 @@
   margin-bottom: 0;
 }
 
-.settingstuff .neatbox.is-single-box {
+.settingstuff .neatbox.has-subboxes {
+  margin-top: 0;
+  background-color: transparent;
+  border: 0;
+}
+
+.settingstuff .neatbox {
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #e5e5e5;
 }
 
-.settingstuff .neatbox.is-single-box h2 {
-  margin-top: 0;
+.settingstuff .neatbox.has-subboxes h2 {
+  margin-top: 20px;
 }
 
 .settingstuff .neatbox h2 {
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 0;
   padding: 15px;
   line-height: 1em;
@@ -63,12 +69,12 @@
   font-size: 15px;
 }
 
-.settingstuff .is-single-box .form-table {
-  margin-top: 7px;
+.settingstuff .has-subboxes .form-table {
+  margin-top: 0;
 }
 
 .settingstuff .form-table {
-  margin-top: 0;
+  margin-top: 7px;
   background-color: #fff;
 }
 
@@ -110,11 +116,14 @@
   margin-top: 13px;
 }
 
-.settingstuff .neatbox p.submit {
+.settingstuff .neatbox.has-subboxes p.submit {
   margin-top: 20px;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.settingstuff .neatbox.is-single-box p.submit {
+.settingstuff .neatbox p.submit {
   margin-top: 13px;
   margin-bottom: 2px;
   padding-left: 15px;
