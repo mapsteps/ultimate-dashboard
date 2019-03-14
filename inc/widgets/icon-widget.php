@@ -161,7 +161,7 @@ function udb_icon_widget() {
 				<p class="description"><?php esc_html_e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
 			</div>
 			<div class="input-control">
-				<input type="url" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
+				<input id="udb_link" type="url" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
 			</div>
 		</div>
 
@@ -174,7 +174,7 @@ function udb_icon_widget() {
 			</div>
 			<div class="input-control">
 				<label>
-					<input type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
+					<input id="udb_link_target" type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
 					<span class="message"><?php esc_html_e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?></span>
 				</label>
 			</div>
