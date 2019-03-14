@@ -42,7 +42,7 @@ function udb_icon_widget() {
 					$splits    = explode( '-', $icon_name );
 					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
 					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code>' . $icon_class . '</code>)';
+					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
 					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
 
 					if ( $icon_class === $stored_meta ) {
@@ -85,7 +85,7 @@ function udb_icon_widget() {
 					$splits    = explode( '-', $icon_name );
 					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
 					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code>' . $icon_class . '</code>)';
+					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
 					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
 
 					if ( $icon_class === $stored_meta ) {
@@ -124,8 +124,6 @@ function udb_icon_widget() {
 			?>
 
 			<div class="label-control">
-				<label for="icon_key"><?php esc_html_e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
-				<p class="description"><?php esc_html_e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
 				<div class="icon-preview"></div>
 			</div>
 			<div class="input-control">
@@ -134,6 +132,19 @@ function udb_icon_widget() {
 						<option value="<?php echo esc_attr( $stored_meta ); ?>" selected><?php echo esc_html( $stored_meta ); ?></option>
 					<?php endif; ?>
 				</select>
+			</div>
+		</div>
+
+		<div class="field">
+			<?php
+			$stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true );
+			?>
+			<div class="label-control">
+				<label for="udb-tooltip"><?php _e( 'Tooltip', 'ultimatedashboard' ); ?></label>
+				<p class="description"><?php _e( 'Leave empty for no Tooltip.', 'ultimatedashboard' ); ?></p>
+			</div>
+			<div class="input-control">
+				<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo $stored_meta ? $stored_meta : false; ?></textarea>
 			</div>
 		</div>
 
