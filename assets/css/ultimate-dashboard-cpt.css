@@ -270,3 +270,12 @@
 .widget-fields [data-type] {
   display: none;
 }
+
+/* CodeMirror Fix */
+.CodeMirror-sizer {
+  margin-left: 46px;
+}
+
+.CodeMirror-linenumbers {
+  width: 29px;
+}
