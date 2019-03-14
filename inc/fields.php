@@ -40,27 +40,38 @@ function udb_priority_meta_callback( $post ) {
 
 	wp_nonce_field( basename( __FILE__ ), 'udb_priority_nonce' );
 
-	$udb_stored_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
+	$saved_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
 
-	if ( ! $udb_stored_meta ) {
-		$udb_stored_meta = 'default';
+	if ( ! $saved_meta ) {
+		$saved_meta = 'default';
 	}
-
 	?>
 
-	<div>
-		<input id="udb-metabox-priority-default" type="radio" name="udb_metabox_priority" value="default" <?php checked( $udb_stored_meta, 'default' ); ?> />
-		<label for="udb-metabox-priority-default"><?php _e( 'Default', 'ultimate-dashboard' ); ?></label>
-	</div>
-
-	<div>
-		<input id="udb-metabox-priority-low" type="radio" name="udb_metabox_priority" value="low" <?php checked( $udb_stored_meta, 'low' ); ?> />
-		<label for="udb-metabox-priority-low"><?php _e( 'Low', 'ultimate-dashboard' ); ?></label>
-	</div>
-
-	<div>
-		<input id="udb-metabox-priority-high" type="radio" name="udb_metabox_priority" value="high" <?php checked( $udb_stored_meta, 'high' ); ?> />
-		<label for="udb-metabox-priority-high"><?php _e( 'High', 'ultimate-dashboard' ); ?></label>
+	<div class="neatbox">
+		<div class="field radio-field">
+			<div class="input-control">
+				<ul>
+					<li>
+						<label>
+							<input type="radio" name="udb_metabox_priority" value="default" <?php checked( $saved_meta, 'default' ); ?> />
+							<?php esc_html_e( 'Default', 'ultimate-dashboard' ); ?>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="radio" name="udb_metabox_priority" value="low" <?php checked( $saved_meta, 'low' ); ?> />
+							<?php esc_html_e( 'Low', 'ultimate-dashboard' ); ?>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="radio" name="udb_metabox_priority" value="high" <?php checked( $saved_meta, 'high' ); ?> />
+							<?php esc_html_e( 'High', 'ultimate-dashboard' ); ?>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
 	<?php
@@ -72,27 +83,35 @@ function udb_priority_meta_callback( $post ) {
  * @param object $post The post object.
  */
 function udb_position_meta_callback( $post ) {
-
 	wp_nonce_field( basename( __FILE__ ), 'udb_position_nonce' );
 
-	$udb_stored_meta = get_post_meta( $post->ID, 'udb_position_key', true );
+	$saved_meta = get_post_meta( $post->ID, 'udb_position_key', true );
 
-	if ( ! $udb_stored_meta ) {
-		$udb_stored_meta = 'normal';
+	if ( ! $saved_meta ) {
+		$saved_meta = 'normal';
 	}
-
 	?>
 
-	<div>
-		<input id="udb-metabox-content-normal" type="radio" name="udb_metabox_position" value="normal" <?php checked( $udb_stored_meta, 'normal' ); ?> />
-		<label for="udb-metabox-content-normal"><?php _e( 'Left column', 'ultimate-dashboard' ); ?></label>
+	<div class="neatbox">
+		<div class="field radio-field">
+			<div class="input-control">
+				<ul>
+					<li>
+						<label>
+							<input type="radio" name="udb_metabox_position" value="normal" <?php checked( $saved_meta, 'normal' ); ?> />
+							<?php esc_html_e( 'Left column', 'ultimate-dashboard' ); ?>
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type="radio" name="udb_metabox_position" value="side" <?php checked( $saved_meta, 'side' ); ?> />
+							<?php esc_html_e( 'Right column', 'ultimate-dashboard' ); ?>
+						</label>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-
-	<div>
-		<input id="udb-metabox-content-side" type="radio" name="udb_metabox_position" value="side" <?php checked( $udb_stored_meta, 'side' ); ?> />
-		<label for="udb-metabox-content-side"><?php _e( 'Right column', 'ultimate-dashboard' ); ?></label>
-	</div>
-
 
 	<?php
 }

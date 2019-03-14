@@ -190,6 +190,19 @@
   border-top: 1px solid #eee;
 }
 
+.neatbox .radio-field {
+  padding: 10px 0 0;
+}
+
+.neatbox .radio-field ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.neatbox .radio-field .input-control label {
+  font-weight: 400;
+}
+
 .neatbox .label-control {
   margin-bottom: 10px;
 }
