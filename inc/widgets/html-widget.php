@@ -10,33 +10,24 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * HTML Widget
  */
-function udb_html_widget() { ?>
+function udb_html_widget() {
+	global $post;
 
-	<?php global $post; ?>
+	$content = get_post_meta( $post->ID, 'udb_html', true );
+	?>
+	<div data-type="html">
 
-	<div class="udb-metabox-wrapper udb-html-wrapper">
-
-		<div class="udb-metabox-section">
-
-			<h3><?php _e( 'HTML', 'ultimate-dashboard' ); ?></h3>
-
-			<?php
-
-			$content  = get_post_meta( $post->ID, 'udb_html', true );
-			$editor   = 'udb_html';
-			$settings = array(
-				'media_buttons' => true,
-				'editor_height' => 300,
-				'tinymce'       => false,
-			);
-			wp_editor( $content, $editor, $settings );
-			?>
-
+		<div class="field">
+			<div class="label-control">
+				<label for="udb_widget_type"><?php echo esc_html_e( 'HTML', 'utimate-dashboard' ); ?></label>
+			</div>
+			<div class="input-control">
+				<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
+			</div>
 		</div>
 
 	</div>
-
 	<?php
 }
 
-// add_action( 'udb_metabox_widgets', 'udb_html_widget' );
+add_action( 'udb_metabox_widgets', 'udb_html_widget' );

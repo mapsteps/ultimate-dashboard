@@ -2,6 +2,7 @@
   function init() {
     setupWidgetType();
     setupIconPicker();
+    setupCodeEditor();
   }
 
   function setupWidgetType() {
@@ -42,6 +43,23 @@
     if (udbIcons.selected) {
       $iconSelect.val(udbIcons.selected.id);
       $iconSelect.trigger("change");
+    }
+  }
+
+  function setupCodeEditor() {
+    if ($('[name="udb_html"]').length) {
+      var editorSettings = wp.codeEditor.defaultSettings
+        ? _.clone(wp.codeEditor.defaultSettings)
+        : {};
+      editorSettings.codemirror = _.extend({}, editorSettings.codemirror, {
+        indentUnit: 4,
+        tabSize: 4,
+        mode: "html"
+      });
+      var editor = wp.codeEditor.initialize(
+        $('[name="udb_html"]'),
+        editorSettings
+      );
     }
   }
 
