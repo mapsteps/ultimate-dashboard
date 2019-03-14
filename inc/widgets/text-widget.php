@@ -10,57 +10,47 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Text Widget
  */
-function udb_text_widget() { ?>
+function udb_text_widget() {
+	global $post;
+	?>
+	<div data-type="text">
 
-	<?php global $post; ?>
-
-	<div class="udb-metabox-wrapper udb-text-wrapper">
-
-		<div class="udb-metabox-section">
-
-			<h3><?php _e( 'Text', 'ultimate-dashboard' ); ?></h3>
-
+		<div class="field">
 			<?php
-
-			$content  = get_post_meta( $post->ID, 'udb_content', true );
-			$editor   = 'udb_content';
-			$settings = array(
-				'media_buttons' => false,
-				'editor_height' => 300,
-				'teeny'         => true,
-			);
-			wp_editor( $content, $editor, $settings );
-
+			$stored_meta = get_post_meta( $post->ID, 'udb_content', true );
 			?>
-
+			<div class="label-control">
+				<label for="udb_content"><?php esc_html_e( 'Content', 'ultimate-dashboard' ); ?></label>
+			</div>
+			<div class="input-control">
+				<?php
+				$content  = get_post_meta( $post->ID, 'udb_content', true );
+				$editor   = 'udb_content';
+				$settings = array(
+					'media_buttons' => false,
+					'editor_height' => 300,
+					'teeny'         => true,
+				);
+				wp_editor( $content, $editor, $settings );
+				?>
+			</div>
 		</div>
 
-		<div class="udb-metabox-section">
-
-			<h3><?php _e( 'Size', 'ultimate-dashboard' ); ?></h3>
-
-			<?php $udb_stored_meta = get_post_meta( $post->ID, 'udb_content_height', true ); ?>
-
-			<table class="form-table">
-				<tbody>
-					<tr>
-						<th>
-							<label for="udb-content-size"><?php _e( 'Fixed Widget Height', 'ultimate-dashboard' ); ?><br>
-								<span class="description"><?php _e( 'Example: 200px', 'ultimate-dashboard' ); ?></span>
-							</label>
-						</th>
-						<td>
-							<input id="udb-content-size" type="text" name="udb_content_height" value="<?php echo $udb_stored_meta ? $udb_stored_meta : false; ?>" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
+		<div class="field">
+			<?php
+			$stored_meta = get_post_meta( $post->ID, 'udb_content_height', true );
+			?>
+			<div class="label-control">
+				<label for="udb_content_height"><?php esc_html_e( 'Fixed Widget Height', 'ultimate-dashboard' ); ?></label>
+				<p class="description"><?php esc_html_e( 'Example: 200px', 'ultimate-dashboard' ); ?></p>
+			</div>
+			<div class="input-control">
+				<input type="text" name="udb_content_height" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
+			</div>
 		</div>
 
 	</div>
-
 	<?php
 }
 
-// add_action( 'udb_metabox_widgets', 'udb_text_widget' );
+add_action( 'udb_metabox_widgets', 'udb_text_widget' );
