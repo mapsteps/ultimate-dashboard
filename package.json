@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/MapSteps/Ultimate-Dashboard#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.2",
+    "font-awesome": "^4.7.0",
     "select2": "^4.0.6-rc.1"
   }
 }
