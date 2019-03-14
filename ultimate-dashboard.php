@@ -35,7 +35,7 @@ function udb_admin_scripts() {
 
 	$plugin_data = get_plugin_data( __FILE__ );
 
-	// Widget edit screen & create a new Widget screen.
+	// Widget Edit Screen & Create a New Widget Screen.
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
@@ -66,7 +66,7 @@ function udb_admin_scripts() {
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/fontawesome-free/css/all.min.css', array(), '5.7.2' );
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/font-awesome-free/css/all.min.css', array(), '5.7.2' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Settings CSS.
@@ -86,7 +86,7 @@ function udb_admin_scripts() {
 	if ( 'index.php' === $pagenow ) {
 
 		// FontAwesome CSS.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/fontawesome-free/css/all.min.css', array(), '5.7.2' );
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Dashboard CSS.
