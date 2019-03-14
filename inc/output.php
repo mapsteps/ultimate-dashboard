@@ -22,34 +22,31 @@ function udb_add_dashboard_widgets() {
 	while ( $loop->have_posts() ) : $loop->the_post();
 
 	// vars
-	$id       = get_the_ID();
-	$title    = get_the_title();
-	$icon     = get_post_meta( $id, 'udb_icon_key', true );
-	$link     = get_post_meta( $id, 'udb_link', true );
-	$target   = get_post_meta( $id, 'udb_link_target', true );
-	$tooltip  = get_post_meta( $id, 'udb_tooltip', true );
-	$position = get_post_meta( $id, 'udb_position_key', true );
-	$priority = get_post_meta( $id, 'udb_priority_key', true );
-
-	// text widget vars
+	$id            = get_the_ID();
+	$title         = get_the_title();
+	$icon          = get_post_meta( $id, 'udb_icon_key', true );
+	$link          = get_post_meta( $id, 'udb_link', true );
+	$target        = get_post_meta( $id, 'udb_link_target', true );
+	$tooltip       = get_post_meta( $id, 'udb_tooltip', true );
+	$position      = get_post_meta( $id, 'udb_position_key', true );
+	$priority      = get_post_meta( $id, 'udb_priority_key', true );
+	$widget_type   = get_post_meta( $id, 'udb_widget_type', true ); // do we need a backwards compatibility check here as we move the settings over in backwards-compatibility.php on init
 	$content       = get_post_meta( $id, 'udb_content', true );
 	$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="'. get_post_meta( $id, 'udb_content_height', true ) .'"' : '';
-
-	// HTML widget vars
-	$html = get_post_meta( $id, 'udb_html', true );
+	$html          = get_post_meta( $id, 'udb_html', true );
 
 	// HTML Widget
-	if( $html ) {
+	if ( 'html' === $widget_type ) {
 
 		$output = do_shortcode( '<div class="udb-html-wrapper">'. $html .'</div>' );
 
 	// Text Widget
-	} elseif ( $content ) {
+	} elseif ( 'text' === $widget_type ) {
 
 		$output = do_shortcode( '<div class="udb-content-wrapper"'. $contentheight .'>'. wpautop( $content ) .'</div>' );
 
 	// Icon Widget
-	} else {
+	} elseif ( 'icon' === $widget_type ) {
 
 		// Widget Output
 		$output = '<a href="'. $link .'" target="'. $target .'"><i class="' . $icon . '"></i></a>';
