@@ -78,3 +78,46 @@ if ( get_option( 'comments' ) ) {
 	update_option( 'udb_settings', $udb_settings );
 	delete_option( 'comments' );
 }
+
+/**
+ * Check widget type compatibility if necessary
+ */
+function udb_compat_widget_type() {
+	if ( get_option( 'udb_compat_widget_type' ) ) {
+		return;
+	}
+
+	$widgets = get_posts(
+		[
+			'post_type'   => 'udb_widgets',
+			'numberposts' => -1,
+			'post_status' => 'any',
+		]
+	);
+
+	if ( ! $widgets ) {
+		return;
+	}
+
+	foreach ( $widgets as $widget ) {
+		$widget_type = get_post_meta( $widget->ID, 'udb_widget_type', true );
+
+		if ( ! $widget_type ) {
+			$html    = get_post_meta( $widget->ID, 'udb_html', true );
+			$content = get_post_meta( $widget->ID, 'udb_content', true );
+
+			if ( $html ) {
+				$widget_type = 'html';
+			} elseif ( $content ) {
+				$widget_type = 'text';
+			} else {
+				$widget_type = 'icon';
+			}
+
+			update_post_meta( $widget->ID, 'udb_widget_type', $widget_type );
+		}
+	}
+
+	update_option( 'udb_compat_widget_type', 1 );
+}
+add_action( 'admin_init', 'udb_compat_widget_type' );

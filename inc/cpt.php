@@ -124,19 +124,17 @@ function udb_widget_columns( $column, $post_id ) {
 	switch ( $column ) {
 
 		case 'type':
-			$content = get_post_meta( $post_id, 'udb_content', true );
-			$html    = get_post_meta( $post_id, 'udb_html', true );
+			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
-			if ( $html ) {
-				_e( 'HTML', 'ultimate-dashboard' );
-			} elseif ( $content ) {
-				_e( 'Text', 'ultimate-dashboard' );
-			} else {
+			if ( 'html' === $widget_type ) {
+				esc_html_e( 'HTML', 'ultimate-dashboard' );
+			} elseif ( 'text' === $widget_type ) {
+				esc_html_e( 'Text', 'ultimate-dashboard' );
+			} elseif ( 'icon' === $widget_type ) {
 				echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
 			}
 
 			break;
-
 	}
 
 }
