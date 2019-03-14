@@ -63,4 +63,4 @@ function udb_text_widget() { ?>
 	<?php
 }
 
-add_action( 'udb_metabox_widgets', 'udb_text_widget' );
+// add_action( 'udb_metabox_widgets', 'udb_text_widget' );

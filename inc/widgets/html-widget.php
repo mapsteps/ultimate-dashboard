@@ -39,4 +39,4 @@ function udb_html_widget() { ?>
 	<?php
 }
 
-add_action( 'udb_metabox_widgets', 'udb_html_widget' );
+// add_action( 'udb_metabox_widgets', 'udb_html_widget' );

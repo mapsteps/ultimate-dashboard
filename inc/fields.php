@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Icon Metabox
  */
 function udb_main_metabox() {
-	add_meta_box( 'ultimate-dashboard-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), 'udb_main_meta_callback', 'udb_widgets', 'normal', 'high' );
+	add_meta_box( 'udb-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), 'udb_main_meta_callback', 'udb_widgets', 'normal', 'high' );
 }
 add_action( 'add_meta_boxes', 'udb_main_metabox' );
 
@@ -101,30 +101,26 @@ function udb_position_meta_callback( $post ) {
  * Main Metabox Callback
  */
 function udb_main_meta_callback() {
-
-	$nav_tabs = array(
-		'<a class="nav-tab udb-icon-tab nav-tab-active" href="#">' . __( 'Icon Widget', 'ultimate-dashboard' ) . '</a>',
-		'<a class="nav-tab udb-text-tab" href="#">' . __( 'Text Widget', 'ultimate-dashboard' ) . '</a>',
-		'<a class="nav-tab udb-html-tab" href="#">' . __( 'HTML Widget', 'ultimate-dashboard' ) . '</a>',
-	);
-
-	$nav_tabs = apply_filters( 'udb_extend_tab_nav', $nav_tabs );
-
 	?>
 
-	<div id="udb-metabox-tab-nav">
-		<h2 class="nav-tab-wrapper">
-			<?php
-			foreach ( $nav_tabs as $nav_tab ) {
-				echo $nav_tab;
-			}
-			?>
-		</h2>
+	<div class="neatbox">
+		<div class="field">
+			<div class="label-control">
+				<label for="udb_widget_type"><?php echo esc_html_e( 'Widget Type', 'utimate-dashboard' ); ?></label>
+			</div>
+			<div class="input-control">
+				<select name="udb_widget_type">
+					<option value="icon"><?php echo esc_html_e( 'Icon Widget', 'ultimate-dashboard' ); ?></option>
+					<option value="text"><?php echo esc_html_e( 'Text Widget', 'ultimate-dashboard' ); ?></option>
+					<option value="html"><?php echo esc_html_e( 'HTML Widget', 'ultimate-dashboard' ); ?></option>
+				</select>
+			</div>
+		</div>
+
+		<div class="widget-fields">
+			<?php do_action( 'udb_metabox_widgets' ); ?>
+		</div>
 	</div>
-
-	<?php do_action( 'udb_metabox_widgets' ); ?>
-
-	<div style="clear: both;"></div>
 
 	<?php
 }
@@ -144,6 +140,10 @@ function udb_save_postmeta( $post_id ) {
 
 	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
+	}
+
+	if ( isset( $_POST['udb_widget_type'] ) ) {
+		update_post_meta( $post_id, 'udb_widget_type', sanitize_text_field( $_POST['udb_widget_type'] ) );
 	}
 
 	if ( isset( $_POST['udb_icon'] ) ) {

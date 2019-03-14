@@ -1,97 +1,49 @@
 (function($) {
+  function init() {
+    setupWidgetType();
+    setupIconPicker();
+  }
 
-	// Metabox Tab Navigation
-	$('#udb-metabox-tab-nav a').click(function(event) {
-		event.preventDefault();
-		$('#udb-metabox-tab-nav a').removeClass('nav-tab-active');
-		$(this).addClass('nav-tab-active');
-		$('.udb-metabox-wrapper').removeClass('active');
-	});
+  function setupWidgetType() {
+    var $type = $('[name="udb_widget_type');
+    var $fields = $(".neatbox .widget-fields");
+    var value = $type.val();
 
-	$('.udb-icon-tab').click(function() {
-		$('.udb-icon-wrapper').addClass('active');
-	});
+    $fields.find('[data-type="' + value + '"]').addClass("is-active");
 
-	$('.udb-text-tab').click(function() {
-		$('.udb-text-wrapper').addClass('active');
-	});
+    $type.on("change", function(e) {
+      value = $(this).val();
 
-	$('.udb-html-tab').click(function() {
-		$('.udb-html-wrapper').addClass('active');
-	});
+      $fields.find("[data-type]").removeClass("is-active");
+      $fields.find('[data-type="' + value + '"]').addClass("is-active");
+    });
+  }
 
-	// Accordion
-	$('.ca-accordion-title').click(function() {
-		if($(this).hasClass('active')) {
-			$('.ca-accordion-title').removeClass('active');
-			$('.ca-accordion-content').stop().slideUp();
-		} else {
-			$('.ca-accordion-title').removeClass('active');
-			$('.ca-accordion-content').stop().slideUp();
-			$(this).next().stop().slideDown();
-			$(this).addClass('active');
-		}
-	});
+  function setupIconPicker() {
+    var $iconPreview = $(".icon-preview");
+    var $iconSelect = $('[name="udb_icon"]');
+    var value = $iconSelect.val();
 
-	// Search
-	jQuery.expr[':'].Contains = function(a,i,m){
-	  return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
-	};
+    $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 
-	function listFilter(header, list) {
-	var form = $("<form>").attr({"action":"#"}),
-		input = $("<input>").attr({"class":"udb-icon-search","type":"text"});
-	$(form).append(input).appendTo(header);
+    $iconSelect.on("change", function(e) {
+      $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+    });
 
-	$(input)
-	  .change( function () {
-		var filter = $(this).val();
-		if(filter) {
+    $iconSelect.empty();
 
-			// hide if no match
-			$(list).find("label:not(:Contains(" + filter + "))").hide();
-			// hide parent li if no match
-			$(list).find("label:not(:Contains(" + filter + "))").parent().hide();
+    $iconSelect.select2({
+      data: udbIcons.icons,
+      escapeMarkup: function(markup) {
+        return markup;
+      }
+    });
 
-			// show if match
-			$(list).find("label:Contains(" + filter + ")").show();
-			// show parent li if match
-			$(list).find("label:Contains(" + filter + ")").parent().show();
+    if (udbIcons.selected) {
+      $iconSelect.val(udbIcons.selected.id);
+      $iconSelect.trigger("change");
+    }
+  }
 
-			// mark accordion title as inactive if no match
-			$(list).find("label:not(:Contains(" + filter + "))").parent().parent().parent().prev().removeClass('active');
-			// hide parent accordion content if match
-			$(list).find("label:not(:Contains(" + filter + "))").parent().parent().parent().hide();
-
-			// show parent accordion content if match
-			$(list).find("label:Contains(" + filter + ")").parent().parent().parent().show();
-			// mark accordion title as active if match
-			$(list).find("label:Contains(" + filter + ")").parent().parent().parent().prev().addClass('active');
-
-		} else { 
-
-			// show all labels
-			$(list).find("label").show();
-
-			// show all li's
-			$(list).find("label").parent().show();
-
-			// hide accordion content
-			$(list).find("label").parent().parent().parent().hide();
-
-			// mark accordion title as inactive
-			$(list).find("label").parent().parent().parent().prev().removeClass('active');
-
-		}
-		return false;
-	  })
-	.keyup( function () {
-		$(this).change();
-	});
-	}
-
-	$(function () {
-		listFilter($("#udb-icon-header"), $(".udb-icon-list"));
-	});
-
-})( jQuery );
+  init();
+})(jQuery);

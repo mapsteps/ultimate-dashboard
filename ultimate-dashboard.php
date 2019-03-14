@@ -38,13 +38,21 @@ function udb_admin_scripts() {
 	// Widget edit screen & create a new Widget screen.
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
-		// FontAwesome.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		// FontAwesome CSS.
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
+
+		// Select2 CSS.
+		wp_register_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/select2/dist/css/select2.min.css', array(), '4.0.6-rc.1' );
+		wp_enqueue_style( 'select2' );
 
 		// Custom Post Type CSS.
 		wp_register_style( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-cpt.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'ultimate-dashboard-cpt' );
+
+		// Select2 JS.
+		wp_register_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/select2/dist/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
+		wp_enqueue_script( 'select2' );
 
 		// Custom Post Type JS.
 		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
@@ -54,8 +62,8 @@ function udb_admin_scripts() {
 	// Dashboard Widget Overview & Settings.
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
-		// FontAwesome.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		// FontAwesome CSS.
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/fontawesome-free/css/all.min.css', array(), '5.7.2' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Settings CSS.
@@ -74,8 +82,8 @@ function udb_admin_scripts() {
 	// WordPress Dashboard.
 	if ( 'index.php' === $pagenow ) {
 
-		// FontAwesome.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		// FontAwesome CSS.
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/fontawesome-free/css/all.min.css', array(), '5.7.2' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Dashboard CSS.

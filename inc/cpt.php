@@ -4,16 +4,15 @@
  *
  * @package Ultimate Dashboard
  */
- 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Post Type Setup
  */
 function udb_post_type() {
 
-	// Labels
+	// Labels.
 	$labels = array(
 		'name'               => _x( 'Dashboard Widgets', 'Post type general name', 'ultimate-dashboard' ),
 		'singular_name'      => _x( 'Dashboard Widget', 'Post type singular name', 'ultimate-dashboard' ),
@@ -29,8 +28,8 @@ function udb_post_type() {
 		'not_found_in_trash' => __( 'No Dashboard Widgets in Trash.', 'ultimate-dashboard' ),
 	);
 
-	// change capabilities so only users with 'manage_options' capabilities can mess with dashboard widgets
-	$capabilities = array( 
+	// change capabilities so only users with 'manage_options' capabilities can mess with dashboard widgets.
+	$capabilities = array(
 		'edit_post'          => 'manage_options',
 		'read_post'          => 'manage_options',
 		'delete_post'        => 'manage_options',
@@ -42,20 +41,20 @@ function udb_post_type() {
 		'create_posts'       => 'manage_options',
 	);
 
-	// Arguments
+	// Arguments.
 	$args = array(
-		'labels'				=> $labels,
-		'menu_icon'				=> 'dashicons-format-gallery',
-		'publicly_queryable'	=> false,
-		'show_ui'				=> true,
-		'show_in_menu'			=> true,
-		'query_var'				=> false,
-		'rewrite'				=> false,
-		'map_meta_cap'			=> false,
-		'capabilities'			=> $capabilities,
-		'has_archive'			=> false,
-		'hierarchical'			=> false,
-		'supports'				=> array( 'title' )
+		'labels'             => $labels,
+		'menu_icon'          => 'dashicons-format-gallery',
+		'publicly_queryable' => false,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => false,
+		'rewrite'            => false,
+		'map_meta_cap'       => false,
+		'capabilities'       => $capabilities,
+		'has_archive'        => false,
+		'hierarchical'       => false,
+		'supports'           => array( 'title' ),
 	);
 
 	register_post_type( 'udb_widgets', $args );
@@ -63,8 +62,10 @@ function udb_post_type() {
 }
 add_action( 'init', 'udb_post_type' );
 
-/*
+/**
  * Update Messages
+ *
+ * @param array $messages Message list.
  */
 function udb_widgets_update_messages( $messages ) {
 
@@ -86,7 +87,7 @@ function udb_widgets_update_messages( $messages ) {
 			// translators: Publish box date format, see http://php.net/date
 			date_i18n( __( 'M j, Y @ G:i', 'ultimate-dashboard' ), strtotime( $post->post_date ) )
 		),
-		10 => __( 'Widget draft updated.', 'ultimate-dashboard' )
+		10 => __( 'Widget draft updated.', 'ultimate-dashboard' ),
 	);
 
 	return $messages;
@@ -96,6 +97,8 @@ add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 
 /**
  * Setup Columns
+ *
+ * @param array $columns Defining custom columns.
  */
 function set_udb_widget_columns( $columns ) {
 
@@ -103,7 +106,7 @@ function set_udb_widget_columns( $columns ) {
 		'cb'    => '<input type="checkbox" />',
 		'title' => __( 'Widget Title', 'ultimate-dashboard' ),
 		'type'  => __( 'Widget Type', 'ultimate-dashboard' ),
-		'date'  => __( 'Date', 'ultimate-dashboard' )
+		'date'  => __( 'Date', 'ultimate-dashboard' ),
 	);
 
 	return $columns;
@@ -113,26 +116,28 @@ add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
 
 /**
  * Widget Columns
+ *
+ * @param string  $column The column name/ key.
+ * @param integer $post_id Defining column's content.
  */
 function udb_widget_columns( $column, $post_id ) {
 	switch ( $column ) {
 
-		case 'type' :
-
+		case 'type':
 			$content = get_post_meta( $post_id, 'udb_content', true );
 			$html    = get_post_meta( $post_id, 'udb_html', true );
 
-			if( $html ) {
+			if ( $html ) {
 				_e( 'HTML', 'ultimate-dashboard' );
-			} elseif( $content ) {
+			} elseif ( $content ) {
 				_e( 'Text', 'ultimate-dashboard' );
 			} else {
-				echo '<i class="'. get_post_meta( $post_id , 'udb_icon_key', true ) .'"></i>';
+				echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
 			}
 
-		break;
+			break;
 
 	}
 
 }
-add_action( 'manage_udb_widgets_posts_custom_column' , 'udb_widget_columns', 10, 2 );
+add_action( 'manage_udb_widgets_posts_custom_column', 'udb_widget_columns', 10, 2 );
