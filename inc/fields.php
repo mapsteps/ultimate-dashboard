@@ -101,6 +101,13 @@ function udb_position_meta_callback( $post ) {
  * Main Metabox Callback
  */
 function udb_main_meta_callback() {
+	$udb_widget_types = [
+		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
+		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
+		'html' => __( 'HTML Widget', 'ultimate-dashboard' ),
+	];
+
+	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
 	?>
 
 	<div class="neatbox">
@@ -110,9 +117,13 @@ function udb_main_meta_callback() {
 			</div>
 			<div class="input-control">
 				<select name="udb_widget_type">
-					<option value="icon"><?php echo esc_html_e( 'Icon Widget', 'ultimate-dashboard' ); ?></option>
-					<option value="text"><?php echo esc_html_e( 'Text Widget', 'ultimate-dashboard' ); ?></option>
-					<option value="html"><?php echo esc_html_e( 'HTML Widget', 'ultimate-dashboard' ); ?></option>
+					<?php
+					foreach ( $udb_widget_types as $value => $text ) {
+						?>
+						<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $text ); ?></option>
+						<?php
+					}
+					?>
 				</select>
 			</div>
 		</div>
@@ -141,6 +152,8 @@ function udb_save_postmeta( $post_id ) {
 	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
 	}
+
+	do_action( 'udb_pre_save_widget' );
 
 	if ( isset( $_POST['udb_widget_type'] ) ) {
 		update_post_meta( $post_id, 'udb_widget_type', sanitize_text_field( $_POST['udb_widget_type'] ) );
@@ -181,5 +194,6 @@ function udb_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_html', $_POST['udb_html'] );
 	}
 
+	do_action( 'udb_save_widget' );
 }
 add_action( 'save_post', 'udb_save_postmeta' );
