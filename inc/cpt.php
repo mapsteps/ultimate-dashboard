@@ -127,7 +127,7 @@ function udb_widget_columns( $column, $post_id ) {
 			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
 			if ( ! $widget_type ) {
-				do_action( 'udb_compat_widget_type', $post_id ); // do we need a backwards compatibility check here as we move the settings over in backwards-compatibility.php on init
+				do_action( 'udb_compat_widget_type', $post_id );
 			} else {
 				if ( 'html' === $widget_type ) {
 					esc_html_e( 'HTML', 'ultimate-dashboard' );
