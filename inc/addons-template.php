@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-	<section class="udb-addon postbox">
+	<section class="udb-addon neatbox">
 
 		<h2><?php _e( 'More Widgets, More Options', 'ultimate-dashboard' ); ?></h2>
 
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	</section>
 
-	<section class="udb-addon postbox">
+	<section class="udb-addon neatbox">
 
 		<h2><?php _e( 'Video Widget', 'ultimate-dashboard' ); ?></h2>
 
@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	</section>
 
-	<section class="udb-addon postbox">
+	<section class="udb-addon neatbox">
 
 		<h2><?php _e( 'Multisite Support', 'ultimate-dashboard' ); ?></h2>
 
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 	</section>
 
-	<section class="udb-addon postbox">
+	<section class="udb-addon neatbox">
 
 		<h2><?php _e( 'Branding', 'ultimate-dashboard' ); ?></h2>
 

@@ -38,7 +38,7 @@ function udb_render_export_field( $args ) {
 	?>
 	<p><?php esc_html_e( ' Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
 
-	<div class="fields-area">
+	<div class="fields">
 		<p>
 			<label>
 				<input type="checkbox" name="udb_export_settings" value="1" />
@@ -99,6 +99,7 @@ function udb_process_export() {
 			);
 
 			$widget->meta = [
+				'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
 				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
 				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
 				'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
