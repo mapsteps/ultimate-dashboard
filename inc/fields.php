@@ -137,7 +137,7 @@ function udb_main_meta_callback() {
 			<h2><?php echo esc_html_e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<div class="label-control">
-					<label for="udb_widget_type"><?php echo esc_html_e( 'Choose widget type', 'utimate-dashboard' ); ?></label>
+					<label for="udb_widget_type"><?php echo esc_html_e( 'Choose Widget Type', 'utimate-dashboard' ); ?></label>
 				</div>
 				<div class="input-control">
 					<select name="udb_widget_type">
