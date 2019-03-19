@@ -16,7 +16,7 @@ function udb_text_widget() {
 	<div data-type="text">
 
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Widget Content', 'utimate-dashboard' ); ?></h2>
+			<h2><?php echo esc_html_e( 'Content', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<?php
 				$stored_meta = get_post_meta( $post->ID, 'udb_content', true );
@@ -37,17 +37,13 @@ function udb_text_widget() {
 		</div><!-- /subbox -->
 
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Dimension Attributes', 'utimate-dashboard' ); ?></h2>
+			<h2><?php echo esc_html_e( 'Fixed Height', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<?php
 				$stored_meta = get_post_meta( $post->ID, 'udb_content_height', true );
 				?>
-				<div class="label-control">
-					<label for="udb_content_height"><?php esc_html_e( 'Widget height', 'ultimate-dashboard' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Input fixed widget height. Example: 200px', 'ultimate-dashboard' ); ?></p>
-				</div>
 				<div class="input-control">
-					<input type="text" name="udb_content_height" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
+					<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
 				</div>
 			</div>
 		</div><!-- /subbox -->

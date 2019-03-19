@@ -16,7 +16,7 @@ function udb_icon_widget() {
 	<div data-type="icon">
 
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Widget Icon', 'utimate-dashboard' ); ?></h2>
+			<h2><?php echo esc_html_e( 'Icon', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<?php
 				$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
@@ -129,9 +129,6 @@ function udb_icon_widget() {
 				);
 				?>
 
-				<div class="label-control">
-					<label for="udb-icon"><?php _e( 'Choose icon', 'ultimate-dashboard' ); ?></label>
-				</div>
 				<div class="input-control">
 					<div class="icon-preview"></div>
 					<select name="udb_icon" id="udb-icon">
@@ -144,15 +141,11 @@ function udb_icon_widget() {
 		</div><!-- /subbox -->
 
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Tooltip Attributes', 'utimate-dashboard' ); ?></h2>
+			<h2><?php echo esc_html_e( 'Tooltip', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<?php
 				$stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true );
 				?>
-				<div class="label-control">
-					<label for="udb-tooltip"><?php esc_html_e( 'Text', 'ultimate-dashboard' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Leave empty for no Tooltip.', 'ultimate-dashboard' ); ?></p>
-				</div>
 				<div class="input-control">
 					<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo $stored_meta ? $stored_meta : false; ?></textarea>
 				</div>
@@ -160,13 +153,12 @@ function udb_icon_widget() {
 		</div><!-- /subbox -->
 
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Link Attributes', 'utimate-dashboard' ); ?></h2>
+			<h2><?php echo esc_html_e( 'Link', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<?php
 				$stored_meta = get_post_meta( $post->ID, 'udb_link', true );
 				?>
 				<div class="label-control">
-					<label for="udb_link"><?php esc_html_e( 'URL', 'ultimate-dashboard' ); ?></label>
 					<p class="description"><?php esc_html_e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
 				</div>
 				<div class="input-control">
