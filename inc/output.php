@@ -36,15 +36,19 @@ function udb_add_dashboard_widgets() {
 		$html          = get_post_meta( $id, 'udb_html', true );
 
 		// preventing edge case when widget_type is empty.
-		if ( 'html' === $widget_type ) {
-			$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
-		} elseif ( 'text' === $widget_type ) {
-			$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
-		} elseif ( 'icon' === $widget_type ) {
-			$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
+		if ( ! $widget_type ) {
+			do_action( 'udb_compat_widget_type', $id );
+		} else {
+			if ( 'html' === $widget_type ) {
+				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
+			} elseif ( 'text' === $widget_type ) {
+				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
+			} elseif ( 'icon' === $widget_type ) {
+				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
-			if ( $tooltip ) {
-				$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
+				if ( $tooltip ) {
+					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
+				}
 			}
 		}
 
