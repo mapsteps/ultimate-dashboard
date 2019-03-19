@@ -132,21 +132,24 @@ function udb_main_meta_callback() {
 	$stored_meta      = get_post_meta( $post->ID, 'udb_widget_type', true );
 	?>
 
-	<div class="neatbox">
-		<div class="field">
-			<div class="label-control">
-				<label for="udb_widget_type"><?php echo esc_html_e( 'Widget Type', 'utimate-dashboard' ); ?></label>
-			</div>
-			<div class="input-control">
-				<select name="udb_widget_type">
-					<?php
-					foreach ( $udb_widget_types as $value => $text ) {
-						?>
-						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
+	<div class="neatbox has-subboxes">
+		<div class="subbox">
+			<h2><?php echo esc_html_e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<div class="label-control">
+					<label for="udb_widget_type"><?php echo esc_html_e( 'Choose widget type', 'utimate-dashboard' ); ?></label>
+				</div>
+				<div class="input-control">
+					<select name="udb_widget_type">
 						<?php
-					}
-					?>
-				</select>
+						foreach ( $udb_widget_types as $value => $text ) {
+							?>
+							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
 			</div>
 		</div>
 

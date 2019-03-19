@@ -17,14 +17,17 @@ function udb_html_widget() {
 	?>
 	<div data-type="html">
 
-		<div class="field">
-			<div class="label-control">
-				<label for="udb_widget_type"><?php echo esc_html_e( 'HTML', 'utimate-dashboard' ); ?></label>
+		<div class="subbox">
+			<h2><?php echo esc_html_e( 'Widget Content', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<div class="label-control">
+					<label for="udb_widget_type"><?php echo esc_html_e( 'HTML', 'utimate-dashboard' ); ?></label>
+				</div>
+				<div class="input-control">
+					<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
+				</div>
 			</div>
-			<div class="input-control">
-				<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
-			</div>
-		</div>
+		</div><!-- /subbox -->
 
 	</div>
 	<?php

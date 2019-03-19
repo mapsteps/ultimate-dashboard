@@ -181,6 +181,29 @@
   display: none;
 }
 
+#udb-main-metabox {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.neatbox .subbox {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+#poststuff .subbox h2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: 600;
+}
+
+#poststuff .has-bigger-heading h2 {
+  font-size: 15px;
+}
+
 .neatbox > .field:first-child {
   border-top: 0;
 }
@@ -207,7 +230,7 @@
   margin-bottom: 10px;
 }
 
-.neatbox .label-control .icon-preview i {
+.neatbox .input-control .icon-preview i {
   padding: 20px;
   height: 40px;
   width: 40px;
@@ -217,6 +240,11 @@
   margin-bottom: 10px;
   text-align: center;
   background: #eee;
+}
+
+.neatbox.has-subboxes .field label {
+  font-weight: 600;
+  color: #23282d;
 }
 
 .neatbox .field label {
@@ -273,7 +301,7 @@
 
 /* CodeMirror Fix */
 .neatbox .input-control .CodeMirror-sizer {
-  margin-left: 46px;
+  margin-left: 46px !important;
 }
 
 .neatbox .input-control .CodeMirror-linenumbers {

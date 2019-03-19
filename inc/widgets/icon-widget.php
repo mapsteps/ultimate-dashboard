@@ -15,171 +15,180 @@ function udb_icon_widget() {
 	?>
 	<div data-type="icon">
 
-		<div class="field">
-			<?php
-			$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
-			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' ); // phpcs:ignore -- just fetching internal json file.
-			$dashicons   = json_decode( $dashicons, true );
-			$dashicons   = $dashicons ? $dashicons : [];
-			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' ); // phpcs:ignore -- just fetching internal json file.
-			$fontawesome = json_decode( $fontawesome, true );
-			$fontawesome = $fontawesome ? $fontawesome : [];
-			$udb_icons   = [];
-			$selected    = [
-				'id'   => 'dashicons dashicons-menu',
-				'text' => 'Menu',
-			];
+		<div class="subbox">
+			<h2><?php echo esc_html_e( 'Widget Icon', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<?php
+				$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
+				$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' ); // phpcs:ignore -- just fetching internal json file.
+				$dashicons   = json_decode( $dashicons, true );
+				$dashicons   = $dashicons ? $dashicons : [];
+				$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' ); // phpcs:ignore -- just fetching internal json file.
+				$fontawesome = json_decode( $fontawesome, true );
+				$fontawesome = $fontawesome ? $fontawesome : [];
+				$udb_icons   = [];
+				$selected    = [
+					'id'   => 'dashicons dashicons-menu',
+					'text' => 'Menu',
+				];
 
-			// loop over dashicons.
-			foreach ( $dashicons as $icon_category => $icons ) {
-				$category_name = str_ireplace( '_', ' ', $icon_category );
-				$category_name = ucwords( $category_name );
-				$category_name = 'Dashicons: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : [];
+				// loop over dashicons.
+				foreach ( $dashicons as $icon_category => $icons ) {
+					$category_name = str_ireplace( '_', ' ', $icon_category );
+					$category_name = ucwords( $category_name );
+					$category_name = 'Dashicons: ' . $category_name;
+					$icons         = $icons && is_array( $icons ) ? $icons : [];
 
-				$items = [];
+					$items = [];
 
-				foreach ( $icons as $icon_class ) {
-					$icon_name = explode( ' ', $icon_class );
-					$icon_name = $icon_name[1];
-					$splits    = explode( '-', $icon_name );
-					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
+					foreach ( $icons as $icon_class ) {
+						$icon_name = explode( ' ', $icon_class );
+						$icon_name = $icon_name[1];
+						$splits    = explode( '-', $icon_name );
+						$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
+						$icon_name = str_ireplace( '-', ' ', $icon_name );
+						$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
+						$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
 
-					if ( $icon_class === $stored_meta ) {
-						$selected = [
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						];
+						if ( $icon_class === $stored_meta ) {
+							$selected = [
+								'id'   => $icon_class,
+								'text' => $icon_text,
+							];
 
+						}
+
+						array_push(
+							$items,
+							[
+								'id'   => $icon_class,
+								'text' => $icon_text,
+							]
+						);
 					}
 
 					array_push(
-						$items,
+						$udb_icons,
 						[
-							'id'   => $icon_class,
-							'text' => $icon_text,
+							'text'     => $category_name,
+							'children' => $items,
 						]
 					);
 				}
 
-				array_push(
-					$udb_icons,
-					[
-						'text'     => $category_name,
-						'children' => $items,
-					]
-				);
-			}
+				// loop over fontawesome.
+				foreach ( $fontawesome as $icon_category => $icons ) {
+					$category_name = str_ireplace( '_', ' ', $icon_category );
+					$category_name = ucwords( $category_name );
+					$category_name = 'Font Awesome 4: ' . $category_name;
+					$icons         = $icons && is_array( $icons ) ? $icons : [];
 
-			// loop over fontawesome.
-			foreach ( $fontawesome as $icon_category => $icons ) {
-				$category_name = str_ireplace( '_', ' ', $icon_category );
-				$category_name = ucwords( $category_name );
-				$category_name = 'Font Awesome 4: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : [];
+					$items = [];
 
-				$items = [];
+					foreach ( $icons as $icon_class ) {
+						$icon_name = explode( ' ', $icon_class );
+						$icon_name = $icon_name[1];
+						$splits    = explode( '-', $icon_name );
+						$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
+						$icon_name = str_ireplace( '-', ' ', $icon_name );
+						$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
+						$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
 
-				foreach ( $icons as $icon_class ) {
-					$icon_name = explode( ' ', $icon_class );
-					$icon_name = $icon_name[1];
-					$splits    = explode( '-', $icon_name );
-					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
+						if ( $icon_class === $stored_meta ) {
+							$selected = [
+								'id'   => $icon_class,
+								'text' => $icon_text,
+							];
+						}
 
-					if ( $icon_class === $stored_meta ) {
-						$selected = [
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						];
+						array_push(
+							$items,
+							[
+								'id'   => $icon_class,
+								'text' => $icon_text,
+							]
+						);
 					}
 
 					array_push(
-						$items,
+						$udb_icons,
 						[
-							'id'   => $icon_class,
-							'text' => $icon_text,
+							'text'     => $category_name,
+							'children' => $items,
 						]
 					);
 				}
 
-				array_push(
-					$udb_icons,
+				wp_localize_script(
+					'ultimate-dashboard-cpt',
+					'udbIcons',
 					[
-						'text'     => $category_name,
-						'children' => $items,
+						'icons'    => $udb_icons,
+						'selected' => $selected,
 					]
 				);
-			}
+				?>
 
-			wp_localize_script(
-				'ultimate-dashboard-cpt',
-				'udbIcons',
-				[
-					'icons'    => $udb_icons,
-					'selected' => $selected,
-				]
-			);
-			?>
+				<div class="label-control">
+					<label for="udb-icon"><?php _e( 'Choose icon', 'ultimate-dashboard' ); ?></label>
+				</div>
+				<div class="input-control">
+					<div class="icon-preview"></div>
+					<select name="udb_icon" id="udb-icon">
+						<?php if ( $stored_meta ) : ?>
+							<option value="<?php echo esc_attr( $stored_meta ); ?>" selected><?php echo esc_html( $stored_meta ); ?></option>
+						<?php endif; ?>
+					</select>
+				</div>
+			</div><!-- /field -->
+		</div><!-- /subbox -->
 
-			<div class="label-control">
-				<div class="icon-preview"></div>
+		<div class="subbox">
+			<h2><?php echo esc_html_e( 'Tooltip Attributes', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<?php
+				$stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true );
+				?>
+				<div class="label-control">
+					<label for="udb-tooltip"><?php esc_html_e( 'Text', 'ultimate-dashboard' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Leave empty for no Tooltip.', 'ultimate-dashboard' ); ?></p>
+				</div>
+				<div class="input-control">
+					<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo $stored_meta ? $stored_meta : false; ?></textarea>
+				</div>
 			</div>
-			<div class="input-control">
-				<select name="udb_icon">
-					<?php if ( $stored_meta ) : ?>
-						<option value="<?php echo esc_attr( $stored_meta ); ?>" selected><?php echo esc_html( $stored_meta ); ?></option>
-					<?php endif; ?>
-				</select>
-			</div>
-		</div>
+		</div><!-- /subbox -->
 
-		<div class="field">
-			<?php
-			$stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true );
-			?>
-			<div class="label-control">
-				<label for="udb-tooltip"><?php _e( 'Tooltip', 'ultimatedashboard' ); ?></label>
-				<p class="description"><?php _e( 'Leave empty for no Tooltip.', 'ultimatedashboard' ); ?></p>
+		<div class="subbox">
+			<h2><?php echo esc_html_e( 'Link Attributes', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<?php
+				$stored_meta = get_post_meta( $post->ID, 'udb_link', true );
+				?>
+				<div class="label-control">
+					<label for="udb_link"><?php esc_html_e( 'URL', 'ultimate-dashboard' ); ?></label>
+					<p class="description"><?php esc_html_e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
+				</div>
+				<div class="input-control">
+					<input id="udb_link" type="url" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
+				</div>
 			</div>
-			<div class="input-control">
-				<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo $stored_meta ? $stored_meta : false; ?></textarea>
-			</div>
-		</div>
 
-		<div class="field">
-			<?php
-			$stored_meta = get_post_meta( $post->ID, 'udb_link', true );
-			?>
-			<div class="label-control">
-				<label for="udb_link"><?php esc_html_e( 'Link URL', 'ultimate-dashboard' ); ?></label>
-				<p class="description"><?php esc_html_e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
+			<div class="field">
+				<?php
+				$stored_meta = get_post_meta( $post->ID, 'udb_link_target', true );
+				?>
+				<div class="label-control">
+					<label for="udb_link_target"><?php esc_html_e( 'Target', 'ultimate-dashboard' ); ?></label>
+				</div>
+				<div class="input-control">
+					<label>
+						<input id="udb_link_target" type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
+						<span class="message"><?php esc_html_e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?></span>
+					</label>
+				</div>
 			</div>
-			<div class="input-control">
-				<input id="udb_link" type="url" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
-			</div>
-		</div>
-
-		<div class="field">
-			<?php
-			$stored_meta = get_post_meta( $post->ID, 'udb_link_target', true );
-			?>
-			<div class="label-control">
-				<label for="udb_link_target"><?php esc_html_e( 'Link Target', 'ultimate-dashboard' ); ?></label>
-			</div>
-			<div class="input-control">
-				<label>
-					<input id="udb_link_target" type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
-					<span class="message"><?php esc_html_e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?></span>
-				</label>
-			</div>
-		</div>
-
+		</div><!-- /subbox -->
 	</div>
 	<?php
 }
