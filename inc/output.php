@@ -37,7 +37,7 @@ function udb_add_dashboard_widgets() {
 
 		// preventing edge case when widget_type is empty.
 		if ( ! $widget_type ) {
-			do_action( 'udb_compat_widget_type', $post_id );
+			do_action( 'udb_compat_widget_type', $id );
 		} else {
 			if ( 'html' === $widget_type ) {
 				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
