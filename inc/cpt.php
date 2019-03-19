@@ -126,6 +126,7 @@ function udb_widget_columns( $column, $post_id ) {
 		case 'type':
 			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
+			// preventing edge case when widget_type is empty.
 			if ( ! $widget_type ) {
 				do_action( 'udb_compat_widget_type', $post_id );
 			} else {
