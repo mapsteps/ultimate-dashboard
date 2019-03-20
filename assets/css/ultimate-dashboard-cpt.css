@@ -231,13 +231,11 @@
 }
 
 .neatbox .input-control .icon-preview i {
-  padding: 20px;
-  height: 40px;
-  width: 40px;
+  height: 120px;
+  width: 120px;
   font-size: 36px;
-  line-height: 40px;
+  line-height: 120px;
   border-radius: 2px;
-  margin-bottom: 15px;
   text-align: center;
   background: #eee;
 }
@@ -311,4 +309,8 @@
 /* Select2 Fix */
 .neatbox .input-control .select2-container {
   width: 100% !important;
+}
+
+.neatbox .input-control .select2-selection--single {
+  outline: none !important;
 }

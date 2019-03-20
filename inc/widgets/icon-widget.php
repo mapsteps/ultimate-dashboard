@@ -17,127 +17,133 @@ function udb_icon_widget() {
 
 		<div class="subbox">
 			<h2><?php echo esc_html_e( 'Icon', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<?php
-				$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
-				$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' ); // phpcs:ignore -- just fetching internal json file.
-				$dashicons   = json_decode( $dashicons, true );
-				$dashicons   = $dashicons ? $dashicons : [];
-				$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' ); // phpcs:ignore -- just fetching internal json file.
-				$fontawesome = json_decode( $fontawesome, true );
-				$fontawesome = $fontawesome ? $fontawesome : [];
-				$udb_icons   = [];
-				$selected    = [
-					'id'   => 'dashicons dashicons-menu',
-					'text' => 'Menu',
-				];
+			<?php
+			$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
+			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' ); // phpcs:ignore -- just fetching internal json file.
+			$dashicons   = json_decode( $dashicons, true );
+			$dashicons   = $dashicons ? $dashicons : [];
+			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' ); // phpcs:ignore -- just fetching internal json file.
+			$fontawesome = json_decode( $fontawesome, true );
+			$fontawesome = $fontawesome ? $fontawesome : [];
+			$udb_icons   = [];
+			$selected    = [
+				'id'   => 'dashicons dashicons-menu',
+				'text' => 'Menu',
+			];
 
-				// loop over dashicons.
-				foreach ( $dashicons as $icon_category => $icons ) {
-					$category_name = str_ireplace( '_', ' ', $icon_category );
-					$category_name = ucwords( $category_name );
-					$category_name = 'Dashicons: ' . $category_name;
-					$icons         = $icons && is_array( $icons ) ? $icons : [];
+			// loop over dashicons.
+			foreach ( $dashicons as $icon_category => $icons ) {
+				$category_name = str_ireplace( '_', ' ', $icon_category );
+				$category_name = ucwords( $category_name );
+				$category_name = 'Dashicons: ' . $category_name;
+				$icons         = $icons && is_array( $icons ) ? $icons : [];
 
-					$items = [];
+				$items = [];
 
-					foreach ( $icons as $icon_class ) {
-						$icon_name = explode( ' ', $icon_class );
-						$icon_name = $icon_name[1];
-						$splits    = explode( '-', $icon_name );
-						$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-						$icon_name = str_ireplace( '-', ' ', $icon_name );
-						$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-						$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
+				foreach ( $icons as $icon_class ) {
+					$icon_name = explode( ' ', $icon_class );
+					$icon_name = $icon_name[1];
+					$splits    = explode( '-', $icon_name );
+					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
+					$icon_name = str_ireplace( '-', ' ', $icon_name );
+					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
+					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
 
-						if ( $icon_class === $stored_meta ) {
-							$selected = [
-								'id'   => $icon_class,
-								'text' => $icon_text,
-							];
+					if ( $icon_class === $stored_meta ) {
+						$selected = [
+							'id'   => $icon_class,
+							'text' => $icon_text,
+						];
 
-						}
-
-						array_push(
-							$items,
-							[
-								'id'   => $icon_class,
-								'text' => $icon_text,
-							]
-						);
 					}
 
 					array_push(
-						$udb_icons,
+						$items,
 						[
-							'text'     => $category_name,
-							'children' => $items,
+							'id'   => $icon_class,
+							'text' => $icon_text,
 						]
 					);
 				}
 
-				// loop over fontawesome.
-				foreach ( $fontawesome as $icon_category => $icons ) {
-					$category_name = str_ireplace( '_', ' ', $icon_category );
-					$category_name = ucwords( $category_name );
-					$category_name = 'Font Awesome 4: ' . $category_name;
-					$icons         = $icons && is_array( $icons ) ? $icons : [];
-
-					$items = [];
-
-					foreach ( $icons as $icon_class ) {
-						$icon_name = explode( ' ', $icon_class );
-						$icon_name = $icon_name[1];
-						$splits    = explode( '-', $icon_name );
-						$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-						$icon_name = str_ireplace( '-', ' ', $icon_name );
-						$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-						$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
-
-						if ( $icon_class === $stored_meta ) {
-							$selected = [
-								'id'   => $icon_class,
-								'text' => $icon_text,
-							];
-						}
-
-						array_push(
-							$items,
-							[
-								'id'   => $icon_class,
-								'text' => $icon_text,
-							]
-						);
-					}
-
-					array_push(
-						$udb_icons,
-						[
-							'text'     => $category_name,
-							'children' => $items,
-						]
-					);
-				}
-
-				wp_localize_script(
-					'ultimate-dashboard-cpt',
-					'udbIcons',
+				array_push(
+					$udb_icons,
 					[
-						'icons'    => $udb_icons,
-						'selected' => $selected,
+						'text'     => $category_name,
+						'children' => $items,
 					]
 				);
-				?>
+			}
 
+			// loop over fontawesome.
+			foreach ( $fontawesome as $icon_category => $icons ) {
+				$category_name = str_ireplace( '_', ' ', $icon_category );
+				$category_name = ucwords( $category_name );
+				$category_name = 'Font Awesome 4: ' . $category_name;
+				$icons         = $icons && is_array( $icons ) ? $icons : [];
+
+				$items = [];
+
+				foreach ( $icons as $icon_class ) {
+					$icon_name = explode( ' ', $icon_class );
+					$icon_name = $icon_name[1];
+					$splits    = explode( '-', $icon_name );
+					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
+					$icon_name = str_ireplace( '-', ' ', $icon_name );
+					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
+					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
+
+					if ( $icon_class === $stored_meta ) {
+						$selected = [
+							'id'   => $icon_class,
+							'text' => $icon_text,
+						];
+					}
+
+					array_push(
+						$items,
+						[
+							'id'   => $icon_class,
+							'text' => $icon_text,
+						]
+					);
+				}
+
+				array_push(
+					$udb_icons,
+					[
+						'text'     => $category_name,
+						'children' => $items,
+					]
+				);
+			}
+
+			wp_localize_script(
+				'ultimate-dashboard-cpt',
+				'udbIcons',
+				[
+					'icons'    => $udb_icons,
+					'selected' => $selected,
+				]
+			);
+			?>
+			<div class="field">
 				<div class="input-control">
 					<div class="icon-preview"></div>
+				</div>
+			</div>
+			<div class="field">
+				<div class="label-control">
+					<label for="udb_link_target"><?php esc_html_e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
+				</div>
+				<div class="input-control">
 					<select name="udb_icon" id="udb-icon">
 						<?php if ( $stored_meta ) : ?>
 							<option value="<?php echo esc_attr( $stored_meta ); ?>" selected><?php echo esc_html( $stored_meta ); ?></option>
 						<?php endif; ?>
 					</select>
 				</div>
-			</div><!-- /field -->
+			</div>
 		</div><!-- /subbox -->
 
 		<div class="subbox">
