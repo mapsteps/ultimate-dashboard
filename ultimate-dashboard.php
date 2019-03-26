@@ -7,7 +7,7 @@
  * Author: MapSteps
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimate-dashboard
- * Domain Path: /languagess
+ * Domain Path: /languages
  *
  * @package Ultimate Dashboard
  */
