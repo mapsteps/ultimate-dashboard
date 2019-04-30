@@ -59,6 +59,7 @@ For multisite, third party Widget support & more check out [Ultimate Dashboard P
 * New: Text Widgets
 * New: Tooltips for Icon Widgets
 * New: Import/Export Widgets & Settings
+* New: Custom Dashboard CSS field
 * New: Improved UX/UI
 = 2.3.1 | January 28, 2019 =
 * Tweak: cleaned up codebase
