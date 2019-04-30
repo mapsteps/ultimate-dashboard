@@ -24,7 +24,7 @@ Create custom WordPress dashboard widgets and send your clients and users to the
 * Import/Export widgets & settings
 * Add custom CSS to your WordPress dashboard
 
-Get even more Features with Ultimate Dashboard PRO.
+Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
 = Ultimate Dashboard PRO =
 * Remove 3rd party widgets
@@ -48,7 +48,7 @@ To create new Dashboard Widgets, navigate to *Dashboard > Dashboard Widgets* thr
 
 == Frequently Asked Questions ==
 = Does this work on my multisite installation? =
-For multisite, third party Widget support & more check out [Ultimate Dashboard PRO](http://www.mapsteps.com/en/downloads/ultimate-dashboard-pro/)
+For multisite, third party Widget support & more check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/)
 
 == Screenshots ==
 1. Ultimate Dashboard

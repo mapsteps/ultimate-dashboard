@@ -16,7 +16,7 @@
     "wordpress-widget",
     "dashboard-widget"
   ],
-  "author": "MapSteps",
+  "author": "David Vongries",
   "license": "GPL-2.0+",
   "bugs": {
     "url": "https://github.com/MapSteps/Ultimate-Dashboard/issues"
