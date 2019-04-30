@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 					<?php
 					settings_fields( 'udb-export-group' );
 					do_settings_sections( 'ultimate-dashboard-export' );
-					submit_button( __( 'Export File', 'ultimate-dashboard' ) );
+					submit_button( __( 'Export', 'ultimate-dashboard' ) );
 					?>
 				</div>
 			</form>
@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 					<?php
 					settings_fields( 'udb-import-group' );
 					do_settings_sections( 'ultimate-dashboard-import' );
-					submit_button( __( 'Import File', 'ultimate-dashboard' ) );
+					submit_button( __( 'Import', 'ultimate-dashboard' ) );
 					?>
 				</div>
 			</form>
