@@ -51,9 +51,11 @@ To create new Dashboard Widgets, navigate to *Dashboard > Dashboard Widgets* thr
 For multisite, third party Widget support & more check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/)
 
 == Screenshots ==
-1. Ultimate Dashboard
-2. Create a new Dashboard Widget
-3. Ultimate Dashboard Settings
+1. Icon Widget Dashboard
+2. Text & Icon Widget with Tooltips
+3. Create an Icon Widget
+4. Create a Text Widget
+3. Ultimate Dashboard Settings Page
 
 == Changelog ==
 = 2.4 | April 30, 2019 =
