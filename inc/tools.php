@@ -108,7 +108,6 @@ function udb_process_export() {
 				'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
 				'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
 				'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
-				'udb_html'           => get_post_meta( $widget->ID, 'udb_html', true ),
 			];
 		}
 	}

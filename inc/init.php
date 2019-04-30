@@ -81,8 +81,5 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
 // Text Widget
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
 
-// HTML Widget
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/html-widget.php';
-
 // Ultimate Dashboard Output.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';
