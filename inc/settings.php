@@ -28,6 +28,7 @@ function udb_settings() {
 	// Settings Fields.
 	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
 	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimatedashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 
 }
@@ -78,6 +79,13 @@ function remove_single_widgets_callback() {
 
 	}
 
+}
+
+/**
+ * Remove 3rd Party Widgets Callback
+ */
+function remove_3rd_party_widgets_callback() {
+	echo sprintf( __( 'Get %s!', 'ultimate-dashboard' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>' );
 }
 
 /**
