@@ -16,12 +16,13 @@ Ultimate Dashboard is a lightweight WordPress plugin that lets you replace the d
 Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
 
 = Features =
-* Give the WordPress dashboard a more meaningful use for clients & users
+* Give the WordPress dashboard a more meaningful use for your clients & users
 * Remove all/individual default WordPress dashboard widgets
-* Create your own icon widgets
-* Create text widgets with useful information for your customers & users
+* Create your own set of icon widgets
+* Create text widgets
 * Choose between FontAwesome & WordPress Dashicons for your icon widgets
 * Import/Export widgets & settings
+* Add custom CSS to your WordPress dashboard
 
 Get even more Features with Ultimate Dashboard PRO.
 
