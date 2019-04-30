@@ -36,7 +36,7 @@ function udb_tools() {
  */
 function udb_render_export_field( $args ) {
 	?>
-	<p><?php esc_html_e( ' Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
+	<p><?php esc_html_e( 'Export & move your Dashboard Widgets to a different installation.', 'ultimate-dashboard' ); ?></p>
 
 	<div class="fields">
 		<p>
@@ -56,7 +56,7 @@ function udb_render_export_field( $args ) {
  */
 function udb_render_import_field( $args ) {
 	?>
-	<p><?php esc_html_e( 'Select the Widgets JSON file you would like to import. When you click the import button below, Ultimate Dashboard will import the widgets.', 'ultimate-dashboard' ); ?></p>
+	<p><?php esc_html_e( 'Select the JSON file you would like to import.', 'ultimate-dashboard' ); ?></p>
 
 	<div class="fields-wrapper has-top-gap">
 		<label class="block-label" for="udb_import_file"><?php esc_html_e( 'Select File', 'ultimate-dashboard' ); ?></label>
