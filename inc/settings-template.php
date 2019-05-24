@@ -5,10 +5,7 @@
  * @package Ultimate Dashboard
  */
 
-// exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || die( "Can't access directly" );
 ?>
 
 <div class="wrap settingstuff">

@@ -8,10 +8,9 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Post Type Setup
+ * Register post type
  */
 function udb_post_type() {
-
 	// Labels.
 	$labels = array(
 		'name'               => _x( 'Dashboard Widgets', 'Post type general name', 'ultimate-dashboard' ),
@@ -58,17 +57,16 @@ function udb_post_type() {
 	);
 
 	register_post_type( 'udb_widgets', $args );
-
 }
+
 add_action( 'init', 'udb_post_type' );
 
 /**
- * Update Messages
+ * Update messages
  *
  * @param array $messages Message list.
  */
 function udb_widgets_update_messages( $messages ) {
-
 	$post = get_post();
 
 	$messages['udb_widgets'] = array(
@@ -91,17 +89,16 @@ function udb_widgets_update_messages( $messages ) {
 	);
 
 	return $messages;
-
 }
+
 add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 
 /**
- * Setup Columns
+ * Setup widget columns
  *
  * @param array $columns Defining custom columns.
  */
 function set_udb_widget_columns( $columns ) {
-
 	$columns = array(
 		'cb'    => '<input type="checkbox" />',
 		'title' => __( 'Widget Title', 'ultimate-dashboard' ),
@@ -110,12 +107,12 @@ function set_udb_widget_columns( $columns ) {
 	);
 
 	return $columns;
-
 }
+
 add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
 
 /**
- * Widget Columns
+ * Widget columns output
  *
  * @param string  $column The column name/ key.
  * @param integer $post_id Defining column's content.
@@ -141,6 +138,6 @@ function udb_widget_columns( $column, $post_id ) {
 
 			break;
 	}
-
 }
+
 add_action( 'manage_udb_widgets_posts_custom_column', 'udb_widget_columns', 10, 2 );

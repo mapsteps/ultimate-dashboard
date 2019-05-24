@@ -7,8 +7,10 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+/* Metaboxes */
+
 /**
- * Icon Metabox
+ * Icon metabox
  */
 function udb_main_metabox() {
 	add_meta_box( 'udb-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), 'udb_main_meta_callback', 'udb_widgets', 'normal', 'high' );
@@ -16,28 +18,29 @@ function udb_main_metabox() {
 add_action( 'add_meta_boxes', 'udb_main_metabox' );
 
 /**
- * Position Metabox
+ * Position metabox
  */
 function udb_position_metabox() {
-	add_meta_box( 'ultimate-dashboard-position-metabox', __( 'Position', 'ultimate-dashboard' ), 'udb_position_meta_callback', 'udb_widgets', 'side' );
+	add_meta_box( 'udb-position-metabox', __( 'Position', 'ultimate-dashboard' ), 'udb_position_meta_callback', 'udb_widgets', 'side' );
 }
 add_action( 'add_meta_boxes', 'udb_position_metabox' );
 
 /**
- * Priority Metabox
+ * Priority metabox
  */
 function udb_priority_metabox() {
-	add_meta_box( 'ultimate-dashboard-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), 'udb_priority_meta_callback', 'udb_widgets', 'side' );
+	add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), 'udb_priority_meta_callback', 'udb_widgets', 'side' );
 }
 add_action( 'add_meta_boxes', 'udb_priority_metabox' );
 
+/* Metabox Callback Functions */
+
 /**
- * Priority Metabox Callback
+ * Priority metabox callback
  *
  * @param object $post The post object.
  */
 function udb_priority_meta_callback( $post ) {
-
 	wp_nonce_field( basename( __FILE__ ), 'udb_priority_nonce' );
 
 	$saved_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
@@ -164,12 +167,13 @@ function udb_main_meta_callback() {
  * @param int $post_id The post ID.
  */
 function udb_save_postmeta( $post_id ) {
-
-	$is_autosave             = wp_is_post_autosave( $post_id );
-	$is_revision             = wp_is_post_revision( $post_id );
-	$is_valid_metabox_nonce  = ( isset( $_POST['udb_metabox_nonce'] ) && wp_verify_nonce( $_POST['udb_metabox_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false'; // phpcs:ignore -- is ok
-	$is_valid_position_nonce = ( isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false'; // phpcs:ignore -- is ok
-	$is_valid_priority_nonce = ( isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false'; // phpcs:ignore -- is ok
+	$is_autosave = wp_is_post_autosave( $post_id );
+	$is_revision = wp_is_post_revision( $post_id );
+	// phpcs:disable
+	$is_valid_metabox_nonce  = ( isset( $_POST['udb_metabox_nonce'] ) && wp_verify_nonce( $_POST['udb_metabox_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	$is_valid_position_nonce = ( isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	$is_valid_priority_nonce = ( isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
+	// phpcs:enable
 
 	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
@@ -218,4 +222,5 @@ function udb_save_postmeta( $post_id ) {
 
 	do_action( 'udb_save_widget' );
 }
+
 add_action( 'save_post', 'udb_save_postmeta' );

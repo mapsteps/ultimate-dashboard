@@ -16,6 +16,7 @@ function udb_add_dashboard_widgets() {
 		'post_type'      => 'udb_widgets',
 		'posts_per_page' => 100,
 	);
+
 	$loop = new WP_Query( $args );
 
 	while ( $loop->have_posts() ) :
@@ -56,11 +57,10 @@ function udb_add_dashboard_widgets() {
 			echo $output;
 		};
 
-		// Add Meta Box.
+		// Add metabox.
 		add_meta_box( 'ms-udb' . $id, $title, $function, 'dashboard', $position, $priority );
 
 	endwhile;
-
 }
 add_action( 'wp_dashboard_setup', 'udb_add_dashboard_widgets' );
 
@@ -94,7 +94,7 @@ function udb_remove_default_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
 
 /**
- * Custom Dashboard CSS
+ * Custom dashboard CSS
  */
 function udb_add_dashboard_css() {
 	$udb_pro_settings = get_option( 'udb_pro_settings' );

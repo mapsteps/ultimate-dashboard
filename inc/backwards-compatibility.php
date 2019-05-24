@@ -7,12 +7,14 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+// vars.
 $udb_settings = get_option( 'udb_settings' );
 
 if ( ! $udb_settings ) {
 	update_option( 'udb_settings', array() );
 }
 
+// default widgets.
 if ( get_option( 'removeallwidgets' ) ) {
 	$udb_settings['remove-all'] = 1;
 	update_option( 'udb_settings', $udb_settings );

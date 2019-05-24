@@ -26,9 +26,9 @@ function udb_settings() {
 	add_settings_section( 'udb-advanced-settings', __( 'Advanced', 'ultimatedashboard' ), '', 'ultimate-dashboard' );
 
 	// Settings Fields.
-	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
-	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
-	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimatedashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
+	add_settings_field( 'remove-all-widgets', __( 'Remove all widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
+	add_settings_field( 'remove-single-widgets', __( 'Remove individual widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'custom-dashboard-css', __( 'Custom dashboard CSS', 'ultimatedashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 
 }
 
@@ -81,13 +81,13 @@ function remove_single_widgets_callback() {
 }
 
 /**
- * Custom Dashboard CSS Callback
+ * Custom dashboard CSS callback
  */
 function udb_custom_dashboard_css_callback() {
 
 	$udb_pro_settings = get_option( 'udb_pro_settings' );
 
-	if ( !isset( $udb_pro_settings['custom_css'] ) ) {
+	if ( ! isset( $udb_pro_settings['custom_css'] ) ) {
 		$custom_css = false;
 	} else {
 		$custom_css = $udb_pro_settings['custom_css'];
