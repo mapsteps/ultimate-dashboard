@@ -1,34 +1,37 @@
 === Ultimate Dashboard ===
 Contributors: davidvongries
-Tags: Wordpress dashboard, admin, widget, widgets, custom, remove, default
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom Dashboard, WP Admin
 Requires at least: 4.0
-Tested up to: 5.0
+Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 2.3.1
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Remove default WordPress dashboard widgets and create your own set of icon widgets with Ultimate Dashboard.
+Remove the default WordPress dashboard widgets and create your own set of widgets with Ultimate Dashboard.
 
 == Description ==
-Ultimate Dashboard is a lightweight and non-bloated WordPress plugin that lets you replace the WordPress dashboard widgets with your own set of useful quick-link widgets.
+Ultimate Dashboard is a lightweight WordPress plugin that lets you replace the default WordPress dashboard widgets with your own set of useful icon & text widgets.
 
-Create custom WordPress Dashboard widgets and send your clients and users to the key areas of their website – or anywhere else!
+Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
 
 = Features =
+* Give the WordPress dashboard a more meaningful use for your clients & users
 * Remove all/individual default WordPress dashboard widgets
-* Create your own WordPress dashboard widgets
-* Choose between FontAwesome/WordPress Dashicons for your icon widgets
-* Give the WordPress dashboard a more meaningful use for clients & users
+* Create your own set of icon widgets
+* Create text widgets
+* Choose between FontAwesome & WordPress Dashicons for your icon widgets
+* Import/Export widgets & settings
+* Add custom CSS to your WordPress dashboard
 
-Get even more Features with Ultimate Dashboard PRO.
+Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
 = Ultimate Dashboard PRO =
-* remove 3rd party widgets
-* WordPress Multisite Support
-* Text Widgets
-* Tooltips
-* Admin & Login-Screen Branding
+* Remove 3rd party widgets
+* Add video widgets
+* Add HTML widgets
+* WordPress multisite support
+* Rebrand the WordPress login & admin screen
 
 [youtube https://www.youtube.com/watch?v=SFnXOYQ7vWk]
 
@@ -45,14 +48,22 @@ To create new Dashboard Widgets, navigate to *Dashboard > Dashboard Widgets* thr
 
 == Frequently Asked Questions ==
 = Does this work on my multisite installation? =
-For multisite, third party Widget support & more check out [Ultimate Dashboard PRO](http://www.mapsteps.com/en/downloads/ultimate-dashboard-pro/)
+For multisite, third party Widget support & more check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/)
 
 == Screenshots ==
-1. Ultimate Dashboard
-2. Create a new Dashboard Widget
-3. Ultimate Dashboard Settings
+1. Icon Widget Dashboard
+2. Text & Icon Widget with Tooltips
+3. Create an Icon Widget
+4. Create a Text Widget
+3. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 2.4 | April 30, 2019 =
+* New: Text Widgets
+* New: Tooltips for Icon Widgets
+* New: Import/Export Widgets & Settings
+* New: Custom Dashboard CSS field
+* New: Improved UX/UI
 = 2.3.1 | January 28, 2019 =
 * Tweak: cleaned up codebase
 * Fixed: internationalization

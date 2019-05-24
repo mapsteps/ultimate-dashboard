@@ -3,8 +3,8 @@
  * Plugin Name: Ultimate Dashboard
  * Plugin URI: https://ultimatedashboard.io/
  * Description: Ultimate Dashboard gives you full control over your WordPress Dashboard. Remove the default Dashboard Widgets and and create your own for a better user experience.
- * Version: 2.3.1
- * Author: MapSteps
+ * Version: 2.4
+ * Author: David Vongries
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimate-dashboard
  * Domain Path: /languages
@@ -39,11 +39,11 @@ function udb_admin_scripts() {
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Select2 CSS.
-		wp_register_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/select2/dist/css/select2.min.css', array(), '4.0.6-rc.1' );
+		wp_register_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
 		wp_enqueue_style( 'select2' );
 
 		// Custom Post Type CSS.
@@ -51,11 +51,8 @@ function udb_admin_scripts() {
 		wp_enqueue_style( 'ultimate-dashboard-cpt' );
 
 		// Select2 JS.
-		wp_register_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/select2/dist/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
+		wp_register_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
 		wp_enqueue_script( 'select2' );
-
-		// CodeMirror.
-		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// Custom Post Type JS.
 		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
@@ -66,7 +63,7 @@ function udb_admin_scripts() {
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/@fortawesome/font-awesome-free/css/all.min.css', array(), '5.7.2' );
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Settings CSS.
@@ -86,7 +83,7 @@ function udb_admin_scripts() {
 	if ( 'index.php' === $pagenow ) {
 
 		// FontAwesome CSS.
-		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'node_modules/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
+		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
 		// Dashboard CSS.

@@ -35,21 +35,21 @@ add_action( 'admin_menu', 'udb_addons_page', 10 );
  * Ultimate Dashboard Tools Page Template
  */
 function udb_tools_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/tools-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/tools-template.php';
 }
 
 /**
  * Ultimate Dashboard Settings Page Template
  */
 function udb_options_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/settings-template.php';
 }
 
 /**
  * Ultimate Dashboard Addon Page Template
  */
 function udb_addons_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/addons-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/addons-template.php';
 }
 
 // Backwards Compatibility.
@@ -77,9 +77,6 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
 
 // Text Widget
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
-
-// HTML Widget
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/html-widget.php';
 
 // Ultimate Dashboard Output.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';

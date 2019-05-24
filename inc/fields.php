@@ -128,7 +128,6 @@ function udb_main_meta_callback() {
 	$udb_widget_types = [
 		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
 		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
-		'html' => __( 'HTML Widget', 'ultimate-dashboard' ),
 	];
 
 	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
@@ -214,10 +213,6 @@ function udb_save_postmeta( $post_id ) {
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
 		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
-	}
-
-	if ( isset( $_POST['udb_html'] ) ) {
-		update_post_meta( $post_id, 'udb_html', $_POST['udb_html'] );
 	}
 
 	do_action( 'udb_save_widget' );

@@ -15,7 +15,7 @@ function udb_post_type() {
 	$labels = array(
 		'name'               => _x( 'Dashboard Widgets', 'Post type general name', 'ultimate-dashboard' ),
 		'singular_name'      => _x( 'Dashboard Widget', 'Post type singular name', 'ultimate-dashboard' ),
-		'menu_name'          => _x( 'Widgets', 'Admin Menu text', 'ultimate-dashboard' ),
+		'menu_name'          => _x( 'Ultimate Dash...', 'Admin Menu text', 'ultimate-dashboard' ),
 		'name_admin_bar'     => _x( 'Dashboard Widget', 'Add New on Toolbar', 'ultimate-dashboard' ),
 		'add_new_item'       => __( 'Add Dashboard Widget', 'ultimate-dashboard' ),
 		'new_item'           => __( 'New Dashboard Widget', 'ultimate-dashboard' ),
@@ -127,9 +127,7 @@ function udb_widget_columns( $column, $post_id ) {
 			if ( ! $widget_type ) {
 				do_action( 'udb_compat_widget_type', $post_id );
 			} else {
-				if ( 'html' === $widget_type ) {
-					esc_html_e( 'HTML', 'ultimate-dashboard' );
-				} elseif ( 'text' === $widget_type ) {
+				if ( 'text' === $widget_type ) {
 					esc_html_e( 'Text', 'ultimate-dashboard' );
 				} elseif ( 'icon' === $widget_type ) {
 					echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';

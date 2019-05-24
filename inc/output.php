@@ -34,15 +34,12 @@ function udb_add_dashboard_widgets() {
 		$widget_type   = get_post_meta( $id, 'udb_widget_type', true );
 		$content       = get_post_meta( $id, 'udb_content', true );
 		$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
-		$html          = get_post_meta( $id, 'udb_html', true );
 
 		// preventing edge case when widget_type is empty.
 		if ( ! $widget_type ) {
 			do_action( 'udb_compat_widget_type', $id );
 		} else {
-			if ( 'html' === $widget_type ) {
-				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
-			} elseif ( 'text' === $widget_type ) {
+			if ( 'text' === $widget_type ) {
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 			} elseif ( 'icon' === $widget_type ) {
 				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
@@ -80,6 +77,7 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $default_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
+
 	} else {
 
 		if ( isset( $udb_settings['welcome_panel'] ) ) {
