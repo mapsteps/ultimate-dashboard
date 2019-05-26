@@ -191,4 +191,4 @@ function udb_icon_widget() {
 	<?php
 }
 
-	add_action( 'udb_metabox_widgets', 'udb_icon_widget' );
+add_action( 'udb_metabox_widgets', 'udb_icon_widget' );

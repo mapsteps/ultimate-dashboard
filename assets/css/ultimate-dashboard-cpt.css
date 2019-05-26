@@ -1,14 +1,4 @@
 /* Metabox Tab Navigation */
-#ultimate-dashboard-main-metabox .hndle,
-#ultimate-dashboard-main-metabox .handlediv {
-  display: none;
-}
-#ultimate-dashboard-main-metabox .inside {
-  padding: 0;
-  margin: 0;
-  background: #f9f9f9;
-}
-
 #udb-metabox-tab-nav {
   float: left;
   width: 150px;

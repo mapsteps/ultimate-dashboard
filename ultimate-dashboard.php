@@ -24,7 +24,7 @@ define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 function udb_textdomain() {
 	load_plugin_textdomain( 'ultimate-dashboard', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 }
-add_action( 'plugins_loaded', 'udb_textdomain' );
+add_action( 'init', 'udb_textdomain' );
 
 /**
  * Admin Scripts & Styles
