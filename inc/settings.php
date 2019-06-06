@@ -23,18 +23,35 @@ function udb_settings() {
 	add_settings_section( 'udb-remove-all-widgets', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-remove-single-widgets', '', '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-advanced-settings', __( 'Advanced', 'ultimatedashboard' ), '', 'ultimate-dashboard' );
+	add_settings_section( 'udb-misc-settings', __( 'Misc', 'ultimatedashboard' ), '', 'ultimate-dashboard' );
 
 	// Settings Fields.
-	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
-	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
-	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
+	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimatedashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
+	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
 }
 
 /**
- * Output Settings
+ * Remove on Uninstall
  */
-function remove_all_widgets_callback() {
+function udb_remove_all_settings_callback(){
+	$udb_settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $udb_settings['remove-on-uninstall'] ) ) {
+		$remove_settings = 0;
+	} else {
+		$remove_settings = 1;
+	}
+
+	echo '<p><label><input type="checkbox" name="udb_settings[remove-on-uninstall]" value="1" ' . checked( $remove_settings, 1, false ) . ' /></label></p>';
+}
+
+/**
+ * Remove All Widgets Callback
+ */
+function udb_remove_all_widgets_callback() {
 	$udb_settings = get_option( 'udb_settings' );
 
 	if ( ! isset( $udb_settings['remove-all'] ) ) {
@@ -49,7 +66,7 @@ function remove_all_widgets_callback() {
 /**
  * Remove Single Widgets Callback
  */
-function remove_single_widgets_callback() {
+function udb_remove_single_widgets_callback() {
 	$udb_settings = get_option( 'udb_settings' );
 
 	if ( ! isset( $udb_settings['welcome_panel'] ) ) {
@@ -78,7 +95,7 @@ function remove_single_widgets_callback() {
 /**
  * Remove 3rd Party Widgets Callback
  */
-function remove_3rd_party_widgets_callback() {
+function udb_remove_3rd_party_widgets_callback() {
 	echo sprintf( __( 'Get %s!', 'ultimate-dashboard' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>' );
 }
 
