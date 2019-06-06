@@ -114,5 +114,21 @@ function udb_add_action_links( $links ) {
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'udb_add_action_links' );
 
+/**
+ * Plugin Deactivation
+ */
+function udb_deactivate() {
+	$udb_settings = get_option( 'udb_settings' );
+
+	if ( isset( $udb_settings['remove-on-uninstall'] ) ) {
+		delete_option( 'udb_settings' );
+		delete_option( 'udb_pro_settings' );
+		delete_option( 'udb_import' );
+		delete_option( 'udb_compact_widget_widget_type' );
+	}
+
+}
+register_deactivation_hook( plugin_basename( __FILE__ ), 'udb_deactivate' );
+
 // Required Files.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/init.php';
