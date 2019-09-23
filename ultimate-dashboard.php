@@ -18,7 +18,7 @@ define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Admin Scripts & Styles
+ * Admin scripts & styles
  */
 function udb_admin_scripts() {
 
@@ -26,7 +26,7 @@ function udb_admin_scripts() {
 
 	$plugin_data = get_plugin_data( __FILE__ );
 
-	// Widget Edit Screen & Create a New Widget Screen.
+	// Widget edit screen & create a new widget screen.
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
@@ -51,7 +51,7 @@ function udb_admin_scripts() {
 
 	}
 
-	// Dashboard Widget Overview & Settings.
+	// Dashboard widget overview & settings.
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
@@ -71,7 +71,7 @@ function udb_admin_scripts() {
 
 	}
 
-	// WordPress Dashboard.
+	// WordPress dashboard.
 	if ( 'index.php' === $pagenow ) {
 
 		// FontAwesome CSS.
@@ -88,27 +88,28 @@ function udb_admin_scripts() {
 
 	}
 
-	// Highlight PRO Link in Sub-Menu.
+	// Highlight PRO link in sub-menu.
 	echo '<style>#adminmenu #menu-posts-udb_widgets a[href="edit.php?post_type=udb_widgets&page=addons"] { color: tomato; }</style>';
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
 
 /**
- * Action Links
+ * Action links
  *
- * @param string $links Links.
+ * @param string $links links.
  */
 function udb_add_action_links( $links ) {
 
 	$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
+
 	return array_merge( $links, $settings );
 
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'udb_add_action_links' );
 
 /**
- * Plugin Deactivation
+ * Plugin deactivation
  */
 function udb_deactivate() {
 
@@ -126,5 +127,5 @@ function udb_deactivate() {
 }
 register_deactivation_hook( plugin_basename( __FILE__ ), 'udb_deactivate' );
 
-// Required Files.
+// Required files.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/init.php';

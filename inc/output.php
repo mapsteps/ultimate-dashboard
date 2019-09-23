@@ -8,10 +8,11 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Ultimate Dashboard Widget Output
+ * Ultimate Dashboard widget output
  */
 function udb_add_dashboard_widgets() {
-	// Custom Post Type Loop.
+
+	// Loop through udb_widgets CPT to display widgets on the WordPress dashboard.
 	$args = array(
 		'post_type'      => 'udb_widgets',
 		'posts_per_page' => 100,
@@ -20,9 +21,9 @@ function udb_add_dashboard_widgets() {
 	$loop = new WP_Query( $args );
 
 	while ( $loop->have_posts() ) :
+
 		$loop->the_post();
 
-		// vars.
 		$id            = get_the_ID();
 		$title         = get_the_title();
 		$icon          = get_post_meta( $id, 'udb_icon_key', true );
@@ -35,21 +36,33 @@ function udb_add_dashboard_widgets() {
 		$content       = get_post_meta( $id, 'udb_content', true );
 		$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
 
-		// preventing edge case when widget_type is empty.
+		// Preventing edge case when widget_type is empty.
 		if ( ! $widget_type ) {
+
 			do_action( 'udb_compat_widget_type', $id );
+
 		} else {
+
+			// Text widget output.
 			if ( 'text' === $widget_type ) {
+
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
+
+			// Icon widget output
 			} elseif ( 'icon' === $widget_type ) {
+
 				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
+				// Tooltip.
 				if ( $tooltip ) {
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
+
 			}
+
 		}
 
+		// Output.
 		$function = function() use ( $output ) {
 			echo $output;
 		};
@@ -58,14 +71,15 @@ function udb_add_dashboard_widgets() {
 		add_meta_box( 'ms-udb' . $id, $title, $function, 'dashboard', $position, $priority );
 
 	endwhile;
+
 }
 add_action( 'wp_dashboard_setup', 'udb_add_dashboard_widgets' );
 
 /**
- * Remove Default WordPress Dashboard Widgets.
+ * Remove default WordPress dashboard widgets
  */
 function udb_remove_default_dashboard_widgets() {
-	// vars.
+
 	$saved_widgets   = udb_get_saved_default_widgets();
 	$default_widgets = udb_get_default_widgets();
 	$udb_settings    = get_option( 'udb_settings' );
@@ -87,7 +101,9 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $saved_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
+
 	}
+
 }
 add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
 
@@ -95,6 +111,7 @@ add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
  * Custom dashboard CSS
  */
 function udb_add_dashboard_css() {
+
 	$udb_pro_settings = get_option( 'udb_pro_settings' );
 
 	if ( ! isset( $udb_pro_settings['custom_css'] ) ) {
