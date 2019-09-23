@@ -7,7 +7,6 @@
  * Author: David Vongries
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimate-dashboard
- * Domain Path: /languages
  *
  * @package Ultimate Dashboard
  */
@@ -17,14 +16,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 // Plugin constants.
 define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-
-/**
- * Text domain
- */
-function udb_textdomain() {
-	load_plugin_textdomain( 'ultimate-dashboard', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
-}
-add_action( 'init', 'udb_textdomain' );
 
 /**
  * Admin Scripts & Styles
@@ -57,6 +48,7 @@ function udb_admin_scripts() {
 		// Custom Post Type JS.
 		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
 		wp_enqueue_script( 'ultimate-dashboard-cpt' );
+
 	}
 
 	// Dashboard Widget Overview & Settings.
@@ -108,6 +100,7 @@ add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
  * @param string $links Links.
  */
 function udb_add_action_links( $links ) {
+
 	$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
 	return array_merge( $links, $settings );
 
@@ -118,13 +111,16 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'udb_add_actio
  * Plugin Deactivation
  */
 function udb_deactivate() {
+
 	$udb_settings = get_option( 'udb_settings' );
 
 	if ( isset( $udb_settings['remove-on-uninstall'] ) ) {
+
 		delete_option( 'udb_settings' );
 		delete_option( 'udb_pro_settings' );
 		delete_option( 'udb_import' );
 		delete_option( 'udb_compact_widget_widget_type' );
+
 	}
 
 }

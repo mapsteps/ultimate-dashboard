@@ -1,7 +1,7 @@
 === Ultimate Dashboard ===
 Contributors: davidvongries
 Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom Dashboard, WP Admin
-Requires at least: 4.0
+Requires at least: 4.6
 Tested up to: 5.2
 Requires PHP: 5.6
 Stable tag: 2.4
