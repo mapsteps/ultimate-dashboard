@@ -38,13 +38,13 @@ function udb_tools() {
  */
 function udb_render_export_field( $args ) { ?>
 
-	<p><?php esc_html_e( 'Export & move your Dashboard Widgets to a different installation.', 'ultimate-dashboard' ); ?></p>
+	<p><?php _e( 'Export & move your Dashboard Widgets to a different installation.', 'ultimate-dashboard' ); ?></p>
 
 	<div class="fields">
 		<p>
 			<label>
 				<input type="checkbox" name="udb_export_settings" value="1" />
-				<?php esc_html_e( 'Include Settings' ); ?>
+				<?php _e( 'Include Settings' ); ?>
 			</label>
 		</p>
 	</div>
@@ -58,10 +58,10 @@ function udb_render_export_field( $args ) { ?>
  */
 function udb_render_import_field( $args ) { ?>
 
-	<p><?php esc_html_e( 'Select the JSON file you would like to import.', 'ultimate-dashboard' ); ?></p>
+	<p><?php _e( 'Select the JSON file you would like to import.', 'ultimate-dashboard' ); ?></p>
 
 	<div class="fields-wrapper has-top-gap">
-		<label class="block-label" for="udb_import_file"><?php esc_html_e( 'Select File', 'ultimate-dashboard' ); ?></label>
+		<label class="block-label" for="udb_import_file"><?php _e( 'Select File', 'ultimate-dashboard' ); ?></label>
 		<input type="file" name="udb_import_file">
 	</div>
 

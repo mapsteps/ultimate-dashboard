@@ -1,20 +1,18 @@
 <?php
 /**
- * Backwards Compatibility
+ * Backwards compatibility
  *
  * @package Ultimate Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-// vars.
 $udb_settings = get_option( 'udb_settings' );
 
 if ( ! $udb_settings ) {
 	update_option( 'udb_settings', array() );
 }
 
-// default widgets.
 if ( get_option( 'removeallwidgets' ) ) {
 	$udb_settings['remove-all'] = 1;
 	update_option( 'udb_settings', $udb_settings );
@@ -85,12 +83,14 @@ if ( get_option( 'comments' ) ) {
  * Handle udb_widget_type
  * Can be used for "whole checking" or "partial checking"
  *
- * @param int $post_id The post ID.
+ * @param int $post_id the post ID.
  */
 function udb_handle_widget_type( $post_id ) {
+
 	$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
 	if ( ! $widget_type ) {
+
 		$content = get_post_meta( $post_id, 'udb_content', true );
 
 		if ( $content ) {
@@ -100,7 +100,9 @@ function udb_handle_widget_type( $post_id ) {
 		}
 
 		update_post_meta( $post_id, 'udb_widget_type', $widget_type );
+
 	}
+
 }
 add_action( 'udb_compat_widget_type', 'udb_handle_widget_type' );
 
@@ -108,7 +110,8 @@ add_action( 'udb_compat_widget_type', 'udb_handle_widget_type' );
  * Whole checking udb_widget_type compatibility
  */
 function udb_compat_widget_type() {
-	// no need to check more if ever checked.
+
+	// No need to check more if ever checked.
 	if ( get_option( 'udb_compat_widget_type' ) ) {
 		return;
 	}
@@ -131,5 +134,6 @@ function udb_compat_widget_type() {
 
 	// mark it, so no need to check more next time.
 	update_option( 'udb_compat_widget_type', 1 );
+
 }
 add_action( 'admin_init', 'udb_compat_widget_type' );

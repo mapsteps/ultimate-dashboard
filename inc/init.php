@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Ultimate Dashboard Tools Page
+ * Tools page
  */
 function udb_tools_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
@@ -16,7 +16,7 @@ function udb_tools_page() {
 add_action( 'admin_menu', 'udb_tools_page', 20 );
 
 /**
- * Ultimate Dashboard Settings Page
+ * Settings page
  */
 function udb_options_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Settings', 'Settings', 'manage_options', 'settings', 'udb_options_page_callback' );
@@ -24,59 +24,65 @@ function udb_options_page() {
 add_action( 'admin_menu', 'udb_options_page', 20 );
 
 /**
- * Ultimate Dashboard Addons Page
+ * PRO link
  */
-function udb_addons_page() {
-	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Ultimate Dashboard PRO', 'PRO', 'manage_options', 'addons', 'udb_addons_page_callback' );
+function udb_pro_link() {
+
+	global $submenu;
+	$url = 'https://ultimatedashboard.io/pro/';
+	$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', $url );
+
 }
-add_action( 'admin_menu', 'udb_addons_page', 10 );
+add_action('admin_menu', 'udb_pro_link');
 
 /**
- * Ultimate Dashboard Tools Page Template
+ * Tools page template
  */
 function udb_tools_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/tools-template.php';
 }
 
 /**
- * Ultimate Dashboard Settings Page Template
+ * Settings page template
  */
 function udb_options_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/settings-template.php';
 }
 
 /**
- * Ultimate Dashboard Addon Page Template
+ * Addon page template
  */
 function udb_addons_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/addons-template.php';
+	return "https://google.com";
 }
 
-// Backwards Compatibility.
+// Backwards compatibility.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/backwards-compatibility.php';
 
-// Ultimate Dashboard Custom Post Type.
+// Custom post type.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/cpt.php';
 
 // Helpers.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/helpers.php';
 
-// Ultimate Dashboard Tools.
+// Tools.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/tools.php';
 
-// Ultimate Dashboard Settings.
+// Settings.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings.php';
 
-// Ultimate Dashboard Fields.
+// Fields.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/fields.php';
 
 /* Widgets */
 
-// Icon Widget
+// Icon widget.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
 
-// Text Widget
+// Text widget.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
 
-// Ultimate Dashboard Output.
+/* Output */
+
+// Output.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';

@@ -8,13 +8,14 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Get DB Widgets
+ * Get dashboard widgets
  */
 function udb_get_db_widgets() {
 
 	global $wp_meta_boxes;
 
 	if ( ! is_array( $wp_meta_boxes['dashboard'] ) ) {
+
 		require_once ABSPATH . '/wp-admin/includes/dashboard.php';
 
 		$current_screen = get_current_screen();
@@ -40,21 +41,27 @@ function udb_get_db_widgets() {
 }
 
 /**
- * Get Widgets
+ * Get widgets
  */
 function udb_get_widgets() {
 
 	$widgets = udb_get_db_widgets();
 
 	foreach ( $widgets as $context => $priority ) {
+
 		foreach ( $priority as $data ) {
+
 			foreach ( $data as $id => $widget ) {
+
 				$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
 				$widget['context']        = $context;
 
 				$flat_widgets[ $id ] = $widget;
+
 			}
+
 		}
+
 	}
 
 	$widgets = wp_list_sort( $flat_widgets, array( 'title_stripped' => 'ASC' ), null, true );
@@ -64,7 +71,7 @@ function udb_get_widgets() {
 }
 
 /**
- * Get Default Widgets
+ * Get default widgets
  */
 function udb_get_default_widgets() {
 
@@ -90,7 +97,7 @@ function udb_get_default_widgets() {
 }
 
 /**
- * Get Saved Default Widgets
+ * Get saved default widgets
  */
 function udb_get_saved_default_widgets() {
 

@@ -37,7 +37,7 @@ function udb_settings() {
 }
 
 /**
- * Remove on uninstall
+ * Remove on uninstall callback
  */
 function udb_remove_all_settings_callback(){
 

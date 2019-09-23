@@ -7,8 +7,6 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-/* Metaboxes */
-
 /**
  * Icon metabox
  */
@@ -33,14 +31,13 @@ function udb_priority_metabox() {
 }
 add_action( 'add_meta_boxes', 'udb_priority_metabox' );
 
-/* Metabox Callback Functions */
-
 /**
  * Priority metabox callback
  *
- * @param object $post The post object.
+ * @param object $post the post object.
  */
 function udb_priority_meta_callback( $post ) {
+
 	wp_nonce_field( basename( __FILE__ ), 'udb_priority_nonce' );
 
 	$saved_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
@@ -48,6 +45,7 @@ function udb_priority_meta_callback( $post ) {
 	if ( ! $saved_meta ) {
 		$saved_meta = 'default';
 	}
+
 	?>
 
 	<div class="neatbox">
@@ -57,19 +55,19 @@ function udb_priority_meta_callback( $post ) {
 					<li>
 						<label>
 							<input type="radio" name="udb_metabox_priority" value="default" <?php checked( $saved_meta, 'default' ); ?> />
-							<?php esc_html_e( 'Default', 'ultimate-dashboard' ); ?>
+							<?php _e( 'Default', 'ultimate-dashboard' ); ?>
 						</label>
 					</li>
 					<li>
 						<label>
 							<input type="radio" name="udb_metabox_priority" value="low" <?php checked( $saved_meta, 'low' ); ?> />
-							<?php esc_html_e( 'Low', 'ultimate-dashboard' ); ?>
+							<?php _e( 'Low', 'ultimate-dashboard' ); ?>
 						</label>
 					</li>
 					<li>
 						<label>
 							<input type="radio" name="udb_metabox_priority" value="high" <?php checked( $saved_meta, 'high' ); ?> />
-							<?php esc_html_e( 'High', 'ultimate-dashboard' ); ?>
+							<?php _e( 'High', 'ultimate-dashboard' ); ?>
 						</label>
 					</li>
 				</ul>
@@ -78,14 +76,16 @@ function udb_priority_meta_callback( $post ) {
 	</div>
 
 	<?php
+
 }
 
 /**
- * Position Metabox Callback
+ * Position metabox callback
  *
- * @param object $post The post object.
+ * @param object $post the post object.
  */
 function udb_position_meta_callback( $post ) {
+
 	wp_nonce_field( basename( __FILE__ ), 'udb_position_nonce' );
 
 	$saved_meta = get_post_meta( $post->ID, 'udb_position_key', true );
@@ -93,6 +93,7 @@ function udb_position_meta_callback( $post ) {
 	if ( ! $saved_meta ) {
 		$saved_meta = 'normal';
 	}
+
 	?>
 
 	<div class="neatbox">
@@ -102,13 +103,13 @@ function udb_position_meta_callback( $post ) {
 					<li>
 						<label>
 							<input type="radio" name="udb_metabox_position" value="normal" <?php checked( $saved_meta, 'normal' ); ?> />
-							<?php esc_html_e( 'Left column', 'ultimate-dashboard' ); ?>
+							<?php _e( 'Left column', 'ultimate-dashboard' ); ?>
 						</label>
 					</li>
 					<li>
 						<label>
 							<input type="radio" name="udb_metabox_position" value="side" <?php checked( $saved_meta, 'side' ); ?> />
-							<?php esc_html_e( 'Right column', 'ultimate-dashboard' ); ?>
+							<?php _e( 'Right column', 'ultimate-dashboard' ); ?>
 						</label>
 					</li>
 				</ul>
@@ -117,12 +118,14 @@ function udb_position_meta_callback( $post ) {
 	</div>
 
 	<?php
+
 }
 
 /**
- * Main Metabox Callback
+ * Main metabox callback
  */
 function udb_main_meta_callback() {
+
 	global $post;
 
 	$udb_widget_types = [
@@ -132,11 +135,12 @@ function udb_main_meta_callback() {
 
 	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
 	$stored_meta      = get_post_meta( $post->ID, 'udb_widget_type', true );
+
 	?>
 
 	<div class="neatbox has-subboxes">
 		<div class="subbox">
-			<h2><?php echo esc_html_e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
+			<h2><?php _e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<div class="input-control">
 					<select name="udb_widget_type">
@@ -151,21 +155,22 @@ function udb_main_meta_callback() {
 				</div>
 			</div>
 		</div>
-
 		<div class="widget-fields">
 			<?php do_action( 'udb_metabox_widgets' ); ?>
 		</div>
 	</div>
 
 	<?php
+
 }
 
 /**
- * Save postmeta data function
+ * Save postmeta data
  *
- * @param int $post_id The post ID.
+ * @param int $post_id the post ID.
  */
 function udb_save_postmeta( $post_id ) {
+
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
 	// phpcs:disable
@@ -177,8 +182,6 @@ function udb_save_postmeta( $post_id ) {
 	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
 	}
-
-	do_action( 'udb_pre_save_widget' );
 
 	if ( isset( $_POST['udb_widget_type'] ) ) {
 		update_post_meta( $post_id, 'udb_widget_type', sanitize_text_field( $_POST['udb_widget_type'] ) );
@@ -215,7 +218,5 @@ function udb_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
 	}
 
-	do_action( 'udb_save_widget' );
 }
-
 add_action( 'save_post', 'udb_save_postmeta' );
