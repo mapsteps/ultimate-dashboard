@@ -33,7 +33,7 @@ function udb_pro_link() {
 	$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', $url );
 
 }
-add_action('admin_menu', 'udb_pro_link');
+add_action( 'admin_menu', 'udb_pro_link' );
 
 /**
  * Tools page template

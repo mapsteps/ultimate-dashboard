@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings Page Template
+ * Settings page template
  *
  * @package Ultimate Dashboard
  */
