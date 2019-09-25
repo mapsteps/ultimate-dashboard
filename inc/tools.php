@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings
+ * Settings.
  *
  * @package Ultimate Dashboard
  */
@@ -8,12 +8,12 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Settings
+ * Settings.
  */
 add_action( 'admin_init', 'udb_tools' );
 
 /**
- * Register setting
+ * Register setting.
  */
 function udb_tools() {
 
@@ -32,7 +32,7 @@ function udb_tools() {
 }
 
 /**
- * Render export field
+ * Render export field.
  *
  * @param array $args setting's argument.
  */
@@ -53,7 +53,7 @@ function udb_render_export_field( $args ) { ?>
 }
 
 /**
- * Render import field
+ * Render import field.
  *
  * @param array $args setting's argument.
  */
@@ -71,7 +71,7 @@ function udb_render_import_field( $args ) {
 }
 
 /**
- * Export processing
+ * Export processing.
  *
  * @return void
  */
@@ -136,7 +136,7 @@ function udb_process_export() {
 }
 
 /**
- * Import processing
+ * Import processing.
  *
  * @return void
  */
