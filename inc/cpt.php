@@ -137,7 +137,7 @@ function udb_widget_columns( $column, $post_id ) {
 				if ( 'text' === $widget_type ) {
 					_e( 'Text', 'ultimate-dashboard' );
 				} elseif ( 'icon' === $widget_type ) {
-					echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
+					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
 				}
 			}
 
