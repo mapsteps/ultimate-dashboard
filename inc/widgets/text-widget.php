@@ -1,6 +1,6 @@
 <?php
 /**
- * Text widget
+ * Text widget.
  *
  * @package Ultimate Dashboard
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Text widget
+ * Text widget.
  */
 function udb_text_widget() {
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Icon widget
+ * Icon widget.
  *
  * @package Ultimate Dashboard
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Icon widget
+ * Icon widget.
  */
 function udb_icon_widget() {
 
@@ -85,7 +85,7 @@ function udb_icon_widget() {
 
 			}
 
-			// loop over fontawesome.
+			// Loop over fontawesome.
 			foreach ( $fontawesome as $icon_category => $icons ) {
 
 				$category_name = str_ireplace( '_', ' ', $icon_category );

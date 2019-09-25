@@ -1,6 +1,6 @@
 <?php
 /**
- * Exports Page Template
+ * Exports page template.
  *
  * @package Ultimate Dashboard
  */
