@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Get dashboard widgets.
+ *
+ * @return array The dashboard widgets.
  */
 function udb_get_db_widgets() {
 
@@ -42,6 +44,8 @@ function udb_get_db_widgets() {
 
 /**
  * Get widgets.
+ *
+ * @return array The dashboard widgets.
  */
 function udb_get_widgets() {
 
@@ -70,6 +74,8 @@ function udb_get_widgets() {
 
 /**
  * Get default widgets.
+ *
+ * @return array The dashboard widgets.
  */
 function udb_get_default_widgets() {
 
@@ -96,6 +102,8 @@ function udb_get_default_widgets() {
 
 /**
  * Get saved default widgets.
+ *
+ * @return array The dashboard widgets.
  */
 function udb_get_saved_default_widgets() {
 
