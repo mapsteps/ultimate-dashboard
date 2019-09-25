@@ -1,6 +1,6 @@
 <?php
 /**
- * Fields
+ * Fields.
  *
  * @package Ultimate Dashboard
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Icon metabox
+ * Icon metabox.
  */
 function udb_main_metabox() {
 	add_meta_box( 'udb-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), 'udb_main_meta_callback', 'udb_widgets', 'normal', 'high' );
@@ -16,7 +16,7 @@ function udb_main_metabox() {
 add_action( 'add_meta_boxes', 'udb_main_metabox' );
 
 /**
- * Position metabox
+ * Position metabox.
  */
 function udb_position_metabox() {
 	add_meta_box( 'udb-position-metabox', __( 'Position', 'ultimate-dashboard' ), 'udb_position_meta_callback', 'udb_widgets', 'side' );
@@ -24,7 +24,7 @@ function udb_position_metabox() {
 add_action( 'add_meta_boxes', 'udb_position_metabox' );
 
 /**
- * Priority metabox
+ * Priority metabox.
  */
 function udb_priority_metabox() {
 	add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), 'udb_priority_meta_callback', 'udb_widgets', 'side' );
@@ -32,7 +32,7 @@ function udb_priority_metabox() {
 add_action( 'add_meta_boxes', 'udb_priority_metabox' );
 
 /**
- * Priority metabox callback
+ * Priority metabox callback.
  *
  * @param object $post the post object.
  */
@@ -80,7 +80,7 @@ function udb_priority_meta_callback( $post ) {
 }
 
 /**
- * Position metabox callback
+ * Position metabox callback.
  *
  * @param object $post the post object.
  */
@@ -122,7 +122,7 @@ function udb_position_meta_callback( $post ) {
 }
 
 /**
- * Main metabox callback
+ * Main metabox callback.
  */
 function udb_main_meta_callback() {
 
@@ -165,7 +165,7 @@ function udb_main_meta_callback() {
 }
 
 /**
- * Save postmeta data
+ * Save postmeta data.
  *
  * @param int $post_id the post ID.
  */
