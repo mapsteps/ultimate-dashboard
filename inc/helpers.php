@@ -59,9 +59,7 @@ function udb_get_widgets() {
 				$flat_widgets[ $id ] = $widget;
 
 			}
-
 		}
-
 	}
 
 	$widgets = wp_list_sort( $flat_widgets, array( 'title_stripped' => 'ASC' ), null, true );
