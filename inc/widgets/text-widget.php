@@ -32,7 +32,7 @@ function udb_text_widget() {
 					<?php wp_editor( $content, $editor, $settings ); ?>
 				</div>
 			</div>
-		</div><!-- /subbox -->
+		</div>
 
 		<div class="subbox">
 			<h2><?php _e( 'Fixed Height', 'utimate-dashboard' ); ?></h2>
@@ -41,7 +41,7 @@ function udb_text_widget() {
 					<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content ? $content : '' ); ?>">
 				</div>
 			</div>
-		</div><!-- /subbox -->
+		</div>
 
 	</div>
 

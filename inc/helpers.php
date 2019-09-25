@@ -81,10 +81,6 @@ function udb_get_widgets() {
 
 /**
  * Get default widgets.
- */
-
-/**
- * Get default widgets.
  * 
  * From all existing widgets, get the default widgets.
  *
