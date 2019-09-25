@@ -8,19 +8,19 @@ Stable tag: 2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Remove the default WordPress dashboard widgets and create your own set of widgets with Ultimate Dashboard.
+Create a Custom WordPress Dashboard.
 
 == Description ==
-Ultimate Dashboard is a lightweight WordPress plugin that lets you replace the default WordPress dashboard widgets with your own set of useful icon & text widgets.
+[Ultimate Dashboard](https://ultimatedashboard.io/) is a clean & lightweight plugin that allows you create a custom WordPress dashboard.
 
-Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
+Replace the default WordPress dashboard widgets with your own set of useful icon- & text widgets.
 
 = Features =
-* Give the WordPress dashboard a more meaningful use for your clients & users
-* Remove all/individual default WordPress dashboard widgets
-* Create your own set of icon widgets
+* Create icon widgets
 * Create text widgets
-* Choose between FontAwesome & WordPress Dashicons for your icon widgets
+* Remove all default WordPress widgets
+* Remove individual default WordPress widgets
+* Give the WordPress dashboard a more meaningful use for your clients & users
 * Import/Export widgets & settings
 * Add custom CSS to your WordPress dashboard
 
@@ -28,10 +28,11 @@ Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.i
 
 = Ultimate Dashboard PRO =
 * Remove 3rd party widgets
-* Add video widgets
-* Add HTML widgets
+* Create video widgets
+* Create contact form widgets
+* Create HTML widgets
 * WordPress multisite support
-* Rebrand the WordPress login & admin screen
+* White Label the WordPress login & admin area
 
 [youtube https://www.youtube.com/watch?v=SFnXOYQ7vWk]
 
