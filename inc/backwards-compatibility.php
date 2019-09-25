@@ -81,9 +81,10 @@ if ( get_option( 'comments' ) ) {
 
 /**
  * Handle udb_widget_type.
+ * 
  * Can be used for "whole checking" or "partial checking".
  *
- * @param int $post_id the post ID.
+ * @param int $post_id The post ID.
  */
 function udb_handle_widget_type( $post_id ) {
 
@@ -111,7 +112,7 @@ add_action( 'udb_compat_widget_type', 'udb_handle_widget_type' );
  */
 function udb_compat_widget_type() {
 
-	// No need to check more if ever checked.
+	// Make sure we don't check again.
 	if ( get_option( 'udb_compat_widget_type' ) ) {
 		return;
 	}
@@ -132,7 +133,7 @@ function udb_compat_widget_type() {
 		do_action( 'udb_compat_widget_type', $widget->ID );
 	}
 
-	// mark it, so no need to check more next time.
+	// Make sure we don't check again.
 	update_option( 'udb_compat_widget_type', 1 );
 
 }

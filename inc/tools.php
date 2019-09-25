@@ -8,11 +8,6 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Settings.
- */
-add_action( 'admin_init', 'udb_tools' );
-
-/**
  * Register setting.
  */
 function udb_tools() {
@@ -30,6 +25,7 @@ function udb_tools() {
 	add_settings_field( 'udb-import-field', '', 'udb_render_import_field', 'ultimate-dashboard-import', 'udb-import-section', [ 'class' => 'is-gapless has-small-text' ] );
 
 }
+add_action( 'admin_init', 'udb_tools' );
 
 /**
  * Render export field.
@@ -174,7 +170,6 @@ function udb_process_import() {
 
 	}
 
-	// phpcs:ignore -- just fetching internal tmp_file.
 	$imports = file_get_contents( $tmp_file, true );
 	$imports = (array) json_decode( $imports, true );
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Exports page template.
+ * Tools template.
  *
  * @package Ultimate Dashboard
  */
@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 				?>
 				</div>
 			</form>
-		</div><!-- /left-col -->
+		</div>
 		<div class="right-col">
 			<form method="post" action="options.php" enctype="multipart/form-data">
 				<div class="neatbox">
@@ -34,6 +34,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 				?>
 				</div>
 			</form>
-		</div><!-- /right-col -->
-	</div><!-- /clearfix -->
-</div><!-- /wrap -->
+		</div>
+	</div>
+</div>

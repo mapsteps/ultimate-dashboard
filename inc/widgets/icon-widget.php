@@ -24,10 +24,10 @@ function udb_icon_widget() {
 			<?php
 
 			$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
-			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' ); // phpcs:ignore -- just fetching internal json file.
+			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' );
 			$dashicons   = json_decode( $dashicons, true );
 			$dashicons   = $dashicons ? $dashicons : [];
-			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' ); // phpcs:ignore -- just fetching internal json file.
+			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' );
 			$fontawesome = json_decode( $fontawesome, true );
 			$fontawesome = $fontawesome ? $fontawesome : [];
 			$udb_icons   = [];
@@ -85,7 +85,7 @@ function udb_icon_widget() {
 
 			}
 
-			// Loop over fontawesome.
+			// Loop over FontAwesome.
 			foreach ( $fontawesome as $icon_category => $icons ) {
 
 				$category_name = str_ireplace( '_', ' ', $icon_category );
@@ -162,7 +162,7 @@ function udb_icon_widget() {
 					</select>
 				</div>
 			</div>
-		</div><!-- /subbox -->
+		</div>
 
 		<div class="subbox">
 			<h2><?php _e( 'Tooltip', 'utimate-dashboard' ); ?></h2>
@@ -174,7 +174,7 @@ function udb_icon_widget() {
 					<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo esc_html( $stored_meta ? $stored_meta : '' ); ?></textarea>
 				</div>
 			</div>
-		</div><!-- /subbox -->
+		</div>
 
 		<div class="subbox">
 			<h2><?php _e( 'Link', 'utimate-dashboard' ); ?></h2>
@@ -204,7 +204,7 @@ function udb_icon_widget() {
 					</label>
 				</div>
 			</div>
-		</div><!-- /subbox -->
+		</div>
 
 	</div>
 

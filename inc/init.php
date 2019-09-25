@@ -24,37 +24,30 @@ function udb_options_page() {
 add_action( 'admin_menu', 'udb_options_page', 20 );
 
 /**
- * PRO link.
+ * Tools page callback.
  */
-function udb_pro_link() {
-
-	global $submenu;
-	$url = 'https://ultimatedashboard.io/pro/';
-	$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', $url );
-
-}
-add_action( 'admin_menu', 'udb_pro_link' );
-
-/**
- * Tools page template.
- */
-function udb_tools_page_callback() {
+function udb_tools_page_callback() { 
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/tools-template.php';
 }
 
 /**
- * Settings page template.
+ * Settings page callback.
  */
 function udb_options_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/settings-template.php';
 }
 
 /**
- * Addon page template.
+ * PRO link.
  */
-function udb_addons_page_callback() {
-	return 'https://google.com';
+function udb_pro_link() {
+
+	global $submenu;
+
+	$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
+
 }
+add_action( 'admin_menu', 'udb_pro_link' );
 
 // Backwards compatibility.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/backwards-compatibility.php';

@@ -8,11 +8,6 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Settings.
- */
-add_action( 'admin_init', 'udb_settings' );
-
-/**
  * Register setting.
  */
 function udb_settings() {
@@ -35,6 +30,7 @@ function udb_settings() {
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
 
 }
+add_action( 'admin_init', 'udb_settings' );
 
 /**
  * Remove on uninstall callback.

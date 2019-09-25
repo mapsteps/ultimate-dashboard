@@ -34,7 +34,7 @@ add_action( 'add_meta_boxes', 'udb_priority_metabox' );
 /**
  * Priority metabox callback.
  *
- * @param object $post the post object.
+ * @param object $post The post object.
  */
 function udb_priority_meta_callback( $post ) {
 
@@ -82,7 +82,7 @@ function udb_priority_meta_callback( $post ) {
 /**
  * Position metabox callback.
  *
- * @param object $post the post object.
+ * @param object $post The post object.
  */
 function udb_position_meta_callback( $post ) {
 
@@ -167,17 +167,16 @@ function udb_main_meta_callback() {
 /**
  * Save postmeta data.
  *
- * @param int $post_id the post ID.
+ * @param int $post_id The post ID.
  */
 function udb_save_postmeta( $post_id ) {
 
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
-	// phpcs:disable
+
 	$is_valid_metabox_nonce  = ( isset( $_POST['udb_metabox_nonce'] ) && wp_verify_nonce( $_POST['udb_metabox_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
 	$is_valid_position_nonce = ( isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
 	$is_valid_priority_nonce = ( isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
-	// phpcs:enable
 
 	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;

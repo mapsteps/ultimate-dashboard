@@ -43,8 +43,7 @@ function udb_add_dashboard_widgets() {
 
 		} else {
 
-			// Text widget output.
-			if ( 'text' === $widget_type ) {
+			if ( 'text' === $widget_type ) { // Text widget output.
 
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 
@@ -56,7 +55,9 @@ function udb_add_dashboard_widgets() {
 				if ( $tooltip ) {
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
+
 			}
+
 		}
 
 		// Output.
@@ -88,6 +89,7 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $default_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
+
 	} else {
 
 		if ( isset( $udb_settings['welcome_panel'] ) ) {
@@ -97,6 +99,7 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $saved_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
+
 	}
 
 }
