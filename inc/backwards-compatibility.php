@@ -1,6 +1,6 @@
 <?php
 /**
- * Backwards compatibility
+ * Backwards compatibility.
  *
  * @package Ultimate Dashboard
  */
@@ -80,8 +80,8 @@ if ( get_option( 'comments' ) ) {
 }
 
 /**
- * Handle udb_widget_type
- * Can be used for "whole checking" or "partial checking"
+ * Handle udb_widget_type.
+ * Can be used for "whole checking" or "partial checking".
  *
  * @param int $post_id the post ID.
  */
@@ -107,7 +107,7 @@ function udb_handle_widget_type( $post_id ) {
 add_action( 'udb_compat_widget_type', 'udb_handle_widget_type' );
 
 /**
- * Whole checking udb_widget_type compatibility
+ * Whole checking udb_widget_type compatibility.
  */
 function udb_compat_widget_type() {
 
