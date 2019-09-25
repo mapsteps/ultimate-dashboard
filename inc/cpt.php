@@ -84,7 +84,7 @@ function udb_widgets_update_messages( $messages ) {
 		8  => __( 'Widget submitted.', 'ultimate-dashboard' ),
 		9  => sprintf(
 			__( 'Widget scheduled for: <strong>%1$s</strong>.', 'ultimate-dashboard' ),
-			// translators: Publish box date format, see http://php.net/date
+			// translators: Publish box date format, see http://php.net/date for more info.
 			date_i18n( __( 'M j, Y @ G:i', 'ultimate-dashboard' ), strtotime( $post->post_date ) )
 		),
 		10 => __( 'Widget draft updated.', 'ultimate-dashboard' ),
