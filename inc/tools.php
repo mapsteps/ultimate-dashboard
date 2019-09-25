@@ -55,7 +55,7 @@ function udb_render_export_field( $args ) { ?>
 /**
  * Render import field.
  *
- * @param array $args setting's argument.
+ * @param array $args The setting's argument.
  */
 function udb_render_import_field( $args ) {
 	?>
@@ -72,8 +72,6 @@ function udb_render_import_field( $args ) {
 
 /**
  * Export processing.
- *
- * @return void
  */
 function udb_process_export() {
 
@@ -137,8 +135,6 @@ function udb_process_export() {
 
 /**
  * Import processing.
- *
- * @return void
  */
 function udb_process_import() {
 
@@ -174,7 +170,6 @@ function udb_process_import() {
 
 	}
 
-	// phpcs:ignore -- just fetching internal tmp_file.
 	$imports = file_get_contents( $tmp_file, true );
 	$imports = (array) json_decode( $imports, true );
 
