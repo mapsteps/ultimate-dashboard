@@ -16,22 +16,22 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		<div class="left-col">
 			<form method="post" action="options.php">
 				<div class="neatbox">
-				<?php
-					settings_fields( 'udb-export-group' );
-					do_settings_sections( 'ultimate-dashboard-export' );
-					submit_button( __( 'Export', 'ultimate-dashboard' ) );
-				?>
+					<?php
+						settings_fields( 'udb-export-group' );
+						do_settings_sections( 'ultimate-dashboard-export' );
+						submit_button( __( 'Export', 'ultimate-dashboard' ) );
+					?>
 				</div>
 			</form>
 		</div>
 		<div class="right-col">
 			<form method="post" action="options.php" enctype="multipart/form-data">
 				<div class="neatbox">
-				<?php
-					settings_fields( 'udb-import-group' );
-					do_settings_sections( 'ultimate-dashboard-import' );
-					submit_button( __( 'Import', 'ultimate-dashboard' ) );
-				?>
+					<?php
+						settings_fields( 'udb-import-group' );
+						do_settings_sections( 'ultimate-dashboard-import' );
+						submit_button( __( 'Import', 'ultimate-dashboard' ) );
+					?>
 				</div>
 			</form>
 		</div>
