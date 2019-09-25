@@ -1,6 +1,6 @@
 <?php
 /**
- * Output
+ * Output.
  *
  * @package Ultimate Dashboard
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Ultimate Dashboard widget output
+ * Ultimate Dashboard widget output.
  */
 function udb_add_dashboard_widgets() {
 
@@ -48,8 +48,7 @@ function udb_add_dashboard_widgets() {
 
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 
-			// Icon widget output
-			} elseif ( 'icon' === $widget_type ) {
+			} elseif ( 'icon' === $widget_type ) { // Icon widget output.
 
 				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
@@ -57,9 +56,7 @@ function udb_add_dashboard_widgets() {
 				if ( $tooltip ) {
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
-
 			}
-
 		}
 
 		// Output.
@@ -76,7 +73,7 @@ function udb_add_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'udb_add_dashboard_widgets' );
 
 /**
- * Remove default WordPress dashboard widgets
+ * Remove default WordPress dashboard widgets.
  */
 function udb_remove_default_dashboard_widgets() {
 
@@ -91,7 +88,6 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $default_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
-
 	} else {
 
 		if ( isset( $udb_settings['welcome_panel'] ) ) {
@@ -101,14 +97,13 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $saved_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
-
 	}
 
 }
 add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
 
 /**
- * Custom dashboard CSS
+ * Custom dashboard CSS.
  */
 function udb_add_dashboard_css() {
 
