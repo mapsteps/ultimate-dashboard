@@ -125,7 +125,6 @@ function udb_widget_columns( $column, $post_id ) {
 	switch ( $column ) {
 
 		case 'type':
-
 			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
 			// Preventing edge case when widget_type is empty.
@@ -140,7 +139,6 @@ function udb_widget_columns( $column, $post_id ) {
 				} elseif ( 'icon' === $widget_type ) {
 					echo '<i class="' . get_post_meta( $post_id, 'udb_icon_key', true ) . '"></i>';
 				}
-
 			}
 
 			break;
