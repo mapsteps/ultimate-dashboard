@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom post type
+ * Custom post type.
  *
  * @package Ultimate Dashboard
  */
@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Register post type
+ * Register post type.
  */
 function udb_post_type() {
 
@@ -63,7 +63,7 @@ function udb_post_type() {
 add_action( 'init', 'udb_post_type' );
 
 /**
- * Update messages
+ * Update messages.
  *
  * @param array $messages message list.
  */
@@ -96,7 +96,7 @@ function udb_widgets_update_messages( $messages ) {
 add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 
 /**
- * Setup widget columns
+ * Setup widget columns.
  *
  * @param array $columns defining custom columns.
  */
@@ -115,7 +115,7 @@ function set_udb_widget_columns( $columns ) {
 add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
 
 /**
- * Widget columns output
+ * Widget columns output.
  *
  * @param string  $column the column name/key.
  * @param integer $post_id defining column's content.
