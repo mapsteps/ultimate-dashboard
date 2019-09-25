@@ -44,19 +44,21 @@ function udb_render_export_field( $args ) { ?>
 		<p>
 			<label>
 				<input type="checkbox" name="udb_export_settings" value="1" />
-				<?php _e( 'Include Settings' ); ?>
+				<?php _e( 'Include Settings', 'ultimate-dashboard' ); ?>
 			</label>
 		</p>
 	</div>
 
-<?php }
+	<?php
+}
 
 /**
  * Render import field
  *
  * @param array $args setting's argument.
  */
-function udb_render_import_field( $args ) { ?>
+function udb_render_import_field( $args ) {
+	?>
 
 	<p><?php _e( 'Select the JSON file you would like to import.', 'ultimate-dashboard' ); ?></p>
 
@@ -65,7 +67,8 @@ function udb_render_import_field( $args ) { ?>
 		<input type="file" name="udb_import_file">
 	</div>
 
-<?php }
+	<?php
+}
 
 /**
  * Export processing
@@ -116,7 +119,6 @@ function udb_process_export() {
 			];
 
 		}
-
 	}
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
@@ -234,7 +236,6 @@ function udb_process_import() {
 			foreach ( $meta as $meta_key => $meta_value ) {
 				update_post_meta( $post_id, $meta_key, $meta_value );
 			}
-
 		}
 
 		add_settings_error(
