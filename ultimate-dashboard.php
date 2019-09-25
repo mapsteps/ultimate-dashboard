@@ -18,7 +18,7 @@ define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Admin scripts & styles
+ * Admin scripts & styles.
  */
 function udb_admin_scripts() {
 
@@ -95,7 +95,7 @@ function udb_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
 
 /**
- * Action links
+ * Action links.
  *
  * @param string $links links.
  */
@@ -109,7 +109,7 @@ function udb_add_action_links( $links ) {
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'udb_add_action_links' );
 
 /**
- * Plugin deactivation
+ * Plugin deactivation.
  */
 function udb_deactivate() {
 
