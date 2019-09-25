@@ -16,8 +16,11 @@ function udb_text_widget() {
 
 	$content  = get_post_meta( $post->ID, 'udb_content', true );
 	$editor   = 'udb_content';
-	$settings = array( 'media_buttons' => false, 'editor_height' => 300, 'teeny' => true, );
-
+	$settings = array(
+		'media_buttons' => false,
+		'editor_height' => 300,
+		'teeny'         => true,
+	);
 	?>
 
 	<div data-type="text">
