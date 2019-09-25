@@ -97,7 +97,9 @@ add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
 /**
  * Action links.
  *
- * @param string $links links.
+ * @param array $links The action links array.
+ *
+ * @return array The merged action links array.
  */
 function udb_add_action_links( $links ) {
 
