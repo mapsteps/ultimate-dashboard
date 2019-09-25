@@ -28,7 +28,7 @@ function udb_post_type() {
 		'not_found_in_trash' => __( 'No Dashboard Widgets in Trash.', 'ultimate-dashboard' ),
 	);
 
-	// Change capabilities so only users with 'manage_options' capabilities can mess with dashboard widgets.
+	// change capabilities so only users with 'manage_options' capabilities can mess with dashboard widgets.
 	$capabilities = array(
 		'edit_post'          => 'manage_options',
 		'read_post'          => 'manage_options',
@@ -65,9 +65,7 @@ add_action( 'init', 'udb_post_type' );
 /**
  * Update messages.
  *
- * @param array $messages The message list.
- * 
- * @return array The message list.
+ * @param array $messages message list.
  */
 function udb_widgets_update_messages( $messages ) {
 
@@ -100,9 +98,7 @@ add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 /**
  * Setup widget columns.
  *
- * @param array $columns The UDB post's custom columns.
- * 
- * @return array The UDB post's custom columns.
+ * @param array $columns defining custom columns.
  */
 function set_udb_widget_columns( $columns ) {
 

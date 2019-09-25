@@ -11,7 +11,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Icon widget.
  */
 function udb_icon_widget() {
+
 	global $post;
+
 	?>
 
 	<div data-type="icon">
