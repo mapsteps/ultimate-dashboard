@@ -1,6 +1,6 @@
 === Ultimate Dashboard ===
 Contributors: davidvongries
-Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom Dashboard, WP Admin
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, WP Admin, WordPress Admin
 Requires at least: 4.6
 Tested up to: 5.2
 Requires PHP: 5.6
@@ -11,17 +11,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Create a Custom WordPress Dashboard.
 
 == Description ==
-[Ultimate Dashboard](https://ultimatedashboard.io/) is a clean & lightweight plugin that allows you create a custom WordPress dashboard.
+[Ultimate Dashboard](https://ultimatedashboard.io/) is a clean & lightweight plugin that allows you to create a custom WordPress dashboard.
 
-Replace the default WordPress dashboard widgets with your own set of useful icon- & text widgets.
+Replace the default WordPress dashboard widgets with your own set of icon- & text widgets.
 
 = Features =
 * Create icon widgets
 * Create text widgets
-* Remove all default WordPress widgets
-* Remove individual default WordPress widgets
-* Give the WordPress dashboard a more meaningful use for your clients & users
-* Import/Export widgets & settings
+* Remove all or individual default WordPress widgets
+* Export/Import dashboard widgets & settings
 * Add custom CSS to your WordPress dashboard
 
 Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
