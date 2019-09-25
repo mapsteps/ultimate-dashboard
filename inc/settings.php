@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings
+ * Settings.
  *
  * @package Ultimate Dashboard
  */
@@ -8,12 +8,12 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Settings
+ * Settings.
  */
 add_action( 'admin_init', 'udb_settings' );
 
 /**
- * Register setting
+ * Register setting.
  */
 function udb_settings() {
 
@@ -37,9 +37,9 @@ function udb_settings() {
 }
 
 /**
- * Remove on uninstall callback
+ * Remove on uninstall callback.
  */
-function udb_remove_all_settings_callback(){
+function udb_remove_all_settings_callback() {
 
 	$udb_settings = get_option( 'udb_settings' );
 
@@ -54,7 +54,7 @@ function udb_remove_all_settings_callback(){
 }
 
 /**
- * Remove all widgets callback
+ * Remove all widgets callback.
  */
 function udb_remove_all_widgets_callback() {
 
@@ -71,7 +71,7 @@ function udb_remove_all_widgets_callback() {
 }
 
 /**
- * Remove individual widgets callback
+ * Remove individual widgets callback.
  */
 function udb_remove_single_widgets_callback() {
 
@@ -102,14 +102,14 @@ function udb_remove_single_widgets_callback() {
 }
 
 /**
- * Remove 3rd party widgets callback
+ * Remove 3rd party widgets callback.
  */
 function udb_remove_3rd_party_widgets_callback() {
 	echo sprintf( __( 'Get %s!', 'ultimate-dashboard' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>' );
 }
 
 /**
- * Custom dashboard CSS callback
+ * Custom dashboard CSS callback.
  */
 function udb_custom_dashboard_css_callback() {
 
