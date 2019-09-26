@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<form method="post" action="options.php">
 		<div class="neatbox has-subboxes has-bigger-heading">
 			<?php
-				settings_fields( 'udb-settings-group' );
-				do_settings_sections( 'ultimate-dashboard' );
-				submit_button();
+			settings_fields( 'udb-settings-group' );
+			do_settings_sections( 'ultimate-dashboard' );
+			submit_button();
 			?>
 		</div>
 	</form>
