@@ -80,7 +80,8 @@
 
 .settingstuff .neatbox .form-table th:empty {
   padding-right: 0;
-  width: 0;
+  width: 15px;
+  box-sizing: border-box;
 }
 
 .settingstuff .neatbox .form-table th:empty ~ td {
