@@ -9,9 +9,9 @@
 ## Summary
 
 - [Description](#description)
-  - [Features](#features)
-  - [Ultimate Dashboard Pro](#ultimate-dashboard-pro)
+- [Features](#features)
 - [Installation](#installation)
+- [Ultimate Dashboard Pro](#ultimate-dashboard-pro)
 
 ## Description
 
@@ -19,7 +19,7 @@
 
 Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
 
-#### Features
+## Features
 
 - Give the WordPress dashboard a more meaningful use for your clients & users
 - Remove all/individual default WordPress dashboard widgets
@@ -29,9 +29,24 @@ Create custom WordPress dashboard widgets and send your clients and users to the
 - Import/Export widgets & settings
 - Add custom CSS to your WordPress dashboard
 
-Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
+Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 
-#### Ultimate Dashboard Pro
+## Installation
+
+### Through The WordPress Administrative Area:
+
+- From WordPress administrative area, go to _Plugins_ -> _Add New_
+- Search for "_Ultimate Dashboard_" (By David Vongries)
+- Install and then activate it
+
+### Download Manually
+
+- Download the ultimate-dashboard.zip file to your computer.
+- Unzip the file.
+- Upload the ultimate-dashboard folder to your /wp-content/plugins/directory.
+- Activate the plugin through the Plugins menu in WordPress.
+
+## Ultimate Dashboard Pro
 
 - Remove 3rd party widgets
 - Add video widgets
@@ -41,17 +56,4 @@ Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.i
 
 [![Ultimate Dashboard Pro](https://img.youtube.com/vi/SFnXOYQ7vWk/0.jpg)](https://www.youtube.com/watch?v=SFnXOYQ7vWk)
 
-## Installation
-
-#### Through The WordPress Administrative Area:
-
-- From WordPress administrative area, go to _Plugins_ -> _Add New_
-- Search for "_Ultimate Dashboard_" (By David Vongries)
-- Install and then activate it
-
-#### Download Manually
-
-- Download the ultimate-dashboard.zip file to your computer.
-- Unzip the file.
-- Upload the ultimate-dashboard folder to your /wp-content/plugins/directory.
-- Activate the plugin through the Plugins menu in WordPress.
+Learn more about [Ultimate Dashboard Pro](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb)
