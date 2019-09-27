@@ -6,8 +6,6 @@
 </a>
 </p>
 
-# Ultimate Dashboard
-
 ## Summary
 
 - [Description](#description)
@@ -21,7 +19,7 @@
 
 Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
 
-### Features
+#### Features
 
 - Give the WordPress dashboard a more meaningful use for your clients & users
 - Remove all/individual default WordPress dashboard widgets
@@ -33,7 +31,7 @@ Create custom WordPress dashboard widgets and send your clients and users to the
 
 Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
-### Ultimate Dashboard Pro
+#### Ultimate Dashboard Pro
 
 - Remove 3rd party widgets
 - Add video widgets
@@ -41,17 +39,17 @@ Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.i
 - WordPress multisite support
 - Rebrand the WordPress login & admin screen
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SFnXOYQ7vWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Ultimate Dashboard Pro](https://img.youtube.com/vi/SFnXOYQ7vWk/0.jpg)](https://www.youtube.com/watch?v=SFnXOYQ7vWk)
 
 ## Installation
 
-### Through The WordPress Administrative Area:
+#### Through The WordPress Administrative Area:
 
 - From WordPress administrative area, go to _Plugins_ -> _Add New_
 - Search for "_Ultimate Dashboard_" (By David Vongries)
 - Install and then activate it
 
-### Download Manually
+#### Download Manually
 
 - Download the ultimate-dashboard.zip file to your computer.
 - Unzip the file.
