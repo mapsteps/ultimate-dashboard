@@ -15,7 +15,7 @@
 
 ## Description
 
-**Ultimate Dashboard** is a lightweight WordPress plugin that lets you replace the default WordPress dashboard widgets with your own set of useful icon & text widgets.
+[**Ultimate Dashboard**](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb) is a lightweight WordPress plugin that lets you replace the default WordPress dashboard widgets with your own set of useful icon & text widgets.
 
 Create custom WordPress dashboard widgets and send your clients and users to the key areas of their website – or anywhere else.
 
