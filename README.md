@@ -43,7 +43,7 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 
 - Download the ultimate-dashboard.zip file to your computer.
 - Unzip the file.
-- Upload the ultimate-dashboard folder to your /wp-content/plugins/directory.
+- Upload the ultimate-dashboard folder to your `/wp-content/plugins/` directory.
 - Activate the plugin through the Plugins menu in WordPress.
 
 ## Ultimate Dashboard Pro
