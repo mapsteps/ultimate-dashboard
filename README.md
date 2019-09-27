@@ -33,13 +33,13 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 
 ## Installation
 
-### Through The WordPress Administrative Area:
+#### Through The WordPress Administrative Area:
 
 - From WordPress administrative area, go to _Plugins_ -> _Add New_
 - Search for "_Ultimate Dashboard_" (By David Vongries)
 - Install and then activate it
 
-### Download Manually
+#### Download Manually
 
 - Download the ultimate-dashboard.zip file to your computer.
 - Unzip the file.
