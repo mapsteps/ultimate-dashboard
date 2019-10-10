@@ -28,7 +28,7 @@ function udb_post_type() {
 		'not_found_in_trash' => __( 'No Dashboard Widgets in Trash.', 'ultimate-dashboard' ),
 	);
 
-	// change capabilities so only users with 'manage_options' capabilities can mess with dashboard widgets.
+	// Change capabilities so only users that can 'manage_options' are able to access the dashboard widgets & settings.
 	$capabilities = array(
 		'edit_post'          => 'manage_options',
 		'read_post'          => 'manage_options',
@@ -77,7 +77,7 @@ function udb_widgets_update_messages( $messages ) {
 		2  => __( 'Custom field updated.', 'ultimate-dashboard' ),
 		3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
 		4  => __( 'Widget updated.', 'ultimate-dashboard' ),
-		// translators: %s: Date and time of the revision.
+		// translators: %s: Date and time of the revision
 		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 		6  => __( 'Widget published.', 'ultimate-dashboard' ),
 		7  => __( 'Widget saved.', 'ultimate-dashboard' ),
@@ -117,31 +117,26 @@ add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
 /**
  * Widget columns.
  *
- * @param string  $column The column name/key.
+ * @param string $column The column name/key.
  * @param integer $post_id The post ID.
  */
 function udb_widget_columns( $column, $post_id ) {
 
 	switch ( $column ) {
 
-		case 'type':
-			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
-
-			// Preventing edge case when widget_type is empty.
-			if ( ! $widget_type ) {
-
-				do_action( 'udb_compat_widget_type', $post_id );
-
-			} else {
-
-				if ( 'text' === $widget_type ) {
-					_e( 'Text', 'ultimate-dashboard' );
-				} elseif ( 'icon' === $widget_type ) {
-					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
-				}
-
+	case 'type':
+		$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
+		// Preventing edge case when widget_type is empty.
+		if ( ! $widget_type ) {
+			do_action( 'udb_compat_widget_type', $post_id );
+		} else {
+			if ( 'text' === $widget_type ) {
+				_e( 'Text', 'ultimate-dashboard' );
+			} elseif ( 'icon' === $widget_type ) {
+				echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
 			}
-			break;
+		}
+		break;
 
 	}
 
