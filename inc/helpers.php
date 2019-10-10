@@ -28,12 +28,10 @@ function udb_get_db_widgets() {
 		set_current_screen( 'dashboard' );
 
 		remove_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
-		remove_action( 'wp_dashboard_setup', 'udb_extras_remove_third_party_widgets', 100 );
 
 		wp_dashboard_setup();
 
 		add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
-		add_action( 'wp_dashboard_setup', 'udb_extras_remove_third_party_widgets', 100 );
 
 		set_current_screen( $current_screen );
 
