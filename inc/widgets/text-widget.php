@@ -11,15 +11,16 @@ function udb_text_widget() {
 
 	global $post;
 
-	$content  = get_post_meta( $post->ID, 'udb_content', true );
-	$editor   = 'udb_content';
-	$settings = array(
+	$content        = get_post_meta( $post->ID, 'udb_content', true );
+	$content_height = get_post_meta( $post->ID, 'udb_content_height', true );
+	$editor         = 'udb_content';
+	$settings       = array(
 		'media_buttons' => false,
 		'editor_height' => 300,
 		'teeny'         => true,
 	);
-	?>
 
+	?>
 	<div data-type="text">
 
 		<div class="subbox">
@@ -35,13 +36,12 @@ function udb_text_widget() {
 			<h2><?php _e( 'Fixed Height', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<div class="input-control">
-					<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content ? $content : '' ); ?>">
+					<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
 				</div>
 			</div>
 		</div>
 
 	</div>
-
 	<?php
 
 }
