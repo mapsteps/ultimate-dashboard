@@ -7,9 +7,6 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-/**
- * Text widget.
- */
 function udb_text_widget() {
 
 	global $post;
