@@ -81,7 +81,7 @@ if ( get_option( 'comments' ) ) {
 
 /**
  * Handle udb_widget_type.
- * 
+ *
  * Can be used for "whole checking" or "partial checking".
  *
  * @param int $post_id The post ID.
