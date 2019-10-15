@@ -21,6 +21,7 @@ function udb_text_widget() {
 	);
 
 	?>
+
 	<div data-type="text">
 
 		<div class="subbox">
@@ -42,6 +43,7 @@ function udb_text_widget() {
 		</div>
 
 	</div>
+
 	<?php
 
 }

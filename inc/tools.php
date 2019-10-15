@@ -32,7 +32,9 @@ add_action( 'admin_init', 'udb_tools' );
  *
  * @param array $args setting's argument.
  */
-function udb_render_export_field( $args ) { ?>
+function udb_render_export_field( $args ) {
+
+	?>
 
 	<p><?php _e( 'Export & move your Dashboard Widgets to a different installation.', 'ultimate-dashboard' ); ?></p>
 
@@ -46,6 +48,7 @@ function udb_render_export_field( $args ) { ?>
 	</div>
 
 	<?php
+
 }
 
 /**
@@ -54,6 +57,7 @@ function udb_render_export_field( $args ) { ?>
  * @param array $args setting's argument.
  */
 function udb_render_import_field( $args ) {
+
 	?>
 
 	<p><?php _e( 'Select the JSON file you would like to import.', 'ultimate-dashboard' ); ?></p>
@@ -64,6 +68,7 @@ function udb_render_import_field( $args ) {
 	</div>
 
 	<?php
+
 }
 
 /**
