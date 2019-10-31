@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, WP Admin, WordPress Admin
 Requires at least: 4.6
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.6
 Stable tag: 2.5
 License: GPLv2 or later
