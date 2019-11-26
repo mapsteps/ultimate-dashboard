@@ -59,6 +59,16 @@ function udb_add_dashboard_widgets() {
 
 		}
 
+		$output_args = array(
+			'id'          => $id,
+			'title'       => $title,
+			'position'    => $position,
+			'priority'    => $priority,
+			'widget_type' => $widget_type,
+		);
+
+		$output = apply_filters( 'udb_widget_output', $output, $output_args );
+
 		// Output.
 		$function = function() use ( $output ) {
 			echo $output;

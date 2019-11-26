@@ -217,5 +217,8 @@ function udb_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
 	}
 
+	// User defined widget.
+	do_action( 'udb_save_widget', $post_id );
+
 }
 add_action( 'save_post', 'udb_save_postmeta' );
