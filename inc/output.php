@@ -33,6 +33,7 @@ function udb_add_dashboard_widgets() {
 		$position      = get_post_meta( $id, 'udb_position_key', true );
 		$priority      = get_post_meta( $id, 'udb_priority_key', true );
 		$widget_type   = get_post_meta( $id, 'udb_widget_type', true );
+		$output        = '';
 		$content       = get_post_meta( $id, 'udb_content', true );
 		$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
 
