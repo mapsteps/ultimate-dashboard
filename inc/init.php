@@ -26,7 +26,7 @@ add_action( 'admin_menu', 'udb_options_page', 20 );
 /**
  * Tools page callback.
  */
-function udb_tools_page_callback() { 
+function udb_tools_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/tools-template.php';
 }
 
@@ -41,6 +41,10 @@ function udb_options_page_callback() {
  * PRO link.
  */
 function udb_pro_link() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
 
 	global $submenu;
 
