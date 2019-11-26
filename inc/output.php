@@ -41,21 +41,19 @@ function udb_add_dashboard_widgets() {
 
 			do_action( 'udb_compat_widget_type', $id );
 
-		} else {
+		}
 
-			if ( 'text' === $widget_type ) { // Text widget output.
+		if ( 'text' === $widget_type ) { // Text widget output.
 
-				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
+			$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 
-			} elseif ( 'icon' === $widget_type ) { // Icon widget output.
+		} elseif ( 'icon' === $widget_type ) { // Icon widget output.
 
-				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
+			$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
-				// Tooltip.
-				if ( $tooltip ) {
-					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
-				}
-
+			// Tooltip.
+			if ( $tooltip ) {
+				$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 			}
 
 		}
