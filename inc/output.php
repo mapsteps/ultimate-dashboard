@@ -34,8 +34,6 @@ function udb_add_dashboard_widgets() {
 		$priority      = get_post_meta( $id, 'udb_priority_key', true );
 		$widget_type   = get_post_meta( $id, 'udb_widget_type', true );
 		$output        = '';
-		$content       = get_post_meta( $id, 'udb_content', true );
-		$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
 
 		// Preventing edge case when widget_type is empty.
 		if ( ! $widget_type ) {
@@ -45,6 +43,9 @@ function udb_add_dashboard_widgets() {
 		}
 
 		if ( 'text' === $widget_type ) { // Text widget output.
+
+			$content       = get_post_meta( $id, 'udb_content', true );
+			$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
 
 			$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 
