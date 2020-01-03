@@ -34,6 +34,10 @@
 	transform: scale(1.08);
 }
 
+[id*='ms-'] a {
+	text-decoration: none;
+}
+
 [id*='ms-'] a:focus {
 	box-shadow: none;
 }
