@@ -3,7 +3,7 @@
  * Plugin Name: Ultimate Dashboard
  * Plugin URI: https://ultimatedashboard.io/
  * Description: Create a Custom WordPress Dashboard.
- * Version: 2.5
+ * Version: 2.5.1
  * Author: David Vongries
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimate-dashboard
