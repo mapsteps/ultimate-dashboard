@@ -29,6 +29,7 @@ function udb_settings() {
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options', 'ultimate-dashboard' ), 'udb_remove_screen_options_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar on Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
@@ -135,6 +136,23 @@ function udb_remove_help_tab_settings_callback() {
 
 	<label>
 		<input type="checkbox" name="udb_settings[remove_help_tab]" value="1" <?php checked( $is_hidden, 1 ); ?>>
+	</label>
+
+	<?php
+
+}
+
+/**
+ * Remove screen options callback.
+ */
+function udb_remove_screen_options_settings_callback() {
+
+	$settings  = get_option( 'udb_settings' );
+	$is_hidden = isset( $settings['remove_screen_options'] ) ? absint( $settings['remove_screen_options'] ) : 0;
+	?>
+
+	<label>
+		<input type="checkbox" name="udb_settings[remove_screen_options]" value="1" <?php checked( $is_hidden, 1 ); ?>>
 	</label>
 
 	<?php

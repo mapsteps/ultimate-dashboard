@@ -137,6 +137,16 @@ function udb_remove_help_tab() {
 add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
 
 /**
+ * Remove screen options on admin area.
+ */
+function udb_remove_screen_options() {
+	$settings = get_option( 'udb_settings' );
+
+	return ( isset( $settings['remove_screen_options'] ) && ! empty( $settings['remove_screen_options'] ) ? false : true );
+}
+add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
+
+/**
  * Remove admin bar on frontend.
  *
  * @return void
