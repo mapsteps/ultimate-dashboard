@@ -121,18 +121,34 @@ function udb_change_dashboard_headline() {
 add_action( 'admin_head', 'udb_change_dashboard_headline' );
 
 /**
- * Hide admin bar on frontend.
+ * Remove help tab on admin area.
+ */
+function udb_remove_help_tab() {
+	global $current_screen;
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['remove_help_tab'] ) || empty( $settings['remove_help_tab'] ) ) {
+		return;
+	}
+
+	$current_screen->remove_help_tabs();
+}
+add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
+
+/**
+ * Remove admin bar on frontend.
  *
  * @return void
  */
-function udb_hide_admin_bar() {
+function udb_remove_admin_bar() {
 	$settings = get_option( 'udb_settings' );
 
-	if ( isset( $settings['hide_admin_bar'] ) && ! empty( $settings['hide_admin_bar'] ) ) {
+	if ( isset( $settings['remove_admin_bar'] ) && ! empty( $settings['remove_admin_bar'] ) ) {
 		add_filter( 'show_admin_bar', '__return_false' );
 	}
 }
-add_action( 'init', 'udb_hide_admin_bar' );
+add_action( 'init', 'udb_remove_admin_bar' );
 
 /**
  * Action links.

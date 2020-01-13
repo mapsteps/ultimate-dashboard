@@ -28,7 +28,8 @@ function udb_settings() {
 	add_settings_field( 'remove-single-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
-	add_settings_field( 'hide-admin-bar-settings', __( 'Hide Admin Bar on Frontend', 'ultimate-dashboard' ), 'udb_hide_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab on Admin Area', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar on Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
@@ -124,16 +125,33 @@ function udb_headline_settings_callback() {
 }
 
 /**
- * Hide admin bar callback.
+ * Remove help tab callback.
  */
-function udb_hide_admin_bar_settings_callback() {
+function udb_remove_help_tab_settings_callback() {
 
 	$settings  = get_option( 'udb_settings' );
-	$is_hidden = isset( $settings['hide_admin_bar'] ) ? absint( $settings['hide_admin_bar'] ) : 0;
+	$is_hidden = isset( $settings['remove_help_tab'] ) ? absint( $settings['remove_help_tab'] ) : 0;
 	?>
 
 	<label>
-		<input type="checkbox" name="udb_settings[hide_admin_bar]" value="1" <?php checked( $is_hidden, 1 ); ?>>
+		<input type="checkbox" name="udb_settings[remove_help_tab]" value="1" <?php checked( $is_hidden, 1 ); ?>>
+	</label>
+
+	<?php
+
+}
+
+/**
+ * Remove admin bar callback.
+ */
+function udb_remove_admin_bar_settings_callback() {
+
+	$settings  = get_option( 'udb_settings' );
+	$is_hidden = isset( $settings['remove_admin_bar'] ) ? absint( $settings['remove_admin_bar'] ) : 0;
+	?>
+
+	<label>
+		<input type="checkbox" name="udb_settings[remove_admin_bar]" value="1" <?php checked( $is_hidden, 1 ); ?>>
 	</label>
 
 	<?php
