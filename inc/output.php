@@ -132,3 +132,25 @@ function udb_add_dashboard_css() {
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_add_dashboard_css', 200 );
+
+/**
+ * Custom admin CSS.
+ */
+function udb_pro_add_admin_css() {
+
+	$settings = get_option( 'udb_settings' );
+
+	// Stop if there's no custom admin CSS.
+	if ( ! isset( $settings['custom_admin_css'] ) || empty( $settings['custom_admin_css'] ) ) {
+		return;
+	}
+	?>
+
+	<style>
+		<?php echo $settings['custom_admin_css']; ?>
+	</style>
+
+	<?php
+
+}
+add_action( 'admin_head', 'udb_pro_add_admin_css', 200 );

@@ -118,7 +118,6 @@ function udb_change_dashboard_headline() {
 
 	$GLOBALS['title'] = $settings['dashboard_headline'];
 }
-
 add_action( 'admin_head', 'udb_change_dashboard_headline' );
 
 /**

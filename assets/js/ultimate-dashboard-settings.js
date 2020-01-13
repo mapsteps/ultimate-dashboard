@@ -1,6 +1,9 @@
-(function($){
-	if( $('#udb-custom-dashboard-css').length ) {
-		var editorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {};
+(function ($) {
+	var customCSSFields = document.querySelectorAll('.udb-custom-css');
+
+	if (customCSSFields.length) {
+		var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+
 		editorSettings.codemirror = _.extend(
 			{},
 			editorSettings.codemirror,
@@ -10,6 +13,9 @@
 				mode: 'css',
 			}
 		);
-		var editor = wp.codeEditor.initialize( $('#udb-custom-dashboard-css'), editorSettings );
+
+		[].slice.call(customCSSFields).forEach(function (el) {
+			wp.codeEditor.initialize(el, editorSettings);
+		});
 	}
- })(jQuery);
+})(jQuery);

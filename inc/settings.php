@@ -29,6 +29,7 @@ function udb_settings() {
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'headline-settings', __( 'Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
+	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
 
 }
@@ -122,7 +123,7 @@ function udb_headline_settings_callback() {
 }
 
 /**
- * Custom dashboard CSS callback.
+ * Custom dashboard css callback.
  */
 function udb_custom_dashboard_css_callback() {
 
@@ -136,8 +137,25 @@ function udb_custom_dashboard_css_callback() {
 
 	?>
 
-	<textarea id="udb-custom-dashboard-css" class="widefat textarea" name="udb_pro_settings[custom_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
+	<textarea id="udb-custom-dashboard-css" class="widefat textarea udb-custom-css" name="udb_pro_settings[custom_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
 
 	<?php
 
 }
+
+/**
+ * Custom admin css callback.
+ */
+function udb_custom_admin_css_callback() {
+
+	$settings   = get_option( 'udb_settings' );
+	$custom_css = isset( $settings['custom_admin_css'] ) ? $settings['custom_admin_css'] : '';
+
+	?>
+
+	<textarea id="udb-custom-admin-css" class="widefat textarea udb-custom-css" name="udb_settings[custom_admin_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
+
+	<?php
+
+}
+
