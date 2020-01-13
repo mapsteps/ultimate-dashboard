@@ -24,10 +24,11 @@ function udb_settings() {
 	add_settings_section( 'udb-misc-settings', __( 'Misc', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 
 	// Settings fields.
-	add_settings_field( 'remove-all-widgets', __( 'Remove all Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
-	add_settings_field( 'remove-single-widgets', __( 'Remove individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
+	add_settings_field( 'remove-single-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
-	add_settings_field( 'headline-settings', __( 'Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'hide-admin-bar-settings', __( 'Hide Admin Bar on Frontend', 'ultimate-dashboard' ), 'udb_hide_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
@@ -40,15 +41,15 @@ add_action( 'admin_init', 'udb_settings' );
  */
 function udb_remove_all_settings_callback() {
 
-	$udb_settings = get_option( 'udb_settings' );
+	$settings  = get_option( 'udb_settings' );
+	$is_hidden = isset( $settings['remove-on-uninstall'] ) ? absint( $settings['remove-on-uninstall'] ) : 0;
+	?>
 
-	if ( ! isset( $udb_settings['remove-on-uninstall'] ) ) {
-		$remove_settings = 0;
-	} else {
-		$remove_settings = 1;
-	}
+	<label>
+		<input type="checkbox" name="udb_settings[remove-on-uninstall]" value="1" <?php checked( $is_hidden, 1 ); ?>>
+	</label>
 
-	echo '<p><label><input type="checkbox" name="udb_settings[remove-on-uninstall]" value="1" ' . checked( $remove_settings, 1, false ) . ' /></label></p>';
+	<?php
 
 }
 
@@ -108,7 +109,7 @@ function udb_remove_3rd_party_widgets_callback() {
 }
 
 /**
- * Headline settings.
+ * Change headline callback.
  */
 function udb_headline_settings_callback() {
 
@@ -117,6 +118,23 @@ function udb_headline_settings_callback() {
 	?>
 
 	<input type="text" name="udb_settings[dashboard_headline]" size="30" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Dashboard', 'ultimatedashboard' ); ?>" />
+
+	<?php
+
+}
+
+/**
+ * Hide admin bar callback.
+ */
+function udb_hide_admin_bar_settings_callback() {
+
+	$settings  = get_option( 'udb_settings' );
+	$is_hidden = isset( $settings['hide_admin_bar'] ) ? absint( $settings['hide_admin_bar'] ) : 0;
+	?>
+
+	<label>
+		<input type="checkbox" name="udb_settings[hide_admin_bar]" value="1" <?php checked( $is_hidden, 1 ); ?>>
+	</label>
 
 	<?php
 
