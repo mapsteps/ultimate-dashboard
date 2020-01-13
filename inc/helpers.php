@@ -19,7 +19,7 @@ function udb_get_db_widgets() {
 
 	global $wp_meta_boxes;
 
-	if ( ! is_array( $wp_meta_boxes['dashboard'] ) ) {
+	if ( ! isset( $wp_meta_boxes['dashboard'] ) || ! is_array( $wp_meta_boxes['dashboard'] ) ) {
 
 		require_once ABSPATH . '/wp-admin/includes/dashboard.php';
 
@@ -52,7 +52,8 @@ function udb_get_db_widgets() {
  */
 function udb_get_widgets() {
 
-	$widgets = udb_get_db_widgets();
+	$widgets      = udb_get_db_widgets();
+	$flat_widgets = array();
 
 	foreach ( $widgets as $context => $priority ) {
 

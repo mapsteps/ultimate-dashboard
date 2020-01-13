@@ -102,6 +102,24 @@ function udb_admin_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
 
+/**
+ * Change Dashboard's headline.
+ */
+function udb_change_dashboard_headline() {
+	if ( $GLOBALS['title'] !== 'Dashboard' ) {
+		return;
+	}
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['dashboard_headline'] ) || empty( $settings['dashboard_headline'] ) ) {
+		return;
+	}
+
+	$GLOBALS['title'] = $settings['dashboard_headline'];
+}
+
+add_action( 'admin_head', 'udb_change_dashboard_headline' );
 
 /**
  * Action links.
