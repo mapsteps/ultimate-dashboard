@@ -119,7 +119,7 @@ function udb_add_dashboard_css() {
 
 	$udb_pro_settings = get_option( 'udb_pro_settings' );
 
-	if ( ! isset( $udb_pro_settings['custom_css'] ) ) {
+	if ( ! isset( $udb_pro_settings['custom_css'] ) || empty( $udb_pro_settings['custom_css'] ) ) {
 		return;
 	}
 
@@ -137,7 +137,6 @@ function udb_add_admin_css() {
 
 	$settings = get_option( 'udb_settings' );
 
-	// Stop if there's no custom admin CSS.
 	if ( ! isset( $settings['custom_admin_css'] ) || empty( $settings['custom_admin_css'] ) ) {
 		return;
 	}
@@ -178,7 +177,7 @@ function udb_remove_help_tab() {
 
 	$settings = get_option( 'udb_settings' );
 
-	if ( ! isset( $settings['remove_help_tab'] ) || empty( $settings['remove_help_tab'] ) ) {
+	if ( ! isset( $settings['remove_help_tab'] ) ) {
 		return;
 	}
 
@@ -192,7 +191,7 @@ add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
 function udb_remove_screen_options() {
 	$settings = get_option( 'udb_settings' );
 
-	return ( isset( $settings['remove_screen_options'] ) && ! empty( $settings['remove_screen_options'] ) ? false : true );
+	return ( isset( $settings['remove_screen_options'] ) ? false : true );
 }
 add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
 
@@ -204,7 +203,7 @@ add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
 function udb_remove_admin_bar() {
 	$settings = get_option( 'udb_settings' );
 
-	if ( isset( $settings['remove_admin_bar'] ) && ! empty( $settings['remove_admin_bar'] ) ) {
+	if ( isset( $settings['remove_admin_bar'] ) ) {
 		add_filter( 'show_admin_bar', '__return_false' );
 	}
 }
