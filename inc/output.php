@@ -24,16 +24,16 @@ function udb_add_dashboard_widgets() {
 
 		$loop->the_post();
 
-		$id            = get_the_ID();
-		$title         = get_the_title();
-		$icon          = get_post_meta( $id, 'udb_icon_key', true );
-		$link          = get_post_meta( $id, 'udb_link', true );
-		$target        = get_post_meta( $id, 'udb_link_target', true );
-		$tooltip       = get_post_meta( $id, 'udb_tooltip', true );
-		$position      = get_post_meta( $id, 'udb_position_key', true );
-		$priority      = get_post_meta( $id, 'udb_priority_key', true );
-		$widget_type   = get_post_meta( $id, 'udb_widget_type', true );
-		$output        = '';
+		$id          = get_the_ID();
+		$title       = get_the_title();
+		$icon        = get_post_meta( $id, 'udb_icon_key', true );
+		$link        = get_post_meta( $id, 'udb_link', true );
+		$target      = get_post_meta( $id, 'udb_link_target', true );
+		$tooltip     = get_post_meta( $id, 'udb_tooltip', true );
+		$position    = get_post_meta( $id, 'udb_position_key', true );
+		$priority    = get_post_meta( $id, 'udb_priority_key', true );
+		$widget_type = get_post_meta( $id, 'udb_widget_type', true );
+		$output      = '';
 
 		// Preventing edge case when widget_type is empty.
 		if ( ! $widget_type ) {
@@ -57,7 +57,6 @@ function udb_add_dashboard_widgets() {
 			if ( $tooltip ) {
 				$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 			}
-
 		}
 
 		$output_args = array(
@@ -99,7 +98,6 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $default_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
-
 	} else {
 
 		if ( isset( $udb_settings['welcome_panel'] ) ) {
@@ -109,7 +107,6 @@ function udb_remove_default_dashboard_widgets() {
 		foreach ( $saved_widgets as $id => $widget ) {
 			remove_meta_box( $id, 'dashboard', $widget['context'] );
 		}
-
 	}
 
 }
@@ -154,3 +151,61 @@ function udb_pro_add_admin_css() {
 
 }
 add_action( 'admin_head', 'udb_pro_add_admin_css', 200 );
+
+/**
+ * Change Dashboard's headline.
+ */
+function udb_change_dashboard_headline() {
+	if ( $GLOBALS['title'] !== 'Dashboard' ) {
+		return;
+	}
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['dashboard_headline'] ) || empty( $settings['dashboard_headline'] ) ) {
+		return;
+	}
+
+	$GLOBALS['title'] = $settings['dashboard_headline'];
+}
+add_action( 'admin_head', 'udb_change_dashboard_headline' );
+
+/**
+ * Remove help tab on admin area.
+ */
+function udb_remove_help_tab() {
+	global $current_screen;
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['remove_help_tab'] ) || empty( $settings['remove_help_tab'] ) ) {
+		return;
+	}
+
+	$current_screen->remove_help_tabs();
+}
+add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
+
+/**
+ * Remove screen options on admin area.
+ */
+function udb_remove_screen_options() {
+	$settings = get_option( 'udb_settings' );
+
+	return ( isset( $settings['remove_screen_options'] ) && ! empty( $settings['remove_screen_options'] ) ? false : true );
+}
+add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
+
+/**
+ * Remove admin bar on frontend.
+ *
+ * @return void
+ */
+function udb_remove_admin_bar() {
+	$settings = get_option( 'udb_settings' );
+
+	if ( isset( $settings['remove_admin_bar'] ) && ! empty( $settings['remove_admin_bar'] ) ) {
+		add_filter( 'show_admin_bar', '__return_false' );
+	}
+}
+add_action( 'init', 'udb_remove_admin_bar' );
