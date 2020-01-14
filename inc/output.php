@@ -133,7 +133,7 @@ add_action( 'admin_enqueue_scripts', 'udb_add_dashboard_css', 200 );
 /**
  * Custom admin CSS.
  */
-function udb_pro_add_admin_css() {
+function udb_add_admin_css() {
 
 	$settings = get_option( 'udb_settings' );
 
@@ -150,7 +150,7 @@ function udb_pro_add_admin_css() {
 	<?php
 
 }
-add_action( 'admin_head', 'udb_pro_add_admin_css', 200 );
+add_action( 'admin_head', 'udb_add_admin_css', 200 );
 
 /**
  * Change Dashboard's headline.
