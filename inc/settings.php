@@ -19,6 +19,7 @@ function udb_settings() {
 	// Settings sections.
 	add_settings_section( 'udb-remove-all-widgets', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-remove-single-widgets', '', '', 'ultimate-dashboard' );
+	add_settings_section( 'udb-remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-general-settings', __( 'General', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-advanced-settings', __( 'Advanced', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-misc-settings', __( 'Misc', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
@@ -26,7 +27,7 @@ function udb_settings() {
 	// Settings fields.
 	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
 	add_settings_field( 'remove-single-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
-	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-3rd-party-widgets', '', 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-3rd-party-widgets' );
 	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options', 'ultimate-dashboard' ), 'udb_remove_screen_options_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
