@@ -108,7 +108,13 @@ function udb_remove_single_widgets_callback() {
  * Remove 3rd party widgets callback.
  */
 function udb_remove_3rd_party_widgets_callback() {
-	echo sprintf( __( 'Get %s!', 'ultimate-dashboard' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>' );
+	?>
+
+	<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
+		<?php _e( 'Get Ultimate Dashboard PRO!', 'ultimate-dashboard' ); ?>
+	</a>
+
+	<?php
 }
 
 /**
