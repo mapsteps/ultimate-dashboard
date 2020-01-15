@@ -117,15 +117,13 @@ add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
  */
 function udb_add_dashboard_css() {
 
-	$udb_pro_settings = get_option( 'udb_pro_settings' );
+	$settings = get_option( 'udb_pro_settings' );
 
-	if ( ! isset( $udb_pro_settings['custom_css'] ) || empty( $udb_pro_settings['custom_css'] ) ) {
+	if ( ! isset( $settings['custom_css'] ) || empty( $settings['custom_css'] ) ) {
 		return;
 	}
 
-	$custom_css = $udb_pro_settings['custom_css'];
-
-	wp_add_inline_style( 'ultimate-dashboard-index', $custom_css );
+	wp_add_inline_style( 'ultimate-dashboard-index', $settings['custom_css'] );
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_add_dashboard_css', 200 );
