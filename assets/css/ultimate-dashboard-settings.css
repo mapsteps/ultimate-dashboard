@@ -167,3 +167,8 @@ td.icon .fa {
 .udb-addon-content {
   padding: 0 15px 15px 15px;
 }
+
+/* Extra Styles */
+.CodeMirror-wrap {
+	border: 1px solid #ddd;
+}

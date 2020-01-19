@@ -103,64 +103,6 @@ function udb_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
 
 /**
- * Change Dashboard's headline.
- */
-function udb_change_dashboard_headline() {
-	if ( $GLOBALS['title'] !== 'Dashboard' ) {
-		return;
-	}
-
-	$settings = get_option( 'udb_settings' );
-
-	if ( ! isset( $settings['dashboard_headline'] ) || empty( $settings['dashboard_headline'] ) ) {
-		return;
-	}
-
-	$GLOBALS['title'] = $settings['dashboard_headline'];
-}
-add_action( 'admin_head', 'udb_change_dashboard_headline' );
-
-/**
- * Remove help tab on admin area.
- */
-function udb_remove_help_tab() {
-	global $current_screen;
-
-	$settings = get_option( 'udb_settings' );
-
-	if ( ! isset( $settings['remove_help_tab'] ) || empty( $settings['remove_help_tab'] ) ) {
-		return;
-	}
-
-	$current_screen->remove_help_tabs();
-}
-add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
-
-/**
- * Remove screen options on admin area.
- */
-function udb_remove_screen_options() {
-	$settings = get_option( 'udb_settings' );
-
-	return ( isset( $settings['remove_screen_options'] ) && ! empty( $settings['remove_screen_options'] ) ? false : true );
-}
-add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
-
-/**
- * Remove admin bar on frontend.
- *
- * @return void
- */
-function udb_remove_admin_bar() {
-	$settings = get_option( 'udb_settings' );
-
-	if ( isset( $settings['remove_admin_bar'] ) && ! empty( $settings['remove_admin_bar'] ) ) {
-		add_filter( 'show_admin_bar', '__return_false' );
-	}
-}
-add_action( 'init', 'udb_remove_admin_bar' );
-
-/**
  * Action links.
  *
  * @param array $links The action links array.
