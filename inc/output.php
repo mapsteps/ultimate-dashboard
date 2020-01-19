@@ -194,7 +194,7 @@ function udb_remove_screen_options() {
 add_filter( 'screen_options_show_screen', 'udb_remove_screen_options' );
 
 /**
- * Remove admin bar on frontend.
+ * Remove admin bar from frontend.
  *
  * @return void
  */
