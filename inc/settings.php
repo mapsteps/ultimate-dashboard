@@ -28,7 +28,7 @@ function udb_settings() {
 	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
 	add_settings_field( 'remove-single-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
 	add_settings_field( 'remove-3rd-party-widgets', '', 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-3rd-party-widgets' );
-	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options', 'ultimate-dashboard' ), 'udb_remove_screen_options_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
