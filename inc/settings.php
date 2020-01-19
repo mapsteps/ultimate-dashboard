@@ -30,7 +30,7 @@ function udb_settings() {
 	add_settings_field( 'headline-settings', __( 'Change Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options', 'ultimate-dashboard' ), 'udb_remove_screen_options_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
-	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar on Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
+	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'ultimate-dashboard', 'udb-advanced-settings' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'ultimate-dashboard', 'udb-misc-settings' );
