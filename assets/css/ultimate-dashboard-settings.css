@@ -1,174 +1,32 @@
 /* General */
 .clearfix::before,
 .clearfix::after {
-  display: table;
+	display: table;
 }
 
 .clearfix::after {
-  clear: both;
+	clear: both;
 }
 
 .left-col,
 .right-col {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .left-col {
-  float: left;
-  padding-right: 8px;
-  width: 50%;
+	float: left;
+	padding-right: 8px;
+	width: 50%;
 }
 
 .right-col {
-  float: right;
-  padding-left: 8px;
-  width: 50%;
+	float: right;
+	padding-left: 8px;
+	width: 50%;
 }
 
-.block-label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-/* Settings Page */
-.settingstuff.wrap .notice {
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-
-.settingstuff .neatbox.has-subboxes {
-  margin-top: 0;
-  background-color: transparent;
-  border: 0;
-}
-
-.settingstuff .neatbox {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
-}
-
-.settingstuff .neatbox.has-subboxes h2 {
-  margin-top: 20px;
-}
-
-.settingstuff .neatbox h2 {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 15px;
-  line-height: 1em;
-  font-size: 14px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-}
-
-.settingstuff .has-bigger-heading h2 {
-  font-size: 15px;
-}
-
-.settingstuff .has-subboxes .form-table {
-  margin-top: 0;
-}
-
-.settingstuff .form-table {
-  margin-top: 7px;
-  background-color: #fff;
-}
-
-.settingstuff .neatbox .form-table th:empty {
-  padding-right: 0;
-  width: 15px;
-  box-sizing: border-box;
-}
-
-.settingstuff .neatbox .form-table th:empty ~ td {
-  padding-left: 0;
-}
-
-.settingstuff .neatbox .form-table th {
-  padding-left: 15px;
-}
-
-.form-table .is-gapless td {
-  padding-top: 11px;
-  padding-bottom: 0;
-}
-
-.form-table .has-small-text td p {
-  font-size: 13px;
-}
-
-.settingstuff .fields {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.settingstuff .fields-wrapper {
-  padding: 15px 12px;
-  background-color: #fafafa;
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
-}
-
-.settingstuff .fields-wrapper.has-top-gap {
-  margin-top: 13px;
-}
-
-.settingstuff .neatbox.has-subboxes p.submit {
-  margin-top: 20px;
-  margin-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.settingstuff .neatbox p.submit {
-  margin-top: 13px;
-  margin-bottom: 2px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.settingstuff .buttons {
-  margin-top: 13px;
-}
-
-.settingstuff .buttons p.submit {
-  margin: 0;
-  padding: 0;
-}
-
-/* Overview Styles */
-td.icon .dashicons {
-  font-size: 22px;
-}
-td.icon .fa {
-  font-size: 18px;
-}
-
-/* Addon Styles */
-.udb-addon {
-  float: left;
-  margin: 20px 20px 0 0;
-  max-width: 350px;
-}
-
-.udb-addon a {
-  box-shadow: none;
-}
-
-.udb-addon img {
-  width: 100%;
-  height: auto;
-}
-
-.udb-addon-content {
-  padding: 0 15px 15px 15px;
-}
-
-/* Extra Styles */
-.CodeMirror-wrap {
-	border: 1px solid #ddd;
+.branding-box table:nth-child(6) {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
