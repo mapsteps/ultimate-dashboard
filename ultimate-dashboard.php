@@ -58,18 +58,19 @@ function udb_admin_scripts() {
 	// Dashboard widget overview & settings.
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
-		// FontAwesome CSS.
+		// FontAwesome.
 		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
 
-		// Settings CSS.
-		wp_register_style( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-settings.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'ultimate-dashboard-settings' );
+		// Settings page styles.
+		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings-page.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'settings-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/setting-fields.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-settings.css', array(), $plugin_data['Version'] );
 
 		// CodeMirror.
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
-		// Settings Page JS.
+		// Settings page JS.
 		wp_register_script( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-settings.js', array( 'jquery' ), $plugin_data['Version'], true );
 		wp_enqueue_script( 'ultimate-dashboard-settings' );
 
