@@ -25,9 +25,3 @@
 	padding-left: 8px;
 	width: 50%;
 }
-
-.udb-settings-form .neatbox.has-subboxes table:nth-child(6),
-.udb-settings-form .neatbox.has-subboxes.is-smooth table:nth-child(6) {
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
