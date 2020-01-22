@@ -17,16 +17,15 @@ function udb_settings() {
 	register_setting( 'udb-settings-group', 'udb_pro_settings' );
 
 	// Settings sections.
-	add_settings_section( 'udb-remove-all-widgets', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
-	add_settings_section( 'udb-remove-single-widgets', '', '', 'ultimate-dashboard' );
+	add_settings_section( 'udb-remove-default-widgets', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-general-settings', __( 'General', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-advanced-settings', __( 'Advanced', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 	add_settings_section( 'udb-misc-settings', __( 'Misc', 'ultimate-dashboard' ), '', 'ultimate-dashboard' );
 
 	// Settings fields.
-	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-all-widgets' );
-	add_settings_field( 'remove-single-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-single-widgets' );
+	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'ultimate-dashboard', 'udb-remove-default-widgets' );
+	add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'ultimate-dashboard', 'udb-remove-default-widgets' );
 	add_settings_field( 'remove-3rd-party-widgets', '', 'udb_remove_3rd_party_widgets_callback', 'ultimate-dashboard', 'udb-remove-3rd-party-widgets' );
 	add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'ultimate-dashboard', 'udb-general-settings' );
@@ -44,13 +43,17 @@ add_action( 'admin_init', 'udb_settings' );
  */
 function udb_remove_all_settings_callback() {
 
-	$settings  = get_option( 'udb_settings' );
-	$is_hidden = isset( $settings['remove-on-uninstall'] ) ? absint( $settings['remove-on-uninstall'] ) : 0;
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove-on-uninstall'] ) ? 1 : 0;
 	?>
 
-	<label>
-		<input type="checkbox" name="udb_settings[remove-on-uninstall]" value="1" <?php checked( $is_hidden, 1 ); ?>>
-	</label>
+	<div class="field setting-field">
+		<label for="udb_settings[remove-on-uninstall]" class="label checkbox-label">
+			&nbsp;
+			<input type="checkbox" name="udb_settings[remove-on-uninstall]" id="udb_settings[remove-on-uninstall]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
 
 	<?php
 
@@ -61,15 +64,19 @@ function udb_remove_all_settings_callback() {
  */
 function udb_remove_all_widgets_callback() {
 
-	$udb_settings = get_option( 'udb_settings' );
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove-all'] ) ? absint( $settings['remove-all'] ) : 0;
+	?>
 
-	if ( ! isset( $udb_settings['remove-all'] ) ) {
-		$removeallwidgets = 0;
-	} else {
-		$removeallwidgets = 1;
-	}
+	<div class="field setting-field">
+		<label for="udb_settings[remove-all]" class="label checkbox-label">
+			<?php _e( 'All', 'ultimatedashboard' ); ?>
+			<input type="checkbox" name="udb_settings[remove-all]" id="udb_settings[remove-all]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
 
-	echo '<p><label><input type="checkbox" name="udb_settings[remove-all]" value="1" ' . checked( $removeallwidgets, 1, false ) . ' />' . __( 'All', 'ultimate-dashboard' ) . '</label></p>';
+	<?php
 
 }
 
@@ -78,29 +85,44 @@ function udb_remove_all_widgets_callback() {
  */
 function udb_remove_single_widgets_callback() {
 
-	$udb_settings = get_option( 'udb_settings' );
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['welcome_panel'] ) ? 1 : 0;
+	?>
 
-	if ( ! isset( $udb_settings['welcome_panel'] ) ) {
-		$welcome = 0;
-	} else {
-		$welcome = 1;
-	}
+	<div class="setting-fields is-gapless">
 
-	echo '<p><label><input type="checkbox" name="udb_settings[welcome_panel]" value="1" ' . checked( $welcome, 1, false ) . ' />' . __( 'Welcome Panel', 'ultimate-dashboard' ) . ' (<code>welcome_panel</code>)</label></p>';
+		<div class="field setting-field">
+			<label for="udb_settings[welcome_panel]" class="label checkbox-label">
+				<?php _e( 'Welcome Panel', 'ultimatedashboard' ); ?> (<code>welcome_panel</code>)
+				<input type="checkbox" name="udb_settings[welcome_panel]" id="udb_settings[welcome_panel]" value="1" <?php checked( $is_checked, 1 ); ?>>
+				<div class="indicator"></div>
+			</label>
+		</div>
 
-	$widgets = udb_get_default_widgets();
+		<?php
+		$widgets = udb_get_default_widgets();
 
-	foreach ( $widgets as $id => $widget ) {
+		foreach ( $widgets as $id => $widget ) {
 
-		if ( ! isset( $udb_settings[ $id ] ) ) {
-			$value = 0;
-		} else {
-			$value = 1;
+			$is_checked = isset( $settings[ $id ] ) ? 1 : 0;
+			?>
+
+			<div class="field setting-field">
+				<label for="udb_settings[<?php echo esc_attr( $id ); ?>]" class="label checkbox-label">
+					<?php echo esc_attr( $widget['title_stripped'] ); ?> (<code><?php echo esc_attr( $id ); ?></code>)
+					<input type="checkbox" name="udb_settings[<?php echo esc_attr( $id ); ?>]" id="udb_settings[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( $is_checked, 1 ); ?>>
+					<div class="indicator"></div>
+				</label>
+			</div>
+
+			<?php
+
 		}
+		?>
 
-		echo '<p><label><input type="checkbox" name="udb_settings[' . esc_attr( $id ) . ']" value="1" ' . checked( $value, 1, false ) . ' />' . esc_attr( $widget['title_stripped'] ) . ' (<code>' . esc_attr( $id ) . '</code>)</label></p>';
+	</div>
 
-	}
+	<?php
 
 }
 
@@ -137,13 +159,17 @@ function udb_headline_settings_callback() {
  */
 function udb_remove_help_tab_settings_callback() {
 
-	$settings  = get_option( 'udb_settings' );
-	$is_hidden = isset( $settings['remove_help_tab'] ) ? absint( $settings['remove_help_tab'] ) : 0;
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove_help_tab'] ) ? absint( $settings['remove_help_tab'] ) : 0;
 	?>
 
-	<label>
-		<input type="checkbox" name="udb_settings[remove_help_tab]" value="1" <?php checked( $is_hidden, 1 ); ?>>
-	</label>
+	<div class="field setting-field">
+		<label for="udb_settings[remove_help_tab]" class="label checkbox-label">
+			&nbsp;
+			<input type="checkbox" name="udb_settings[remove_help_tab]" id="udb_settings[remove_help_tab]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
 
 	<?php
 
@@ -154,13 +180,17 @@ function udb_remove_help_tab_settings_callback() {
  */
 function udb_remove_screen_options_settings_callback() {
 
-	$settings  = get_option( 'udb_settings' );
-	$is_hidden = isset( $settings['remove_screen_options'] ) ? absint( $settings['remove_screen_options'] ) : 0;
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove_screen_options'] ) ? absint( $settings['remove_screen_options'] ) : 0;
 	?>
 
-	<label>
-		<input type="checkbox" name="udb_settings[remove_screen_options]" value="1" <?php checked( $is_hidden, 1 ); ?>>
-	</label>
+	<div class="field setting-field">
+		<label for="udb_settings[remove_screen_options]" class="label checkbox-label">
+			&nbsp;
+			<input type="checkbox" name="udb_settings[remove_screen_options]" id="udb_settings[remove_screen_options]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
 
 	<?php
 
@@ -171,13 +201,17 @@ function udb_remove_screen_options_settings_callback() {
  */
 function udb_remove_admin_bar_settings_callback() {
 
-	$settings  = get_option( 'udb_settings' );
-	$is_hidden = isset( $settings['remove_admin_bar'] ) ? absint( $settings['remove_admin_bar'] ) : 0;
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove_admin_bar'] ) ? absint( $settings['remove_admin_bar'] ) : 0;
 	?>
 
-	<label>
-		<input type="checkbox" name="udb_settings[remove_admin_bar]" value="1" <?php checked( $is_hidden, 1 ); ?>>
-	</label>
+	<div class="field setting-field">
+		<label for="udb_settings[remove_admin_bar]" class="label checkbox-label">
+			&nbsp;
+			<input type="checkbox" name="udb_settings[remove_admin_bar]" id="udb_settings[remove_admin_bar]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
 
 	<?php
 

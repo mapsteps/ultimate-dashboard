@@ -26,7 +26,8 @@
 	width: 50%;
 }
 
-.branding-box table:nth-child(6) {
+.udb-settings-form .neatbox.has-subboxes table:nth-child(6),
+.udb-settings-form .neatbox.has-subboxes.is-smooth table:nth-child(6) {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }

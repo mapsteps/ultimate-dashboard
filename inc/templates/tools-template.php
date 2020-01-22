@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<div class="clearfix">
 		<div class="left-col">
 			<form method="post" action="options.php">
-				<div class="neatbox">
+				<div class="neatbox is-smooth">
 					<?php
 					settings_fields( 'udb-export-group' );
 					do_settings_sections( 'ultimate-dashboard-export' );
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		</div>
 		<div class="right-col">
 			<form method="post" action="options.php" enctype="multipart/form-data">
-				<div class="neatbox">
+				<div class="neatbox is-smooth">
 					<?php
 					settings_fields( 'udb-import-group' );
 					do_settings_sections( 'ultimate-dashboard-import' );
