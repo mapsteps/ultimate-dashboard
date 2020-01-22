@@ -50,11 +50,11 @@ hr {
 	width: 35%;
 }
 
-.field .label.is-strong {
+.field .label {
 	font-weight: 600;
 }
 
-.field .label {
+.form-table .field .label {
 	font-weight: 400;
 }
 
