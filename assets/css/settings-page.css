@@ -161,6 +161,11 @@
 	border-bottom: 1px solid #eee;
 }
 
+.settingstuff .neatbox h2 .help-icon {
+	height: auto;
+	line-height: inherit;
+}
+
 .settingstuff .neatbox.is-clean h2 {
 	padding-left: 0;
 	padding-right: 0;
@@ -169,6 +174,16 @@
 
 .settingstuff .has-bigger-heading h2 {
 	font-size: 15px;
+}
+
+.settingstuff .neatbox-content {
+	position: relative;
+	padding: 18px 15px 0;
+}
+
+.settingstuff .neatbox-content .intro {
+	margin-top: 0;
+	margin-bottom: 20px;
 }
 
 .settingstuff .has-subboxes .form-table {
