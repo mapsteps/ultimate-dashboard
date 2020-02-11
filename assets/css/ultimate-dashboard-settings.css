@@ -35,3 +35,8 @@
 .udb-settings-form .label input:checked:focus ~ .indicator {
 	background-color: #00669b;
 }
+
+/* Code Mirror */
+.CodeMirror-wrap {
+	border: 1px solid #ddd;
+}

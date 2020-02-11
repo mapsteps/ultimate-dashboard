@@ -24,9 +24,11 @@ function udb_admin_scripts() {
 
 	global $pagenow, $typenow;
 
+	$current_screen = get_current_screen();
+
 	$plugin_data = get_plugin_data( __FILE__ );
 
-	// Widget edit screen & create a new widget screen.
+	// Create new & edit widget screen.
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome CSS.
@@ -55,12 +57,24 @@ function udb_admin_scripts() {
 
 	}
 
-	// Dashboard widget overview & settings.
+	// Widget post list & settings page.
 	if ( 'edit.php' === $pagenow && 'udb_widgets' === $typenow ) {
 
 		// FontAwesome.
 		wp_register_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		wp_enqueue_style( 'font-awesome' );
+
+	}
+
+	// Widget post list.
+	if ( 'edit-udb_widgets' === $current_screen->id ) {
+
+		wp_enqueue_style( 'ultimate-dashboard-post-list', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/post-list.css', array(), $plugin_data['Version'] );
+
+	}
+
+	// Settings page.
+	if ( 'udb_widgets_page_settings' === $current_screen->id ) {
 
 		// Settings page styles.
 		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings-page.css', array(), $plugin_data['Version'] );

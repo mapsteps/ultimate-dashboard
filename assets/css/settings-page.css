@@ -33,9 +33,14 @@
 }
 
 /* Settings Page */
-.settingstuff.wrap .notice {
-	margin-top: 10px;
-	margin-bottom: 0;
+.settingstuff h1 .version {
+	font-size: 60%;
+	opacity: 0.6;
+	font-weight: 600;
+	background: #ccc;
+	border-radius: 5px;
+	padding: 5px 12px;
+	line-height: 1;
 }
 
 .settingstuff .neatbox.has-subboxes {
@@ -176,14 +181,75 @@
 	font-size: 15px;
 }
 
-.settingstuff .neatbox-content {
-	position: relative;
-	padding: 18px 15px 0;
+.settingstuff .neatbox-content.has-bottom-gapless {
+	margin-bottom: 0;
 }
 
-.settingstuff .neatbox-content .intro {
+.settingstuff .neatbox-content {
+	position: relative;
+	padding: 18px 15px;
+}
+
+.settingstuff .neatbox-content > p {
 	margin-top: 0;
 	margin-bottom: 20px;
+}
+
+/* Reset WordPress default */
+.settingstuff .neatbox-content > p.description {
+	font-style: normal;
+}
+
+.settingstuff .neatbox-content > .description {
+	color: #8f8f8f;
+}
+
+.settingstuff .neatbox-list {
+	margin: 0;
+}
+
+.settingstuff .neatbox-list a {
+	text-decoration: none;
+}
+
+.settingstuff .neatbox-list .list-item:last-child {
+	border-bottom-width: 0;
+}
+
+.settingstuff .neatbox-list .list-item {
+	margin: 0;
+	padding: 12px 15px;
+	border-bottom: 1px solid #eee;
+}
+
+/* Reset WordPress default */
+.settingstuff .neatbox-list p.description {
+	margin: 1em 0;
+	font-style: normal;
+}
+
+.settingstuff .neatbox-list .description {
+	color: #8f8f8f;
+}
+
+.settingstuff .neatbox-list .title {
+	font-size: 16px;
+}
+
+.settingstuff .inline-action {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.settingstuff .inline-action .list-content {
+	width: 70%;
+}
+
+.settingstuff .inline-action .list-action {
+	width: 30%;
+	text-align: right;
 }
 
 .settingstuff .has-subboxes .form-table {
@@ -260,17 +326,4 @@
 .settingstuff .buttons p.submit {
 	margin: 0;
 	padding: 0;
-}
-
-/* Extra Styles */
-.CodeMirror-wrap {
-	border: 1px solid #ddd;
-}
-
-/* Overview Styles */
-td.icon .dashicons {
-	font-size: 22px;
-}
-td.icon .fa {
-	font-size: 18px;
 }
