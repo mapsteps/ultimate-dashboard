@@ -74,7 +74,7 @@ function udb_admin_scripts() {
 	}
 
 	// Settings page.
-	if ( 'udb_widgets_page_settings' === $current_screen->id ) {
+	if ( 'udb_widgets_page_settings' === $current_screen->id || 'udb_widgets_page_tools' === $current_screen->id ) {
 
 		// Settings page styles.
 		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings-page.css', array(), $plugin_data['Version'] );
