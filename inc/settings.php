@@ -148,7 +148,7 @@ function udb_headline_settings_callback() {
 	$headline = isset( $settings['dashboard_headline'] ) ? $settings['dashboard_headline'] : '';
 	?>
 
-	<input type="text" name="udb_settings[dashboard_headline]" size="30" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Dashboard', 'ultimatedashboard' ); ?>" />
+	<input type="text" name="udb_settings[dashboard_headline]" class="all-options" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Dashboard', 'ultimatedashboard' ); ?>" />
 
 	<?php
 
