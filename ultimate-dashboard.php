@@ -112,7 +112,7 @@ function udb_admin_scripts() {
 	}
 
 	// Highlight PRO link in sub-menu.
-	echo '<style>#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] { color: tomato; }</style>';
+	echo '<style>#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] { color: #47D87C; }</style>';
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_admin_scripts' );
