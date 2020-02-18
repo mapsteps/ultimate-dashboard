@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 2.5.1
+Stable tag: 2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,12 @@ For multisite, third party Widget support & more check out [Ultimate Dashboard P
 3. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 2.6 | February 18, 2020 =
+* New: Change dashboard headline
+* New: Add custom admin CSS
+* New: Remove "Help" tab
+* New: Remove "Screen Options" tab
+* New: Remove admin bar from the frontend
 = 2.5.1 | January 3, 2020 =
 * Fixed: Text decoration issue
 = 2.5 | September 27, 2019 =
