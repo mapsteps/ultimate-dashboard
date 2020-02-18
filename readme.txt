@@ -1,6 +1,6 @@
-=== Ultimate Dashboard ===
+=== Ultimate Dashboard - Custom WordPress Dashboard ===
 Contributors: davidvongries
-Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, WP Admin, WordPress Admin
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS
 Requires at least: 4.6
 Tested up to: 5.3
 Requires PHP: 5.6
@@ -8,19 +8,27 @@ Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create a Custom WordPress Dashboard.
+Create a Custom Dashboard and give the WordPress Dashboard a more meaningful use.
 
 == Description ==
-[Ultimate Dashboard](https://ultimatedashboard.io/) is a clean & lightweight plugin that allows you to create a custom WordPress dashboard.
+[Ultimate Dashboard](https://ultimatedashboard.io/) allows you to create a custom WordPress dashboard for you or your clients.
 
-Replace the default WordPress dashboard widgets with your own set of icon- & text widgets.
+Replace the default WordPress dashboard widgets with your own and send your clients to the key areas of their website - or anywhere else!
+
+Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the user experience for clients in the WordPress admin.
+
+Customize the WordPress Dashboard today!
 
 = Features =
+* Remove all or individual default WordPress widgets
 * Create icon widgets
 * Create text widgets
-* Remove all or individual default WordPress widgets
+* Replace the WordPress Dashboard headline
+* Remove the "Help" Tab and/or "Screen Options" Tab from the wp admin area
+* Hide the WordPress admin bar from the frontend
 * Export/Import dashboard widgets & settings
 * Add custom CSS to your WordPress dashboard
+* Add custom CSS to the entire WordPress admin
 
 Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
