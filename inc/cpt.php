@@ -117,26 +117,26 @@ add_filter( 'manage_udb_widgets_posts_columns', 'set_udb_widget_columns' );
 /**
  * Widget columns.
  *
- * @param string $column The column name/key.
+ * @param string  $column The column name/key.
  * @param integer $post_id The post ID.
  */
 function udb_widget_columns( $column, $post_id ) {
 
 	switch ( $column ) {
 
-	case 'type':
-		$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
-		// Preventing edge case when widget_type is empty.
-		if ( ! $widget_type ) {
-			do_action( 'udb_compat_widget_type', $post_id );
-		} else {
-			if ( 'text' === $widget_type ) {
-				_e( 'Text', 'ultimate-dashboard' );
-			} elseif ( 'icon' === $widget_type ) {
-				echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
+		case 'type':
+			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
+			// Preventing edge case when widget_type is empty.
+			if ( ! $widget_type ) {
+				do_action( 'udb_compat_widget_type', $post_id );
+			} else {
+				if ( 'text' === $widget_type ) {
+					_e( 'Text', 'ultimate-dashboard' );
+				} elseif ( 'icon' === $widget_type ) {
+					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
+				}
 			}
-		}
-		break;
+			break;
 
 	}
 
