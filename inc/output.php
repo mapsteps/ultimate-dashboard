@@ -42,7 +42,12 @@ function udb_add_dashboard_widgets() {
 
 		}
 
-		if ( 'text' === $widget_type ) { // Text widget output.
+		if ( 'html' === $widget_type ) {
+
+			$html   = get_post_meta( $id, 'udb_html', true );
+			$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
+
+		} elseif ( 'text' === $widget_type ) { // Text widget output.
 
 			$content       = get_post_meta( $id, 'udb_content', true );
 			$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';

@@ -130,7 +130,9 @@ function udb_widget_columns( $column, $post_id ) {
 			if ( ! $widget_type ) {
 				do_action( 'udb_compat_widget_type', $post_id );
 			} else {
-				if ( 'text' === $widget_type ) {
+				if ( 'html' === $widget_type ) {
+					_e( 'HTML', 'ultimate-dashboard' );
+				} elseif ( 'text' === $widget_type ) {
 					_e( 'Text', 'ultimate-dashboard' );
 				} elseif ( 'icon' === $widget_type ) {
 					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';

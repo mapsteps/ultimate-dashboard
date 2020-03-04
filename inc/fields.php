@@ -128,10 +128,11 @@ function udb_main_meta_callback() {
 
 	global $post;
 
-	$udb_widget_types = [
+	$udb_widget_types = array(
 		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
 		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
-	];
+		'html' => __( 'HTML Widget', 'ultimatedashboard' ),
+	);
 
 	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
 	$stored_meta      = get_post_meta( $post->ID, 'udb_widget_type', true );

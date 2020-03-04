@@ -79,6 +79,9 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
 // Text widget.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
 
+// HTML widget.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/html-widget.php';
+
 /* Output */
 
 // Output.

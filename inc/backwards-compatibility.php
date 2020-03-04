@@ -92,9 +92,12 @@ function udb_handle_widget_type( $post_id ) {
 
 	if ( ! $widget_type ) {
 
+		$html    = get_post_meta( $post_id, 'udb_html', true );
 		$content = get_post_meta( $post_id, 'udb_content', true );
 
-		if ( $content ) {
+		if ( $html ) {
+			$widget_type = 'html';
+		} elseif ( $content ) {
 			$widget_type = 'text';
 		} else {
 			$widget_type = 'icon';
@@ -118,11 +121,11 @@ function udb_compat_widget_type() {
 	}
 
 	$widgets = get_posts(
-		[
+		array(
 			'post_type'   => 'udb_widgets',
 			'numberposts' => -1,
 			'post_status' => 'any',
-		]
+		)
 	);
 
 	if ( ! $widgets ) {

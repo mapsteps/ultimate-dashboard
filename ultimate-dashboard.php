@@ -49,6 +49,9 @@ function udb_admin_scripts() {
 		wp_register_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
 		wp_enqueue_script( 'select2' );
 
+		// CodeMirror.
+		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
+
 		// Custom Post Type JS.
 		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
 		wp_enqueue_script( 'ultimate-dashboard-cpt' );
