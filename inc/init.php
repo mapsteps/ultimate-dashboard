@@ -27,14 +27,14 @@ add_action( 'admin_menu', 'udb_options_page', 20 );
  * Tools page callback.
  */
 function udb_tools_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/tools-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'templates/tools-template.php';
 }
 
 /**
  * Settings page callback.
  */
 function udb_options_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/templates/settings-template.php';
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'templates/settings-template.php';
 }
 
 /**
@@ -74,13 +74,13 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/fields.php';
 /* Widgets */
 
 // Icon widget.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/icon-widget.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'widgets/icon-widget.php';
 
 // Text widget.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/text-widget.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'widgets/text-widget.php';
 
 // HTML widget.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/widgets/html-widget.php';
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'widgets/html-widget.php';
 
 /* Output */
 
