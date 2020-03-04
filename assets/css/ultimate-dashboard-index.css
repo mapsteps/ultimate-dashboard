@@ -1,10 +1,10 @@
 /* Dashboard Widget */
-[id*='ms-'] { 
+[id*="ms-"] {
 	text-align: center;
 }
 
-[id*='ms-'] .fa,
-[id*='ms-'] .dashicons {
+[id*="ms-"] .fa,
+[id*="ms-"] .dashicons {
 	font-size: 68px;
 	width: auto;
 	height: auto;
@@ -23,10 +23,10 @@
 	-ms-backface-visibility: hidden;
 }
 
-[id*='ms-'] .fa:hover,
-[id*='ms-'] .dashicons:hover {
+[id*="ms-"] .fa:hover,
+[id*="ms-"] .dashicons:hover {
 	color: #555;
-	opacity:.8;
+	opacity: 0.8;
 	-webkit-transform: scale(1.08);
 	-moz-transform: scale(1.08);
 	-ms-transform: scale(1.08);
@@ -34,26 +34,26 @@
 	transform: scale(1.08);
 }
 
-[id*='ms-'] a {
+[id*="ms-"] a {
 	text-decoration: none;
 }
 
-[id*='ms-'] a:focus {
+[id*="ms-"] a:focus {
 	box-shadow: none;
 }
 
-[id*='ms-'] .handlediv {
+[id*="ms-"] .handlediv {
 	display: none !important;
 }
 
-[id*='ms-'] .hndle {
+[id*="ms-"] .hndle {
 	font-weight: 400;
 	border-bottom: 0;
 	font-size: 22px !important;
 	padding: 40px 30px !important;
 }
 
-[id*='ms-'] .inside {
+[id*="ms-"] .inside {
 	position: static;
 	margin-top: 0;
 	border-bottom: 0;
@@ -62,28 +62,27 @@
 
 /* Tooltip */
 .udb-info {
-	padding: 						15px;
-	position: 						absolute;
-	top: 							0;
-	right: 							0;
-	-webkit-transition: 			all 0.3s;
-	-moz-transition: 				all 0.3s;
-	-o-transition: 					all 0.3s;
-	transition: 					all 0.3s;
-	cursor: 						pointer;
-	font-size: 						16px !important;
-	color: 							#aaa;
-	z-index: 						999;
-
+	padding: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	cursor: pointer;
+	font-size: 16px !important;
+	color: #aaa;
+	z-index: 999;
 }
 .udb-info:before {
-	font-family: 					FontAwesome;
-	font-style: 					normal;
-	content: 						"\f29c";
+	font-family: FontAwesome;
+	font-style: normal;
+	content: "\f29c";
 }
 
 .udb-info:hover {
-	color: 							#555;
+	color: #555;
 }
 
 .udb-info:hover + .udb-tooltip {
@@ -91,76 +90,76 @@
 }
 
 .udb-tooltip {
-	border-radius: 					2px;
-	position: 						absolute;
-	top: 							80px;
-	left: 							13%;
-	right: 							13%;
-	z-index: 						999;
-	opacity:						0;
-	line-height: 					normal;
-	color: 							#fff;
-	text-align: 					left;
-	background: 					#555;
-	-webkit-transition: 			all 0.3s;
-	-moz-transition: 				all 0.3s;
-	-o-transition: 					all 0.3s;
-	transition: 					all 0.3s;
+	border-radius: 2px;
+	position: absolute;
+	top: 80px;
+	left: 13%;
+	right: 13%;
+	z-index: 999;
+	opacity: 0;
+	line-height: normal;
+	color: #fff;
+	text-align: left;
+	background: #555;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .udb-tooltip span {
-	display: 						block;
-	padding: 						8px;
-	text-align:						center;
+	display: block;
+	padding: 8px;
+	text-align: center;
 }
 
 .udb-tooltip:after {
-	position: 						absolute;
-	top: 							-22px;
-	font-family: 					FontAwesome;
-	content: 						"\f0d8";
-	left: 							50%;
-	width: 							40px;
-	margin-left: 					-20px;
-	text-align: 					center;
-	font-size: 						35px !important;
-	color: 							#555;
+	position: absolute;
+	top: -22px;
+	font-family: FontAwesome;
+	content: "\f0d8";
+	left: 50%;
+	width: 40px;
+	margin-left: -20px;
+	text-align: center;
+	font-size: 35px !important;
+	color: #555;
 }
 
 /* Text Widget */
 .udb-content h2 {
-	text-align: 					left;
+	text-align: left;
 }
 
 .udb-content-wrapper {
-	min-height:						108px;
-	text-align: 					left;
-	overflow-y:						auto;
+	min-height: 108px;
+	text-align: left;
+	overflow-y: auto;
 }
 
 .udb-content-wrapper p {
-	margin:							0 0 1em 0;	
+	margin: 0 0 1em 0;
 }
 
 .udb-content-wrapper p:last-child {
-	margin: 						0;
+	margin: 0;
 }
 
 .udb-content-wrapper ul li {
-	list-style: 					disc;
-	list-style-position:			inside;
-	margin-bottom: 					3px;
+	list-style: disc;
+	list-style-position: inside;
+	margin-bottom: 3px;
 }
 
 .udb-content-wrapper ol {
-	margin-left: 					0;
+	margin-left: 0;
 }
 
 .udb-content-wrapper ol li {
-	list-style-position: 			inside;
-	margin-bottom: 					3px;
+	list-style-position: inside;
+	margin-bottom: 3px;
 }
 
 .udb-content.closed h2 {
-	text-align: 					center;
+	text-align: center;
 }
