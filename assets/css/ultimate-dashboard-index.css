@@ -87,6 +87,7 @@
 
 .udb-info:hover + .udb-tooltip {
 	opacity: 1;
+	visibility: visible;
 }
 
 .udb-tooltip {
@@ -97,6 +98,7 @@
 	right: 13%;
 	z-index: 999;
 	opacity: 0;
+	visibility: hidden;
 	line-height: normal;
 	color: #fff;
 	text-align: left;
