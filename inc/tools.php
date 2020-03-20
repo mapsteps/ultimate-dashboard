@@ -79,10 +79,12 @@ function udb_render_import_field( $args ) {
 function udb_process_export() {
 
 	$settings       = array();
+	$pro_settings   = array();
 	$login_settings = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
 		$settings       = get_option( 'udb_settings' );
+		$pro_settings   = get_option( 'udb_pro_settings' );
 		$login_settings = get_option( 'udb_login' );
 	}
 
@@ -131,6 +133,7 @@ function udb_process_export() {
 		array(
 			'widgets'        => $widgets,
 			'settings'       => $settings,
+			'pro_settings'   => $pro_settings,
 			'login_settings' => $login_settings,
 		)
 	);
@@ -183,6 +186,7 @@ function udb_process_import() {
 
 	// Retrieve settings & widgets.
 	$settings       = isset( $imports['settings'] ) ? $imports['settings'] : array();
+	$pro_settings   = isset( $imports['pro_settings'] ) ? $imports['pro_settings'] : array();
 	$login_settings = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
 	$widgets        = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
 
@@ -198,10 +202,14 @@ function udb_process_import() {
 
 	}
 
-	if ( $settings || $login_settings ) {
+	if ( $settings || $pro_settings || $login_settings ) {
 
 		if ( $settings ) {
 			update_option( 'udb_settings', $settings );
+		}
+
+		if ( $pro_settings ) {
+			update_option( 'udb_pro_settings', $pro_settings );
 		}
 
 		if ( $login_settings ) {
