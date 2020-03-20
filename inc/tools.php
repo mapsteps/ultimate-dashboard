@@ -13,16 +13,16 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 function udb_tools() {
 
 	// Register settings.
-	register_setting( 'udb-export-group', 'udb_export', [ 'sanitize_callback' => 'udb_process_export' ] );
-	register_setting( 'udb-import-group', 'udb_import', [ 'sanitize_callback' => 'udb_process_import' ] );
+	register_setting( 'udb-export-group', 'udb_export', array( 'sanitize_callback' => 'udb_process_export' ) );
+	register_setting( 'udb-import-group', 'udb_import', array( 'sanitize_callback' => 'udb_process_import' ) );
 
 	// Settings sections.
 	add_settings_section( 'udb-export-section', __( 'Export Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard-export' );
 	add_settings_section( 'udb-import-section', __( 'Import Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard-import' );
 
 	// Settings fields.
-	add_settings_field( 'udb-export-field', '', 'udb_render_export_field', 'ultimate-dashboard-export', 'udb-export-section', [ 'class' => 'is-gapless has-small-text' ] );
-	add_settings_field( 'udb-import-field', '', 'udb_render_import_field', 'ultimate-dashboard-import', 'udb-import-section', [ 'class' => 'is-gapless has-small-text' ] );
+	add_settings_field( 'udb-export-field', '', 'udb_render_export_field', 'ultimate-dashboard-export', 'udb-export-section', array( 'class' => 'is-gapless has-small-text' ) );
+	add_settings_field( 'udb-import-field', '', 'udb_render_import_field', 'ultimate-dashboard-import', 'udb-import-section', array( 'class' => 'is-gapless has-small-text' ) );
 
 }
 add_action( 'admin_init', 'udb_tools' );
@@ -78,17 +78,19 @@ function udb_render_import_field( $args ) {
  */
 function udb_process_export() {
 
-	$settings = [];
+	$settings       = array();
+	$login_settings = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
-		$settings = get_option( 'udb_settings' );
+		$settings       = get_option( 'udb_settings' );
+		$login_settings = get_option( 'udb_login' );
 	}
 
 	$widgets = get_posts(
-		[
+		array(
 			'post_type'   => 'udb_widgets',
 			'numberposts' => -1,
-		]
+		)
 	);
 
 	if ( $widgets ) {
@@ -107,7 +109,7 @@ function udb_process_export() {
 				$widget->post_type
 			);
 
-			$widget->meta = [
+			$widget->meta = array(
 				'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
 				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
 				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
@@ -117,7 +119,7 @@ function udb_process_export() {
 				'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
 				'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
 				'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
-			];
+			);
 
 		}
 	}
@@ -126,10 +128,11 @@ function udb_process_export() {
 	header( 'Content-type: application/json' );
 
 	echo wp_json_encode(
-		[
-			'widgets'  => $widgets,
-			'settings' => $settings,
-		]
+		array(
+			'widgets'        => $widgets,
+			'settings'       => $settings,
+			'login_settings' => $login_settings,
+		)
 	);
 
 	exit;
@@ -179,8 +182,9 @@ function udb_process_import() {
 	$imports = (array) json_decode( $imports, true );
 
 	// Retrieve settings & widgets.
-	$settings = isset( $imports['settings'] ) ? $imports['settings'] : [];
-	$widgets  = isset( $imports['widgets'] ) ? $imports['widgets'] : [];
+	$settings       = isset( $imports['settings'] ) ? $imports['settings'] : array();
+	$login_settings = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
+	$widgets        = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
 
 	if ( ! $imports && ! $widgets ) {
 
@@ -194,9 +198,15 @@ function udb_process_import() {
 
 	}
 
-	if ( $settings ) {
+	if ( $settings || $login_settings ) {
 
-		update_option( 'udb_settings', $settings );
+		if ( $settings ) {
+			update_option( 'udb_settings', $settings );
+		}
+
+		if ( $login_settings ) {
+			update_option( 'udb_login', $login_settings );
+		}
 
 		add_settings_error(
 			'udb_export',
