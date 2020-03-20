@@ -16,6 +16,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 // Plugin constants.
 define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION', '2.6' );
 
 /**
  * Admin scripts & styles.
