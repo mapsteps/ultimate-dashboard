@@ -118,6 +118,22 @@ function udb_remove_default_dashboard_widgets() {
 add_action( 'wp_dashboard_setup', 'udb_remove_default_dashboard_widgets', 100 );
 
 /**
+ * Enqueue dashboard styles.
+ */
+function udb_enqueue_dashboard_styles() {
+
+	$css = '';
+
+	ob_start();
+	require ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/css/widget-styles.css.php';
+	$css = ob_get_clean();
+
+	wp_add_inline_style( 'ultimate-dashboard-index', $css );
+
+}
+add_action( 'admin_enqueue_scripts', 'udb_enqueue_dashboard_styles', 100 );
+
+/**
  * Custom dashboard CSS.
  */
 function udb_add_dashboard_css() {

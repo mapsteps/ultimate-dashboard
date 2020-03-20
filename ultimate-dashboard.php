@@ -80,6 +80,10 @@ function udb_admin_scripts() {
 	// Settings page.
 	if ( 'udb_widgets_page_settings' === $current_screen->id || 'udb_widgets_page_tools' === $current_screen->id ) {
 
+		// Color pickers.
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_script( 'wp-color-picker' );
+
 		// Settings page styles.
 		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings-page.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'settings-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/setting-fields.css', array(), $plugin_data['Version'] );

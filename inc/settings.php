@@ -12,15 +12,16 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  */
 function udb_settings() {
 
-	// Register settings.
+	// Settings group.
 	register_setting( 'udb-settings-group', 'udb_settings' );
 	register_setting( 'udb-settings-group', 'udb_pro_settings' );
 
-	// Widgets sections.
+	// Widget sections.
 	add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
 	add_settings_section( 'udb-3rd-party-section', __( 'WordPress 3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
+	add_settings_section( 'udb-colors-section', __( 'Widget Colors', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
 
-	// Other sections.
+	// Other sections (general, advanced, misc).
 	add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-page' );
 	add_settings_section( 'udb-advanced-section', __( 'Advanced', 'ultimate-dashboard' ), '', 'udb-general-page' );
 	add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-page' );
@@ -29,14 +30,20 @@ function udb_settings() {
 	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'udb-widgets-page', 'udb-widgets-section' );
 	add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'udb-widgets-page', 'udb-widgets-section' );
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'udb-widgets-page', 'udb-3rd-party-section' );
+	add_settings_field( 'udb-icon-color-field', __( 'Icon/ Text Color', 'ultimate-dashboard' ), 'udb_icon_color_settings_callback', 'udb-widgets-page', 'udb-colors-section' );
+	add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), 'udb_headline_color_settings_callback', 'udb-widgets-page', 'udb-colors-section' );
 
-	// Other section fields.
+	// General section fields.
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'udb-general-page', 'udb-general-section' );
 	add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options Tab', 'ultimate-dashboard' ), 'udb_remove_screen_options_settings_callback', 'udb-general-page', 'udb-general-section' );
 	add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), 'udb_remove_admin_bar_settings_callback', 'udb-general-page', 'udb-general-section' );
-	add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_settings_callback', 'udb-general-page', 'udb-general-section' );
+	add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), 'udb_headline_text_settings_callback', 'udb-general-page', 'udb-general-section' );
+
+	// Advanced section fields.
 	add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), 'udb_custom_dashboard_css_callback', 'udb-general-page', 'udb-advanced-section' );
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'udb-general-page', 'udb-advanced-section' );
+
+	// Misc section fields.
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'udb-general-page', 'udb-misc-section' );
 
 }
@@ -144,9 +151,43 @@ function udb_remove_3rd_party_widgets_callback() {
 }
 
 /**
+ * Icon color callback.
+ */
+function udb_icon_color_settings_callback() {
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['icon_color'] ) ) {
+		$accent_color = 0;
+	} else {
+		$accent_color = $settings['icon_color'];
+	}
+
+	echo '<input type="text" name="udb_settings[icon_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-settings-field udb-widget-color-settings-field" data-default="#555555" />';
+
+}
+
+/**
+ * Headline color callback.
+ */
+function udb_headline_color_settings_callback() {
+
+	$settings = get_option( 'udb_settings' );
+
+	if ( ! isset( $settings['headline_color'] ) ) {
+		$accent_color = 0;
+	} else {
+		$accent_color = $settings['headline_color'];
+	}
+
+	echo '<input type="text" name="udb_settings[headline_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-settings-field udb-headline-color-settings-field" data-default="#23282d" />';
+
+}
+
+/**
  * Change headline callback.
  */
-function udb_headline_settings_callback() {
+function udb_headline_text_settings_callback() {
 
 	$settings = get_option( 'udb_settings' );
 	$headline = isset( $settings['dashboard_headline'] ) ? $settings['dashboard_headline'] : '';
