@@ -1,0 +1,271 @@
+<?php
+/**
+ * Fields section of Login Customizer.
+ *
+ * @var $wp_customize This variable is brought from login-customizer.php file.
+ * @var $branding This variable is brought from login-customizer.php file.
+ * @var $branding_enabled This variable is brought from login-customizer.php file.
+ * @var $accent_color This variable is brought from login-customizer.php file.
+ *
+ * @package Ultimate Dashboard PRO
+ */
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+use UdbPro\Udb_Customize_Control;
+use UdbPro\Udb_Customize_Color_Control;
+use UdbPro\Udb_Customize_Range_Control;
+
+$wp_customize->add_setting(
+	'udb_login[fields_height]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '50px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[fields_height]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_fields_section',
+			'settings'    => 'udb_login[fields_height]',
+			'label'       => __( 'Fields Height', 'ultimatedashboard' ),
+			'input_attrs' => array(
+				'min'  => 20,
+				'max'  => 80,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_horizontal_padding]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '10px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[fields_horizontal_padding]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_fields_section',
+			'settings'    => 'udb_login[fields_horizontal_padding]',
+			'label'       => __( 'Fields Side Padding', 'ultimatedashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 80,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_border_width]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '2px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[fields_border_width]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_fields_section',
+			'settings'    => 'udb_login[fields_border_width]',
+			'label'       => __( 'Fields Border Width', 'ultimatedashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 30,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_border_radius]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '4px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[fields_border_radius]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_fields_section',
+			'settings'    => 'udb_login[fields_border_radius]',
+			'label'       => __( 'Fields Border Radius', 'ultimatedashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 50,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_text_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#32373c',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_text_color]',
+		array(
+			'label'    => __( 'Fields Text Color', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_text_color]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_text_color_focus]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#32373c',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_text_color_focus]',
+		array(
+			'label'    => __( 'Fields Text Color (Focus)', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_text_color_focus]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_bg_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#ffffff',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_bg_color]',
+		array(
+			'label'    => __( 'Fields Background Color', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_bg_color]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_bg_color_focus]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#ffffff',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_bg_color_focus]',
+		array(
+			'label'    => __( 'Fields Background Color (Focus)', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_bg_color_focus]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_border_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#dddddd',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_border_color]',
+		array(
+			'label'    => __( 'Fields Border Color', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_border_color]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[fields_border_color_focus]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => $has_accent_color ? $accent_color : '#007cba',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[fields_border_color_focus]',
+		array(
+			'label'    => __( 'Fields Border Color (Focus)', 'ultimatedashboard' ),
+			'section'  => 'udb_login_customizer_fields_section',
+			'settings' => 'udb_login[fields_border_color_focus]',
+		)
+	)
+);

@@ -1,0 +1,206 @@
+/**
+ * UDB General Control
+ */
+ul .udb-customize-control:first-child {
+	padding-top: 0;
+}
+
+ul .udb-customize-control:last-child {
+	padding-bottom: 0;
+	border-bottom-width: 0;
+}
+
+.udb-customize-control {
+	box-sizing: border-box;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.udb-customize-control * {
+	box-sizing: border-box;
+}
+
+.udb-customize-control .wp-picker-container,
+.udb-customize-control .wp-picker-container * {
+	box-sizing: content-box;
+}
+
+.udb-customize-control--cols {
+	display: flex;
+	align-items: center;
+}
+
+.udb-customize-control--left-col {
+	padding-right: 13px;
+	width: 75%;
+}
+
+.udb-customize-control--right-col {
+	width: 25%;
+}
+
+/**
+ * UDB Range Control
+ */
+.udb-customize-control-header {
+	position: relative;
+}
+
+.udb-customize-control-reset:hover {
+	transform: rotate(-45deg);
+}
+
+.udb-customize-control-range:hover .udb-customize-control-reset {
+	opacity: 1;
+	visibility: visible;
+}
+
+.udb-customize-control-reset {
+	position: absolute;
+	bottom: 5px;
+	right: 0;
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+	color: #59727c;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: rotate(45deg);
+	transition: all 0.3s ease-in-out;
+}
+
+.udb-customize-control-range .udb-customize-range-field:focus {
+	background-color: #fff;
+}
+
+.udb-customize-control-range .udb-customize-range-field {
+	font-size: 12px;
+	text-align: center;
+	background-color: #f7f7f7;
+	border-color: #bbb;
+	border-radius: 4px;
+	z-index: 2;
+	transition: box-shadow 0.15s;
+}
+
+.udb-customize-control-range .udb-customize-range-field::-webkit-inner-spin-button, 
+.udb-customize-control-range .udb-customize-range-field::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.udb-customize-control-range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #bdc3c7;
+  outline: none;
+  padding: 0;
+	margin: 0;
+	position: relative;
+	top: -2px;
+}
+
+.udb-customize-control-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+	cursor: pointer;
+	border: 1px solid #999;
+  -webkit-transition: background-color, transform .15s ease-in-out;
+  transition: background-color, transform .15s ease-in-out;
+}
+
+.udb-customize-control-range-slider::-webkit-slider-thumb:hover {
+  background-color: #e7e7e7;
+}
+
+.udb-customize-control-range-slider:active::-webkit-slider-thumb {
+	background-color: #e7e7e7;
+}
+
+.udb-customize-control-range-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+	cursor: pointer;
+	border: 1px solid #999;
+  -moz-transition: background-color, transform .15s ease-in-out;
+  transition: background-color, transform .15s ease-in-out;
+}
+
+.udb-customize-control-range-slider::-moz-range-thumb:hover {
+  background-color: #e7e7e7;
+}
+
+.udb-customize-control-range-slider:active::-moz-range-thumb {
+	background-color: #e7e7e7;
+}
+
+.udb-customize-control-range-slider:focus::-webkit-slider-thumb {
+	/* in case we need this in the future */
+}
+
+::-moz-range-track {
+  background-color: #bdc3c7;
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+/**
+ * UDB Color Control
+ */
+.udb-customize-control-color .wp-color-result-text {
+	/* Set back to WordPress default instead of the dynamically generated inline rule */
+	line-height: 2.54545455 !important;
+}
+
+.udb-customize-control-color .wp-picker-clear {
+	margin-left: 7px;
+}
+
+/**
+ * UDB Login Template Control
+ */
+.udb-customize-control-login-template .udb-customize-control-template:first-child {
+	margin-top: 0;
+}
+
+.udb-customize-control-login-template .udb-customize-control-template {
+	display: block;
+	margin: 10px 0 10px;
+}
+
+.udb-customize-control-login-template .udb-customize-control-template:hover img,
+.udb-customize-control-login-template .udb-customize-control-template:active img,
+.udb-customize-control-login-template .udb-customize-control-template.is-selected img {
+	box-shadow: 0 0 0 2px #007cba;
+}
+
+.udb-customize-control-login-template .udb-customize-control-template img {
+	display: block;
+	max-width: 100%;
+	border-radius: 2px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	transition: box-shadow .15s;
+}
+
+/**
+ * UDB Image Control
+ */
+.udb-customize-control-image.is-empty {
+	border-bottom-width: 0;
+}

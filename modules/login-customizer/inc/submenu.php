@@ -1,0 +1,66 @@
+<?php
+/**
+ * Setup login customizer submenu.
+ *
+ * @package Ultimate Dashboard PRO
+ */
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+/**
+ * Add "Login Customizer" submenu under "Ultimate Dashboard" menu item.
+ */
+function udb_pro_login_customizer_submenu() {
+	global $submenu;
+
+	$udb_slug = 'edit.php?post_type=udb_widgets';
+
+	// E.g: subscriber got error if we don't return.
+	if ( ! isset( $submenu[ $udb_slug ] ) ) {
+		return;
+	}
+
+	array_push(
+		$submenu[ $udb_slug ],
+		array(
+			__( 'Login Customizer', 'ultimatedashboard' ),
+			apply_filters( 'udb_settings_capability', 'manage_options' ),
+			esc_url( admin_url( 'customize.php?autofocus%5Bpanel%5D=udb_login_customizer_panel' ) ),
+		)
+	);
+
+	$udb_submenu = $submenu[ $udb_slug ];
+	$tools_index = 13;
+	// In multisite, license submenu is for super admin (so "license" submenu is not always available).
+	$license_index = udb_pro_multisite_supported() ? 0 : 14;
+	$login_index   = udb_pro_multisite_supported() ? 14 : 15;
+
+	foreach ( $udb_submenu as $index => $args ) {
+		if ( 'tools' === $args[2] ) {
+			$tools_index = $index;
+		} elseif ( 'udb-license' === $args[2] ) {
+			$license_index = $index;
+		} else {
+			if ( false !== stripos( $args[2], 'udb_login_customizer', true ) ) {
+				$login_index = $index;
+			}
+		}
+	}
+
+	// Move the 'Login Customizer' submenu up above the 'Tools' submenu.
+	$submenu[ $udb_slug ][ $tools_index ] = $udb_submenu[ $login_index ];
+
+	if ( $license_index ) {
+
+		// If license submenu exists.
+		$submenu[ $udb_slug ][ $license_index ] = $udb_submenu[ $tools_index ];
+		$submenu[ $udb_slug ][ $login_index ]   = $udb_submenu[ $license_index ];
+
+	} else {
+
+		$submenu[ $udb_slug ][ $login_index ] = $udb_submenu[ $tools_index ];
+
+	}
+
+}
+add_action( 'admin_menu', 'udb_pro_login_customizer_submenu' );
