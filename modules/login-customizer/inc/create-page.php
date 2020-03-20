@@ -113,7 +113,7 @@ function udb_login_customizer_view_project_template( $template ) {
 		return $template;
 	}
 
-	$file = ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . 'modules/login-customizer/templates/' . get_post_meta(
+	$file = ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/templates/' . get_post_meta(
 		$post->ID,
 		'_wp_page_template',
 		true

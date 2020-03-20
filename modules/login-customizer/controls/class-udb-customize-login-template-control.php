@@ -55,15 +55,15 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 
 		$login_templates = array(
 			'left'    => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/images/template-left.jpg',
+				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-left.jpg',
 				'bg_image'  => '',
 			),
 			'default' => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/images/template-default.jpg',
+				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-default.jpg',
 				'bg_image'  => '',
 			),
 			'right'   => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/images/template-right.jpg',
+				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-right.jpg',
 				'bg_image'  => '',
 			),
 		);

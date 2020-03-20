@@ -29,7 +29,7 @@ function udb_print_login_styles() {
 
 	echo '<style>';
 	ob_start();
-	require ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . 'modules/login-customizer/assets/css/login.css.php';
+	require ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/assets/css/login.css.php';
 
 	$css = ob_get_clean();
 
