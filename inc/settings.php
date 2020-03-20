@@ -18,10 +18,10 @@ function udb_settings() {
 
 	// Widget sections.
 	add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
-	add_settings_section( 'udb-3rd-party-section', __( 'WordPress 3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
-	add_settings_section( 'udb-colors-section', __( 'Widget Colors', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
+	add_settings_section( 'udb-3rd-party-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
 
-	// Other sections (general, advanced, misc).
+	// Other sections (styling, general, advanced, misc).
+	add_settings_section( 'udb-colors-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-general-page' );
 	add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-page' );
 	add_settings_section( 'udb-advanced-section', __( 'Advanced', 'ultimate-dashboard' ), '', 'udb-general-page' );
 	add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-page' );
@@ -30,8 +30,10 @@ function udb_settings() {
 	add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), 'udb_remove_all_widgets_callback', 'udb-widgets-page', 'udb-widgets-section' );
 	add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), 'udb_remove_single_widgets_callback', 'udb-widgets-page', 'udb-widgets-section' );
 	add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), 'udb_remove_3rd_party_widgets_callback', 'udb-widgets-page', 'udb-3rd-party-section' );
-	add_settings_field( 'udb-icon-color-field', __( 'Icon/ Text Color', 'ultimate-dashboard' ), 'udb_icon_color_settings_callback', 'udb-widgets-page', 'udb-colors-section' );
-	add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), 'udb_headline_color_settings_callback', 'udb-widgets-page', 'udb-colors-section' );
+
+	// Color section fields.
+	add_settings_field( 'udb-icon-color-field', __( 'Icon/Text Color', 'ultimate-dashboard' ), 'udb_icon_color_settings_callback', 'udb-general-page', 'udb-colors-section' );
+	add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), 'udb_headline_color_settings_callback', 'udb-general-page', 'udb-colors-section' );
 
 	// General section fields.
 	add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), 'udb_remove_help_tab_settings_callback', 'udb-general-page', 'udb-general-section' );
