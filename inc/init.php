@@ -8,14 +8,6 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Tools page.
- */
-function udb_tools_page() {
-	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
-}
-add_action( 'admin_menu', 'udb_tools_page', 20 );
-
-/**
  * Settings page.
  */
 function udb_options_page() {
@@ -24,17 +16,25 @@ function udb_options_page() {
 add_action( 'admin_menu', 'udb_options_page', 20 );
 
 /**
- * Tools page callback.
- */
-function udb_tools_page_callback() {
-	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'templates/tools-template.php';
-}
-
-/**
  * Settings page callback.
  */
 function udb_options_page_callback() {
 	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'templates/settings-template.php';
+}
+
+/**
+ * Tools page.
+ */
+function udb_tools_page() {
+	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
+}
+add_action( 'admin_menu', 'udb_tools_page', 20 );
+
+/**
+ * Tools page callback.
+ */
+function udb_tools_page_callback() {
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'templates/tools-template.php';
 }
 
 /**
