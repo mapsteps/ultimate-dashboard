@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  *
  * @return string
  */
-function udb_pro_login_headertext( $text ) {
+function udb_login_headertext( $text ) {
 
 	$login = get_option( 'udb_login', array() );
 	$text  = isset( $login['logo_title'] ) ? $login['logo_title'] : $text;
@@ -20,12 +20,12 @@ function udb_pro_login_headertext( $text ) {
 	return $text;
 
 }
-add_filter( 'login_headertext', 'udb_pro_login_headertext', 20 );
+add_filter( 'login_headertext', 'udb_login_headertext', 20 );
 
 /**
  * Print login styles.
  */
-function udb_pro_print_login_styles() {
+function udb_print_login_styles() {
 
 	echo '<style>';
 	ob_start();
@@ -37,12 +37,12 @@ function udb_pro_print_login_styles() {
 	echo '</style>';
 
 }
-add_action( 'login_head', 'udb_pro_print_login_styles', 20 );
+add_action( 'login_head', 'udb_print_login_styles', 20 );
 
 /**
  * Print login live styles.
  */
-function udb_pro_print_login_live_styles() {
+function udb_print_login_live_styles() {
 
 	if ( ! is_customize_preview() ) {
 		return;
@@ -92,7 +92,7 @@ function udb_pro_print_login_live_styles() {
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[footer_link_color_hover]"></style>';
 
 }
-add_action( 'login_head', 'udb_pro_print_login_live_styles', 20 );
+add_action( 'login_head', 'udb_print_login_live_styles', 20 );
 
 /**
  * Change login logo url.
@@ -100,11 +100,11 @@ add_action( 'login_head', 'udb_pro_print_login_live_styles', 20 );
  * @param string $url The existing login logo url.
  * @return string The modified login logo url.
  */
-function udb_pro_login_logo_url( $url ) {
+function udb_login_logo_url( $url ) {
 
 	$login = get_option( 'udb_login', array() );
 
 	return ( isset( $login['logo_url'] ) && ! empty( $login['logo_url'] ) ? $login['logo_url'] : $url );
 
 }
-add_filter( 'login_headerurl', 'udb_pro_login_logo_url', 20 );
+add_filter( 'login_headerurl', 'udb_login_logo_url', 20 );

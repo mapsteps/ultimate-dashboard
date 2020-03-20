@@ -31,7 +31,7 @@ require __DIR__ . '/inc/output.php';
  *
  * @param WP_Customize $wp_customize The WP_Customize instance.
  */
-function udb_pro_login_customizer_panel( $wp_customize ) {
+function udb_login_customizer_panel( $wp_customize ) {
 	$wp_customize->add_panel(
 		'udb_login_customizer_panel',
 		array(
@@ -41,14 +41,14 @@ function udb_pro_login_customizer_panel( $wp_customize ) {
 		)
 	);
 }
-add_action( 'customize_register', 'udb_pro_login_customizer_panel' );
+add_action( 'customize_register', 'udb_login_customizer_panel' );
 
 /**
  * Register login customizer's sections in WP Customizer.
  *
  * @param WP_Customize $wp_customize The WP_Customize instance.
  */
-function udb_pro_login_customizer_sections( $wp_customize ) {
+function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_template_section',
 		array(
@@ -145,14 +145,14 @@ function udb_pro_login_customizer_sections( $wp_customize ) {
 		)
 	);
 }
-add_action( 'customize_register', 'udb_pro_login_customizer_sections' );
+add_action( 'customize_register', 'udb_login_customizer_sections' );
 
 /**
  * Register login customizer's settings & controls in WP Customizer.
  *
  * @param WP_Customize $wp_customize The WP_Customize instance.
  */
-function udb_pro_login_customizer_controls( $wp_customize ) {
+function udb_login_customizer_controls( $wp_customize ) {
 	$branding         = get_option( 'udb_branding', array() );
 	$branding_enabled = isset( $branding['enabled'] ) ? true : false;
 	$accent_color     = isset( $branding['accent_color'] ) ? $branding['accent_color'] : '';
@@ -167,4 +167,4 @@ function udb_pro_login_customizer_controls( $wp_customize ) {
 	require __DIR__ . '/sections/button.php';
 	require __DIR__ . '/sections/form-footer.php';
 }
-add_action( 'customize_register', 'udb_pro_login_customizer_controls' );
+add_action( 'customize_register', 'udb_login_customizer_controls' );

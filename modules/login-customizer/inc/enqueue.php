@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  *
  * @return array The login customizer's localized JS object.
  */
-function udb_pro_login_customizer_js_object() {
+function udb_login_customizer_js_object() {
 	$login_page = get_page_by_path( 'udb-login-page' );
 
 	return array(
@@ -28,17 +28,17 @@ function udb_pro_login_customizer_js_object() {
 /**
  * Enqueue the login customizer control styles.
  */
-function udb_pro_login_customizer_control_styles() {
+function udb_login_customizer_control_styles() {
 
 	wp_enqueue_style( 'udb-login-customizer', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/css/controls.css', null, ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION );
 
 }
-add_action( 'customize_controls_print_styles', 'udb_pro_login_customizer_control_styles', 99 );
+add_action( 'customize_controls_print_styles', 'udb_login_customizer_control_styles', 99 );
 
 /**
  * Enqueue login customizer control scripts.
  */
-function udb_pro_login_customizer_control_scripts() {
+function udb_login_customizer_control_scripts() {
 
 	wp_enqueue_script( 'udb-login-customizer-control', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/js/controls.js', array( 'customize-controls' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );
 
@@ -51,12 +51,12 @@ function udb_pro_login_customizer_control_scripts() {
 	);
 
 }
-add_action( 'customize_controls_enqueue_scripts', 'udb_pro_login_customizer_control_scripts' );
+add_action( 'customize_controls_enqueue_scripts', 'udb_login_customizer_control_scripts' );
 
 /**
  * Enqueue styles to login customizer preview styles.
  */
-function udb_pro_login_customizer_preview_styles() {
+function udb_login_customizer_preview_styles() {
 
 	if ( ! is_customize_preview() ) {
 		return;
@@ -67,12 +67,12 @@ function udb_pro_login_customizer_preview_styles() {
 	wp_enqueue_style( 'udb-login-customizer-preview', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/css/preview.css', ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, 'all' );
 
 }
-add_action( 'login_enqueue_scripts', 'udb_pro_login_customizer_preview_styles', 99 );
+add_action( 'login_enqueue_scripts', 'udb_login_customizer_preview_styles', 99 );
 
 /**
  * Enqueue scripts to login customizer preview scripts.
  */
-function udb_pro_login_customizer_preview_scripts() {
+function udb_login_customizer_preview_scripts() {
 	wp_enqueue_script( 'udb-login-customizer-preview', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/js/preview.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );\
 
 	wp_enqueue_script( 'udb-login-customizer-hints', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'modules/login-customizer/assets/js/hints.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );
@@ -83,4 +83,4 @@ function udb_pro_login_customizer_preview_scripts() {
 		udb_pro_login_customizer_js_object()
 	);
 }
-add_action( 'customize_preview_init', 'udb_pro_login_customizer_preview_scripts' );
+add_action( 'customize_preview_init', 'udb_login_customizer_preview_scripts' );

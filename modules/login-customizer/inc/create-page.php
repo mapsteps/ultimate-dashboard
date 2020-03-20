@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Check if we have a login customizer page assigned.
  */
-function udb_pro_check_login_customizer_page() {
+function udb_check_login_customizer_page() {
 
 	$page     = get_page_by_path( 'udb-login-page' );
 	$template = 'udb-login-page.php';
@@ -47,7 +47,7 @@ function udb_pro_check_login_customizer_page() {
 	update_post_meta( $page_id, '_wp_page_template', $template );
 
 }
-add_action( 'admin_init', 'udb_pro_check_login_customizer_page' );
+add_action( 'admin_init', 'udb_check_login_customizer_page' );
 
 /**
  * Add template to the pages cache in order to convince WordPress
@@ -56,7 +56,7 @@ add_action( 'admin_init', 'udb_pro_check_login_customizer_page' );
  * @param string|string $atts Attributes.
  * @return string $atts Attributes.
  */
-function udb_pro_login_customizer_register_project_templates( $atts ) {
+function udb_login_customizer_register_project_templates( $atts ) {
 
 	$login_templates = array(
 		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimatedashboard' ),
@@ -87,7 +87,7 @@ function udb_pro_login_customizer_register_project_templates( $atts ) {
 
 }
 // Add a filter to the save post to inject out template into the page cache.
-add_filter( 'wp_insert_post_data', 'udb_pro_login_customizer_register_project_templates' );
+add_filter( 'wp_insert_post_data', 'udb_login_customizer_register_project_templates' );
 
 /**
  * Checks if the template is assigned to the page.
@@ -95,7 +95,7 @@ add_filter( 'wp_insert_post_data', 'udb_pro_login_customizer_register_project_te
  * @param string $template The template.
  * @return string $template The template.
  */
-function udb_pro_login_customizer_view_project_template( $template ) {
+function udb_login_customizer_view_project_template( $template ) {
 
 	global $post;
 
@@ -131,16 +131,16 @@ function udb_pro_login_customizer_view_project_template( $template ) {
 
 }
 // Add a filter to the template include to determine if the page has our template assigned and return it's path.
-add_filter( 'template_include', 'udb_pro_login_customizer_view_project_template' );
+add_filter( 'template_include', 'udb_login_customizer_view_project_template' );
 
 /**
  * Ensure the Login Designer page is not indexed.
  */
-function udb_pro_login_customizer_noindex_meta() {
+function udb_login_customizer_noindex_meta() {
 
 	remove_action( 'login_head', 'wp_no_robots' );
 	echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
 
 }
 // Add a noindex meta tag.
-add_action( 'login_head', 'udb_pro_login_customizer_noindex_meta', 9 );
+add_action( 'login_head', 'udb_login_customizer_noindex_meta', 9 );

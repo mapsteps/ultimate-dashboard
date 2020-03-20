@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Redirect "Login Customizer" frontend page to WordPress customizer page.
  */
-function udb_pro_redirect_login_customizer_frontend_page() {
+function udb_redirect_login_customizer_frontend_page() {
 
 	if ( ! isset( $_GET['page'] ) || 'udb-login-page' !== $_GET['page'] ) {
 		return;
@@ -31,12 +31,12 @@ function udb_pro_redirect_login_customizer_frontend_page() {
 	wp_safe_redirect( $redirect_url );
 
 }
-add_action( 'admin_init', 'udb_pro_redirect_login_customizer_frontend_page' );
+add_action( 'admin_init', 'udb_redirect_login_customizer_frontend_page' );
 
 /**
  * Redirect "Login Customizer" edit page to WordPress customizer page.
  */
-function udb_pro_redirect_login_customizer_edit_page() {
+function udb_redirect_login_customizer_edit_page() {
 
 	global $pagenow;
 
@@ -61,4 +61,4 @@ function udb_pro_redirect_login_customizer_edit_page() {
 	}
 
 }
-add_action( 'admin_init', 'udb_pro_redirect_login_customizer_edit_page' );
+add_action( 'admin_init', 'udb_redirect_login_customizer_edit_page' );

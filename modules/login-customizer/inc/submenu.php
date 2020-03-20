@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Add "Login Customizer" submenu under "Ultimate Dashboard" menu item.
  */
-function udb_pro_login_customizer_submenu() {
+function udb_login_customizer_submenu() {
 	global $submenu;
 
 	$udb_slug = 'edit.php?post_type=udb_widgets';
@@ -52,4 +52,4 @@ function udb_pro_login_customizer_submenu() {
 	$submenu[ $udb_slug ][ $login_index ]   = $udb_submenu[ $prolink_index ];
 
 }
-add_action( 'admin_menu', 'udb_pro_login_customizer_submenu' );
+add_action( 'admin_menu', 'udb_login_customizer_submenu' );

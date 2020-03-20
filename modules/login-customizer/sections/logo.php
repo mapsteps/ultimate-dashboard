@@ -20,7 +20,7 @@ $wp_customize->add_setting(
 		'capability'        => 'edit_theme_options',
 		'default'           => '',
 		'transport'         => 'postMessage',
-		'sanitize_callback' => 'udb_pro_sanitize_image',
+		'sanitize_callback' => 'udb_sanitize_image',
 	)
 );
 
