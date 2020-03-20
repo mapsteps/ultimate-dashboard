@@ -47,7 +47,7 @@ function udb_login_customizer_control_scripts() {
 	wp_localize_script(
 		'customize-controls',
 		'udbLoginCustomizer',
-		udb_pro_login_customizer_js_object()
+		udb_login_customizer_js_object()
 	);
 
 }
@@ -80,7 +80,7 @@ function udb_login_customizer_preview_scripts() {
 	wp_localize_script(
 		'customize-preview',
 		'udbLoginCustomizer',
-		udb_pro_login_customizer_js_object()
+		udb_login_customizer_js_object()
 	);
 }
 add_action( 'customize_preview_init', 'udb_login_customizer_preview_scripts' );
