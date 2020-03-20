@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 function udb_options_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Settings', 'Settings', 'manage_options', 'settings', 'udb_options_page_callback' );
 }
-add_action( 'admin_menu', 'udb_options_page', 20 );
+add_action( 'admin_menu', 'udb_options_page' );
 
 /**
  * Settings page callback.
@@ -28,7 +28,7 @@ function udb_options_page_callback() {
 function udb_tools_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
 }
-add_action( 'admin_menu', 'udb_tools_page', 20 );
+add_action( 'admin_menu', 'udb_tools_page' );
 
 /**
  * Tools page callback.
@@ -86,3 +86,8 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'widgets/html-widget.php';
 
 // Output.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';
+
+/* Modules */
+
+// Login customizer.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/login-customizer.php';

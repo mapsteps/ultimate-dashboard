@@ -29,17 +29,16 @@ function udb_pro_login_customizer_submenu() {
 		)
 	);
 
-	$udb_submenu = $submenu[ $udb_slug ];
-	$tools_index = 13;
-	// In multisite, license submenu is for super admin (so "license" submenu is not always available).
-	$license_index = udb_pro_multisite_supported() ? 0 : 14;
-	$login_index   = udb_pro_multisite_supported() ? 14 : 15;
+	$udb_submenu   = $submenu[ $udb_slug ];
+	$tools_index   = 12;
+	$prolink_index = 13;
+	$login_index   = 14;
 
 	foreach ( $udb_submenu as $index => $args ) {
 		if ( 'tools' === $args[2] ) {
 			$tools_index = $index;
 		} elseif ( 'udb-license' === $args[2] ) {
-			$license_index = $index;
+			$prolink_index = $index;
 		} else {
 			if ( false !== stripos( $args[2], 'udb_login_customizer', true ) ) {
 				$login_index = $index;
@@ -48,19 +47,9 @@ function udb_pro_login_customizer_submenu() {
 	}
 
 	// Move the 'Login Customizer' submenu up above the 'Tools' submenu.
-	$submenu[ $udb_slug ][ $tools_index ] = $udb_submenu[ $login_index ];
-
-	if ( $license_index ) {
-
-		// If license submenu exists.
-		$submenu[ $udb_slug ][ $license_index ] = $udb_submenu[ $tools_index ];
-		$submenu[ $udb_slug ][ $login_index ]   = $udb_submenu[ $license_index ];
-
-	} else {
-
-		$submenu[ $udb_slug ][ $login_index ] = $udb_submenu[ $tools_index ];
-
-	}
+	$submenu[ $udb_slug ][ $tools_index ]   = $udb_submenu[ $login_index ];
+	$submenu[ $udb_slug ][ $prolink_index ] = $udb_submenu[ $tools_index ];
+	$submenu[ $udb_slug ][ $login_index ]   = $udb_submenu[ $prolink_index ];
 
 }
 add_action( 'admin_menu', 'udb_pro_login_customizer_submenu' );
