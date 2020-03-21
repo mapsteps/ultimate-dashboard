@@ -16,9 +16,11 @@ function udb_settings() {
 	register_setting( 'udb-settings-group', 'udb_settings' );
 	register_setting( 'udb-settings-group', 'udb_pro_settings' );
 
+	$title_3rd_party = __( '3rd Party Widgets', 'ultimate-dashboard' ) . ' ' . '(<span class="udb-pro-title">' . __( 'Available in PRO Version', 'ultimate-dashboard' ) . '</span>)';
+
 	// Widget sections.
 	add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
-	add_settings_section( 'udb-3rd-party-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
+	add_settings_section( 'udb-3rd-party-section', $title_3rd_party, '', 'udb-widgets-page' );
 
 	// Other sections (styling, general, advanced, misc).
 	add_settings_section( 'udb-styling-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-general-page' );
@@ -143,7 +145,36 @@ function udb_remove_single_widgets_callback() {
  * Remove 3rd party widgets callback.
  */
 function udb_remove_3rd_party_widgets_callback() {
+
+	$settings = get_option( 'udb_settings' );
+	$widgets  = udb_get_third_party_widgets();
+
+	if ( empty( $widgets ) ) {
+		_e( 'No 3rd Party Widgets available.', 'ultimatedashboard' );
+	}
 	?>
+
+	<div class="setting-fields udb-pro-fields is-gapless">
+
+		<?php
+		foreach ( $widgets as $id => $widget ) {
+
+			$is_checked = isset( $settings[ $id ] ) ? 1 : 0;
+			?>
+
+			<div class="field setting-field">
+				<label for="udb_settings[<?php echo esc_attr( $id ); ?>]" class="label checkbox-label">
+					<?php echo esc_attr( $widget['title_stripped'] ); ?> (<code><?php echo esc_attr( $id ); ?></code>)
+					<input type="checkbox" name="udb_settings[<?php echo esc_attr( $id ); ?>]" id="udb_settings[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( $is_checked, 1 ); ?> disabled>
+					<div class="indicator"></div>
+				</label>
+			</div>
+
+			<?php
+		}
+		?>
+
+	</div>
 
 	<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
 		<?php _e( 'Get Ultimate Dashboard PRO!', 'ultimate-dashboard' ); ?>

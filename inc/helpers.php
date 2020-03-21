@@ -128,3 +128,39 @@ function udb_get_saved_default_widgets() {
 	return $widgets;
 
 }
+
+/**
+ * Get 3rd party widgets.
+ *
+ * From all existing widgets, get the 3rd party widgets.
+ *
+ * @return array The 3rd party widgets.
+ */
+function udb_get_third_party_widgets() {
+
+	$widgets = udb_get_widgets();
+
+	$default_widgets = array(
+		'dashboard_primary'         => array(),
+		'dashboard_quick_press'     => array(),
+		'dashboard_right_now'       => array(),
+		'dashboard_activity'        => array(),
+		'dashboard_incoming_links'  => array(),
+		'dashboard_plugins'         => array(),
+		'dashboard_secondary'       => array(),
+		'dashboard_recent_drafts'   => array(),
+		'dashboard_recent_comments' => array(),
+		'dashboard_php_nag'         => array(),
+	);
+
+	$udb_widgets = array();
+	foreach ( $widgets as $key => $value ) {
+		if ( strpos( $key, 'ms-udb' ) === 0 ) {
+			$udb_widgets[ $key ] = $value;
+		}
+	}
+
+	$widgets = array_diff_key( $widgets, $udb_widgets, $default_widgets );
+
+	return $widgets;
+}

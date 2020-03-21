@@ -40,3 +40,12 @@
 .CodeMirror-wrap {
 	border: 1px solid #ddd;
 }
+
+/* PRO styling */
+.udb-pro-title {
+	color: #e78747;
+}
+
+.udb-pro-fields {
+	color: #888;
+}
