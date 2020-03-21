@@ -152,7 +152,7 @@ function udb_meta_compatibility() {
 		return;
 	}
 
-	// udb_settings_meta_adjustment();
+	udb_settings_meta_adjustment();
 
 }
 add_action( 'admin_init', 'udb_meta_compatibility' );
@@ -173,7 +173,7 @@ function udb_settings_meta_adjustment() {
 	$update_setting_opts = false;
 	$update_pro_opts     = false;
 
-	$plugin_widgets = udb_pro_get_third_party_widgets();
+	$plugin_widgets = udb_get_third_party_widgets();
 
 	if ( ! empty( $widgets ) ) {
 		foreach ( $widgets as $id => $widget ) {
