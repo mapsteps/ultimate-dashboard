@@ -141,3 +141,98 @@ function udb_compat_widget_type() {
 
 }
 add_action( 'admin_init', 'udb_compat_widget_type' );
+
+/**
+ * Meta compatibilities.
+ */
+function udb_meta_compatibility() {
+
+	// Don't run checking on heartbeat request.
+	if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) {
+		return;
+	}
+
+	// udb_settings_meta_adjustment();
+
+}
+add_action( 'admin_init', 'udb_meta_compatibility' );
+
+/**
+ * Move udb_pro_settings to udb_settings.
+ */
+function udb_settings_meta_adjustment() {
+
+	// Make sure we don't check again.
+	if ( get_option( 'udb_compat_settings_meta' ) ) {
+		return;
+	}
+
+	$setting_opts = get_option( 'udb_settings', array() );
+	$pro_opts     = get_option( 'udb_pro_settings', array() );
+
+	$update_setting_opts = false;
+	$update_pro_opts     = false;
+
+	$plugin_widgets = udb_pro_get_third_party_widgets();
+
+	if ( ! empty( $widgets ) ) {
+		foreach ( $widgets as $id => $widget ) {
+
+			// 3rd party widgets.
+			if ( isset( $pro_opts[ $id ] ) ) {
+				$setting_opts[ $id ] = $pro_opts[ $id ];
+				$update_setting_opts = true;
+				$update_pro_opts     = true;
+
+				unset( $pro_opts[ $id ] );
+			}
+		}
+	}
+
+	// Dashboard's page builder template.
+	if ( isset( $pro_opts['page_builder_template'] ) ) {
+		$setting_opts['page_builder_template'] = $pro_opts['page_builder_template'];
+		$update_setting_opts                   = true;
+		$update_pro_opts                       = true;
+
+		unset( $pro_opts['page_builder_template'] );
+	}
+
+	// Dashboard's columns.
+	if ( isset( $pro_opts['dashboard_columns'] ) ) {
+		$setting_opts['dashboard_columns'] = $pro_opts['dashboard_columns'];
+		$update_setting_opts               = true;
+		$update_pro_opts                   = true;
+
+		unset( $pro_opts['dashboard_columns'] );
+	}
+
+	// Widget's order.
+	if ( isset( $pro_opts['widget_order'] ) ) {
+		$setting_opts['widget_order'] = $pro_opts['widget_order'];
+		$update_setting_opts          = true;
+		$update_pro_opts              = true;
+
+		unset( $pro_opts['widget_order'] );
+	}
+
+	// Dashboard's custom css.
+	if ( isset( $pro_opts['custom_css'] ) ) {
+		$setting_opts['custom_css'] = $pro_opts['custom_css'];
+		$update_setting_opts        = true;
+		$update_pro_opts            = true;
+
+		unset( $pro_opts['custom_css'] );
+	}
+
+	// Delete udb_pro_settings, since we don't use it anymore.
+	delete_option( 'udb_pro_settings' );
+
+	// Update the settings meta if necessary.
+	if ( $update_setting_opts ) {
+		update_option( 'udb_settings', $setting_opts );
+	}
+
+	// Make sure we don't check again.
+	update_option( 'udb_compat_settings_meta', 1 );
+}
