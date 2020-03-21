@@ -28,7 +28,7 @@ function udb_options_page_callback() {
 function udb_tools_page() {
 	add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'tools', 'udb_tools_page_callback' );
 }
-add_action( 'admin_menu', 'udb_tools_page' );
+add_action( 'admin_menu', 'udb_tools_page', 20 );
 
 /**
  * Tools page callback.
@@ -51,7 +51,7 @@ function udb_pro_link() {
 	$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
 
 }
-add_action( 'admin_menu', 'udb_pro_link' );
+add_action( 'admin_menu', 'udb_pro_link', 20 );
 
 // Backwards compatibility.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/backwards-compatibility.php';
@@ -88,6 +88,9 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'widgets/html-widget.php';
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';
 
 /* Modules */
+
+// Branding.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/branding.php';
 
 // Login customizer.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/login-customizer.php';

@@ -29,27 +29,5 @@ function udb_login_customizer_submenu() {
 		)
 	);
 
-	$udb_submenu   = $submenu[ $udb_slug ];
-	$tools_index   = 12;
-	$prolink_index = 13;
-	$login_index   = 14;
-
-	foreach ( $udb_submenu as $index => $args ) {
-		if ( 'tools' === $args[2] ) {
-			$tools_index = $index;
-		} elseif ( 'udb-license' === $args[2] ) {
-			$prolink_index = $index;
-		} else {
-			if ( false !== stripos( $args[2], 'udb_login_customizer', true ) ) {
-				$login_index = $index;
-			}
-		}
-	}
-
-	// Move the 'Login Customizer' submenu up above the 'Tools' submenu.
-	$submenu[ $udb_slug ][ $tools_index ]   = $udb_submenu[ $login_index ];
-	$submenu[ $udb_slug ][ $prolink_index ] = $udb_submenu[ $tools_index ];
-	$submenu[ $udb_slug ][ $login_index ]   = $udb_submenu[ $prolink_index ];
-
 }
 add_action( 'admin_menu', 'udb_login_customizer_submenu' );
