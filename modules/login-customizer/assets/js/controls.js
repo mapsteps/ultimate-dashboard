@@ -42,7 +42,6 @@ if (!String.prototype.includes) {
 	function listen() {
 		events.switchLoginPreview();
 		events.bgFieldsChange();
-		events.templateFieldsChange();
 		events.layoutFieldsChange();
 	}
 
@@ -187,32 +186,6 @@ if (!String.prototype.includes) {
 			});
 		});
 	};
-
-	events.templateFieldsChange = function () {
-		wp.customize('udb_login[template]', function (setting) {
-			setting.bind(function (val) {
-
-				var selected = document.querySelector('[data-control-name="udb_login[template]"] .is-selected img');
-				var bgImage = selected ? selected.dataset.bgImage : '';
-
-				if (bgImage) wp.customize('udb_login[bg_image]').set(bgImage);
-
-				switch (val) {
-					case 'left':
-						wp.customize('udb_login[form_position]').set('left');
-						break;
-
-					case 'right':
-						wp.customize('udb_login[form_position]').set('right');
-						break;
-
-					default:
-						wp.customize('udb_login[form_position]').set('default');
-				}
-
-			});
-		});
-	}
 
 	events.layoutFieldsChange = function () {
 		wp.customize.section('udb_login_customizer_layout_section', function (section) {

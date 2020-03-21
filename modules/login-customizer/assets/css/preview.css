@@ -1,6 +1,11 @@
 /**
  * PRO notice
  */
+.udb-login-customizer-pro-notice.is-shown {
+	opacity: 1;
+	visibility: visible;
+}
+
 .udb-login-customizer-pro-notice {
 	display: flex;
 	align-items: center;
@@ -15,7 +20,10 @@
 	text-align: center;
 	letter-spacing: 1px;
 	background-color: rgba(172, 154, 90, 0.95);
+	opacity: 0;
+	visibility: hidden;
 	z-index: 1000;
+	transition: all .3s;
 }
 
 .login .udb-login-customizer-pro-button {
