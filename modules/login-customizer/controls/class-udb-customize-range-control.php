@@ -76,7 +76,7 @@ class Udb_Customize_Range_Control extends \WP_Customize_Control {
 			<?php if ( ! empty( $this->description ) ) : ?>
 				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo $this->description; ?></span>
 			<?php endif; ?>
-			<span class="dashicons dashicons-image-rotate udb-customize-control-reset" title="<?php _e( 'Reset Value', 'ultimatedashboard' ); ?>" data-reset-value="<?php echo esc_attr( $this->value() ); ?>"></span>
+			<span class="dashicons dashicons-image-rotate udb-customize-control-reset" title="<?php _e( 'Reset Value', 'ultimate-dashboard' ); ?>" data-reset-value="<?php echo esc_attr( $this->value() ); ?>"></span>
 		</header>
 		<div class="udb-customize-control--cols">
 			<div class="udb-customize-control--left-col">

@@ -30,6 +30,7 @@ if (!String.prototype.includes) {
 	wp.customize.bind('ready', function () {
 		setupControls();
 		listen();
+		insertProLink();
 	});
 
 	function setupControls() {
@@ -255,5 +256,17 @@ if (!String.prototype.includes) {
 
 			});
 		});
+	}
+
+	function insertProLink() {
+		var proLink = '\
+		<li class="accordion-section control-section udb-pro-control-section">\
+			<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="accordion-section-title" target="_blank" tabindex="0">\
+				Get Pro Version\
+			</a>\
+		</li>\
+		';
+
+		$(proLink).insertAfter('#accordion-section-udb_login_customizer_layout_section');
 	}
 })(jQuery, wp.customize);

@@ -59,7 +59,7 @@ add_action( 'admin_init', 'udb_check_login_customizer_page' );
 function udb_login_customizer_register_project_templates( $atts ) {
 
 	$login_templates = array(
-		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimatedashboard' ),
+		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimate-dashboard' ),
 	);
 
 	// Create the key used for the themes cache.
@@ -105,7 +105,7 @@ function udb_login_customizer_view_project_template( $template ) {
 	}
 
 	$login_templates = array(
-		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimatedashboard' ),
+		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimate-dashboard' ),
 	);
 
 	// Return default template if we don't have a custom one defined.

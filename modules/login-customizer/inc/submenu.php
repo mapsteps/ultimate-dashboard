@@ -23,7 +23,7 @@ function udb_login_customizer_submenu() {
 	array_push(
 		$submenu[ $udb_slug ],
 		array(
-			__( 'Login Customizer', 'ultimatedashboard' ),
+			__( 'Login Customizer', 'ultimate-dashboard' ),
 			apply_filters( 'udb_settings_capability', 'manage_options' ),
 			esc_url( admin_url( 'customize.php?autofocus%5Bpanel%5D=udb_login_customizer_panel' ) ),
 		)

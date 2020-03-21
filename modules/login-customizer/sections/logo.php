@@ -29,7 +29,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[logo_image]',
 		array(
-			'label'    => __( 'Logo Image', 'ultimatedashboard' ),
+			'label'    => __( 'Logo Image', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_logo_section',
 			'settings' => 'udb_login[logo_image]',
 		)
@@ -55,7 +55,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_logo_section',
 			'settings'    => 'udb_login[logo_height]',
-			'label'       => __( 'Logo Height', 'ultimatedashboard' ),
+			'label'       => __( 'Logo Height', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 100,
@@ -84,7 +84,7 @@ $wp_customize->add_control(
 			'type'        => 'url',
 			'section'     => 'udb_login_customizer_logo_section',
 			'settings'    => 'udb_login[logo_url]',
-			'label'       => __( 'Logo Link', 'ultimatedashboard' ),
+			'label'       => __( 'Logo Link', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'placeholder' => home_url(),
 			),
@@ -111,7 +111,7 @@ $wp_customize->add_control(
 			'type'        => 'text',
 			'section'     => 'udb_login_customizer_logo_section',
 			'settings'    => 'udb_login[logo_title]',
-			'label'       => __( 'Logo Title', 'ultimatedashboard' ),
+			'label'       => __( 'Logo Title', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'placeholder' => ucfirst( get_bloginfo( 'name' ) ),
 			),

@@ -204,3 +204,26 @@ input::-moz-focus-outer {
 .udb-customize-control-image.is-empty {
 	border-bottom-width: 0;
 }
+
+/**
+ * PRO styling
+ */
+#customize-theme-controls .udb-pro-control-section .accordion-section-title {
+	display: block;
+	font-weight: 600;
+	color: #e78747;
+	text-decoration: none;
+}
+
+#customize-theme-controls .udb-pro-control-section:hover .accordion-section-title,
+#customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {
+	color: #e78747;
+}
+
+#customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {
+	box-shadow: none;
+}
+
+.udb-pro-control-section a.accordion-section-title::after {
+	display: none;
+}

@@ -30,7 +30,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[bg_color]',
 		array(
-			'label'    => __( 'Background Color', 'ultimatedashboard' ),
+			'label'    => __( 'Background Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_bg_section',
 			'settings' => 'udb_login[bg_color]',
 		)
@@ -53,7 +53,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[bg_image]',
 		array(
-			'label'    => __( 'Upload Background', 'ultimatedashboard' ),
+			'label'    => __( 'Upload Background', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_bg_section',
 			'settings' => 'udb_login[bg_image]',
 		)
@@ -79,17 +79,17 @@ $wp_customize->add_control(
 			'type'     => 'select',
 			'section'  => 'udb_login_customizer_bg_section',
 			'settings' => 'udb_login[bg_position]',
-			'label'    => __( 'Background Position', 'ultimatedashboard' ),
+			'label'    => __( 'Background Position', 'ultimate-dashboard' ),
 			'choices'  => array(
-				'left top'      => __( 'left top', 'ultimatedashboard' ),
-				'left center'   => __( 'left center', 'ultimatedashboard' ),
-				'left bottom'   => __( 'left bottom', 'ultimatedashboard' ),
-				'center top'    => __( 'center top', 'ultimatedashboard' ),
-				'center center' => __( 'center center', 'ultimatedashboard' ),
-				'center bottom' => __( 'center bottom', 'ultimatedashboard' ),
-				'right top'     => __( 'right top', 'ultimatedashboard' ),
-				'right center'  => __( 'right center', 'ultimatedashboard' ),
-				'right bottom'  => __( 'right bottom', 'ultimatedashboard' ),
+				'left top'      => __( 'left top', 'ultimate-dashboard' ),
+				'left center'   => __( 'left center', 'ultimate-dashboard' ),
+				'left bottom'   => __( 'left bottom', 'ultimate-dashboard' ),
+				'center top'    => __( 'center top', 'ultimate-dashboard' ),
+				'center center' => __( 'center center', 'ultimate-dashboard' ),
+				'center bottom' => __( 'center bottom', 'ultimate-dashboard' ),
+				'right top'     => __( 'right top', 'ultimate-dashboard' ),
+				'right center'  => __( 'right center', 'ultimate-dashboard' ),
+				'right bottom'  => __( 'right bottom', 'ultimate-dashboard' ),
 			),
 		)
 	)
@@ -114,11 +114,11 @@ $wp_customize->add_control(
 			'type'     => 'select',
 			'section'  => 'udb_login_customizer_bg_section',
 			'settings' => 'udb_login[bg_size]',
-			'label'    => __( 'Background Size', 'ultimatedashboard' ),
+			'label'    => __( 'Background Size', 'ultimate-dashboard' ),
 			'choices'  => array(
-				'auto'    => __( 'auto', 'ultimatedashboard' ),
-				'cover'   => __( 'cover', 'ultimatedashboard' ),
-				'contain' => __( 'contain', 'ultimatedashboard' ),
+				'auto'    => __( 'auto', 'ultimate-dashboard' ),
+				'cover'   => __( 'cover', 'ultimate-dashboard' ),
+				'contain' => __( 'contain', 'ultimate-dashboard' ),
 			),
 		)
 	)
@@ -143,12 +143,12 @@ $wp_customize->add_control(
 			'type'     => 'select',
 			'section'  => 'udb_login_customizer_bg_section',
 			'settings' => 'udb_login[bg_repeat]',
-			'label'    => __( 'Background Repeat', 'ultimatedashboard' ),
+			'label'    => __( 'Background Repeat', 'ultimate-dashboard' ),
 			'choices'  => array(
-				'no-repeat' => __( 'no-repeat', 'ultimatedashboard' ),
-				'repeat'    => __( 'repeat', 'ultimatedashboard' ),
-				'repeat-x'  => __( 'repeat-x', 'ultimatedashboard' ),
-				'repeat-y'  => __( 'repeat-y', 'ultimatedashboard' ),
+				'no-repeat' => __( 'no-repeat', 'ultimate-dashboard' ),
+				'repeat'    => __( 'repeat', 'ultimate-dashboard' ),
+				'repeat-x'  => __( 'repeat-x', 'ultimate-dashboard' ),
+				'repeat-y'  => __( 'repeat-y', 'ultimate-dashboard' ),
 			),
 		)
 	)

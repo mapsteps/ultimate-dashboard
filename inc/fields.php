@@ -131,7 +131,7 @@ function udb_main_meta_callback() {
 	$udb_widget_types = array(
 		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
 		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
-		'html' => __( 'HTML Widget', 'ultimatedashboard' ),
+		'html' => __( 'HTML Widget', 'ultimate-dashboard' ),
 	);
 
 	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );

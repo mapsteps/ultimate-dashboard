@@ -85,7 +85,7 @@ function udb_remove_all_widgets_callback() {
 
 	<div class="field setting-field">
 		<label for="udb_settings[remove-all]" class="label checkbox-label">
-			<?php _e( 'All', 'ultimatedashboard' ); ?>
+			<?php _e( 'All', 'ultimate-dashboard' ); ?>
 			<input type="checkbox" name="udb_settings[remove-all]" id="udb_settings[remove-all]" value="1" <?php checked( $is_checked, 1 ); ?>>
 			<div class="indicator"></div>
 		</label>
@@ -108,7 +108,7 @@ function udb_remove_single_widgets_callback() {
 
 		<div class="field setting-field">
 			<label for="udb_settings[welcome_panel]" class="label checkbox-label">
-				<?php _e( 'Welcome Panel', 'ultimatedashboard' ); ?> (<code>welcome_panel</code>)
+				<?php _e( 'Welcome Panel', 'ultimate-dashboard' ); ?> (<code>welcome_panel</code>)
 				<input type="checkbox" name="udb_settings[welcome_panel]" id="udb_settings[welcome_panel]" value="1" <?php checked( $is_checked, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
@@ -150,7 +150,7 @@ function udb_remove_3rd_party_widgets_callback() {
 	$widgets  = udb_get_third_party_widgets();
 
 	if ( empty( $widgets ) ) {
-		_e( 'No 3rd Party Widgets available.', 'ultimatedashboard' );
+		_e( 'No 3rd Party Widgets available.', 'ultimate-dashboard' );
 	}
 	?>
 
@@ -226,7 +226,7 @@ function udb_headline_text_settings_callback() {
 	$headline = isset( $settings['dashboard_headline'] ) ? $settings['dashboard_headline'] : '';
 	?>
 
-	<input type="text" name="udb_settings[dashboard_headline]" class="all-options" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Dashboard', 'ultimatedashboard' ); ?>" />
+	<input type="text" name="udb_settings[dashboard_headline]" class="all-options" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Dashboard', 'ultimate-dashboard' ); ?>" />
 
 	<?php
 

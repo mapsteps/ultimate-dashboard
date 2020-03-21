@@ -30,7 +30,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[labels_color]',
 		array(
-			'label'    => __( 'Labels Color', 'ultimatedashboard' ),
+			'label'    => __( 'Labels Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_labels_section',
 			'settings' => 'udb_login[labels_color]',
 		)
