@@ -54,12 +54,12 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 		$this->input_attrs['class'] .= ' udb-customize-field udb-customize-login-template-field';
 
 		$login_templates = array(
-			'left'    => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-left.jpg',
-				'bg_image'  => '',
-			),
 			'default' => array(
 				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-default.jpg',
+				'bg_image'  => '',
+			),
+			'left'    => array(
+				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets/images/template-left.jpg',
 				'bg_image'  => '',
 			),
 			'right'   => array(
