@@ -173,33 +173,6 @@ function udb_settings_meta_adjustment() {
 	$update_setting_opts = false;
 	$update_pro_opts     = false;
 
-	// Dashboard's page builder template.
-	if ( isset( $pro_opts['page_builder_template'] ) ) {
-		$setting_opts['page_builder_template'] = $pro_opts['page_builder_template'];
-		$update_setting_opts                   = true;
-		$update_pro_opts                       = true;
-
-		unset( $pro_opts['page_builder_template'] );
-	}
-
-	// Dashboard's columns.
-	if ( isset( $pro_opts['dashboard_columns'] ) ) {
-		$setting_opts['dashboard_columns'] = $pro_opts['dashboard_columns'];
-		$update_setting_opts               = true;
-		$update_pro_opts                   = true;
-
-		unset( $pro_opts['dashboard_columns'] );
-	}
-
-	// Widget's order.
-	if ( isset( $pro_opts['widget_order'] ) ) {
-		$setting_opts['widget_order'] = $pro_opts['widget_order'];
-		$update_setting_opts          = true;
-		$update_pro_opts              = true;
-
-		unset( $pro_opts['widget_order'] );
-	}
-
 	// Dashboard's custom css.
 	if ( isset( $pro_opts['custom_css'] ) ) {
 		$setting_opts['custom_css'] = $pro_opts['custom_css'];
