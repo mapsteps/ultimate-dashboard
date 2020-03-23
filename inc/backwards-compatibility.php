@@ -173,22 +173,6 @@ function udb_settings_meta_adjustment() {
 	$update_setting_opts = false;
 	$update_pro_opts     = false;
 
-	$plugin_widgets = udb_get_third_party_widgets();
-
-	if ( ! empty( $widgets ) ) {
-		foreach ( $widgets as $id => $widget ) {
-
-			// 3rd party widgets.
-			if ( isset( $pro_opts[ $id ] ) ) {
-				$setting_opts[ $id ] = $pro_opts[ $id ];
-				$update_setting_opts = true;
-				$update_pro_opts     = true;
-
-				unset( $pro_opts[ $id ] );
-			}
-		}
-	}
-
 	// Dashboard's page builder template.
 	if ( isset( $pro_opts['page_builder_template'] ) ) {
 		$setting_opts['page_builder_template'] = $pro_opts['page_builder_template'];
