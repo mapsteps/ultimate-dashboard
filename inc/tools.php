@@ -78,14 +78,16 @@ function udb_render_import_field( $args ) {
  */
 function udb_process_export() {
 
-	$settings       = array();
-	$pro_settings   = array();
-	$login_settings = array();
+	$settings          = array();
+	$pro_settings      = array();
+	$branding_settings = array();
+	$login_settings    = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
-		$settings       = get_option( 'udb_settings' );
-		$pro_settings   = get_option( 'udb_pro_settings' );
-		$login_settings = get_option( 'udb_login' );
+		$settings          = get_option( 'udb_settings' );
+		$pro_settings      = get_option( 'udb_pro_settings' );
+		$branding_settings = get_option( 'udb_branding' );
+		$login_settings    = get_option( 'udb_login' );
 	}
 
 	$widgets = get_posts(
@@ -131,10 +133,11 @@ function udb_process_export() {
 
 	echo wp_json_encode(
 		array(
-			'widgets'        => $widgets,
-			'settings'       => $settings,
-			'pro_settings'   => $pro_settings,
-			'login_settings' => $login_settings,
+			'widgets'           => $widgets,
+			'settings'          => $settings,
+			'pro_settings'      => $pro_settings,
+			'branding_settings' => $branding_settings,
+			'login_settings'    => $login_settings,
 		)
 	);
 
@@ -185,10 +188,11 @@ function udb_process_import() {
 	$imports = (array) json_decode( $imports, true );
 
 	// Retrieve settings & widgets.
-	$settings       = isset( $imports['settings'] ) ? $imports['settings'] : array();
-	$pro_settings   = isset( $imports['pro_settings'] ) ? $imports['pro_settings'] : array();
-	$login_settings = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
-	$widgets        = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
+	$settings          = isset( $imports['settings'] ) ? $imports['settings'] : array();
+	$pro_settings      = isset( $imports['pro_settings'] ) ? $imports['pro_settings'] : array();
+	$branding_settings = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
+	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
+	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
 
 	if ( ! $imports && ! $widgets ) {
 
@@ -202,7 +206,7 @@ function udb_process_import() {
 
 	}
 
-	if ( $settings || $pro_settings || $login_settings ) {
+	if ( $settings || $pro_settings || $branding_settings || $login_settings ) {
 
 		if ( $settings ) {
 			update_option( 'udb_settings', $settings );
@@ -210,6 +214,10 @@ function udb_process_import() {
 
 		if ( $pro_settings ) {
 			update_option( 'udb_pro_settings', $pro_settings );
+		}
+
+		if ( $branding_settings ) {
+			update_option( 'udb_branding', $branding_settings );
 		}
 
 		if ( $login_settings ) {
