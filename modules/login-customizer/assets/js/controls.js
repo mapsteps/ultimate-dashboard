@@ -41,6 +41,7 @@ if (!String.prototype.includes) {
 
 	function listen() {
 		events.switchLoginPreview();
+		events.templateFieldsChange();
 		events.bgFieldsChange();
 		events.layoutFieldsChange();
 	}
@@ -144,6 +145,28 @@ if (!String.prototype.includes) {
 				}
 
 			});
+		});
+	}
+
+	events.templateFieldsChange = function () {
+		wp.customize.section('udb_login_customizer_template_section', function (section) {
+			section.expanded.bind(function (isExpanded) {
+				if (isExpanded) {
+
+					var value = wp.customize('udb_login[template]').get();
+
+					if (value && value !== 'default') {
+						wp.customize.previewer.send('pro_notice', 'show');
+					} else {
+						wp.customize.previewer.send('pro_notice', 'hide');
+					}
+
+				} else {
+
+					wp.customize.previewer.send('pro_notice', 'hide');
+
+				}
+			})
 		});
 	}
 

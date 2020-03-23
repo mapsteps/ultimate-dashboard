@@ -118,6 +118,14 @@
 	};
 
 	events.templateFieldsChange = function () {
+		wp.customize.preview.bind('pro_notice', function (action) {
+			if (action === 'show') {
+				showProNotice();
+			} else {
+				hideProNotice();
+			}
+		});
+
 		wp.customize('udb_login[template]', function (setting) {
 			setting.bind(function (val) {
 
