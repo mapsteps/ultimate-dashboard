@@ -121,7 +121,11 @@
 		wp.customize('udb_login[template]', function (setting) {
 			setting.bind(function (val) {
 
-				showProNotice();
+				if (val !== 'default') {
+					showProNotice();
+				} else {
+					hideProNotice();
+				}
 
 			});
 		});
@@ -448,16 +452,16 @@
 		});
 	};
 
-	function showProNotice() {
+	function showProNotice(autoHide) {
 		var notice = document.querySelector('.udb-login-customizer-pro-notice');
 		if (!notice) return;
 
 		notice.classList.add('is-shown');
 
-		setTimeout(closeProNotice, 3000);
+		if (autoHide) setTimeout(hideProNotice, 3000);
 	}
 
-	function closeProNotice() {
+	function hideProNotice() {
 		var notice = document.querySelector('.udb-login-customizer-pro-notice');
 		if (!notice) return;
 
