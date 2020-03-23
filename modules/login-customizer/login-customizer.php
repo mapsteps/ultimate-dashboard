@@ -52,7 +52,7 @@ function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_template_section',
 		array(
-			'title' => __( 'Templates (PRO)', 'ultimate-dashboard' ),
+			'title' => __( 'Templates', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);

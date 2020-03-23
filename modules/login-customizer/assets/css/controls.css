@@ -211,13 +211,16 @@ input::-moz-focus-outer {
 #customize-theme-controls .udb-pro-control-section .accordion-section-title {
 	display: block;
 	font-weight: 600;
-	color: #e78747;
+	color: #fff;
 	text-decoration: none;
+	background-color: #007cba;
+	border-left-color: #007cba;
 }
 
 #customize-theme-controls .udb-pro-control-section:hover .accordion-section-title,
 #customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {
-	color: #e78747;
+	color: #fff;
+	background-color: #007cba;
 }
 
 #customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {
