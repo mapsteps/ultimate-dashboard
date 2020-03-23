@@ -16,11 +16,9 @@ function udb_settings() {
 	register_setting( 'udb-settings-group', 'udb_settings' );
 	register_setting( 'udb-settings-group', 'udb_pro_settings' );
 
-	$title_3rd_party = __( '3rd Party Widgets', 'ultimate-dashboard' ) . ' ' . '(<span class="udb-pro-title">' . __( 'Available in PRO Version', 'ultimate-dashboard' ) . '</span>)';
-
 	// Widget sections.
 	add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
-	add_settings_section( 'udb-3rd-party-section', $title_3rd_party, '', 'udb-widgets-page' );
+	add_settings_section( 'udb-3rd-party-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
 
 	// Other sections (styling, general, advanced, misc).
 	add_settings_section( 'udb-styling-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-general-page' );
@@ -174,6 +172,10 @@ function udb_remove_3rd_party_widgets_callback() {
 		}
 		?>
 
+	</div>
+
+	<div class="udb-pro-description">
+		<?php _e( 'Plugins or themes can add their own dashboard widgets. These widgets can be disabled using this options which are available in PRO version.', 'ultimate-dashboard' ); ?>
 	</div>
 
 	<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">

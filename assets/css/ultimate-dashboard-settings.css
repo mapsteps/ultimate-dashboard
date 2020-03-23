@@ -46,8 +46,10 @@
 	color: #888;
 }
 
-.udb-pro-title {
-	color: #e78747;
+.udb-pro-description {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	max-width: 600px;
 }
 
 .udb-pro-fields {

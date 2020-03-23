@@ -14,13 +14,12 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  */
 function udb_branding_settings() {
 
-	$pro_section_title      = '(<span class="udb-pro-title">' . __( 'Available in PRO Version', 'ultimate-dashboard' ) . '</span>)';
-	$detailed_section_title = __( 'WordPress Admin', 'ultimate-dashboard' ) . ' ' . $pro_section_title;
-	$misc_section_title     = __( 'Misc', 'ultimate-dashboard' ) . ' ' . $pro_section_title;
+	// Settings group.
+	register_setting( 'udb-branding-settings-group', 'udb_branding' );
 
 	// Settings sections (detailed, general).
-	add_settings_section( 'udb-branding-detailed-section', $detailed_section_title, '', 'udb-detailed-branding' );
-	add_settings_section( 'udb-branding-general-section', $misc_section_title, '', 'udb-general-branding' );
+	add_settings_section( 'udb-branding-detailed-section', __( 'WordPress Admin', 'ultimate-dashboard' ), '', 'udb-detailed-branding' );
+	add_settings_section( 'udb-branding-general-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-branding' );
 
 	// Detailed section fields.
 	add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), 'udb_branding_enable_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
@@ -171,7 +170,7 @@ function udb_branding_footer_text_callback() {
 		$footer_text = $branding['footer_text'];
 	}
 
-	echo '<input type="text" name="udb_branding[footer_text]" class="all-options" value="' . esc_attr( $footer_text ) . '" disabled />';
+	echo '<input type="text" name="udb_branding[footer_text]" class="all-options" value="' . esc_attr( $footer_text ) . '" />';
 
 }
 
@@ -188,6 +187,6 @@ function udb_branding_version_text_callback() {
 		$version_text = $branding['version_text'];
 	}
 
-	echo '<input type="text" name="udb_branding[version_text]" class="all-options" value="' . esc_attr( $version_text ) . '" disabled />';
+	echo '<input type="text" name="udb_branding[version_text]" class="all-options" value="' . esc_attr( $version_text ) . '" />';
 
 }
