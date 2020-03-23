@@ -31,3 +31,6 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/inc/submenu.php';
 
 // Settings.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/inc/settings.php';
+
+// Output.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/inc/output.php';
