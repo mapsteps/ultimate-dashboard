@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Settings.
  */
-function udb_pro_branding_settings() {
+function udb_branding_settings() {
 
 	$pro_section_title      = '(<span class="udb-pro-title">' . __( 'Available in PRO Version', 'ultimate-dashboard' ) . '</span>)';
 	$detailed_section_title = __( 'WordPress Admin', 'ultimate-dashboard' ) . ' ' . $pro_section_title;
@@ -23,23 +23,23 @@ function udb_pro_branding_settings() {
 	add_settings_section( 'udb-branding-general-section', $misc_section_title, '', 'udb-general-branding' );
 
 	// Detailed section fields.
-	add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), 'udb_pro_branding_enable_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
-	add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), 'udb_pro_branding_layout_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
-	add_settings_field( 'udb-branding-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), 'udb_pro_branding_accent_color_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
-	add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), 'udb_pro_branding_admin_bar_logo_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
-	add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), 'udb_pro_branding_admin_bar_logo_url_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
+	add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), 'udb_branding_enable_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
+	add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), 'udb_branding_layout_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
+	add_settings_field( 'udb-branding-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), 'udb_branding_accent_color_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
+	add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), 'udb_branding_admin_bar_logo_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
+	add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), 'udb_branding_admin_bar_logo_url_callback', 'udb-detailed-branding', 'udb-branding-detailed-section' );
 
 	// General section fields.
-	add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), 'udb_pro_branding_footer_text_callback', 'udb-general-branding', 'udb-branding-general-section' );
-	add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), 'udb_pro_branding_version_text_callback', 'udb-general-branding', 'udb-branding-general-section' );
+	add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), 'udb_branding_footer_text_callback', 'udb-general-branding', 'udb-branding-general-section' );
+	add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), 'udb_branding_version_text_callback', 'udb-general-branding', 'udb-branding-general-section' );
 
 }
-add_action( 'admin_init', 'udb_pro_branding_settings' );
+add_action( 'admin_init', 'udb_branding_settings' );
 
 /**
  * Activate branding callback.
  */
-function udb_pro_branding_enable_callback() {
+function udb_branding_enable_callback() {
 
 	$branding   = get_option( 'udb_branding' );
 	$is_checked = isset( $branding['enabled'] ) ? 0 : 0;
@@ -60,7 +60,7 @@ function udb_pro_branding_enable_callback() {
 /**
  * Layout callback.
  */
-function udb_pro_branding_layout_callback() {
+function udb_branding_layout_callback() {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -87,7 +87,7 @@ function udb_pro_branding_layout_callback() {
 /**
  * Accent color callback.
  */
-function udb_pro_branding_accent_color_callback() {
+function udb_branding_accent_color_callback() {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -104,7 +104,7 @@ function udb_pro_branding_accent_color_callback() {
 /**
  * Admin bar logo callback.
  */
-function udb_pro_branding_admin_bar_logo_callback() {
+function udb_branding_admin_bar_logo_callback() {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -144,7 +144,7 @@ function udb_pro_branding_admin_bar_logo_callback() {
 /**
  * Admin bar logo url callback.
  */
-function udb_pro_branding_admin_bar_logo_url_callback() {
+function udb_branding_admin_bar_logo_url_callback() {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -161,7 +161,7 @@ function udb_pro_branding_admin_bar_logo_url_callback() {
 /**
  * Footer text callback.
  */
-function udb_pro_branding_footer_text_callback() {
+function udb_branding_footer_text_callback() {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -178,7 +178,7 @@ function udb_pro_branding_footer_text_callback() {
 /**
  * Version text callback.
  */
-function udb_pro_branding_version_text_callback() {
+function udb_branding_version_text_callback() {
 
 	$branding = get_option( 'udb_branding' );
 

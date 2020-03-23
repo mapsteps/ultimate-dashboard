@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Enqueue scripts & styles.
  */
-function udb_pro_branding_admin_scripts() {
+function udb_branding_admin_scripts() {
 
 	global $typenow;
 
@@ -24,7 +24,7 @@ function udb_pro_branding_admin_scripts() {
 	}
 
 }
-add_action( 'admin_enqueue_scripts', 'udb_pro_branding_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'udb_branding_admin_scripts' );
 
 // Submenu.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/inc/submenu.php';
