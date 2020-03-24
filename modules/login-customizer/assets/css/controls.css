@@ -211,16 +211,20 @@ input::-moz-focus-outer {
 #customize-theme-controls .udb-pro-control-section .accordion-section-title {
 	display: block;
 	font-weight: 600;
-	color: #fff;
+	/*color: #fff;*/
+	font-size: 16px;
 	text-decoration: none;
-	background-color: #007cba;
-	border-left-color: #007cba;
+	border-left-color: #3ba9d2;
+	border-bottom-color: #3ba9d2;
+	border-top: 1px solid #3ba9d2;
+	color: #3ba9d2;
 }
 
 #customize-theme-controls .udb-pro-control-section:hover .accordion-section-title,
 #customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {
-	color: #fff;
-	background-color: #007cba;
+	color: #0071A1;
+	background-color: #fff;
+	border-color: #3ba9d2;
 }
 
 #customize-theme-controls .udb-pro-control-section .accordion-section-title:focus {

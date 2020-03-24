@@ -18,7 +18,7 @@ function udb_branding_settings() {
 	register_setting( 'udb-branding-settings-group', 'udb_branding' );
 
 	// Settings sections (detailed, general).
-	add_settings_section( 'udb-branding-detailed-section', __( 'WordPress Admin', 'ultimate-dashboard' ), '', 'udb-detailed-branding' );
+	add_settings_section( 'udb-branding-detailed-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-detailed-branding' );
 	add_settings_section( 'udb-branding-general-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-branding' );
 
 	// Detailed section fields.
@@ -40,14 +40,12 @@ add_action( 'admin_init', 'udb_branding_settings' );
  */
 function udb_branding_enable_callback() {
 
-	$branding   = get_option( 'udb_branding' );
-	$is_checked = isset( $branding['enabled'] ) ? 0 : 0;
 	?>
 
 	<div class="field setting-field">
-		<label for="udb_branding[enabled]" class="label checkbox-label">
+		<label class="label checkbox-label">
 			&nbsp;
-			<input type="checkbox" name="udb_branding[enabled]" id="udb_branding[enabled]" value="1" <?php checked( $is_checked, 1 ); ?> disabled />
+			<input type="checkbox" disabled />
 			<div class="indicator"></div>
 		</label>
 	</div>
@@ -61,21 +59,11 @@ function udb_branding_enable_callback() {
  */
 function udb_branding_layout_callback() {
 
-	$branding = get_option( 'udb_branding' );
-
-	if ( ! isset( $branding['layout'] ) ) {
-		$layout = 'default';
-	} else {
-		$layout = $branding['layout'];
-	}
-
-	echo '<select name="udb_branding[layout]" disabled>';
+	echo '<select disabled>';
 
 	?>
 
-	<option value="default" <?php selected( $layout, 'default' ); ?>>Default</option>
-
-	<option value="modern" <?php selected( $layout, 'modern' ); ?>>Modern</option>
+	<option>Modern</option>
 
 	<?php
 
@@ -88,15 +76,7 @@ function udb_branding_layout_callback() {
  */
 function udb_branding_accent_color_callback() {
 
-	$branding = get_option( 'udb_branding' );
-
-	if ( ! isset( $branding['accent_color'] ) ) {
-		$accent_color = '#0073AA';
-	} else {
-		$accent_color = $branding['accent_color'];
-	}
-
-	echo '<input type="text" name="udb_branding[accent_color]" value="' . esc_attr( $accent_color ) . '" class="udb-accent-color-branding-field" disabled />';
+	echo '<input type="text" value="#0073AA" disabled />';
 
 }
 
@@ -105,33 +85,15 @@ function udb_branding_accent_color_callback() {
  */
 function udb_branding_admin_bar_logo_callback() {
 
-	$branding = get_option( 'udb_branding' );
-
-	$is_checked = isset( $branding['remove_admin_bar_logo'] ) ? absint( $branding['remove_admin_bar_logo'] ) : 0;
-
-	if ( ! isset( $branding['admin_bar_logo_image'] ) ) {
-		$admin_bar_logo = false;
-	} else {
-		$admin_bar_logo = $branding['admin_bar_logo_image'];
-	}
-
-	if ( function_exists( 'wp_enqueue_media' ) ) {
-		wp_enqueue_media();
-	} else {
-		wp_enqueue_style( 'thickbox' );
-		wp_enqueue_script( 'media-upload' );
-		wp_enqueue_script( 'thickbox' );
-	}
-
 	?>
 
-	<input class="all-options udb-branding-admin-bar-logo-url" type="text" name="udb_branding[admin_bar_logo_image]" value="<?php echo esc_url( $admin_bar_logo ); ?>" disabled />
-	<a href="javascript:void(0)" class="udb-branding-admin-bar-logo-upload button-secondary button-disabled disabled"><?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?></a>
+	<input class="all-options" type="text" disabled />
+	<a href="javascript:void(0)" class="button-secondary button-disabled disabled"><?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?></a>
 
 	<div class="field setting-field" style="margin-top: 10px;">
-		<label for="udb_branding[remove_admin_bar_logo]" class="label checkbox-label">
+		<label class="label checkbox-label">
 			<?php _e( 'Remove Admin Bar logo', 'ultimate-dashboard' ); ?>
-			<input type="checkbox" name="udb_branding[remove_admin_bar_logo]" id="udb_branding[remove_admin_bar_logo]" value="1" <?php checked( $is_checked, 1 ); ?> disabled />
+			<input type="checkbox" disabled />
 			<div class="indicator"></div>
 		</label>
 	</div>
@@ -145,15 +107,23 @@ function udb_branding_admin_bar_logo_callback() {
  */
 function udb_branding_admin_bar_logo_url_callback() {
 
-	$branding = get_option( 'udb_branding' );
+	echo '<input type="url" class="regular-text" disabled />';
 
-	if ( ! isset( $branding['admin_bar_logo_url'] ) ) {
-		$admin_bar_logo_url = false;
-	} else {
-		$admin_bar_logo_url = $branding['admin_bar_logo_url'];
-	}
+	?>
 
-	echo '<input type="url" name="udb_branding[admin_bar_logo_url]" class="regular-text" value="' . esc_attr( $admin_bar_logo_url ) . '" disabled />';
+	<br>
+
+	<p class="udb-pro-description">
+		<?php _e( 'This feature is available in Ultimate Dashboard PRO!' ); ?>
+	</p>
+
+	<br>
+
+	<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary udb-pro-button" target="_blank">
+		<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+	</a>
+
+	<?php
 
 }
 

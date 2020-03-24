@@ -20,14 +20,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 		<div class="neatbox has-bigger-heading is-smooth udb-pro-box">
 			<?php do_settings_sections( 'udb-detailed-branding' ); ?>
-			<div class="neatbox-content">
-				<div class="udb-pro-description">
-					<?php _e( 'Plugins or themes can add their own dashboard widgets. These widgets can be disabled using this options which are available in PRO version.', 'ultimate-dashboard' ); ?>
-				</div>
-				<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
-					<?php _e( 'Get Ultimate Dashboard PRO!', 'ultimate-dashboard' ); ?>
-				</a>
-			</div>
 		</div>
 
 		<div class="neatbox has-bigger-heading is-smooth udb-pro-box">

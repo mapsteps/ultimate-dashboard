@@ -277,8 +277,8 @@ if (!String.prototype.includes) {
 	function insertProLink() {
 		var proLink = '\
 		<li class="accordion-section control-section udb-pro-control-section">\
-			<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="accordion-section-title" target="_blank" tabindex="0">\
-				More Features Are Available in the Pro Version\
+			<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=login_customizer_link&utm_campaign=udb" class="accordion-section-title" target="_blank" tabindex="0">\
+				PRO Features available! ›\
 			</a>\
 		</li>\
 		';
