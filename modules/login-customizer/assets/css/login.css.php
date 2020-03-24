@@ -19,11 +19,7 @@ $has_accent_color = $branding_enabled && ! empty( $accent_color ) ? true : false
 $logo_image  = isset( $login['logo_image'] ) ? $login['logo_image'] : '';
 $logo_height = isset( $login['logo_height'] ) ? $login['logo_height'] : '100%';
 
-$bg_color    = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
-$bg_image    = isset( $login['bg_image'] ) ? $login['bg_image'] : '';
-$bg_position = isset( $login['bg_position'] ) ? $login['bg_position'] : 'center';
-$bg_size     = isset( $login['bg_size'] ) ? $login['bg_size'] : 'cover';
-$bg_repeat   = isset( $login['bg_repeat'] ) ? $login['bg_repeat'] : 'no-repeat';
+$bg_color = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
 
 $form_position           = isset( $login['form_position'] ) ? $login['form_position'] : 'default';
 $form_bg_color           = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
@@ -72,23 +68,11 @@ $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $ac
 ?>
 
 body.login {
-	background-position: <?php echo esc_attr( $bg_position ); ?>;
-	background-size: <?php echo esc_attr( $bg_size ); ?>;
-	background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
-
 	<?php
 	if ( $bg_color ) {
 		?>
 
 		background-color: <?php echo esc_attr( $bg_color ); ?>;
-
-		<?php
-	}
-
-	if ( $bg_image ) {
-		?>
-
-		background-image: url(<?php echo esc_attr( $bg_image ); ?>);
 
 		<?php
 	}

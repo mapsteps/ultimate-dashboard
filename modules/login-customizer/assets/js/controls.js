@@ -189,16 +189,36 @@ if (!String.prototype.includes) {
 			})
 		});
 
+		wp.customize.section('udb_login_customizer_bg_section', function (section) {
+			section.expanded.bind(function (isExpanded) {
+				if (isExpanded) {
+
+					if (wp.customize('udb_login[bg_image]').get()) {
+						wp.customize.previewer.send('pro_notice', 'show');
+					} else {
+						wp.customize.previewer.send('pro_notice', 'hide');
+					}
+
+				} else {
+
+					wp.customize.previewer.send('pro_notice', 'hide');
+
+				}
+			})
+		});
+
 		wp.customize('udb_login[bg_image]', function (setting) {
 			setting.bind(function (val) {
 
 				if (val) {
+					wp.customize.previewer.send('pro_notice', 'show');
 					document.querySelector('[data-control-name="udb_login[bg_image]"]').classList.remove('is-empty');
 
 					wp.customize.control('udb_login[bg_position]').activate();
 					wp.customize.control('udb_login[bg_size]').activate();
 					wp.customize.control('udb_login[bg_repeat]').activate();
 				} else {
+					wp.customize.previewer.send('pro_notice', 'hide');
 					document.querySelector('[data-control-name="udb_login[bg_image]"]').classList.add('is-empty');
 
 					wp.customize.control('udb_login[bg_position]').deactivate();
