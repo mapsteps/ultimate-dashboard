@@ -38,8 +38,6 @@ $wp_customize->add_control(
 			'label'    => __( 'Form Position', 'ultimate-dashboard' ),
 			'choices'  => array(
 				'default' => __( 'Default', 'ultimate-dashboard' ),
-				'left' => __( 'Left (PRO)', 'ultimate-dashboard' ),
-				'right' => __( 'Right (PRO)', 'ultimate-dashboard' ),
 			),
 		)
 	)
