@@ -15,11 +15,9 @@
 	left: 0;
 	padding: 0 35px;
 	width: 100%;
-	height: 45px;
-	color: #fff;
+	height: 50px;
 	text-align: center;
-	letter-spacing: 1px;
-	background-color: rgba(172, 154, 90, 0.95);
+	background-color: #fff;
 	opacity: 0;
 	visibility: hidden;
 	z-index: 1000;
@@ -28,5 +26,6 @@
 
 .login .udb-login-customizer-pro-button {
 	float: none;
-	margin-left: 15px;
+	margin-left: 10px;
+	font-weight: 600;
 }
