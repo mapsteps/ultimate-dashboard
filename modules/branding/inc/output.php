@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  *
  * @return string The updated footer text.
  */
-function udb_pro_branding_footer_text_output( $footer_text ) {
+function udb_branding_footer_text_output( $footer_text ) {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -27,7 +27,7 @@ function udb_pro_branding_footer_text_output( $footer_text ) {
 	return $footer_text;
 
 }
-add_filter( 'admin_footer_text', 'udb_pro_branding_footer_text_output' );
+add_filter( 'admin_footer_text', 'udb_branding_footer_text_output' );
 
 /**
  * Version text.
@@ -36,7 +36,7 @@ add_filter( 'admin_footer_text', 'udb_pro_branding_footer_text_output' );
  *
  * @return string The updated version text.
  */
-function udb_pro_branding_version_text_output( $version_text ) {
+function udb_branding_version_text_output( $version_text ) {
 
 	$branding = get_option( 'udb_branding' );
 
@@ -47,4 +47,4 @@ function udb_pro_branding_version_text_output( $version_text ) {
 	return $version_text;
 
 }
-add_filter( 'update_footer', 'udb_pro_branding_version_text_output', 20 );
+add_filter( 'update_footer', 'udb_branding_version_text_output', 20 );
