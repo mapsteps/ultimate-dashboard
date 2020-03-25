@@ -86,7 +86,7 @@ $wp_customize->add_control(
 			'settings'    => 'udb_login[logo_url]',
 			'label'       => __( 'Logo Link', 'ultimate-dashboard' ),
 			'input_attrs' => array(
-				'placeholder' => home_url(),
+				'placeholder' => 'https://wordpress.org/',
 			),
 		)
 	)
@@ -113,7 +113,7 @@ $wp_customize->add_control(
 			'settings'    => 'udb_login[logo_title]',
 			'label'       => __( 'Logo Title', 'ultimate-dashboard' ),
 			'input_attrs' => array(
-				'placeholder' => ucfirst( get_bloginfo( 'name' ) ),
+				'placeholder' => 'Powered by WordPress',
 			),
 		)
 	)
