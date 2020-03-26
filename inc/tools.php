@@ -79,13 +79,11 @@ function udb_render_import_field( $args ) {
 function udb_process_export() {
 
 	$settings          = array();
-	$pro_settings      = array();
 	$branding_settings = array();
 	$login_settings    = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
 		$settings          = get_option( 'udb_settings' );
-		$pro_settings      = get_option( 'udb_pro_settings' );
 		$branding_settings = get_option( 'udb_branding' );
 		$login_settings    = get_option( 'udb_login' );
 	}
@@ -135,7 +133,6 @@ function udb_process_export() {
 		array(
 			'widgets'           => $widgets,
 			'settings'          => $settings,
-			'pro_settings'      => $pro_settings,
 			'branding_settings' => $branding_settings,
 			'login_settings'    => $login_settings,
 		)
@@ -212,7 +209,12 @@ function udb_process_import() {
 			update_option( 'udb_settings', $settings );
 		}
 
+		/**
+		 * For backward compatibility.
+		 * Imagine they have old exported data (which still using `udb_pro_settings`) before updating UDB.
+		 */
 		if ( $pro_settings ) {
+			// This will be converted to `udb_settings` in backward-compatibility.php.
 			update_option( 'udb_pro_settings', $pro_settings );
 		}
 
