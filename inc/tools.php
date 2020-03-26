@@ -186,7 +186,6 @@ function udb_process_import() {
 
 	// Retrieve settings & widgets.
 	$settings          = isset( $imports['settings'] ) ? $imports['settings'] : array();
-	$pro_settings      = isset( $imports['pro_settings'] ) ? $imports['pro_settings'] : array();
 	$branding_settings = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
 	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
 	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
@@ -203,19 +202,10 @@ function udb_process_import() {
 
 	}
 
-	if ( $settings || $pro_settings || $branding_settings || $login_settings ) {
+	if ( $settings || $branding_settings || $login_settings ) {
 
 		if ( $settings ) {
 			update_option( 'udb_settings', $settings );
-		}
-
-		/**
-		 * For backward compatibility.
-		 * Imagine they have old exported data (which still using `udb_pro_settings`) before updating UDB.
-		 */
-		if ( $pro_settings ) {
-			// This will be converted to `udb_settings` in backward-compatibility.php.
-			update_option( 'udb_pro_settings', $pro_settings );
 		}
 
 		if ( $branding_settings ) {
