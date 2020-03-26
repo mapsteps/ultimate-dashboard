@@ -39,7 +39,7 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
-	'udb_login[pro]',
+	'udb_login[pro_bg]',
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
@@ -52,12 +52,12 @@ $wp_customize->add_setting(
 $wp_customize->add_control(
 	new Udb_Customize_Pro_Control(
 		$wp_customize,
-		'udb_login[pro]',
+		'udb_login[pro_bg]',
 		array(
 			'label'       => __( 'Background Image', 'ultimate-dashboard' ),
 			'description' => __( 'Background image along with background position, size, and repeat are available in Ultimate Dashboard PRO!' ),
 			'section'     => 'udb_login_customizer_bg_section',
-			'settings'    => 'udb_login[pro]',
+			'settings'    => 'udb_login[pro_bg]',
 		)
 	)
 );

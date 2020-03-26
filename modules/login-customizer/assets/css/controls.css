@@ -206,6 +206,15 @@ input::-moz-focus-outer {
 }
 
 /**
+ * Individual Controls Tweak
+ */
+#customize-control-udb_login-form_position {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom-width: 0;
+}
+
+/**
  * PRO panel
  */
 #customize-theme-controls .udb-pro-control-section .accordion-section-title {
@@ -233,4 +242,8 @@ input::-moz-focus-outer {
 
 .udb-pro-control-section a.accordion-section-title::after {
 	display: none;
+}
+
+.udb-pro-description {
+	font-style: italic;
 }

@@ -13,6 +13,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use UdbPro\Udb_Customize_Control;
+use UdbPro\Udb_Customize_Pro_Control;
 use UdbPro\Udb_Customize_Color_Control;
 use UdbPro\Udb_Customize_Range_Control;
 
@@ -39,6 +40,30 @@ $wp_customize->add_control(
 			'choices'  => array(
 				'default' => __( 'Default', 'ultimate-dashboard' ),
 			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[pro_layout]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Pro_Control(
+		$wp_customize,
+		'udb_login[pro_layout]',
+		array(
+			'label'       => '',
+			'description' => __( 'More form positions (left & right) are available in Ultimate Dashboard PRO!' ),
+			'section'     => 'udb_login_customizer_layout_section',
+			'settings'    => 'udb_login[pro_layout]',
 		)
 	)
 );
