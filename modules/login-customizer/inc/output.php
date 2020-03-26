@@ -23,6 +23,21 @@ function udb_login_headertext( $text ) {
 add_filter( 'login_headertext', 'udb_login_headertext', 20 );
 
 /**
+ * Change login logo url.
+ *
+ * @param string $url The existing login logo url.
+ * @return string The modified login logo url.
+ */
+function udb_login_logo_url( $url ) {
+
+	$login = get_option( 'udb_login', array() );
+
+	return ( isset( $login['logo_url'] ) && ! empty( $login['logo_url'] ) ? $login['logo_url'] : $url );
+
+}
+add_filter( 'login_headerurl', 'udb_login_logo_url', 20 );
+
+/**
  * Print login styles.
  */
 function udb_print_login_styles() {
@@ -88,18 +103,3 @@ function udb_print_login_live_styles() {
 
 }
 add_action( 'login_head', 'udb_print_login_live_styles', 20 );
-
-/**
- * Change login logo url.
- *
- * @param string $url The existing login logo url.
- * @return string The modified login logo url.
- */
-function udb_login_logo_url( $url ) {
-
-	$login = get_option( 'udb_login', array() );
-
-	return ( isset( $login['logo_url'] ) && ! empty( $login['logo_url'] ) ? $login['logo_url'] : $url );
-
-}
-add_filter( 'login_headerurl', 'udb_login_logo_url', 20 );
