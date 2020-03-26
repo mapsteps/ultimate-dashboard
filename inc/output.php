@@ -138,7 +138,7 @@ add_action( 'admin_enqueue_scripts', 'udb_enqueue_dashboard_styles', 100 );
  */
 function udb_add_dashboard_css() {
 
-	$settings = get_option( 'udb_pro_settings' );
+	$settings = get_option( 'udb_settings' );
 
 	if ( ! isset( $settings['custom_css'] ) || empty( $settings['custom_css'] ) ) {
 		return;

@@ -14,7 +14,6 @@ function udb_settings() {
 
 	// Settings group.
 	register_setting( 'udb-settings-group', 'udb_settings' );
-	register_setting( 'udb-settings-group', 'udb_pro_settings' );
 
 	// Widget sections.
 	add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widgets-page' );
@@ -305,17 +304,17 @@ function udb_remove_admin_bar_settings_callback() {
  */
 function udb_custom_dashboard_css_callback() {
 
-	$udb_pro_settings = get_option( 'udb_pro_settings' );
+	$settings = get_option( 'udb_settings' );
 
-	if ( ! isset( $udb_pro_settings['custom_css'] ) ) {
+	if ( ! isset( $settings['custom_css'] ) ) {
 		$custom_css = false;
 	} else {
-		$custom_css = $udb_pro_settings['custom_css'];
+		$custom_css = $settings['custom_css'];
 	}
 
 	?>
 
-	<textarea id="udb-custom-dashboard-css" class="widefat textarea udb-custom-css" name="udb_pro_settings[custom_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
+	<textarea id="udb-custom-dashboard-css" class="widefat textarea udb-custom-css" name="udb_settings[custom_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
 
 	<?php
 
