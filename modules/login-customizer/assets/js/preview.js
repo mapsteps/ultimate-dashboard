@@ -94,16 +94,6 @@
 				document.querySelector('[data-listen-value="udb_login[bg_color]"]').innerHTML = 'body.login {background-color: ' + val + ';}';
 			});
 		});
-
-		wp.customize('udb_login[bg_image]', function (setting) {
-			setting.bind(function (val) {
-				if (val) {
-					showProNotice();
-				} else {
-					hideProNotice();
-				}
-			});
-		});
 	};
 
 	events.templateFieldsChange = function () {

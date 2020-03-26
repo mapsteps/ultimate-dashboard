@@ -12,6 +12,7 @@ add_action(
 	function () {
 		// Customize control classes.
 		require __DIR__ . '/controls/class-udb-customize-control.php';
+		require __DIR__ . '/controls/class-udb-customize-pro-control.php';
 		require __DIR__ . '/controls/class-udb-customize-range-control.php';
 		require __DIR__ . '/controls/class-udb-customize-image-control.php';
 		require __DIR__ . '/controls/class-udb-customize-color-control.php';
