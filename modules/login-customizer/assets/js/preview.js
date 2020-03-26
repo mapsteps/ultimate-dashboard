@@ -118,14 +118,10 @@
 			var formBorderWidthStyleTag = document.querySelector('[data-listen-value="udb_login[form_border_width]"]');
 
 			setting.bind(function (val) {
-				var formBgColor = wp.customize('udb_login[form_bg_color]').get();
-				var boxWidth = wp.customize('udb_login[box_width]').get();
 				var formWidth = wp.customize('udb_login[form_width]').get();
 				var formHorizontalPadding = wp.customize('udb_login[form_horizontal_padding]').get();
 				var formBorderWidth = wp.customize('udb_login[form_border_width]').get();
 
-				formBgColor = formBgColor ? formBgColor : '#ffffff';
-				boxWidth = boxWidth ? boxWidth : '40%';
 				formWidth = formWidth ? formWidth : '320px';
 				formHorizontalPadding = formHorizontalPadding ? formHorizontalPadding : '24px';
 				formBorderWidth = formBorderWidth ? formBorderWidth : '2px';
@@ -139,18 +135,6 @@
 
 					formBorderWidthStyleTag.innerHTML = '#loginform {border-width: ' + formBorderWidth + ';}';
 
-				} else {
-					formWidthStyleTag.innerHTML = formWidthStyleTag.innerHTML.replace('#login {width:', '#loginform {max-width:');
-					
-					if (val === 'left') {
-						formPositionStyleTag.innerHTML = '#login {margin-right: auto; margin-left: 0; min-width: 320px; width: ' + boxWidth + '; min-height: 100%; background-color: ' + formBgColor + ';} #loginform {max-width: ' + formWidth + '; box-shadow: none;}';
-					} else if (val === 'right') {
-						formPositionStyleTag.innerHTML = '#login {margin-right: 0; margin-left: auto; min-width: 320px; width: ' + boxWidth + '; min-height: 100%; background-color: ' + formBgColor + ';} #loginform {max-width: ' + formWidth + '; box-shadow: none;}';
-					}
-
-					formHorizontalPaddingStyleTag.innerHTML = '#loginform {padding-left: 24px; padding-right: 24px;}';
-
-					formBorderWidthStyleTag.innerHTML = '#loginform {border-width: 0;}';
 				}
 
 			});
@@ -171,21 +155,6 @@
 				}
 
 				document.querySelector('[data-listen-value="udb_login[form_bg_color]"]').innerHTML = content;
-			});
-		});
-
-		wp.customize('udb_login[box_width]', function (setting) {
-			setting.bind(function (val) {
-				var formPosition = wp.customize('udb_login[form_position]').get();
-				var content = '';
-
-				formPosition = formPosition ? formPosition : 'default';
-
-				if (formPosition !== 'default') {
-					content = '#login {width: ' + val + ';}';
-				}
-
-				document.querySelector('[data-listen-value="udb_login[box_width]"]').innerHTML = content;
 			});
 		});
 

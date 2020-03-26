@@ -42,7 +42,6 @@ if (!String.prototype.includes) {
 	function listen() {
 		events.switchLoginPreview();
 		events.templateFieldsChange();
-		events.layoutFieldsChange();
 	}
 
 	function rangeControl() {
@@ -166,50 +165,6 @@ if (!String.prototype.includes) {
 
 				}
 			})
-		});
-	}
-
-	events.layoutFieldsChange = function () {
-		wp.customize.section('udb_login_customizer_layout_section', function (section) {
-			section.expanded.bind(function (isExpanded) {
-				if (isExpanded) {
-
-					if (wp.customize('udb_login[form_position]').get() === 'default') {
-						wp.customize.control('udb_login[box_width]').deactivate();
-						wp.customize.control('udb_login[form_border_width]').activate();
-						wp.customize.control('udb_login[form_horizontal_padding]').activate();
-						wp.customize.control('udb_login[form_border_color]').activate();
-						wp.customize.control('udb_login[form_border_radius]').activate();
-					} else {
-						wp.customize.control('udb_login[box_width]').activate();
-						wp.customize.control('udb_login[form_border_width]').deactivate();
-						wp.customize.control('udb_login[form_horizontal_padding]').deactivate();
-						wp.customize.control('udb_login[form_border_color]').deactivate();
-						wp.customize.control('udb_login[form_border_radius]').deactivate();
-					}
-
-				}
-			})
-		});
-
-		wp.customize('udb_login[form_position]', function (setting) {
-			setting.bind(function (val) {
-				
-				if (val === 'default') {
-					wp.customize.control('udb_login[box_width]').deactivate();
-					wp.customize.control('udb_login[form_horizontal_padding]').activate();
-					wp.customize.control('udb_login[form_border_width]').activate();
-					wp.customize.control('udb_login[form_border_color]').activate();
-					wp.customize.control('udb_login[form_border_radius]').activate();
-				} else {
-					wp.customize.control('udb_login[box_width]').activate();
-					wp.customize.control('udb_login[form_horizontal_padding]').deactivate();
-					wp.customize.control('udb_login[form_border_width]').deactivate();
-					wp.customize.control('udb_login[form_border_color]').deactivate();
-					wp.customize.control('udb_login[form_border_radius]').deactivate();
-				}
-
-			});
 		});
 	}
 

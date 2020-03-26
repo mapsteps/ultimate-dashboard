@@ -54,7 +54,6 @@ function udb_print_login_live_styles() {
 
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_position]"></style>';
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_bg_color]"></style>';
-	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[box_width]"></style>';
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_width]"></style>';
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_top_padding]"></style>';
 	echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_bottom_padding]"></style>';

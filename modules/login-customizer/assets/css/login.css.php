@@ -24,7 +24,6 @@ $bg_color = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
 $form_position           = 'default';
 $form_bg_color           = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
 $form_bg_color           = ! empty( $form_bg_color ) ? $form_bg_color : '#ffffff';
-$box_width               = isset( $login['box_width'] ) ? $login['box_width'] : '40%';
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '320px';
 $form_top_padding        = isset( $login['form_top_padding'] ) ? $login['form_top_padding'] : '';
 $form_bottom_padding     = isset( $login['form_bottom_padding'] ) ? $login['form_bottom_padding'] : '';

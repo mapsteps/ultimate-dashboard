@@ -92,35 +92,6 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
-	'udb_login[box_width]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => '40%',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'esc_attr',
-	)
-);
-
-$wp_customize->add_control(
-	new Udb_Customize_Range_Control(
-		$wp_customize,
-		'udb_login[box_width]',
-		array(
-			'type'        => 'range',
-			'section'     => 'udb_login_customizer_layout_section',
-			'settings'    => 'udb_login[box_width]',
-			'label'       => __( 'Box Width', 'ultimate-dashboard' ),
-			'input_attrs' => array(
-				'min'  => 30,
-				'max'  => 100,
-				'step' => 1,
-			),
-		)
-	)
-);
-
-$wp_customize->add_setting(
 	'udb_login[form_width]',
 	array(
 		'type'              => 'option',

@@ -130,7 +130,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '#32373c',
+		'default'           => '#ffffff',
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)
