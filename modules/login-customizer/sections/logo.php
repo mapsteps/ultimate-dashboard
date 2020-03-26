@@ -9,9 +9,9 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use UdbPro\Udb_Customize_Control;
-use UdbPro\Udb_Customize_Range_Control;
-use UdbPro\Udb_Customize_Image_Control;
+use Udb\Udb_Customize_Control;
+use Udb\Udb_Customize_Range_Control;
+use Udb\Udb_Customize_Image_Control;
 
 $wp_customize->add_setting(
 	'udb_login[logo_image]',

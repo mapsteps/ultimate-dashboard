@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use UdbPro\Udb_Customize_Login_Template_Control;
+use Udb\Udb_Customize_Login_Template_Control;
 
 $wp_customize->add_setting(
 	'udb_login[template]',

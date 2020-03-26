@@ -5,7 +5,7 @@
  * @package Ultimate Dashboard PRO
  */
 
-namespace UdbPro;
+namespace Udb;
 
 /**
  * Image list control.

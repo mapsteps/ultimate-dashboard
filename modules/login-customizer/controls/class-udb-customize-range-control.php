@@ -5,7 +5,7 @@
  * @package Ultimate Dashboard PRO
  */
 
-namespace UdbPro;
+namespace Udb;
 
 /**
  * Custom range control.
