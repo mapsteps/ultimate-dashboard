@@ -21,7 +21,7 @@ $logo_height = isset( $login['logo_height'] ) ? $login['logo_height'] : '100%';
 
 $bg_color = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
 
-$form_position           = isset( $login['form_position'] ) ? $login['form_position'] : 'default';
+$form_position           = 'default';
 $form_bg_color           = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
 $form_bg_color           = ! empty( $form_bg_color ) ? $form_bg_color : '#ffffff';
 $box_width               = isset( $login['box_width'] ) ? $login['box_width'] : '40%';
@@ -120,20 +120,6 @@ if ( 'default' === $form_position ) {
 	$props['box_width']         = 'width: ' . $form_width . ';';
 	$props['form_border_width'] = 'border-width: ' . $form_border_width . ';';
 
-} else {
-
-	$props['box_width']      = 'width: ' . $box_width . ';';
-	$props['box_min_height'] = 'min-height: 100%;';
-
-	$props['form_min_width']    = 'min-width: 320px;';
-	$props['form_max_width']    = 'max-width: ' . $form_width . ';';
-	$props['form_border_width'] = 'border-width: 0;';
-
-	if ( 'left' === $form_position ) {
-		$props['box_margin'] = 'margin-left: 0;';
-	} elseif ( 'right' === $form_position ) {
-		$props['box_margin'] = 'margin-right: 0;';
-	}
 }
 
 if ( $labels_color && '#444444' !== $labels_color ) {
@@ -155,15 +141,6 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 	echo $props['box_margin'];
 	echo $props['box_width'];
 	echo $props['box_min_height'];
-
-	if ( 'default' !== $form_position ) {
-		echo $props['form_bg_color'];
-		?>
-
-		box-sizing: border-box;
-
-		<?php
-	}
 	?>
 }
 
@@ -187,11 +164,6 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 
 	<?php if ( $form_bottom_padding ) : ?>
 		padding-top: <?php echo esc_attr( $form_bottom_padding ); ?>;
-	<?php endif; ?>
-
-	<?php if ( 'default' !== $form_position && $form_horizontal_padding ) : ?>
-		padding-left: <?php echo esc_attr( $form_horizontal_padding ); ?>;
-		padding-right: <?php echo esc_attr( $form_horizontal_padding ); ?>;
 	<?php endif; ?>
 
 	border-style: solid;
