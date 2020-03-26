@@ -151,7 +151,6 @@ function udb_deactivate() {
 	if ( isset( $udb_settings['remove-on-uninstall'] ) ) {
 
 		delete_option( 'udb_settings' );
-		delete_option( 'udb_pro_settings' );
 		delete_option( 'udb_branding' );
 		delete_option( 'udb_login' );
 		delete_option( 'udb_import' );
