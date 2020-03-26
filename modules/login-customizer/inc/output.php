@@ -10,12 +10,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Set login page header text.
  *
- * @return string
+ * @param string $text The existing header text.
+ * @return string The modified header text.
  */
 function udb_login_headertext( $text ) {
 
 	$login = get_option( 'udb_login', array() );
-	$text  = isset( $login['logo_title'] ) ? $login['logo_title'] : $text;
+	$text  = isset( $login['logo_title'] ) && ! empty( $login['logo_title'] ) ? $login['logo_title'] : $text;
 
 	return $text;
 
