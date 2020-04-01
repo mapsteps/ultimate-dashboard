@@ -202,7 +202,7 @@ function udb_remove_help_tab() {
 
 	$current_screen->remove_help_tabs();
 }
-add_filter( 'contextual_help_list', 'udb_remove_help_tab' );
+add_action( 'admin_head', 'udb_remove_help_tab' );
 
 /**
  * Remove screen options on admin area.
