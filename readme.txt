@@ -80,10 +80,17 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Screenshots ==
 1. Icon Widget Dashboard
 2. Text & Icon Widget with Tooltips
-3. 
-4. 
+3. Customized Login Page
 
 == Changelog ==
+= 2.7 | April 1, 2020 =
+* New: Login Customizer
+* New: Widget Color Settings
+* New: Change Footer & Version Text
+* New: HTML Widget
+* New: Added support for Health Status widget
+* Fixed: contextual_help_list deprecated notice
+* Fixed: Long tooltips overlap icon widgets
 = 2.6 | February 18, 2020 =
 * New: Change dashboard headline
 * New: Add custom admin CSS
