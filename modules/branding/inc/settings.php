@@ -114,7 +114,7 @@ function udb_branding_admin_bar_logo_url_callback() {
 	<br>
 
 	<p class="udb-pro-description">
-		<?php _e( 'This feature is available in Ultimate Dashboard PRO!' ); ?>
+		<?php _e( 'This feature is available in Ultimate Dashboard PRO.' ); ?>
 	</p>
 
 	<br>

@@ -36,7 +36,7 @@ $wp_customize->add_control(
 			'type'     => 'select',
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_position]',
-			'label'    => __( 'Form Position', 'ultimate-dashboard' ),
+			'label'    => __( 'Layout', 'ultimate-dashboard' ),
 			'choices'  => array(
 				'default' => __( 'Default', 'ultimate-dashboard' ),
 			),
@@ -61,7 +61,7 @@ $wp_customize->add_control(
 		'udb_login[pro_layout]',
 		array(
 			'label'       => '',
-			'description' => __( 'More form positions (left & right) are available in Ultimate Dashboard PRO!' ),
+			'description' => __( 'More layouts (left & right) available in Ultimate Dashboard PRO.' ),
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[pro_layout]',
 		)

@@ -201,7 +201,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	<body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 
 	<div class="udb-login-customizer-pro-notice">
-		<?php _e( 'Available in Ultimate Dashboard PRO!', 'ultimate-dashboard' ); ?>
+		<?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
 		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=login_customizer_bar&utm_campaign=udb" class="button button-primary udb-login-customizer-pro-button" target="_blank">
 			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 		</a>

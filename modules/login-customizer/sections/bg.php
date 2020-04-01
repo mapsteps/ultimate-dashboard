@@ -55,7 +55,7 @@ $wp_customize->add_control(
 		'udb_login[pro_bg]',
 		array(
 			'label'       => __( 'Background Image', 'ultimate-dashboard' ),
-			'description' => __( 'Background image along with background position, size, and repeat are available in Ultimate Dashboard PRO!' ),
+			'description' => __( 'This feature is available in Ultimate Dashboard PRO.' ),
 			'section'     => 'udb_login_customizer_bg_section',
 			'settings'    => 'udb_login[pro_bg]',
 		)

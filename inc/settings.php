@@ -175,7 +175,7 @@ function udb_remove_3rd_party_widgets_callback() {
 
 	<p class="udb-pro-description" style="margin-top: 10px !important;">
 		<?php // echo sprintf( __( 'This feature is available in %1$s', 'wpbfpremium' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>!' ); ?>
-		<?php _e( 'This feature is available in Ultimate Dashboard PRO!' ); ?>
+		<?php _e( 'This feature is available in Ultimate Dashboard PRO.' ); ?>
 	</p>
 
 	<br>
