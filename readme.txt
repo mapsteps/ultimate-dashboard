@@ -11,9 +11,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Create a Custom Dashboard and give the WordPress admin area a more meaningful use.
 
 == Description ==
-[Ultimate Dashboard](https://ultimatedashboard.io/) allows you to create a custom WordPress dashboard for you and your clients.
+[Ultimate Dashboard](https://ultimatedashboard.io/) allows you to create a **custom WordPress dashboard** for you and your clients.
 
-Replace the default WordPress dashboard widgets with your own and send your clients to the key areas of their websiten
+Replace the default WordPress dashboard widgets with your own and give the WordPress dashboard a more meaningful use.
 
 Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the user experience for clients in the WordPress admin.
 
@@ -22,26 +22,21 @@ Customize the WordPress Dashboard today!
 == Features ==
 
 = Remove dashboard widgets =
-Remove all or individual default WordPress widgets.
+Remove all or individual default WordPress widgets with just a click.
 
 = Create your own widgets =
-Create *icon, text & HTML widgets* to create a customized client dashboard and send your customer to the key areas of their website - or anywhere else!
+Create **icon, text & HTML widgets** to create a customized client dashboard and send your customer to the key areas of their website - or anywhere else!
 
 = Login Customizer =
---
+Completely **customize the WordPress login screen** & apply your own branding.
 
 = Clean up the WordPress admin =
-Remove things like the "Help" tab and "Screen Options" tab from the WordPress admin area & customize the WordPress *footer & version text*.
-
-= Hide the WordPress admin bar =
-Hide the WordPress admin bar from the frontend with a simple click.
+Remove things like the "Help" tab and "Screen Options" tab from the WordPress admin area & customize the WordPress **footer & version text**.
 
 = Add Custom CSS =
 Add your custom CSS to the WordPress dashboard and/or the entire WordPress admin area.
 
-& a lot more!
-
-Other features:
+= Other features =
 
 * Replace the WordPress dashboard headline
 * Define a text/icon & headline color for your Ultimate Dashboard widgets
@@ -49,7 +44,7 @@ Other features:
 * Export/import dashboard widgets & settings
 * Remove data on uninstall
 
-Get even more Features with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
+For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
 == Ultimate Dashboard PRO ==
 * Remove 3rd party widgets
