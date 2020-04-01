@@ -97,6 +97,7 @@ function udb_get_default_widgets() {
 		'dashboard_recent_drafts'   => array(),
 		'dashboard_recent_comments' => array(),
 		'dashboard_php_nag'         => array(),
+		'dashboard_site_health'     => array(),
 	);
 
 	$widgets = array_intersect_key( $widgets, $default_widgets );
@@ -148,6 +149,7 @@ function udb_get_third_party_widgets() {
 		'dashboard_recent_drafts'   => array(),
 		'dashboard_recent_comments' => array(),
 		'dashboard_php_nag'         => array(),
+		'dashboard_site_health'     => array(),
 	);
 
 	$udb_widgets = array();
