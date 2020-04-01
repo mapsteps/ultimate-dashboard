@@ -30,7 +30,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[footer_link_color]',
 		array(
-			'label'    => __( 'Footer Link Color', 'ultimate-dashboard' ),
+			'label'    => __( 'Link Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[footer_link_color]',
 		)
@@ -53,7 +53,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[footer_link_color_hover]',
 		array(
-			'label'    => __( 'Footer Link Color (Hover)', 'ultimate-dashboard' ),
+			'label'    => __( 'Link Color (Hover)', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[footer_link_color_hover]',
 		)

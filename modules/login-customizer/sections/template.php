@@ -27,7 +27,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[template]',
 		array(
-			'label'    => __( 'Choose Template', 'ultimate-dashboard' ),
+			'label'    => __( 'Templates', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_template_section',
 			'settings' => 'udb_login[template]',
 		)

@@ -84,7 +84,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[form_bg_color]',
 		array(
-			'label'    => __( 'Form Background Color', 'ultimate-dashboard' ),
+			'label'    => __( 'Background Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_bg_color]',
 		)
@@ -110,7 +110,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_width]',
-			'label'       => __( 'Form Width', 'ultimate-dashboard' ),
+			'label'       => __( 'Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 200,
 				'max'  => 1000,
@@ -139,7 +139,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_top_padding]',
-			'label'       => __( 'Form Top Padding', 'ultimate-dashboard' ),
+			'label'       => __( 'Top Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 300,
@@ -168,7 +168,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_bottom_padding]',
-			'label'       => __( 'Form Bottom Padding', 'ultimate-dashboard' ),
+			'label'       => __( 'Bottom Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 300,
@@ -197,7 +197,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_horizontal_padding]',
-			'label'       => __( 'Form Side Padding', 'ultimate-dashboard' ),
+			'label'       => __( 'Side Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 300,
@@ -226,7 +226,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_border_width]',
-			'label'       => __( 'Form Border Width', 'ultimate-dashboard' ),
+			'label'       => __( 'Border Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 50,
@@ -252,7 +252,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[form_border_color]',
 		array(
-			'label'    => __( 'Form Border Color', 'ultimate-dashboard' ),
+			'label'    => __( 'Border Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_border_color]',
 		)
@@ -278,7 +278,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_border_radius]',
-			'label'       => __( 'Form Border Radius', 'ultimate-dashboard' ),
+			'label'       => __( 'Border Radius', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 80,

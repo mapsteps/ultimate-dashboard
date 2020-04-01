@@ -29,7 +29,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[logo_image]',
 		array(
-			'label'    => __( 'Logo Image', 'ultimate-dashboard' ),
+			'label'    => __( 'Logo', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_logo_section',
 			'settings' => 'udb_login[logo_image]',
 		)
@@ -84,7 +84,7 @@ $wp_customize->add_control(
 			'type'        => 'url',
 			'section'     => 'udb_login_customizer_logo_section',
 			'settings'    => 'udb_login[logo_url]',
-			'label'       => __( 'Logo Link', 'ultimate-dashboard' ),
+			'label'       => __( 'Logo URL', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'placeholder' => 'https://wordpress.org/',
 			),

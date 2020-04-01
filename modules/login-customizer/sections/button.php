@@ -34,7 +34,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_button_section',
 			'settings'    => 'udb_login[button_height]',
-			'label'       => __( 'Button Height', 'ultimate-dashboard' ),
+			'label'       => __( 'Height', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 20,
 				'max'  => 80,
@@ -63,7 +63,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_button_section',
 			'settings'    => 'udb_login[button_horizontal_padding]',
-			'label'       => __( 'Button Side Padding', 'ultimate-dashboard' ),
+			'label'       => __( 'Side Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 10,
 				'max'  => 60,
@@ -92,7 +92,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_button_section',
 			'settings'    => 'udb_login[button_border_radius]',
-			'label'       => __( 'Button Border Radius', 'ultimate-dashboard' ),
+			'label'       => __( 'Border Radius', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
 				'max'  => 50,
@@ -118,7 +118,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[button_text_color]',
 		array(
-			'label'    => __( 'Button Text Color', 'ultimate-dashboard' ),
+			'label'    => __( 'Text Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_button_section',
 			'settings' => 'udb_login[button_text_color]',
 		)
@@ -141,7 +141,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[button_text_color_hover]',
 		array(
-			'label'    => __( 'Button Text Color (Hover)', 'ultimate-dashboard' ),
+			'label'    => __( 'Text Color (Hover)', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_button_section',
 			'settings' => 'udb_login[button_text_color_hover]',
 		)
@@ -164,7 +164,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[button_bg_color]',
 		array(
-			'label'    => __( 'Button Background Color', 'ultimate-dashboard' ),
+			'label'    => __( 'Background Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_button_section',
 			'settings' => 'udb_login[button_bg_color]',
 		)
@@ -187,7 +187,7 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[button_bg_color_hover]',
 		array(
-			'label'    => __( 'Button Background Color (Hover)', 'ultimate-dashboard' ),
+			'label'    => __( 'Background Color (Hover)', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_button_section',
 			'settings' => 'udb_login[button_bg_color_hover]',
 		)

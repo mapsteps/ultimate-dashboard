@@ -77,7 +77,7 @@ function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_layout_section',
 		array(
-			'title' => __( 'Layout', 'ultimate-dashboard' ),
+			'title' => __( 'Login Form', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);
@@ -85,7 +85,7 @@ function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_fields_section',
 		array(
-			'title' => __( 'Fields', 'ultimate-dashboard' ),
+			'title' => __( 'Input Fields', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);
@@ -101,7 +101,7 @@ function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_button_section',
 		array(
-			'title' => __( 'Button', 'ultimate-dashboard' ),
+			'title' => __( 'Log In Button', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);
@@ -109,7 +109,7 @@ function udb_login_customizer_sections( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_form_footer_section',
 		array(
-			'title' => __( 'Form Footer', 'ultimate-dashboard' ),
+			'title' => __( 'Footer Links', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);
