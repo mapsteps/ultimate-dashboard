@@ -65,7 +65,7 @@ add_action( 'admin_init', 'udb_check_login_customizer_page' );
  * @param string|string $atts Attributes.
  * @return string $atts Attributes.
  */
-function udb_login_customizer_register_project_templates( $atts ) {
+function udb_login_customizer_register_templates( $atts ) {
 
 	$login_templates = array(
 		'udb-login-page.php' => esc_html__( 'Login Customizer', 'ultimate-dashboard' ),
@@ -96,7 +96,7 @@ function udb_login_customizer_register_project_templates( $atts ) {
 
 }
 // Add a filter to the save post to inject out template into the page cache.
-add_filter( 'wp_insert_post_data', 'udb_login_customizer_register_project_templates' );
+add_filter( 'wp_insert_post_data', 'udb_login_customizer_register_templates' );
 
 /**
  * Checks if the template is assigned to the page.
@@ -104,7 +104,7 @@ add_filter( 'wp_insert_post_data', 'udb_login_customizer_register_project_templa
  * @param string $template The template.
  * @return string $template The template.
  */
-function udb_login_customizer_view_project_template( $template ) {
+function udb_login_customizer_view_template( $template ) {
 
 	global $post;
 
@@ -140,7 +140,7 @@ function udb_login_customizer_view_project_template( $template ) {
 
 }
 // Add a filter to the template include to determine if the page has our template assigned and return it's path.
-add_filter( 'template_include', 'udb_login_customizer_view_project_template' );
+add_filter( 'template_include', 'udb_login_customizer_view_template' );
 
 /**
  * Ensure the Login Designer page is not indexed.
