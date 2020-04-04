@@ -193,3 +193,25 @@ function udb_settings_meta_adjustment() {
 	// Make sure we don't check again.
 	update_option( 'udb_compat_settings_meta', 1 );
 }
+
+/**
+ * Delete un-used auto-generated "Login Customizer" page (with 'udb-login-page' slug).
+ * That page was exists in 2.10 in the PRO version.
+ * So, if we believe people are no more in 2.10, we can remove this hooked function.
+ */
+function udb_delete_unused_page() {
+	// Make sure we don't check again.
+	if ( get_option( 'udb_compat_delete_login_customizer_page' ) ) {
+		return;
+	}
+
+	$page = get_page_by_path( 'udb-login-page' );
+
+	if ( ! empty( $page ) && is_object( $page ) ) {
+		wp_delete_post( $page->ID, true );
+	}
+
+	// Make sure we don't check again.
+	update_option( 'udb_compat_delete_login_customizer_page', 1 );
+}
+add_action( 'admin_init', 'udb_delete_unused_page' );

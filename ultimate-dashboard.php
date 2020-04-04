@@ -155,6 +155,7 @@ function udb_deactivate() {
 		delete_option( 'udb_login' );
 		delete_option( 'udb_import' );
 		delete_option( 'udb_compact_widget_type' );
+		delete_option( 'udb_login_customizer_flush_url' );
 
 	}
 

@@ -13,11 +13,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * @return array The login customizer's localized JS object.
  */
 function udb_login_customizer_js_object() {
-	$login_page = get_page_by_path( 'udb-login-page' );
-
 	return array(
 		'homeUrl'      => home_url(),
-		'loginPageUrl' => $login_page ? get_permalink( $login_page ) : wp_login_url(),
+		'loginPageUrl' => home_url( 'udb-login-customizer' ),
 		'pluginUrl'    => rtrim( ULTIMATE_DASHBOARD_PLUGIN_URL, '/' ),
 		'moduleUrl'    => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer',
 		'assetUrl'     => ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/login-customizer/assets',
