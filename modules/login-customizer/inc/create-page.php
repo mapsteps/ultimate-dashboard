@@ -69,7 +69,7 @@ function udb_login_customizer_set_page() {
 	}
 
 	status_header( 200 );
-	load_template( ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . 'modules/login-customizer/templates/udb-login-page.php', true );
+	load_template( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/templates/udb-login-page.php', true );
 	exit;
 }
 add_action( 'wp', 'udb_login_customizer_set_page' );
