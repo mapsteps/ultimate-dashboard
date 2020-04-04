@@ -196,8 +196,7 @@ function udb_settings_meta_adjustment() {
 
 /**
  * Delete un-used auto-generated "Login Customizer" page (with 'udb-login-page' slug).
- * That page was exists in 2.7 in the FREE version.
- * So, if we believe people are no more in 2.7, we can remove this hooked function.
+ * That page existed in 2.7 of the FREE version.
  */
 function udb_delete_unused_page() {
 	// Make sure we don't check again.
