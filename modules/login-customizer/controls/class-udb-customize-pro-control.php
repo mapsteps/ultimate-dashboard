@@ -66,7 +66,7 @@ class Udb_Customize_Pro_Control extends \WP_Customize_Control {
 		}
 
 		if ( empty( $this->button_url ) ) {
-			$this->button_url = 'https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=login_customizer_control&utm_campaign=udb';
+			$this->button_url = 'https://ultimatedashboard.io/docs/login-customizer/?utm_source=plugin&utm_medium=login_customizer_control&utm_campaign=udb';
 		}
 		?>
 
