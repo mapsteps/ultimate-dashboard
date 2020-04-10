@@ -7,3 +7,10 @@
 # phpcs & editor's setting related
 .vscode/
 phpcs.xml
+
+# ignore build tools (if possible).
+node_modules/
+gulpfile.js
+package.json
+package-lock.json
+manifest.json
