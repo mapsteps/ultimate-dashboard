@@ -128,7 +128,7 @@ function udb_enqueue_dashboard_styles() {
 	require ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/css/widget-styles.css.php';
 	$css = ob_get_clean();
 
-	wp_add_inline_style( 'ultimate-dashboard-index', $css );
+	wp_add_inline_style( 'udb-dashboard', $css );
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_enqueue_dashboard_styles', 100 );
@@ -144,7 +144,7 @@ function udb_add_dashboard_css() {
 		return;
 	}
 
-	wp_add_inline_style( 'ultimate-dashboard-index', $settings['custom_css'] );
+	wp_add_inline_style( 'udb-dashboard', $settings['custom_css'] );
 
 }
 add_action( 'admin_enqueue_scripts', 'udb_add_dashboard_css', 200 );

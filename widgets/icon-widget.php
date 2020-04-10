@@ -132,7 +132,7 @@ function udb_icon_widget() {
 			}
 
 			wp_localize_script(
-				'ultimate-dashboard-cpt',
+				'udb-edit-post',
 				'udbIcons',
 				[
 					'icons'    => $udb_icons,

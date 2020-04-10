@@ -41,8 +41,8 @@ function udb_admin_scripts() {
 		wp_enqueue_style( 'select2' );
 
 		// Custom Post Type CSS.
-		wp_register_style( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-cpt.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'ultimate-dashboard-cpt' );
+		wp_register_style( 'udb-edit-post', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-post.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'udb-edit-post' );
 
 		do_action( 'udb_edit_styles' );
 
@@ -54,8 +54,8 @@ function udb_admin_scripts() {
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// Custom Post Type JS.
-		wp_register_script( 'ultimate-dashboard-cpt', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-cpt.js', array( 'jquery' ), $plugin_data['Version'], true );
-		wp_enqueue_script( 'ultimate-dashboard-cpt' );
+		wp_register_script( 'udb-edit-post', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/edit-post.js', array( 'jquery' ), $plugin_data['Version'], true );
+		wp_enqueue_script( 'udb-edit-post' );
 
 		do_action( 'udb_edit_scripts' );
 
@@ -87,14 +87,14 @@ function udb_admin_scripts() {
 		// Settings page styles.
 		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings-page.css', array(), $plugin_data['Version'] );
 		wp_enqueue_style( 'settings-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/setting-fields.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-settings.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'udb-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/settings.css', array(), $plugin_data['Version'] );
 
 		// CodeMirror.
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// Settings page JS.
-		wp_register_script( 'ultimate-dashboard-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-settings.js', array( 'jquery' ), $plugin_data['Version'], true );
-		wp_enqueue_script( 'ultimate-dashboard-settings' );
+		wp_register_script( 'udb-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/settings.js', array( 'jquery' ), $plugin_data['Version'], true );
+		wp_enqueue_script( 'udb-settings' );
 
 	}
 
@@ -106,14 +106,14 @@ function udb_admin_scripts() {
 		wp_enqueue_style( 'font-awesome' );
 
 		// Dashboard CSS.
-		wp_register_style( 'ultimate-dashboard-index', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/ultimate-dashboard-index.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'ultimate-dashboard-index' );
+		wp_register_style( 'udb-dashboard', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/dashboard.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'udb-dashboard' );
 
 		do_action( 'udb_dashboard_styles' );
 
 		// Dashboard JS.
-		wp_register_script( 'ultimate-dashboard-index', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/ultimate-dashboard-index.js', array( 'jquery' ), $plugin_data['Version'], true );
-		wp_enqueue_script( 'ultimate-dashboard-index' );
+		wp_register_script( 'udb-dashboard', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/dashboard.js', array( 'jquery' ), $plugin_data['Version'], true );
+		wp_enqueue_script( 'udb-dashboard' );
 
 		do_action( 'udb_dashboard_scripts' );
 
