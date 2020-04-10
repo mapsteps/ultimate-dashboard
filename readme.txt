@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 2.7
+Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 3. Customized Login Page
 
 == Changelog ==
+= 2.7.1 | April 4, 2020 =
+* Tweak: We found a better way to implement the login customizer feature and were able to remove the auto-generated page.
 = 2.7 | April 1, 2020 =
 * New: Login Customizer
 * New: Widget Color Settings
