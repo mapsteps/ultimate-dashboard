@@ -17,6 +17,7 @@ $accent_color     = isset( $branding['accent_color'] ) ? $branding['accent_color
 $has_accent_color = $branding_enabled && ! empty( $accent_color ) ? true : false;
 
 $logo_image  = isset( $login['logo_image'] ) ? $login['logo_image'] : '';
+$logo_image  = apply_filters( 'udb_login_logo', $logo_image );
 $logo_height = isset( $login['logo_height'] ) ? $login['logo_height'] : '100%';
 
 $bg_color = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
