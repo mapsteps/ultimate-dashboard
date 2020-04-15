@@ -92,5 +92,7 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/output.php';
 // Branding.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/branding/branding.php';
 
-// Login customizer.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/login-customizer.php';
+if ( apply_filters( 'udb_login_customizer', true ) ) {
+	// Login customizer.
+	require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/login-customizer/login-customizer.php';
+}
