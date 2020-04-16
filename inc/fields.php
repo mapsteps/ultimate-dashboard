@@ -187,6 +187,7 @@ function udb_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_widget_type', sanitize_text_field( $_POST['udb_widget_type'] ) );
 	}
 
+	// Icon widget.
 	if ( isset( $_POST['udb_icon'] ) ) {
 		update_post_meta( $post_id, 'udb_icon_key', sanitize_text_field( $_POST['udb_icon'] ) );
 	}
@@ -210,12 +211,18 @@ function udb_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST['udb_tooltip'] ) );
 	}
 
+	// Text widget.
 	if ( isset( $_POST['udb_content'] ) ) {
 		update_post_meta( $post_id, 'udb_content', $_POST['udb_content'] );
 	}
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
 		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
+	}
+
+	// HTML widget.
+	if ( isset( $_POST['udb_html'] ) ) {
+		update_post_meta( $post_id, 'udb_html', $_POST['udb_html'] );
 	}
 
 	// User defined widget.
