@@ -41,8 +41,8 @@ function udb_admin_scripts() {
 		wp_enqueue_style( 'select2' );
 
 		// Custom Post Type CSS.
-		wp_register_style( 'udb-edit-post', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-post.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'udb-edit-post' );
+		wp_register_style( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-widget.css', array(), $plugin_data['Version'] );
+		wp_enqueue_style( 'udb-edit-widget' );
 
 		do_action( 'udb_edit_styles' );
 
@@ -54,8 +54,8 @@ function udb_admin_scripts() {
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// Custom Post Type JS.
-		wp_register_script( 'udb-edit-post', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/edit-post.js', array( 'jquery' ), $plugin_data['Version'], true );
-		wp_enqueue_script( 'udb-edit-post' );
+		wp_register_script( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/edit-widget.js', array( 'jquery' ), $plugin_data['Version'], true );
+		wp_enqueue_script( 'udb-edit-widget' );
 
 		do_action( 'udb_edit_scripts' );
 

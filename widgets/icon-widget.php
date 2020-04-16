@@ -23,15 +23,15 @@ function udb_icon_widget() {
 			$stored_meta = get_post_meta( $post->ID, 'udb_icon_key', true );
 			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' );
 			$dashicons   = json_decode( $dashicons, true );
-			$dashicons   = $dashicons ? $dashicons : [];
+			$dashicons   = $dashicons ? $dashicons : array();
 			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' );
 			$fontawesome = json_decode( $fontawesome, true );
-			$fontawesome = $fontawesome ? $fontawesome : [];
-			$udb_icons   = [];
-			$selected    = [
+			$fontawesome = $fontawesome ? $fontawesome : array();
+			$udb_icons   = array();
+			$selected    = array(
 				'id'   => 'dashicons dashicons-menu',
 				'text' => 'Menu',
-			];
+			);
 
 			// loop over dashicons.
 			foreach ( $dashicons as $icon_category => $icons ) {
@@ -39,9 +39,9 @@ function udb_icon_widget() {
 				$category_name = str_ireplace( '_', ' ', $icon_category );
 				$category_name = ucwords( $category_name );
 				$category_name = 'Dashicons: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : [];
+				$icons         = $icons && is_array( $icons ) ? $icons : array();
 
-				$items = [];
+				$items = array();
 
 				foreach ( $icons as $icon_class ) {
 
@@ -55,29 +55,29 @@ function udb_icon_widget() {
 
 					if ( $icon_class === $stored_meta ) {
 
-						$selected = [
+						$selected = array(
 							'id'   => $icon_class,
 							'text' => $icon_text,
-						];
+						);
 
 					}
 
 					array_push(
 						$items,
-						[
+						array(
 							'id'   => $icon_class,
 							'text' => $icon_text,
-						]
+						)
 					);
 
 				}
 
 				array_push(
 					$udb_icons,
-					[
+					array(
 						'text'     => $category_name,
 						'children' => $items,
-					]
+					)
 				);
 
 			}
@@ -88,9 +88,9 @@ function udb_icon_widget() {
 				$category_name = str_ireplace( '_', ' ', $icon_category );
 				$category_name = ucwords( $category_name );
 				$category_name = 'Font Awesome 4: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : [];
+				$icons         = $icons && is_array( $icons ) ? $icons : array();
 
-				$items = [];
+				$items = array();
 
 				foreach ( $icons as $icon_class ) {
 
@@ -104,40 +104,40 @@ function udb_icon_widget() {
 
 					if ( $icon_class === $stored_meta ) {
 
-						$selected = [
+						$selected = array(
 							'id'   => $icon_class,
 							'text' => $icon_text,
-						];
+						);
 
 					}
 
 					array_push(
 						$items,
-						[
+						array(
 							'id'   => $icon_class,
 							'text' => $icon_text,
-						]
+						)
 					);
 
 				}
 
 				array_push(
 					$udb_icons,
-					[
+					array(
 						'text'     => $category_name,
 						'children' => $items,
-					]
+					)
 				);
 
 			}
 
 			wp_localize_script(
-				'udb-edit-post',
+				'udb-edit-widget',
 				'udbIcons',
-				[
+				array(
 					'icons'    => $udb_icons,
 					'selected' => $selected,
-				]
+				)
 			);
 
 			?>
