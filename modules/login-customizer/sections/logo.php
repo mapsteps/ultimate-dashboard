@@ -72,7 +72,7 @@ $wp_customize->add_setting(
 		'capability'        => 'edit_theme_options',
 		'default'           => '',
 		'transport'         => 'postMessage',
-		'sanitize_callback' => 'esc_url_raw',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 
@@ -81,10 +81,11 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[logo_url]',
 		array(
-			'type'        => 'url',
+			'type'        => 'text',
 			'section'     => 'udb_login_customizer_logo_section',
 			'settings'    => 'udb_login[logo_url]',
 			'label'       => __( 'Logo URL', 'ultimate-dashboard' ),
+			'description' => __( 'Available template tags: {home_url}', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'placeholder' => 'https://wordpress.org/',
 			),

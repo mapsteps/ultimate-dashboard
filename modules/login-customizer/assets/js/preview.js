@@ -66,6 +66,8 @@
 		wp.customize('udb_login[logo_url]', function (setting) {
 			setting.bind(function (val) {
 
+				val = val.replace('{home_url}', udbLoginCustomizer.homeUrl);
+
 				document.querySelector('.udb-login--logo-link').href = val;
 
 			});

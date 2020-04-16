@@ -33,7 +33,11 @@ function udb_login_logo_url( $url ) {
 
 	$login = get_option( 'udb_login', array() );
 
-	return ( isset( $login['logo_url'] ) && ! empty( $login['logo_url'] ) ? $login['logo_url'] : $url );
+	if (isset( $login['logo_url'] ) && ! empty( $login['logo_url'] )) {
+		$url = str_ireplace( '{home_url}', home_url(), $login['logo_url'] );
+	}
+
+	return $url;
 
 }
 add_filter( 'login_headerurl', 'udb_login_logo_url', 20 );
