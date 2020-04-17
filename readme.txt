@@ -78,6 +78,12 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 3. Customized Login Page
 
 == Changelog ==
+= 2.7.2 | April 17, 2020 =
+* New: Use {home_url} inside login customizer logo URL to dynamically fetch the site URL
+* New: Filter (udb_login_customizer) to disable the Login Customizer feature entirely
+* New: Filter (udb_login_logo) to change the login logo image. That will allow you to change the logo without having to upload it to your or your clients website
+* Minor tweaks & improvements
+* Fixed: HTML widget wouldn't save
 = 2.7.1 | April 4, 2020 =
 * Tweak: We found a better way to implement the login customizer feature and were able to remove the auto-generated page.
 = 2.7 | April 1, 2020 =
