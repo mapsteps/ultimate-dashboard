@@ -1,0 +1,216 @@
+.postbox,
+.postbox * {
+	box-sizing: border-box;
+}
+
+.postbox {
+	border-radius: 3px;
+	border-width: 0;
+	box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
+}
+
+.block-editor .postbox {
+	box-shadow: none;
+}
+
+.postbox .handlediv {
+	height: 45px;
+}
+
+#poststuff .postbox .hndle {
+	padding-top: 0;
+	padding-bottom: 0;
+	height: 45px;
+	line-height: 45px;
+	border-color: #eee;
+}
+
+.block-editor #poststuff .postbox .hndle {
+	line-height: 1.2;
+}
+
+.postbox.closed .hndle {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+#major-publishing-actions {
+	border-color: #eee;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.postbox.has-lines .inside {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.block-editor .edit-post-meta-boxes-area #side-sortables .postbox > .inside {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.block-editor #side-sortables .postbox.has-lines > .inside {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.block-editor #side-sortables .has-lines .field {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.block-editor #normal-sortables .postbox .inside {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.postbox.has-lines .field {
+	margin-bottom: 10px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eee;
+}
+
+.postbox.has-lines .fields .field:last-child {
+	padding-bottom: 0;
+	border-bottom-width: 0;
+}
+
+.postbox-content {
+	padding-top: 10px;
+}
+
+.postbox-content .field {
+	margin-bottom: 15px;
+}
+
+.postbox-content .fields .field:last-child {
+	margin-bottom: 0;
+}
+
+.postbox-content .field > .label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.postbox-content .field > .label,
+.postbox-content .field .control label {
+	font-weight: 600;
+}
+
+.postbox-content .field .is-full {
+	width: 100%;
+}
+
+.postbox-content .field .is-half {
+	width: 50%;
+}
+
+.postbox-content .field .is-small {
+	width: 25%;
+}
+
+/**
+ * ------------------------------
+ * Role Picker
+ * ------------------------------
+ */
+.role-picker-control .select2-search__field[type="search"] {
+	/* Override WordPress */
+	height: 22px;
+	min-height: 10px;
+	line-height: 1.7;
+}
+
+.role-picker-control .select2-search,
+.role-picker-control .select2-selection__choice {
+	margin-bottom: 0;
+}
+
+/**
+ * ------------------------------
+ * Icon Picker
+ * ------------------------------
+ */
+.postbox-content .icon-preview {
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 32px;
+	background-color: #eeeeee;
+	border-radius: 3px;
+}
+
+.postbox-content .icon-preview i {
+	display: inline;
+	line-height: inherit;
+	font-size: inherit;
+}
+
+.icon-picker-control .select2-container .select2-selection--single {
+	display: flex;
+	align-items: center;
+	height: 32px;
+}
+
+.block-editor-page
+	.icon-picker-control
+	.select2-container
+	.select2-selection--single {
+	height: 50px;
+}
+
+.icon-picker-control
+	.select2-container--default
+	.select2-selection--single
+	.select2-selection__arrow {
+	height: 30px;
+}
+
+#side-sortables .select2-results__option code {
+	display: block;
+}
+
+.select2-search__field {
+	height: 28px;
+}
+
+.icon-picker-control
+	.select2-container--default
+	.select2-selection--single
+	.select2-selection__rendered {
+	line-height: 1.4;
+}
+
+.block-editor-page .select2-results__option code {
+	display: block;
+	margin-top: 3px;
+}
+
+.block-editor-page .select2-selection code {
+	display: block;
+	margin-top: 3px;
+}
+
+/**
+ * ------------------------------
+ * Select2 Fix
+ * ------------------------------
+ */
+ .postbox-content .field .control .select2-container {
+	 width: 100% !important;
+	}
+	
+	.postbox-content .field .control .select2-selection--single {
+		outline: none !important;
+	}
+
+/**
+ * ------------------------------
+ * WordPress Fields
+ * ------------------------------
+ */
+	

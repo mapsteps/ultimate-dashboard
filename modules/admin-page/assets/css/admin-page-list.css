@@ -1,0 +1,7 @@
+.wp-list-table .type-udb_admin_page .column-icon .is-empty {
+	color: #dcdcdc;
+}
+
+.wp-list-table thead .column-icon {
+	width: 80px;
+}

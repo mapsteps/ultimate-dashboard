@@ -214,3 +214,25 @@ function udb_sanitize_image( $image, $setting ) {
 	return esc_url_raw( ( $file['ext'] ? $image : $setting->default ) );
 
 }
+
+/**
+ * Get the editor/ builder of the given post.
+ *
+ * @param int $post_id ID of the post being checked.
+ * @return bool
+ */
+function udb_get_content_editor( $post_id ) {
+	return 'normal';
+}
+
+/**
+ * Strip tags and it's content from the given string.
+ *
+ * @link https://stackoverflow.com/questions/14684077/remove-all-html-tags-from-php-string/#answer-39320168
+ *
+ * @param string $text The string being stripped.
+ * @return string The stripped string.
+ */
+function udb_strip_tags_content( $text ) {
+	return preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
+}
