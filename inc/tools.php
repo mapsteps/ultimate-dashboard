@@ -94,36 +94,76 @@ function udb_process_export() {
 			'numberposts' => -1,
 		)
 	);
+	$widgets = $widgets ? $widgets : array();
 
-	if ( $widgets ) {
+	foreach ( $widgets as &$widget ) {
 
-		foreach ( $widgets as &$widget ) {
+		unset(
+			$widget->to_ping,
+			$widget->pinged,
+			$widget->guid,
+			$widget->filter,
+			$widget->ancestors,
+			$widget->page_template,
+			$widget->post_category,
+			$widget->tags_input,
+			$widget->post_type
+		);
 
-			unset(
-				$widget->to_ping,
-				$widget->pinged,
-				$widget->guid,
-				$widget->filter,
-				$widget->ancestors,
-				$widget->page_template,
-				$widget->post_category,
-				$widget->tags_input,
-				$widget->post_type
-			);
+		$widget->meta = array(
+			'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
+			'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
+			'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
+			'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
+			'udb_position_key'   => get_post_meta( $widget->ID, 'udb_position_key', true ),
+			'udb_priority_key'   => get_post_meta( $widget->ID, 'udb_priority_key', true ),
+			'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
+			'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
+			'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
+		);
 
-			$widget->meta = array(
-				'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
-				'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
-				'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
-				'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
-				'udb_position_key'   => get_post_meta( $widget->ID, 'udb_position_key', true ),
-				'udb_priority_key'   => get_post_meta( $widget->ID, 'udb_priority_key', true ),
-				'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
-				'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
-				'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
-			);
+	}
 
-		}
+	$admin_pages = get_posts(
+		array(
+			'post_type'   => 'udb_admin_page',
+			'numberposts' => -1,
+		)
+	);
+	$admin_pages = $admin_pages ? $admin_pages : array();
+
+	foreach ($admin_pages as &$admin_page) {
+		unset(
+			$admin_page->post_excerpt,
+			$admin_page->comment_status,
+			$admin_page->ping_status,
+			$admin_page->post_password,
+			$admin_page->to_ping,
+			$admin_page->pinged,
+			$admin_page->post_content_filtered,
+			$admin_page->post_parent,
+			$admin_page->guid,
+			$admin_page->post_mime_type,
+			$admin_page->comment_count,
+			$admin_page->filter,
+			$admin_page->post_type,
+		);
+
+		$admin_page->meta = array(
+			'udb_content_type'         => get_post_meta( $admin_page->ID, 'udb_content_type', true ),
+			'udb_html_content'         => get_post_meta( $admin_page->ID, 'udb_html_content', true ),
+			'udb_is_active'            => get_post_meta( $admin_page->ID, 'udb_is_active', true ),
+			'udb_menu_type'            => get_post_meta( $admin_page->ID, 'udb_menu_type', true ),
+			'udb_menu_parent'          => get_post_meta( $admin_page->ID, 'udb_menu_parent', true ),
+			'udb_menu_order'           => get_post_meta( $admin_page->ID, 'udb_menu_order', true ),
+			'udb_menu_icon'            => get_post_meta( $admin_page->ID, 'udb_menu_icon', true ),
+			'udb_remove_page_title'    => get_post_meta( $admin_page->ID, 'udb_remove_page_title', true ),
+			'udb_remove_page_margin'   => get_post_meta( $admin_page->ID, 'udb_remove_page_margin', true ),
+			'udb_remove_admin_notices' => get_post_meta( $admin_page->ID, 'udb_remove_admin_notices', true ),
+			'udb_allowed_roles'        => get_post_meta( $admin_page->ID, 'udb_allowed_roles', true ),
+			'udb_custom_css'           => get_post_meta( $admin_page->ID, 'udb_custom_css', true ),
+			'udb_custom_js'            => get_post_meta( $admin_page->ID, 'udb_custom_js', true ),
+		);
 	}
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
@@ -135,6 +175,7 @@ function udb_process_export() {
 			'settings'          => $settings,
 			'branding_settings' => $branding_settings,
 			'login_settings'    => $login_settings,
+			'admin_pages'       => $admin_pages,
 		)
 	);
 
@@ -189,8 +230,9 @@ function udb_process_import() {
 	$branding_settings = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
 	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
 	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
+	$admin_pages       = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
 
-	if ( ! $imports && ! $widgets ) {
+	if ( ! $imports && ! $widgets && ! $admin_pages ) {
 
 		add_settings_error(
 			'udb_export',
@@ -260,6 +302,43 @@ function udb_process_import() {
 			'udb_export',
 			esc_attr( 'udb-import' ),
 			__( 'Widgets imported', 'ultimate-dashboard' ),
+			'updated'
+		);
+
+	}
+
+	if ( $admin_pages ) {
+
+		foreach ( $admin_pages as $admin_page ) {
+
+			$admin_page['post_type'] = 'udb_admin_page';
+
+			$post = get_page_by_path( $admin_page['post_name'], OBJECT, 'udb_admin_page' );
+			$meta = $admin_page['meta'];
+
+			unset( $admin_page['meta'] );
+
+			// if post exists.
+			if ( $post ) {
+				$post_id      = $post->ID;
+				$admin_page['ID'] = $post->ID;
+
+				wp_update_post( $admin_page );
+			} else {
+				unset( $admin_page['ID'] );
+
+				$post_id = wp_insert_post( $admin_page );
+			}
+
+			foreach ( $meta as $meta_key => $meta_value ) {
+				update_post_meta( $post_id, $meta_key, $meta_value );
+			}
+		}
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'Admin pages imported', 'ultimate-dashboard' ),
 			'updated'
 		);
 
