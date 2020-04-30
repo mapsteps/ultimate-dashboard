@@ -84,7 +84,7 @@ function udb_admin_page_add_menu( $post_id ) {
 	$menu_type   = get_post_meta( $post_id, 'udb_menu_type', true );
 	$menu_parent = get_post_meta( $post_id, 'udb_menu_parent', true );
 	$menu_order  = get_post_meta( $post_id, 'udb_menu_order', true );
-	$menu_order  = $menu_order ? absint( $menu_order ) : 50;
+	$menu_order  = $menu_order ? absint( $menu_order ) : 10;
 	$icon_class  = get_post_meta( $post_id, 'udb_menu_icon', true );
 
 	if ( false !== stripos( $icon_class, 'dashicons ' ) ) {
