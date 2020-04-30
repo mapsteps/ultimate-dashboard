@@ -345,7 +345,7 @@ function udb_admin_page_save_postmeta( $post_id ) {
 
 	// HTML content.
 	if ( isset( $_POST['udb_html_content'] ) ) {
-		update_post_meta( $post_id, 'udb_html_content', $_POST['udb_html_content'] );
+		update_post_meta( $post_id, 'udb_html_content', wp_kses_post( $_POST['udb_html_content'] ) );
 	}
 
 	// Menu type.
