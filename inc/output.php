@@ -192,7 +192,7 @@ add_action( 'admin_head', 'udb_change_dashboard_headline' );
  * Remove help tab on admin area.
  */
 function udb_remove_help_tab() {
-	global $current_screen;
+	$current_screen = get_current_screen();
 
 	$settings = get_option( 'udb_settings' );
 
@@ -200,7 +200,9 @@ function udb_remove_help_tab() {
 		return;
 	}
 
-	$current_screen->remove_help_tabs();
+	if ( $current_screen ) {
+		$current_screen->remove_help_tabs();
+	}
 }
 add_action( 'admin_head', 'udb_remove_help_tab' );
 
