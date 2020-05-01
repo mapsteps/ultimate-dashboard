@@ -18,6 +18,7 @@ function udb_admin_page_metaboxes() {
 	add_meta_box( 'udb-admin-page-roles-metabox', __( 'User Role Access', 'ultimatedashboard' ), 'udb_admin_page_roles_metabox_callback', 'udb_admin_page', 'side' );
 
 	add_meta_box( 'udb-admin-page-html-metabox', __( 'HTML', 'ultimatedashboard' ), 'udb_admin_page_html_metabox_callback', 'udb_admin_page', 'normal', 'high' );
+	add_meta_box( 'udb-admin-page-pro-metabox', __( 'PRO Features Available', 'ultimatedashboard' ), 'udb_admin_page_pro_metabox_callback', 'udb_admin_page', 'normal', 'high' );
 	add_meta_box( 'udb-admin-page-display-metabox', __( 'Display Options', 'ultimatedashboard' ), 'udb_admin_page_display_metabox_callback', 'udb_admin_page', 'normal' );
 	add_meta_box( 'udb-admin-page-advanced-metabox', __( 'Advanced', 'ultimatedashboard' ), 'udb_admin_page_advanced_metabox_callback', 'udb_admin_page', 'normal' );
 }
@@ -34,12 +35,14 @@ function udb_admin_page_content_type_metabox_callback( $post ) {
 	?>
 
 	<div class="postbox-content">
-		<div class="field">
-			<div class="control">
-				<select name="udb_content_type" id="udb_content_type" class="is-full">
-					<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php _e( 'Default Editor', 'ultimatedashboard' ); ?></option>
-					<option value="html" <?php selected( $content_type, 'html' ); ?>><?php _e( 'HTML Editor', 'ultimatedashboard' ); ?></option>
-				</select>
+		<div class="fields">
+			<div class="field">
+				<div class="control">
+					<select name="udb_content_type" id="udb_content_type" class="is-full">
+						<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php _e( 'Default Editor', 'ultimatedashboard' ); ?></option>
+						<option value="html" <?php selected( $content_type, 'html' ); ?>><?php _e( 'HTML Editor', 'ultimatedashboard' ); ?></option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -167,6 +170,30 @@ function udb_admin_page_menu_metabox_callback( $post ) {
 
 	<?php
 
+}
+
+/**
+ * "PRO Features" metabox callback.
+ *
+ * @param object $post The post object.
+ */
+function udb_admin_page_pro_metabox_callback( $post ) {
+
+	?>
+
+	<div class="postbox-content">
+		<p class="udb-admin-page-pro-notice">
+			<?php _e( 'Elementor and Beaver Builder are supported in the PRO version.', 'ultimate-dashboard' ); ?>
+			<br>
+			<?php _e( 'Also custom role access!', 'ultimate-dashboard' ); ?>
+		</p>
+
+		<a href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large udb-admin-page-pro-button">
+			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+		</a>
+	</div>
+
+	<?php
 }
 
 /**

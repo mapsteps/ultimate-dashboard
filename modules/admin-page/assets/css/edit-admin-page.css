@@ -210,7 +210,13 @@
 
 /**
  * ------------------------------
- * WordPress Fields
+ * Pro
  * ------------------------------
  */
-	
+.udb-admin-page-pro-notice {
+	margin-top: 0;
+}
+
+.udb-admin-page-pro-notice .description {
+	margin-bottom: 7px;
+}
