@@ -22,7 +22,7 @@ add_action( 'admin_menu', 'udb_admin_page_setup_menu' );
  * @param string $menu_type The menu type (parent or submenu).
  */
 function udb_admin_page_prepare_menu( $menu_type) {
-	$query = new WP_Query(
+	$admin_pages = get_posts(
 		array(
 			'post_type'      => 'udb_admin_page',
 			'post_status'    => 'publish',
@@ -39,35 +39,10 @@ function udb_admin_page_prepare_menu( $menu_type) {
 			),
 		)
 	);
+	$admin_pages = $admin_pages ? $admin_pages : array();
 
-	if ( ! $query->have_posts() ) {
-		return;
-	}
-
-	$user_roles = wp_get_current_user()->roles;
-
-	while ( $query->have_posts() ) {
-		$query->the_post();
-
-		$post_id       = get_the_ID();
-		$allowed_roles = get_post_meta( $post_id, 'udb_allowed_roles', true );
-		$allowed_roles = '' === $allowed_roles ? array( 'all' ) : $allowed_roles;
-		$is_allowed    = false;
-
-		if (in_array( 'all', $allowed_roles, true )) {
-			$is_allowed = true;
-		} else {
-			foreach ( $user_roles as $user_role ) {
-				if ( in_array( $user_role, $allowed_roles, true ) ) {
-					$is_allowed = true;
-					break;
-				}
-			}
-		}
-
-		if ( $is_allowed ) {
-			udb_admin_page_add_menu( $post_id, $menu_type );
-		}
+	foreach ( $admin_pages as $admin_page ) {
+		udb_admin_page_add_menu( $admin_page->ID, $admin_page );
 	}
 }
 
@@ -76,8 +51,7 @@ function udb_admin_page_prepare_menu( $menu_type) {
  *
  * @param int $post_id The admin page's post_id.
  */
-function udb_admin_page_add_menu( $post_id ) {
-	global $post;
+function udb_admin_page_add_menu( $post_id, $post ) {
 
 	$menu_title  = $post->post_title;
 	$menu_slug   = $post->post_name;
