@@ -133,36 +133,11 @@ function udb_process_export() {
 	$admin_pages = $admin_pages ? $admin_pages : array();
 
 	foreach ($admin_pages as &$admin_page) {
-		unset(
-			$admin_page->post_excerpt,
-			$admin_page->comment_status,
-			$admin_page->ping_status,
-			$admin_page->post_password,
-			$admin_page->to_ping,
-			$admin_page->pinged,
-			$admin_page->post_content_filtered,
-			$admin_page->post_parent,
-			$admin_page->guid,
-			$admin_page->post_mime_type,
-			$admin_page->comment_count,
-			$admin_page->filter,
-			$admin_page->post_type,
-		);
+		$meta = get_post_meta( $admin_page->ID );
 
-		$admin_page->meta = array(
-			'udb_content_type'         => get_post_meta( $admin_page->ID, 'udb_content_type', true ),
-			'udb_html_content'         => get_post_meta( $admin_page->ID, 'udb_html_content', true ),
-			'udb_is_active'            => get_post_meta( $admin_page->ID, 'udb_is_active', true ),
-			'udb_menu_type'            => get_post_meta( $admin_page->ID, 'udb_menu_type', true ),
-			'udb_menu_parent'          => get_post_meta( $admin_page->ID, 'udb_menu_parent', true ),
-			'udb_menu_order'           => get_post_meta( $admin_page->ID, 'udb_menu_order', true ),
-			'udb_menu_icon'            => get_post_meta( $admin_page->ID, 'udb_menu_icon', true ),
-			'udb_remove_page_title'    => get_post_meta( $admin_page->ID, 'udb_remove_page_title', true ),
-			'udb_remove_page_margin'   => get_post_meta( $admin_page->ID, 'udb_remove_page_margin', true ),
-			'udb_remove_admin_notices' => get_post_meta( $admin_page->ID, 'udb_remove_admin_notices', true ),
-			'udb_allowed_roles'        => get_post_meta( $admin_page->ID, 'udb_allowed_roles', true ),
-			'udb_custom_css'           => get_post_meta( $admin_page->ID, 'udb_custom_css', true ),
-		);
+		foreach ($meta as $meta_key => $meta_value) {
+			$admin_page->meta = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+		}
 	}
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
@@ -309,9 +284,6 @@ function udb_process_import() {
 	if ( $admin_pages ) {
 
 		foreach ( $admin_pages as $admin_page ) {
-
-			$admin_page['post_type'] = 'udb_admin_page';
-
 			$post = get_page_by_path( $admin_page['post_name'], OBJECT, 'udb_admin_page' );
 			$meta = $admin_page['meta'];
 
@@ -319,7 +291,7 @@ function udb_process_import() {
 
 			// if post exists.
 			if ( $post ) {
-				$post_id      = $post->ID;
+				$post_id          = $post->ID;
 				$admin_page['ID'] = $post->ID;
 
 				wp_update_post( $admin_page );
