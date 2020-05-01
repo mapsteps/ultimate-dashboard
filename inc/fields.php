@@ -213,16 +213,16 @@ function udb_save_postmeta( $post_id ) {
 
 	// Text widget.
 	if ( isset( $_POST['udb_content'] ) ) {
-		update_post_meta( $post_id, 'udb_content', $_POST['udb_content'] );
+		update_post_meta( $post_id, 'udb_content', wp_kses_post( $_POST['udb_content'] ) );
 	}
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
-		update_post_meta( $post_id, 'udb_content_height', $_POST['udb_content_height'] );
+		update_post_meta( $post_id, 'udb_content_height', sanitize_text_field( $_POST['udb_content_height'] ) );
 	}
 
 	// HTML widget.
 	if ( isset( $_POST['udb_html'] ) ) {
-		update_post_meta( $post_id, 'udb_html', $_POST['udb_html'] );
+		update_post_meta( $post_id, 'udb_html', wp_kses_post( $_POST['udb_html'] ) );
 	}
 
 	// User defined widget.
