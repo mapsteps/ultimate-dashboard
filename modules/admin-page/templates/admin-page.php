@@ -14,7 +14,6 @@ $admin_page = get_post( $post_id );
 
 $remove_page_title    = (int) get_post_meta( $post_id, 'udb_remove_page_title', true );
 $remove_page_margin   = (int) get_post_meta( $post_id, 'udb_remove_page_margin', true );
-$remove_admin_notices = (int) get_post_meta( $post_id, 'udb_remove_admin_notices', true );
 
 $custom_css = get_post_meta( $post_id, 'udb_custom_css', true );
 ?>
