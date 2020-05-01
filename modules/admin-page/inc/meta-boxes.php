@@ -15,7 +15,6 @@ function udb_admin_page_metaboxes() {
 	add_meta_box( 'udb-admin-page-content-type-metabox', __( 'Content Type', 'ultimatedashboard' ), 'udb_admin_page_content_type_metabox_callback', 'udb_admin_page', 'side', 'high' );
 
 	add_meta_box( 'udb-admin-page-menu-metabox', __( 'Menu Attributes', 'ultimatedashboard' ), 'udb_admin_page_menu_metabox_callback', 'udb_admin_page', 'side' );
-	add_meta_box( 'udb-admin-page-roles-metabox', __( 'User Role Access', 'ultimatedashboard' ), 'udb_admin_page_roles_metabox_callback', 'udb_admin_page', 'side' );
 
 	add_meta_box( 'udb-admin-page-html-metabox', __( 'HTML', 'ultimatedashboard' ), 'udb_admin_page_html_metabox_callback', 'udb_admin_page', 'normal', 'high' );
 	add_meta_box( 'udb-admin-page-pro-metabox', __( 'PRO Features Available', 'ultimatedashboard' ), 'udb_admin_page_pro_metabox_callback', 'udb_admin_page', 'normal', 'high' );
@@ -253,52 +252,6 @@ function udb_admin_page_display_metabox_callback( $post ) {
 }
 
 /**
- * "User Role Access" metabox callback.
- *
- * @param object $post The post object.
- */
-function udb_admin_page_roles_metabox_callback( $post ) {
-
-	$allowed_roles = get_post_meta( $post->ID, 'udb_allowed_roles', true );
-	$allowed_roles = '' === $allowed_roles ? array( 'all' ) : $allowed_roles;
-
-	$roles_obj = new \WP_Roles();
-	$roles     = $roles_obj->role_names;
-	?>
-
-	<div class="postbox-content has-lines">
-		<div class="fields">
-			<div class="field">
-				<label class="label">
-					<?php _e( 'Allow these roles to access the page', 'ultimatedashboard' ); ?>
-				</label>
-				<div class="control role-picker-control">
-					<select class="udb-widget-roles-field" name="udb_allowed_roles[]" multiple>
-
-						<option value="all"  <?php echo esc_attr( in_array( 'all', $allowed_roles, true ) ? 'selected' : '' ); ?>>
-							<?php _e( 'All', 'ultimatedashboard' ); ?>
-						</option>
-
-						<?php foreach ( $roles as $role_key => $role_name ) : ?>
-							<?php
-							$selected_attr = '';
-							$selected_attr = in_array( $role_key, $allowed_roles, true ) ? 'selected' : '';
-							?>
-							<option value="<?php echo esc_attr( $role_key ); ?>" <?php echo esc_attr( $selected_attr ); ?>>
-								<?php echo esc_attr( $role_name ); ?>
-							</option>
-						<?php endforeach; ?>
-
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<?php
-}
-
-/**
  * "Advanced" metabox callback.
  *
  * @param object $post The post object.
@@ -401,17 +354,6 @@ function udb_admin_page_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_remove_admin_notices', 1 );
 	} else {
 		delete_post_meta( $post_id, 'udb_remove_admin_notices' );
-	}
-
-	// Allowed roles.
-	if ( isset( $_POST['udb_allowed_roles'] ) ) {
-		$allowed_roles = is_array( $_POST['udb_allowed_roles'] ) ? $_POST['udb_allowed_roles'] : array();
-
-		foreach ( $allowed_roles as &$allowed_role ) {
-			$allowed_role = sanitize_text_field( $allowed_role );
-		}
-
-		update_post_meta( $post_id, 'udb_allowed_roles', $allowed_roles );
 	}
 
 	// Custom css.

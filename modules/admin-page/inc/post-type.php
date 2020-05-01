@@ -193,16 +193,7 @@ function udb_admin_page_posts_custom_column( $column, $post_id ) {
 			break;
 
 		case 'roles':
-			$roles = get_post_meta( $post_id, 'udb_allowed_roles', true );
-			$roles = $roles ? $roles : array();
-
-			if ( in_array( 'all', $roles, true ) ) {
-				$text = __( 'All', 'ultimatedashboard' );
-			} else {
-				$text = implode( ', ', $roles );
-			}
-
-			echo esc_html( ucwords( $text ) );
+			_e( 'All', 'ultimatedashboard' );
 			break;
 
 		case 'icon':
