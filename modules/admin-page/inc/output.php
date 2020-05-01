@@ -149,15 +149,6 @@ function udb_admin_page_add_menu( $post_id ) {
 			if ( get_post_meta( $post_id, 'udb_remove_admin_notices', true ) ) {
 				remove_all_actions( 'admin_notices' );
 			}
-
-			add_action(
-				'admin_print_footer_scripts',
-				function () use ( $post_id) {
-					echo '<script>';
-					echo get_post_meta( $post_id, 'udb_custom_js', true );
-					echo '</script>';
-				}
-			);
 		}
 	);
 

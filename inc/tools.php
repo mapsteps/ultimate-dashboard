@@ -162,7 +162,6 @@ function udb_process_export() {
 			'udb_remove_admin_notices' => get_post_meta( $admin_page->ID, 'udb_remove_admin_notices', true ),
 			'udb_allowed_roles'        => get_post_meta( $admin_page->ID, 'udb_allowed_roles', true ),
 			'udb_custom_css'           => get_post_meta( $admin_page->ID, 'udb_custom_css', true ),
-			'udb_custom_js'            => get_post_meta( $admin_page->ID, 'udb_custom_js', true ),
 		);
 	}
 

@@ -306,7 +306,6 @@ function udb_admin_page_roles_metabox_callback( $post ) {
 function udb_admin_page_advanced_metabox_callback( $post ) {
 
 	$custom_css = get_post_meta( $post->ID, 'udb_custom_css', true );
-	$custom_js  = get_post_meta( $post->ID, 'udb_custom_js', true );
 	?>
 
 	<div class="postbox-content has-lines">
@@ -320,18 +319,6 @@ function udb_admin_page_advanced_metabox_callback( $post ) {
 				</p>
 				<div class="control">
 					<textarea id="udb_custom_css" class="widefat textarea udb-custom-css" name="udb_custom_css"><?php echo wp_unslash( $custom_css ); ?></textarea>
-				</div>
-			</div>
-
-			<div class="field">
-				<label class="label" for="udb_custom_js">
-					<?php _e( 'Custom JS', 'ultimatedashboard' ); ?>
-				</label>
-				<p class="description">
-					<?php _e( 'You can provide custom JavaScript for the generated page. Please be careful!', 'ultimatedashboard' ); ?>
-				</p>
-				<div class="control">
-					<textarea id="udb_custom_js" class="widefat textarea udb-custom-js" name="udb_custom_js"><?php echo wp_unslash( $custom_js ); ?></textarea>
 				</div>
 			</div>
 		</div>
@@ -432,9 +419,5 @@ function udb_admin_page_save_postmeta( $post_id ) {
 		update_post_meta( $post_id, 'udb_custom_css', $_POST['udb_custom_css'] );
 	}
 
-	// Custom js.
-	if ( isset( $_POST['udb_custom_js'] ) ) {
-		update_post_meta( $post_id, 'udb_custom_js', $_POST['udb_custom_js'] );
-	}
 }
 add_action( 'save_post', 'udb_admin_page_save_postmeta' );
