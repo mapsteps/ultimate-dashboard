@@ -416,7 +416,7 @@ function udb_admin_page_save_postmeta( $post_id ) {
 
 	// Custom css.
 	if ( isset( $_POST['udb_custom_css'] ) ) {
-		update_post_meta( $post_id, 'udb_custom_css', $_POST['udb_custom_css'] );
+		update_post_meta( $post_id, 'udb_custom_css', udb_sanitize_css_content( $_POST['udb_custom_css'] ) );
 	}
 
 }

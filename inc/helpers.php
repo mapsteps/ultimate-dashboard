@@ -236,3 +236,19 @@ function udb_get_content_editor( $post_id ) {
 function udb_strip_tags_content( $text ) {
 	return preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
 }
+
+/**
+ * Sanitize css content (not a real sanitizing).
+ *
+ * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
+ *
+ * @param string $text The string being sanitized.
+ * @return string The sanitized string.
+ */
+function udb_sanitize_css_content( $text ) {
+	if ( preg_match( '#</?\w+#', $css ) ) {
+		return '';
+	} else {
+		return $text;
+	}
+}
