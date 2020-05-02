@@ -15,8 +15,8 @@ $fontawesome = json_decode( $fontawesome, true );
 $fontawesome = $fontawesome ? $fontawesome : array();
 $udb_icons   = array();
 $selected    = array(
-	'id'   => 'dashicons dashicons-marker',
-	'text' => 'Marker',
+	'id'   => 'dashicons dashicons-admin-post',
+	'text' => 'Admin Post',
 );
 
 // loop over dashicons.
