@@ -35,7 +35,7 @@ Remove things like the "Help" tab and "Screen Options" tab from the WordPress ad
 Add your custom CSS to the WordPress dashboard and/or the entire WordPress admin area.
 
 == Create Custom Admin Pages ==
-Create your own Top-Level & Sub-Menu pages using HTML, CSS or the default WordPress WISIWYG Editor and add them to the WordPress admin menu.
+Create **custom Top-Level & Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them to the WordPress admin menu.
 
 == Other features ==
 
@@ -49,9 +49,10 @@ For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.
 
 == Ultimate Dashboard PRO ==
 * Remove 3rd party widgets
-* Restrict widgets to specific users or user roles
+* Restrict widgets & admin pages to specific users or user roles
 * White Label WordPress
 * Advanced Login Customizer
+* Create Custom Admin Pages in Elementor & Beaver Builder
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
