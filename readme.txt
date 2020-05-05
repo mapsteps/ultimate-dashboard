@@ -35,7 +35,7 @@ Remove things like the "Help" tab and "Screen Options" tab from the WordPress ad
 Add your custom CSS to the WordPress dashboard and/or the entire WordPress admin area.
 
 == Create Custom Admin Pages ==
-Create your own Top-Level & Sub-Menu pages and add them to the WordPress admin menu using HTML, CSS or the default WordPress WISIWYG Editor.
+Create your own Top-Level & Sub-Menu pages using HTML, CSS or the default WordPress WISIWYG Editor and add them to the WordPress admin menu.
 
 == Other features ==
 
