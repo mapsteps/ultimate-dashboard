@@ -19,24 +19,25 @@ Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the
 
 Customize the WordPress Dashboard today!
 
-== Features ==
-
-= Remove dashboard widgets =
+== Remove dashboard widgets ==
 Remove all or individual default WordPress widgets with just a click.
 
-= Create your own widgets =
+== Create your own widgets ==
 Create **icon, text & HTML widgets** to create a customized client dashboard and send your customer to the key areas of their website - or anywhere else!
 
-= Login Customizer =
+== Login Customizer ==
 Completely **customize the WordPress login screen** & apply your own branding.
 
-= Clean up the WordPress admin =
+== Clean up the WordPress admin ==
 Remove things like the "Help" tab and "Screen Options" tab from the WordPress admin area & customize the WordPress **footer & version text**.
 
-= Add Custom CSS =
+== Add Custom CSS ==
 Add your custom CSS to the WordPress dashboard and/or the entire WordPress admin area.
 
-= Other features =
+== Create Custom Admin Pages ==
+Create your own Top-Level & Sub-Menu pages and add them to the WordPress admin menu using HTML, CSS or the default WordPress WISIWYG Editor.
+
+== Other features ==
 
 * Replace the WordPress dashboard headline
 * Define a text/icon & headline color for your Ultimate Dashboard widgets
