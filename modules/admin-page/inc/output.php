@@ -165,7 +165,7 @@ function udb_admin_page_add_menu_icon( $menu_slug, $icon_class ) {
  * Prevent admin pages from being accessed from frontend.
  */
 function udb_admin_page_restrict_frontend() {
-	if ( ! is_singular( 'udb_admin_page' )) {
+	if ( is_user_logged_in() || ! is_singular( 'udb_admin_page' )) {
 		return;
 	}
 
