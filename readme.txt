@@ -77,7 +77,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Screenshots ==
 1. Icon Widget Dashboard
 2. Text & Icon Widget with Tooltips
-3. Customized Login Page
+3. Customized Login Page - Example 1
+4. Customized Login Page - Example 2
 
 == Changelog ==
 = 2.8.1 | March 4, 2020 =
