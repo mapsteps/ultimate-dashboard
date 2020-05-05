@@ -1,10 +1,10 @@
 === Ultimate Dashboard - Custom WordPress Dashboard ===
 Contributors: davidvongries
-Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Ultimate Dash, Ultimate Client Dash
 Requires at least: 4.6
 Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 2.8
+Stable tag: 2.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 3. Customized Login Page
 
 == Changelog ==
+= 2.8.1 | March 4, 2020 =
+* Fixed: CSS sanitization
 = 2.8 | March 4, 2020 =
 * New: Create admin pages & sub-pages
 * Minor tweaks & improvements
