@@ -11,13 +11,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Register metaboxes.
  */
 function udb_admin_page_metaboxes() {
-	add_meta_box( 'udb-admin-page-status-metabox', __( 'Active Status', 'ultimatedashboard' ), 'udb_admin_page_active_status_metabox_callback', 'udb_admin_page', 'side', 'high' );
+	add_meta_box( 'udb-admin-page-status-metabox', __( 'Active', 'ultimatedashboard' ), 'udb_admin_page_active_status_metabox_callback', 'udb_admin_page', 'side', 'high' );
 	add_meta_box( 'udb-admin-page-content-type-metabox', __( 'Content Type', 'ultimatedashboard' ), 'udb_admin_page_content_type_metabox_callback', 'udb_admin_page', 'side', 'high' );
+	add_meta_box( 'udb-admin-page-pro-metabox', __( 'PRO Features Available', 'ultimatedashboard' ), 'udb_admin_page_pro_metabox_callback', 'udb_admin_page', 'side', 'high' );
 
 	add_meta_box( 'udb-admin-page-menu-metabox', __( 'Menu Attributes', 'ultimatedashboard' ), 'udb_admin_page_menu_metabox_callback', 'udb_admin_page', 'side' );
 
 	add_meta_box( 'udb-admin-page-html-metabox', __( 'HTML', 'ultimatedashboard' ), 'udb_admin_page_html_metabox_callback', 'udb_admin_page', 'normal', 'high' );
-	add_meta_box( 'udb-admin-page-pro-metabox', __( 'PRO Features Available', 'ultimatedashboard' ), 'udb_admin_page_pro_metabox_callback', 'udb_admin_page', 'normal', 'high' );
 	add_meta_box( 'udb-admin-page-display-metabox', __( 'Display Options', 'ultimatedashboard' ), 'udb_admin_page_display_metabox_callback', 'udb_admin_page', 'normal' );
 	add_meta_box( 'udb-admin-page-advanced-metabox', __( 'Advanced', 'ultimatedashboard' ), 'udb_admin_page_advanced_metabox_callback', 'udb_admin_page', 'normal' );
 }
@@ -98,9 +98,6 @@ function udb_admin_page_active_status_metabox_callback( $post ) {
 					</label>
 				</div>
 			</div>
-			<p class="description">
-				<?php _e( 'This page will only be shown to the admin menu if the status is active.', 'ultimatedashboard' ); ?>
-			</p>
 		</div>
 	</div>
 
@@ -181,13 +178,12 @@ function udb_admin_page_pro_metabox_callback( $post ) {
 	?>
 
 	<div class="postbox-content">
-		<p class="udb-admin-page-pro-notice">
-			<?php _e( 'Elementor and Beaver Builder are supported in the PRO version.', 'ultimate-dashboard' ); ?>
-			<br>
-			<?php _e( 'Also custom role access!', 'ultimate-dashboard' ); ?>
-		</p>
+		<ul class="udb-admin-page-pro-notice">
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Use <strong>Elementor</strong> or <strong>Beaver Builder</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
+		</ul>
 
-		<a href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large udb-admin-page-pro-button">
+		<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large udb-admin-page-pro-button">
 			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 		</a>
 	</div>
@@ -217,7 +213,7 @@ function udb_admin_page_display_metabox_callback( $post ) {
 						<?php _e( 'Remove Page Title', 'ultimatedashboard' ); ?>
 					</label>
 					<p class="description">
-						<?php _e( 'Remove the page title from the top of the page to make it looks good.', 'ultimatedashboard' ); ?>
+						<?php _e( 'Remove the page title from the Custom Admin Page.', 'ultimatedashboard' ); ?>
 					</p>
 				</div>
 			</div>
@@ -229,7 +225,7 @@ function udb_admin_page_display_metabox_callback( $post ) {
 						<?php _e( 'Remove Page Margin', 'ultimatedashboard' ); ?>
 					</label>
 					<p class="description">
-						<?php _e( 'Remove the default margins of admin page to make it full.', 'ultimatedashboard' ); ?>
+						<?php _e( 'Remove the default margins from the Custom Admin Page.', 'ultimatedashboard' ); ?>
 					</p>
 				</div>
 			</div>
@@ -241,7 +237,7 @@ function udb_admin_page_display_metabox_callback( $post ) {
 						<?php _e( 'Remove Admin Notices', 'ultimatedashboard' ); ?>
 					</label>
 					<p class="description">
-						<?php _e( 'Remove the admin notices (if any) from the page to make it cleaner.', 'ultimatedashboard' ); ?>
+						<?php _e( 'Remove the admin notices (if any) from the Custom Admin Page.', 'ultimatedashboard' ); ?>
 					</p>
 				</div>
 			</div>
@@ -268,7 +264,7 @@ function udb_admin_page_advanced_metabox_callback( $post ) {
 					<?php _e( 'Custom CSS', 'ultimatedashboard' ); ?>
 				</label>
 				<p class="description">
-					<?php _e( 'You can provide custom CSS for the generated page. Please be careful not to break the styles of admin panel.', 'ultimatedashboard' ); ?>
+					<?php _e( 'Add Custom CSS to the Custom Admin Page.', 'ultimatedashboard' ); ?>
 				</p>
 				<div class="control">
 					<textarea id="udb_custom_css" class="widefat textarea udb-custom-css" name="udb_custom_css"><?php echo wp_unslash( $custom_css ); ?></textarea>
