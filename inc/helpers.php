@@ -246,7 +246,7 @@ function udb_strip_tags_content( $text ) {
  * @return string The sanitized string.
  */
 function udb_sanitize_css_content( $text ) {
-	if ( preg_match( '#</?\w+#', $css ) ) {
+	if ( preg_match( '#</?\w+#', $text ) ) {
 		return '';
 	} else {
 		return $text;
