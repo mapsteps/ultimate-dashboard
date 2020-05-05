@@ -160,3 +160,15 @@ function udb_admin_page_add_menu_icon( $menu_slug, $icon_class ) {
 
 	<?php
 }
+
+/**
+ * Prevent admin pages from being accessed from frontend.
+ */
+function udb_admin_page_restrict_frontend() {
+	if ( ! is_singular( 'udb_admin_page' )) {
+		return;
+	}
+
+	wp_safe_redirect( home_url() );
+}
+add_action( 'wp', 'udb_admin_page_restrict_frontend' );
