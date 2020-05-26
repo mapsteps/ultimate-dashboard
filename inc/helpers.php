@@ -252,3 +252,32 @@ function udb_sanitize_css_content( $text ) {
 		return $text;
 	}
 }
+
+/*
+ * Allow iframes & attributes in HTML widget
+ */
+function udb_allow_iframes_in_html( $tags ) {
+
+	$tags['iframe'] = array(
+		'align' => true,
+		'width' => true,
+		'height' => true,
+		'frameborder' => true,
+		'name' => true,
+		'src' => true,
+		'id' => true,
+		'class' => true,
+		'style' => true,
+		'scrolling' => true,
+		'marginwidth' => true,
+		'marginheight' => true,
+		'allow' => true,
+		'allowfullscreen' => true,
+		'allowpaymentrequest' => true,
+		'picture-in-picture' => true,
+	);
+
+	return $tags;
+
+}
+add_filter( 'wp_kses_allowed_html', 'udb_allow_iframes_in_html' );
