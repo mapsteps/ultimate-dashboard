@@ -174,7 +174,7 @@ add_action( 'admin_head', 'udb_add_admin_css', 200 );
  * Change Dashboard's headline.
  */
 function udb_change_dashboard_headline() {
-	if ( $GLOBALS['title'] !== 'Dashboard' ) {
+	if ( isset( $GLOBALS['title'] ) && 'Dashboard' !== $GLOBALS['title'] ) {
 		return;
 	}
 
