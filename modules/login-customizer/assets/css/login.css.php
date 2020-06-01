@@ -144,6 +144,34 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 	?>
 }
 
+@media (max-width: 991.55px) {
+	#login {
+		min-width: 40%;
+	}
+}
+
+@media (max-width: 768.55px) {
+	#login {
+		min-width: 50%;
+	}
+}
+
+@media (max-width: 575.55px) {
+	#login {
+		min-width: 100%;
+	}
+}
+
+.login #login_error {
+	margin-left: auto;
+	margin-right: auto;
+
+	<?php
+	echo $props['form_min_width'];
+	echo $props['form_max_width'];
+	?>
+}
+
 #loginform {
 	position: relative;
 	margin-left: auto;
