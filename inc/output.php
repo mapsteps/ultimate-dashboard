@@ -229,3 +229,15 @@ function udb_remove_admin_bar() {
 	}
 }
 add_action( 'init', 'udb_remove_admin_bar' );
+
+/**
+ * Remove Font Awesome.
+ */
+function udb_remove_font_awesome() {
+	$settings = get_option( 'udb_settings' );
+
+	if ( isset( $settings['remove_font_awesome'] ) ) {
+		add_filter( 'udb_font_awesome', '__return_false' );
+	}
+}
+add_action( 'init', 'udb_remove_font_awesome' );

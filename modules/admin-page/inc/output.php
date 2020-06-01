@@ -11,6 +11,12 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Setup menu.
  */
 function udb_admin_page_setup_menu() {
+
+	if ( apply_filters( 'udb_font_awesome', true ) ) {
+		// Font Awesome.
+		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+	}
+
 	udb_admin_page_prepare_menu( 'parent' );
 	udb_admin_page_prepare_menu( 'submenu' );
 }
@@ -89,9 +95,6 @@ function udb_admin_page_add_menu( $post_id, $post ) {
 					udb_admin_page_add_menu_icon( $menu_slug, $icon_class );
 				}
 			);
-
-			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		}
 	} else {
 		add_submenu_page(

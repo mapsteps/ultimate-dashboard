@@ -20,7 +20,10 @@ function udb_admin_page_admin_assets() {
 	if ( ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) && 'udb_admin_page' === $typenow ) {
 
 		// Styles.
-		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		if ( apply_filters( 'udb_font_awesome', true ) ) {
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		}
+
 		wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
 
 		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/admin-page/assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
@@ -37,7 +40,10 @@ function udb_admin_page_admin_assets() {
 	} elseif ( 'edit-udb_admin_page' === $current_screen->id ) { // Admin page's post list.
 
 		// Styles.
-		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		if ( apply_filters( 'udb_font_awesome', true ) ) {
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		}
+
 		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/admin-page/assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		wp_enqueue_style( 'udb-admin-page-list', ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/admin-page/assets/css/admin-page-list.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );

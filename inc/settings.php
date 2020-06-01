@@ -45,10 +45,34 @@ function udb_settings() {
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'udb-general-page', 'udb-advanced-section' );
 
 	// Misc section fields.
+	$remove_fa_description = '<p class="description" style="font-weight: 400;">' . __( 'Use only if your icons are not displayed properly.', 'ultimatedashboard' ) . '</p>';
+
+	add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, 'udb_remove_font_awesome_callback', 'udb-general-page', 'udb-misc-section' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'udb-general-page', 'udb-misc-section' );
 
 }
 add_action( 'admin_init', 'udb_settings' );
+
+/**
+ * Remove Font Awesome callback.
+ */
+function udb_remove_font_awesome_callback() {
+
+	$settings   = get_option( 'udb_settings' );
+	$is_checked = isset( $settings['remove_font_awesome'] ) ? 1 : 0;
+	?>
+
+	<div class="field setting-field">
+		<label for="udb_settings[remove_font_awesome]" class="label checkbox-label">
+			&nbsp;
+			<input type="checkbox" name="udb_settings[remove_font_awesome]" id="udb_settings[remove_font_awesome]" value="1" <?php checked( $is_checked, 1 ); ?>>
+			<div class="indicator"></div>
+		</label>
+	</div>
+
+	<?php
+
+}
 
 /**
  * Remove on uninstall callback.
@@ -143,7 +167,7 @@ function udb_remove_single_widgets_callback() {
  */
 function udb_remove_3rd_party_widgets_callback() {
 
-	$widgets  = udb_get_third_party_widgets();
+	$widgets = udb_get_third_party_widgets();
 
 	if ( empty( $widgets ) ) {
 		_e( 'No 3rd Party Widgets available.', 'ultimate-dashboard' );
