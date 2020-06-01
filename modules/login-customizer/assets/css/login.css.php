@@ -172,6 +172,7 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 	?>
 }
 
+.login form,
 #loginform {
 	position: relative;
 	margin-left: auto;
