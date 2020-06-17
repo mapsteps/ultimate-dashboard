@@ -14,7 +14,7 @@ function udb_admin_page_setup_menu() {
 
 	if ( apply_filters( 'udb_font_awesome', true ) ) {
 		// Font Awesome.
-		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 	}
 
 	udb_admin_page_prepare_menu( 'parent' );

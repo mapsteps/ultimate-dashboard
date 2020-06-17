@@ -34,16 +34,16 @@ function udb_admin_scripts() {
 
 		if ( apply_filters( 'udb_font_awesome', true ) ) {
 			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		}
 
 		// Select2 CSS.
-		wp_register_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
-		wp_enqueue_style( 'select2' );
+		wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
 
 		// Custom Post Type CSS.
-		wp_register_style( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-widget.css', array(), $plugin_data['Version'] );
-		wp_enqueue_style( 'udb-edit-widget' );
+		wp_enqueue_style( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-widget.css', array(), $plugin_data['Version'] );
+
+		wp_enqueue_style( 'udb-edit-admin-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/admin-page/assets/css/edit-admin-page.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		do_action( 'udb_edit_styles' );
 
@@ -67,7 +67,7 @@ function udb_admin_scripts() {
 
 		if ( apply_filters( 'udb_font_awesome', true ) ) {
 			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		}
 
 	}
@@ -105,7 +105,7 @@ function udb_admin_scripts() {
 
 		if ( apply_filters( 'udb_font_awesome', true ) ) {
 			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PRO_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		}
 
 		// Dashboard CSS.

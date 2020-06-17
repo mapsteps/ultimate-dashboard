@@ -139,7 +139,7 @@ function udb_main_meta_callback() {
 
 	?>
 
-	<div class="neatbox has-subboxes">
+	<div class="neatbox is-smooth has-bigger-heading has-subboxes">
 		<div class="subbox">
 			<h2><?php _e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
