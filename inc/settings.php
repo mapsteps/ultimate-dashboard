@@ -45,7 +45,7 @@ function udb_settings() {
 	add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), 'udb_custom_admin_css_callback', 'udb-general-page', 'udb-advanced-section' );
 
 	// Misc section fields.
-	$remove_fa_description = '<p class="description" style="font-weight: 400;">' . __( 'Use only if your icons are not displayed properly.', 'ultimatedashboard' ) . '</p>';
+	$remove_fa_description = '<p class="description" style="font-weight: 400;">' . __( 'Use only if your icons are not displayed correctly.', 'ultimatedashboard' ) . '</p>';
 
 	add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, 'udb_remove_font_awesome_callback', 'udb-general-page', 'udb-misc-section' );
 	add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), 'udb_remove_all_settings_callback', 'udb-general-page', 'udb-misc-section' );
