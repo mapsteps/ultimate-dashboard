@@ -16,6 +16,14 @@ function udb_main_metabox() {
 add_action( 'add_meta_boxes', 'udb_main_metabox' );
 
 /**
+ * Pro metabox.
+ */
+function udb_pro_metabox() {
+	add_meta_box( 'udb-pro-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), 'udb_pro_meta_callback', 'udb_widgets', 'side' );
+}
+add_action( 'add_meta_boxes', 'udb_pro_metabox' );
+
+/**
  * Position metabox.
  */
 function udb_position_metabox() {
@@ -30,6 +38,75 @@ function udb_priority_metabox() {
 	add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), 'udb_priority_meta_callback', 'udb_widgets', 'side' );
 }
 add_action( 'add_meta_boxes', 'udb_priority_metabox' );
+
+/**
+ * Main metabox callback.
+ */
+function udb_main_meta_callback() {
+
+	global $post;
+
+	$udb_widget_types = array(
+		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
+		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
+		'html' => __( 'HTML Widget', 'ultimate-dashboard' ),
+	);
+
+	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
+	$stored_meta      = get_post_meta( $post->ID, 'udb_widget_type', true );
+
+	?>
+
+	<div class="neatbox is-smooth has-bigger-heading has-subboxes">
+		<div class="subbox">
+			<h2><?php _e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
+			<div class="field">
+				<div class="input-control">
+					<select name="udb_widget_type">
+						<?php
+						foreach ( $udb_widget_types as $value => $text ) {
+							?>
+							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
+							<?php
+						}
+						?>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="widget-fields">
+			<?php do_action( 'udb_metabox_widgets' ); ?>
+		</div>
+	</div>
+
+	<?php
+
+}
+
+/**
+ * "PRO Features" metabox callback.
+ *
+ * @param object $post The post object.
+ */
+function udb_pro_meta_callback( $post ) {
+
+	?>
+
+	<div class="postbox-content">
+		<ul class="udb-pro-metabox-notice">
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Video Widgets', 'ultimate-dashboard' ); ?></li>
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Contact Form Widgets', 'ultimate-dashboard' ); ?></li>
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Restrict Widgets to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
+		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Create a Custom Dashboard with <strong>Elementor</strong> or <strong>Beaver Builder</strong>', 'ultimate-dashboard' ); ?></li>
+		</ul>
+
+		<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/docs-category/widgets/?utm_source=plugin&utm_medium=edit_widget_page&utm_campaign=udb" target="_blank" class="button button-primary button-large udb-admin-page-pro-button">
+			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+		</a>
+	</div>
+
+	<?php
+}
 
 /**
  * Priority metabox callback.
@@ -114,50 +191,6 @@ function udb_position_meta_callback( $post ) {
 					</li>
 				</ul>
 			</div>
-		</div>
-	</div>
-
-	<?php
-
-}
-
-/**
- * Main metabox callback.
- */
-function udb_main_meta_callback() {
-
-	global $post;
-
-	$udb_widget_types = array(
-		'icon' => __( 'Icon Widget', 'ultimate-dashboard' ),
-		'text' => __( 'Text Widget', 'ultimate-dashboard' ),
-		'html' => __( 'HTML Widget', 'ultimate-dashboard' ),
-	);
-
-	$udb_widget_types = apply_filters( 'udb_widget_types', $udb_widget_types );
-	$stored_meta      = get_post_meta( $post->ID, 'udb_widget_type', true );
-
-	?>
-
-	<div class="neatbox is-smooth has-bigger-heading has-subboxes">
-		<div class="subbox">
-			<h2><?php _e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<div class="input-control">
-					<select name="udb_widget_type">
-						<?php
-						foreach ( $udb_widget_types as $value => $text ) {
-							?>
-							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
-							<?php
-						}
-						?>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="widget-fields">
-			<?php do_action( 'udb_metabox_widgets' ); ?>
 		</div>
 	</div>
 

@@ -178,7 +178,7 @@ function udb_admin_page_pro_metabox_callback( $post ) {
 	?>
 
 	<div class="postbox-content">
-		<ul class="udb-admin-page-pro-notice">
+		<ul class="udb-pro-metabox-notice">
 		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Use <strong>Elementor</strong> or <strong>Beaver Builder</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
 		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
 		</ul>
