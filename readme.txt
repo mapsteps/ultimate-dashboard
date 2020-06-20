@@ -81,6 +81,11 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 4. Customized Login Page - Example 2
 
 == Changelog ==
+= 2.8.2 | June 20, 2020 =
+* New: Option to remove FontAwesome
+* Tweak: Allow iframes in HTML widget
+* Fixed: Login screen & admin email verification form styling
+* Fixed: PHP notice
 = 2.8.1 | March 4, 2020 =
 * Fixed: CSS sanitization
 = 2.8 | March 4, 2020 =
