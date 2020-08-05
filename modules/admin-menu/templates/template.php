@@ -18,6 +18,13 @@ $role_names = $wp_roles->role_names;
 	<form action="options.php" method="post" class="udb-admin-menu--edit-form">
 
 		<div class="neatbox has-bigger-heading is-smooth udb-admin-menu-box">
+			<div class="notice notice-warning pro-available-notice">
+				<p>
+					This feature is available in the PRO version.
+					<a href="https://ultimatedashboard.io/docs/admin-pages/" target="_blank">Learn more about admin menu feature.</a>
+				</p>
+			</div>
+
 			<h2>
 				<?php _e( 'Admin Menu Editor', 'ultimatedashboard' ); ?>
 			</h2>

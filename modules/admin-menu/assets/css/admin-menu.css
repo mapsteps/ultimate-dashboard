@@ -387,3 +387,7 @@
 	padding-right: 0;
 	padding-bottom: 0;
 }
+
+.pro-available-notice {
+	max-width: 700px;
+}
