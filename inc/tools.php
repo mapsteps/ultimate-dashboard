@@ -81,11 +81,13 @@ function udb_process_export() {
 	$settings          = array();
 	$branding_settings = array();
 	$login_settings    = array();
+	$admin_menu        = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) {
 		$settings          = get_option( 'udb_settings' );
 		$branding_settings = get_option( 'udb_branding' );
 		$login_settings    = get_option( 'udb_login' );
+		$admin_menu        = get_option( 'udb_admin_menu', array() );
 	}
 
 	$widgets = get_posts(
@@ -132,10 +134,10 @@ function udb_process_export() {
 	);
 	$admin_pages = $admin_pages ? $admin_pages : array();
 
-	foreach ($admin_pages as &$admin_page) {
+	foreach ( $admin_pages as &$admin_page ) {
 		$meta = get_post_meta( $admin_page->ID );
 
-		foreach ($meta as $meta_key => $meta_value) {
+		foreach ( $meta as $meta_key => $meta_value ) {
 			$admin_page->meta = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
 		}
 	}
@@ -149,6 +151,7 @@ function udb_process_export() {
 			'settings'          => $settings,
 			'branding_settings' => $branding_settings,
 			'login_settings'    => $login_settings,
+			'admin_menu'        => $admin_menu,
 			'admin_pages'       => $admin_pages,
 		)
 	);
@@ -205,6 +208,7 @@ function udb_process_import() {
 	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
 	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
 	$admin_pages       = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
+	$admin_menu        = isset( $imports['admin_menu'] ) ? $imports['admin_menu'] : array();
 
 	if ( ! $imports && ! $widgets && ! $admin_pages ) {
 
@@ -313,6 +317,17 @@ function udb_process_import() {
 			'updated'
 		);
 
+	}
+
+	if ( $admin_menu ) {
+		update_option( 'udb_admin_menu', $admin_menu );
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'Admin menu imported', 'ultimatedashboard' ),
+			'updated'
+		);
 	}
 
 }

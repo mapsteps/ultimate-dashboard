@@ -1,0 +1,389 @@
+@-webkit-keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+@keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.udb-admin-menu-box {
+	max-width: 700px;
+}
+
+.udb-admin-menu--tab-menu {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-transform: uppercase;
+	color: #888;
+	font-weight: 500;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.udb-admin-menu--role-menu {
+	border-top: 0;
+}
+
+.udb-admin-menu--tab-menu-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.udb-admin-menu--tab-menu-item button {
+	padding: 0;
+	background-color: transparent;
+	border-width: 0;
+	cursor: pointer;
+	color: inherit;
+	height: 100%;
+	border-bottom: 2px solid transparent;
+}
+
+.udb-admin-menu--tab-menu-item.is-active {
+	color: #333;
+}
+
+.udb-admin-menu--tab-menu-item.is-active button {
+	border-color: #333;
+}
+
+.udb-admin-menu--tab-menu-item button:focus {
+	outline: none;
+	color: #333;
+	border-color: #333;
+}
+
+.udb-admin-menu--edit-area {
+	background-color: #f4f4f4;
+}
+
+.udb-admin-menu--menu-list {
+	max-width: 100%;
+	margin-bottom: 0;
+}
+
+.udb-admin-menu--menu-item {
+	margin-bottom: 15px;
+	background-color: #fff;
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.05);
+	border-radius: 3px;
+}
+
+.udb-admin-menu--menu-item[data-hidden="1"] {
+	color: #dedede;
+	background: rgba(255,255,255,.5);
+}
+
+.udb-admin-menu--control-panel {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.udb-admin-menu--control-panel > span,
+.udb-admin-menu--control-panel > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+}
+
+.udb-admin-menu--menu-drag {
+	width: 10%;
+	position: relative;
+	color: #888;
+	cursor: move;
+}
+
+.udb-admin-menu--menu-drag span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -2px;
+	width: 20px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.udb-admin-menu--menu-drag span::before {
+	background-color: #dedede;
+	content: "";
+	display: block;
+	height: 2px;
+	-webkit-box-shadow: 0 10px 0 #dedede;
+	box-shadow: 0 6px 0 #dedede;
+}
+
+.udb-admin-menu--menu-item:hover > .udb-admin-menu--control-panel .udb-admin-menu--menu-drag span::before {
+	background-color: #888;
+	-webkit-box-shadow: 0 10px 0 #888;
+	box-shadow: 0 6px 0 #888;
+}
+
+.udb-admin-menu--menu-icon {
+	width: 5%;
+}
+
+.udb-admin-menu--menu-icon .dashicons {
+	transition: none;
+}
+
+.udb-admin-menu--menu-icon img {
+	max-height: 25px;
+}
+
+.udb-admin-menu--menu-name {
+	padding-left: 10px;
+	width: 60%;
+	font-weight: 500;
+}
+
+.udb-admin-menu--submenu-list .udb-admin-menu--menu-name {
+	width: 65%;
+}
+
+.udb-admin-menu--control-panel > .udb-admin-menu--menu-name {
+	justify-content: flex-start;
+}
+
+.udb-admin-menu--control-panel > .udb-admin-menu--menu-actions {
+	justify-content: flex-end;
+}
+
+.udb-admin-menu--menu-actions {
+	width: 15%;
+	color: #888;
+}
+
+.udb-admin-menu--menu-actions span {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	/*margin-left: 10px;*/
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 3px;
+	text-align: right;
+}
+
+/* Let's hide the duplicate icon for now */
+.udb-admin-menu--menu-actions .dashicons-admin-page {
+	display: none !important;
+}
+
+.udb-admin-menu--menu-item:hover
+	> .udb-admin-menu--control-panel
+	.udb-admin-menu--menu-actions
+	span,
+.udb-admin-menu--menu-item.is-expanded
+	> .udb-admin-menu--control-panel
+	.udb-admin-menu--menu-actions
+	span {
+	display: flex;
+}
+
+.udb-admin-menu--menu-actions span:hover {
+	background-color: #f2f2f2;
+}
+
+.udb-admin-menu--expand-menu {
+	width: 10%;
+	color: #888;
+}
+
+.udb-admin-menu--expand-menu span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	font-size: 13px;
+	background-color: transparent;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.udb-admin-menu--menu-item.is-expanded
+	> .udb-admin-menu--control-panel
+	.udb-admin-menu--expand-menu
+	span::before {
+	content: "\f343";
+}
+
+.udb-admin-menu--expand-menu span:hover {
+	background-color: #f2f2f2;
+}
+
+.udb-admin-menu-box .neatbox-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 20px 20px;
+}
+
+.udb-admin-menu-box .neatbox-left-footer,
+.udb-admin-menu-box .neatbox-right-footer {
+	width: 50%;
+}
+
+.udb-admin-menu-box .neatbox-right-footer {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: auto;
+	justify-content: flex-end;
+}
+
+.udb-admin-menu-box .udb-admin-menu--button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.udb-admin-menu-box .udb-admin-menu--button i {
+	margin-right: 5px;
+}
+
+.udb-admin-menu-box .udb-admin-menu--button.is-loading {
+	justify-content: center;
+	color: transparent !important;
+	pointer-events: none;
+}
+
+.udb-admin-menu-box .udb-admin-menu--button.is-loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #fff #fff !important;
+	border-radius: 290486px;
+	-webkit-animation: loadingSpinAround 0.5s infinite linear;
+	animation: loadingSpinAround 0.5s infinite linear;
+}
+
+.udb-admin-menu-box .udb-admin-menu--reset-button {
+	margin-left: 10px;
+	color: #fff;
+	background-color: tomato;
+	border-color: tomato;
+}
+
+.udb-admin-menu-box .udb-admin-menu--reset-button:hover,
+.udb-admin-menu-box .udb-admin-menu--reset-button:active,
+.udb-admin-menu-box .udb-admin-menu--reset-button:focus {
+	color: #fff;
+	background-color: #f5492a;
+	border-color: #f5492a;
+}
+
+.udb-admin-menu-box .udb-admin-menu--reset-button:focus {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 3px #f5492a;
+}
+
+.udb-admin-menu--expanded-panel {
+	width: 100%;
+	display: none;
+}
+
+.udb-admin-menu--tab-content-item {
+	padding: 20px 20px;
+	display: none;
+}
+
+.udb-admin-menu--tab-content-item .udb-admin-menu--menu-item:last-child {
+	margin-bottom: 0;
+}
+
+.udb-admin-menu--tab-content-item.is-active {
+	display: block;
+}
+
+.udb-admin-menu--submenu-fields {
+	padding: 20px 20px;
+	border-top: 1px solid #eee;
+}
+
+.udb-admin-menu--fields .field {
+	margin-bottom: 15px;
+}
+
+.udb-admin-menu--fields .field:last-child,
+.udb-admin-menu--fields .fields:last-child {
+	margin-bottom: 0;
+}
+
+.udb-admin-menu--fields .has-2 .field {
+	width: 50%;
+}
+
+.udb-admin-menu--fields .has-2 .field:first-child {
+	padding-right: 15px;
+}
+
+.udb-admin-menu--fields .has-2 .field:last-child {
+	padding-left: 15px;
+}
+
+.udb-admin-menu--label {
+	margin-bottom: 7px;
+}
+
+.udb-admin-menu--textarea-field,
+.udb-admin-menu--text-field {
+	width: 100%;
+}
+
+.udb-admin-menu--textarea-field {
+	height: 130px;
+}
+
+.udb-admin-menu--textarea-field.is-short,
+.udb-admin-menu--text-field.is-short {
+	max-width: 25%;
+}
+
+.udb-admin-menu--textarea-field.is-half,
+.udb-admin-menu--text-field.is-half {
+	max-width: 50%;
+}
+
+.udb-admin-menu--textarea-field.is-medium,
+.udb-admin-menu--text-field.is-medium {
+	max-width: 75%;
+}
+
+.udb-admin-menu--fields .is-nested .udb-admin-menu--tab-menu {
+	padding: 0;
+}
+
+.udb-admin-menu--fields .is-nested .udb-admin-menu--tab-content-item {
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}

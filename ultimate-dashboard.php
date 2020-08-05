@@ -80,7 +80,7 @@ function udb_admin_scripts() {
 	}
 
 	// Settings page.
-	if ( 'udb_widgets_page_settings' === $current_screen->id || 'udb_widgets_page_branding' === $current_screen->id || 'udb_widgets_page_tools' === $current_screen->id ) {
+	if ( 'udb_widgets_page_settings' === $current_screen->id || 'udb_widgets_page_branding' === $current_screen->id || 'udb_widgets_page_tools' === $current_screen->id || 'udb_widgets_page_udb_admin_menu' === $current_screen->id ) {
 
 		// Color pickers.
 		wp_enqueue_style( 'wp-color-picker' );
@@ -161,6 +161,8 @@ function udb_deactivate() {
 		delete_option( 'udb_compat_widget_type' );
 		delete_option( 'udb_compat_delete_login_customizer_page' );
 		delete_option( 'udb_compat_settings_meta' );
+
+		delete_option( 'udb_admin_menu' );
 
 		delete_option( 'udb_login_customizer_flush_url' );
 

@@ -253,31 +253,74 @@ function udb_sanitize_css_content( $text ) {
 	}
 }
 
-/*
- * Allow iframes & attributes in HTML widget
+/**
+ * Allow iframes & attributes in HTML widget.
+ *
+ * @param array $tags The allowed tags & attributes.
+ * @return array $tags The midified $tags.
  */
 function udb_allow_iframes_in_html( $tags ) {
 
 	$tags['iframe'] = array(
-		'align' => true,
-		'width' => true,
-		'height' => true,
-		'frameborder' => true,
-		'name' => true,
-		'src' => true,
-		'id' => true,
-		'class' => true,
-		'style' => true,
-		'scrolling' => true,
-		'marginwidth' => true,
-		'marginheight' => true,
-		'allow' => true,
-		'allowfullscreen' => true,
+		'align'               => true,
+		'width'               => true,
+		'height'              => true,
+		'frameborder'         => true,
+		'name'                => true,
+		'src'                 => true,
+		'id'                  => true,
+		'class'               => true,
+		'style'               => true,
+		'scrolling'           => true,
+		'marginwidth'         => true,
+		'marginheight'        => true,
+		'allow'               => true,
+		'allowfullscreen'     => true,
 		'allowpaymentrequest' => true,
-		'picture-in-picture' => true,
+		'picture-in-picture'  => true,
 	);
 
 	return $tags;
 
 }
 add_filter( 'wp_kses_allowed_html', 'udb_allow_iframes_in_html' );
+
+/**
+ * Simulate user with specified role.
+ *
+ * @param string $role_key The role key.
+ */
+function udb_simulate_role( $role_key ) {
+	global $current_user;
+
+	$role = get_role( $role_key );
+
+	$current_user->ID      = PHP_INT_MAX;
+	$current_user->allcaps = $role->capabilities;
+	$current_user->caps    = $role->capabilities;
+	$current_user->roles   = array( $role_key );
+}
+
+/**
+ * Find associative array's index by it's key's value.
+ *
+ * We don't use the array_search combined with array_column method
+ * because it doesn't work in udb admin menu module.
+ *
+ * @see https://stackoverflow.com/questions/8102221/php-multidimensional-array-searching-find-key-by-specific-value
+ *
+ * @param array  $array The haystack array.
+ * @param string $key The key to search in.
+ * @param mixed  $value The value to search for.
+ *
+ * @return array The index if found.
+ */
+function udb_find_assoc_array_index_by_value( $array, $key, $value ) {
+	foreach ( $array as $index => $item ) {
+		if ( isset( $item[ $key ] ) && $item[ $key ] === $value ) {
+			return $index;
+		}
+	}
+
+	return false;
+}
