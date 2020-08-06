@@ -40,6 +40,10 @@ hr {
 	position: relative;
 }
 
+.field .control {
+	position: relative;
+}
+
 .field.is-horizontal {
 	display: flex;
 	flex-wrap: wrap;
