@@ -81,9 +81,9 @@
 }
 
 .udb-admin-menu--menu-item {
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	background-color: #fff;
-	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.05);
+	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.05);
 	border-radius: 3px;
 }
 
@@ -139,8 +139,13 @@
 	box-shadow: 0 6px 0 #888;
 }
 
+.udb-admin-menu--menu-item:hover {
+	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
 .udb-admin-menu--menu-icon {
 	width: 5%;
+	opacity: .7;
 }
 
 .udb-admin-menu--menu-icon .dashicons {
@@ -154,7 +159,8 @@
 .udb-admin-menu--menu-name {
 	padding-left: 10px;
 	width: 60%;
-	font-weight: 500;
+	font-weight: 700;
+	opacity: .8;
 }
 
 .udb-admin-menu--submenu-list .udb-admin-menu--menu-name {
