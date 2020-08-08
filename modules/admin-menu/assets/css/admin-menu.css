@@ -394,6 +394,34 @@
 	padding-bottom: 0;
 }
 
-.pro-available-notice {
+.udb-pro-admin-menu-nag {
+	background: #197cff;
+	color: #fff;
+	margin-bottom: 20px;
 	max-width: 700px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	font-weight: 700;
+}
+
+.udb-pro-admin-menu-nag > * {
+	/*padding: 0;*/
+	margin: 0;
+}
+
+.udb-pro-admin-menu-nag .button {
+	background: rgba(0,45,96,.5);
+	padding: 5px 15px !important;
+}
+
+.udb-pro-admin-menu-nag .button:hover {
+	background: rgba(0,45,96,.6);
+}
+
+.udb-pro-admin-menu-notice {
+	border-top: none;
+	margin-top: 0;
+	padding-top: 0;
 }

@@ -213,10 +213,15 @@
  * Pro
  * ------------------------------
  */
-.udb-pro-metabox-notice {
+.udb-pro-metabox-content {
 	margin-top: 0;
 }
 
-.udb-pro-metabox-notice .description {
+.udb-pro-metabox-content .description {
 	margin-bottom: 7px;
+}
+
+.udb-pro-metabox-content li {
+	list-style: disc;
+	margin-left: 15px;
 }

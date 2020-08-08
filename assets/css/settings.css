@@ -42,20 +42,21 @@
 }
 
 /* PRO styling */
-.udb-pro-box {
-	color: #888;
-}
-
-.udb-pro-description {
-	font-style: italic;
-	padding-top: 10px;
-	margin-top: 20px !important;
-	color: #444444;
+.udb-pro-settings-page-notice {
 	display: inline-block;
+	padding-top: 10px;
+	margin-top: 20px;
 	border-top: 1px solid #eee;
 }
 
-.udb-pro-button {
+.udb-pro-settings-page-notice p {
+	font-style: italic;
+	color: #444444;
+	display: block;
+	margin: 0 !important;
+}
+
+.udb-pro-settings-page-notice .button {
 	margin-top: 10px !important;
 }
 

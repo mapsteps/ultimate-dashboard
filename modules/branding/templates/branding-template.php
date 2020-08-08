@@ -18,11 +18,11 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<form method="post" action="options.php" class="udb-settings-form">
 		<?php settings_fields( 'udb-branding-settings-group' ); ?>
 
-		<div class="neatbox has-bigger-heading is-smooth udb-pro-box">
+		<div class="neatbox has-bigger-heading is-smooth">
 			<?php do_settings_sections( 'udb-detailed-branding' ); ?>
 		</div>
 
-		<div class="neatbox has-bigger-heading is-smooth udb-pro-box">
+		<div class="neatbox has-bigger-heading is-smooth">
 			<?php do_settings_sections( 'udb-general-branding' ); ?>
 		</div>
 

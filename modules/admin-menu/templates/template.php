@@ -15,15 +15,16 @@ $role_names = $wp_roles->role_names;
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
+	<div class="udb-pro-admin-menu-nag">
+		<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+		</a>
+	</div>
+
 	<form action="options.php" method="post" class="udb-admin-menu--edit-form">
 
 		<div class="neatbox has-bigger-heading is-smooth udb-admin-menu-box">
-			<div class="notice notice-warning pro-available-notice">
-				<p>
-					This feature is available in the PRO version.
-					<a href="https://ultimatedashboard.io/docs/admin-pages/" target="_blank">Learn more about admin menu feature.</a>
-				</p>
-			</div>
 
 			<h2>
 				<?php _e( 'Admin Menu Editor', 'ultimatedashboard' ); ?>
@@ -66,9 +67,14 @@ $role_names = $wp_roles->role_names;
 			</div><!-- .udb-admin-menu--tabs -->
 
 			<div class="neatbox-footer">
-				<a href="https://ultimatedashboard.io/pro/" target="_blank" class="button button-large button-primary udb-admin-menu--button udb-admin-menu--submit-button">
-					<?php _e( 'Get Ultimate Dashboard PRO', 'ultimatedashboard' ); ?>
-				</a>
+
+				<div class="udb-pro-settings-page-notice udb-pro-admin-menu-notice">
+					<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+					<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+						<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+					</a>
+				</div>
+
 			</div>
 		</div>
 

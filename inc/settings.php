@@ -197,16 +197,15 @@ function udb_remove_3rd_party_widgets_callback() {
 
 	</div>
 
-	<p class="udb-pro-description" style="margin-top: 10px !important;">
-		<?php // echo sprintf( __( 'This feature is available in %1$s', 'wpbfpremium' ), '<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" target="_blank">Ultimate Dashboard PRO</a>!' ); ?>
-		<?php _e( 'This feature is available in Ultimate Dashboard PRO.' ); ?>
-	</p>
+	<div class="udb-pro-settings-page-notice">
 
-	<br>
+		<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.' ); ?></p>
 
-	<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary udb-pro-button" target="_blank">
-		<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-	</a>
+		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
+			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+		</a>
+
+	</div>
 
 	<?php
 }

@@ -178,12 +178,12 @@ function udb_admin_page_pro_metabox_callback( $post ) {
 	?>
 
 	<div class="postbox-content">
-		<ul class="udb-pro-metabox-notice">
-		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Use <strong>Elementor</strong> or <strong>Beaver Builder</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
-		<li style="list-style: disc; margin-left: 15px;"><?php _e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
+		<ul class="udb-pro-metabox-content">
+		<li><?php _e( 'Use <strong>Elementor</strong> or <strong>Beaver Builder</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
+		<li><?php _e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
 		</ul>
 
-		<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large udb-admin-page-pro-button">
+		<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large">
 			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 		</a>
 	</div>

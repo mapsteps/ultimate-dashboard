@@ -403,7 +403,7 @@
 	};
 
 	function showProNotice(autoHide) {
-		var notice = document.querySelector('.udb-login-customizer-pro-notice');
+		var notice = document.querySelector('.udb-pro-login-customizer-notice');
 		if (!notice) return;
 
 		notice.classList.add('is-shown');
@@ -412,7 +412,7 @@
 	}
 
 	function hideProNotice() {
-		var notice = document.querySelector('.udb-login-customizer-pro-notice');
+		var notice = document.querySelector('.udb-pro-login-customizer-notice');
 		if (!notice) return;
 
 		notice.classList.remove('is-shown');
