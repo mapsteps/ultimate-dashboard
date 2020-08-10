@@ -38,12 +38,12 @@ ob_start();
 			<ul class="udb-admin-menu--tab-menu">
 				<li class="udb-admin-menu--tab-menu-item is-active" data-udb-tab-content="udb-admin-menu--settings-tab--{role}">
 					<button type="button">
-						<?php _e( 'Settings', 'ultimatedashboard' ); ?>
+						<?php _e( 'Settings', 'ultimate-dashboard' ); ?>
 					</button>
 				</li>
 				<li class="udb-admin-menu--tab-menu-item" data-udb-tab-content="udb-admin-menu--submenu-tab--{role}">
 					<button type="button">
-						<?php _e( 'Submenu', 'ultimatedashboard' ); ?>
+						<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
 					</button>
 				</li>
 			</ul><!-- .udb-admin-menu--tab-menu -->
@@ -70,7 +70,7 @@ ob_start();
 						<div class="is-nested">
 							<div class="field">
 								<label for="menu_icon_{role}_{default_menu_id}" class="label udb-admin-menu--label">
-									<?php _e( 'Menu Icon', 'ultimatedashboard' ); ?>
+									<?php _e( 'Menu Icon', 'ultimate-dashboard' ); ?>
 								</label>
 							</div>
 							<div class="udb-admin-menu--tabs udb-admin-menu--icon-switcher">
@@ -93,7 +93,7 @@ ob_start();
 									<div id="udb-admin-menu--icon-svg-tab--{role}" class="udb-admin-menu--tab-content-item {icon_svg_tab_is_active}">
 										<textarea name="menu_icon_svg_{role}_{default_menu_id}" id="menu_icon_svg_{role}_{default_menu_id}" class="udb-admin-menu--textarea-field udb-admin-menu--icon-field" placeholder="{default_menu_icon_svg}" data-name="icon_svg">{menu_icon_svg}</textarea>
 										<p class="description">
-											<?php _e( "Paste a base64-encoded SVG using a data URI, which will be colored to match the color scheme. This should begin with 'data:image/svg+xml;base64,'. Or you can use this tool to generate it: https://dopiaza.org/tools/datauri/index.php", 'ultimatedashboard' ); ?>
+											<?php _e( "Paste a base64-encoded SVG using a data URI, which will be colored to match the color scheme. This should begin with 'data:image/svg+xml;base64,'. Or you can use this tool to generate it: https://dopiaza.org/tools/datauri/index.php", 'ultimate-dashboard' ); ?>
 										</p>
 									</div>
 								</div>

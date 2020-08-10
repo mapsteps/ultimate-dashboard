@@ -15,11 +15,11 @@ function udb_admin_menu_get_menu() {
 	$role  = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
 
 	if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_menu' ) ) {
-		wp_send_json_error( __( 'Invalid token', 'ultimatedashboard' ) );
+		wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 	}
 
 	if ( ! $role ) {
-		wp_send_json_error( __( 'Role is not specified', 'ultimatedashboard' ) );
+		wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
 	}
 
 	remove_action( 'admin_menu', 'udb_admin_menu_output', 30 );

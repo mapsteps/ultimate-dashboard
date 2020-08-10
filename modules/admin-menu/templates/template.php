@@ -27,7 +27,7 @@ $role_names = $wp_roles->role_names;
 		<div class="neatbox has-bigger-heading is-smooth udb-admin-menu-box">
 
 			<h2>
-				<?php _e( 'Admin Menu Editor', 'ultimatedashboard' ); ?>
+				<?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
 			</h2>
 			<div class="udb-admin-menu--tabs udb-admin-menu--role-tabs">
 				<ul class="udb-admin-menu--tab-menu udb-admin-menu--role-menu">
