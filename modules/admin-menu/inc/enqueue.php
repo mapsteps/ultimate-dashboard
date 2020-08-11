@@ -55,9 +55,7 @@ function udb_admin_menu_admin_assets() {
 			'udbAdminMenu',
 			array(
 				'nonces'    => array(
-					'getMenu'   => wp_create_nonce( 'udb_admin_menu_get_menu' ),
-					'saveMenu'  => wp_create_nonce( 'udb_admin_menu_save_menu' ),
-					'resetMenu' => wp_create_nonce( 'udb_admin_menu_reset_menu' ),
+					'getMenu' => wp_create_nonce( 'udb_admin_menu_get_menu' ),
 				),
 				'roles'     => $roles,
 				'templates' => array(

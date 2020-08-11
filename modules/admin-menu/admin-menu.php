@@ -37,8 +37,3 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/inc/enqueue.php
 
 // AJAX handlers.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/ajax/get-menu.php';
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/ajax/save-menu.php';
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/ajax/reset-menu.php';
-
-// Output.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/inc/output.php';
