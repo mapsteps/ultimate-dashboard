@@ -101,4 +101,4 @@ if ( apply_filters( 'udb_login_customizer', true ) ) {
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-page/admin-page.php';
 
 // Admin menu.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/admin-menu.php';
+// require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/admin-menu.php';
