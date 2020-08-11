@@ -29,9 +29,6 @@ add_action( 'admin_enqueue_scripts', 'udb_admin_menu_admin_scripts' );
 // Submenu.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/inc/submenu.php';
 
-// Settings.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/inc/settings.php';
-
 // Enqueue assets.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'modules/admin-menu/inc/enqueue.php';
 

@@ -162,8 +162,6 @@ function udb_deactivate() {
 		delete_option( 'udb_compat_delete_login_customizer_page' );
 		delete_option( 'udb_compat_settings_meta' );
 
-		delete_option( 'udb_admin_menu' );
-
 		delete_option( 'udb_login_customizer_flush_url' );
 
 	}
