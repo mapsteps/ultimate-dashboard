@@ -106,7 +106,6 @@ function set_udb_widget_columns( $columns ) {
 		'cb'    => '<input type="checkbox" />',
 		'title' => __( 'Widget Title', 'ultimate-dashboard' ),
 		'type'  => __( 'Widget Type', 'ultimate-dashboard' ),
-		'date'  => __( 'Date', 'ultimate-dashboard' ),
 	);
 
 	return $columns;
