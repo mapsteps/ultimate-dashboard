@@ -2,24 +2,24 @@
 /**
  * Ultimate Dashboard admin page.
  *
- * $post_id is brought from udb_render_admin_page($post_id);
+ * $post is brought from udb_render_admin_page($post);
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$editor     = udb_get_content_editor( $post_id );
-$admin_page = get_post( $post_id );
+$editor = udb_get_content_editor( $post->ID );
 
-$remove_page_title    = (int) get_post_meta( $post_id, 'udb_remove_page_title', true );
-$remove_page_margin   = (int) get_post_meta( $post_id, 'udb_remove_page_margin', true );
+$remove_page_title  = $post->remove_page_title;
+$remove_page_margin = $post->remove_page_margin;
 
-$custom_css = get_post_meta( $post_id, 'udb_custom_css', true );
+$custom_css = $post->custom_css;
+$custom_js  = $post->custom_js;
 ?>
 
 <style>
-	<?php if ($remove_page_margin) : ?>
+	<?php if ( $remove_page_margin ) : ?>
 		#wpcontent {
 			padding-left: 0;
 		}
@@ -30,24 +30,24 @@ $custom_css = get_post_meta( $post_id, 'udb_custom_css', true );
 	<?php endif; ?>
 
 	<?php
-	if ($custom_css) {
+	if ( $custom_css ) {
 		echo $custom_css;
 	}
 	?>
 </style>
 
 <div class="wrap">
-	<?php if ( ! $remove_page_title) : ?>
-		<h1><?php echo esc_html( $admin_page->post_title ); ?></h1>
+	<?php if ( ! $remove_page_title ) : ?>
+		<h1><?php echo esc_html( $post->post_title ); ?></h1>
 	<?php else : ?>
 		<h1 style="display: none;"></h1>
 	<?php endif; ?>
 
 	<?php
-	if ('html' === get_post_meta( $post_id, 'udb_content_type', true )) {
-		echo get_post_meta( $post_id, 'udb_html_content', true );
+	if ( 'html' === $post->content_type ) {
+		echo $post->html_content;
 	} else {
-		echo apply_filters( 'the_content', $admin_page->post_content );
+		echo apply_filters( 'the_content', $post->post_content );
 	}
 	?>
 </div>
