@@ -16,6 +16,8 @@ function udb_add_dashboard_widgets() {
 	$args = array(
 		'post_type'      => 'udb_widgets',
 		'posts_per_page' => 100,
+		'meta_key'       => 'udb_is_active',
+		'meta_value'     => 1,
 	);
 
 	$loop = new WP_Query( $args );

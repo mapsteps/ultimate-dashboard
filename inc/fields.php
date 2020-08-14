@@ -16,6 +16,14 @@ function udb_main_metabox() {
 add_action( 'add_meta_boxes', 'udb_main_metabox' );
 
 /**
+ * Widget active metabox.
+ */
+function udb_widget_active_metabox() {
+	add_meta_box( 'udb-widget-active-metabox', __( 'Active', 'ultimate-dashboard' ), 'udb_widget_active_meta_callback', 'udb_widgets', 'side', 'high' );
+}
+add_action( 'add_meta_boxes', 'udb_widget_active_metabox' );
+
+/**
  * Pro metabox.
  */
 function udb_pro_metabox() {
@@ -157,6 +165,42 @@ function udb_priority_meta_callback( $post ) {
 }
 
 /**
+ * "Active Status" metabox callback.
+ *
+ * @param object $post The post object.
+ */
+function udb_widget_active_meta_callback( $post ) {
+
+	$is_active = (int) get_post_meta( $post->ID, 'udb_is_active', true );
+
+	global $current_screen;
+
+	// If this is adding a new post.
+	if ( 'add' === $current_screen->action ) {
+		$is_active = 1;
+	}
+
+	?>
+
+	<div class="postbox-content">
+		<?php wp_nonce_field( 'udb_edit_admin_page', 'udb_widget_active_nonce' ); ?>
+		<div class="fields">
+			<div class="field">
+				<div class="control switch-control is-rounded is-small">
+					<label for="udb_is_active">
+						<input type="checkbox" name="udb_is_active" id="udb_is_active" value="1" <?php checked( $is_active, 1 ); ?>>
+						<span class="switch"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+
+}
+
+/**
  * Position metabox callback.
  *
  * @param object $post The post object.
@@ -231,6 +275,11 @@ function udb_save_postmeta( $post_id ) {
 
 	$check = isset( $_POST['udb_link_target'] ) && $_POST['udb_link_target'] ? '_blank' : '_self';
 	update_post_meta( $post_id, 'udb_link_target', $check );
+
+	// Sidebar.
+	if ( isset( $_POST['udb_is_active'] ) ) {
+		update_post_meta( $post_id, 'udb_is_active', sanitize_text_field( $_POST['udb_is_active'] ) );
+	}
 
 	if ( isset( $_POST['udb_metabox_position'] ) ) {
 		update_post_meta( $post_id, 'udb_position_key', sanitize_text_field( $_POST['udb_metabox_position'] ) );

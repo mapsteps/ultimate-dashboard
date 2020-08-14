@@ -71,6 +71,9 @@ require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/settings.php';
 // Fields.
 require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'inc/fields.php';
 
+// Ajax.
+require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . 'ajax/change-active-status.php';
+
 /* Widgets */
 
 // Icon widget.

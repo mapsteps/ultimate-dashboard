@@ -38,23 +38,23 @@ function udb_admin_scripts() {
 		// Select2 CSS.
 		wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
 
-		// Custom Post Type CSS.
+		// Edit screen styles.
 		wp_enqueue_style( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-widget.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		wp_enqueue_style( 'udb-edit-admin-page', ULTIMATE_DASHBOARD_PLUGIN_URL . 'modules/admin-page/assets/css/edit-admin-page.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
+		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
 		do_action( 'udb_edit_styles' );
 
 		// Select2 JS.
-		wp_register_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
-		wp_enqueue_script( 'select2' );
+		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
 
 		// CodeMirror.
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
-		// Custom Post Type JS.
-		wp_register_script( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/edit-widget.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'udb-edit-widget' );
+		// Edit screen scripts.
+		wp_enqueue_script( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/edit-widget.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		do_action( 'udb_edit_scripts' );
 
@@ -67,13 +67,16 @@ function udb_admin_scripts() {
 			// Font Awesome.
 			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
 		}
-
 	}
 
 	// Widget post list.
 	if ( 'edit-udb_widgets' === $current_screen->id ) {
 
 		wp_enqueue_style( 'ultimate-dashboard-post-list', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/post-list.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
+		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
+		wp_enqueue_script( 'udb-widget-list', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/widget-list.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 	}
 

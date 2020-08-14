@@ -103,9 +103,10 @@ add_filter( 'post_updated_messages', 'udb_widgets_update_messages' );
 function set_udb_widget_columns( $columns ) {
 
 	$columns = array(
-		'cb'    => '<input type="checkbox" />',
-		'title' => __( 'Widget Title', 'ultimate-dashboard' ),
-		'type'  => __( 'Widget Type', 'ultimate-dashboard' ),
+		'cb'        => '<input type="checkbox" />',
+		'title'     => __( 'Widget Title', 'ultimate-dashboard' ),
+		'type'      => __( 'Widget Type', 'ultimate-dashboard' ),
+		'is_active' => __( 'Active', 'ultimate-dashboard' ),
 	);
 
 	return $columns;
@@ -137,6 +138,31 @@ function udb_widget_columns( $column, $post_id ) {
 					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
 				}
 			}
+			break;
+
+		case 'is_active':
+			$is_active = get_post_meta( $post_id, 'udb_is_active', true );
+			?>
+
+			<div class="field">
+				<div class="control switch-control is-rounded is-small">
+					<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>">
+						<input
+							type="checkbox"
+							name="udb_is_active"
+							id="udb_is_active_<?php echo esc_attr( $post_id ); ?>"
+							value="1"
+							data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_widget_' . $post_id . '_change_active_status' ) ); ?>"
+							data-post-id="<?php echo esc_attr( $post_id ); ?>"
+							<?php checked( $is_active, 1 ); ?>
+						>
+
+						<span class="switch"></span>
+					</label>
+				</div>
+			</div>
+
+			<?php
 			break;
 
 	}

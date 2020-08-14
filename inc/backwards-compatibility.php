@@ -143,6 +143,38 @@ function udb_compat_widget_type() {
 add_action( 'admin_init', 'udb_compat_widget_type' );
 
 /**
+ * Whole checking udb_widget_status compatibility.
+ */
+function udb_compat_widget_status() {
+
+	// Make sure we don't check again.
+	if ( get_option( 'udb_compat_widget_status' ) ) {
+		return;
+	}
+
+	$widgets = get_posts(
+		array(
+			'post_type'   => 'udb_widgets',
+			'numberposts' => -1,
+			'post_status' => 'any',
+		)
+	);
+
+	if ( ! $widgets ) {
+		return;
+	}
+
+	foreach ( $widgets as $widget ) {
+		update_post_meta( $widget->ID, 'udb_is_active', 1 );
+	}
+
+	// Make sure we don't check again.
+	update_option( 'udb_compat_widget_status', 1 );
+
+}
+add_action( 'admin_init', 'udb_compat_widget_status' );
+
+/**
  * Meta compatibilities.
  */
 function udb_meta_compatibility() {
