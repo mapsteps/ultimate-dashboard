@@ -14,7 +14,8 @@ function udb_admin_page_setup_menu() {
 
 	if ( apply_filters( 'udb_font_awesome', true ) ) {
 		// Font Awesome.
-		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '5.14.0' );
+		wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/v4-shims.min.css', array(), '5.14.0' );
 	}
 
 	$parent_pages  = udb_admin_page_get_posts( 'parent' );
@@ -225,7 +226,7 @@ function udb_admin_page_add_menu_icon( $menu_slug, $icon_class ) {
 	<style>
 	#toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> .wp-menu-image::before {
 		content: "<?php echo esc_attr( $icon_unicode ); ?>";
-		font-family: FontAwesome;
+		font-family: "Font Awesome 5 Free";
 	}
 	</style>
 

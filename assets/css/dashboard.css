@@ -132,9 +132,10 @@
 }
 
 .udb-info:before {
-	font-family: FontAwesome;
+	font-family: "Font Awesome 5 Free";
 	font-style: normal;
-	content: "\f29c";
+	content: "\f059";
+	font-weight: 900;
 }
 
 .udb-info:hover {
@@ -174,7 +175,7 @@
 .udb-tooltip:after {
 	position: absolute;
 	top: -22px;
-	font-family: FontAwesome;
+	font-family: "Font Awesome 5 Free";
 	content: "\f0d8";
 	left: 50%;
 	width: 40px;
@@ -182,4 +183,5 @@
 	text-align: center;
 	font-size: 35px !important;
 	color: #555;
+	font-weight: 900;
 }

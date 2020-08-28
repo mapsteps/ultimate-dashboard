@@ -19,9 +19,11 @@ function udb_admin_menu_admin_assets() {
 
 		// Styles.
 		if ( apply_filters( 'udb_font_awesome', true ) ) {
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.7.0' );
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '5.14.0' );
+			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/v4-shims.min.css', array(), '5.14.0' );
 		}
-		wp_enqueue_style( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/dashicons-picker.css', array(), '4.7.0' );
+
+		wp_enqueue_style( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/dashicons-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// jQuery UI dependencies.
 		wp_enqueue_script( 'jquery-ui-core' );
