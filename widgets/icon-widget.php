@@ -24,120 +24,15 @@ function udb_icon_widget() {
 			$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' );
 			$dashicons   = json_decode( $dashicons, true );
 			$dashicons   = $dashicons ? $dashicons : array();
-			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' );
+			$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome5.json' );
 			$fontawesome = json_decode( $fontawesome, true );
 			$fontawesome = $fontawesome ? $fontawesome : array();
-			$udb_icons   = array();
-			$selected    = array(
-				'id'   => 'dashicons dashicons-menu',
-				'text' => 'Menu',
-			);
-
-			// loop over dashicons.
-			foreach ( $dashicons as $icon_category => $icons ) {
-
-				$category_name = str_ireplace( '_', ' ', $icon_category );
-				$category_name = ucwords( $category_name );
-				$category_name = 'Dashicons: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : array();
-
-				$items = array();
-
-				foreach ( $icons as $icon_class ) {
-
-					$icon_name = explode( ' ', $icon_class );
-					$icon_name = $icon_name[1];
-					$splits    = explode( '-', $icon_name );
-					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
-
-					if ( $icon_class === $stored_meta ) {
-
-						$selected = array(
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						);
-
-					}
-
-					array_push(
-						$items,
-						array(
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						)
-					);
-
-				}
-
-				array_push(
-					$udb_icons,
-					array(
-						'text'     => $category_name,
-						'children' => $items,
-					)
-				);
-
-			}
-
-			// Loop over FontAwesome.
-			foreach ( $fontawesome as $icon_category => $icons ) {
-
-				$category_name = str_ireplace( '_', ' ', $icon_category );
-				$category_name = ucwords( $category_name );
-				$category_name = 'Font Awesome 4: ' . $category_name;
-				$icons         = $icons && is_array( $icons ) ? $icons : array();
-
-				$items = array();
-
-				foreach ( $icons as $icon_class ) {
-
-					$icon_name = explode( ' ', $icon_class );
-					$icon_name = $icon_name[1];
-					$splits    = explode( '-', $icon_name );
-					$icon_name = str_ireplace( $splits[0] . '-', '', $icon_name );
-					$icon_name = str_ireplace( '-', ' ', $icon_name );
-					$icon_name = ucwords( $icon_name ) . ' (<code style="font-size:10px">' . $icon_class . '</code>)';
-					$icon_text = '<i class="' . $icon_class . '"></i> ' . $icon_name;
-
-					if ( $icon_class === $stored_meta ) {
-
-						$selected = array(
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						);
-
-					}
-
-					array_push(
-						$items,
-						array(
-							'id'   => $icon_class,
-							'text' => $icon_text,
-						)
-					);
-
-				}
-
-				array_push(
-					$udb_icons,
-					array(
-						'text'     => $category_name,
-						'children' => $items,
-					)
-				);
-
-			}
+			$udb_icons   = array_merge( $dashicons, $fontawesome );
 
 			wp_localize_script(
 				'udb-edit-widget',
-				'udbIcons',
-				array(
-					'icons'    => $udb_icons,
-					'selected' => $selected,
-				)
+				'iconPickerIcons',
+				$udb_icons
 			);
 
 			?>
@@ -149,14 +44,10 @@ function udb_icon_widget() {
 			</div>
 			<div class="field">
 				<div class="label-control">
-					<label for="udb_link_target"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
+					<label for="udb_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
 				</div>
 				<div class="input-control">
-					<select name="udb_icon" id="udb-icon">
-						<?php if ( $stored_meta ) { ?>
-							<option value="<?php echo esc_attr( $stored_meta ); ?>" selected><?php echo esc_html( $stored_meta ); ?></option>
-						<?php } ?>
-					</select>
+					<input type="text" class="icon-picker" data-width="100%" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $stored_meta ? $stored_meta : 'dashicons dashicons-menu' ); ?>" placeholder="dashicons dashicons-menu" />
 				</div>
 			</div>
 		</div>

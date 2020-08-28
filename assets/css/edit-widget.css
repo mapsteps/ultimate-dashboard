@@ -239,6 +239,10 @@
 	margin-bottom: 10px;
 }
 
+.neatbox .input-control {
+	position: relative;
+}
+
 .neatbox .input-control .icon-preview i {
 	height: 120px;
 	width: 120px;

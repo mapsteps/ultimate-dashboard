@@ -22,7 +22,7 @@ function udb_admin_menu_get_menu() {
 		wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
 	}
 
-	remove_action( 'admin_menu', 'udb_admin_menu_output', 30 );
+	remove_action( 'admin_menu', 'udb_admin_menu_output', 105 );
 
 	$admin_menu = get_option( 'udb_admin_menu', array() );
 

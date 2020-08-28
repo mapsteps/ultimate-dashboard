@@ -23,7 +23,6 @@
   function setupIconPicker() {
     var $iconPreview = $(".icon-preview");
     var $iconSelect = $('[name="udb_icon"]');
-    var value = $iconSelect.val();
 
     $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 
@@ -31,19 +30,9 @@
       $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
     });
 
-    $iconSelect.empty();
-
-    $iconSelect.select2({
-      data: udbIcons.icons,
-      escapeMarkup: function(markup) {
-        return markup;
-      }
-    });
-
-    if (udbIcons.selected) {
-      $iconSelect.val(udbIcons.selected.id);
-      $iconSelect.trigger("change");
-    }
+		window.addEventListener('load', function () {
+			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+		});
 	}
 	
 	function setupCodeEditor() {

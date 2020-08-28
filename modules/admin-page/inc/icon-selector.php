@@ -7,10 +7,10 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons.json' );
+$dashicons   = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/dashicons-categorized.json' );
 $dashicons   = json_decode( $dashicons, true );
 $dashicons   = $dashicons ? $dashicons : array();
-$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4.json' );
+$fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4-categorized.json' );
 $fontawesome = json_decode( $fontawesome, true );
 $fontawesome = $fontawesome ? $fontawesome : array();
 $udb_icons   = array();
