@@ -239,7 +239,18 @@ function udb_admin_page_add_menu_icon( $menu_slug, $icon_class ) {
 	<style>
 	#toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> .wp-menu-image::before {
 		content: "<?php echo esc_attr( $icon_unicode ); ?>";
-		font-family: "Font Awesome 5 Free";
+
+		<?php if ( false !== stripos( $icon_class, 'fab ' ) ) : ?>
+			font-family: "Font Awesome 5 Brands";
+		<?php else : ?>
+			font-family: "Font Awesome 5 Free";
+		<?php endif; ?>
+
+		<?php if ( false !== stripos( $icon_class, 'fas ' ) ) : ?>
+			font-weight: 900;
+		<?php elseif ( false !== stripos( $icon_class, 'far ' ) ) : ?>
+			font-weight: 400;
+		<?php endif; ?>
 	}
 	</style>
 

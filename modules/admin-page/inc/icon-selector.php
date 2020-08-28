@@ -13,7 +13,7 @@ $dashicons   = $dashicons ? $dashicons : array();
 $fontawesome = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome5.json' );
 $fontawesome = json_decode( $fontawesome, true );
 $fontawesome = $fontawesome ? $fontawesome : array();
-$udb_icons   = array_merge($dashicons, $fontawesome);
+$udb_icons   = array_merge( $dashicons, $fontawesome );
 
 wp_localize_script(
 	'udb-edit-admin-page',
