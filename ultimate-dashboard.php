@@ -40,7 +40,7 @@ function udb_admin_scripts() {
 		wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/select2.min.css', array(), '4.0.6-rc.1' );
 
 		// Icon Picker CSS.
-		wp_enqueue_style( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/icon-picker.css', array(), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION );
+		wp_enqueue_style( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/icon-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Edit screen styles.
 		wp_enqueue_style( 'udb-edit-widget', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/css/edit-widget.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
@@ -55,7 +55,7 @@ function udb_admin_scripts() {
 		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.6-rc.1', true );
 
 		// Icon Picker JS.
-		wp_enqueue_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/icon-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . 'assets/js/icon-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// CodeMirror.
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
