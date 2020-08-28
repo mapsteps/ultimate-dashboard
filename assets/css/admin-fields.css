@@ -1,5 +1,28 @@
 /**
  * ------------------------------
+ * General
+ * ------------------------------
+ */
+.field .control {
+	position: relative;
+}
+
+#side-sortables .icon-picker-container {
+	right: 0;
+	min-width: 350px;
+}
+
+#side-sortables .icon-picker-control a {
+	width: 10%;
+}
+
+#side-sortables .icon-picker--search-wrapper {
+	width: 80%;
+}
+
+
+/**
+ * ------------------------------
  * Checkbox Switch
  * ------------------------------
  */

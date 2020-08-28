@@ -93,19 +93,9 @@
 			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 		});
 
-		$iconSelect.empty();
-
-		$iconSelect.select2({
-			data: udbIcons.icons,
-			escapeMarkup: function (markup) {
-				return markup;
-			}
+		window.addEventListener('load', function () {
+			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 		});
-
-		if (udbIcons.selected) {
-			$iconSelect.val(udbIcons.selected.id);
-			$iconSelect.trigger("change");
-		}
 	}
 
 	/**

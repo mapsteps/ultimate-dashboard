@@ -216,11 +216,24 @@ function udb_render_admin_page( $post ) {
  * @param string $icon_class The icon class.
  */
 function udb_admin_page_add_menu_icon( $menu_slug, $icon_class ) {
-	$unicodes = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4-unicodes.json' );
+	$unicodes = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome5-unicodes.json' );
 	$unicodes = json_decode( $unicodes, true );
 	$unicodes = $unicodes ? $unicodes : array();
 
-	$icon_unicode = isset( $unicodes[ $icon_class ] ) ? $unicodes[ $icon_class ] : '\f006';
+	// Compatibility.
+	$unicodes_fa4 = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/json/fontawesome4-unicodes.json' );
+	$unicodes_fa4 = json_decode( $unicodes_fa4, true );
+	$unicodes_fa4 = $unicodes_fa4 ? $unicodes_fa4 : array();
+
+	$icon_unicode = '\f013';
+
+	if ( isset( $unicodes[ $icon_class ] ) ) {
+		$icon_unicode = $unicodes[ $icon_class ];
+	} else {
+		if ( isset( $unicodes[ $icon_class ] ) ) {
+			$icon_unicode = $unicodes_fa4[ $icon_class ];
+		}
+	}
 	?>
 
 	<style>
