@@ -109,8 +109,10 @@ class Setup {
 			delete_option( 'udb_import' );
 
 			delete_option( 'udb_compat_widget_type' );
+			delete_option( 'udb_compat_widget_status' );
 			delete_option( 'udb_compat_delete_login_customizer_page' );
 			delete_option( 'udb_compat_settings_meta' );
+			delete_option( 'udb_compat_old_option' );
 
 			delete_option( 'udb_login_customizer_flush_url' );
 
