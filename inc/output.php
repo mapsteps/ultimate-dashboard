@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Widget_Helper;
+
 /**
  * Ultimate Dashboard widget output.
  */
@@ -94,8 +96,9 @@ add_action( 'wp_dashboard_setup', 'udb_add_dashboard_widgets' );
  */
 function udb_remove_default_dashboard_widgets() {
 
-	$saved_widgets   = udb_get_saved_default_widgets();
-	$default_widgets = udb_get_default_widgets();
+	$widget_helper   = new Widget_Helper();
+	$saved_widgets   = $widget_helper->get_saved_default();
+	$default_widgets = $widget_helper->get_default();
 	$udb_settings    = get_option( 'udb_settings' );
 
 	if ( isset( $udb_settings['remove-all'] ) ) {
@@ -127,7 +130,7 @@ function udb_enqueue_dashboard_styles() {
 	$css = '';
 
 	ob_start();
-	require ULTIMATE_DASHBOARD_PLUGIN_DIR . 'assets/css/widget-styles.css.php';
+	require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/css/widget-styles.css.php';
 	$css = ob_get_clean();
 
 	wp_add_inline_style( 'udb-dashboard', $css );

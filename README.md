@@ -8,9 +8,15 @@
 
 ## Summary
 
+- [Summary](#summary)
 - [Description](#description)
 - [Features](#features)
 - [Installation](#installation)
+		- [Through The WordPress Administrative Area](#through-the-wordpress-administrative-area)
+		- [Download Manually](#download-manually)
+- [Available Hooks](#available-hooks)
+		- [Filter hooks](#filter-hooks)
+		- [Action hooks](#action-hooks)
 - [Ultimate Dashboard Pro](#ultimate-dashboard-pro)
 
 ## Description
@@ -45,6 +51,21 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 - Unzip the file.
 - Upload the ultimate-dashboard folder to your `/wp-content/plugins/` directory.
 - Activate the plugin through the Plugins menu in WordPress.
+
+## Available Hooks
+
+#### Filter hooks
+- `udb_font_awesome` : Whether or not to enqueue Font Awesome css.
+- `udb_modules` : Filter to manage what modules should be loaded.
+
+#### Action hooks
+- `udb_edit_widget_styles` : Action to run on styles enqueue on both new widget screen & edit widget screen.
+- `udb_edit_widget_scripts` : Action to run on scripts enqueue on both new widget screen & edit widget screen.
+- `udb_widget_list_styles` : Action to run on styles enqueue on widget list screen.
+- `udb_widget_list_scripts` : Action to run on scripts enqueue on widget list screen.
+- `udb_dashboard_styles` : Action to run on styles enqueue on dashboard screen.
+- `udb_dashboard_scripts` : Action to run on scripts enqueue on dashboard screen.
+- `udb_metabox_widgets` : Action to define widgets.
 
 ## Ultimate Dashboard Pro
 
