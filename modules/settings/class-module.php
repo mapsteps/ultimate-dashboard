@@ -87,7 +87,7 @@ class Module extends Base_Module {
 	 */
 	public function add_settings() {
 
-		// Settings groups.
+		// Settings group.
 		register_setting( 'udb-settings-group', 'udb_settings' );
 
 		// Widget sections.
