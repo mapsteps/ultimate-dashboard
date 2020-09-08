@@ -53,6 +53,11 @@ class Module extends Base_Module {
 
 		add_action( 'wp_ajax_udb_widget_change_active_status', array( $this, 'change_active_status' ) );
 
+		// The module output.
+		require_once __DIR__ . '/class-output.php';
+		$output = new Output();
+		$output->setup();
+
 	}
 
 	/**

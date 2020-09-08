@@ -9,9 +9,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /* Output */
 
-// Output.
-require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . '/inc/output.php';
-
 /* Modules */
 
 if ( apply_filters( 'udb_login_customizer', true ) ) {

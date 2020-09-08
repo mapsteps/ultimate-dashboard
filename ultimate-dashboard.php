@@ -27,6 +27,7 @@ require __DIR__ . '/helpers/class-array-helper.php';
 
 // Base module.
 require __DIR__ . '/modules/base/class-module.php';
+require __DIR__ . '/modules/base/class-output.php';
 
 require __DIR__ . '/class-backwards-compatibility.php';
 require __DIR__ . '/class-setup.php';
