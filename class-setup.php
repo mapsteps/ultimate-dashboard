@@ -72,9 +72,18 @@ class Setup {
 		$modules = apply_filters( 'udb_modules', $modules );
 
 		foreach ( $modules as $class => $file ) {
-			require_once $file;
-			$module = new $class();
-			$module->setup();
+			$splits      = explode( '/', $file );
+			$module_name = $splits[ count( $splits ) - 2 ];
+			$filter_name = str_ireplace( '-', '_', $module_name );
+			$filter_name = 'udb_' . $filter_name;
+
+			if ( apply_filters( $filter_name, true ) ) {
+
+				require_once $file;
+				$module = new $class();
+				$module->setup();
+
+			}
 		}
 
 	}

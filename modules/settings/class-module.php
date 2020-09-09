@@ -8,7 +8,6 @@
 namespace Udb\Settings;
 
 use Udb\Base\Module as Base_Module;
-use Udb\Helpers\Screen;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
