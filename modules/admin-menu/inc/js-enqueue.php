@@ -1,29 +1,21 @@
 <?php
 /**
- * Setup admin menu enqueue.
+ * JS Enqueue.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-/**
- * Enqueue the admin menu styles & scripts.
- */
-function udb_admin_menu_admin_assets() {
+return function ( $module ) {
 
-	global $current_screen;
+	if ( $module->screen()->is_admin_menu() ) {
 
-	// Admin menu's setting page.
-	if ( 'udb_widgets_page_udb_admin_menu' === $current_screen->id ) {
+		// Color pickers.
+		wp_enqueue_script( 'wp-color-picker' );
 
-		// Styles.
-		if ( apply_filters( 'udb_font_awesome', true ) ) {
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
-			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
-		}
-
-		wp_enqueue_style( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/dashicons-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// CodeMirror.
+		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// jQuery UI dependencies.
 		wp_enqueue_script( 'jquery-ui-core' );
@@ -31,11 +23,10 @@ function udb_admin_menu_admin_assets() {
 		wp_enqueue_script( 'jquery-ui-mouse' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
-		wp_enqueue_style( 'udb-admin-menu', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/css/admin-menu.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-
-		// Scripts.
+		// Dashicons picker.
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		// Admin menu.
 		wp_enqueue_script( 'udb-admin-menu', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/js/admin-menu.js', array( 'jquery', 'dashicons-picker', 'jquery-ui-sortable' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		$wp_roles   = wp_roles();
@@ -70,5 +61,4 @@ function udb_admin_menu_admin_assets() {
 
 	}
 
-}
-add_action( 'admin_enqueue_scripts', 'udb_admin_menu_admin_assets' );
+};
