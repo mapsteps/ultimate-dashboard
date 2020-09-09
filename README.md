@@ -57,15 +57,22 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 #### Filter hooks
 - `udb_font_awesome` : Whether or not to enqueue Font Awesome css.
 - `udb_modules` : Filter to manage what modules should be loaded.
+- `udb_{$module}` : Filter to determine whether or not to enable a module. E.g: `udb_login_customizer`
 
 #### Action hooks
 - `udb_edit_widget_styles` : Action to run on styles enqueue on both new widget screen & edit widget screen.
 - `udb_edit_widget_scripts` : Action to run on scripts enqueue on both new widget screen & edit widget screen.
 - `udb_widget_list_styles` : Action to run on styles enqueue on widget list screen.
 - `udb_widget_list_scripts` : Action to run on scripts enqueue on widget list screen.
+- `udb_save_widget` : Action to run on widget saving. This hook can be used to save custom widgets.
 - `udb_dashboard_styles` : Action to run on styles enqueue on dashboard screen.
 - `udb_dashboard_scripts` : Action to run on scripts enqueue on dashboard screen.
 - `udb_metabox_widgets` : Action to define widgets.
+- `udb_edit_admin_page_styles` : Action to run on styles enqueue on both new admin page screen & edit admin page screen.
+- `udb_edit_admin_page_scripts` : Action to run on scripts enqueue on both new admin page screen & edit admin page screen.
+- `udb_admin_page_list_styles` : Action to run on styles enqueue on admin page list screen.
+- `udb_admin_page_list_scripts` : Action to run on scripts enqueue on admin page list screen.
+- `udb_save_admin_page` : Action to run on admin page saving.
 
 ## Ultimate Dashboard Pro
 

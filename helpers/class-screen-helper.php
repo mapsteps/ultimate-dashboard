@@ -98,6 +98,42 @@ class Screen_Helper {
 	}
 
 	/**
+	 * Check if current screen is new admin page screen.
+	 *
+	 * @return boolean
+	 */
+	public function is_new_admin_page() {
+
+		global $pagenow, $typenow;
+		return ( 'post-new.php' === $pagenow && 'udb_admin_page' === $typenow ? true : false );
+
+	}
+
+	/**
+	 * Check if current screen is edit admin page screen.
+	 *
+	 * @return boolean
+	 */
+	public function is_edit_admin_page() {
+
+		global $pagenow, $typenow;
+		return ( 'post.php' === $pagenow && 'udb_admin_page' === $typenow ? true : false );
+
+	}
+
+	/**
+	 * Check if current screen is admin page list screen.
+	 *
+	 * @return boolean
+	 */
+	public function is_admin_page_list() {
+
+		$current_screen = get_current_screen();
+		return ( 'edit-udb_admin_page' === $current_screen->id ? true : false );
+
+	}
+
+	/**
 	 * Check if current screen is admin menu page.
 	 *
 	 * @return boolean

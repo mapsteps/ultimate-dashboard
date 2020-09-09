@@ -50,7 +50,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Settings page.
+	 * Branding page.
 	 */
 	public function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=udb_widgets', 'White Label', 'White Label', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_branding', array( $this, 'submenu_page_content' ) );

@@ -7,10 +7,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-/**
- * Ajax handler of admin page's active status change.
- */
-function udb_admin_page_change_active_status() {
+return function () {
 
 	$nonce     = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
 	$post_id   = isset( $_POST['post_id'] ) ? absint( sanitize_text_field( $_POST['post_id'] ) ) : 0;
@@ -43,5 +40,4 @@ function udb_admin_page_change_active_status() {
 		);
 	}
 
-}
-add_action( 'wp_ajax_udb_admin_page_change_active_status', 'udb_admin_page_change_active_status' );
+};
