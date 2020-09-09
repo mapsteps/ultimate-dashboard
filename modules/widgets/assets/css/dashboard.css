@@ -4,6 +4,9 @@
 }
 
 [id*='ms-udb'] .fa,
+[id*='ms-udb'] .fas,
+[id*='ms-udb'] .fab,
+[id*='ms-udb'] .far,
 [id*='ms-udb'] .dashicons {
 	font-size: 68px;
 	width: auto;
@@ -24,6 +27,9 @@
 }
 
 [id*='ms-udb'] .fa:hover,
+[id*='ms-udb'] .fas:hover,
+[id*='ms-udb'] .fab:hover,
+[id*='ms-udb'] .far:hover,
 [id*='ms-udb'] .dashicons:hover {
 	color: #555;
 	opacity: 0.8;
