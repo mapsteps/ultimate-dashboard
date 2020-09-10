@@ -234,7 +234,7 @@
 	 * @param {string} value The content type value.
 	 */
 	function contentTypeSwitch(value) {
-		var htmlEditor = document.querySelector('#udb-admin-page-html-metabox');
+		var htmlEditor = document.querySelector('#udb-html-metabox');
 		var elementorSwitch = document.querySelector('#elementor-switch-mode');
 		var elementorEditor = document.querySelector('#elementor-editor');
 		var brizyButtons = document.querySelector('#post-body-content > .brizy-buttons');
