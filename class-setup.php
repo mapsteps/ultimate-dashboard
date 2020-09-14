@@ -30,10 +30,10 @@ class Setup {
 	 */
 	public function setup() {
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
-		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ) );
+		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ), 20 );
 
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
@@ -44,9 +44,9 @@ class Setup {
 	 * Add action links displayed in plugins page.
 	 *
 	 * @param array $links The action links array.
-	 * @return array The action links array.
+	 * @return array The modified action links array.
 	 */
-	public function add_action_links( $links ) {
+	public function action_links( $links ) {
 
 		$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
 
@@ -108,9 +108,12 @@ class Setup {
 	 */
 	public function deactivation() {
 
-		$udb_settings = get_option( 'udb_settings' );
+		$settings = get_option( 'udb_settings' );
 
-		if ( isset( $udb_settings['remove-on-uninstall'] ) ) {
+		$remove_on_uninstall = isset( $settings['remove-on-uninstall'] ) ? true : false;
+		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall );
+
+		if ( $remove_on_uninstall ) {
 
 			delete_option( 'udb_settings' );
 			delete_option( 'udb_branding' );
