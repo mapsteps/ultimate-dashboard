@@ -55,6 +55,8 @@ class Backwards_Compatibility {
 				$widget_type = 'icon';
 			}
 
+			$widget_type = apply_filters( 'udb_parse_widget_type', $widget_type, $post_id );
+
 			update_post_meta( $post_id, 'udb_widget_type', $widget_type );
 
 		}
@@ -74,7 +76,7 @@ class Backwards_Compatibility {
 		$this->delete_old_options();
 		$this->check_widget_type();
 		$this->check_widget_status();
-		$this->check_meta_compatibility();
+		$this->replace_submeta_keys();
 		$this->delete_unused_page();
 
 	}
@@ -229,10 +231,10 @@ class Backwards_Compatibility {
 	}
 
 	/**
-	 * Check meta compatibility.
+	 * Replace some submeta keys from an option meta to other option meta.
 	 * Move udb_pro_settings to udb_settings.
 	 */
-	public function check_meta_compatibility() {
+	public function replace_submeta_keys() {
 
 		// Make sure we don't check again.
 		if ( get_option( 'udb_compat_settings_meta' ) ) {
@@ -243,13 +245,11 @@ class Backwards_Compatibility {
 		$pro_opts     = get_option( 'udb_pro_settings', array() );
 
 		$update_setting_opts = false;
-		$update_pro_opts     = false;
 
 		// Dashboard's custom css.
 		if ( isset( $pro_opts['custom_css'] ) ) {
 			$setting_opts['custom_css'] = $pro_opts['custom_css'];
 			$update_setting_opts        = true;
-			$update_pro_opts            = true;
 
 			unset( $pro_opts['custom_css'] );
 		}
@@ -261,6 +261,8 @@ class Backwards_Compatibility {
 		if ( $update_setting_opts ) {
 			update_option( 'udb_settings', $setting_opts );
 		}
+
+		do_action( 'udb_replace_submeta_keys' );
 
 		// Make sure we don't check again.
 		update_option( 'udb_compat_settings_meta', 1 );
