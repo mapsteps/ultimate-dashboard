@@ -27,7 +27,7 @@ class Backwards_Compatibility {
 	public function setup() {
 
 		add_action( 'udb_compat_widget_type', array( $this, 'parse_widget_type' ) );
-		add_action( 'admin_init', array( $this, 'admin_init_check' ) );
+		add_action( 'admin_init', array( $this, 'meta_compatibility' ) );
 
 	}
 
@@ -66,7 +66,7 @@ class Backwards_Compatibility {
 	/**
 	 * Run compatibility checking on admin_init hook.
 	 */
-	public function admin_init_check() {
+	public function meta_compatibility() {
 
 		// Don't run checking on heartbeat request.
 		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) {
@@ -78,6 +78,8 @@ class Backwards_Compatibility {
 		$this->check_widget_status();
 		$this->replace_submeta_keys();
 		$this->delete_unused_page();
+
+		do_action( 'udb_meta_compatibility' );
 
 	}
 
@@ -162,6 +164,8 @@ class Backwards_Compatibility {
 			update_option( 'udb_settings', $udb_settings );
 			delete_option( 'comments' );
 		}
+
+		do_action( 'udb_delete_old_options' );
 
 		// Make sure we don't check again.
 		update_option( 'udb_compat_old_option', 1 );
