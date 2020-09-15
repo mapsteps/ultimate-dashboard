@@ -258,15 +258,15 @@ class Backwards_Compatibility {
 			unset( $pro_opts['custom_css'] );
 		}
 
-		// Delete udb_pro_settings, since we don't use it anymore.
-		delete_option( 'udb_pro_settings' );
-
 		// Update the settings meta if necessary.
 		if ( $update_setting_opts ) {
 			update_option( 'udb_settings', $setting_opts );
 		}
 
 		do_action( 'udb_replace_submeta_keys' );
+
+		// Delete udb_pro_settings, since we don't use it anymore.
+		delete_option( 'udb_pro_settings' );
 
 		// Make sure we don't check again.
 		update_option( 'udb_compat_settings_meta', 1 );
