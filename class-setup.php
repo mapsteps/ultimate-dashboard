@@ -16,9 +16,9 @@ use Udb\Helpers\Content_Helper;
  */
 class Setup {
 	/**
-	 * Static method to ease the class usage.
+	 * Init the class setup.
 	 */
-	public static function run() {
+	public static function init() {
 
 		$instance = new Setup();
 		$instance->setup();

@@ -32,5 +32,5 @@ require __DIR__ . '/modules/base/class-output.php';
 require __DIR__ . '/class-backwards-compatibility.php';
 require __DIR__ . '/class-setup.php';
 
-Udb\Backwards_Compatibility::run();
-Udb\Setup::run();
+Udb\Backwards_Compatibility::init();
+Udb\Setup::init();

@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  */
 class Backwards_Compatibility {
 	/**
-	 * Static method to ease the class usage.
+	 * Init the class setup.
 	 */
-	public static function run() {
+	public static function init() {
 		$instance = new Backwards_Compatibility();
 		$instance->setup();
 	}
