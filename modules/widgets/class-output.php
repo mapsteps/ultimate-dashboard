@@ -38,7 +38,7 @@ class Output extends Base_Output {
 	public function setup() {
 
 		add_action( 'wp_dashboard_setup', array( $this, 'dashboard_widgets' ) );
-		add_action( 'wp_dashboard_setup', array( $this, 'remove_default_dashboard_widgets' ), 100 );
+		// add_action( 'wp_dashboard_setup', array( $this, 'remove_default_dashboard_widgets' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_styles' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_custom_css' ), 200 );
 		add_action( 'admin_head', array( $this, 'admin_custom_css' ), 200 );

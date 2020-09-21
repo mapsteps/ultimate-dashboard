@@ -29,10 +29,6 @@ return function () {
 		$widget_helper = new Widget_Helper();
 		$widgets       = $widget_helper->get_default();
 
-		// echo '<pre>';
-		// var_dump( $widgets );
-		// echo '</pre>';
-
 		foreach ( $widgets as $id => $widget ) {
 
 			$is_checked = isset( $settings[ $id ] ) ? 1 : 0;

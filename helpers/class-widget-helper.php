@@ -73,26 +73,19 @@ class Widget_Helper {
 
 				foreach ( $data as $id => $widget ) {
 
-					// echo '<pre>';
-					// var_dump( $widget );
-					// echo '</pre>';
-
 					if ( false !== $widget ) {
 
 						$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
-						$widget['context']        = $context;
-						$flat_widgets[ $id ]      = $widget;
 
 					}
+
+					$widget['context']   = $context;
+					$flat_widgets[ $id ] = $widget;
 				}
 			}
 		}
 
 		$widgets = wp_list_sort( $flat_widgets, array( 'title_stripped' => 'ASC' ), null, true );
-
-		// echo '<pre>';
-		// var_dump( $widgets );
-		// echo '</pre>';
 
 		return $widgets;
 
@@ -124,10 +117,6 @@ class Widget_Helper {
 		);
 
 		$widgets = array_intersect_key( $widgets, $default_widgets );
-
-		// echo '<pre>';
-		// var_dump( $widgets );
-		// echo '</pre>';
 
 		return $widgets;
 
@@ -164,10 +153,6 @@ class Widget_Helper {
 	public function get_3rd_party() {
 
 		$widgets = $this->get_all();
-
-		// echo '<pre>';
-		// var_dump( $widgets );
-		// echo '</pre>';
 
 		$default_widgets = array(
 			'dashboard_primary'         => array(),
