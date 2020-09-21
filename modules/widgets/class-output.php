@@ -13,7 +13,7 @@ use Udb\Base\Output as Base_Output;
 use WP_Query;
 
 /**
- * Class to setup branding output.
+ * Class to setup widgets output.
  */
 class Output extends Base_Output {
 	/**
@@ -28,12 +28,12 @@ class Output extends Base_Output {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/branding';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widgets';
 
 	}
 
 	/**
-	 * Setup branding output.
+	 * Setup widgets output.
 	 */
 	public function setup() {
 
@@ -138,9 +138,9 @@ class Output extends Base_Output {
 
 		$saved_widgets   = $this->widget()->get_saved_default();
 		$default_widgets = $this->widget()->get_default();
-		$udb_settings    = get_option( 'udb_settings' );
+		$settings        = get_option( 'udb_settings' );
 
-		if ( isset( $udb_settings['remove-all'] ) ) {
+		if ( isset( $settings['remove-all'] ) ) {
 
 			remove_action( 'welcome_panel', 'wp_welcome_panel' );
 
@@ -149,7 +149,7 @@ class Output extends Base_Output {
 			}
 		} else {
 
-			if ( isset( $udb_settings['welcome_panel'] ) ) {
+			if ( isset( $settings['welcome_panel'] ) ) {
 				remove_action( 'welcome_panel', 'wp_welcome_panel' );
 			}
 

@@ -29,14 +29,19 @@ return function () {
 		$widget_helper = new Widget_Helper();
 		$widgets       = $widget_helper->get_default();
 
+		// echo '<pre>';
+		// var_dump( $widgets );
+		// echo '</pre>';
+
 		foreach ( $widgets as $id => $widget ) {
 
 			$is_checked = isset( $settings[ $id ] ) ? 1 : 0;
+			$title      = isset( $widget['title_stripped'] ) ? $widget['title_stripped'] : '';
 			?>
 
 			<div class="field setting-field">
 				<label for="udb_settings[<?php echo esc_attr( $id ); ?>]" class="label checkbox-label">
-					<?php echo esc_attr( $widget['title_stripped'] ); ?> (<code><?php echo esc_attr( $id ); ?></code>)
+					<?php echo esc_attr( $title ); ?> (<code><?php echo esc_attr( $id ); ?></code>)
 					<input type="checkbox" name="udb_settings[<?php echo esc_attr( $id ); ?>]" id="udb_settings[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( $is_checked, 1 ); ?>>
 					<div class="indicator"></div>
 				</label>
