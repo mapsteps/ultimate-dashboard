@@ -7,7 +7,7 @@
 
 namespace Udb\Helpers;
 
-use Udb\Widgets\Output as Widget_Output;
+use Udb\Widgets\Output;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -34,14 +34,13 @@ class Widget_Helper {
 
 			set_current_screen( 'dashboard' );
 
-			$output_class = new Widget_Output();
-			remove_action( 'wp_dashboard_setup', array( $output_class, 'remove_default_dashboard_widgets' ), 100 );
+			remove_action( 'wp_dashboard_setup', array( Output::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
 
 			do_action( 'udb_original_widgets_before_dashboard_setup' );
 
 			wp_dashboard_setup();
 
-			add_action( 'wp_dashboard_setup', array( $output_class, 'remove_default_dashboard_widgets' ), 100 );
+			add_action( 'wp_dashboard_setup', array( Output::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
 
 			do_action( 'udb_original_widgets_after_dashboard_setup' );
 
