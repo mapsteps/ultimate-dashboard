@@ -69,10 +69,13 @@ class Content_Helper {
 	 * Get the editor/ builder of the given post.
 	 *
 	 * @param int $post_id ID of the post being checked.
-	 * @return bool
+	 * @return string The content editor name.
 	 */
 	public function get_content_editor( $post_id ) {
-		return 'normal';
+		$content_editor = 'normal';
+		$content_editor = apply_filters( 'udb_content_editor', $content_editor, $post_id );
+
+		return $content_editor;
 	}
 
 	/**
@@ -84,7 +87,13 @@ class Content_Helper {
 	 * @return string The stripped string.
 	 */
 	public function strip_tags_content( $text ) {
-		return preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
+
+		$cleanup = preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
+		$cleanup = wp_strip_all_tags( $cleanup );
+		$cleanup = trim( $cleanup );
+
+		return $cleanup;
+
 	}
 
 	/**
