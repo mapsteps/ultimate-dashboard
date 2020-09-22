@@ -31,7 +31,7 @@ class Setup {
 	public function setup() {
 
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-		add_action( 'plugins_loaded', array( $this, 'load_modules' ) );
+		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
 		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ), 20 );
 

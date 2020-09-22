@@ -32,5 +32,15 @@ require __DIR__ . '/modules/base/class-output.php';
 require __DIR__ . '/class-backwards-compatibility.php';
 require __DIR__ . '/class-setup.php';
 
+/**
+ * Check whether or not Ultimate Dashboard Pro is active.
+ * This function can be called anywhere after "plugins_loaded" hook.
+ *
+ * @return bool
+ */
+function udb_is_pro_active() {
+	return ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ? true : false );
+}
+
 Udb\Backwards_Compatibility::init();
 Udb\Setup::init();
