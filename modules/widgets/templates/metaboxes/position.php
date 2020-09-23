@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $post ) {
 
-	wp_nonce_field( basename( __FILE__ ), 'udb_position_nonce' );
+	wp_nonce_field( 'udb_position', 'udb_position_nonce' );
 
 	$saved_meta = get_post_meta( $post->ID, 'udb_position_key', true );
 

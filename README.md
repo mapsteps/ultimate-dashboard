@@ -67,7 +67,7 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 - `udb_save_widget` : Action to run on widget saving. This hook can be used to save custom widgets.
 - `udb_dashboard_styles` : Action to run on styles enqueue on dashboard screen.
 - `udb_dashboard_scripts` : Action to run on scripts enqueue on dashboard screen.
-- `udb_metabox_widgets` : Action to define widgets.
+- `udb_widgets_metabox` : Action to define widgets.
 - `udb_edit_admin_page_styles` : Action to run on styles enqueue on both new admin page screen & edit admin page screen.
 - `udb_edit_admin_page_scripts` : Action to run on scripts enqueue on both new admin page screen & edit admin page screen.
 - `udb_admin_page_list_styles` : Action to run on styles enqueue on admin page list screen.

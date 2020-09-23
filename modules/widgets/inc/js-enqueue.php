@@ -32,9 +32,11 @@ return function ( $module ) {
 		do_action( 'udb_widget_list_scripts' );
 
 	} elseif ( $module->screen()->is_dashboard() ) {
-		// Dashboard JS.
+
+		// Dashboard.
 		wp_enqueue_script( 'udb-dashboard', $module->url . '/assets/js/dashboard.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		do_action( 'udb_dashboard_scripts' );
+
 	}
 };

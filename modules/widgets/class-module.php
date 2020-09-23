@@ -43,9 +43,9 @@ class Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-		add_action( 'udb_metabox_widgets', array( $this, 'icon_widget' ) );
-		add_action( 'udb_metabox_widgets', array( $this, 'text_widget' ) );
-		add_action( 'udb_metabox_widgets', array( $this, 'html_widget' ) );
+		add_action( 'udb_widgets_metabox', array( $this, 'icon_widget' ) );
+		add_action( 'udb_widgets_metabox', array( $this, 'text_widget' ) );
+		add_action( 'udb_widgets_metabox', array( $this, 'html_widget' ) );
 
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
@@ -192,7 +192,11 @@ class Module extends Base_Module {
 
 		add_meta_box( 'udb-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), array( $this, 'main_metabox' ), 'udb_widgets', 'normal', 'high' );
 		add_meta_box( 'udb-active-status-metabox', __( 'Active', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_widgets', 'side', 'high' );
-		add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_widgets', 'side' );
+
+		if ( ! udb_is_pro_active() ) {
+			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_widgets', 'side' );
+		}
+
 		add_meta_box( 'udb-position-metabox', __( 'Position', 'ultimate-dashboard' ), array( $this, 'position_metabox' ), 'udb_widgets', 'side' );
 		add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), array( $this, 'priority_metabox' ), 'udb_widgets', 'side' );
 

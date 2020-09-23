@@ -21,7 +21,7 @@ return function ( $post ) {
 	?>
 
 	<div class="postbox-content">
-		<?php wp_nonce_field( 'udb_edit_admin_page', 'udb_widget_active_nonce' ); ?>
+		<?php wp_nonce_field( 'udb_widget_active', 'udb_widget_active_nonce' ); ?>
 		<div class="fields">
 			<div class="field">
 				<div class="control switch-control is-rounded is-small">

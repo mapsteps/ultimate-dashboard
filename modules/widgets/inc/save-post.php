@@ -2,29 +2,39 @@
 /**
  * Widget saving process.
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $post_id ) {
 
-	$is_autosave = wp_is_post_autosave( $post_id );
-	$is_revision = wp_is_post_revision( $post_id );
+	$post_type = get_post_type( $post_id );
 
-	$is_valid_metabox_nonce  = ( isset( $_POST['udb_metabox_nonce'] ) && wp_verify_nonce( $_POST['udb_metabox_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
-	$is_valid_position_nonce = ( isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
-	$is_valid_priority_nonce = ( isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], basename( __FILE__ ) ) ) ? 'true' : 'false';
-
-	if ( $is_autosave || $is_revision || ! $is_valid_metabox_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
+	if ( 'udb_widgets' !== $post_type ) {
 		return;
 	}
 
+	if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
+	$is_valid_widget_type_nonce   = isset( $_POST['udb_widget_type_nonce'] ) && wp_verify_nonce( $_POST['udb_widget_type_nonce'], 'udb_widget_type' ) ? true : false;
+	$is_valid_widget_active_nonce = isset( $_POST['udb_widget_active_nonce'] ) && wp_verify_nonce( $_POST['udb_widget_active_nonce'], 'udb_widget_active' ) ? true : false;
+
+	$is_valid_position_nonce = isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], 'udb_position' ) ? true : false;
+	$is_valid_priority_nonce = isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], 'udb_priority' ) ? true : false;
+
+	if ( ! $is_valid_widget_type_nonce || ! $is_valid_widget_active_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
+		return;
+	}
+
+	// Widget type.
 	if ( isset( $_POST['udb_widget_type'] ) ) {
 		update_post_meta( $post_id, 'udb_widget_type', sanitize_text_field( $_POST['udb_widget_type'] ) );
 	}
 
-		// Icon widget.
+	// Icon widget.
 	if ( isset( $_POST['udb_icon'] ) ) {
 		update_post_meta( $post_id, 'udb_icon_key', sanitize_text_field( $_POST['udb_icon'] ) );
 	}
@@ -33,10 +43,14 @@ return function ( $post_id ) {
 		update_post_meta( $post_id, 'udb_link', sanitize_text_field( $_POST['udb_link'] ) );
 	}
 
-		$check = isset( $_POST['udb_link_target'] ) && $_POST['udb_link_target'] ? '_blank' : '_self';
-		update_post_meta( $post_id, 'udb_link_target', $check );
+	if ( isset( $_POST['udb_tooltip'] ) ) {
+		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST['udb_tooltip'] ) );
+	}
 
-		// Sidebar.
+	$link_target = isset( $_POST['udb_link_target'] ) && $_POST['udb_link_target'] ? '_blank' : '_self';
+	update_post_meta( $post_id, 'udb_link_target', $link_target );
+
+	// Sidebar.
 	if ( isset( $_POST['udb_is_active'] ) ) {
 		update_post_meta( $post_id, 'udb_is_active', sanitize_text_field( $_POST['udb_is_active'] ) );
 	}
@@ -49,11 +63,7 @@ return function ( $post_id ) {
 		update_post_meta( $post_id, 'udb_priority_key', sanitize_text_field( $_POST['udb_metabox_priority'] ) );
 	}
 
-	if ( isset( $_POST['udb_tooltip'] ) ) {
-		update_post_meta( $post_id, 'udb_tooltip', sanitize_text_field( $_POST['udb_tooltip'] ) );
-	}
-
-		// Text widget.
+	// Text widget.
 	if ( isset( $_POST['udb_content'] ) ) {
 		update_post_meta( $post_id, 'udb_content', wp_kses_post( $_POST['udb_content'] ) );
 	}
@@ -62,7 +72,7 @@ return function ( $post_id ) {
 		update_post_meta( $post_id, 'udb_content_height', sanitize_text_field( $_POST['udb_content_height'] ) );
 	}
 
-		// HTML widget.
+	// HTML widget.
 	if ( isset( $_POST['udb_html'] ) ) {
 		update_post_meta( $post_id, 'udb_html', wp_kses_post( $_POST['udb_html'] ) );
 	}
