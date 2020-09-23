@@ -9,8 +9,8 @@ namespace Udb\Widgets;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Output as Base_Output;
 use WP_Query;
+use Udb\Base\Output as Base_Output;
 
 /**
  * Class to setup widgets output.
@@ -54,11 +54,21 @@ class Output extends Base_Output {
 	}
 
 	/**
+	 * Init the class setup.
+	 */
+	public static function init() {
+
+		$class = new self();
+		$class->setup();
+
+	}
+
+	/**
 	 * Setup widgets output.
 	 */
 	public function setup() {
 
-		add_action( 'wp_dashboard_setup', array( $this, 'dashboard_widgets' ) );
+		add_action( 'wp_dashboard_setup', array( self::get_instance(), 'dashboard_widgets' ) );
 		add_action( 'wp_dashboard_setup', array( self::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_styles' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_custom_css' ), 200 );
@@ -73,10 +83,19 @@ class Output extends Base_Output {
 
 	/**
 	 * Setup dashboard widgets.
+	 *
+	 * @param array $user_roles Current user roles.
 	 */
-	public function dashboard_widgets() {
+	public function dashboard_widgets( $user_roles = array() ) {
 
-		// Loop through udb_widgets CPT to display widgets on the WordPress dashboard.
+		$current_user = wp_get_current_user();
+
+		if ( empty( $user_roles ) ) {
+			$user_roles = $current_user->roles;
+		}
+
+		$user_roles = apply_filters( 'udb_dashboard_user_roles', $user_roles );
+
 		$args = array(
 			'post_type'      => 'udb_widgets',
 			'posts_per_page' => 100,

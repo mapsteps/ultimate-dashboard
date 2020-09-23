@@ -54,8 +54,7 @@ class Module extends Base_Module {
 
 		// The module output.
 		require_once __DIR__ . '/class-output.php';
-		$output = new Output();
-		$output->setup();
+		Output::init();
 
 	}
 
