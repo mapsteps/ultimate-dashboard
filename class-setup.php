@@ -93,6 +93,12 @@ class Setup {
 	 */
 	public function pro_submenu() {
 
+		// Stop if PRO version is active.
+		if ( udb_is_pro_active() ) {
+			return;
+		}
+
+		// Stop if user isn't an admin.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -111,7 +117,7 @@ class Setup {
 		$settings = get_option( 'udb_settings' );
 
 		$remove_on_uninstall = isset( $settings['remove-on-uninstall'] ) ? true : false;
-		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall );
+		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall ); // What's this filter for?
 
 		if ( $remove_on_uninstall ) {
 
