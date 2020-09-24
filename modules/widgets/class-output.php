@@ -152,10 +152,6 @@ class Output extends Base_Output {
 				if ( $tooltip ) {
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
-			} else {
-
-				do_action( 'udb_widget_output', $post_id );
-
 			}
 
 			$output_args = array(
