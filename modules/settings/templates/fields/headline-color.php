@@ -17,6 +17,6 @@ return function () {
 		$accent_color = $settings['headline_color'];
 	}
 
-	echo '<input type="text" name="udb_settings[headline_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-settings-field udb-headline-color-settings-field" data-default="#23282d" />';
+	echo '<input type="text" name="udb_settings[headline_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-field udb-headline-color-settings-field" data-default="#23282d" />';
 
 };

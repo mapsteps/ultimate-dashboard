@@ -17,6 +17,6 @@ return function () {
 		$accent_color = $settings['icon_color'];
 	}
 
-	echo '<input type="text" name="udb_settings[icon_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-settings-field udb-widget-color-settings-field" data-default="#555555" />';
+	echo '<input type="text" name="udb_settings[icon_color]" value="' . esc_attr( $accent_color ) . '" class="udb-color-field udb-widget-color-settings-field" data-default="#555555" />';
 
 };

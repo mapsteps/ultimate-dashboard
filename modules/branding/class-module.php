@@ -15,6 +15,14 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Class to setup branding module.
  */
 class Module extends Base_Module {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -28,6 +36,19 @@ class Module extends Base_Module {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/branding';
+
+	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 
 	}
 
@@ -118,7 +139,10 @@ class Module extends Base_Module {
 	 */
 	public function enable_field() {
 
-		$field = require __DIR__ . '/templates/fields/enable.php';
+		$template = __DIR__ . '/templates/fields/enable.php';
+		$template = apply_filters( 'udb_branding_enable_feature_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -128,7 +152,10 @@ class Module extends Base_Module {
 	 */
 	public function choose_layout_field() {
 
-		$field = require __DIR__ . '/templates/fields/choose-layout.php';
+		$template = __DIR__ . '/templates/fields/choose-layout.php';
+		$template = apply_filters( 'udb_branding_choose_layout_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -138,7 +165,10 @@ class Module extends Base_Module {
 	 */
 	public function accent_color_field() {
 
-		$field = require __DIR__ . '/templates/fields/accent-color.php';
+		$template = __DIR__ . '/templates/fields/accent-color.php';
+		$template = apply_filters( 'udb_branding_accent_color_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -148,7 +178,10 @@ class Module extends Base_Module {
 	 */
 	public function admin_bar_logo_field() {
 
-		$field = require __DIR__ . '/templates/fields/admin-bar-logo.php';
+		$template = __DIR__ . '/templates/fields/admin-bar-logo.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -158,7 +191,10 @@ class Module extends Base_Module {
 	 */
 	public function admin_bar_logo_url_field() {
 
-		$field = require __DIR__ . '/templates/fields/admin-bar-logo-url.php';
+		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -168,7 +204,10 @@ class Module extends Base_Module {
 	 */
 	public function footer_text_field() {
 
-		$field = require __DIR__ . '/templates/fields/footer-text.php';
+		$template = __DIR__ . '/templates/fields/footer-text.php';
+		$template = apply_filters( 'udb_branding_footer_text_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}
@@ -178,7 +217,10 @@ class Module extends Base_Module {
 	 */
 	public function version_text_field() {
 
-		$field = require __DIR__ . '/templates/fields/version-text.php';
+		$template = __DIR__ . '/templates/fields/version-text.php';
+		$template = apply_filters( 'udb_branding_version_text_field_path', $template );
+		$field    = require $template;
+
 		$field();
 
 	}

@@ -1,6 +1,6 @@
 (function ($) {
 	var customCSSFields = document.querySelectorAll('.udb-custom-css');
-	var colorFields = document.querySelectorAll('.udb-color-settings-field');
+	var colorFields = document.querySelectorAll('.udb-color-field');
 
 	if (customCSSFields.length) {
 		var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};

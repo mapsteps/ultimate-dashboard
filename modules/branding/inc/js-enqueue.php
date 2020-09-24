@@ -20,6 +20,8 @@ return function ( $module ) {
 		// Settings page.
 		wp_enqueue_script( 'udb-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/settings.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		do_action( 'udb_branding_scripts' );
+
 	}
 
 };
