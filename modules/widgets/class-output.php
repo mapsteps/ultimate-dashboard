@@ -109,33 +109,39 @@ class Output extends Base_Output {
 
 			$loop->the_post();
 
-			$id          = get_the_ID();
+			$post_id     = get_the_ID();
 			$title       = get_the_title();
-			$icon        = get_post_meta( $id, 'udb_icon_key', true );
-			$link        = get_post_meta( $id, 'udb_link', true );
-			$target      = get_post_meta( $id, 'udb_link_target', true );
-			$tooltip     = get_post_meta( $id, 'udb_tooltip', true );
-			$position    = get_post_meta( $id, 'udb_position_key', true );
-			$priority    = get_post_meta( $id, 'udb_priority_key', true );
-			$widget_type = get_post_meta( $id, 'udb_widget_type', true );
+			$icon        = get_post_meta( $post_id, 'udb_icon_key', true );
+			$link        = get_post_meta( $post_id, 'udb_link', true );
+			$target      = get_post_meta( $post_id, 'udb_link_target', true );
+			$tooltip     = get_post_meta( $post_id, 'udb_tooltip', true );
+			$position    = get_post_meta( $post_id, 'udb_position_key', true );
+			$priority    = get_post_meta( $post_id, 'udb_priority_key', true );
+			$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 			$output      = '';
 
 			// Preventing edge case when widget_type is empty.
 			if ( ! $widget_type ) {
 
-				do_action( 'udb_compat_widget_type', $id );
+				do_action( 'udb_compat_widget_type', $post_id );
 
+			}
+
+			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id );
+
+			if ( ! $allow_access ) {
+				continue;
 			}
 
 			if ( 'html' === $widget_type ) {
 
-				$html   = get_post_meta( $id, 'udb_html', true );
+				$html   = get_post_meta( $post_id, 'udb_html', true );
 				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
 
 			} elseif ( 'text' === $widget_type ) { // Text widget output.
 
-				$content       = get_post_meta( $id, 'udb_content', true );
-				$contentheight = get_post_meta( $id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $id, 'udb_content_height', true ) . '"' : '';
+				$content       = get_post_meta( $post_id, 'udb_content', true );
+				$contentheight = get_post_meta( $post_id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $post_id, 'udb_content_height', true ) . '"' : '';
 
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
 
@@ -143,14 +149,17 @@ class Output extends Base_Output {
 
 				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
-				// Tooltip.
 				if ( $tooltip ) {
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
+			} else {
+
+				do_action( 'udb_widget_output', $post_id );
+
 			}
 
 			$output_args = array(
-				'id'          => $id,
+				'id'          => $post_id,
 				'title'       => $title,
 				'position'    => $position,
 				'priority'    => $priority,
@@ -159,13 +168,12 @@ class Output extends Base_Output {
 
 			$output = apply_filters( 'udb_widget_output', $output, $output_args );
 
-			// Output.
-			$function = function() use ( $output ) {
+			$output_callback = function() use ( $output ) {
 				echo $output;
 			};
 
 			// Add metabox.
-			add_meta_box( 'ms-udb' . $id, $title, $function, 'dashboard', $position, $priority );
+			add_meta_box( 'ms-udb' . $post_id, $title, $output_callback, 'dashboard', $position, $priority );
 
 		endwhile;
 
