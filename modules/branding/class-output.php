@@ -15,6 +15,14 @@ use Udb\Base\Output as Base_Output;
  * Class to setup branding output.
  */
 class Output extends Base_Output {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -32,12 +40,25 @@ class Output extends Base_Output {
 	}
 
 	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
 	 * Setup branding output.
 	 */
 	public function setup() {
 
-		add_filter( 'admin_footer_text', array( $this, 'footer_text' ) );
-		add_filter( 'update_footer', array( $this, 'version_text' ), 20 );
+		add_filter( 'admin_footer_text', array( self::get_instance(), 'footer_text' ) );
+		add_filter( 'update_footer', array( self::get_instance(), 'version_text' ), 20 );
 
 	}
 
