@@ -45,14 +45,14 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Settings page.
+	 * Add submenu page.
 	 */
 	public function submenu_page() {
 		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Tools', 'Tools', 'manage_options', 'udb_tools', array( $this, 'submenu_page_content' ) );
 	}
 
 	/**
-	 * Settings page callback.
+	 * Submenu page content.
 	 */
 	public function submenu_page_content() {
 
