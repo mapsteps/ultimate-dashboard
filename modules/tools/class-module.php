@@ -15,6 +15,14 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Class to setup tools module.
  */
 class Module extends Base_Module {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -32,15 +40,28 @@ class Module extends Base_Module {
 	}
 
 	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
 	 * Setup tools module.
 	 */
 	public function setup() {
 
-		add_action( 'admin_menu', array( $this, 'submenu_page' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 
-		add_action( 'admin_init', array( $this, 'add_settings' ) );
+		add_action( 'admin_init', array( self::get_instance(), 'add_settings' ) );
 
 	}
 

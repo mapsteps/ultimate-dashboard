@@ -51,7 +51,7 @@ return function () {
 	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
 	$admin_pages       = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
 
-	if ( ! $imports && ! $widgets && ! $admin_pages ) {
+	if ( ! $imports ) {
 
 		add_settings_error(
 			'udb_export',
@@ -77,6 +77,8 @@ return function () {
 			update_option( 'udb_login', $login_settings );
 		}
 
+		do_action( 'udb_import_settings', $imports );
+
 		add_settings_error(
 			'udb_export',
 			esc_attr( 'udb-import' ),
@@ -90,7 +92,10 @@ return function () {
 
 		foreach ( $widgets as $widget ) {
 
-			$widget['post_type'] = 'udb_widgets';
+			// For backward compatibility: before version 3, post_type was unset in the export.
+			if ( ! isset( $widget['post_type'] ) ) {
+				$widget['post_type'] = 'udb_widgets';
+			}
 
 			$post = get_page_by_path( $widget['post_name'], OBJECT, 'udb_widgets' );
 			$meta = $widget['meta'];
@@ -159,5 +164,7 @@ return function () {
 		);
 
 	}
+
+	do_action( 'udb_import', $imports );
 
 };

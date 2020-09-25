@@ -28,31 +28,13 @@ return function () {
 	$widgets = $widgets ? $widgets : array();
 
 	foreach ( $widgets as &$widget ) {
+		$meta = get_post_meta( $widget->ID );
 
-		unset(
-			$widget->to_ping,
-			$widget->pinged,
-			$widget->guid,
-			$widget->filter,
-			$widget->ancestors,
-			$widget->page_template,
-			$widget->post_category,
-			$widget->tags_input,
-			$widget->post_type
-		);
+		$widget->meta = array();
 
-		$widget->meta = array(
-			'udb_widget_type'    => get_post_meta( $widget->ID, 'udb_widget_type', true ),
-			'udb_link'           => get_post_meta( $widget->ID, 'udb_link', true ),
-			'udb_link_target'    => get_post_meta( $widget->ID, 'udb_link_target', true ),
-			'udb_icon_key'       => get_post_meta( $widget->ID, 'udb_icon_key', true ),
-			'udb_position_key'   => get_post_meta( $widget->ID, 'udb_position_key', true ),
-			'udb_priority_key'   => get_post_meta( $widget->ID, 'udb_priority_key', true ),
-			'udb_tooltip'        => get_post_meta( $widget->ID, 'udb_tooltip', true ),
-			'udb_content'        => get_post_meta( $widget->ID, 'udb_content', true ),
-			'udb_content_height' => get_post_meta( $widget->ID, 'udb_content_height', true ),
-		);
-
+		foreach ( $meta as $meta_key => $meta_value ) {
+			$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+		}
 	}
 
 	$admin_pages = get_posts(
@@ -66,24 +48,27 @@ return function () {
 	foreach ( $admin_pages as &$admin_page ) {
 		$meta = get_post_meta( $admin_page->ID );
 
+		$admin_page->meta = array();
+
 		foreach ( $meta as $meta_key => $meta_value ) {
-			$admin_page->meta = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+			$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
 		}
 	}
+
+	$export_data = array(
+		'widgets'           => $widgets,
+		'settings'          => $settings,
+		'branding_settings' => $branding_settings,
+		'login_settings'    => $login_settings,
+		'admin_pages'       => $admin_pages,
+	);
+
+	$export_data = apply_filters( 'udb_export_data', $export_data );
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
 	header( 'Content-type: application/json' );
 
-	echo wp_json_encode(
-		array(
-			'widgets'           => $widgets,
-			'settings'          => $settings,
-			'branding_settings' => $branding_settings,
-			'login_settings'    => $login_settings,
-			'admin_pages'       => $admin_pages,
-		)
-	);
-
+	echo wp_json_encode( $export_data );
 	exit;
 
 };
