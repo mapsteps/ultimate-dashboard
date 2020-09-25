@@ -43,20 +43,24 @@ return function ( $module ) {
 			);
 		}
 
+		$admin_menu_data = array(
+			'nonces'    => array(
+				'getMenu' => wp_create_nonce( 'udb_admin_menu_get_menu' ),
+			),
+			'roles'     => $roles,
+			'templates' => array(
+				'menuList'      => require __DIR__ . '/../templates/menu-list.php',
+				'submenuList'   => require __DIR__ . '/../templates/submenu-list.php',
+				'menuSeparator' => require __DIR__ . '/../templates/menu-separator.php',
+			),
+		);
+
+		$admin_menu_data = apply_filters( 'udb_admin_menu_js_object', $admin_menu_data );
+
 		wp_localize_script(
 			'udb-admin-menu',
 			'udbAdminMenu',
-			array(
-				'nonces'    => array(
-					'getMenu' => wp_create_nonce( 'udb_admin_menu_get_menu' ),
-				),
-				'roles'     => $roles,
-				'templates' => array(
-					'menuList'      => require __DIR__ . '/../templates/menu-list.php',
-					'submenuList'   => require __DIR__ . '/../templates/submenu-list.php',
-					'menuSeparator' => require __DIR__ . '/../templates/menu-separator.php',
-				),
-			)
+			$admin_menu_data
 		);
 
 	}

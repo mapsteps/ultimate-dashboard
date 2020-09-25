@@ -11,7 +11,7 @@ return function () {
 
 	?>
 
-	<p><?php _e( 'Export & move your Dashboard Widgets to a different installation.', 'ultimate-dashboard' ); ?></p>
+	<p><?php _e( 'Use the export button to export to a .json file which you can then import to another Ultimate Dashboard installation.', 'ultimate-dashboard' ); ?></p>
 
 	<div class="fields">
 		<p>

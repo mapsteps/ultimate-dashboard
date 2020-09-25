@@ -35,8 +35,11 @@ class Get_Menu {
 		}
 
 		remove_action( 'admin_menu', 'udb_admin_menu_output', 105 );
+		// todo: pro version: remove action the multisite version.
 
 		$admin_menu = get_option( 'udb_admin_menu', array() );
+
+		// todo: pro version: switch blog when necessary.
 
 		$roles = wp_get_current_user()->roles;
 		$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
@@ -50,6 +53,8 @@ class Get_Menu {
 		$this->load_menu();
 
 		$response = $this->format_response( $role );
+
+		// todo: pro version: restore current blog when necessary.
 
 		wp_send_json_success( $response );
 

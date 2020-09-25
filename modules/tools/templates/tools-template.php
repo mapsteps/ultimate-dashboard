@@ -20,7 +20,7 @@ return function () {
 						<?php
 						settings_fields( 'udb-export-group' );
 						do_settings_sections( 'ultimate-dashboard-export' );
-						submit_button( __( 'Export', 'ultimate-dashboard' ) );
+						submit_button( __( 'Export File', 'ultimate-dashboard' ) );
 						?>
 					</div>
 				</form>
@@ -31,7 +31,7 @@ return function () {
 						<?php
 						settings_fields( 'udb-import-group' );
 						do_settings_sections( 'ultimate-dashboard-import' );
-						submit_button( __( 'Import', 'ultimate-dashboard' ) );
+						submit_button( __( 'Import File', 'ultimate-dashboard' ) );
 						?>
 					</div>
 				</form>
