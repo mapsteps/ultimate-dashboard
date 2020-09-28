@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 use Udb\Helpers\Content_Helper;
 use Udb\Helpers\User_Helper;
 use Udb\Helpers\Array_Helper;
+use UdbPro\AdminMenu\Output;
 
 /**
  * Class to get menu & submenu.
@@ -34,8 +35,8 @@ class Get_Menu {
 			wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
 		}
 
-		remove_action( 'admin_menu', 'udb_admin_menu_output', 105 );
-		// todo: pro version: remove action the multisite version.
+		remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 );
+		// todo: pro version: remove action of the multisite version.
 
 		$admin_menu = get_option( 'udb_admin_menu', array() );
 

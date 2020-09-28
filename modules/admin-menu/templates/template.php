@@ -43,17 +43,7 @@ $role_names = $wp_roles->role_names;
 							</button>
 
 						</li>
-						<?php
-						add_settings_field(
-							'page-builder-template-' . $role_key,
-							ucwords( $role_name ),
-							function () use ( $role_key ) {
-								udb_page_builder_template_field( $role_key );
-							},
-							'udb-general-page',
-							'udb-builder-section'
-						);
-						?>
+
 					<?php endforeach; ?>
 				</ul>
 
@@ -72,12 +62,18 @@ $role_names = $wp_roles->role_names;
 
 			<div class="neatbox-footer">
 
-				<div class="udb-pro-settings-page-notice udb-pro-admin-menu-notice">
-					<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-					<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-						<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-					</a>
-				</div>
+				<?php if ( ! udb_is_pro_active() ) : ?>
+
+					<div class="udb-pro-settings-page-notice udb-pro-admin-menu-notice">
+						<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+						<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+							<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+						</a>
+					</div>
+
+				<?php endif; ?>
+
+				<?php do_action( 'udb_admin_menu_form_footer' ); ?>
 
 			</div>
 		</div>
