@@ -52,7 +52,6 @@ class Module extends Base_Module {
 
 	}
 
-
 	/**
 	 * Setup login customizer module.
 	 */
@@ -246,7 +245,7 @@ class Module extends Base_Module {
 			'udb_login_customizer_panel',
 			array(
 				'title'      => __( 'Login Customizer', 'ultimate-dashboard' ),
-				'capability' => 'manage_options',
+				'capability' => apply_filters( 'udb_settings_capability', 'manage_options' ),
 				'priority'   => 30,
 			)
 		);
@@ -285,15 +284,23 @@ class Module extends Base_Module {
 		$accent_color     = isset( $branding['accent_color'] ) ? $branding['accent_color'] : '';
 		$has_accent_color = $branding_enabled && ! empty( $accent_color ) ? true : false;
 
+		$control_files = array(
+			'template'    => __DIR__ . '/sections/template.php',
+			'logo'        => __DIR__ . '/sections/logo.php',
+			'bg'          => __DIR__ . '/sections/bg.php',
+			'layout'      => __DIR__ . '/sections/layout.php',
+			'fields'      => __DIR__ . '/sections/fields.php',
+			'labels'      => __DIR__ . '/sections/labels.php',
+			'button'      => __DIR__ . '/sections/button.php',
+			'form-footer' => __DIR__ . '/sections/form-footer.php',
+		);
+
+		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files );
+
 		// Register login customizer's settings & controls in WP Customizer.
-		require __DIR__ . '/sections/template.php';
-		require __DIR__ . '/sections/logo.php';
-		require __DIR__ . '/sections/bg.php';
-		require __DIR__ . '/sections/layout.php';
-		require __DIR__ . '/sections/fields.php';
-		require __DIR__ . '/sections/labels.php';
-		require __DIR__ . '/sections/button.php';
-		require __DIR__ . '/sections/form-footer.php';
+		foreach ( $control_files as $section => $file ) {
+			require $file;
+		}
 
 	}
 

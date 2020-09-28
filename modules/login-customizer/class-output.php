@@ -136,6 +136,8 @@ class Output extends Base_Output {
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_color]"></style>';
 
+		do_action( 'udb_login_customizer_live_styles' );
+
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_position]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_bg_color]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_width]"></style>';

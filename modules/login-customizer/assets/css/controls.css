@@ -101,7 +101,6 @@ ul .udb-customize-control:last-child {
   padding: 0;
 	margin: 0;
 	position: relative;
-	top: -2px;
 }
 
 .udb-customize-control-range-slider::-webkit-slider-thumb {

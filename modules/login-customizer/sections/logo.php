@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Range_Control;
 use Udb\Udb_Customize_Image_Control;
+
 use Udb\Helpers\Content_Helper;
 
 $content_helper = new Content_Helper();
@@ -39,12 +40,15 @@ $wp_customize->add_control(
 	)
 );
 
+$default_logo_height = '100%';
+$default_logo_height = apply_filters( 'udb_login_customizer_default_logo_height', $default_logo_height );
+
 $wp_customize->add_setting(
 	'udb_login[logo_height]',
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '100%',
+		'default'           => $default_logo_height,
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'esc_attr',
 	)
