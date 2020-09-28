@@ -215,6 +215,17 @@ input::-moz-focus-outer {
 }
 
 /**
+ * Customize Control Footer
+ */
+.wp-full-overlay-footer .devices {
+	display: flex;
+}
+
+.wp-full-overlay-footer .devices button {
+	margin-left: 0;
+}
+
+/**
  * PRO panel
  */
 #customize-theme-controls .udb-pro-control-section .accordion-section-title {

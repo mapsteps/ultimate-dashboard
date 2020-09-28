@@ -17,6 +17,13 @@ use Udb\Base\Output as Base_Output;
 class Output extends Base_Output {
 
 	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
+	/**
 	 * The current module url.
 	 *
 	 * @var string
@@ -29,6 +36,29 @@ class Output extends Base_Output {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/branding';
+
+	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
+	 * Init the class setup.
+	 */
+	public static function init() {
+
+		$class = new self();
+		$class->setup();
 
 	}
 

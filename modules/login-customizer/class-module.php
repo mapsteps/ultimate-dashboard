@@ -17,6 +17,13 @@ use Udb\Base\Module as Base_Module;
 class Module extends Base_Module {
 
 	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
+	/**
 	 * The current module url.
 	 *
 	 * @var string
@@ -31,6 +38,20 @@ class Module extends Base_Module {
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-customizer';
 
 	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
 
 	/**
 	 * Setup login customizer module.
@@ -61,8 +82,7 @@ class Module extends Base_Module {
 
 		// The module output.
 		require_once __DIR__ . '/class-output.php';
-		$output = new Output();
-		$output->setup();
+		Output::init();
 
 	}
 
@@ -317,6 +337,7 @@ class Module extends Base_Module {
 			'moduleUrl'    => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-customizer',
 			'assetUrl'     => $this->url . '/assets',
 			'wpLogoUrl'    => admin_url( 'images/wordpress-logo.svg?ver=' . ULTIMATE_DASHBOARD_PLUGIN_VERSION ),
+			'isProActive'  => udb_is_pro_active(),
 		);
 
 	}
@@ -330,9 +351,9 @@ class Module extends Base_Module {
 			return;
 		}
 
-		wp_enqueue_style( 'udb-login-customizer-hint', $this->url . '/assets/css/hint.css', ULTIMATE_DASHBOARD_PLUGIN_VERSION, 'all' );
+		wp_enqueue_style( 'udb-login-customizer-hint', $this->url . '/assets/css/hint.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, 'all' );
 
-		wp_enqueue_style( 'udb-login-customizer-preview', $this->url . '/assets/css/preview.css', ULTIMATE_DASHBOARD_PLUGIN_VERSION, 'all' );
+		wp_enqueue_style( 'udb-login-customizer-preview', $this->url . '/assets/css/preview.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, 'all' );
 
 	}
 

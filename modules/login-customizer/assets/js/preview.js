@@ -15,11 +15,11 @@
 	});
 
 	function listen() {
-		events.previewerBinding();
+		if (!udbLoginCustomizer.isProActive) events.previewerBinding();
 		events.toggleLoginPreview();
 		events.logoFieldsChange();
 		events.bgFieldsChange();
-		events.templateFieldsChange();
+		if (!udbLoginCustomizer.isProActive) events.templateFieldsChange();
 		events.layoutFieldsChange();
 		events.formFieldsChange();
 		events.labelFieldsChange();

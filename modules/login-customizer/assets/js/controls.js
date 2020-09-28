@@ -25,12 +25,11 @@ if (!String.prototype.includes) {
  */
 (function ($) {
 	var events = {};
-	var state = {};
 
 	wp.customize.bind('ready', function () {
 		setupControls();
 		listen();
-		insertProLink();
+		if (!udbLoginCustomizer.isProActive) insertProLink();
 	});
 
 	function setupControls() {
@@ -41,7 +40,7 @@ if (!String.prototype.includes) {
 
 	function listen() {
 		events.switchLoginPreview();
-		events.templateFieldsChange();
+		if (!udbLoginCustomizer.isProActive) events.templateFieldsChange();
 	}
 
 	function rangeControl() {

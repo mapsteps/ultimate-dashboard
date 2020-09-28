@@ -2,9 +2,9 @@
 /**
  * Login styles.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  *
- * @subpackage Ultimate Dashboard PRO Branding
+ * @subpackage Login_Customizer
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -167,7 +167,7 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 	margin-right: auto;
 
 	<?php
-	echo $props['form_min_width'];
+	echo ( udb_is_pro_active() ? $props['form_min_width'] : '' );
 	echo $props['form_max_width'];
 	?>
 }
@@ -181,7 +181,7 @@ if ( $labels_color && '#444444' !== $labels_color ) {
 	<?php
 	echo ( '#ffffff' !== $form_bg_color ? $props['form_bg_color'] : '' );
 
-	echo $props['form_min_width'];
+	echo ( udb_is_pro_active() ? $props['form_min_width'] : '' );
 	echo $props['form_max_width'];
 
 	echo $props['form_border_width'];

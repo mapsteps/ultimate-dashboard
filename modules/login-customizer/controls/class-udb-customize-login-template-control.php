@@ -53,17 +53,19 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 
 		$this->input_attrs['class'] .= ' udb-customize-field udb-customize-login-template-field';
 
+		$plugin_url = udb_is_pro_active() ? ULTIMATE_DASHBOARD_PRO_PLUGIN_URL : ULTIMATE_DASHBOARD_PLUGIN_URL;
+
 		$login_templates = array(
 			'default' => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-customizer/assets/images/template-default.jpg',
+				'thumbnail' => $plugin_url . '/modules/login-customizer/assets/images/template-default.jpg',
 				'bg_image'  => '',
 			),
 			'left'    => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-customizer/assets/images/template-left.jpg',
+				'thumbnail' => $plugin_url . '/modules/login-customizer/assets/images/template-left.jpg',
 				'bg_image'  => '',
 			),
 			'right'   => array(
-				'thumbnail' => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-customizer/assets/images/template-right.jpg',
+				'thumbnail' => $plugin_url . '/modules/login-customizer/assets/images/template-right.jpg',
 				'bg_image'  => '',
 			),
 		);
