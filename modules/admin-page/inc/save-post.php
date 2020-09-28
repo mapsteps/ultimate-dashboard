@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget saving process.
+ * Admin page saving process.
  *
  * @package Ultimate Dashboard
  */

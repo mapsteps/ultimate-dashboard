@@ -15,6 +15,14 @@ use Udb\Base\Output as Base_Output;
  * Class to setup admin page output.
  */
 class Output extends Base_Output {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -28,6 +36,29 @@ class Output extends Base_Output {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-page';
+
+	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
+	 * Init the class setup.
+	 */
+	public static function init() {
+
+		$class = new self();
+		$class->setup();
 
 	}
 
@@ -52,16 +83,20 @@ class Output extends Base_Output {
 			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
 		}
 
-		$parent_pages  = $this->get_posts( 'parent' );
-		$submenu_pages = $this->get_posts( 'submenu' );
+		if ( ! udb_is_pro_active() ) {
+			$parent_pages  = $this->get_posts( 'parent' );
+			$submenu_pages = $this->get_posts( 'submenu' );
 
-		if ( ! empty( $parent_pages ) ) {
-			$this->prepare_menu( $parent_pages );
+			if ( ! empty( $parent_pages ) ) {
+				$this->prepare_menu( $parent_pages );
+			}
+
+			if ( ! empty( $submenu_pages ) ) {
+				$this->prepare_menu( $submenu_pages );
+			}
 		}
 
-		if ( ! empty( $submenu_pages ) ) {
-			$this->prepare_menu( $submenu_pages );
-		}
+		do_action( 'udb_admin_page_setup_menu', $this );
 
 	}
 
@@ -119,10 +154,12 @@ class Output extends Base_Output {
 	 * Register admin page's menu & submenu pages.
 	 *
 	 * @param array $posts Array of admin page post object (parent or submenu).
+	 * @param bool  $from_multisite Whether or not the function is called by multisite function.
 	 */
-	public function prepare_menu( $posts ) {
+	public function prepare_menu( $posts, $from_multisite = false ) {
 
 		$user_roles = wp_get_current_user()->roles;
+		$user_roles = apply_filters( 'udb_admin_page_user_roles', $user_roles );
 
 		foreach ( $posts as $post ) {
 			$is_allowed = false;
@@ -139,7 +176,7 @@ class Output extends Base_Output {
 			}
 
 			if ( $is_allowed ) {
-				$this->add_menu( $post );
+				$this->add_menu( $post, $from_multisite );
 			}
 		}
 	}
@@ -148,8 +185,9 @@ class Output extends Base_Output {
 	 * Register menu / submenu page based on it's post.
 	 *
 	 * @param WP_Post $post The admin page post object.
+	 * @param bool    $from_multisite Whether or not the function is called by multisite function.
 	 */
-	public function add_menu( $post ) {
+	public function add_menu( $post, $from_multisite = false ) {
 
 		$menu_title  = $post->post_title;
 		$menu_slug   = $post->post_name;
@@ -172,8 +210,8 @@ class Output extends Base_Output {
 				$menu_title,
 				'read',
 				$screen_id,
-				function () use ( $post ) {
-					$this->render_admin_page( $post );
+				function () use ( $post, $from_multisite ) {
+					$this->render_admin_page( $post, $from_multisite );
 				},
 				$menu_icon,
 				$menu_order
@@ -194,8 +232,8 @@ class Output extends Base_Output {
 				$menu_title,
 				'read',
 				$screen_id,
-				function () use ( $post ) {
-					$this->render_admin_page( $post );
+				function () use ( $post, $from_multisite ) {
+					$this->render_admin_page( $post, $from_multisite );
 				},
 				$menu_order
 			);
@@ -235,8 +273,9 @@ class Output extends Base_Output {
 	 * Render admin page.
 	 *
 	 * @param WP_Post $post The admin page post object.
+	 * @param bool    $from_multisite Whether or not the function is called by multisite function.
 	 */
-	public function render_admin_page( $post ) {
+	public function render_admin_page( $post, $from_multisite = false ) {
 
 		require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/modules/admin-page/templates/admin-page.php';
 

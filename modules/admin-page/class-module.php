@@ -15,6 +15,14 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Class to setup admin page module.
  */
 class Module extends Base_Module {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -28,6 +36,19 @@ class Module extends Base_Module {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-page';
+
+	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 
 	}
 
@@ -56,8 +77,7 @@ class Module extends Base_Module {
 
 		// The module output.
 		require_once __DIR__ . '/class-output.php';
-		$output = new Output();
-		$output->setup();
+		Output::init();
 
 	}
 
@@ -231,7 +251,12 @@ class Module extends Base_Module {
 
 		add_meta_box( 'udb-active-status-metabox', __( 'Active', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_admin_page', 'side', 'high' );
 		add_meta_box( 'udb-content-type-metabox', __( 'Content Type', 'ultimate-dashboard' ), array( $this, 'content_type_metabox' ), 'udb_admin_page', 'side', 'high' );
-		add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_admin_page', 'side', 'high' );
+
+		if ( ! udb_is_pro_active() ) {
+
+			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_admin_page', 'side', 'high' );
+		}
+
 		add_meta_box( 'udb-menu-metabox', __( 'Menu Attributes', 'ultimate-dashboard' ), array( $this, 'menu_metabox' ), 'udb_admin_page', 'side' );
 
 		add_meta_box( 'udb-html-metabox', __( 'HTML', 'ultimate-dashboard' ), array( $this, 'html_metabox' ), 'udb_admin_page', 'normal', 'high' );
@@ -323,7 +348,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Save widget's postmeta data.
+	 * Save admin page's postmeta data.
 	 *
 	 * @param int $post_id The post ID.
 	 */

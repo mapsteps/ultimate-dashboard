@@ -2,9 +2,11 @@
 /**
  * Ultimate Dashboard admin page.
  *
- * $post is brought from udb_render_admin_page($post);
+ * Variables brought from "render_admin_page($post, $multisite)" function.
+ * - $post
+ * - $from_multisite
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -48,10 +50,14 @@ $custom_js  = $post->custom_js;
 	<?php endif; ?>
 
 	<?php
-	if ( 'html' === $post->content_type ) {
-		echo $post->html_content;
-	} else {
-		echo apply_filters( 'the_content', $post->post_content );
+	if ( ! udb_is_pro_active() ) {
+		if ( 'html' === $post->content_type ) {
+			echo $post->html_content;
+		} else {
+			echo apply_filters( 'the_content', $post->post_content );
+		}
 	}
+
+	do_action( 'udb_admin_page_content_output', $post, $editor, $from_multisite );
 	?>
 </div>
