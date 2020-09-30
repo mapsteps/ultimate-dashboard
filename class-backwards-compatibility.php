@@ -13,6 +13,27 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  * Class that handles backwards compatibility.
  */
 class Backwards_Compatibility {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
 	/**
 	 * Init the class setup.
 	 */

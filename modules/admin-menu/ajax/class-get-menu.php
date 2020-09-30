@@ -36,28 +36,27 @@ class Get_Menu {
 		}
 
 		remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 );
-		// todo: pro version: remove action of the multisite version.
+		do_action( 'udb_remove_menu_output' );
 
-		$admin_menu = get_option( 'udb_admin_menu', array() );
+		if ( ! udb_is_pro_active() ) {
 
-		// todo: pro version: switch blog when necessary.
+			$roles = wp_get_current_user()->roles;
+			$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
 
-		$roles = wp_get_current_user()->roles;
-		$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
+			$user_helper = new User_Helper();
 
-		$user_helper = new User_Helper();
+			if ( ! in_array( $role, $roles, true ) ) {
+				$user_helper->simulate_role( $role );
+			}
 
-		if ( ! in_array( $role, $roles, true ) ) {
-			$user_helper->simulate_role( $role );
+			$this->load_menu();
+
+			$response = $this->format_response( $role );
+
+			wp_send_json_success( $response );
 		}
 
-		$this->load_menu();
-
-		$response = $this->format_response( $role );
-
-		// todo: pro version: restore current blog when necessary.
-
-		wp_send_json_success( $response );
+		do_action( 'udb_ajax_get_admin_menu', $this, $role );
 
 	}
 

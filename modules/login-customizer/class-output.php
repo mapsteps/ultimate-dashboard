@@ -67,10 +67,10 @@ class Output extends Base_Output {
 	 */
 	public function setup() {
 
-		add_filter( 'login_headertext', array( $this, 'login_headertext' ), 20 );
-		add_filter( 'login_headerurl', array( $this, 'login_logo_url' ), 20 );
-		add_action( 'login_head', array( $this, 'print_login_styles' ), 20 );
-		add_action( 'login_head', array( $this, 'print_login_live_styles' ), 20 );
+		add_filter( 'login_headertext', array( self::get_instance(), 'login_headertext' ), 20 );
+		add_filter( 'login_headerurl', array( self::get_instance(), 'login_logo_url' ), 20 );
+		add_action( 'login_head', array( self::get_instance(), 'print_login_styles' ), 20 );
+		add_action( 'login_head', array( self::get_instance(), 'print_login_live_styles' ), 20 );
 
 	}
 
