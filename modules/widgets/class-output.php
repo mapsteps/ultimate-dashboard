@@ -68,25 +68,18 @@ class Output extends Base_Output {
 	 */
 	public function setup() {
 
-		add_action( 'wp_dashboard_setup', array( self::get_instance(), 'dashboard_widgets' ) );
+		add_action( 'wp_dashboard_setup', array( self::get_instance(), 'add_dashboard_widgets' ) );
 		add_action( 'wp_dashboard_setup', array( self::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_styles' ), 100 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_custom_css' ), 200 );
-		add_action( 'admin_head', array( $this, 'admin_custom_css' ), 200 );
-		add_action( 'admin_head', array( $this, 'change_dashboard_headline' ) );
-		add_action( 'admin_head', array( $this, 'remove_help_tab' ) );
-		add_filter( 'screen_options_show_screen', array( $this, 'remove_screen_options_tab' ) );
-		add_action( 'init', array( $this, 'remove_admin_bar' ) );
-		add_action( 'init', array( $this, 'remove_font_awesome' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'dashboard_styles' ), 100 );
 
 	}
 
 	/**
-	 * Setup dashboard widgets.
+	 * Add dashboard widgets.
 	 *
 	 * @param array $user_roles Current user roles.
 	 */
-	public function dashboard_widgets( $user_roles = array() ) {
+	public function add_dashboard_widgets( $user_roles = array() ) {
 
 		$current_user = wp_get_current_user();
 
@@ -217,112 +210,6 @@ class Output extends Base_Output {
 
 		wp_add_inline_style( 'udb-dashboard', $css );
 
-	}
-
-	/**
-	 * Add dashboard custom CSS.
-	 */
-	public function dashboard_custom_css() {
-
-		$settings = get_option( 'udb_settings' );
-
-		if ( ! isset( $settings['custom_css'] ) || empty( $settings['custom_css'] ) ) {
-			return;
-		}
-
-		wp_add_inline_style( 'udb-dashboard', $settings['custom_css'] );
-
-	}
-
-	/**
-	 * Add admin custom CSS.
-	 */
-	public function admin_custom_css() {
-
-		$settings = get_option( 'udb_settings' );
-
-		if ( ! isset( $settings['custom_admin_css'] ) || empty( $settings['custom_admin_css'] ) ) {
-			return;
-		}
-		?>
-
-		<style>
-			<?php echo $settings['custom_admin_css']; ?>
-		</style>
-
-		<?php
-
-	}
-
-	/**
-	 * Change Dashboard's headline.
-	 */
-	public function change_dashboard_headline() {
-
-		if ( isset( $GLOBALS['title'] ) && 'Dashboard' !== $GLOBALS['title'] ) {
-			return;
-		}
-
-		$settings = get_option( 'udb_settings' );
-
-		if ( ! isset( $settings['dashboard_headline'] ) || empty( $settings['dashboard_headline'] ) ) {
-			return;
-		}
-
-		$GLOBALS['title'] = $settings['dashboard_headline'];
-
-	}
-
-	/**
-	 * Remove help tab on admin area.
-	 */
-	public function remove_help_tab() {
-
-		$current_screen = get_current_screen();
-
-		$settings = get_option( 'udb_settings' );
-
-		if ( ! isset( $settings['remove_help_tab'] ) ) {
-			return;
-		}
-
-		if ( $current_screen ) {
-			$current_screen->remove_help_tabs();
-		}
-
-	}
-
-	/**
-	 * Remove screen options on admin area.
-	 */
-	public function remove_screen_options_tab() {
-		$settings = get_option( 'udb_settings' );
-
-		return ( isset( $settings['remove_screen_options'] ) ? false : true );
-	}
-
-	/**
-	 * Remove admin bar from frontend.
-	 *
-	 * @return void
-	 */
-	public function remove_admin_bar() {
-		$settings = get_option( 'udb_settings' );
-
-		if ( isset( $settings['remove_admin_bar'] ) ) {
-			add_filter( 'show_admin_bar', '__return_false' );
-		}
-	}
-
-	/**
-	 * Remove Font Awesome.
-	 */
-	public function remove_font_awesome() {
-		$settings = get_option( 'udb_settings' );
-
-		if ( isset( $settings['remove_font_awesome'] ) ) {
-			add_filter( 'udb_font_awesome', '__return_false' );
-		}
 	}
 
 }

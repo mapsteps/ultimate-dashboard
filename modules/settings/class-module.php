@@ -42,6 +42,10 @@ class Module extends Base_Module {
 
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
+		// The module output.
+		require_once __DIR__ . '/class-output.php';
+		Output::init();
+
 	}
 
 	/**
