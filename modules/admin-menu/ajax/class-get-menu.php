@@ -40,25 +40,6 @@ class Get_Menu {
 		}
 
 		do_action( 'udb_remove_menu_output' );
-
-		if ( ! udb_is_pro_active() ) {
-
-			$roles = wp_get_current_user()->roles;
-			$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
-
-			$user_helper = new User_Helper();
-
-			if ( ! in_array( $role, $roles, true ) ) {
-				$user_helper->simulate_role( $role );
-			}
-
-			$this->load_menu();
-
-			$response = $this->format_response( $role );
-
-			wp_send_json_success( $response );
-		}
-
 		do_action( 'udb_ajax_get_admin_menu', $this, $role );
 
 	}

@@ -57,9 +57,10 @@ class Module extends Base_Module {
 	 */
 	public function setup() {
 
-		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
+		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 10, 2 );
 
 		$this->setup_ajax();
 
@@ -112,6 +113,30 @@ class Module extends Base_Module {
 
 		$enqueue = require __DIR__ . '/inc/js-enqueue.php';
 		$enqueue( $this );
+
+	}
+
+	/**
+	 * Get admin menu via ajax.
+	 * This action will be called in "ajax" method in "class-get-menu.php".
+	 *
+	 * @param object $ajax_handler The ajax handler class from the free version.
+	 * @param string $role The role target to simulate.
+	 */
+	public function get_admin_menu( $ajax_handler, $role ) {
+
+		$roles = wp_get_current_user()->roles;
+		$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
+
+		if ( ! in_array( $role, $roles, true ) ) {
+			$this->user()->simulate_role( $role );
+		}
+
+		$ajax_handler->load_menu();
+
+		$response = $ajax_handler->format_response( $role );
+
+		wp_send_json_success( $response );
 
 	}
 
