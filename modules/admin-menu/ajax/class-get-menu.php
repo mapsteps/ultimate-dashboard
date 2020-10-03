@@ -35,7 +35,10 @@ class Get_Menu {
 			wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
 		}
 
-		remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 );
+		if ( udb_is_pro_active() ) {
+			remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 );
+		}
+
 		do_action( 'udb_remove_menu_output' );
 
 		if ( ! udb_is_pro_active() ) {
