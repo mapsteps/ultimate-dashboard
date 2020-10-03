@@ -16,13 +16,19 @@ return function ( $column, $post_id ) {
 			if ( ! $widget_type ) {
 				do_action( 'udb_compat_widget_type', $post_id );
 			} else {
+				$column_content = '';
+
 				if ( 'html' === $widget_type ) {
-					_e( 'HTML', 'ultimate-dashboard' );
+					$column_content = __( 'HTML', 'ultimate-dashboard' );
 				} elseif ( 'text' === $widget_type ) {
-					_e( 'Text', 'ultimate-dashboard' );
+					$column_content = __( 'Text', 'ultimate-dashboard' );
 				} elseif ( 'icon' === $widget_type ) {
-					echo '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
+					$column_content = '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
 				}
+
+				$column_content = apply_filters( 'udb_widget_list_type_column_content', $column_content, $post_id, $widget_type );
+
+				echo $column_content;
 			}
 			break;
 
