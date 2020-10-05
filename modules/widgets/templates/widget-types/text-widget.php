@@ -14,7 +14,7 @@ return function () {
 	$content        = get_post_meta( $post->ID, 'udb_content', true );
 	$content_height = get_post_meta( $post->ID, 'udb_content_height', true );
 	$editor         = 'udb_content';
-	$settings       = array(
+	$args           = array(
 		'media_buttons' => false,
 		'editor_height' => 300,
 		'teeny'         => true,
@@ -28,7 +28,7 @@ return function () {
 			<h2><?php _e( 'Content', 'utimate-dashboard' ); ?></h2>
 			<div class="field">
 				<div class="input-control">
-					<?php wp_editor( $content, $editor, $settings ); ?>
+					<?php wp_editor( $content, $editor, $args ); ?>
 				</div>
 			</div>
 		</div>

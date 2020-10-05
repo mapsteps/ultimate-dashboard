@@ -41,13 +41,10 @@ return function ( $module ) {
 			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
 		}
 
-		// Widget list.
-		wp_enqueue_style( 'udb-widget-list', $module->url . '/assets/css/widget-list.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-
 		// Admin fields.
 		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		do_action( 'udb_widget_list_styles' );
+		do_action( 'udb_widget_list_styles' ); // hook is not being used. can we remove?
 
 	} elseif ( $module->screen()->is_dashboard() ) {
 		if ( apply_filters( 'udb_font_awesome', true ) ) {
@@ -59,6 +56,8 @@ return function ( $module ) {
 		// Dashboard.
 		wp_enqueue_style( 'udb-dashboard', $module->url . '/assets/css/dashboard.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		do_action( 'udb_dashboard_styles' );
+		do_action( 'udb_dashboard_styles' ); // hooks is not being used. can we remove?
+
+		// I assume all those hooks are here to register own widgets to extend UDB, right?
 	}
 };

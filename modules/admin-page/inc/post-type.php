@@ -11,18 +11,18 @@ return function () {
 
 	// Labels.
 	$labels = array(
-		'name'               => _x( 'Admin Pages', 'ultimatedashboard' ),
-		'singular_name'      => _x( 'Admin Page', 'ultimatedashboard' ),
-		'menu_name'          => _x( 'Admin Pages', 'ultimatedashboard' ),
-		'name_admin_bar'     => _x( 'Admin Page', 'ultimatedashboard' ),
-		'add_new_item'       => __( 'Add Admin Page', 'ultimatedashboard' ),
-		'new_item'           => __( 'New Admin Page', 'ultimatedashboard' ),
-		'edit_item'          => __( 'Edit Admin Page', 'ultimatedashboard' ),
-		'view_item'          => __( 'View Admin Page', 'ultimatedashboard' ),
-		'all_items'          => __( 'Admin Pages', 'ultimatedashboard' ),
-		'search_items'       => __( 'Search Admin Pages', 'ultimatedashboard' ),
-		'not_found'          => __( 'No Admin Pages found.', 'ultimatedashboard' ),
-		'not_found_in_trash' => __( 'No Admin Pages in Trash.', 'ultimatedashboard' ),
+		'name'               => _x( 'Admin Pages', 'ultimate-dashboard' ),
+		'singular_name'      => _x( 'Admin Page', 'ultimate-dashboard' ),
+		'menu_name'          => _x( 'Admin Pages', 'ultimate-dashboard' ),
+		'name_admin_bar'     => _x( 'Admin Page', 'ultimate-dashboard' ),
+		'add_new_item'       => __( 'Add Admin Page', 'ultimate-dashboard' ),
+		'new_item'           => __( 'New Admin Page', 'ultimate-dashboard' ),
+		'edit_item'          => __( 'Edit Admin Page', 'ultimate-dashboard' ),
+		'view_item'          => __( 'View Admin Page', 'ultimate-dashboard' ),
+		'all_items'          => __( 'Admin Pages', 'ultimate-dashboard' ),
+		'search_items'       => __( 'Search Admin Pages', 'ultimate-dashboard' ),
+		'not_found'          => __( 'No Admin Pages found.', 'ultimate-dashboard' ),
+		'not_found_in_trash' => __( 'No Admin Pages in Trash.', 'ultimate-dashboard' ),
 	);
 
 	// Change capabilities so only users that can 'manage_options' are able to access the Admin Pages & settings.

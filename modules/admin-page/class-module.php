@@ -260,8 +260,8 @@ class Module extends Base_Module {
 		add_meta_box( 'udb-menu-metabox', __( 'Menu Attributes', 'ultimate-dashboard' ), array( $this, 'menu_metabox' ), 'udb_admin_page', 'side' );
 
 		add_meta_box( 'udb-html-metabox', __( 'HTML', 'ultimate-dashboard' ), array( $this, 'html_metabox' ), 'udb_admin_page', 'normal', 'high' );
-		add_meta_box( 'udb-display-metabox', __( 'Display Options', 'ultimatedashboard' ), array( $this, 'display_metabox' ), 'udb_admin_page', 'normal' );
-		add_meta_box( 'udb-advanced-metabox', __( 'Advanced', 'ultimatedashboard' ), array( $this, 'advanced_metabox' ), 'udb_admin_page', 'normal' );
+		add_meta_box( 'udb-display-metabox', __( 'Display Options', 'ultimate-dashboard' ), array( $this, 'display_metabox' ), 'udb_admin_page', 'normal' );
+		add_meta_box( 'udb-advanced-metabox', __( 'Advanced', 'ultimate-dashboard' ), array( $this, 'advanced_metabox' ), 'udb_admin_page', 'normal' );
 
 	}
 

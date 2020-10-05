@@ -87,7 +87,7 @@ class Output extends Base_Output {
 			$user_roles = $current_user->roles;
 		}
 
-		$user_roles = apply_filters( 'udb_dashboard_user_roles', $user_roles );
+		$user_roles = apply_filters( 'udb_dashboard_user_roles', $user_roles ); // what's this for?
 
 		$args = array(
 			'post_type'      => 'udb_widgets',
@@ -120,7 +120,7 @@ class Output extends Base_Output {
 
 			}
 
-			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id );
+			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id ); // what's this for?
 
 			if ( ! $allow_access ) {
 				continue;

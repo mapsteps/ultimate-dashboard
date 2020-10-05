@@ -123,7 +123,7 @@ class Module extends Base_Module {
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-general-page', 'udb-advanced-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-general-page', 'udb-advanced-section' );
 
-		$remove_fa_description = '<p class="description" style="font-weight: 400;">' . __( 'Use only if your icons are not displayed correctly.', 'ultimatedashboard' ) . '</p>';
+		$remove_fa_description = '<p class="description" style="font-weight: 400;">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
 		// Misc section fields.
 		add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, array( $this, 'remove_fontawesome_field' ), 'udb-general-page', 'udb-misc-section' );

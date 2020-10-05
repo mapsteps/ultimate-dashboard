@@ -22,21 +22,21 @@ return function ( $module, $post ) {
 	<div class="postbox-content has-lines">
 		<div class="fields">
 			<div class="field">
-				<label class="label" for="udb_menu_type"><?php _e( 'Menu Type', 'ultimatedashboard' ); ?></label>
+				<label class="label" for="udb_menu_type"><?php _e( 'Menu Type', 'ultimate-dashboard' ); ?></label>
 				<div class="control">
 					<select name="udb_menu_type" id="udb_menu_type" class="is-full">
 						<option value="parent" <?php selected( $menu_type, 'parent' ); ?>>
-							<?php _e( 'Top-level Menu', 'ultimatedashboard' ); ?>
+							<?php _e( 'Top-level Menu', 'ultimate-dashboard' ); ?>
 						</option>
 						<option value="submenu" <?php selected( $menu_type, 'submenu' ); ?>>
-							<?php _e( 'Submenu', 'ultimatedashboard' ); ?>
+							<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
 						</option>
 					</select>
 				</div>
 			</div>
 
 			<div class="field" data-show-if-field="udb_menu_type" data-show-if-value="submenu">
-				<label class="label" for="udb_menu_parent"><?php _e( 'Parent Menu', 'ultimatedashboard' ); ?></label>
+				<label class="label" for="udb_menu_parent"><?php _e( 'Parent Menu', 'ultimate-dashboard' ); ?></label>
 				<div class="control">
 					<select name="udb_menu_parent" id="udb_menu_parent" class="is-full">
 						<?php foreach ( $admin_menu as $menu ) : ?>
@@ -51,7 +51,7 @@ return function ( $module, $post ) {
 			</div>
 
 			<div class="field">
-				<label class="label" for="udb_menu_order"><?php _e( 'Menu Order', 'ultimatedashboard' ); ?></label>
+				<label class="label" for="udb_menu_order"><?php _e( 'Menu Order', 'ultimate-dashboard' ); ?></label>
 				<div class="control">
 					<input type="number" name="udb_menu_order" id="udb_menu_order" class="is-full" value="<?php echo esc_attr( $menu_order ); ?>" min="0" step="1">
 				</div>

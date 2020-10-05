@@ -155,7 +155,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Define the icon widget.
+	 * Add the icon widget.
 	 */
 	public function icon_widget() {
 
@@ -165,7 +165,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Define the text widget.
+	 * Add the text widget.
 	 */
 	public function text_widget() {
 
@@ -175,7 +175,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Define the html widget.
+	 * Add the html widget.
 	 */
 	public function html_widget() {
 

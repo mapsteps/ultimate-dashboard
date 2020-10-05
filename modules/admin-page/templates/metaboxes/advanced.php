@@ -17,10 +17,10 @@ return function ( $post ) {
 
 			<div class="field">
 				<label class="label" for="udb_custom_css">
-					<?php _e( 'Custom CSS', 'ultimatedashboard' ); ?>
+					<?php _e( 'Custom CSS', 'ultimate-dashboard' ); ?>
 				</label>
 				<p class="description">
-					<?php _e( 'Add Custom CSS to the Custom Admin Page.', 'ultimatedashboard' ); ?>
+					<?php _e( 'Add Custom CSS to the Custom Admin Page.', 'ultimate-dashboard' ); ?>
 				</p>
 				<div class="control">
 					<textarea id="udb_custom_css" class="widefat textarea udb-custom-css" name="udb_custom_css"><?php echo wp_unslash( $custom_css ); ?></textarea>

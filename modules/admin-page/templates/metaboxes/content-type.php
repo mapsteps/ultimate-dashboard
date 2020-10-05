@@ -18,8 +18,8 @@ return function ( $post ) {
 			<div class="field">
 				<div class="control">
 					<select name="udb_content_type" id="udb_content_type" class="is-full">
-						<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php _e( 'Default Editor', 'ultimatedashboard' ); ?></option>
-						<option value="html" <?php selected( $content_type, 'html' ); ?>><?php _e( 'HTML Editor', 'ultimatedashboard' ); ?></option>
+						<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php _e( 'Default Editor', 'ultimate-dashboard' ); ?></option>
+						<option value="html" <?php selected( $content_type, 'html' ); ?>><?php _e( 'HTML Editor', 'ultimate-dashboard' ); ?></option>
 					</select>
 				</div>
 			</div>

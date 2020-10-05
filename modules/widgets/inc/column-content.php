@@ -26,7 +26,7 @@ return function ( $column, $post_id ) {
 					$column_content = '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
 				}
 
-				$column_content = apply_filters( 'udb_widget_list_type_column_content', $column_content, $post_id, $widget_type );
+				$column_content = apply_filters( 'udb_widget_list_type_column_content', $column_content, $post_id, $widget_type ); // not sure if I like the filter name.
 
 				echo $column_content;
 			}
@@ -59,3 +59,5 @@ return function ( $column, $post_id ) {
 
 	}
 };
+
+// let's add the user role thingy here as we have for admin pages.

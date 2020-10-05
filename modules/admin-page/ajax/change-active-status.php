@@ -15,18 +15,18 @@ return function () {
 	$is_active = isset( $_POST['is_active'] ) ? absint( sanitize_text_field( $_POST['is_active'] ) ) : 0;
 
 	if ( ! wp_verify_nonce( $nonce, 'udb_admin_page_' . $post_id . '_change_active_status' )) {
-		wp_send_json_error( __( 'Invalid token', 'ultimatedashboard' ) );
+		wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 	}
 
 	if ( ! $page ) {
-		wp_send_json_error( __( 'Post not found', 'ultimatedashboard' ) );
+		wp_send_json_error( __( 'Post not found', 'ultimate-dashboard' ) );
 	}
 
 	if ( $is_active ) {
 		update_post_meta( $post_id, 'udb_is_active', 1 );
 		wp_send_json_success(
 			wp_sprintf(
-				'"%s" ' . __( 'page has been activated.', 'ultimatedashboard' ),
+				'"%s" ' . __( 'page has been activated.', 'ultimate-dashboard' ),
 				$page->post_title
 			)
 		);
@@ -34,7 +34,7 @@ return function () {
 		delete_post_meta( $post_id, 'udb_is_active' );
 		wp_send_json_success(
 			wp_sprintf(
-				'"%s" ' . __( 'page has been de-activated.', 'ultimatedashboard' ),
+				'"%s" ' . __( 'page has been de-activated.', 'ultimate-dashboard' ),
 				$page->post_title
 			)
 		);

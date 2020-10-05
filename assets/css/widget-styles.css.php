@@ -2,6 +2,8 @@
 /**
  * Widget styles.
  *
+ * This shouldn't be in CSS.
+ *
  * @package Ultimate Dashboard
  */
 

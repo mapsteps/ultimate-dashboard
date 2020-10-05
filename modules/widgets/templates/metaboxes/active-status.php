@@ -14,6 +14,7 @@ return function ( $post ) {
 	global $current_screen;
 
 	// If this is adding a new post.
+	// We could handle this in the helpers.
 	if ( 'add' === $current_screen->action ) {
 		$is_active = 1;
 	}

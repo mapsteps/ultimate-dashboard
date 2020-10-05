@@ -24,7 +24,7 @@ wp_localize_script(
 ?>
 
 <div class="field" data-show-if-field="udb_menu_type" data-show-if-value="parent">
-	<label class="label" for="udb_menu_icon"><?php _e( 'Menu Icon', 'ultimatedashboard' ); ?></label>
+	<label class="label" for="udb_menu_icon"><?php _e( 'Menu Icon', 'ultimate-dashboard' ); ?></label>
 	<div class="control">
 		<div class="icon-preview"></div>
 	</div>

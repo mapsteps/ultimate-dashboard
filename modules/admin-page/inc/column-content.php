@@ -38,7 +38,7 @@ return function ( $module, $column, $post_id ) {
 
 		case 'parent_menu':
 			$menu_type   = get_post_meta( $post_id, 'udb_menu_type', true );
-			$parent_menu = __( 'None', 'ultimatedashboard' );
+			$parent_menu = __( 'None', 'ultimate-dashboard' );
 
 			if ( 'submenu' === $menu_type ) {
 				$parent_slug = get_post_meta( $post_id, 'udb_menu_parent', true );
@@ -58,7 +58,7 @@ return function ( $module, $column, $post_id ) {
 			$type = get_post_meta( $post_id, 'udb_content_type', true );
 
 			if ( 'html' === $type ) {
-				$text = __( 'HTML', 'ultimatedashboard' );
+				$text = __( 'HTML', 'ultimate-dashboard' );
 			} else {
 				$editor = $module->content()->get_content_editor( $post_id );
 				$editor = 'block' === $editor || 'normal' === $editor ? 'default' : $editor;
@@ -66,7 +66,7 @@ return function ( $module, $column, $post_id ) {
 				$suffix = 'elementor' === $editor ? '' : $suffix;
 				$text   = wp_sprintf(
 					// translators: %1$s: is the text prefix, %2$s: is the editor or builder name, %3$s: is the text suffix.
-					__( '%1$s %2$s %3$s', 'ultimatedashboard' ),
+					__( '%1$s %2$s %3$s', 'ultimate-dashboard' ),
 					$editor,
 					$suffix
 				);
@@ -76,7 +76,7 @@ return function ( $module, $column, $post_id ) {
 			break;
 
 		case 'roles':
-			_e( 'All', 'ultimatedashboard' );
+			_e( 'All', 'ultimate-dashboard' );
 			break;
 
 		case 'icon':
