@@ -27,7 +27,7 @@ return function () {
 
 	}
 
-	$tmp_file = $import_file['tmp_name'];
+	$tmp_file = $import_file['tmp_name']; // just curious. What's tmp_name?
 
 	if ( empty( $tmp_file ) ) {
 
@@ -56,7 +56,7 @@ return function () {
 		add_settings_error(
 			'udb_export',
 			esc_attr( 'udb-import' ),
-			__( 'Your import is empty', 'ultimate-dashboard' )
+			__( 'Your import file is empty', 'ultimate-dashboard' )
 		);
 
 		return;
@@ -92,7 +92,7 @@ return function () {
 
 		foreach ( $widgets as $widget ) {
 
-			// For backward compatibility: before version 3, post_type was unset in the export.
+			// For backwards compatibility: before version 3, post_type was unset in the export.
 			if ( ! isset( $widget['post_type'] ) ) {
 				$widget['post_type'] = 'udb_widgets';
 			}
@@ -102,7 +102,7 @@ return function () {
 
 			unset( $widget['meta'] );
 
-			if ( $post ) {
+			if ( $post ) { // what's this for?
 
 				$post_id      = $post->ID;
 				$widget['ID'] = $post->ID;
