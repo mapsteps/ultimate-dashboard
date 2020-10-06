@@ -59,7 +59,7 @@ class Module extends Base_Module {
 
 		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 
 		add_action( 'admin_init', array( self::get_instance(), 'add_settings' ) );
 
