@@ -137,6 +137,7 @@ class Output extends Base_Output {
 			$post->icon_class    = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$post->allowed_roles = get_post_meta( $post_id, 'udb_allowed_roles', true );
 			$post->allowed_roles = '' === $post->allowed_roles ? array( 'all' ) : $post->allowed_roles;
+			$post->allowed_roles = is_string( $post->allowed_roles ) ? unserialize( $post->allowed_roles ) : $post->allowed_roles;
 			$post->custom_css    = get_post_meta( $post_id, 'udb_custom_css', true );
 			$post->custom_js     = get_post_meta( $post_id, 'udb_custom_js', true );
 			$post->content_type  = get_post_meta( $post_id, 'udb_content_type', true );
