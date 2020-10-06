@@ -205,7 +205,7 @@ class Module extends Base_Module {
 	public function footer_text_field() {
 
 		$template = __DIR__ . '/templates/fields/footer-text.php';
-		$template = apply_filters( 'udb_branding_footer_text_field_path', $template );
+		$template = apply_filters( 'udb_branding_footer_text_field_path', $template ); // do we really need to override this one?
 		$field    = require $template;
 
 		$field();
@@ -218,7 +218,7 @@ class Module extends Base_Module {
 	public function version_text_field() {
 
 		$template = __DIR__ . '/templates/fields/version-text.php';
-		$template = apply_filters( 'udb_branding_version_text_field_path', $template );
+		$template = apply_filters( 'udb_branding_version_text_field_path', $template ); // do we really need to override this one?
 		$field    = require $template;
 
 		$field();

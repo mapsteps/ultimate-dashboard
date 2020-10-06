@@ -11,7 +11,7 @@ return function () {
 
 	echo '<input type="url" class="regular-text" disabled />';
 
-	if ( udb_is_pro_active() ) : ?>
+	if ( ! udb_is_pro_active() ) : ?>
 
 		<br>
 

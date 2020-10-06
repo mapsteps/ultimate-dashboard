@@ -15,7 +15,7 @@ return function () {
 
 	<div class="field setting-field" style="margin-top: 10px;">
 		<label class="label checkbox-label">
-			<?php _e( 'Remove Admin Bar logo', 'ultimate-dashboard' ); ?>
+			<?php _e( 'Remove Admin Bar Logo', 'ultimate-dashboard' ); ?>
 			<input type="checkbox" disabled />
 			<div class="indicator"></div>
 		</label>
