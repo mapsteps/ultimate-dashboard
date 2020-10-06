@@ -9,13 +9,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$settings = get_option( 'udb_settings' );
-
-	if ( ! isset( $settings['custom_css'] ) ) {
-		$custom_css = false;
-	} else {
-		$custom_css = $settings['custom_css'];
-	}
+	$settings   = get_option( 'udb_settings' );
+	$custom_css = isset( $settings['custom_css'] ) ? $settings['custom_css'] : false;
 
 	?>
 

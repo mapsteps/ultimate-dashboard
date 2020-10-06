@@ -99,7 +99,7 @@ class Module extends Base_Module {
 
 		// Other sections (styling, general, advanced, misc).
 		add_settings_section( 'udb-styling-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-general-page' );
-		do_action( 'udb_after_widget_styling_metabox' );
+		do_action( 'udb_after_widget_styling_metabox' ); // naming.
 		add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-page' );
 		add_settings_section( 'udb-advanced-section', __( 'Advanced', 'ultimate-dashboard' ), '', 'udb-general-page' );
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-page' );
@@ -157,7 +157,7 @@ class Module extends Base_Module {
 	public function remove_3rd_party_widgets_field() {
 
 		$template = __DIR__ . '/templates/fields/remove-3rd-party-widgets.php';
-		$template = apply_filters( 'udb_remove_3rd_party_widgets_field', $template );
+		$template = apply_filters( 'udb_remove_3rd_party_widgets_field', $template ); //naming.
 		$field    = require $template;
 
 		$field();

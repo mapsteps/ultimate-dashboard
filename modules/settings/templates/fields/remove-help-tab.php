@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	$settings   = get_option( 'udb_settings' );
-	$is_checked = isset( $settings['remove_help_tab'] ) ? absint( $settings['remove_help_tab'] ) : 0;
+	$is_checked = isset( $settings['remove_help_tab'] ) ? 1 : 0;
 	?>
 
 	<div class="field setting-field">

@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	$settings   = get_option( 'udb_settings' );
-	$is_checked = isset( $settings['remove_screen_options'] ) ? absint( $settings['remove_screen_options'] ) : 0;
+	$is_checked = isset( $settings['remove_screen_options'] ) ? 1 : 0;
 	?>
 
 	<div class="field setting-field">

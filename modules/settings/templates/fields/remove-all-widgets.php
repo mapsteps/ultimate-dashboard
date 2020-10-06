@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	$settings   = get_option( 'udb_settings' );
-	$is_checked = isset( $settings['remove-all'] ) ? absint( $settings['remove-all'] ) : 0;
+	$is_checked = isset( $settings['remove-all'] ) ? 1 : 0;
 	?>
 
 	<div class="field setting-field">
