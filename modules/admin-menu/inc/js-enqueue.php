@@ -11,12 +11,6 @@ return function ( $module ) {
 
 	if ( $module->screen()->is_admin_menu() ) {
 
-		// Color pickers.
-		wp_enqueue_script( 'wp-color-picker' );
-
-		// CodeMirror.
-		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
-
 		// jQuery UI dependencies.
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-widget' );
