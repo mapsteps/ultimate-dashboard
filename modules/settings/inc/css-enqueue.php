@@ -11,12 +11,6 @@ return function ( $module ) {
 
 	if ( $module->screen()->is_settings() ) {
 
-		if ( apply_filters( 'udb_font_awesome', true ) ) {
-			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
-			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
-		}
-
 		// Color pickers.
 		wp_enqueue_style( 'wp-color-picker' );
 
