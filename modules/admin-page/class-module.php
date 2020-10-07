@@ -67,6 +67,7 @@ class Module extends Base_Module {
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_filter( 'submenu_file', array( $this, 'highlight_submenu' ), 10, 2 );
 
+ 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
