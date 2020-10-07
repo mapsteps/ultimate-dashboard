@@ -221,6 +221,16 @@ class Module extends Base_Module {
 	}
 
 	/**
+	 * Enqueue admin styles.
+	 */
+	public function admin_styles() {
+
+		$enqueue = require __DIR__ . '/inc/css-enqueue.php';
+		$enqueue( $this );
+
+	}
+
+	/**
 	 * Enqueue admin scripts.
 	 */
 	public function admin_scripts() {
