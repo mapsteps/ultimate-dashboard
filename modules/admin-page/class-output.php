@@ -96,7 +96,7 @@ class Output extends Base_Output {
 			}
 		}
 
-		do_action( 'udb_admin_page_setup_menu', $this );
+		do_action( 'udb_admin_page_setup_menu', $this ); // just wanna know what the upper part is being replaced with.
 
 	}
 
