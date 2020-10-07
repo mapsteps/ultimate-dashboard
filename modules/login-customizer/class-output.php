@@ -118,7 +118,7 @@ class Output extends Base_Output {
 
 		$css = ob_get_clean();
 
-		echo apply_filters( 'udb_print_login_styles', $css );
+		echo apply_filters( 'udb_print_login_styles', $css ); // not in use.
 		echo '</style>';
 
 	}

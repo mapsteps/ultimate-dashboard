@@ -95,10 +95,12 @@ class Module extends Base_Module {
 		$udb_slug = 'edit.php?post_type=udb_widgets';
 
 		// E.g: subscriber got error if we don't return.
+		// Can you elaborate? I don't seem to fully understand this.
 		if ( ! isset( $submenu[ $udb_slug ] ) ) {
 			return;
 		}
 
+		// Why are we doing this instead of just adding it the regular way?
 		array_push(
 			$submenu[ $udb_slug ],
 			array(
@@ -189,7 +191,7 @@ class Module extends Base_Module {
 			return;
 		}
 
-		// Pull the Login Designer page from options.
+		// Pull the Login Customizer page from options.
 		$page = get_page_by_path( 'udb-login-page' );
 
 		// Generate the redirect url.
@@ -212,7 +214,7 @@ class Module extends Base_Module {
 
 		global $pagenow;
 
-		// Pull the Login Designer page from options.
+		// Pull the Login Customizer page from options.
 		$page = get_page_by_path( 'udb-login-page' );
 
 		if ( ! $page ) {
@@ -295,7 +297,7 @@ class Module extends Base_Module {
 			'form-footer' => __DIR__ . '/sections/form-footer.php',
 		);
 
-		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files );
+		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files ); // naming.
 
 		// Register login customizer's settings & controls in WP Customizer.
 		foreach ( $control_files as $section => $file ) {
