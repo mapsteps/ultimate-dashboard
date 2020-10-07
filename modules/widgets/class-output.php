@@ -120,7 +120,7 @@ class Output extends Base_Output {
 
 			}
 
-			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id ); // what's this for?
+			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id, $user_roles ); // what's this for?
 
 			if ( ! $allow_access ) {
 				continue;
