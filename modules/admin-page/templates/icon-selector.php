@@ -32,6 +32,6 @@ wp_localize_script(
 <div class="field" data-show-if-field="udb_menu_type" data-show-if-value="parent">
 	<label class="label" for="udb_menu_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
 	<div class="control">
-		<input type="text" class="icon-picker is-full" data-width="100%" name="udb_menu_icon" id="udb_menu_icon" value="<?php echo esc_attr( $menu_icon ? $menu_icon : 'dashicons dashicons-admin-post' ); ?>" placeholder="dashicons dashicons-admin-generic" />
+		<input type="text" class="icon-picker is-full" name="udb_menu_icon" id="udb_menu_icon" value="<?php echo esc_attr( $menu_icon ? $menu_icon : 'dashicons dashicons-admin-post' ); ?>" placeholder="dashicons dashicons-admin-generic" />
 	</div>
 </div>

@@ -4,7 +4,7 @@
  */
 .icon-picker-container {
   position: absolute;
-  width: 250px;
+  width: 262px;
   height: 252px;
   font-size: 14px;
   background-color: #fff;
@@ -57,7 +57,7 @@
   padding: 5px;
   text-decoration: none;
   text-align: center;
-  width: 5%;
+  width: 12%;
 }
 .icon-picker-control a span {
   display: inline;
@@ -65,7 +65,7 @@
 }
 .icon-picker--search-wrapper {
   display: inline-block;
-  width: 90%;
+  width: 76%;
 }
 .icon-picker-control input {
   font-size: 12px;
