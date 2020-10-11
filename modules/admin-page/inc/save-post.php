@@ -5,6 +5,8 @@
  * @package Ultimate Dashboard
  */
 
+// are we sanitizing everything correctly? Not sure if all of those are actually text fields.
+
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $module, $post_id ) {

@@ -29,7 +29,7 @@ return function ( $module ) {
 		// Admin fields.
 		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		do_action( 'udb_edit_admin_page_styles' );
+		do_action( 'udb_edit_admin_page_styles' ); // hook not used in Pro.
 
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
@@ -45,7 +45,7 @@ return function ( $module ) {
 		// Admin fields.
 		wp_enqueue_style( 'udb-admin-fields', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/admin-fields.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		do_action( 'udb_admin_page_list_styles' );
+		do_action( 'udb_admin_page_list_styles' ); // hook not used in Pro.
 
 	}
 

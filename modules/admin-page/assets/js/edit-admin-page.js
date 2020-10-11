@@ -1,3 +1,5 @@
+// Let's quickly check if this doesn't contain unnecessary stuff from somewhere else.
+
 (function ($) {
 	/**
 	 * Call main functions.
