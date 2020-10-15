@@ -53,7 +53,7 @@ return function ( $post_id ) {
 
 	// Sidebar.
 	if ( isset( $_POST['udb_is_active'] ) ) {
-		update_post_meta( $post_id, 'udb_is_active', sanitize_text_field( $_POST['udb_is_active'] ) ); // is this text? Let's check sanitization on this page overall please.
+		update_post_meta( $post_id, 'udb_is_active', absint( $_POST['udb_is_active'] ) );
 	}
 
 	if ( isset( $_POST['udb_metabox_position'] ) ) {
@@ -79,6 +79,6 @@ return function ( $post_id ) {
 	}
 
 	// User defined widget.
-	do_action( 'udb_save_widget', $post_id ); // to extend, right?
+	do_action( 'udb_save_widget', $post_id );
 
 };
