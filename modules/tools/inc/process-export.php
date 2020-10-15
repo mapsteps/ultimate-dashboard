@@ -13,7 +13,7 @@ return function () {
 	$branding_settings = array();
 	$login_settings    = array();
 
-	if ( isset( $_POST['udb_export_settings'] ) && $_POST['udb_export_settings'] ) { // double checking?
+	if ( isset( $_POST['udb_export_settings'] ) {
 		$settings          = get_option( 'udb_settings' );
 		$branding_settings = get_option( 'udb_branding' );
 		$login_settings    = get_option( 'udb_login' );

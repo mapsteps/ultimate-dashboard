@@ -162,8 +162,6 @@ class Output extends Base_Output {
 
 	/**
 	 * Remove admin bar from frontend.
-	 *
-	 * @return void
 	 */
 	public function remove_admin_bar() {
 		$settings = get_option( 'udb_settings' );

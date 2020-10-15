@@ -17,12 +17,18 @@ $headline_color = isset( $settings['headline_color'] ) ? $settings['headline_col
 <?php if ( $icon_color && '#555555' !== $icon_color ) : ?>
 
   [id*='ms-udb'] .fa,
+  [id*='ms-udb'] .fas,
+  [id*='ms-udb'] .fab,
+  [id*='ms-udb'] .far,
   [id*='ms-udb'] .dashicons,
   .udb-content-wrapper {
     color: <?php echo esc_attr( $icon_color ); ?>;
   }
 
   [id*='ms-udb'] .fa:hover,
+  [id*='ms-udb'] .fas:hover,
+  [id*='ms-udb'] .fab:hover,
+  [id*='ms-udb'] .far:hover,
   [id*='ms-udb'] .dashicons:hover {
     color: <?php echo esc_attr( $icon_color ); ?>;
   }

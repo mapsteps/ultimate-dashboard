@@ -40,13 +40,7 @@ return function () {
 			</div>
 		</div>
 		<div class="widget-fields">
-			<?php
-			// ! Deprecated!! Do not use this action hook as it's replaced by "udb_widgets_metabox" hook.
-			do_action( 'udb_metabox_widgets' ); // For backward compatibility.
-			// Can this be removed? Have we actively been using this? Remember, no 3rd party plugins were created for UDB yet.
-
-			do_action( 'udb_widgets_metabox' );
-			?>
+			<?php do_action( 'udb_widgets_metabox' ); ?>
 		</div>
 	</div>
 

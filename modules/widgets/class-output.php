@@ -87,7 +87,7 @@ class Output extends Base_Output {
 			$user_roles = $current_user->roles;
 		}
 
-		$user_roles = apply_filters( 'udb_dashboard_user_roles', $user_roles ); // what's this for?
+		$user_roles = apply_filters( 'udb_dashboard_user_roles', $user_roles );
 
 		$args = array(
 			'post_type'      => 'udb_widgets',
@@ -120,7 +120,7 @@ class Output extends Base_Output {
 
 			}
 
-			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id, $user_roles ); // what's this for?
+			$allow_access = apply_filters( 'udb_allow_widget_access', true, $post_id, $user_roles );
 
 			if ( ! $allow_access ) {
 				continue;
@@ -205,7 +205,7 @@ class Output extends Base_Output {
 		$css = '';
 
 		ob_start();
-		require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/css/widget-styles.css.php';
+		require __DIR__ . '/inc/widget-styles.css.php';
 		$css = ob_get_clean();
 
 		wp_add_inline_style( 'udb-dashboard', $css );

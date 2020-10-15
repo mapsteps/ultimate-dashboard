@@ -27,7 +27,7 @@ return function () {
 
 	}
 
-	$tmp_file = $import_file['tmp_name']; // just curious. What's tmp_name?
+	$tmp_file = $import_file['tmp_name'];
 
 	if ( empty( $tmp_file ) ) {
 
@@ -102,7 +102,7 @@ return function () {
 
 			unset( $widget['meta'] );
 
-			if ( $post ) { // what's this for?
+			if ( $post ) {
 
 				$post_id      = $post->ID;
 				$widget['ID'] = $post->ID;
