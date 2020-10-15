@@ -1,5 +1,6 @@
 (function ($) {
 	var customCSSFields = document.querySelectorAll('.udb-custom-css');
+	var colorFields = document.querySelectorAll('.udb-color-field');
 
 	if (customCSSFields.length) {
 		var editorSettings = wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
@@ -19,4 +20,17 @@
 		});
 	}
 
+	if (colorFields.length) {
+		[].slice.call(colorFields).forEach(function (el) {
+			var opts = {
+				defaultColor: el.dataset.default,
+				change: function(event, ui){},
+				clear: function() {},
+				hide: true,
+				palettes: true
+			};
+
+			$(el).wpColorPicker(opts);
+		});
+	}
 })(jQuery);
