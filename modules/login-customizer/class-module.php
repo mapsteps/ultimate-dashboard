@@ -87,6 +87,7 @@ class Module extends Base_Module {
 
 	/**
 	 * Add "Login Customizer" submenu under "Ultimate Dashboard" menu item.
+	 * We're not usind add_submenu_page here because we're actually sending people to the customizer.
 	 */
 	public function submenu_page() {
 
@@ -94,13 +95,11 @@ class Module extends Base_Module {
 
 		$udb_slug = 'edit.php?post_type=udb_widgets';
 
-		// E.g: subscriber got error if we don't return.
-		// Can you elaborate? I don't seem to fully understand this.
+		// It's not set for users like subscribers with lower capabilities so this will throw an error if we don't check.
 		if ( ! isset( $submenu[ $udb_slug ] ) ) {
 			return;
 		}
 
-		// Why are we doing this instead of just adding it the regular way?
 		array_push(
 			$submenu[ $udb_slug ],
 			array(
@@ -297,7 +296,7 @@ class Module extends Base_Module {
 			'form-footer' => __DIR__ . '/sections/form-footer.php',
 		);
 
-		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files ); // naming.
+		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files );
 
 		// Register login customizer's settings & controls in WP Customizer.
 		foreach ( $control_files as $section => $file ) {
@@ -372,8 +371,6 @@ class Module extends Base_Module {
 	public function preview_scripts() {
 
 		wp_enqueue_script( 'udb-login-customizer-preview', $this->url . '/assets/js/preview.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
-
-		wp_enqueue_script( 'udb-login-customizer-hints', $this->url . '/assets/js/hints.js', array( 'customize-preview' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'customize-preview',

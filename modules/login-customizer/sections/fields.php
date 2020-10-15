@@ -12,7 +12,6 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Color_Control;
 use Udb\Udb_Customize_Range_Control;
 

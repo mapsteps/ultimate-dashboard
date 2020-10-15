@@ -114,11 +114,11 @@ class Output extends Base_Output {
 
 		echo '<style>';
 		ob_start();
-		require __DIR__ . '/assets/css/login.css.php';
+		require __DIR__ . '/inc/login.css.php';
 
 		$css = ob_get_clean();
 
-		echo apply_filters( 'udb_print_login_styles', $css ); // not in use.
+		echo apply_filters( 'udb_login_styles', $css );
 		echo '</style>';
 
 	}
