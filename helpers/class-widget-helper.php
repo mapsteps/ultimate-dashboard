@@ -7,9 +7,9 @@
 
 namespace Udb\Helpers;
 
-use Udb\Widgets\Output;
-
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+use Udb\Widgets\Output;
 
 /**
  * Class to setup widget helper.

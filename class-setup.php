@@ -74,7 +74,7 @@ class Setup {
 		$modules['Udb\\Tools\\Module']     = __DIR__ . '/modules/tools/class-module.php';
 
 		$modules = apply_filters( 'udb_modules', $modules );
-		// ??
+
 		foreach ( $modules as $class => $file ) {
 			$splits      = explode( '/', $file );
 			$module_name = $splits[ count( $splits ) - 2 ];
@@ -121,7 +121,7 @@ class Setup {
 		$settings = get_option( 'udb_settings' );
 
 		$remove_on_uninstall = isset( $settings['remove-on-uninstall'] ) ? true : false;
-		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall ); // ??
+		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall );
 
 		if ( $remove_on_uninstall ) {
 

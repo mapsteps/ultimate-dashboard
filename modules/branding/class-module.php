@@ -7,9 +7,9 @@
 
 namespace Udb\Branding;
 
-use Udb\Base\Module as Base_Module;
-
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+use Udb\Base\Module as Base_Module;
 
 /**
  * Class to setup branding module.
@@ -59,7 +59,7 @@ class Module extends Base_Module {
 
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
@@ -205,7 +205,6 @@ class Module extends Base_Module {
 	public function footer_text_field() {
 
 		$template = __DIR__ . '/templates/fields/footer-text.php';
-		$template = apply_filters( 'udb_branding_footer_text_field_path', $template ); // do we really need to override this one?
 		$field    = require $template;
 
 		$field();
@@ -218,7 +217,6 @@ class Module extends Base_Module {
 	public function version_text_field() {
 
 		$template = __DIR__ . '/templates/fields/version-text.php';
-		$template = apply_filters( 'udb_branding_version_text_field_path', $template ); // do we really need to override this one?
 		$field    = require $template;
 
 		$field();

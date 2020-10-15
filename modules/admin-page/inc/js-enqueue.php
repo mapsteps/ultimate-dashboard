@@ -23,14 +23,10 @@ return function ( $module ) {
 		// Edit admin page.
 		wp_enqueue_script( 'udb-edit-admin-page', $module->url . '/assets/js/edit-admin-page.js', array( 'select2' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
-		do_action( 'udb_edit_widget_scripts' ); // wrong hook + probably not used in pro even if it was the correct one.
-
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
 		// Widget list.
 		wp_enqueue_script( 'udb-admin-page-list', $module->url . '/assets/js/admin-page-list.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
-
-		do_action( 'udb_admin_page_list_scripts' ); // hook not used in pro.
 
 	}
 

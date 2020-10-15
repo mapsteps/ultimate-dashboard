@@ -11,9 +11,6 @@ return function ( $module ) {
 
 	if ( $module->screen()->is_branding() ) {
 
-		// Color pickers.
-		wp_enqueue_style( 'wp-color-picker' );
-
 		// Settings page.
 		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/settings-page.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
