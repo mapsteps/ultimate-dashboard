@@ -160,7 +160,7 @@ class Output extends Base_Output {
 	public function prepare_menu( $posts, $from_multisite = false ) {
 
 		$user_roles = wp_get_current_user()->roles;
-		$user_roles = apply_filters( 'udb_admin_page_user_roles', $user_roles );
+		$user_roles = apply_filters( 'udb_admin_page_user_roles', $user_roles ); // See, for the widgets we say udb_dashboard_user_roles. Inconsistencies everywhere :)
 
 		foreach ( $posts as $post ) {
 			$is_allowed = false;
