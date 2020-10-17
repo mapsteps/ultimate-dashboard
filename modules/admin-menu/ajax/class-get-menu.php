@@ -36,10 +36,10 @@ class Get_Menu {
 		}
 
 		if ( udb_is_pro_active() ) {
-			remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 );
+			remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 ); // isn't this double?
 		}
 
-		do_action( 'udb_remove_menu_output' );
+		do_action( 'udb_remove_menu_output' ); // isn't this double?
 		do_action( 'udb_ajax_get_admin_menu', $this, $role );
 
 	}
