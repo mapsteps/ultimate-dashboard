@@ -36,13 +36,13 @@ class Widget_Helper {
 
 			remove_action( 'wp_dashboard_setup', array( Output::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
 
-			do_action( 'udb_original_widgets_before_dashboard_setup' ); // why.
+			do_action( 'udb_before_wp_dashboard_setup' );
 
 			wp_dashboard_setup();
 
 			add_action( 'wp_dashboard_setup', array( Output::get_instance(), 'remove_default_dashboard_widgets' ), 100 );
 
-			do_action( 'udb_original_widgets_after_dashboard_setup' ); // why.
+			do_action( 'udb_after_wp_dashboard_setup' );
 
 			set_current_screen( $current_screen );
 
