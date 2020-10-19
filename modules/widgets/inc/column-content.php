@@ -31,6 +31,10 @@ return function ( $column, $post_id ) {
 				echo $column_content;
 			}
 			break;
+		
+		case 'roles':
+			_e( 'All', 'ultimate-dashboard' );
+			break;
 
 		case 'is_active':
 			$is_active = get_post_meta( $post_id, 'udb_is_active', true );

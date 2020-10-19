@@ -111,6 +111,7 @@ class Module extends Base_Module {
 			'cb'        => '<input type="checkbox" />',
 			'title'     => __( 'Widget Title', 'ultimate-dashboard' ),
 			'type'      => __( 'Widget Type', 'ultimate-dashboard' ),
+			'roles'     => __( 'User Roles', 'ultimate-dashboard' ),
 			'is_active' => __( 'Active', 'ultimate-dashboard' ),
 		);
 
