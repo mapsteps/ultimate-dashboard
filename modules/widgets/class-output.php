@@ -87,7 +87,7 @@ class Output extends Base_Output {
 			$user_roles = $current_user->roles;
 		}
 
-		$user_roles = apply_filters( 'udb_widget_user_roles', $user_roles ); // anywhere else we refer to "widget" or "widgets". Here we refer to dashboard.
+		$user_roles = apply_filters( 'udb_widget_user_roles', $user_roles );
 
 		$args = array(
 			'post_type'      => 'udb_widgets',
