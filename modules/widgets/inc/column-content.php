@@ -31,9 +31,12 @@ return function ( $column, $post_id ) {
 				echo $column_content;
 			}
 			break;
-		
+
 		case 'roles':
-			_e( 'All', 'ultimate-dashboard' );
+			$allowed_roles = __( 'All', 'ultimate-dashboard' );
+			$allowed_roles = apply_filters( 'udb_widget_list_roles_column_content', $allowed_roles, $post_id );
+
+			echo ucwords( $allowed_roles );
 			break;
 
 		case 'is_active':
