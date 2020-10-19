@@ -296,7 +296,7 @@ class Module extends Base_Module {
 			'form-footer' => __DIR__ . '/sections/form-footer.php',
 		);
 
-		$control_files = apply_filters( 'udb_login_customizer_control_files', $control_files ); // For consistency: Do we say "files", "path" or just call it by the name directly like: udb_login_customizer_controls.
+		$control_files = apply_filters( 'udb_login_customizer_control_file_paths', $control_files );
 
 		// Register login customizer's settings & controls in WP Customizer.
 		foreach ( $control_files as $section => $file ) {
