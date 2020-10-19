@@ -40,7 +40,7 @@ return function () {
 			</div>
 		</div>
 		<div class="widget-fields">
-			<?php do_action( 'udb_widgets_metabox' ); ?>
+			<?php do_action( 'udb_widget_metabox' ); ?>
 		</div>
 	</div>
 

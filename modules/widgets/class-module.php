@@ -43,9 +43,9 @@ class Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-		add_action( 'udb_widgets_metabox', array( $this, 'icon_widget' ) );
-		add_action( 'udb_widgets_metabox', array( $this, 'text_widget' ) );
-		add_action( 'udb_widgets_metabox', array( $this, 'html_widget' ) );
+		add_action( 'udb_widget_metabox', array( $this, 'icon_widget' ) );
+		add_action( 'udb_widget_metabox', array( $this, 'text_widget' ) );
+		add_action( 'udb_widget_metabox', array( $this, 'html_widget' ) );
 
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
