@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $module, $column, $post_id ) {
 
+	$menu_type = get_post_meta( $post_id, 'udb_menu_type', true );
+
 	switch ( $column ) {
 
 		case 'is_active':
@@ -37,7 +39,6 @@ return function ( $module, $column, $post_id ) {
 			break;
 
 		case 'parent_menu':
-			$menu_type   = get_post_meta( $post_id, 'udb_menu_type', true );
 			$parent_menu = __( 'None', 'ultimate-dashboard' );
 
 			if ( 'submenu' === $menu_type ) {
@@ -83,7 +84,7 @@ return function ( $module, $column, $post_id ) {
 			$icon_class = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$icon_class = $icon_class ? $icon_class : 'dashicons dashicons-no is-empty';
 
-			echo '<i class="' . esc_attr( $icon_class ) . '"></i>';
+			echo ( 'submenu' === $menu_type ? '' : '<i class="' . esc_attr( $icon_class ) . '"></i>' );
 			break;
 
 	}
