@@ -63,7 +63,7 @@ return function () {
 		'admin_pages'       => $admin_pages,
 	);
 
-	$export_data = apply_filters( 'udb_export_data', $export_data ); // What about calling this just udb_export?
+	$export_data = apply_filters( 'udb_export', $export_data ); // What about calling this just udb_export?
 
 	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
 	header( 'Content-type: application/json' );
