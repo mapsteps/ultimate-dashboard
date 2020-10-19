@@ -35,11 +35,24 @@ class Get_Menu {
 			wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
 		}
 
+		/**
+		 * TODO: Maybe move this block to pro version?
+		 */
 		if ( udb_is_pro_active() ) {
+			/**
+			 * When Pro version is active, we need to remove it's output to get the original $menu & $submenu.
+			 */
 			remove_action( 'admin_menu', array( Output::get_instance(), 'menu_output' ), 105 ); // isn't this double?
+
+			/**
+			 * This hook is provided to allow the Pro version to "remove_action" the multisite output.
+			 * See The setup method in ultimate-dashboard-pro/modules/multisite/outputs/class-ms-admin-menu-output.php
+			 *
+			 * Same as above, we need to remove the multisite's output to get WordPress $menu & $submenu.
+			 */
+			do_action( 'udb_remove_menu_output' );
 		}
 
-		do_action( 'udb_remove_menu_output' ); // isn't this double?
 		do_action( 'udb_ajax_get_admin_menu', $this, $role );
 
 	}
