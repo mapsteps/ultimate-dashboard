@@ -60,7 +60,7 @@ class Module extends Base_Module {
 		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
-		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 10, 2 );
+		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 15, 2 );
 
 		$this->setup_ajax();
 
