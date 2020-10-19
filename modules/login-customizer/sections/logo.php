@@ -41,7 +41,9 @@ $wp_customize->add_control(
 );
 
 $default_logo_height = '100%';
-$default_logo_height = apply_filters( 'udb_login_customizer_default_logo_height', $default_logo_height ); // What's this filter for?
+
+// Used to provide multisite support in the PRO version.
+$default_logo_height = apply_filters( 'udb_login_customizer_default_logo_height', $default_logo_height );
 
 $wp_customize->add_setting(
 	'udb_login[logo_height]',
