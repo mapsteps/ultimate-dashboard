@@ -140,7 +140,7 @@ class Module extends Base_Module {
 	public function enable_field() {
 
 		$template = __DIR__ . '/templates/fields/enable.php';
-		$template = apply_filters( 'udb_branding_enable_feature_field_path', $template ); // compared to udb_remove_3rd_party_widgets_field, this is again inconsistend. Path, field or call it by the name?
+		$template = apply_filters( 'udb_branding_enable_feature_field_path', $template );
 		$field    = require $template;
 
 		$field();
