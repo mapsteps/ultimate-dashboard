@@ -157,7 +157,7 @@ class Module extends Base_Module {
 	public function remove_3rd_party_widgets_field() {
 
 		$template = __DIR__ . '/templates/fields/remove-3rd-party-widgets.php';
-		$template = apply_filters( 'udb_remove_3rd_party_widgets_field', $template );
+		$template = apply_filters( 'udb_remove_3rd_party_widgets_field_path', $template );
 		$field    = require $template;
 
 		$field();
