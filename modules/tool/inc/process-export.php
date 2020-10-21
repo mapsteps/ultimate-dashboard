@@ -31,16 +31,18 @@ return function () {
 		$meta = get_post_meta( $widget->ID );
 
 		$widget->meta = array();
-		
+
 		foreach ( $meta as $meta_key => $meta_value ) {
+
 			// Check for serialized data (when $meta_value is array).
 			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
 				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
-				// ! patch: This only affect development phase.
+				// The export in the past wasn't serialized, so let's double unserialize $meta_value.
 				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
 			}
 
 			$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+
 		}
 	}
 
@@ -58,14 +60,16 @@ return function () {
 		$admin_page->meta = array();
 
 		foreach ( $meta as $meta_key => $meta_value ) {
+
 			// Check for serialized data (when $meta_value is array).
 			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
 				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
-				// ! patch: This only affect development phase.
+				// The export in the past wasn't serialized, so let's double unserialize $meta_value.
 				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
 			}
 
 			$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+
 		}
 	}
 
