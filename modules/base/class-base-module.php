@@ -16,9 +16,9 @@ use Udb\Helpers\Widget_Helper;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to setup settings module.
+ * Class to setup base module.
  */
-class Module {
+class Base_Module {
 	/**
 	 * Array helper.
 	 *

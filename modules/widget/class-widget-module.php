@@ -1,20 +1,20 @@
 <?php
 /**
- * Widgets module.
+ * Widget module.
  *
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Widgets;
+namespace Udb\Widget;
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to setup widgets module.
+ * Class to setup widget module.
  */
-class Module extends Base_Module {
+class Widget_Module extends Base_Module {
 	/**
 	 * The current module url.
 	 *
@@ -32,7 +32,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Setup widgets module.
+	 * Setup widget module.
 	 */
 	public function setup() {
 
@@ -53,8 +53,8 @@ class Module extends Base_Module {
 		add_action( 'wp_ajax_udb_widget_change_active_status', array( $this, 'change_active_status' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-output.php';
-		Output::init();
+		require_once __DIR__ . '/class-widget-output.php';
+		Widget_Output::init();
 
 	}
 

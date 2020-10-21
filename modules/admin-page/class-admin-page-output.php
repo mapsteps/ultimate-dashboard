@@ -9,12 +9,12 @@ namespace Udb\AdminPage;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Output as Base_Output;
+use Udb\Base\Base_Output;
 
 /**
  * Class to setup admin page output.
  */
-class Output extends Base_Output {
+class Admin_Page_Output extends Base_Output {
 
 	/**
 	 * The class instance.

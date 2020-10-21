@@ -1,20 +1,20 @@
 <?php
 /**
- * Tools module.
+ * Tool module.
  *
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Tools;
+namespace Udb\Tool;
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to setup tools module.
+ * Class to setup tool module.
  */
-class Module extends Base_Module {
+class Tool_Module extends Base_Module {
 
 	/**
 	 * The class instance.
@@ -53,7 +53,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Setup tools module.
+	 * Setup tool module.
 	 */
 	public function setup() {
 

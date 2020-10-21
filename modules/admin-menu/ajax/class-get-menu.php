@@ -12,7 +12,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 use Udb\Helpers\Content_Helper;
 use Udb\Helpers\User_Helper;
 use Udb\Helpers\Array_Helper;
-use UdbPro\AdminMenu\Output;
+
+use UdbPro\AdminMenu\Admin_Page_Output;
 
 /**
  * Class to get menu & submenu.

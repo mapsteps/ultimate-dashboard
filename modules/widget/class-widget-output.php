@@ -5,17 +5,17 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Widgets;
+namespace Udb\Widget;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use WP_Query;
-use Udb\Base\Output as Base_Output;
+use Udb\Base\Base_Output;
 
 /**
  * Class to setup widgets output.
  */
-class Output extends Base_Output {
+class Widget_Output extends Base_Output {
 
 	/**
 	 * The class instance.

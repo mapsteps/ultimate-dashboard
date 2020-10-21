@@ -7,14 +7,14 @@
 
 namespace Udb\AdminPage;
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Class to setup admin page module.
  */
-class Module extends Base_Module {
+class Admin_Page_Module extends Base_Module {
 
 	/**
 	 * The class instance.
@@ -76,8 +76,8 @@ class Module extends Base_Module {
 		add_action( 'wp_ajax_udb_admin_page_change_active_status', array( $this, 'change_active_status' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-output.php';
-		Output::init();
+		require_once __DIR__ . '/class-admin-page-output.php';
+		Admin_Page_Output::init();
 
 	}
 

@@ -9,12 +9,12 @@ namespace Udb\LoginCustomizer;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 /**
  * Class to setup login customizer module.
  */
-class Module extends Base_Module {
+class Login_Customizer_Module extends Base_Module {
 
 	/**
 	 * The class instance.
@@ -80,8 +80,8 @@ class Module extends Base_Module {
 		add_action( 'customize_preview_init', array( $this, 'preview_scripts' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-output.php';
-		Output::init();
+		require_once __DIR__ . '/class-login-customizer-output.php';
+		Login_Customizer_Output::init();
 
 	}
 

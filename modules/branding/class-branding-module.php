@@ -9,12 +9,12 @@ namespace Udb\Branding;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 /**
  * Class to setup branding module.
  */
-class Module extends Base_Module {
+class Branding_Module extends Base_Module {
 
 	/**
 	 * The class instance.
@@ -64,8 +64,8 @@ class Module extends Base_Module {
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-output.php';
-		$output = new Output();
+		require_once __DIR__ . '/class-branding-output.php';
+		$output = new Branding_Output();
 		$output->setup();
 
 	}

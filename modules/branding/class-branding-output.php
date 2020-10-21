@@ -9,12 +9,12 @@ namespace Udb\Branding;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Output as Base_Output;
+use Udb\Base\Base_Output;
 
 /**
  * Class to setup branding output.
  */
-class Output extends Base_Output {
+class Branding_Output extends Base_Output {
 
 	/**
 	 * The class instance.

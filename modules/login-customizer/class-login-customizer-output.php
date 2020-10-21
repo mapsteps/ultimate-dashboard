@@ -9,12 +9,12 @@ namespace Udb\LoginCustomizer;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Base\Output as Base_Output;
+use Udb\Base\Base_Output;
 
 /**
  * Class to setup login customizer output.
  */
-class Output extends Base_Output {
+class Login_Customizer_Output extends Base_Output {
 
 	/**
 	 * The class instance.

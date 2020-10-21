@@ -61,17 +61,17 @@ class Setup {
 
 		$modules = array();
 
-		$modules['Udb\\Widgets\\Module']  = __DIR__ . '/modules/widgets/class-module.php';
-		$modules['Udb\\Settings\\Module'] = __DIR__ . '/modules/settings/class-module.php';
-		$modules['Udb\\Branding\\Module'] = __DIR__ . '/modules/branding/class-module.php';
+		$modules['Udb\\Widget\\Widget_Module']     = __DIR__ . '/modules/widget/class-widget-module.php';
+		$modules['Udb\\Setting\\Setting_Module']   = __DIR__ . '/modules/setting/class-setting-module.php';
+		$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 
 		if ( apply_filters( 'udb_login_customizer', true ) ) {
-			$modules['Udb\\LoginCustomizer\\Module'] = __DIR__ . '/modules/login-customizer/class-module.php';
+			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		$modules['Udb\\AdminPage\\Module'] = __DIR__ . '/modules/admin-page/class-module.php';
-		$modules['Udb\\AdminMenu\\Module'] = __DIR__ . '/modules/admin-menu/class-module.php';
-		$modules['Udb\\Tools\\Module']     = __DIR__ . '/modules/tools/class-module.php';
+		$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
+		$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
+		$modules['Udb\\Tool\\Tool_Module']            = __DIR__ . '/modules/tool/class-tool-module.php';
 
 		$modules = apply_filters( 'udb_modules', $modules );
 

@@ -1,20 +1,20 @@
 <?php
 /**
- * Settings module.
+ * Setting module.
  *
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Settings;
+namespace Udb\Setting;
 
-use Udb\Base\Module as Base_Module;
+use Udb\Base\Base_Module;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to setup settings module.
+ * Class to setup setting module.
  */
-class Module extends Base_Module {
+class Setting_Module extends Base_Module {
 	/**
 	 * The current module url.
 	 *
@@ -32,7 +32,7 @@ class Module extends Base_Module {
 	}
 
 	/**
-	 * Setup settings module.
+	 * Setup setting module.
 	 */
 	public function setup() {
 
@@ -43,8 +43,8 @@ class Module extends Base_Module {
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-output.php';
-		Output::init();
+		require_once __DIR__ . '/class-setting-output.php';
+		Setting_Output::init();
 
 	}
 
