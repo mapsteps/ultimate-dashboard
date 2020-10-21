@@ -49,7 +49,7 @@ class Widget_Output extends Base_Output {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widgets';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widget';
 
 	}
 

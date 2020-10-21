@@ -35,7 +35,7 @@ class Tool_Module extends Base_Module {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/tools';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/tool';
 
 	}
 

@@ -49,7 +49,7 @@ class Setting_Output extends Base_Output {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/settings';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/setting';
 
 	}
 

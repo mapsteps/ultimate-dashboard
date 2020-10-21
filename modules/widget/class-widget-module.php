@@ -27,7 +27,7 @@ class Widget_Module extends Base_Module {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widgets';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widget';
 
 	}
 
