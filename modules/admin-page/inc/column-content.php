@@ -62,7 +62,7 @@ return function ( $module, $column, $post_id ) {
 				$text = __( 'HTML', 'ultimate-dashboard' );
 			} else {
 				$editor = $module->content()->get_content_editor( $post_id );
-				$editor = 'block' === $editor || 'normal' === $editor ? 'default' : $editor;
+				$editor = 'block' === $editor || 'default' === $editor ? 'default' : $editor;
 				$suffix = 'default' === $editor ? __( 'Editor', 'utlimatedashboard' ) : __( 'Builder', 'utlimatedashboard' );
 				$suffix = 'elementor' === $editor ? '' : $suffix;
 				$text   = wp_sprintf(

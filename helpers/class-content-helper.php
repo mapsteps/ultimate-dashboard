@@ -72,7 +72,7 @@ class Content_Helper {
 	 * @return string The content editor name.
 	 */
 	public function get_content_editor( $post_id ) {
-		$content_editor = 'normal';
+		$content_editor = 'default';
 		$content_editor = apply_filters( 'udb_content_editor', $content_editor, $post_id );
 
 		return $content_editor;
