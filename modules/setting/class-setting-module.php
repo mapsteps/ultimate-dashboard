@@ -7,9 +7,9 @@
 
 namespace Udb\Setting;
 
-use Udb\Base\Base_Module;
-
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+use Udb\Base\Base_Module;
 
 /**
  * Class to setup setting module.

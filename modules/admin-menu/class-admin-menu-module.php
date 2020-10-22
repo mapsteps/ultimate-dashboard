@@ -7,9 +7,9 @@
 
 namespace Udb\AdminMenu;
 
-use Udb\Base\Base_Module;
-
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+use Udb\Base\Base_Module;
 
 /**
  * Class to setup admin menu module.

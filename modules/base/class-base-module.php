@@ -7,13 +7,13 @@
 
 namespace Udb\Base;
 
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
 use Udb\Helpers\Array_Helper;
 use Udb\Helpers\Screen_Helper;
 use Udb\Helpers\Content_Helper;
 use Udb\Helpers\User_Helper;
 use Udb\Helpers\Widget_Helper;
-
-defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Class to setup base module.
