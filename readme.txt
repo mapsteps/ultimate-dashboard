@@ -95,7 +95,12 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.0 | October 04, 2020 =
-* Changelog Pending
+* Rewritten the plugin from the ground up
+* New: Enable/disable widgets on the "All Widgets" screen
+* New: Updated to FontAwesome 5
+* Fixed: Admin Pages export/import functionality
+* Other tweaks & improvements
+* New & improved icon picker
 = 2.8.3 | August 11, 2020 =
 * Fixed: WordPress 5.5 compatibility
 = 2.8.1 | March 4, 2020 =
