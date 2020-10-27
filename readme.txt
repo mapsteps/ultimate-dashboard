@@ -60,7 +60,7 @@ For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.
 * WordPress multisite support
 * Admin Menu Editor (NEW!)
 
-[youtube https://www.youtube.com/watch?v=w0oEQF3C6v0]
+[youtube https://youtu.be/w0oEQF3C6v0]
 
 Learn more about [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb)
 
