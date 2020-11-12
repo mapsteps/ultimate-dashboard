@@ -26,15 +26,15 @@ return function () {
 
 	// Change capabilities so only users that can 'manage_options' are able to access the dashboard widgets & settings.
 	$capabilities = array(
-		'edit_post'          => 'manage_options',
-		'read_post'          => 'manage_options',
-		'delete_post'        => 'manage_options',
-		'delete_posts'       => 'manage_options',
-		'edit_posts'         => 'manage_options',
-		'edit_others_posts'  => 'manage_options',
-		'publish_posts'      => 'manage_options',
-		'read_private_posts' => 'manage_options',
-		'create_posts'       => 'manage_options',
+		'edit_post'          => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'read_post'          => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'delete_post'        => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'delete_posts'       => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'edit_posts'         => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'edit_others_posts'  => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'publish_posts'      => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'read_private_posts' => apply_filters( 'udb_settings_capability', 'manage_options' ),
+		'create_posts'       => apply_filters( 'udb_settings_capability', 'manage_options' ),
 	);
 
 	// Arguments.
