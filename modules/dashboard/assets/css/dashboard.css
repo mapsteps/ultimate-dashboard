@@ -1,0 +1,30 @@
+/**
+ * ------------------------------
+ * General
+ * ------------------------------
+ */
+.udb-dashboard-form {
+	max-width: 1200px;
+}
+
+.form-table img {
+	width: 100px;
+	padding: 10px;
+}
+
+.form-table td {
+	vertical-align: top;
+}
+
+.form-table tr.status {
+	border-top: 1px solid #eee;
+}
+
+.form-table tr.status td {
+	vertical-align: middle;
+	padding: 13px 20px;
+}
+
+.form-table tr.status td:last-child {
+	text-align: right;
+}

@@ -61,9 +61,10 @@ class Setup {
 
 		$modules = array();
 
-		$modules['Udb\\Widget\\Widget_Module']     = __DIR__ . '/modules/widget/class-widget-module.php';
-		$modules['Udb\\Setting\\Setting_Module']   = __DIR__ . '/modules/setting/class-setting-module.php';
-		$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
+		$modules['Udb\\Widget\\Widget_Module']       = __DIR__ . '/modules/widget/class-widget-module.php';
+		$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
+		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
+		$modules['Udb\\Branding\\Branding_Module']   = __DIR__ . '/modules/branding/class-branding-module.php';
 
 		if ( apply_filters( 'udb_login_customizer', true ) ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';

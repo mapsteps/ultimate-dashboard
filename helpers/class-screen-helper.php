@@ -66,6 +66,18 @@ class Screen_Helper {
 	 *
 	 * @return boolean
 	 */
+	public function is_dashboard_overview() {
+
+		$current_screen = get_current_screen();
+		return ( 'udb_widgets_page_udb_dashboard' === $current_screen->id ? true : false );
+
+	}
+
+	/**
+	 * Check if current screen is settings page.
+	 *
+	 * @return boolean
+	 */
 	public function is_settings() {
 
 		$current_screen = get_current_screen();
