@@ -30,12 +30,18 @@
 }
 
 .form-table .status {
-    /* display: flex; */
-    /* align-items: center; */
+    display: flex;
+	align-items: center;
+	width: 100px;
+	font-weight: bold;
 }
 
-.form-table .status-code {
-    /* margin-left: 5px; */
+.form-table .status p {
+	margin: 0;
+}
+
+.form-table .status .status-code {
+    margin-left: 5px;
     font-style: italic;
 }
 
