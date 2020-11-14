@@ -38,14 +38,14 @@ class Dashboard_Module extends Base_Module {
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/dashboard';
 
 		// Make defaults modules are available
-		if(!get_option('udb_modules')) {
+		if ( ! get_option( 'udb_modules' ) ) {
 			$modules = apply_filters('udb_dashboard_default_modules', array(
 				'white_label'	=> "true",
 				'login_customizer'	=> "true",
 				'admin_pages'	=> "true",
 				'admin_menu_editor'	=> "true"
-			));
-			update_option('udb_modules', serialize($modules));
+			) );
+			update_option( 'udb_modules', serialize( $modules ) );
 		}
 
 	}
