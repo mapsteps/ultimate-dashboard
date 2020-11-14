@@ -37,6 +37,17 @@ class Dashboard_Module extends Base_Module {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/dashboard';
 
+		// Make defaults modules are available
+		if(!get_option('udb_modules')) {
+			$modules = apply_filters('udb_dashboard_default_modules', array(
+				'white_label'	=> "true",
+				'login_customizer'	=> "true",
+				'admin_pages'	=> "true",
+				'admin_menu_editor'	=> "true"
+			));
+			update_option('udb_modules', serialize($modules));
+		}
+
 	}
 
 	/**
@@ -59,7 +70,9 @@ class Dashboard_Module extends Base_Module {
 
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		// add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+
+		add_action( 'wp_ajax_udb_handle_module_options', array($this, 'handle_module_options') );
 
 		// The module output.
 		require_once __DIR__ . '/class-dashboard-output.php';
@@ -105,6 +118,40 @@ class Dashboard_Module extends Base_Module {
 		$enqueue = require __DIR__ . '/inc/js-enqueue.php';
 		$enqueue( $this );
 
+	}
+
+	public function handle_module_options() {
+
+		if( empty($_REQUEST) || !wp_verify_nonce($_REQUEST['nonce'], 'udb_modules_nonce_action') ) {
+			die(wp_send_json_error('Invalid nonce', 400));
+		};
+		
+		$data = unserialize(get_option('udb_modules'));
+
+		if($data) {
+			$name = sanitize_key($_REQUEST['name']);
+			$status = sanitize_key($_REQUEST['status']);
+			$data[$name] = $status;
+			update_option('udb_modules', serialize($data));
+		}
+
+		wp_send_json_success(['message' => 'Saved']);
+		
+		die();
+	}
+
+	public static function get_module_prop($name = '') {
+		if( empty($name) ) {
+			return null;
+		}
+
+		$options = unserialize(get_option('udb_modules'));
+
+		if( empty($options) ) {
+			return 1;
+		}
+
+		return $options[$name] === "true" ? 1 : 0;
 	}
 
 }

@@ -9,8 +9,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$is_white_label_active = get_option( 'udb_is_white_label_active', 1 );
-
 	?>
 
 	<div class="wrap settingstuff">
@@ -25,7 +23,7 @@ return function () {
 
 				<div class="left-col">
 
-					<h2>White Label</h2>
+					<h2><?php _e( 'White Label', 'ultimate-dashboard' ); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -36,11 +34,15 @@ return function () {
 							</td>
 						</tr>
 						<tr class="status">
-							<td>Status: active</td>
+							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
 									<label for="udb_is_active_white_label">
-										<input type="checkbox" name="udb_is_active" id="udb_is_active_white_label" value="1" data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_is_active_white_label_status' ) ); ?>" <?php checked( $is_white_label_active, 1 ); ?> >
+										<input
+											type="checkbox"
+											name="white_label"
+											id="udb_is_active_white_label"
+											<?php checked( self::get_module_prop('white_label') ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -48,7 +50,7 @@ return function () {
 						</tr>
 					</table>
 
-					<h2>Login Customizer</h2>
+					<h2><?php _e('Login Customizer', 'ultimate-dashboard'); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -59,11 +61,15 @@ return function () {
 							</td>
 						</tr>
 						<tr class="status">
-							<td>Status: active</td>
+							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
-									<label for="udb_is_active_white_label">
-										<input type="checkbox" name="udb_is_active" id="udb_is_active_white_label" value="1" data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_is_active_white_label_status' ) ); ?>" <?php checked( $is_white_label_active, 1 ); ?> >
+									<label for="udb_is_active_login_customizer">
+										<input
+											type="checkbox"
+											name="login_customizer"
+											id="udb_is_active_login_customizer"
+											<?php checked( self::get_module_prop('login_customizer') ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -75,7 +81,7 @@ return function () {
 
 				<div class="right-col">
 
-					<h2>Admin Pages</h2>
+					<h2><?php _e('Admin Pages', 'ultimate-dashboard'); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -86,11 +92,15 @@ return function () {
 							</td>
 						</tr>
 						<tr class="status">
-							<td>Status: active</td>
+							<td><?php _e('Status: active', 'ultimate-dashboard' ); ?></td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
-									<label for="udb_is_active_white_label">
-										<input type="checkbox" name="udb_is_active" id="udb_is_active_white_label" value="1" data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_is_active_white_label_status' ) ); ?>" <?php checked( $is_white_label_active, 1 ); ?> >
+									<label for="udb_is_active_admin_pages">
+										<input
+											type="checkbox"
+											name="admin_pages"
+											id="udb_is_active_admin_pages"
+											<?php checked( self::get_module_prop('admin_pages') ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -98,7 +108,7 @@ return function () {
 						</tr>
 					</table>
 
-					<h2>Admin Menu Editor</h2>
+					<h2><?php _e('Admin Menu Editor', 'ultimate-dashboard' ); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -109,11 +119,15 @@ return function () {
 							</td>
 						</tr>
 						<tr class="status">
-							<td>Status: active</td>
+							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
-									<label for="udb_is_active_white_label">
-										<input type="checkbox" name="udb_is_active" id="udb_is_active_white_label" value="1" data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_is_active_white_label_status' ) ); ?>" <?php checked( $is_white_label_active, 1 ); ?> >
+									<label for="udb_is_active_admin_menu_editor">
+										<input
+											type="checkbox"
+											name="admin_menu_editor"
+											id="udb_is_active_admin_menu_editor"
+											<?php checked( self::get_module_prop('admin_menu_editor') ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -122,8 +136,7 @@ return function () {
 					</table>
 
 				</div>
-
-
+				<input type="hidden" name="udb_modules_nonce" id="udb_modules_nonce" value="<?php echo esc_attr( wp_create_nonce( 'udb_modules_nonce_action' ) ); ?>" />
 			</div>
 
 		</form>
