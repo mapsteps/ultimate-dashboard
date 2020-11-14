@@ -65,25 +65,25 @@ class Setup {
 		$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
 		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		$saved_modules = unserialize(get_option('udb_modules'));
+		$saved_modules = get_option('udb_modules');
 
-		if($saved_modules && "true" === $saved_modules['white_label']) {
+		if ( $saved_modules && "true" === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module']   = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
-		if($saved_modules && "true" === $saved_modules['admin_pages']) {
+		if ( $saved_modules && "true" === $saved_modules['admin_pages'] ) {
 			$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
 		}
 
-		if($saved_modules && "true" === $saved_modules['login_customizer']){
+		if ( $saved_modules && "true" === $saved_modules['login_customizer'] ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		if($saved_modules && "true" === $saved_modules['admin_menu_editor']) {
+		if ( $saved_modules && "true" === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
 		
-		$modules['Udb\\Tool\\Tool_Module']            = __DIR__ . '/modules/tool/class-tool-module.php';
+		$modules['Udb\\Tool\\Tool_Module'] = __DIR__ . '/modules/tool/class-tool-module.php';
 
 		$modules = apply_filters( 'udb_modules', $modules );
 
