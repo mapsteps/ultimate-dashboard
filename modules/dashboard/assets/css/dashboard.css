@@ -8,8 +8,10 @@
 }
 
 .form-table img {
-	width: 100px;
+	width: 120px;
 	padding: 10px;
+	padding-right: 20px;
+	opacity: .5;
 }
 
 .form-table td {
@@ -22,7 +24,8 @@
 
 .form-table tr.status-wrap td {
 	vertical-align: middle;
-	padding: 13px 20px;
+	padding: 15px 20px;
+	background: #f9f9f9;
 }
 
 .form-table tr.status-wrap td:last-child {
@@ -30,25 +33,24 @@
 }
 
 .form-table .status {
-    display: flex;
+	display: flex;
 	align-items: center;
-	width: 100px;
 	font-weight: bold;
 }
 
 .form-table .status p {
 	margin: 0;
+	font-size: 14.5px;
 }
 
 .form-table .status .status-code {
-    margin-left: 5px;
-    font-style: italic;
+	margin-left: 5px;
 }
 
 .form-table .status-code .active {
-    color: #008000;
+	color: #008000;
 }
 
 .form-table .status-code .inactive {
-    color: #ff0000;
+	color: #ff0000;
 }

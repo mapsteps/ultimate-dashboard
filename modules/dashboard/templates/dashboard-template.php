@@ -36,9 +36,9 @@ return function () {
 						<tr class="status-wrap">
 							<td>
 								<div class="status">
-									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
-									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
-										<?php echo self::get_module_prop('white_label') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
+										<?php echo self::get_module_prop( 'white_label' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -49,7 +49,7 @@ return function () {
 											type="checkbox"
 											name="white_label"
 											id="udb_is_active_white_label"
-											<?php checked( self::get_module_prop('white_label') ); ?> >
+											<?php checked( self::get_module_prop( 'white_label' ) ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -57,7 +57,7 @@ return function () {
 						</tr>
 					</table>
 
-					<h2><?php _e('Login Customizer', 'ultimate-dashboard'); ?></h2>
+					<h2><?php _e( 'Login Customizer', 'ultimate-dashboard' ); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -70,9 +70,9 @@ return function () {
 						<tr class="status-wrap">
 							<td>
 								<div class="status">
-									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
-									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
-										<?php echo self::get_module_prop('login_customizer') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
+										<?php echo self::get_module_prop( 'login_customizer' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -83,7 +83,7 @@ return function () {
 											type="checkbox"
 											name="login_customizer"
 											id="udb_is_active_login_customizer"
-											<?php checked( self::get_module_prop('login_customizer') ); ?> >
+											<?php checked( self::get_module_prop( 'login_customizer' ) ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -95,7 +95,7 @@ return function () {
 
 				<div class="right-col">
 
-					<h2><?php _e('Admin Pages', 'ultimate-dashboard'); ?></h2>
+					<h2><?php _e( 'Admin Pages', 'ultimate-dashboard' ); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -108,9 +108,9 @@ return function () {
 						<tr class="status-wrap">
 							<td>
 								<div class="status">
-									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
-									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
-										<?php echo self::get_module_prop('admin_pages') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
+										<?php echo self::get_module_prop( 'admin_pages' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -121,7 +121,7 @@ return function () {
 											type="checkbox"
 											name="admin_pages"
 											id="udb_is_active_admin_pages"
-											<?php checked( self::get_module_prop('admin_pages') ); ?> >
+											<?php checked( self::get_module_prop( 'admin_pages' ) ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -129,7 +129,7 @@ return function () {
 						</tr>
 					</table>
 
-					<h2><?php _e('Admin Menu Editor', 'ultimate-dashboard' ); ?></h2>
+					<h2><?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?></h2>
 					<table class="form-table">
 						<tr>
 							<td>
@@ -142,9 +142,9 @@ return function () {
 						<tr class="status-wrap">
 							<td>
 								<div class="status">
-									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
-									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
-										<?php echo self::get_module_prop('admin_menu_editor') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
+										<?php echo self::get_module_prop( 'admin_menu_editor' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -156,7 +156,7 @@ return function () {
 											type="checkbox"
 											name="admin_menu_editor"
 											id="udb_is_active_admin_menu_editor"
-											<?php checked( self::get_module_prop('admin_menu_editor') ); ?> >
+											<?php checked( self::get_module_prop( 'admin_menu_editor' ) ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
