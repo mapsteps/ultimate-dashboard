@@ -65,7 +65,7 @@ class Setup {
 		$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
 		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		$saved_modules = get_option('udb_modules');
+		$saved_modules = unserialize( get_option('udb_modules') );
 
 		if ( $saved_modules && "true" === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module']   = __DIR__ . '/modules/branding/class-branding-module.php';
