@@ -141,6 +141,7 @@ class Setup {
 			delete_option( 'udb_branding' );
 			delete_option( 'udb_login' );
 			delete_option( 'udb_import' );
+			delete_option( 'udb_modules' );
 
 			delete_option( 'udb_compat_widget_type' );
 			delete_option( 'udb_compat_widget_status' );
