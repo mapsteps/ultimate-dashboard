@@ -33,8 +33,15 @@ return function () {
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. </p>
 							</td>
 						</tr>
-						<tr class="status">
-							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
+						<tr class="status-wrap">
+							<td>
+								<div class="status">
+									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
+										<?php echo self::get_module_prop('white_label') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									</p>
+								</div>
+							</td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
 									<label for="udb_is_active_white_label">
@@ -60,8 +67,15 @@ return function () {
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. </p>
 							</td>
 						</tr>
-						<tr class="status">
-							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
+						<tr class="status-wrap">
+							<td>
+								<div class="status">
+									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
+										<?php echo self::get_module_prop('login_customizer') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									</p>
+								</div>
+							</td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
 									<label for="udb_is_active_login_customizer">
@@ -91,8 +105,15 @@ return function () {
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. </p>
 							</td>
 						</tr>
-						<tr class="status">
-							<td><?php _e('Status: active', 'ultimate-dashboard' ); ?></td>
+						<tr class="status-wrap">
+							<td>
+								<div class="status">
+									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
+										<?php echo self::get_module_prop('admin_pages') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									</p>
+								</div>
+							</td>
 							<td class="field">
 								<div class="control switch-control is-rounded">
 									<label for="udb_is_active_admin_pages">
@@ -118,8 +139,16 @@ return function () {
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. </p>
 							</td>
 						</tr>
-						<tr class="status">
-							<td><?php _e('Status: active', 'ultimate-dashboard'); ?></td>
+						<tr class="status-wrap">
+							<td>
+								<div class="status">
+									<p><?php _e('Status: ', 'ultimate-dashboard' ); ?></p>
+									<p class="status-code" data-active-text="<?php _e('active', 'ultimate-dashboard'); ?>" data-inactive-text="<?php _e('inactive', 'ultimate-dashboard'); ?>">
+										<?php echo self::get_module_prop('admin_menu_editor') ? '<span class="active">'.__('active', 'ultimate-dashboard').'</span>' : '<span class="inactive">'.__('inactive', 'ultimate-dashboard').'</span>'; ?>
+									</p>
+								</div>
+							</td>
+
 							<td class="field">
 								<div class="control switch-control is-rounded">
 									<label for="udb_is_active_admin_menu_editor">

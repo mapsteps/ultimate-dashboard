@@ -7,7 +7,9 @@
 				);
 
 			checkboxes.on("change", function () {
-				var t = $(this);
+				var t = $(this),
+					p = t.parents(".form-table"),
+					statusTag = p.find(".status-code");
 
 				var data = {
 					action: "udb_handle_module_options",
@@ -17,12 +19,20 @@
 					value: t.val(),
 				};
 
+				data.status == true
+					? statusTag.html(
+							'<p class="active">' + statusTag.data("active-text") + "</p>"
+					  )
+					: statusTag.html(
+							'<p class="inactive">' + statusTag.data("inactive-text") + "</p>"
+					  );
+
 				$.ajax({
 					beforeSend: function () {
-						t.attr('disabled', true);
+						t.attr("disabled", true);
 					},
 					complete: function () {
-						t.attr('disabled', false);
+						t.attr("disabled", false);
 					},
 					dataType: "json",
 					data: data,

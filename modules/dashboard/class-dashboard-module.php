@@ -72,7 +72,7 @@ class Dashboard_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-		add_action( 'wp_ajax_udb_handle_module_options', array($this, 'handle_module_options') );
+		add_action( 'wp_ajax_udb_handle_module_options', array( $this, 'handle_module_options' ) );
 
 		// The module output.
 		require_once __DIR__ . '/class-dashboard-output.php';
@@ -122,32 +122,32 @@ class Dashboard_Module extends Base_Module {
 
 	public function handle_module_options() {
 
-		if( empty($_REQUEST) || !wp_verify_nonce($_REQUEST['nonce'], 'udb_modules_nonce_action') ) {
-			die(wp_send_json_error('Invalid nonce', 400));
+		if( empty( $_REQUEST ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'udb_modules_nonce_action' ) ) {
+			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
 		};
 		
-		$data = unserialize(get_option('udb_modules'));
+		$data = unserialize( get_option( 'udb_modules' ) );
 
-		if($data) {
-			$name = sanitize_key($_REQUEST['name']);
-			$status = sanitize_key($_REQUEST['status']);
+		if( $data ) {
+			$name = sanitize_key( $_REQUEST['name'] );
+			$status = sanitize_key( $_REQUEST['status'] );
 			$data[$name] = $status;
-			update_option('udb_modules', serialize($data));
+			update_option( 'udb_modules', serialize( $data ) );
 		}
 
-		wp_send_json_success(['message' => 'Saved']);
+		wp_send_json_success( ['message' => __( 'Saved', 'ultimate-dashboard' )] );
 		
 		die();
 	}
 
-	public static function get_module_prop($name = '') {
-		if( empty($name) ) {
+	public static function get_module_prop( $name = '' ) {
+		if( empty( $name ) ) {
 			return null;
 		}
 
-		$options = unserialize(get_option('udb_modules'));
+		$options = unserialize( get_option( 'udb_modules' ) );
 
-		if( empty($options) ) {
+		if( empty( $options ) ) {
 			return 1;
 		}
 
