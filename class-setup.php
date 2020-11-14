@@ -68,7 +68,7 @@ class Setup {
 		$saved_modules = unserialize( get_option( 'udb_modules' ) );
 
 		if ( $saved_modules && "true" === $saved_modules['white_label'] ) {
-			$modules['Udb\\Branding\\Branding_Module']   = __DIR__ . '/modules/branding/class-branding-module.php';
+			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
 		if ( $saved_modules && "true" === $saved_modules['admin_pages'] ) {
@@ -82,14 +82,14 @@ class Setup {
 		if ( $saved_modules && "true" === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
-		
+
 		$modules['Udb\\Tool\\Tool_Module'] = __DIR__ . '/modules/tool/class-tool-module.php';
 
 		$modules = apply_filters( 'udb_modules', $modules );
 
 		foreach ( $modules as $class => $file ) {
 			$splits      = explode( '/', $file );
-			$module_name = $splits[ count( $splits ) - 2 ];
+			$module_name = $splits[count( $splits ) - 2];
 			$filter_name = str_ireplace( '-', '_', $module_name );
 			$filter_name = 'udb_' . $filter_name;
 
