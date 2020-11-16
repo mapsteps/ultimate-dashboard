@@ -9,6 +9,7 @@ namespace Udb\Dashboard;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use \Udb\Setup;
 use Udb\Base\Base_Module;
 
 /**
@@ -36,17 +37,6 @@ class Dashboard_Module extends Base_Module {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/dashboard';
-
-		// Make defaults modules are available
-		if ( ! get_option( 'udb_modules' ) ) {
-			$modules = apply_filters( 'udb_dashboard_default_modules', array(
-				'white_label'       => "true",
-				'login_customizer'  => "true",
-				'admin_pages'       => "true",
-				'admin_menu_editor' => "true",
-			) );
-			update_option( 'udb_modules', serialize( $modules ) );
-		}
 
 	}
 
@@ -126,32 +116,19 @@ class Dashboard_Module extends Base_Module {
 			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
 		};
 
-		$data = unserialize( get_option( 'udb_modules' ) );
+		$saved_modules = Setup::saved_modules();
 
-		if ( $data ) {
-			$name        = sanitize_key( $_REQUEST['name'] );
+		$name = sanitize_key( $_REQUEST['name'] );
+
+		if( isset( $saved_modules[$name] ) ) {
 			$status      = sanitize_key( $_REQUEST['status'] );
-			$data[$name] = $status;
-			update_option( 'udb_modules', serialize( $data ) );
+			$saved_modules[$name] = $status;
+			update_option( 'udb_modules', $saved_modules );
 		}
 
 		wp_send_json_success( ['message' => __( 'Saved', 'ultimate-dashboard' )] );
 
 		die();
-	}
-
-	public static function get_module_prop( $name = '' ) {
-		if ( empty( $name ) ) {
-			return null;
-		}
-
-		$options = unserialize( get_option( 'udb_modules' ) );
-
-		if ( empty( $options ) ) {
-			return 1;
-		}
-
-		return $options[$name] === "true" ? 1 : 0;
 	}
 
 }

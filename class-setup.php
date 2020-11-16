@@ -25,6 +25,30 @@ class Setup {
 
 	}
 
+	public static function saved_modules() {
+
+		$defaults = array(
+			'white_label',
+			'login_customizer',
+			'admin_pages',
+			'admin_menu_editor'
+		);
+
+		$defaults = apply_filters('udb_module_list', $defaults );
+
+		$defaults = array_fill_keys( $defaults, 'true' );
+		$saved = get_option( 'udb_modules', $defaults );
+
+		$new_modules = array_diff_key( $defaults, $saved );
+
+		if( ! empty( $new_modules ) ) {
+			$updated_modules = array_merge( $saved, $new_modules );
+			update_option( 'udb_modules', $updated_modules );
+		}
+
+		return get_option( 'udb_modules', $defaults );
+	}
+
 	/**
 	 * Setup the class.
 	 */
@@ -60,26 +84,25 @@ class Setup {
 	public function load_modules() {
 
 		$modules = array();
+		$saved_modules = Setup::saved_modules();
 
 		$modules['Udb\\Widget\\Widget_Module']       = __DIR__ . '/modules/widget/class-widget-module.php';
 		$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
 		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		$saved_modules = unserialize( get_option( 'udb_modules' ) );
-
-		if ( $saved_modules && "true" === $saved_modules['white_label'] ) {
+		if ( $saved_modules['white_label'] == 'true' ) {
 			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
-		if ( $saved_modules && "true" === $saved_modules['admin_pages'] ) {
+		if ( $saved_modules['admin_pages'] == 'true' ) {
 			$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
 		}
 
-		if ( $saved_modules && "true" === $saved_modules['login_customizer'] ) {
+		if ( $saved_modules['login_customizer'] == 'true' ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		if ( $saved_modules && "true" === $saved_modules['admin_menu_editor'] ) {
+		if ( $saved_modules['admin_menu_editor'] == 'true' ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
 

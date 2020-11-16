@@ -6,9 +6,12 @@
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+use \Udb\Setup;
 
 return function () {
 
+	$saved_modules = Setup::saved_modules();
+	
 	?>
 
 	<div class="wrap settingstuff">
@@ -38,7 +41,7 @@ return function () {
 								<div class="status">
 									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
 									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-										<?php echo self::get_module_prop( 'white_label' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+										<?php echo $saved_modules[ 'white_label' ] == 'true' ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -49,7 +52,7 @@ return function () {
 											type="checkbox"
 											name="white_label"
 											id="udb_is_active_white_label"
-											<?php checked( self::get_module_prop( 'white_label' ) ); ?> >
+											<?php checked( $saved_modules[ 'white_label' ] == 'true' ? 1 : 0 ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -72,7 +75,7 @@ return function () {
 								<div class="status">
 									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
 									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-										<?php echo self::get_module_prop( 'login_customizer' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+										<?php echo $saved_modules[ 'login_customizer' ] == 'true' ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -83,13 +86,15 @@ return function () {
 											type="checkbox"
 											name="login_customizer"
 											id="udb_is_active_login_customizer"
-											<?php checked( self::get_module_prop( 'login_customizer' ) ); ?> >
+											<?php checked( $saved_modules[ 'login_customizer' ] == 'true' ? 1 : 0 ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
 							</td>
 						</tr>
 					</table>
+
+					<?php do_action( 'udb_after_modules_first_col' ); ?>
 
 				</div>
 
@@ -110,7 +115,7 @@ return function () {
 								<div class="status">
 									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
 									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-										<?php echo self::get_module_prop( 'admin_pages' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+										<?php echo $saved_modules[ 'admin_pages' ] == "true" ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -121,7 +126,7 @@ return function () {
 											type="checkbox"
 											name="admin_pages"
 											id="udb_is_active_admin_pages"
-											<?php checked( self::get_module_prop( 'admin_pages' ) ); ?> >
+											<?php checked( $saved_modules[ 'admin_pages' ] == "true" ? 1 : 0 ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
@@ -144,7 +149,7 @@ return function () {
 								<div class="status">
 									<p><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></p>
 									<p class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-										<?php echo self::get_module_prop( 'admin_menu_editor' ) ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+										<?php echo $saved_modules[ 'admin_menu_editor' ] == "true" ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</p>
 								</div>
 							</td>
@@ -156,7 +161,7 @@ return function () {
 											type="checkbox"
 											name="admin_menu_editor"
 											id="udb_is_active_admin_menu_editor"
-											<?php checked( self::get_module_prop( 'admin_menu_editor' ) ); ?> >
+											<?php checked( $saved_modules[ 'admin_menu_editor' ] == "true" ? 1 : 0 ); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
