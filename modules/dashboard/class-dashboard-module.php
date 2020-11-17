@@ -114,17 +114,15 @@ class Dashboard_Module extends Base_Module {
 
 		if ( empty( $_REQUEST ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'udb_modules_nonce_action' ) ) {
 			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
-		};
-
-		$saved_modules = Setup::saved_modules();
-
-		$name = sanitize_key( $_REQUEST['name'] );
-
-		if( isset( $saved_modules[$name] ) ) {
-			$status      = sanitize_key( $_REQUEST['status'] );
-			$saved_modules[$name] = $status;
-			update_option( 'udb_modules', $saved_modules );
 		}
+
+		$modules 	 = Setup::saved_modules();
+		$name 		 = sanitize_key( $_REQUEST['name'] );
+		$status      = sanitize_key( $_REQUEST['status'] );
+
+		$modules[$name] = $status;
+
+		update_option( 'udb_modules', $modules );
 
 		wp_send_json_success( ['message' => __( 'Saved', 'ultimate-dashboard' )] );
 
