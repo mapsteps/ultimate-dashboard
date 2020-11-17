@@ -161,7 +161,7 @@ return function () {
 											type="checkbox"
 											name="admin_menu_editor"
 											id="udb_is_active_admin_menu_editor"
-											<?php checked( (empty( $saved_modules ) || $saved_modules['admin_menu_editor'] == "true" ? 1 : 0), 1); ?> >
+											<?php checked( (empty( $saved_modules ) || $saved_modules['admin_menu_editor'] == "true"), 1); ?> >
 										<span class="switch"></span>
 									</label>
 								</div>
