@@ -25,6 +25,25 @@ class Setup {
 
 	}
 
+	public function get_udb_pro_installed_data() {
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		 
+		$plugins = get_plugins();
+		$udb_pro_slug = 'ultimate-dashboard-pro/ultimate-dashboard-pro.php';
+
+		if( array_key_exists( $udb_pro_slug, $plugins ) ) {
+			$udb_pro = $plugins[$udb_pro_slug];
+			return array(
+				'is_installed'	=> true,
+				'version'	=> $udb_pro['Version']
+			);
+		}
+
+		return false;
+	}
+
 	public static function saved_modules() {
 
 		$defaults = array(
@@ -81,11 +100,16 @@ class Setup {
 	 */
 	public function load_modules() {
 
-		$modules = array();
-		$saved_modules = get_option( 'udb_modules', array() );
+		$modules		= array();
+		$saved_modules	= get_option( 'udb_modules', array() );
+		$udb_pro		= $this->get_udb_pro_installed_data();
 
 		$modules['Udb\\Widget\\Widget_Module']       = __DIR__ . '/modules/widget/class-widget-module.php';
-		$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
+
+		if( is_array( $udb_pro ) && $udb_pro['is_installed'] && $udb_pro['version'] >= '3.1' ) {
+			$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
+		}
+
 		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
 
 		if ( empty($saved_modules) || $saved_modules['white_label'] == 'true' ) {
