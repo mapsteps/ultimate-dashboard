@@ -19,7 +19,7 @@ return function () {
 	}
 	?>
 
-	<div class="setting-fields udb-pro-fields is-gapless">
+	<div class="setting-fields">
 
 		<?php
 
@@ -27,7 +27,7 @@ return function () {
 
 			?>
 
-			<div class="field setting-field">
+			<div class="setting-field">
 				<label class="label checkbox-label">
 					<?php echo esc_attr( $widget['title_stripped'] ); ?> (<code><?php echo esc_attr( $id ); ?></code>)
 					<input type="checkbox" disabled>

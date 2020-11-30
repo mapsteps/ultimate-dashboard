@@ -13,13 +13,11 @@ return function () {
 	$is_checked = isset( $settings['remove_help_tab'] ) ? 1 : 0;
 	?>
 
-	<div class="field setting-field">
-		<label for="udb_settings[remove_help_tab]" class="label checkbox-label">
-			&nbsp;
-			<input type="checkbox" name="udb_settings[remove_help_tab]" id="udb_settings[remove_help_tab]" value="1" <?php checked( $is_checked, 1 ); ?>>
-			<div class="indicator"></div>
-		</label>
-	</div>
+	<label for="udb_settings[remove_help_tab]" class="label checkbox-label">
+		&nbsp;
+		<input type="checkbox" name="udb_settings[remove_help_tab]" id="udb_settings[remove_help_tab]" value="1" <?php checked( $is_checked, 1 ); ?>>
+		<div class="indicator"></div>
+	</label>
 
 	<?php
 

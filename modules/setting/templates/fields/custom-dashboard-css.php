@@ -14,7 +14,7 @@ return function () {
 
 	?>
 
-	<textarea id="udb-custom-dashboard-css" class="widefat textarea udb-custom-css" name="udb_settings[custom_css]"><?php echo wp_unslash( $custom_css ); ?></textarea>
+	<textarea id="udb-custom-dashboard-css" class="widefat textarea udb-custom-css" name="udb_settings[custom_css]"><?php echo $custom_css; ?></textarea>
 
 	<?php
 
