@@ -26,16 +26,6 @@
 	width: 50%;
 }
 
-/* Checkbox label */
-.udb-settings-form .label input:checked ~ .indicator {
-	background-color: #007cba;
-}
-
-.udb-settings-form .label:hover input:not([disabled]):checked ~ .indicator, 
-.udb-settings-form .label input:checked:focus ~ .indicator {
-	background-color: #00669b;
-}
-
 /* Code Mirror */
 .CodeMirror-wrap {
 	border: 1px solid #ddd;
@@ -58,8 +48,4 @@
 
 .udb-pro-settings-page-notice .button {
 	margin-top: 10px !important;
-}
-
-.udb-pro-fields {
-	color: #888;
 }

@@ -1,0 +1,226 @@
+/* Init */
+.heatbox-wrap,
+.heatbox-wrap * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* Version */
+.heatbox-wrap .version {
+	font-size: 50%;
+	opacity: 0.6;
+	font-weight: 600;
+	background: #ccc;
+	border-radius: 5px;
+	padding: 5px 12px;
+	line-height: 1;
+}
+
+/* Container */
+.heatbox-container {
+	max-width: 1200px;
+	padding: 0 20px;
+}
+
+.heatbox-container-center {
+	margin: 0 auto;
+}
+
+/* 2 Column Layout - Wrapper */
+.heatbox-column-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* 2 Column Layout - Main Content */
+.heatbox-main {
+	width: 73%;
+	margin-right: 2%;
+}
+
+/* 2 Column Layout - Sidebar */
+.heatbox-sidebar {
+	width: 25%;
+}
+
+/* 2 Column Layout - Responsiveness */
+@media screen and (max-width: 991px) {
+	.heatbox-main, .heatbox-sidebar {
+		width: 100%;
+	}
+	.heatbox-main {
+		margin-right: 0;
+	}
+}
+
+/* Heatbox */
+.heatbox {
+	background: #fff;
+	margin-bottom: 20px;
+	border: 1px solid #E6E6E6;
+}
+
+.heatbox h2 {
+	border-bottom: 1px solid #eee;
+	margin: 0;
+	padding: 20px;
+}
+
+.heatbox.is-grouped h2 {
+	border-top: 1px solid #eee;
+}
+
+.heatbox h3 {
+	margin: 0 0 10px 0;
+}
+
+.heatbox p {
+	margin: 0 0 20px 0;
+}
+
+.heatbox-content {
+	margin: 0;
+	padding: 20px;
+}
+
+.heatbox-content p:first-child {
+	margin-top: 0;
+}
+
+/* Margins */
+.heatbox-margin-top {
+	margin-top: 20px;
+}
+
+.heatbox-margin-bottom {
+	margin-bottom: 20px;
+}
+
+/* Paddings */
+.heatbox-margin-top {
+	margin-top: 20px;
+}
+
+.heatbox-margin-bottom {
+	margin-bottom: 20px;
+}
+
+/* Buttons */
+.heatbox-wrap .button-larger {
+	padding: 5px 20px;
+}
+
+/* Settings */
+.heatbox .form-table {
+	margin: 0;
+}
+
+.heatbox .form-table th,
+.heatbox .form-table td {
+	padding: 20px;
+	vertical-align: top;
+}
+
+.heatbox .form-table th .description {
+	margin-top: 10px;
+}
+
+.heatbox .setting-fields {
+
+}
+
+.heatbox .setting-fields .setting-field {
+	margin-bottom: 7px;
+}
+
+/**
+ * Checkboxes & Radio Buttons
+ * Copied & modified from https://codepen.io/KenanYusuf/pen/PZKEKd/
+ */
+.heatbox .label {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+
+.heatbox .label input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.heatbox .label .indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #e6e6e6;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.heatbox .radio-label .indicator {
+	border-radius: 50%;
+}
+
+.heatbox .label:hover input ~ .indicator,
+.heatbox .label input:focus ~ .indicator {
+	background-color: #ccc;
+}
+
+.heatbox .label input:checked ~ .indicator {
+	background-color: #007cba;
+}
+
+.heatbox .label:hover input:not([disabled]):checked ~ .indicator,
+.heatbox .label input:checked:focus ~ .indicator {
+	background-color: #00669b;
+}
+
+.heatbox .label input:disabled ~ .indicator {
+	background-color: #e6e6e6;
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.heatbox .label .indicator::after {
+	display: none;
+	position: absolute;
+	content: "";
+}
+
+.heatbox .label input:checked ~ .indicator::after {
+	display: block;
+}
+
+.heatbox .checkbox-label {
+	padding-left: 30px;
+}
+
+.heatbox .checkbox-label .indicator::after {
+	left: 8px;
+	top: 4px;
+	width: 3px;
+	height: 8px;
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.heatbox .checkbox-label input:disabled ~ .indicator::after {
+	border-color: #7b7b7b;
+}
+
+.heatbox .radio-label .indicator::after {
+	left: 7px;
+	top: 7px;
+	height: 6px;
+	width: 6px;
+	border-radius: 50%;
+	background-color: #fff;
+}
+
+.heatbox .radio-label input:disabled ~ .indicator::after {
+	background-color: #7b7b7b;
+}
