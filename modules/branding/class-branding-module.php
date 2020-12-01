@@ -114,23 +114,23 @@ class Branding_Module extends Base_Module {
 	 */
 	public function add_settings() {
 
-		// Settings group.
+		// Register setting.
 		register_setting( 'udb-branding-group', 'udb_branding' );
 
-		// Settings sections (detailed, general).
-		add_settings_section( 'udb-branding-detailed-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-detailed-branding' );
-		add_settings_section( 'udb-branding-general-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-general-branding' );
+		// Sections.
+		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-branding-settings' );
+		add_settings_section( 'udb-branding-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-branding-misc-settings' );
 
-		// Detailed section fields.
-		add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), array( $this, 'enable_field' ), 'udb-detailed-branding', 'udb-branding-detailed-section' );
-		add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), array( $this, 'choose_layout_field' ), 'udb-detailed-branding', 'udb-branding-detailed-section' );
-		add_settings_field( 'udb-branding-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), array( $this, 'accent_color_field' ), 'udb-detailed-branding', 'udb-branding-detailed-section' );
-		add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_field' ), 'udb-detailed-branding', 'udb-branding-detailed-section' );
-		add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_url_field' ), 'udb-detailed-branding', 'udb-branding-detailed-section' );
+		// Branding fields.
+		add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), array( $this, 'enable_field' ), 'udb-branding-settings', 'udb-branding-section' );
+		add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), array( $this, 'choose_layout_field' ), 'udb-branding-settings', 'udb-branding-section' );
+		add_settings_field( 'udb-branding-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), array( $this, 'accent_color_field' ), 'udb-branding-settings', 'udb-branding-section' );
+		add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_field' ), 'udb-branding-settings', 'udb-branding-section' );
+		add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_url_field' ), 'udb-branding-settings', 'udb-branding-section' );
 
-		// General section fields.
-		add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), array( $this, 'footer_text_field' ), 'udb-general-branding', 'udb-branding-general-section' );
-		add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), array( $this, 'version_text_field' ), 'udb-general-branding', 'udb-branding-general-section' );
+		// Misc fields.
+		add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), array( $this, 'footer_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
+		add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), array( $this, 'version_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
 
 	}
 

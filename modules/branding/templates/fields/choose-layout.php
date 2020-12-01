@@ -10,13 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	echo '<select disabled>';
-
-	?>
-
-	<option>Modern</option>
-
-	<?php
-
+	echo '<option>Modern</option>';
 	echo '</select>';
 
 };

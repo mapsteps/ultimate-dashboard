@@ -10,21 +10,19 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 	?>
 
-	<div class="wrap settingstuff">
+	<div class="wrap heatbox-wrap">
 
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-
-		<?php settings_errors(); ?>
 
 		<form method="post" action="options.php" class="udb-settings-form">
 			<?php settings_fields( 'udb-branding-group' ); ?>
 
-			<div class="neatbox has-bigger-heading is-smooth">
-				<?php do_settings_sections( 'udb-detailed-branding' ); ?>
+			<div class="heatbox">
+				<?php do_settings_sections( 'udb-branding-settings' ); ?>
 			</div>
 
-			<div class="neatbox has-bigger-heading is-smooth">
-				<?php do_settings_sections( 'udb-general-branding' ); ?>
+			<div class="heatbox">
+				<?php do_settings_sections( 'udb-branding-misc-settings' ); ?>
 			</div>
 
 			<?php submit_button(); ?>

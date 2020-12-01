@@ -112,28 +112,28 @@ class Setting_Module extends Base_Module {
 		// Misc section.
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-misc-settings' );
 
-		// Widget section fields.
+		// Widget fields.
 		add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), array( $this, 'remove_all_widgets_field' ), 'udb-remove-widgets-settings', 'udb-widgets-section' );
 		add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), array( $this, 'remove_individual_widgets_field' ), 'udb-remove-widgets-settings', 'udb-widgets-section' );
 		add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), array( $this, 'remove_3rd_party_widgets_field' ), 'udb-remove-widgets-settings', 'udb-3rd-party-widgets-section' );
 
-		// Widget styling section fields.
+		// Widget styling fields.
 		add_settings_field( 'udb-icon-color-field', __( 'Icon/Text Color', 'ultimate-dashboard' ), array( $this, 'icon_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );
 		add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), array( $this, 'headline_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );
 
-		// General section fields.
+		// General fields.
 		add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), array( $this, 'remove_help_tab_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options Tab', 'ultimate-dashboard' ), array( $this, 'remove_screen_option_tab_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), array( $this, 'remove_admin_bar_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), array( $this, 'headline_text_field' ), 'udb-general-settings', 'udb-general-section' );
 
-		// Advanced section fields.
+		// Advanced fields.
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
-		// Misc section fields.
+		// Misc fields.
 		add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, array( $this, 'remove_fontawesome_field' ), 'udb-misc-settings', 'udb-misc-section' );
 		add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), array( $this, 'remove_on_uninstall_field' ), 'udb-misc-settings', 'udb-misc-section' );
 

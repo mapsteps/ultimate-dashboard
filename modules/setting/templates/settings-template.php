@@ -11,6 +11,7 @@ return function () {
 	?>
 
 	<div class="wrap heatbox-wrap">
+
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 		<form method="post" action="options.php" class="udb-settings-form">
@@ -40,6 +41,7 @@ return function () {
 			<?php submit_button(); ?>
 
 		</form>
+
 	</div>
 
 	<?php
