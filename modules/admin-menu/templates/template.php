@@ -11,7 +11,7 @@ $wp_roles   = wp_roles();
 $role_names = $wp_roles->role_names;
 ?>
 
-<div class="wrap settingstuff">
+<div class="wrap heatbox-wrap">
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
@@ -28,7 +28,7 @@ $role_names = $wp_roles->role_names;
 
 	<form action="options.php" method="post" class="udb-admin-menu--edit-form">
 
-		<div class="neatbox has-bigger-heading is-smooth udb-admin-menu-box">
+		<div class="heatbox udb-admin-menu-box">
 
 			<h2>
 				<?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>

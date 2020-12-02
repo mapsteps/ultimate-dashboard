@@ -29,8 +29,8 @@
 	text-transform: uppercase;
 	color: #888;
 	font-weight: 500;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 
 .udb-admin-menu--role-menu {
@@ -72,7 +72,8 @@
 }
 
 .udb-admin-menu--edit-area {
-	background-color: #f4f4f4;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ddd;
 }
 
 .udb-admin-menu--menu-list {
@@ -83,13 +84,12 @@
 .udb-admin-menu--menu-item {
 	margin-bottom: 20px;
 	background-color: #fff;
-	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.05);
-	border-radius: 3px;
+	border: 1px solid #ddd;
 }
 
 .udb-admin-menu--menu-item[data-hidden="1"] {
-	color: #dedede;
-	background: rgba(255,255,255,.5);
+	color: #ddd;
+	background: #f9f9f9;
 }
 
 .udb-admin-menu--control-panel {
@@ -125,12 +125,12 @@
 }
 
 .udb-admin-menu--menu-drag span::before {
-	background-color: #dedede;
+	background-color: #ddd;
 	content: "";
 	display: block;
 	height: 2px;
-	-webkit-box-shadow: 0 10px 0 #dedede;
-	box-shadow: 0 6px 0 #dedede;
+	-webkit-box-shadow: 0 10px 0 #ddd;
+	box-shadow: 0 6px 0 #ddd;
 }
 
 .udb-admin-menu--menu-item:hover > .udb-admin-menu--control-panel .udb-admin-menu--menu-drag span::before {
@@ -140,7 +140,8 @@
 }
 
 .udb-admin-menu--menu-item:hover {
-	box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.05);
+	border: 1px solid #aaa;
 }
 
 .udb-admin-menu--menu-icon {
@@ -186,10 +187,8 @@
 	justify-content: center;
 	width: 30px;
 	height: 30px;
-	/*margin-left: 10px;*/
 	font-size: 14px;
 	cursor: pointer;
-	border-radius: 3px;
 	text-align: right;
 }
 
@@ -226,7 +225,6 @@
 	height: 30px;
 	font-size: 13px;
 	background-color: transparent;
-	border-radius: 3px;
 	cursor: pointer;
 }
 
