@@ -4,13 +4,12 @@
  * ------------------------------
  */
 .udb-dashboard-form {
-	max-width: 1200px;
+	max-width: 500px;
 }
 
 .form-table img {
-	width: 120px;
+	width: 100px;
 	padding: 10px;
-	padding-right: 20px;
 	opacity: .5;
 }
 

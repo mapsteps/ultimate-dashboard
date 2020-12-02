@@ -76,7 +76,7 @@ class Dashboard_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Feature Dashboard', 'Dashboard', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_dashboard', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Features', 'Features', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_dashboard', array( $this, 'submenu_page_content' ) );
 
 	}
 
