@@ -10,13 +10,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 	?>
 
-	<div class="wrap settingstuff">
+	<div class="wrap heatbox-wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 		<?php settings_errors(); ?>
 		<div class="clearfix">
 			<div class="left-col">
 				<form method="post" action="options.php">
-					<div class="neatbox is-smooth">
+					<div class="heatbox">
 						<?php
 						settings_fields( 'udb-export-group' );
 						do_settings_sections( 'ultimate-dashboard-export' );
@@ -27,7 +27,7 @@ return function () {
 			</div>
 			<div class="right-col">
 				<form method="post" action="options.php" enctype="multipart/form-data">
-					<div class="neatbox is-smooth">
+					<div class="heatbox">
 						<?php
 						settings_fields( 'udb-import-group' );
 						do_settings_sections( 'ultimate-dashboard-import' );

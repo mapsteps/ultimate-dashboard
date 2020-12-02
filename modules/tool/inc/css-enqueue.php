@@ -11,11 +11,11 @@ return function ( $module ) {
 
 	if ( $module->screen()->is_tools() ) {
 
-		// Settings page.
-		wp_enqueue_style( 'settings-page', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/settings-page.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// Heatbox.
+		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Settings.
-		wp_enqueue_style( 'udb-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/settings.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// Settings page.
+		wp_enqueue_style( 'udb-tools', $module->url . '/assets/css/tools.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}
 
