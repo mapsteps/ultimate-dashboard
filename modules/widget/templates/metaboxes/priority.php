@@ -19,32 +19,26 @@ return function ( $post ) {
 
 	?>
 
-	<div class="neatbox">
-		<div class="field radio-field">
-			<div class="input-control">
-				<ul>
-					<li>
-						<label>
-							<input type="radio" name="udb_metabox_priority" value="default" <?php checked( $saved_meta, 'default' ); ?> />
-							<?php _e( 'Default', 'ultimate-dashboard' ); ?>
-						</label>
-					</li>
-					<li>
-						<label>
-							<input type="radio" name="udb_metabox_priority" value="low" <?php checked( $saved_meta, 'low' ); ?> />
-							<?php _e( 'Low', 'ultimate-dashboard' ); ?>
-						</label>
-					</li>
-					<li>
-						<label>
-							<input type="radio" name="udb_metabox_priority" value="high" <?php checked( $saved_meta, 'high' ); ?> />
-							<?php _e( 'High', 'ultimate-dashboard' ); ?>
-						</label>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<ul>
+		<li>
+			<label>
+				<input type="radio" name="udb_metabox_priority" value="default" <?php checked( $saved_meta, 'default' ); ?> />
+				<?php _e( 'Default', 'ultimate-dashboard' ); ?>
+			</label>
+		</li>
+		<li>
+			<label>
+				<input type="radio" name="udb_metabox_priority" value="low" <?php checked( $saved_meta, 'low' ); ?> />
+				<?php _e( 'Low', 'ultimate-dashboard' ); ?>
+			</label>
+		</li>
+		<li>
+			<label>
+				<input type="radio" name="udb_metabox_priority" value="high" <?php checked( $saved_meta, 'high' ); ?> />
+				<?php _e( 'High', 'ultimate-dashboard' ); ?>
+			</label>
+		</li>
+	</ul>
 
 	<?php
 

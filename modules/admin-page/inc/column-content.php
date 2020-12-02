@@ -18,7 +18,7 @@ return function ( $module, $column, $post_id ) {
 			?>
 
 			<div class="field">
-				<div class="control switch-control is-rounded is-small">
+				<div class="switch-control is-rounded is-small">
 					<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>">
 						<input
 							type="checkbox"

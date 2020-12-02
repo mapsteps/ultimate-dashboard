@@ -53,7 +53,9 @@ return function ( $post_id ) {
 
 	// Sidebar.
 	if ( isset( $_POST['udb_is_active'] ) ) {
-		update_post_meta( $post_id, 'udb_is_active', absint( $_POST['udb_is_active'] ) );
+		update_post_meta( $post_id, 'udb_is_active', 1 );
+	} else {
+		delete_post_meta( $post_id, 'udb_is_active' );
 	}
 
 	if ( isset( $_POST['udb_metabox_position'] ) ) {

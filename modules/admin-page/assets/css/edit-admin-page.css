@@ -1,117 +1,3 @@
-.postbox,
-.postbox * {
-	box-sizing: border-box;
-}
-
-.postbox {
-	border-radius: 3px;
-	border-width: 0;
-	box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
-}
-
-.block-editor .postbox {
-	box-shadow: none;
-}
-
-.postbox .handlediv {
-	height: 45px;
-}
-
-#poststuff .postbox .hndle {
-	padding-top: 0;
-	padding-bottom: 0;
-	height: 45px;
-	line-height: 45px;
-	border-color: #eee;
-}
-
-.block-editor #poststuff .postbox .hndle {
-	line-height: 1.2;
-}
-
-.postbox.closed .hndle {
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-}
-
-#major-publishing-actions {
-	border-color: #eee;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-}
-
-.postbox.has-lines .inside {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.block-editor .edit-post-meta-boxes-area #side-sortables .postbox > .inside {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.block-editor #side-sortables .postbox.has-lines > .inside {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.block-editor #side-sortables .has-lines .field {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.block-editor #normal-sortables .postbox .inside {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-.postbox.has-lines .field {
-	margin-bottom: 10px;
-	padding-left: 12px;
-	padding-right: 12px;
-	padding-bottom: 15px;
-	border-bottom: 1px solid #eee;
-}
-
-.postbox.has-lines .fields .field:last-child {
-	padding-bottom: 0;
-	border-bottom-width: 0;
-}
-
-.postbox-content {
-	padding-top: 10px;
-}
-
-.postbox-content .field {
-	margin-bottom: 15px;
-}
-
-.postbox-content .fields .field:last-child {
-	margin-bottom: 0;
-}
-
-.postbox-content .field > .label {
-	display: block;
-	margin-bottom: 5px;
-}
-
-.postbox-content .field > .label,
-.postbox-content .field .control label {
-	font-weight: 600;
-}
-
-.postbox-content .field .is-full {
-	width: 100%;
-}
-
-.postbox-content .field .is-half {
-	width: 50%;
-}
-
-.postbox-content .field .is-small {
-	width: 25%;
-}
-
 /**
  * ------------------------------
  * Role Picker
@@ -224,4 +110,91 @@
 .udb-pro-metabox-content li {
 	list-style: disc;
 	margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+/**
+ * ------------------------------
+ * Checkbox Switch
+ * ------------------------------
+ */
+.field .switch-control.is-small label {
+	width: 40px;
+	height: 24px;
+}
+
+.field .switch-control label {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.field .switch-control input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The switcher */
+.field .switch-control .switch {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: 0.4s;
+}
+
+.field .switch-control.is-small .switch::before {
+	height: 16px;
+	width: 16px;
+}
+
+.field .switch-control .switch::before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	transition: 0.4s;
+}
+
+.field .switch-control input:checked + .switch {
+	background-color: #2196f3;
+}
+
+.field .switch-control input:focus + .switch {
+	box-shadow: 0 0 1px #2196f3;
+}
+
+.field .switch-control.is-small input:checked + .switch::before {
+	transform: translateX(16px);
+}
+
+.field .switch-control input:checked + .switch::before {
+	transform: translateX(26px);
+}
+
+/* Rounded switch */
+.field .switch-control.is-small.is-rounded .switch {
+	border-radius: 24px;
+}
+.field .switch-control.is-rounded .switch {
+	border-radius: 34px;
+}
+
+.field .switch-control.is-rounded .switch::before {
+	border-radius: 50%;
 }

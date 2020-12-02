@@ -43,22 +43,20 @@ return function ( $column, $post_id ) {
 			$is_active = get_post_meta( $post_id, 'udb_is_active', true );
 			?>
 
-			<div class="field">
-				<div class="control switch-control is-rounded is-small">
-					<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>">
-						<input
-							type="checkbox"
-							name="udb_is_active"
-							id="udb_is_active_<?php echo esc_attr( $post_id ); ?>"
-							value="1"
-							data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_widget_' . $post_id . '_change_active_status' ) ); ?>"
-							data-post-id="<?php echo esc_attr( $post_id ); ?>"
-							<?php checked( $is_active, 1 ); ?>
-						>
+			<div class="switch-control is-rounded is-small">
+				<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>">
+					<input
+						type="checkbox"
+						name="udb_is_active"
+						id="udb_is_active_<?php echo esc_attr( $post_id ); ?>"
+						value="1"
+						data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_widget_' . $post_id . '_change_active_status' ) ); ?>"
+						data-post-id="<?php echo esc_attr( $post_id ); ?>"
+						<?php checked( $is_active, 1 ); ?>
+					>
 
-						<span class="switch"></span>
-					</label>
-				</div>
+					<span class="switch"></span>
+				</label>
 			</div>
 
 			<?php

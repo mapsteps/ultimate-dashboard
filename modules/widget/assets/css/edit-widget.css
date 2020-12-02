@@ -52,7 +52,7 @@
 	display: none;
 }
 
-/* CodeMirror Fix */
+/* CodeMirror fix */
 #udb-main-metabox .CodeMirror-wrap {
 	border: 1px solid #ddd;
 }
@@ -65,6 +65,11 @@
 	width: 29px !important;
 }
 
+/* PRO metabox */
+.udb-pro-metabox-content li {
+	list-style: disc;
+	margin-left: 15px;
+}
 
 
 
@@ -122,6 +127,22 @@
 .udb-form-widget-log-entry-indicator.success {
 	background: #27aa39;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Select2 on sidebar metaboxes */
 .sidebox .field {

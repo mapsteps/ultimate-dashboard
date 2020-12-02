@@ -26,22 +26,18 @@ return function () {
 			<h2><?php _e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
 			<?php wp_nonce_field( 'udb_widget_type', 'udb_widget_type_nonce' ); ?>
 			<div class="heatbox-content">
-				<div class="input-control">
-					<select name="udb_widget_type">
-						<?php
-						foreach ( $widget_types as $value => $text ) {
-							?>
-							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
-							<?php
-						}
-						?>
-					</select>
-				</div>
+				<select name="udb_widget_type">
+					<?php foreach ( $widget_types as $value => $text ) { ?>
+						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>
+					<?php } ?>
+				</select>
 			</div>
 		</div>
+
 		<div class="widget-fields">
 			<?php do_action( 'udb_widget_metabox' ); ?>
 		</div>
+
 	</div>
 
 	<?php

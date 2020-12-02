@@ -46,7 +46,7 @@ return function () {
 								</div>
 							</td>
 							<td class="field">
-								<div class="control switch-control is-rounded">
+								<div class="switch-control is-rounded">
 									<label for="udb_is_active_white_label">
 										<input
 											type="checkbox"
@@ -80,7 +80,7 @@ return function () {
 								</div>
 							</td>
 							<td class="field">
-								<div class="control switch-control is-rounded">
+								<div class="switch-control is-rounded">
 									<label for="udb_is_active_login_customizer">
 										<input
 											type="checkbox"
@@ -120,7 +120,7 @@ return function () {
 								</div>
 							</td>
 							<td class="field">
-								<div class="control switch-control is-rounded">
+								<div class="switch-control is-rounded">
 									<label for="udb_is_active_admin_pages">
 										<input
 											type="checkbox"
@@ -155,7 +155,7 @@ return function () {
 							</td>
 
 							<td class="field">
-								<div class="control switch-control is-rounded">
+								<div class="switch-control is-rounded">
 									<label for="udb_is_active_admin_menu_editor">
 										<input
 											type="checkbox"

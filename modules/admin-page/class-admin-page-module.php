@@ -250,7 +250,6 @@ class Admin_Page_Module extends Base_Module {
 		add_meta_box( 'udb-content-type-metabox', __( 'Content Type', 'ultimate-dashboard' ), array( $this, 'content_type_metabox' ), 'udb_admin_page', 'side', 'high' );
 
 		if ( ! udb_is_pro_active() ) {
-
 			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_admin_page', 'side', 'high' );
 		}
 
