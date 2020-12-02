@@ -21,11 +21,11 @@ return function () {
 
 	?>
 
-	<div class="neatbox is-smooth has-bigger-heading has-subboxes">
-		<div class="subbox">
-			<h2><?php _e( 'Widget Type', 'utimate-dashboard' ); ?></h2>
+	<div class="udb-main-metabox">
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
 			<?php wp_nonce_field( 'udb_widget_type', 'udb_widget_type_nonce' ); ?>
-			<div class="field">
+			<div class="heatbox-content">
 				<div class="input-control">
 					<select name="udb_widget_type">
 						<?php

@@ -15,8 +15,8 @@ return function () {
 
 	<div data-type="icon">
 
-		<div class="subbox">
-			<h2><?php _e( 'Icon', 'utimate-dashboard' ); ?></h2>
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Icon', 'ultimate-dashboard' ); ?></h2>
 
 			<?php
 
@@ -37,58 +37,36 @@ return function () {
 
 			?>
 
-			<div class="field">
-				<div class="input-control">
-					<div class="icon-preview"></div>
-				</div>
-			</div>
-			<div class="field">
-				<div class="label-control">
+			<div class="heatbox-content setting-fields">
+				<div class="setting-field icon-preview"></div>
+				<div class="setting-field">
 					<label for="udb_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
-				</div>
-				<div class="input-control">
 					<input type="text" class="icon-picker" data-width="100%" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $stored_meta ? $stored_meta : 'dashicons dashicons-menu' ); ?>" placeholder="dashicons dashicons-menu" />
 				</div>
 			</div>
 		</div>
 
-		<div class="subbox">
-			<h2><?php _e( 'Tooltip', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<?php
-				$stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true );
-				?>
-				<div class="input-control">
-					<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo esc_html( $stored_meta ? $stored_meta : '' ); ?></textarea>
-				</div>
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Tooltip', 'ultimate-dashboard' ); ?></h2>
+			<div class="heatbox-content">
+				<?php $stored_meta = get_post_meta( $post->ID, 'udb_tooltip', true ); ?>
+				<textarea style="width: 100%; height: 100px;" id="udb-tooltip" name="udb_tooltip"><?php echo esc_html( $stored_meta ? $stored_meta : '' ); ?></textarea>
 			</div>
 		</div>
 
-		<div class="subbox">
-			<h2><?php _e( 'Link', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<?php
-				$stored_meta = get_post_meta( $post->ID, 'udb_link', true );
-				?>
-				<div class="label-control">
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Link', 'ultimate-dashboard' ); ?></h2>
+			<div class="heatbox-content setting-fields">
+				<?php $stored_meta = get_post_meta( $post->ID, 'udb_link', true ); ?>
+				<div class="setting-field">
+					<input id="udb_link" type="text" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
 					<p class="description"><?php _e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
 				</div>
-				<div class="input-control">
-					<input id="udb_link" type="text" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
-				</div>
-			</div>
-
-			<div class="field">
-				<?php
-				$stored_meta = get_post_meta( $post->ID, 'udb_link_target', true );
-				?>
-				<div class="label-control">
-					<label for="udb_link_target"><?php _e( 'Target', 'ultimate-dashboard' ); ?></label>
-				</div>
-				<div class="input-control">
+				<?php $stored_meta = get_post_meta( $post->ID, 'udb_link_target', true ); ?>
+				<div class="setting-field">
 					<label>
 						<input id="udb_link_target" type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
-						<span class="message"><?php _e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?></span>
+						<?php _e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?>
 					</label>
 				</div>
 			</div>

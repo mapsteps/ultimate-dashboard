@@ -17,12 +17,10 @@ return function () {
 
 	<div data-type="html">
 
-		<div class="subbox">
+		<div class="heatbox heatbox-metabox">
 			<h2><?php _e( 'HTML', 'ultimate-dashboard' ); ?></h2>
-			<div class="field">
-				<div class="input-control">
-					<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
-				</div>
+			<div class="heatbox-content">
+				<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
 			</div>
 		</div>
 

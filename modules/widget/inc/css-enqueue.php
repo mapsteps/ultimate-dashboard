@@ -22,8 +22,11 @@ return function ( $module ) {
 		// Icon picker.
 		wp_enqueue_style( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/icon-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
+		// Heatbox.
+		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
 		// Edit screen.
-		wp_enqueue_style( 'udb-edit-screen', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/edit-screen.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// wp_enqueue_style( 'udb-edit-screen', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/edit-screen.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Edit widget.
 		wp_enqueue_style( 'udb-edit-widget', $module->url . '/assets/css/edit-widget.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );

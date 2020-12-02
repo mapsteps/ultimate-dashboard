@@ -24,21 +24,17 @@ return function () {
 
 	<div data-type="text">
 
-		<div class="subbox">
-			<h2><?php _e( 'Content', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<div class="input-control">
-					<?php wp_editor( $content, $editor, $args ); ?>
-				</div>
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Content', 'ultimate-dashboard' ); ?></h2>
+			<div class="heatbox-content">
+				<?php wp_editor( $content, $editor, $args ); ?>
 			</div>
 		</div>
 
-		<div class="subbox">
-			<h2><?php _e( 'Fixed Height', 'utimate-dashboard' ); ?></h2>
-			<div class="field">
-				<div class="input-control">
-					<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
-				</div>
+		<div class="heatbox heatbox-metabox">
+			<h2><?php _e( 'Fixed Height', 'ultimate-dashboard' ); ?></h2>
+			<div class="heatbox-content">
+				<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
 			</div>
 		</div>
 

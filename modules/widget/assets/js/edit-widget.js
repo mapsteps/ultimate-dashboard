@@ -7,7 +7,7 @@
 
   function setupWidgetType() {
     var $type = $('[name="udb_widget_type');
-    var $fields = $(".neatbox .widget-fields");
+    var $fields = $(".udb-main-metabox .widget-fields");
     var value = $type.val();
 
     $fields.find('[data-type="' + value + '"]').addClass("is-active");
