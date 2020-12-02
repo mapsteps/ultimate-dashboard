@@ -5,14 +5,14 @@
 	box-shadow: none;
 }
 
-#udb-main-metabox .inside {
+#udb-main-metabox > .inside {
 	padding-left: 0;
 	padding-right: 0;
 }
 
 #udb-main-metabox .hndle,
 #udb-main-metabox .handlediv,
-#udb-main-metabox .postbox-header {
+#udb-main-metabox > .postbox-header {
 	display: none;
 }
 

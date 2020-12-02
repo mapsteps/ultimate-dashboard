@@ -19,43 +19,43 @@ return function ( $module, $post ) {
 
 	?>
 
-		<div class="field">
-			<label class="label" for="udb_menu_type"><?php _e( 'Menu Type', 'ultimate-dashboard' ); ?></label>
-			<div class="control">
-				<select name="udb_menu_type" id="udb_menu_type" class="is-full">
-					<option value="parent" <?php selected( $menu_type, 'parent' ); ?>>
-						<?php _e( 'Top-level Menu', 'ultimate-dashboard' ); ?>
-					</option>
-					<option value="submenu" <?php selected( $menu_type, 'submenu' ); ?>>
-						<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
-					</option>
-				</select>
-			</div>
+	<div>
+		<label class="label" for="udb_menu_type"><?php _e( 'Menu Type', 'ultimate-dashboard' ); ?></label>
+		<div>
+			<select name="udb_menu_type" id="udb_menu_type" class="is-full">
+				<option value="parent" <?php selected( $menu_type, 'parent' ); ?>>
+					<?php _e( 'Top-level Menu', 'ultimate-dashboard' ); ?>
+				</option>
+				<option value="submenu" <?php selected( $menu_type, 'submenu' ); ?>>
+					<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
+				</option>
+			</select>
 		</div>
+	</div>
 
-		<div class="field" data-show-if-field="udb_menu_type" data-show-if-value="submenu">
-			<label class="label" for="udb_menu_parent"><?php _e( 'Parent Menu', 'ultimate-dashboard' ); ?></label>
-			<div class="control">
-				<select name="udb_menu_parent" id="udb_menu_parent" class="is-full">
-					<?php foreach ( $admin_menu as $menu ) : ?>
-						<?php if ( ! empty( $menu[0] ) ) : ?>
-							<option value="<?php echo esc_attr( $menu[2] ); ?>" <?php selected( $menu_parent, $menu[2] ); ?>>
-								<?php echo $module->content()->strip_tags_content( $menu[0] ); ?>
-							</option>
-						<?php endif; ?>
-					<?php endforeach; ?>
-				</select>
-			</div>
+	<div data-show-if-field="udb_menu_type" data-show-if-value="submenu">
+		<label class="label" for="udb_menu_parent"><?php _e( 'Parent Menu', 'ultimate-dashboard' ); ?></label>
+		<div>
+			<select name="udb_menu_parent" id="udb_menu_parent" class="is-full">
+				<?php foreach ( $admin_menu as $menu ) : ?>
+					<?php if ( ! empty( $menu[0] ) ) : ?>
+						<option value="<?php echo esc_attr( $menu[2] ); ?>" <?php selected( $menu_parent, $menu[2] ); ?>>
+							<?php echo $module->content()->strip_tags_content( $menu[0] ); ?>
+						</option>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</select>
 		</div>
+	</div>
 
-		<div class="field">
-			<label class="label" for="udb_menu_order"><?php _e( 'Menu Order', 'ultimate-dashboard' ); ?></label>
-			<div class="control">
-				<input type="number" name="udb_menu_order" id="udb_menu_order" class="is-full" value="<?php echo esc_attr( $menu_order ); ?>" min="0" step="1">
-			</div>
+	<div>
+		<label class="label" for="udb_menu_order"><?php _e( 'Menu Order', 'ultimate-dashboard' ); ?></label>
+		<div>
+			<input type="number" name="udb_menu_order" id="udb_menu_order" class="is-full" value="<?php echo esc_attr( $menu_order ); ?>" min="0" step="1">
 		</div>
+	</div>
 
-		<?php require __DIR__ . '/../icon-selector.php'; ?>
+	<?php require __DIR__ . '/../icon-selector.php'; ?>
 
 	<?php
 

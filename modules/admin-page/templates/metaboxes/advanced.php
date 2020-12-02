@@ -12,15 +12,8 @@ return function ( $post ) {
 	$custom_css = get_post_meta( $post->ID, 'udb_custom_css', true );
 	?>
 
-	<label class="label" for="udb_custom_css">
-		<?php _e( 'Custom CSS', 'ultimate-dashboard' ); ?>
-	</label>
-	<p class="description">
-		<?php _e( 'Add Custom CSS to the Custom Admin Page.', 'ultimate-dashboard' ); ?>
-	</p>
-	<div class="control">
-		<textarea id="udb_custom_css" class="widefat textarea udb-custom-css" name="udb_custom_css"><?php echo wp_unslash( $custom_css ); ?></textarea>
-	</div>
+	<h4><?php _e( 'Custom CSS', 'ultimate-dashboard' ); ?></h4>
+	<textarea id="udb_custom_css" class="widefat textarea udb-custom-css" name="udb_custom_css"><?php echo wp_unslash( $custom_css ); ?></textarea>
 
 	<?php do_action( 'udb_admin_page_advanced_fields', $post ); ?>
 

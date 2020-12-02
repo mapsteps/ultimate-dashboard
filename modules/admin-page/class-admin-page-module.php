@@ -132,8 +132,8 @@ class Admin_Page_Module extends Base_Module {
 
 		$columns = array(
 			'cb'          => '<input type="checkbox" />',
-			'icon'        => __( 'Menu Icon', 'ultimate-dashboard' ),
 			'title'       => __( 'Page Name', 'ultimate-dashboard' ),
+			'icon'        => __( 'Menu Icon', 'ultimate-dashboard' ),
 			'type'        => __( 'Content Type', 'ultimate-dashboard' ),
 			'parent_menu' => __( 'Parent Menu', 'ultimate-dashboard' ),
 			'roles'       => __( 'User Roles', 'ultimate-dashboard' ),

@@ -22,10 +22,12 @@ return function () {
 	?>
 
 	<div class="udb-main-metabox">
-		<div class="heatbox heatbox-metabox">
-			<h2><?php _e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
+		<div class="postbox">
+			<div class="postbox-header">
+				<h2><?php _e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
+			</div>
 			<?php wp_nonce_field( 'udb_widget_type', 'udb_widget_type_nonce' ); ?>
-			<div class="heatbox-content">
+			<div class="inside">
 				<select name="udb_widget_type">
 					<?php foreach ( $widget_types as $value => $text ) { ?>
 						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $stored_meta ); ?>><?php echo esc_html( $text ); ?></option>

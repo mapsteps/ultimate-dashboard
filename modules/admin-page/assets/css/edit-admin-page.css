@@ -1,8 +1,43 @@
-/**
- * ------------------------------
- * Role Picker
- * ------------------------------
- */
+/* CodeMirror fix */
+.CodeMirror-wrap {
+	border: 1px solid #ddd;
+}
+
+.CodeMirror-sizer {
+	margin-left: 46px !important;
+}
+
+.CodeMirror-linenumbers {
+	width: 29px !important;
+}
+
+/* PRO metabox */
+.udb-pro-metabox-content li {
+	list-style: disc;
+	margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Role picker */
 .role-picker-control .select2-search__field[type="search"] {
 	/* Override WordPress */
 	height: 22px;
@@ -15,11 +50,7 @@
 	margin-bottom: 0;
 }
 
-/**
- * ------------------------------
- * Icon Picker
- * ------------------------------
- */
+/* Icon picker */
 .postbox-content .icon-preview {
 	width: 80px;
 	height: 80px;
@@ -81,120 +112,11 @@
 	margin-top: 3px;
 }
 
-/**
- * ------------------------------
- * Select2 Fix
- * ------------------------------
- */
+/* Select2 fix */
  .postbox-content .field .control .select2-container {
-	 width: 100% !important;
-	}
-	
-	.postbox-content .field .control .select2-selection--single {
-		outline: none !important;
-	}
-
-/**
- * ------------------------------
- * Pro
- * ------------------------------
- */
-.udb-pro-metabox-content {
-	margin-top: 0;
+ width: 100% !important;
 }
 
-.udb-pro-metabox-content .description {
-	margin-bottom: 7px;
-}
-
-.udb-pro-metabox-content li {
-	list-style: disc;
-	margin-left: 15px;
-}
-
-
-
-
-
-
-
-
-
-/**
- * ------------------------------
- * Checkbox Switch
- * ------------------------------
- */
-.field .switch-control.is-small label {
-	width: 40px;
-	height: 24px;
-}
-
-.field .switch-control label {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-}
-
-.field .switch-control input {
-	opacity: 0;
-	width: 0;
-	height: 0;
-}
-
-/* The switcher */
-.field .switch-control .switch {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	transition: 0.4s;
-}
-
-.field .switch-control.is-small .switch::before {
-	height: 16px;
-	width: 16px;
-}
-
-.field .switch-control .switch::before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	transition: 0.4s;
-}
-
-.field .switch-control input:checked + .switch {
-	background-color: #2196f3;
-}
-
-.field .switch-control input:focus + .switch {
-	box-shadow: 0 0 1px #2196f3;
-}
-
-.field .switch-control.is-small input:checked + .switch::before {
-	transform: translateX(16px);
-}
-
-.field .switch-control input:checked + .switch::before {
-	transform: translateX(26px);
-}
-
-/* Rounded switch */
-.field .switch-control.is-small.is-rounded .switch {
-	border-radius: 24px;
-}
-.field .switch-control.is-rounded .switch {
-	border-radius: 34px;
-}
-
-.field .switch-control.is-rounded .switch::before {
-	border-radius: 50%;
+.postbox-content .field .control .select2-selection--single {
+	outline: none !important;
 }

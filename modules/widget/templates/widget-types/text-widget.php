@@ -24,16 +24,20 @@ return function () {
 
 	<div data-type="text">
 
-		<div class="heatbox heatbox-metabox">
-			<h2><?php _e( 'Content', 'ultimate-dashboard' ); ?></h2>
-			<div class="heatbox-content">
+		<div class="postbox">
+			<div class="postbox-header">
+				<h2><?php _e( 'Content', 'ultimate-dashboard' ); ?></h2>
+			</div>
+			<div class="inside">
 				<?php wp_editor( $content, $editor, $args ); ?>
 			</div>
 		</div>
 
-		<div class="heatbox heatbox-metabox">
-			<h2><?php _e( 'Fixed Height', 'ultimate-dashboard' ); ?></h2>
-			<div class="heatbox-content">
+		<div class="postbox">
+			<div class="postbox-header">
+				<h2><?php _e( 'Fixed Height', 'ultimate-dashboard' ); ?></h2>
+			</div>
+			<div class="inside">
 				<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
 			</div>
 		</div>
