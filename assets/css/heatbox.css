@@ -57,17 +57,17 @@
 .heatbox {
 	background: #fff;
 	margin-bottom: 20px;
-	border: 1px solid #E6E6E6;
+	border: 1px solid #ddd;
 }
 
 .heatbox h2 {
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 	margin: 0;
 	padding: 20px;
 }
 
 .heatbox.is-grouped h2 {
-	border-top: 1px solid #eee;
+	border-top: 1px solid #ddd;
 }
 
 .heatbox h3 {

@@ -94,14 +94,14 @@ class Setting_Module extends Base_Module {
 		register_setting( 'udb-settings-group', 'udb_settings' );
 
 		// Widget sections.
-		add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-remove-widgets-settings' );
-		add_settings_section( 'udb-3rd-party-widgets-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-remove-widgets-settings' );
+		add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
+		add_settings_section( 'udb-3rd-party-widgets-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
+
+		// We use this hook to place the Page Builder Dashboard feature here.
+		do_action( 'udb_after_widget_metabox' );
 
 		// Widget styling section.
 		add_settings_section( 'udb-styling-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-widget-styling-settings' );
-
-		// We use this hook to place the Page Builder Dashboard feature here.
-		do_action( 'udb_after_widget_styling_metabox' );
 
 		// General section.
 		add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-settings' );
@@ -113,9 +113,9 @@ class Setting_Module extends Base_Module {
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-misc-settings' );
 
 		// Widget fields.
-		add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), array( $this, 'remove_all_widgets_field' ), 'udb-remove-widgets-settings', 'udb-widgets-section' );
-		add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), array( $this, 'remove_individual_widgets_field' ), 'udb-remove-widgets-settings', 'udb-widgets-section' );
-		add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), array( $this, 'remove_3rd_party_widgets_field' ), 'udb-remove-widgets-settings', 'udb-3rd-party-widgets-section' );
+		add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), array( $this, 'remove_all_widgets_field' ), 'udb-widget-settings', 'udb-widgets-section' );
+		add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), array( $this, 'remove_individual_widgets_field' ), 'udb-widget-settings', 'udb-widgets-section' );
+		add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), array( $this, 'remove_3rd_party_widgets_field' ), 'udb-widget-settings', 'udb-3rd-party-widgets-section' );
 
 		// Widget styling fields.
 		add_settings_field( 'udb-icon-color-field', __( 'Icon/Text Color', 'ultimate-dashboard' ), array( $this, 'icon_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );

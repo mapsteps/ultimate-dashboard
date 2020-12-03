@@ -85,24 +85,20 @@
 	margin-left: 15px;
 }
 
-
-
-
-
-
-
-
-
-/* Contact form widget */
-.heatbox .form-field {
-	padding: 10px !important;
-	box-shadow: none !important;
+/* User role & user access metabox */
+.select2-container {
+	width: 100% !important;
 }
 
+/* Contact form widget */
 .udb-form-widget-log-entry {
 	background: #f1f1f1;
 	padding: 20px;
 	margin-bottom: 10px;
+}
+
+.udb-form-widget-log-entry:last-child {
+	margin-bottom: 0;
 }
 
 .udb-form-widget-success-notice {
@@ -124,6 +120,7 @@
 
 #udb-form-widget-custom-recipient {
 	display: none;
+	margin: 10px 0;
 }
 
 .udb-form-widget-log-entry-indicator {
@@ -140,31 +137,4 @@
 
 .udb-form-widget-log-entry-indicator.success {
 	background: #27aa39;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Select2 on sidebar metaboxes */
-.sidebox .field {
-	padding: 0;
-	border-top: 0;
-}
-
-.sidebox .select2-search,
-.sidebox .select2-selection__choice {
-	margin-bottom: 0;
 }

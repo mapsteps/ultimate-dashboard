@@ -19,10 +19,10 @@ return function () {
 			<?php settings_fields( 'udb-settings-group' ); ?>
 
 			<div class="heatbox is-grouped">
-				<?php do_settings_sections( 'udb-remove-widgets-settings' ); ?>
+				<?php do_settings_sections( 'udb-widget-settings' ); ?>
 			</div>
 
-			<div class="heatbox">
+			<div class="heatbox is-grouped">
 				<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
 			</div>
 
