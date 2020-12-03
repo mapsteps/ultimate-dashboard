@@ -22,7 +22,7 @@ return function () {
 				<?php do_settings_sections( 'udb-widget-settings' ); ?>
 			</div>
 
-			<div class="heatbox is-grouped">
+			<div class="heatbox">
 				<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
 			</div>
 

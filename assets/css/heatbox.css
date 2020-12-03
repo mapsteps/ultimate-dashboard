@@ -70,6 +70,10 @@
 	border-top: 1px solid #ddd;
 }
 
+.heatbox.is-grouped h2:first-child {
+	border-top: none;
+}
+
 .heatbox h3 {
 	margin: 0 0 10px 0;
 }
