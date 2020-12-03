@@ -40,9 +40,13 @@ return function () {
 			?>
 
 			<div class="inside">
-				<div class="icon-preview"></div>
-				<label for="udb_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
-				<input type="text" class="icon-picker" data-width="100%" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $stored_meta ? $stored_meta : 'dashicons dashicons-menu' ); ?>" placeholder="dashicons dashicons-menu" />
+				<div class="udb-metabox-field">
+					<div class="icon-preview"></div>
+				</div>
+				<div class="udb-metabox-field">
+					<label for="udb_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
+					<input type="text" class="icon-picker" data-width="100%" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $stored_meta ? $stored_meta : 'dashicons dashicons-menu' ); ?>" placeholder="dashicons dashicons-menu" />
+				</div>
 			</div>
 		</div>
 
@@ -61,11 +65,12 @@ return function () {
 				<h2><?php _e( 'Link', 'ultimate-dashboard' ); ?></h2>
 			</div>
 			<div class="inside">
-				<?php $stored_meta = get_post_meta( $post->ID, 'udb_link', true ); ?>
-				<input id="udb_link" type="text" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
-				<p class="description"><?php _e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
+				<div class="udb-metabox-field">
+					<?php $stored_meta = get_post_meta( $post->ID, 'udb_link', true ); ?>
+					<input id="udb_link" type="text" name="udb_link" value="<?php echo esc_attr( $stored_meta ? $stored_meta : '' ); ?>">
+					<p class="description"><?php _e( "Absolute URL's (incl. http:// or https://) or relative URL's (./post-new.php) are allowed.", 'ultimate-dashboard' ); ?></p>
+				</div>
 				<?php $stored_meta = get_post_meta( $post->ID, 'udb_link_target', true ); ?>
-				<hr>
 				<label>
 					<input id="udb_link_target" type="checkbox" name="udb_link_target" <?php checked( $stored_meta, '_blank' ); ?>>
 					<?php _e( 'Open link in a new tab.', 'ultimate-dashboard' ); ?>

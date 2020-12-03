@@ -16,6 +16,20 @@
 	display: none;
 }
 
+/* Metabox fields */
+.udb-metabox-field {
+	margin-bottom: 15px;
+}
+
+.udb-metabox-field:last-child {
+	margin-bottom: 0;
+}
+
+.udb-metabox-field label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
 /* Icon preview */
 #udb-main-metabox .icon-preview i {
 	height: 120px;

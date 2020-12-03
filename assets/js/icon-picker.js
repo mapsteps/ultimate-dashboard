@@ -1,8 +1,4 @@
-/**
- * Dashicons Picker
- *
- * Based on: https://github.com/contactjavas/jquery-icon-picker/
- */
+/* Icon picker */
 
 (function ($) {
   /**

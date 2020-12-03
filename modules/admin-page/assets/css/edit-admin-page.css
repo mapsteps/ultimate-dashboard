@@ -17,38 +17,71 @@
 	margin-left: 15px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Role picker */
-.role-picker-control .select2-search__field[type="search"] {
-	/* Override WordPress */
-	height: 22px;
-	min-height: 10px;
-	line-height: 1.7;
+/* Metabox fields */
+.udb-metabox-field {
+	margin-bottom: 15px;
 }
 
-.role-picker-control .select2-search,
-.role-picker-control .select2-selection__choice {
+.udb-metabox-field:last-child {
 	margin-bottom: 0;
 }
+
+.udb-metabox-field label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+/* Content type metabox */
+#udb-content-type-metabox select {
+	width: 100%;
+	display: block;
+}
+
+/* Attributes metabox */
+#udb-menu-metabox input,
+#udb-menu-metabox select {
+	width: 100%;
+	display: block;
+}
+
+#udb-menu-metabox .icon-preview {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	background: #eee;
+	text-align: center;
+}
+
+/* User role access metabox */
+.select2-container {
+	width: 100% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Icon picker */
 .postbox-content .icon-preview {
