@@ -1,70 +1,60 @@
 /* Icon Picker */
 .icon-picker-container {
-  position: absolute;
-  width: 262px;
-  height: 252px;
-  font-size: 14px;
-  background-color: #fff;
-  overflow: hidden;
-  padding: 5px;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  z-index: 10;
-}
-.icon-picker-container.is-fullwidth {
-  width: 100%;
-}
-.icon-picker-container ul {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 10px;
-}
-.icon-picker-container ul .fas,
-.icon-picker-container ul .fab,
-.icon-picker-container ul .far,
-.icon-picker-container ul .dashicons {
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-}
-.icon-picker-container ul li {
-  display: inline-block;
-  margin: 5px;
-  float: left;
-}
-.icon-picker-container ul li a {
-  display: block;
-  text-decoration: none;
-  color: #373737;
-  padding: 5px 5px;
-  border: 1px solid #dfdfdf;
-}
-.icon-picker-container ul li a:hover {
-  border-color: #999;
-  background: #efefef;
+	position: absolute;
+	width: 260px;
+	height: 300px;
+	font-size: 14px;
+	background-color: #fff;
+	overflow: hidden;
+	padding: 5px;
+	border: 1px solid #ddd;
+	z-index: 10;
 }
 
+.icon-picker-container ul {
+	margin: 10px 0;
+}
+
+.icon-picker-container ul li {
+	display: inline-block;
+	margin: 5px;
+}
+
+.icon-picker-container ul li a {
+	box-shadow: none;
+}
+
+.icon-picker-container ul li a span {
+	display: block;
+	color: #373737;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #dfdfdf;
+	font-size: 20px;
+}
+
+.icon-picker-container ul li a span:hover {
+	border-color: #999;
+	background: #efefef;
+}
+
+/* Search */
 .icon-picker-control {
-  display: flex;
-  flex-wrap: wrap;
-  height: 32px;
+	display: flex;
+	flex-wrap: wrap;
+	height: 32px;
+	align-items: center;
+	justify-content: space-around;
 }
+
 .icon-picker-control a {
-  display: inline-block;
-  padding: 5px;
-  text-decoration: none;
-  text-align: center;
-  width: 12%;
+	text-decoration: none;
+	text-align: center;
+	width: 10%;
 }
-.icon-picker-control a span {
-  display: inline;
-  vertical-align: middle;
-}
+
 .icon-picker--search-wrapper {
-  display: inline-block;
-  width: 76%;
-}
-.icon-picker-control input {
-  font-size: 12px;
-  width: 100%;
+	width: 70%;
 }

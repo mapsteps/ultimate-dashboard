@@ -44,112 +44,17 @@
 	display: block;
 }
 
-#udb-menu-metabox .icon-preview {
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
+
+#udb-menu-metabox .icon-preview i {
+	width: 80px;
+	height: 80px;
+	line-height: 80px;
 	background: #eee;
 	text-align: center;
+	font-size: 36px;
 }
 
 /* User role access metabox */
 .select2-container {
 	width: 100% !important;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Icon picker */
-.postbox-content .icon-preview {
-	width: 80px;
-	height: 80px;
-	line-height: 80px;
-	text-align: center;
-	font-size: 32px;
-	background-color: #eeeeee;
-	border-radius: 3px;
-}
-
-.postbox-content .icon-preview i {
-	display: inline;
-	line-height: inherit;
-	font-size: inherit;
-}
-
-.icon-picker-control .select2-container .select2-selection--single {
-	display: flex;
-	align-items: center;
-	height: 32px;
-}
-
-.block-editor-page
-	.icon-picker-control
-	.select2-container
-	.select2-selection--single {
-	height: 50px;
-}
-
-.icon-picker-control
-	.select2-container--default
-	.select2-selection--single
-	.select2-selection__arrow {
-	height: 30px;
-}
-
-#side-sortables .select2-results__option code {
-	display: block;
-}
-
-.select2-search__field {
-	height: 28px;
-}
-
-.icon-picker-control
-	.select2-container--default
-	.select2-selection--single
-	.select2-selection__rendered {
-	line-height: 1.4;
-}
-
-.block-editor-page .select2-results__option code {
-	display: block;
-	margin-top: 3px;
-}
-
-.block-editor-page .select2-selection code {
-	display: block;
-	margin-top: 3px;
-}
-
-/* Select2 fix */
- .postbox-content .field .control .select2-container {
- width: 100% !important;
-}
-
-.postbox-content .field .control .select2-selection--single {
-	outline: none !important;
 }

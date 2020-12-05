@@ -32,7 +32,7 @@
           ),
           list = popup.find(".icon-picker-list");
 
-        if (boxWidth) popup.width(boxWidth);
+        // if (boxWidth) popup.width(boxWidth);
 
         for (var i in icons) {
           list.append(
@@ -66,7 +66,7 @@
 
         var control = popup.find(".icon-picker-control");
 
-        control.html(
+        control.prepend(
           '<a data-direction="back" href="#"> \
 					<span class="dashicons dashicons-arrow-left-alt2"></span></a> \
 					<span class="icon-picker--search-wrapper"><input type="text" class="" placeholder="Search" /></span> \
