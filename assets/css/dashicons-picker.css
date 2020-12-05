@@ -1,72 +1,66 @@
-
-/** 
- * Dashicon Picker
- * https://github.com/bradvin/dashicons-picker/
- */
+/* Icon Picker */
 .dashicon-picker-container {
 	position: absolute;
-	width: 250px;
-	height: 252px;
+	width: 260px;
+	height: 300px;
 	font-size: 14px;
 	background-color: #fff;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	overflow: hidden;
-	padding: 5px;
-	box-sizing: border-box;
+	padding: 10px 5px 5px 5px;
+	border: 1px solid #ddd;
 	z-index: 10;
+	box-sizing: content-box !important;
 }
-.dashicon-picker-container.is-fullwidth {
+
+.dashicon-picker-container ul {
+	margin: 10px 0;
 	width: 100%;
 }
-	.dashicon-picker-container ul {
-		margin: 0;
-		padding: 0;
-		margin-bottom: 10px;
-	}
-		.dashicon-picker-container ul .dashicons {
-			width: 20px;
-			height: 20px;
-			font-size: 20px;
-		}
-		.dashicon-picker-container ul li {
-			display: inline-block;
-			margin: 5px;
-			float: left;
-		}
-			.dashicon-picker-container ul li a {
-				display: block;
-				text-decoration: none;
-				color: #373737;
-				padding: 5px 5px;
-				border: 1px solid #dfdfdf;
-			}
-				.dashicon-picker-container ul li a:hover {
-					border-color: #999;
-					background: #efefef;
-				}
 
-	.dashicon-picker-control {
-		display: flex;
-		flex-wrap: wrap;
-		height: 32px;
-	}
-		.dashicon-picker-control a {
-			display: inline-block;
-			padding: 5px;
-			text-decoration: none;
-			text-align: center;
-			width: 5%;
-		}
-			.dashicon-picker-control a span {
-				display: inline;
-				vertical-align: middle;
-			}
-			.dashicons-picker--search-wrapper {
-				display: inline-block;
-				width: 90%;
-			}
-		.dashicon-picker-control input {
-			font-size: 12px;
-			width: 100%;
-		}
+.dashicon-picker-container ul li {
+	display: inline-block;
+	margin: 5px;
+}
+
+.dashicon-picker-container ul li a {
+	box-shadow: none;
+}
+
+.dashicon-picker-container ul li a span {
+	display: block;
+	color: #373737;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #dfdfdf;
+	font-size: 20px;
+}
+
+.dashicon-picker-container ul li a span:hover {
+	border-color: #999;
+	background: #efefef;
+}
+
+/* Search */
+.dashicon-picker-control {
+	display: flex;
+	flex-wrap: wrap;
+	height: 32px;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.dashicon-picker-control a {
+	text-decoration: none;
+	text-align: center;
+	width: 10%;
+}
+
+.dashicon-picker--search-wrapper {
+	width: 70%;
+}
+
+.dashicon-picker--search-wrapper input {
+	width: 100%;
+}

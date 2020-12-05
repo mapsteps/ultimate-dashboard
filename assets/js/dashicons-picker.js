@@ -277,7 +277,7 @@
 					</div>' ),
 					list = popup.find( '.dashicon-picker-list' );
 
-				if (boxWidth) popup.width(boxWidth);
+				// if (boxWidth) popup.width(boxWidth);
 
 				for ( var i in icons ) {
 					list.append( '<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>' );
@@ -295,9 +295,9 @@
 
 				var control = popup.find( '.dashicon-picker-control' );
 
-				control.html( '<a data-direction="back" href="#"> \
+				control.prepend( '<a data-direction="back" href="#"> \
 					<span class="dashicons dashicons-arrow-left-alt2"></span></a> \
-					<span class="dashicons-picker--search-wrapper"><input type="text" class="" placeholder="Search" /></span> \
+					<span class="dashicon-picker--search-wrapper"><input type="text" class="" placeholder="Search" /></span> \
 					<a data-direction="forward" href="#"><span class="dashicons dashicons-arrow-right-alt2"></span></a>'
 				);
 
