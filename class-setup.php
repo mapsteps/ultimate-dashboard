@@ -25,26 +25,30 @@ class Setup {
 
 	}
 
+	/**
+	 * Get saved/default modules.
+	 *
+	 * @return array The saved/default modules.
+	 */
 	public static function saved_modules() {
 
 		$defaults = array(
-			'white_label',
-			'login_customizer',
-			'admin_pages',
-			'admin_menu_editor'
+			'white_label'       => "true",
+			'login_customizer'  => "true",
+			'admin_pages'       => "true",
+			'admin_menu_editor' => "true",
 		);
 
-		$defaults = array_fill_keys( $defaults, 'true' );
-		$saved = get_option( 'udb_modules', $defaults );
+		$saved_modules = get_option( 'udb_modules', $defaults );
+		$new_modules   = array_diff_key( $defaults, $saved_modules );
 
-		$new_modules = array_diff_key( $defaults, $saved );
-
-		if( ! empty( $new_modules ) ) {
-			$updated_modules = array_merge( $saved, $new_modules );
+		if ( ! empty( $new_modules ) ) {
+			$updated_modules = array_merge( $saved_modules, $new_modules );
 			update_option( 'udb_modules', $updated_modules );
 		}
 
 		return get_option( 'udb_modules', $defaults );
+
 	}
 
 	/**
