@@ -115,7 +115,7 @@ class Feature_Module extends Base_Module {
 	 */
 	public function handle_module_actions() {
 
-		if ( empty( $_REQUEST ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'udb_modules_nonce_action' ) ) {
+		if ( empty( $_REQUEST ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'udb_module_nonce_action' ) ) {
 			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
 		}
 
