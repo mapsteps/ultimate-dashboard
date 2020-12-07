@@ -193,7 +193,7 @@ class Admin_Page_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Admin Pages', 'Admin Pages', apply_filters( 'udb_settings_capability', 'manage_options' ), 'edit.php?post_type=udb_admin_page' );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Admin Pages', 'ultimate-dashboard' ), __( 'Admin Pages', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'edit.php?post_type=udb_admin_page' );
 
 	}
 

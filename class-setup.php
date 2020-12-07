@@ -84,27 +84,27 @@ class Setup {
 		$modules		= array();
 		$saved_modules	= get_option( 'udb_modules', array() );
 
-		$modules['Udb\\Widget\\Widget_Module']       = __DIR__ . '/modules/widget/class-widget-module.php';
+		$modules['Udb\\Widget\\Widget_Module'] = __DIR__ . '/modules/widget/class-widget-module.php';
 
-		if( !defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION >= '3.1' ) {
-			$modules['Udb\\Dashboard\\Dashboard_Module'] = __DIR__ . '/modules/dashboard/class-dashboard-module.php';
+		if( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION >= '3.1' ) {
+			$modules['Udb\\Feature\\Feature_Module'] = __DIR__ . '/modules/feature/class-feature-module.php';
 		}
 
-		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
+		$modules['Udb\\Setting\\Setting_Module'] = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		if ( empty($saved_modules) || $saved_modules['white_label'] == 'true' ) {
+		if ( empty( $saved_modules ) || "true" === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
-		if ( empty($saved_modules) || $saved_modules['admin_pages'] == 'true' ) {
+		if ( empty( $saved_modules ) || "true" === $saved_modules['admin_pages'] ) {
 			$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
 		}
 
-		if ( empty($saved_modules) || $saved_modules['login_customizer'] == 'true' ) {
+		if ( empty( $saved_modules ) || "true" === $saved_modules['login_customizer'] ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		if ( empty($saved_modules) || $saved_modules['admin_menu_editor'] == 'true' ) {
+		if ( empty( $saved_modules ) || "true" === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
 

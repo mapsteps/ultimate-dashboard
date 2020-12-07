@@ -66,10 +66,10 @@ class Screen_Helper {
 	 *
 	 * @return boolean
 	 */
-	public function is_dashboard_overview() {
+	public function is_features() {
 
 		$current_screen = get_current_screen();
-		return ( 'udb_widgets_page_udb_dashboard' === $current_screen->id ? true : false );
+		return ( 'udb_widgets_page_udb_features' === $current_screen->id ? true : false );
 
 	}
 

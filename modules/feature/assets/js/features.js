@@ -12,7 +12,7 @@
 					statusTag = p.find(".status-code");
 
 				var data = {
-					action: "udb_handle_module_options",
+					action: "udb_handle_module_actions",
 					status: t.prop("checked"),
 					nonce: nonce.val(),
 					name: t.attr("name"),

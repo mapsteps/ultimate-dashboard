@@ -5,7 +5,7 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Dashboard;
+namespace Udb\Feature;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -14,7 +14,7 @@ use Udb\Base\Base_Output;
 /**
  * Class to setup dashboard output.
  */
-class Dashboard_Output extends Base_Output {
+class Feature_Output extends Base_Output {
 
 	/**
 	 * The class instance.
@@ -35,7 +35,7 @@ class Dashboard_Output extends Base_Output {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/dashboard';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature';
 
 	}
 

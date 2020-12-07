@@ -1,11 +1,11 @@
 <?php
 /**
- * Dashboard module.
+ * Feature module.
  *
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Dashboard;
+namespace Udb\Feature;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -15,7 +15,7 @@ use Udb\Base\Base_Module;
 /**
  * Class to setup dashboard module.
  */
-class Dashboard_Module extends Base_Module {
+class Feature_Module extends Base_Module {
 
 	/**
 	 * The class instance.
@@ -36,7 +36,7 @@ class Dashboard_Module extends Base_Module {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/dashboard';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature';
 
 	}
 
@@ -62,11 +62,11 @@ class Dashboard_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-		add_action( 'wp_ajax_udb_handle_module_options', array( $this, 'handle_module_options' ) );
+		add_action( 'wp_ajax_udb_handle_module_actions', array( $this, 'handle_module_actions' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-dashboard-output.php';
-		$output = new Dashboard_Output();
+		require_once __DIR__ . '/class-feature-output.php';
+		$output = new Feature_Output();
 		$output->setup();
 
 	}
@@ -76,7 +76,7 @@ class Dashboard_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Features', 'Features', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_dashboard', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Features', 'ultimate-dashboard' ), __( 'Features', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_features', array( $this, 'submenu_page_content' ) );
 
 	}
 
@@ -85,7 +85,7 @@ class Dashboard_Module extends Base_Module {
 	 */
 	public function submenu_page_content() {
 
-		$template = require __DIR__ . '/templates/dashboard-template.php';
+		$template = require __DIR__ . '/templates/feature-template.php';
 		$template();
 
 	}
@@ -110,15 +110,18 @@ class Dashboard_Module extends Base_Module {
 
 	}
 
-	public function handle_module_options() {
+	/**
+	 * Activation/deactivation action.
+	 */
+	public function handle_module_actions() {
 
 		if ( empty( $_REQUEST ) || ! wp_verify_nonce( $_REQUEST['nonce'], 'udb_modules_nonce_action' ) ) {
 			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
 		}
 
-		$modules 	 = Setup::saved_modules();
-		$name 		 = sanitize_key( $_REQUEST['name'] );
-		$status      = sanitize_key( $_REQUEST['status'] );
+		$modules = Setup::saved_modules();
+		$name    = sanitize_key( $_REQUEST['name'] );
+		$status  = sanitize_key( $_REQUEST['status'] );
 
 		$modules[$name] = $status;
 

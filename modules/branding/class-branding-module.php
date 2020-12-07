@@ -75,7 +75,7 @@ class Branding_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', 'White Label', 'White Label', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_branding', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'White Label', 'ultimate-dashboard' ), __( 'White Label', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_branding', array( $this, 'submenu_page_content' ) );
 
 	}
 

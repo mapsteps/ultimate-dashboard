@@ -52,7 +52,7 @@ class Setting_Module extends Base_Module {
 	 * Add submenu page.
 	 */
 	public function submenu_page() {
-		add_submenu_page( 'edit.php?post_type=udb_widgets', 'Settings', 'Settings', apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_settings', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Settings', 'ultimate-dashboard' ), __( 'Settings', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_settings', array( $this, 'submenu_page_content' ) );
 	}
 
 	/**
