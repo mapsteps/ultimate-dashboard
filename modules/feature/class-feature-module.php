@@ -76,7 +76,7 @@ class Feature_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Features', 'ultimate-dashboard' ), __( 'Features', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_features', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Modules', 'ultimate-dashboard' ), __( 'Modules', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_features', array( $this, 'submenu_page_content' ) );
 
 	}
 
