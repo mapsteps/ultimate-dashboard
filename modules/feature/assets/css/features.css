@@ -61,11 +61,10 @@ h2 img {
 
 .feature-status .status {
 	font-size: 14.5px;
-	font-weight: 700;
 }
 
 .feature-status .status .status-code {
-	font-weight: 400;
+	font-weight: 700;
 }
 
 .feature-status .status-code .active {
