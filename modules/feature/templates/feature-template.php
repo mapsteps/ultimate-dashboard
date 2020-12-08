@@ -16,25 +16,25 @@ return function () {
 		array(
 			'title'   => __( 'White Label', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/white-label.png',
-			'text'    => __( 'This is some text', 'ultimate-dashboard' ),
+			'text'    => __( 'White label & rebrand the WordPress Admin area with the White Label Module.', 'ultimate-dashboard' ),
 			'feature' => 'white_label',
 		),
 		array(
 			'title'   => __( 'Login Customizer', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/login-customizer.png',
-			'text'    => __( 'This is some text', 'ultimate-dashboard' ),
+			'text'    => __( 'Fully customize the login screen, directly within the WordPress customizer.', 'ultimate-dashboard' ),
 			'feature' => 'login_customizer',
 		),
 		array(
 			'title'   => __( 'Admin Pages', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-pages.png',
-			'text'    => __( 'This is some text', 'ultimate-dashboard' ),
+			'text'    => __( 'Create useful custom admin pages for your customers with the Admin Pages module.', 'ultimate-dashboard' ),
 			'feature' => 'admin_pages',
 		),
 		array(
 			'title'   => __( 'Admin Menu Editor', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-menu.png',
-			'text'    => __( 'This is some text', 'ultimate-dashboard' ),
+			'text'    => __( 'Rearrange, hide & rename admin menu items for specific user roles with the Admin Menu Editor module.', 'ultimate-dashboard' ),
 			'feature' => 'admin_menu_editor',
 		),
 	)
@@ -45,18 +45,16 @@ return function () {
 
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-		<form method="post" action="options.php" class="udb-dashboard-form">
+		<form method="post" action="options.php" class="udb-feature-form">
 
 			<?php foreach ( $features as $feature ) { ?>
+
 				<div class="heatbox">
 
-					<h2><?php echo $feature['title']; ?></h2>
+					<h2><img src="<?php echo esc_url( $feature['img'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>"> <?php echo $feature['title']; ?></h2>
 
 					<table class="form-table">
 						<tr>
-							<td>
-								<img src="<?php echo esc_url( $feature['img'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>">
-							</td>
 							<td>
 								<p>
 									<?php echo $feature['text']; ?>

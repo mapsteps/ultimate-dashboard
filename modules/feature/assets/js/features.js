@@ -1,8 +1,8 @@
 (function ($) {
 	$(document)
 		.on("udb_dashboard_jquery_init", function () {
-			var nonce = $(".udb-dashboard-form").find("#udb_module_nonce"),
-				checkboxes = $(".udb-dashboard-form").find(
+			var nonce = $(".udb-feature-form").find("#udb_module_nonce"),
+				checkboxes = $(".udb-feature-form").find(
 					'.switch-control input[type="checkbox"]'
 				);
 
