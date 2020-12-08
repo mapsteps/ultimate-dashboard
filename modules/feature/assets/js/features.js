@@ -8,7 +8,7 @@
 
 			checkboxes.on("change", function () {
 				var t = $(this),
-					p = t.parents(".form-table"),
+					p = t.parents(".heatbox"),
 					statusTag = p.find(".status-code");
 
 				var data = {
@@ -21,10 +21,10 @@
 
 				data.status == true
 					? statusTag.html(
-							'<p class="active">' + statusTag.data("active-text") + "</p>"
+							'<span class="active">' + statusTag.data("active-text") + "</span>"
 					  )
 					: statusTag.html(
-							'<p class="inactive">' + statusTag.data("inactive-text") + "</p>"
+							'<span class="inactive">' + statusTag.data("inactive-text") + "</span>"
 					  );
 
 				$.ajax({

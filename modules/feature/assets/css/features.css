@@ -5,8 +5,8 @@
 	max-width: 1000px;
 }
 
-
 .udb-feature-form .heatbox {
+	display: flex;
 	flex-direction: column;
 	flex: 0 49%;
 	margin-right: 2%;
@@ -29,50 +29,49 @@ h2 {
 }
 
 h2 img {
-	width: 45px;
-	margin-right: 15px;
+	width: 32px;
+	margin-right: 10px;
 	opacity: .75;
-	display: inline;
 }
 
-.form-table td {
-	vertical-align: top;
+.heatbox-content {
+	flex: 1 0 auto;
+	min-height: 130px;
 }
 
-.form-table tr.status-wrap {
-	border-top: 1px solid #eee;
-}
-
-.form-table tr.status-wrap td {
-	vertical-align: middle;
-	padding: 15px 20px;
-	background: #f9f9f9;
-	display: table-cell;
-}
-
-.form-table tr.status-wrap td:last-child {
-	text-align: right;
-}
-
-.form-table .status {
-	display: flex;
-	align-items: center;
-	font-weight: bold;
-}
-
-.form-table .status p {
-	margin: 0;
+.heatbox-content p {
 	font-size: 14.5px;
 }
 
-.form-table .status .status-code {
-	margin-left: 5px;
+.feature-status {
+	display: flex;
+	align-items: center;
+	padding: 15px 20px;
+	border-top: 1px solid #eee;
+	background: #f9f9f9;
 }
 
-.form-table .status-code .active {
+.feature-status > * {
+	width: 50%;
+}
+
+.feature-status .switch-control {
+	text-align: right;
+}
+
+.feature-status .status {
+	font-size: 14.5px;
+	font-weight: 700;
+}
+
+.feature-status .status .status-code {
+	font-weight: 400;
+}
+
+.feature-status .status-code .active {
 	color: #008000;
 }
 
-.form-table .status-code .inactive {
+.feature-status .status-code .inactive {
 	color: #ff0000;
 }
