@@ -36,7 +36,7 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 		// Setup the updater.
 		$edd_updater = new EDD_SL_Plugin_Updater(
 			ULTIMATE_DASHBOARD_PRO_STORE_URL,
-			__FILE__,
+			ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . '\ultimate-dashboard-pro.php',
 			array(
 				'version' => ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION,
 				'license' => $license_key,
