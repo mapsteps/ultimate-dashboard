@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.1.2 | December 09, 2020 =
+* Fixed: Wrong plugin dir for PRO plugin updater
 = 3.1.1 | December 09, 2020 =
 * Fixed: Broken plugin updater in PRO add-on
 = 3.1 | December 09, 2020 =
