@@ -95,6 +95,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.1 | December 09, 2020 =
+* WordPress 5.6 compatibility
 * New: Modules screen to turn on/off features
 * Tweak: Updated & improved settings page UI
 = 3.0 | October 27, 2020 =
