@@ -69,7 +69,7 @@ class Tool_Module extends Base_Module {
 	 * Add submenu page.
 	 */
 	public function submenu_page() {
-		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Tools', 'ultimate-dashboard' ), __( 'Tools', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_tools', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Tools', 'ultimate-dashboard' ), __( 'Tools', 'ultimate-dashboard' ), apply_filters( 'udb_tools_capability', 'manage_options' ), 'udb_tools', array( $this, 'submenu_page_content' ) );
 	}
 
 	/**
