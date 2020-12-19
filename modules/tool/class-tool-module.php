@@ -69,7 +69,11 @@ class Tool_Module extends Base_Module {
 	 * Add submenu page.
 	 */
 	public function submenu_page() {
+
+		// Currently we only allow super admins to access this page if activated network wide.
+		// TODO: We need to hide this page from subisites (for everyone including super admins) if activated network wide but keep it if activated not network wide.
 		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Tools', 'ultimate-dashboard' ), __( 'Tools', 'ultimate-dashboard' ), apply_filters( 'udb_tools_capability', 'manage_options' ), 'udb_tools', array( $this, 'submenu_page_content' ) );
+
 	}
 
 	/**
