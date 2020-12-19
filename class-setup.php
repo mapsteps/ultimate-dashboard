@@ -47,7 +47,7 @@ class Setup {
 			update_option( 'udb_modules', $updated_modules );
 		}
 
-		return get_option( 'udb_modules', $defaults );
+		return apply_filters( 'udb_saved_modules', get_option( 'udb_modules', $defaults ) );
 
 	}
 
@@ -86,7 +86,7 @@ class Setup {
 	public function load_modules() {
 
 		$modules		= array();
-		$saved_modules	= get_option( 'udb_modules', array() );
+		$saved_modules	= Setup::saved_modules();
 
 		$modules['Udb\\Widget\\Widget_Module'] = __DIR__ . '/modules/widget/class-widget-module.php';
 
