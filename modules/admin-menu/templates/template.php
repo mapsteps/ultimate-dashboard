@@ -60,7 +60,7 @@ $role_names = $wp_roles->role_names;
 				</div><!-- .udb-admin-menu--tab-content -->
 			</div><!-- .udb-admin-menu--tabs -->
 
-			<div class="neatbox-footer">
+			<div class="heatbox-footer">
 
 				<?php if ( ! udb_is_pro_active() ) : ?>
 

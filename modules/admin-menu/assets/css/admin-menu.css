@@ -239,19 +239,19 @@
 	background-color: #f2f2f2;
 }
 
-.udb-admin-menu-box .neatbox-footer {
+.udb-admin-menu-box .heatbox-footer {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	padding: 20px 20px;
 }
 
-.udb-admin-menu-box .neatbox-left-footer,
-.udb-admin-menu-box .neatbox-right-footer {
+.udb-admin-menu-box .heatbox-left-footer,
+.udb-admin-menu-box .heatbox-right-footer {
 	width: 50%;
 }
 
-.udb-admin-menu-box .neatbox-right-footer {
+.udb-admin-menu-box .heatbox-right-footer {
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: auto;
