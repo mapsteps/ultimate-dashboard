@@ -9,7 +9,7 @@ namespace Udb\Feature;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use \Udb\Setup;
+use Udb\Setup;
 use Udb\Base\Base_Module;
 
 /**
