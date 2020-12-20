@@ -200,7 +200,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	</head>
 	<body class="login <?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 
-	<?php if ( udb_is_pro_active() ) : ?>
+	<?php if ( ! udb_is_pro_active() ) : ?>
 
 		<div class="udb-pro-login-customizer-notice">
 			<?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
