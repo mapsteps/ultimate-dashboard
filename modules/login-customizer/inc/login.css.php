@@ -115,6 +115,7 @@ if ( $form_width ) {
 }
 ?>
 
+.login form,
 #loginform {
 	<?php if ( $form_bg_color ) : ?>
 		background-color: <?php echo esc_attr( $form_bg_color ); ?>;
