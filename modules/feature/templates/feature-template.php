@@ -6,7 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
-use \Udb\Setup;
+use Udb\Setup;
 
 return function () {
 
