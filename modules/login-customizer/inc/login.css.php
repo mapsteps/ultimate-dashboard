@@ -203,6 +203,7 @@ if ( $form_width ) {
 	<?php endif; ?>
 	<?php if ( $button_bg_color ) : ?>
 		background-color: <?php echo esc_attr( $button_bg_color ); ?>;
+		border-color: <?php echo esc_attr( $button_bg_color ); ?>;
 	<?php endif; ?>
 	<?php if ( $button_border_radius ) : ?>
 		border-radius: <?php echo esc_attr( $button_border_radius ); ?>;
@@ -216,5 +217,6 @@ if ( $form_width ) {
 	<?php endif; ?>
 	<?php if ( $button_bg_color_hover ) : ?>
 		background-color: <?php echo esc_attr( $button_bg_color_hover ); ?>;
+		border-color: <?php echo esc_attr( $button_bg_color_hover ); ?>;
 	<?php endif; ?>
 }
