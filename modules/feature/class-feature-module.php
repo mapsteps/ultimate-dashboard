@@ -125,11 +125,11 @@ class Feature_Module extends Base_Module {
 		$name    = sanitize_key( $_REQUEST['name'] );
 		$status  = sanitize_key( $_REQUEST['status'] );
 
-		$modules[$name] = $status;
+		$modules[ $name ] = $status;
 
 		update_option( 'udb_modules', $modules );
 
-		wp_send_json_success( ['message' => __( 'Saved', 'ultimate-dashboard' )] );
+		wp_send_json_success( array( 'message' => __( 'Saved', 'ultimate-dashboard' ) ) );
 
 		die();
 	}

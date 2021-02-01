@@ -63,7 +63,7 @@ return function () {
 							<div class="status">
 								<span><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></span>
 								<span class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-									<?php echo empty( $saved_modules ) || $saved_modules[$feature['feature']] === "true" ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+									<?php echo empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 								</span>
 							</div>
 							<div class="switch-control is-rounded">
@@ -72,7 +72,7 @@ return function () {
 										type="checkbox"
 										name="<?php echo esc_attr( $feature['feature'] ); ?>"
 										id="udb_is_active_<?php echo $feature['feature']; ?>"
-										<?php checked( empty( $saved_modules ) || $saved_modules[$feature['feature']] === "true" ); ?> >
+										<?php checked( empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ); ?> >
 									<span class="switch"></span>
 								</label>
 							</div>

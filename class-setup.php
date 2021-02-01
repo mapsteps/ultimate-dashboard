@@ -33,10 +33,10 @@ class Setup {
 	public static function saved_modules() {
 
 		$defaults = array(
-			'white_label'       => "true",
-			'login_customizer'  => "true",
-			'admin_pages'       => "true",
-			'admin_menu_editor' => "true",
+			'white_label'       => 'true',
+			'login_customizer'  => 'true',
+			'admin_pages'       => 'true',
+			'admin_menu_editor' => 'true',
 		);
 
 		$saved_modules = get_option( 'udb_modules', $defaults );
@@ -87,27 +87,27 @@ class Setup {
 
 		$modules['Udb\\Widget\\Widget_Module'] = __DIR__ . '/modules/widget/class-widget-module.php';
 
-		if( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION >= '3.1' ) {
+		if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION >= '3.1' ) {
 			$modules['Udb\\Feature\\Feature_Module'] = __DIR__ . '/modules/feature/class-feature-module.php';
 		}
 
 		$modules['Udb\\Setting\\Setting_Module'] = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		$saved_modules = Setup::saved_modules();
+		$saved_modules = self::saved_modules();
 
-		if ( "true" === $saved_modules['white_label'] ) {
+		if ( 'true' === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
-		if ( "true" === $saved_modules['admin_pages'] ) {
+		if ( 'true' === $saved_modules['admin_pages'] ) {
 			$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
 		}
 
-		if ( "true" === $saved_modules['login_customizer'] ) {
+		if ( 'true' === $saved_modules['login_customizer'] ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		if ( "true" === $saved_modules['admin_menu_editor'] ) {
+		if ( 'true' === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
 
@@ -117,7 +117,7 @@ class Setup {
 
 		foreach ( $modules as $class => $file ) {
 			$splits      = explode( '/', $file );
-			$module_name = $splits[count( $splits ) - 2];
+			$module_name = $splits[ count( $splits ) - 2 ];
 			$filter_name = str_ireplace( '-', '_', $module_name );
 			$filter_name = 'udb_' . $filter_name;
 

@@ -59,7 +59,6 @@ class Feature_Output extends Base_Output {
 
 		// add_filter( 'admin_footer_text', array( self::get_instance(), 'footer_text' ) );
 		// add_filter( 'update_footer', array( self::get_instance(), 'version_text' ), 20 );
-
 	}
 
 }
