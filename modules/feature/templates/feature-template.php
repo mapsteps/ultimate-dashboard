@@ -10,7 +10,8 @@ use Udb\Setup;
 
 return function () {
 
-	$saved_modules = Setup::saved_modules();
+	$module        = new Setup();
+	$saved_modules = $module->saved_modules();
 
 	$features = array(
 		array(

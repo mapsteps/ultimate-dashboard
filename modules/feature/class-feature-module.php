@@ -121,13 +121,14 @@ class Feature_Module extends Base_Module {
 			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
 		}
 
-		$modules = Setup::saved_modules();
-		$name    = sanitize_key( $_REQUEST['name'] );
-		$status  = sanitize_key( $_REQUEST['status'] );
+		$module        = new Setup();
+		$saved_modules = $module->saved_modules();
+		$name          = sanitize_key( $_REQUEST['name'] );
+		$status        = sanitize_key( $_REQUEST['status'] );
 
-		$modules[ $name ] = $status;
+		$saved_modules[ $name ] = $status;
 
-		update_option( 'udb_modules', $modules );
+		update_option( 'udb_modules', $saved_modules );
 
 		wp_send_json_success( array( 'message' => __( 'Saved', 'ultimate-dashboard' ) ) );
 

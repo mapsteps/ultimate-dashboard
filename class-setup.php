@@ -30,7 +30,7 @@ class Setup {
 	 *
 	 * @return array The saved/default modules.
 	 */
-	public static function saved_modules() {
+	public function saved_modules() {
 
 		$defaults = array(
 			'white_label'       => 'true',
@@ -93,7 +93,7 @@ class Setup {
 
 		$modules['Udb\\Setting\\Setting_Module'] = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		$saved_modules = self::saved_modules();
+		$saved_modules = $this->saved_modules();
 
 		if ( 'true' === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
