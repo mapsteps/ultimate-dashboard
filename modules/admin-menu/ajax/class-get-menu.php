@@ -99,6 +99,10 @@ class Get_Menu {
 		 */
 		$show_ui_capabilities = apply_filters( 'udb_admin_menu_show_ui_capabilities', $show_ui_capabilities );
 
+		if ( empty( $show_ui_capabilities ) ) {
+			return;
+		}
+
 		foreach ( $menu as $menu_order => $menu_item ) {
 			if ( false !== stripos( $menu_item[2], 'edit.php?post_type=' ) ) {
 				$explode_full = explode( 'edit.php?post_type=', $menu_item[2] );
