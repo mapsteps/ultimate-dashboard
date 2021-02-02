@@ -91,16 +91,13 @@ class Get_Menu {
 		global $menu;
 
 		// The `show_ui` capability by specific post types.
-		$show_ui_capabilities = array(
-			'llms_engagement' => apply_filters( 'lifterlms_admin_engagements_access', 'manage_lifterlms' ),
-			'llms_order'      => apply_filters( 'lifterlms_admin_order_access', 'manage_lifterlms' ),
-		);
+		$show_ui_capabilities = array();
 
 		/**
 		 * Let's provide filter for this.
 		 * So other plugin's author / team can add support for UDB admin menu editor.
 		 */
-		$show_ui_capabilities = apply_filters( 'udb_external_admin_menu_capabilities', $show_ui_capabilities );
+		$show_ui_capabilities = apply_filters( 'udb_admin_menu_show_ui_capabilities', $show_ui_capabilities );
 
 		foreach ( $menu as $menu_order => $menu_item ) {
 			if ( false !== stripos( $menu_item[2], 'edit.php?post_type=' ) ) {
@@ -121,7 +118,7 @@ class Get_Menu {
 						} // End of foreach $show_ui_capabilities.
 					} // End of count( $explode_partial ) === 1.
 				} // End of isset( $explode_full[1] ).
-			}// End of stripos.
+			} // End of stripos.
 		} // End of $menu foreach.
 	}
 
