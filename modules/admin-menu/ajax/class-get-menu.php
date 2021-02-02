@@ -57,6 +57,64 @@ class Get_Menu {
 			require $wp_menu_file;
 		}
 
+		$this->check_capability();
+
+	}
+
+	/**
+	 * Sometimes the menu's capability is accessible by $role but
+	 * the the `show_ui` argument is set to false.
+	 *
+	 * This makes the menu will be rendered in the builder
+	 * but is broken when being displayed (after we save the menu).
+	 * It's like the issue with LifterLMS menu (Engagement & Order).
+	 *
+	 * I thought, we need to check the post type's `show_ui` argument.
+	 * If the `show_ui` argument is false, then unset it from the global $menu.
+	 * So those menu items won't be rendered in the builder.
+	 *
+	 * But turned out I was wrong.
+	 * The `register_post_type` already run when the ajax handler run.
+	 * That means, the `show_ui` argument has been decided before we simulate the role.
+	 * Which means, checking the `show_ui` argument doesn't solve the problem.
+	 *
+	 * The solution for now is, by checking the capability manually.
+	 * Defining what capability is needed per-plugin (which is not efficient, but it works).
+	 *
+	 * How if we haven't defined a capability check for a specific plugin (that has the issue)?
+	 * Then it might be displayed in the builder, but don't worry.
+	 * Because it wouldn't be displayed in the wp-admin's side menu if it shouldn't be displayed.
+	 */
+	public function check_capability() {
+		global $menu;
+
+		// The `show_ui` capability by specific post types.
+		$show_ui_capabilities = array(
+			'llms_engagement' => apply_filters( 'lifterlms_admin_engagements_access', 'manage_lifterlms' ),
+			'llms_order'      => apply_filters( 'lifterlms_admin_order_access', 'manage_lifterlms' ),
+		);
+
+		foreach ( $menu as $menu_order => $menu_item ) {
+			if ( false !== stripos( $menu_item[2], 'edit.php?post_type=' ) ) {
+				$explode_full = explode( 'edit.php?post_type=', $menu_item[2] );
+
+				if ( isset( $explode_full[1] ) ) {
+					$explode_partial = explode( '&', $explode_full[1] );
+
+					if ( count( $explode_partial ) === 1 ) {
+						$post_type_slug = $explode_partial[0];
+
+						foreach ( $show_ui_capabilities as $post_type => $capability ) {
+							if ( $post_type_slug === $post_type ) {
+								if ( ! current_user_can( $capability ) ) {
+									unset( $menu[ $menu_order ] );
+								}
+							}
+						} // End of foreach $show_ui_capabilities.
+					} // End of count( $explode_partial ) === 1.
+				} // End of isset( $explode_full[1] ).
+			}// End of stripos.
+		} // End of $menu foreach.
 	}
 
 	/**
