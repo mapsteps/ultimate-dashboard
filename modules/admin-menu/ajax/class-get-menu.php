@@ -80,6 +80,8 @@ class Get_Menu {
 	 *
 	 * The solution for now is, by checking the capability manually.
 	 * Defining what capability is needed per-plugin (which is not efficient, but it works).
+	 * We provide a filter for this, so that other plugin's author / team
+	 * can also add support for UDB admin menu editor.
 	 *
 	 * How if we haven't defined a capability check for a specific plugin (that has the issue)?
 	 * Then it might be displayed in the builder, but don't worry.
@@ -93,6 +95,12 @@ class Get_Menu {
 			'llms_engagement' => apply_filters( 'lifterlms_admin_engagements_access', 'manage_lifterlms' ),
 			'llms_order'      => apply_filters( 'lifterlms_admin_order_access', 'manage_lifterlms' ),
 		);
+
+		/**
+		 * Let's provide filter for this.
+		 * So other plugin's author / team can add support for UDB admin menu editor.
+		 */
+		$show_ui_capabilities = apply_filters( 'udb_external_admin_menu_capabilities', $show_ui_capabilities );
 
 		foreach ( $menu as $menu_order => $menu_item ) {
 			if ( false !== stripos( $menu_item[2], 'edit.php?post_type=' ) ) {
