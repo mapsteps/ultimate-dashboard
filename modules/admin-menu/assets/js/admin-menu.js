@@ -20,6 +20,10 @@
 		};
 	}
 
+	var searchBox = document.querySelector('.udb-admin-menu-box--search-box');
+	var roleTabs = document.querySelector('.udb-admin-menu--role-tabs');
+	var userTabs = document.querySelector('.udb-admin-menu--role-tabs');
+
 	/**
 	 * Init the script.
 	 * Call the main functions here.
@@ -33,6 +37,35 @@
 		});
 
 		document.querySelector('.udb-admin-menu--edit-form').addEventListener('submit', submitForm);
+
+		setupBoxHeaderTabs();
+	}
+
+	function setupBoxHeaderTabs() {
+		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+	}
+
+	function switchHeaderTab(e) {
+		var tabs = document.querySelectorAll('.udb-admin-menu-box--header-tab');
+		if (!tabs.length) return;
+
+		tabs.forEach(function (tab) {
+			if (tab !== e.target) {
+				tab.classList.remove('is-active');
+			}
+		});
+
+		e.target.classList.add('is-active');
+
+		if (e.target.dataset.headerTab === 'users') {
+			searchBox.classList.remove('is-hidden');
+			userTabs.classList.remove('is-hidden');
+			roleTabs.classList.add('is-hidden');
+		} else {
+			searchBox.classList.add('is-hidden');
+			userTabs.classList.add('is-hidden');
+			roleTabs.classList.remove('is-hidden');
+		}
 	}
 
 	/**
