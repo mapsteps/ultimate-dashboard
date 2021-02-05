@@ -46,6 +46,7 @@ $role_names = $wp_roles->role_names;
 					</li>
 				</ul>
 			</div>
+
 			<div class="udb-admin-menu--tabs udb-admin-menu--role-tabs">
 				<ul class="udb-admin-menu--tab-menu udb-admin-menu--role-menu">
 					<?php foreach ( $role_names as $role_key => $role_name ) : ?>
@@ -54,7 +55,6 @@ $role_names = $wp_roles->role_names;
 							<button type="button">
 								<?php echo esc_html( ucwords( $role_name ) ); ?>
 							</button>
-
 						</li>
 
 					<?php endforeach; ?>
@@ -74,7 +74,13 @@ $role_names = $wp_roles->role_names;
 			</div><!-- .udb-admin-menu--role-tabs -->
 
 			<div class="udb-admin-menu--tabs udb-admin-menu--user-tabs is-hidden">
-				User tabs
+				<ul class="udb-admin-menu--tab-menu udb-admin-menu--user-menu">
+					<!-- to be filled via JS -->
+				</ul>
+
+				<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
+					<!-- to be filled via JS -->
+				</div><!-- .udb-admin-menu--tab-content -->
 			</div><!-- .udb-admin-menu--user-tabs -->
 
 			<div class="heatbox-footer">

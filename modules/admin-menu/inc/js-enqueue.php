@@ -43,9 +43,11 @@ return function ( $module ) {
 			),
 			'roles'     => $roles,
 			'templates' => array(
-				'menuList'      => require __DIR__ . '/../templates/menu-list.php',
-				'submenuList'   => require __DIR__ . '/../templates/submenu-list.php',
-				'menuSeparator' => require __DIR__ . '/../templates/menu-separator.php',
+				'menuList'       => require __DIR__ . '/../templates/menu-list.php',
+				'submenuList'    => require __DIR__ . '/../templates/submenu-list.php',
+				'menuSeparator'  => require __DIR__ . '/../templates/menu-separator.php',
+				'userTabMenu'    => require __DIR__ . '/../templates/user-tab-menu.php',
+				'userTabContent' => require __DIR__ . '/../templates/user-tab-content.php',
 			),
 		);
 

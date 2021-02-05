@@ -20,15 +20,17 @@
 		};
 	}
 
-	var searchBox = document.querySelector('.udb-admin-menu-box--search-box');
-	var roleTabs = document.querySelector('.udb-admin-menu--role-tabs');
-	var userTabs = document.querySelector('.udb-admin-menu--role-tabs');
+	var elms = {};
 
 	/**
 	 * Init the script.
 	 * Call the main functions here.
 	 */
 	function init() {
+		elms.searchBox = document.querySelector('.udb-admin-menu-box--search-box');
+		elms.roleTabs = document.querySelector('.udb-admin-menu--role-tabs');
+		elms.userTabs = document.querySelector('.udb-admin-menu--user-tabs');
+
 		var roleMenu = document.querySelector('.udb-admin-menu--role-tabs');
 		setupTabs(roleMenu);
 
@@ -58,13 +60,13 @@
 		e.target.classList.add('is-active');
 
 		if (e.target.dataset.headerTab === 'users') {
-			searchBox.classList.remove('is-hidden');
-			userTabs.classList.remove('is-hidden');
-			roleTabs.classList.add('is-hidden');
+			elms.searchBox.classList.remove('is-hidden');
+			elms.userTabs.classList.remove('is-hidden');
+			elms.roleTabs.classList.add('is-hidden');
 		} else {
-			searchBox.classList.add('is-hidden');
-			userTabs.classList.add('is-hidden');
-			roleTabs.classList.remove('is-hidden');
+			elms.searchBox.classList.add('is-hidden');
+			elms.userTabs.classList.add('is-hidden');
+			elms.roleTabs.classList.remove('is-hidden');
 		}
 	}
 

@@ -94,7 +94,8 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.udb-admin-menu--role-menu {
+.udb-admin-menu--role-menu,
+.udb-admin-menu--user-menu {
 	border-top: 0;
 }
 
