@@ -38,7 +38,7 @@
 		state.usersLoaded = false;
 
 		udbAdminMenu.roles.forEach(function (role) {
-			getMenu(role.key);
+			getMenu('role', role.key);
 		});
 
 		document.querySelector('.udb-admin-menu--edit-form').addEventListener('submit', submitForm);
@@ -135,6 +135,8 @@
 			placeholder: usersSelect2.data('placeholder'),
 			data: usersData
 		});
+
+		getMenu('user_id', e.params.data.id);
 	}
 
 	/**
@@ -226,7 +228,7 @@
 
 		usersSelect2.select2('destroy');
 		usersSelect2.empty();
-		
+
 		usersSelect2.select2({
 			placeholder: usersSelect2.data('placeholder'),
 			data: usersData
@@ -237,22 +239,26 @@
 	}
 
 	/**
-	 * Get menu & submenu by role.
-	 * @param {string} role The specified role.
+	 * Get menu & submenu either by role or user id.
+	 *
+	 * @param {string} by The identifier, could be "role" or "user_id".
+	 * @param {string} value The specified role or user id.
 	 */
-	function getMenu(role) {
+	function getMenu(by, value) {
+		var data = {};
+
+		data.action = 'udb_admin_menu_get_menu';
+		data.nonce = udbAdminMenu.nonces.getMenu;
+		data[by] = value;
+
 		$.ajax({
 			url: ajaxurl,
 			type: "post",
 			dataType: 'json',
-			data: {
-				action: 'udb_admin_menu_get_menu',
-				nonce: udbAdminMenu.nonces.getMenu,
-				role: role
-			}
+			data: data
 		}).done(function (r) {
 			if (!r || !r.success) return;
-			buildMenu(role, r.data);
+			buildMenu(by, value, r.data);
 		}).always(function () {
 			//
 		});
@@ -261,10 +267,13 @@
 	/**
 	 * Build menu list.
 	 *
+	 * @param {string} by The identifier, could be "role" or "user_id".
+	 * @param {string} value The specified role or user id.
 	 * @param {array} menuList The menu list returned from ajax response.
 	 */
-	function buildMenu(role, menuList) {
-		var editArea = document.querySelector('#udb-admin-menu--' + role + '-edit-area');
+	function buildMenu(by, value, menuList) {
+		var identifier = by === 'role' ? value : 'user-' + value;
+		var editArea = document.querySelector('#udb-admin-menu--' + identifier + '-edit-area');
 		if (!editArea) return;
 		var listArea = editArea.querySelector('.udb-admin-menu--menu-list');
 		var builtMenu = '';
@@ -321,16 +330,21 @@
 				}
 
 				template = template.replace(/{menu_icon}/g, icon);
+				submenuTemplate = buildSubmenu(by, value, menu);
 
 				if (menu.submenu) {
-					submenuTemplate = buildSubmenu(role, menu);
 					template = template.replace(/{submenu_template}/g, submenuTemplate);
 				} else {
 					template = template.replace(/{submenu_template}/g, '');
 				}
 			}
 
-			template = template.replace(/{role}/g, role);
+			if (by === 'role') {
+				template = template.replace(/{role}/g, value);
+			} else if (by === 'user_id') {
+				template = template.replace(/{user_id}/g, value);
+			}
+
 			builtMenu += template;
 		});
 
@@ -350,18 +364,24 @@
 	/**
 	 * Build submenu list.
 	 *
-	 * @param {string} role The specified role.
+	 * @param {string} by The identifier, could be "role" or "user_id".
+	 * @param {string} value The specified role or user id.
 	 * @param {array} menu The menu which contains the submenu list.
 	 * 
 	 * @return {string} template The submenu template.
 	 */
-	function buildSubmenu(role, menu) {
+	function buildSubmenu(by, value, menu) {
 		var templates = '';
 
 		menu.submenu.forEach(function (submenu) {
 			var template = udbAdminMenu.templates.submenuList;
 
-			template = template.replace(/{role}/g, role);
+			if (by === 'role') {
+				template = template.replace(/{role}/g, value);
+			} else if (by === 'user_id') {
+				template = template.replace(/{user_id}/g, value);
+			}
+
 
 			template = template.replace(/{default_menu_id}/g, menu.id_default);
 

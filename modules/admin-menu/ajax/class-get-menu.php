@@ -23,15 +23,21 @@ class Get_Menu {
 	 */
 	public function ajax() {
 
-		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-		$role  = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
+		$nonce   = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
+		$role    = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
+		$user_id = isset( $_POST['user_id'] ) ? sanitize_text_field( $_POST['user_id'] ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_menu' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
-		if ( ! $role ) {
-			wp_send_json_error( __( 'Role is not specified', 'ultimate-dashboard' ) );
+		if ( ! $role && ! $user_id ) {
+			wp_send_json_error( __( 'User role or id must be specified', 'ultimate-dashboard' ) );
+		}
+
+		if ( $user_id ) {
+			$user = get_userdata( $user_id );
+			$role = $user->roles[0];
 		}
 
 		do_action( 'udb_ajax_before_get_admin_menu' );
