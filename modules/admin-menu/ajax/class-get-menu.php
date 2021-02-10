@@ -17,31 +17,51 @@ use Udb\Helpers\Array_Helper;
  * Class to get menu & submenu.
  */
 class Get_Menu {
+	/**
+	 * Whether to get menu by role or by user_id.
+	 *
+	 * @var string
+	 */
+	public $by = 'role';
+
+	/**
+	 * The role value.
+	 *
+	 * @var string
+	 */
+	public $role = '';
+
+	/**
+	 * The user_id value.
+	 *
+	 * @var int
+	 */
+	public $user_id = 0;
 
 	/**
 	 * Get menu & submenu.
 	 */
 	public function ajax() {
 
-		$nonce   = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-		$role    = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
-		$user_id = isset( $_POST['user_id'] ) ? sanitize_text_field( $_POST['user_id'] ) : '';
+		$nonce         = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
+		$this->role    = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
+		$this->user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_menu' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
-		if ( ! $role && ! $user_id ) {
+		if ( ! $this->role && ! $this->user_id ) {
 			wp_send_json_error( __( 'User role or id must be specified', 'ultimate-dashboard' ) );
 		}
 
-		if ( $user_id ) {
-			$user = get_userdata( $user_id );
-			$role = $user->roles[0];
+		if ( $this->user_id ) {
+			$user       = get_userdata( $this->user_id );
+			$this->role = $user->roles[0];
 		}
 
 		do_action( 'udb_ajax_before_get_admin_menu' );
-		do_action( 'udb_ajax_get_admin_menu', $this, $role );
+		do_action( 'udb_ajax_get_admin_menu', $this, $this->role );
 
 	}
 
@@ -229,7 +249,12 @@ class Get_Menu {
 		$default_menu = $this->format_default_menu( $default_menu );
 		$saved_menu   = get_option( 'udb_admin_menu', array() );
 		$saved_menu   = empty( $saved_menu ) ? array() : $saved_menu;
-		$custom_menu  = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
+
+		if ( 'user_id' === $this->by ) {
+			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ $this->user_id ] ) ? $saved_menu[ $this->user_id ] : array();
+		} else {
+			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
+		}
 
 		if ( empty( $custom_menu ) ) {
 			$response = $this->parse_response_without_custom_menu( $default_menu );
