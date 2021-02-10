@@ -21,6 +21,8 @@
 	}
 
 	var elms = {};
+	var state = {};
+	var select2 = {};
 
 	/**
 	 * Init the script.
@@ -30,9 +32,9 @@
 		elms.searchBox = document.querySelector('.udb-admin-menu-box--search-box');
 		elms.roleTabs = document.querySelector('.udb-admin-menu--role-tabs');
 		elms.userTabs = document.querySelector('.udb-admin-menu--user-tabs');
-
-		var roleMenu = document.querySelector('.udb-admin-menu--role-tabs');
-		setupTabs(roleMenu);
+		elms.userTabsMenu = elms.userTabs.querySelector('.udb-admin-menu--user-menu');
+		elms.userTabsContent = elms.userTabs.querySelector('.udb-admin-menu--edit-area');
+		state.usersLoaded = false;
 
 		udbAdminMenu.roles.forEach(function (role) {
 			getMenu(role.key);
@@ -40,11 +42,14 @@
 
 		document.querySelector('.udb-admin-menu--edit-form').addEventListener('submit', submitForm);
 
-		setupBoxHeaderTabs();
+		$(document).on('click', '.udb-admin-menu--tab-menu-item', switchTab);
+		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+		setupUsersSelect2();
 	}
 
-	function setupBoxHeaderTabs() {
-		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+	function setupUsersSelect2() {
+		if (state.usersLoaded) return;
+		loadUsers();
 	}
 
 	function switchHeaderTab(e) {
@@ -71,71 +76,119 @@
 	}
 
 	/**
-	 * Setup tabs.
-	 * 
-	 * @param HTMLElement tabArea The tab area.
+	 * Load users select2 data via ajax.
 	 */
-	function setupTabs(tabArea) {
-		var tabArea = document.querySelectorAll('.udb-admin-menu--tabs');
-		if (!tabArea.length) return;
-
-		tabArea.forEach(function (tab) {
-			var tabHasIdByDefault = false;
-
-			if (tab.id) {
-				tabHasIdByDefault = true;
-			} else {
-				tab.id = 'udb-admin-menu--tab' + Math.random().toString(36).substring(7);
+	function loadUsers() {
+		$.ajax({
+			type: 'get',
+			url: ajaxurl,
+			cache: false,
+			data: {
+				action: 'udb_admin_menu_get_users',
+				nonce: udbAdminMenu.nonces.getUsers
 			}
+		}).done(function (r) {
+			if (!r.success) return;
 
-			var menus = document.querySelectorAll('#' + tab.id + ' > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item');
+			var field = document.querySelector('.udb-admin-menu--search-user');
+			if (!field) return;
 
-			if (!tabHasIdByDefault) tab.removeAttribute('id');
+			field.options[0].innerHTML = field.dataset.placeholder;
+			field.disabled = false;
 
-			menus.forEach(function (menu) {
-				menu.addEventListener('click', function (e) {
-					switchTab(tab, this.dataset.udbTabContent);
-				});
+			select2.users = $(field).select2({
+				placeholder: field.dataset.placeholder,
+				allowClear: true,
+				data: r.data
 			});
+
+			$(field).on('select2:select', onUserSelected);
+
+			state.usersLoaded = true;
+		}).fail(function () {
+			console.log('Failed to load users');
+		}).always(function () {
+			//
+		});
+	}
+
+	/**
+	 * Event handler to run when a user (inside select2) is selected.
+	 * @param {Event} e The event object.
+	 */
+	function onUserSelected(e) {
+		appendUserTabsMenu(e.params.data);
+		appendUserTabsContent(e.params.data);
+	}
+
+	/**
+	 * Build user tab menu item template string and append it to user tab menu.
+	 * @param {object} data The id and text pair (select2 data format).
+	 */
+	function appendUserTabsMenu(data) {
+		var template = udbAdminMenu.templates.userTabMenu;
+
+		template = template.replace(/{user_id}/g, data.id);
+		template = template.replace(/{display_name}/g, data.text);
+
+		elms.userTabsMenu.querySelectorAll('.udb-admin-menu--tab-menu-item').forEach(function (el) {
+			el.classList.remove('is-active');
 		});
 
-		/**
-		 * Switch tab.
-		 *
-		 * @param {HTMLElement} tabArea The tab area.
-		 * @param {string} tabId The target tab id.
-		 */
-		function switchTab(tabArea, tabId) {
-			var tabHasIdByDefault = false;
+		$(elms.userTabsMenu).append(template);
+	}
 
-			if (tabArea.id) {
-				tabHasIdByDefault = true;
-			} else {
-				tabArea.id = 'udb-admin-menu--tab' + Math.random().toString(36).substring(7);
-			}
+	/**
+	 * Build user tab menu item template string and append it to user tab menu.
+	 * @param {object} data The id and text pair (select2 data format).
+	 */
+	function appendUserTabsContent(data) {
+		var template = udbAdminMenu.templates.userTabContent;
 
-			var menus = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item');
-			var contents = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item');
+		template = template.replace(/{user_id}/g, data.id);
 
-			if (!tabHasIdByDefault) tabArea.removeAttribute('id');
+		elms.userTabsContent.querySelectorAll('.udb-admin-menu--tab-content-item').forEach(function (el) {
+			el.classList.remove('is-active');
+		});
 
-			menus.forEach(function (menu) {
-				if (menu.dataset.udbTabContent !== tabId) {
-					menu.classList.remove('is-active');
-				} else {
-					menu.classList.add('is-active');
-				}
-			});
+		$(elms.userTabsContent).append(template);
+	}
 
-			contents.forEach(function (content) {
-				if (content.id !== tabId) {
-					content.classList.remove('is-active');
-				} else {
-					content.classList.add('is-active');
-				}
-			});
+	/**
+	 * Switch tabs.
+	 */
+	function switchTab(e) {
+		var tabArea = this.parentNode.parentNode;
+		var tabId = this.dataset.udbTabContent;
 
+		var tabHasIdByDefault = false;
+
+		if (tabArea.id) {
+			tabHasIdByDefault = true;
+		} else {
+			tabArea.id = 'udb-admin-menu--tab' + Math.random().toString(36).substring(7);
 		}
+
+		var menus = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item');
+		var contents = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item');
+
+		if (!tabHasIdByDefault) tabArea.removeAttribute('id');
+
+		menus.forEach(function (menu) {
+			if (menu.dataset.udbTabContent !== tabId) {
+				menu.classList.remove('is-active');
+			} else {
+				menu.classList.add('is-active');
+			}
+		});
+
+		contents.forEach(function (content) {
+			if (content.id !== tabId) {
+				content.classList.remove('is-active');
+			} else {
+				content.classList.add('is-active');
+			}
+		});
 	}
 
 	/**
@@ -175,7 +228,7 @@
 			var template;
 			var submenuTemplate;
 			var icon;
-			
+
 			if (menu.type === 'separator') {
 				template = udbAdminMenu.templates.menuSeparator;
 				template = template.replace(/{separator}/g, menu.url_default);
@@ -290,13 +343,9 @@
 	 * Setup menu items.
 	 */
 	function setupMenuItems(listArea, isSubmenu) {
-		var tabArea;
-
 		setupSortable(listArea);
 
 		if (!isSubmenu) {
-			tabArea = listArea.querySelector('.udb-admin-menu--menu-item-tabs');
-			setupTabs(tabArea);
 			setupItemChanges(listArea);
 			$(listArea).find('.dashicons-picker').dashiconsPicker();
 

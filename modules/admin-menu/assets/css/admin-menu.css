@@ -40,8 +40,8 @@
 	border-bottom-width: 0;
 }
 
-.udb-admin-menu-box--header .search-user {
-	min-width: 250px;
+.udb-admin-menu-box--header .udb-admin-menu--search-user {
+	width: 250px;
 }
 
 .udb-admin-menu-box--header-tabs {
@@ -100,6 +100,7 @@
 }
 
 .udb-admin-menu--tab-menu-item {
+	position: relative;
 	display: flex;
 	align-items: center;
 	margin-bottom: 0;
@@ -119,6 +120,27 @@
 	border-bottom: 2px solid transparent;
 }
 
+.udb-admin-menu--user-menu .udb-admin-menu--tab-menu-item {
+	margin-right: 25px;
+}
+
+.udb-admin-menu--user-menu .delete-icon {
+	position: absolute;
+	margin-top: 1px;
+	right: -15px;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	background-color: #eee;
+	border-radius: 50%;
+	transition: none;
+}
+
+.udb-admin-menu--user-menu .delete-icon:hover {
+	color: #fff;
+	background-color: red;
+}
+
 .udb-admin-menu--tab-menu-item.is-active {
 	color: #333;
 }
@@ -136,6 +158,28 @@
 .udb-admin-menu--edit-area {
 	background-color: #f9f9f9;
 	border-bottom: 1px solid #ddd;
+}
+
+.udb-admin-menu--tab-content .loading {
+	display: flex;
+	margin-bottom: 30px;
+	position: relative;
+	justify-content: center;
+	color: transparent !important;
+	pointer-events: none;	
+}
+
+.udb-admin-menu--tab-content .loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #197cff #197cff !important;
+	border-radius: 290486px;
+	-webkit-animation: loadingSpinAround 0.5s infinite linear;
+	animation: loadingSpinAround 0.5s infinite linear;
 }
 
 .udb-admin-menu--menu-list {

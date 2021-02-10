@@ -17,6 +17,9 @@ return function ( $module ) {
 		wp_enqueue_script( 'jquery-ui-mouse' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
+		// Select2.
+		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
+
 		// Dashicons picker.
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
@@ -39,7 +42,8 @@ return function ( $module ) {
 
 		$admin_menu_data = array(
 			'nonces'    => array(
-				'getMenu' => wp_create_nonce( 'udb_admin_menu_get_menu' ),
+				'getMenu'  => wp_create_nonce( 'udb_admin_menu_get_menu' ),
+				'getUsers' => wp_create_nonce( 'udb_admin_menu_get_users' ),
 			),
 			'roles'     => $roles,
 			'templates' => array(

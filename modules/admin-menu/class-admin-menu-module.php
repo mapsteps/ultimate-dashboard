@@ -72,9 +72,13 @@ class Admin_Menu_Module extends Base_Module {
 	public function setup_ajax() {
 
 		require_once __DIR__ . '/ajax/class-get-menu.php';
+		require_once __DIR__ . '/ajax/class-get-users.php';
 
-		$class = new Ajax\Get_Menu();
-		add_action( 'wp_ajax_udb_admin_menu_get_menu', array( $class, 'ajax' ) );
+		$get_menu  = new Ajax\Get_Menu();
+		$get_users = new Ajax\Get_Users();
+
+		add_action( 'wp_ajax_udb_admin_menu_get_menu', array( $get_menu, 'ajax' ) );
+		add_action( 'wp_ajax_udb_admin_menu_get_users', array( $get_users, 'ajax' ) );
 
 	}
 

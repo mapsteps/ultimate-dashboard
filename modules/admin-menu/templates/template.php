@@ -35,7 +35,11 @@ $role_names = $wp_roles->role_names;
 					<?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
 				</h2>
 				<div class="udb-admin-menu-box--search-box is-hidden">
-					<input type="text" placeholder="Select a user" class="search-user">
+					<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-admin-menu--search-user" data-loading-msg="<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
+						<option value="">
+							<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>
+						</option>
+					</select>
 				</div>
 				<ul class="udb-admin-menu-box--header-tabs">
 					<li class="udb-admin-menu-box--header-tab" data-header-tab="users">
