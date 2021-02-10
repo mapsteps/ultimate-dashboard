@@ -22,7 +22,8 @@
 
 	var elms = {};
 	var state = {};
-	var select2 = {};
+	var usersSelect2 = null;
+	var usersData = [];
 
 	/**
 	 * Init the script.
@@ -43,6 +44,7 @@
 		document.querySelector('.udb-admin-menu--edit-form').addEventListener('submit', submitForm);
 
 		$(document).on('click', '.udb-admin-menu--tab-menu-item', switchTab);
+		$(document).on('click', '.udb-admin-menu--remove-tab', removeTab);
 		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
 		setupUsersSelect2();
 	}
@@ -95,10 +97,10 @@
 
 			field.options[0].innerHTML = field.dataset.placeholder;
 			field.disabled = false;
+			usersData = r.data;
 
-			select2.users = $(field).select2({
+			usersSelect2 = $(field).select2({
 				placeholder: field.dataset.placeholder,
-				allowClear: true,
 				data: r.data
 			});
 
@@ -119,6 +121,20 @@
 	function onUserSelected(e) {
 		appendUserTabsMenu(e.params.data);
 		appendUserTabsContent(e.params.data);
+
+		usersData.forEach(function (data, index) {
+			if (data.id == e.params.data.id) {
+				usersData[index].disabled = true;
+			}
+		});
+
+		usersSelect2.select2('destroy');
+		usersSelect2.empty();
+
+		usersSelect2.select2({
+			placeholder: usersSelect2.data('placeholder'),
+			data: usersData
+		});
 	}
 
 	/**
@@ -158,6 +174,7 @@
 	 * Switch tabs.
 	 */
 	function switchTab(e) {
+		if (e.target.classList.contains('delete-icon')) return;
 		var tabArea = this.parentNode.parentNode;
 		var tabId = this.dataset.udbTabContent;
 
@@ -189,6 +206,34 @@
 				content.classList.add('is-active');
 			}
 		});
+	}
+
+	/**
+	 * Remove tab.
+	 * @param {Event} e The event object.
+	 */
+	function removeTab(e) {
+		var tabArea = this.parentNode.parentNode.parentNode;
+		var menuItem = this.parentNode;
+		var menuWrapper = tabArea.querySelector('.udb-admin-menu--tab-menu');
+		var contentWrapper = tabArea.querySelector('.udb-admin-menu--tab-content');
+
+		usersData.forEach(function (data, index) {
+			if (data.id == menuItem.dataset.userId) {
+				usersData[index].disabled = false;
+			}
+		});
+
+		usersSelect2.select2('destroy');
+		usersSelect2.empty();
+		
+		usersSelect2.select2({
+			placeholder: usersSelect2.data('placeholder'),
+			data: usersData
+		});
+
+		menuWrapper.removeChild(this.parentNode);
+		contentWrapper.removeChild(tabArea.querySelector('#' + this.parentNode.dataset.udbTabContent));
 	}
 
 	/**

@@ -14,7 +14,7 @@ ob_start();
 	<button type="button">
 		{display_name}
 	</button>
-	<i class="dashicons dashicons-no-alt delete-icon"></i>
+	<i class="dashicons dashicons-no-alt delete-icon udb-admin-menu--remove-tab"></i>
 </li>
 
 <?php
