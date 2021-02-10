@@ -35,6 +35,7 @@
 		elms.userTabs = document.querySelector('.udb-admin-menu--user-tabs');
 		elms.userTabsMenu = elms.userTabs.querySelector('.udb-admin-menu--user-menu');
 		elms.userTabsContent = elms.userTabs.querySelector('.udb-admin-menu--edit-area');
+
 		state.usersLoaded = false;
 
 		udbAdminMenu.roles.forEach(function (role) {
@@ -46,6 +47,7 @@
 		$(document).on('click', '.udb-admin-menu--tab-menu-item', switchTab);
 		$(document).on('click', '.udb-admin-menu--remove-tab', removeTab);
 		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+
 		setupUsersSelect2();
 	}
 
@@ -330,9 +332,9 @@
 				}
 
 				template = template.replace(/{menu_icon}/g, icon);
-				submenuTemplate = buildSubmenu(by, value, menu);
-
+				
 				if (menu.submenu) {
+					submenuTemplate = buildSubmenu(by, value, menu);
 					template = template.replace(/{submenu_template}/g, submenuTemplate);
 				} else {
 					template = template.replace(/{submenu_template}/g, '');
@@ -381,7 +383,6 @@
 			} else if (by === 'user_id') {
 				template = template.replace(/{user_id}/g, value);
 			}
-
 
 			template = template.replace(/{default_menu_id}/g, menu.id_default);
 
