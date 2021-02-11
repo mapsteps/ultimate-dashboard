@@ -9,6 +9,24 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 $wp_roles   = wp_roles();
 $role_names = $wp_roles->role_names;
+
+$saved_menu      = get_option( 'udb_admin_menu', array() );
+$saved_user_data = array();
+
+foreach ( $saved_menu as $identifier => $menu_item ) {
+	if ( false !== stripos( $identifier, 'user_id_' ) ) {
+		$user_id   = absint( str_ireplace( 'user_id_', '', $identifier ) );
+		$user_data = get_userdata( $user_id );
+
+		array_push(
+			$saved_user_data,
+			array(
+				'ID'           => $user_id,
+				'display_name' => $user_data->display_name,
+			)
+		);
+	}
+}
 ?>
 
 <div class="wrap heatbox-wrap">
@@ -67,7 +85,7 @@ $role_names = $wp_roles->role_names;
 				<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
 					<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
-						<div id="udb-admin-menu--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
+						<div id="udb-admin-menu--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
 							<ul class="udb-admin-menu--menu-list">
 								<!-- to be re-written via js -->
 							</ul>
@@ -79,11 +97,33 @@ $role_names = $wp_roles->role_names;
 
 			<div class="udb-admin-menu--tabs udb-admin-menu--user-tabs is-hidden">
 				<ul class="udb-admin-menu--tab-menu udb-admin-menu--user-menu">
-					<!-- to be filled via JS -->
+					<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
+
+						<li class="udb-admin-menu--tab-menu-item is-active<?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+							<button type="button">
+								<?php echo esc_html( $user_data['display_name'] ); ?>
+							</button>
+							<i class="dashicons dashicons-no-alt delete-icon udb-admin-menu--remove-tab"></i>
+						</li>
+
+					<?php endforeach; ?>
+
+					<!-- to be managed more via JS -->
 				</ul>
 
 				<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
-					<!-- to be filled via JS -->
+					<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
+
+						<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace is-active" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+							<ul class="udb-admin-menu--menu-list">
+								<!-- to be re-written via js -->
+								<li class="loading"></li>
+							</ul>
+						</div>
+
+					<?php endforeach; ?>
+
+					<!-- to be managed more via JS -->
 				</div><!-- .udb-admin-menu--tab-content -->
 			</div><!-- .udb-admin-menu--user-tabs -->
 

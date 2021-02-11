@@ -45,6 +45,7 @@ class Get_Menu {
 
 		$nonce         = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
 		$this->role    = isset( $_POST['role'] ) ? sanitize_text_field( $_POST['role'] ) : '';
+		$this->by      = isset( $_POST['by'] ) ? sanitize_text_field( $_POST['by'] ) : '';
 		$this->user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_menu' ) ) {
@@ -56,6 +57,7 @@ class Get_Menu {
 		}
 
 		if ( $this->user_id ) {
+			$this->by   = 'user_id';
 			$user       = get_userdata( $this->user_id );
 			$this->role = $user->roles[0];
 		}
@@ -251,7 +253,7 @@ class Get_Menu {
 		$saved_menu   = empty( $saved_menu ) ? array() : $saved_menu;
 
 		if ( 'user_id' === $this->by ) {
-			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ $this->user_id ] ) ? $saved_menu[ $this->user_id ] : array();
+			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ 'user_id_' . $this->user_id ] ) ? $saved_menu[ 'user_id_' . $this->user_id ] : array();
 		} else {
 			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
 		}

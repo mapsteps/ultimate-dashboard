@@ -24,6 +24,7 @@
 	var state = {};
 	var usersSelect2 = null;
 	var usersData = [];
+	var savedUsers = [];
 
 	/**
 	 * Init the script.
@@ -40,6 +41,13 @@
 
 		udbAdminMenu.roles.forEach(function (role) {
 			getMenu('role', role.key);
+		});
+
+		var savedUserTabsContentItems = elms.userTabsContent.querySelectorAll('.udb-admin-menu--tab-content-item');
+
+		savedUserTabsContentItems.forEach(function (item) {
+			savedUsers.push(parseInt(item.dataset.userId, 10));
+			getMenu('user_id', item.dataset.userId);
 		});
 
 		document.querySelector('.udb-admin-menu--edit-form').addEventListener('submit', submitForm);
@@ -101,9 +109,15 @@
 			field.disabled = false;
 			usersData = r.data;
 
+			usersData.forEach(function (data, index) {
+				if (savedUsers.indexOf(data.id) >= 0) {
+					usersData[index].disabled = true;
+				}
+			});
+
 			usersSelect2 = $(field).select2({
 				placeholder: field.dataset.placeholder,
-				data: r.data
+				data: usersData
 			});
 
 			$(field).on('select2:select', onUserSelected);
@@ -332,7 +346,7 @@
 				}
 
 				template = template.replace(/{menu_icon}/g, icon);
-				
+
 				if (menu.submenu) {
 					submenuTemplate = buildSubmenu(by, value, menu);
 					template = template.replace(/{submenu_template}/g, submenuTemplate);
