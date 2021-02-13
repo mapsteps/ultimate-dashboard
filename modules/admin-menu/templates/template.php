@@ -99,7 +99,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 				<ul class="udb-admin-menu--tab-menu udb-admin-menu--user-menu">
 					<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-						<li class="udb-admin-menu--tab-menu-item is-active<?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+						<li class="udb-admin-menu--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
 							<button type="button">
 								<?php echo esc_html( $user_data['display_name'] ); ?>
 							</button>
@@ -114,7 +114,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 				<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
 					<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-						<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace is-active" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+						<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
 							<ul class="udb-admin-menu--menu-list">
 								<!-- to be re-written via js -->
 								<li class="loading"></li>
