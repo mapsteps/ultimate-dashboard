@@ -377,6 +377,10 @@
 	user-select: none;
 }
 
+.udb-admin-menu-box .udb-admin-menu--button.is-hidden {
+	display: none;
+}
+
 .udb-admin-menu-box .udb-admin-menu--button i {
 	margin-right: 5px;
 }
