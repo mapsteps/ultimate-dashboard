@@ -89,6 +89,8 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<ul class="udb-admin-menu--menu-list">
 								<!-- to be re-written via js -->
 							</ul>
+
+							<?php do_action( 'udb_admin_menu_add_menu_button' ); ?>
 						</div>
 
 					<?php endforeach; ?>
@@ -119,6 +121,8 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 								<!-- to be re-written via js -->
 								<li class="loading"></li>
 							</ul>
+
+							<?php do_action( 'udb_admin_menu_add_menu_button' ); ?>
 						</div>
 
 					<?php endforeach; ?>

@@ -15,6 +15,8 @@ ob_start();
 		<!-- to be re-written via js -->
 		<li class="loading"></li>
 	</ul>
+
+	<?php do_action( 'udb_admin_menu_add_menu_button' ); ?>
 </div>
 
 <?php
