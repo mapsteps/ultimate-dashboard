@@ -26,7 +26,7 @@ $form_bg_color           = isset( $login['form_bg_color'] ) ? $login['form_bg_co
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '';
 $form_top_padding        = isset( $login['form_top_padding'] ) ? $login['form_top_padding'] : '';
 $form_bottom_padding     = isset( $login['form_bottom_padding'] ) ? $login['form_bottom_padding'] : '';
-$form_horizontal_padding = isset( $login['form_horizontal_padding'] ) ? $login['form_horizontal_padding'] : '';
+$form_horizontal_padding = isset( $login['form_horizontal_padding'] ) ? $login['form_horizontal_padding'] : ''; // Not in use?
 $form_border_color       = isset( $login['form_border_color'] ) ? $login['form_border_color'] : '#dddddd';
 $form_border_width       = isset( $login['form_border_width'] ) ? $login['form_border_width'] : '2px';
 $form_border_radius      = isset( $login['form_border_radius'] ) ? $login['form_border_radius'] : '4px';
@@ -65,15 +65,11 @@ $footer_link_color_hover = isset( $login['footer_link_color_hover'] ) ? $login['
 $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $accent_color : $footer_link_color_hover; // Additional checking to inherit wp-admin accent color by default.
 ?>
 
-<?php
-if ( $bg_color ) {
-	?>
+<?php if ( $bg_color ) : ?>
 	body.login {
 		background-color: <?php echo esc_attr( $bg_color ); ?>;
 	}
-	<?php
-}
-?>
+<?php endif; ?>
 
 .login h1 {
 	padding: 0 12px;
@@ -87,51 +83,39 @@ if ( $bg_color ) {
 	background-size: auto <?php echo esc_attr( $logo_height ); ?>;
 }
 
-<?php
-if ( $logo_image ) {
-	?>
+<?php if ( $logo_image ) : ?>
 	.login h1 a {
 		background-image: url(<?php echo esc_url( $logo_image ); ?>);
 	}
-	<?php
-}
+<?php endif; ?>
 
-if ( $labels_color ) {
-	?>
+<?php if ( $labels_color ) : ?>
 	#loginform label {
 		color: <?php echo esc_attr( $labels_color ); ?>;
 	}
-	<?php
-}
-?>
+<?php endif; ?>
 
-<?php
-if ( $form_width ) {
-	?>
+<?php if ( $form_width ) : ?>
 	#login {
 		width: <?php echo esc_attr( $form_width ); ?>;
 	}
-	<?php
-}
-?>
+<?php endif; ?>
 
 .login form,
 #loginform {
-	<?php if ( $form_bg_color ) : ?>
-		background-color: <?php echo esc_attr( $form_bg_color ); ?>;
-	<?php endif; ?>
-
-	<?php if ( $form_top_padding ) : ?>
-		padding-top: <?php echo esc_attr( $form_top_padding ); ?>;
-	<?php endif; ?>
-
-	<?php if ( $form_bottom_padding ) : ?>
-		padding-top: <?php echo esc_attr( $form_bottom_padding ); ?>;
-	<?php endif; ?>
+	box-shadow: none;
 	border-width: <?php echo esc_attr( $form_border_width ); ?>;
 	border-color: <?php echo esc_attr( $form_border_color ); ?>;
 	border-radius: <?php echo esc_attr( $form_border_radius ); ?>;
-	box-shadow: none;
+	<?php if ( $form_bg_color ) : ?>
+		background-color: <?php echo esc_attr( $form_bg_color ); ?>;
+	<?php endif; ?>
+	<?php if ( $form_top_padding ) : ?>
+		padding-top: <?php echo esc_attr( $form_top_padding ); ?>;
+	<?php endif; ?>
+	<?php if ( $form_bottom_padding ) : ?>
+		padding-bottom: <?php echo esc_attr( $form_bottom_padding ); ?>;
+	<?php endif; ?>
 }
 
 .login input[type=text],
@@ -141,16 +125,16 @@ if ( $form_width ) {
 	outline: none;
 	transition: all 0.30s ease-in-out;
 	border-color: <?php echo esc_attr( $fields_border_color ); ?>;
+	border-radius: <?php echo esc_attr( $fields_border_radius ); ?>;
+	border-width: <?php echo esc_attr( $fields_border_width ); ?>;
+	padding: 0 <?php echo esc_attr( $fields_horizontal_padding ); ?>;
+	height: <?php echo esc_attr( $fields_height ); ?>;
 	<?php if ( $fields_text_color ) : ?>
 		color: <?php echo esc_attr( $fields_text_color ); ?>;
 	<?php endif; ?>
 	<?php if ( $fields_bg_color ) : ?>
 	background-color: <?php echo esc_attr( $fields_bg_color ); ?>;
 	<?php endif; ?>
-	border-radius: <?php echo esc_attr( $fields_border_radius ); ?>;
-	border-width: <?php echo esc_attr( $fields_border_width ); ?>;
-	padding: 0 <?php echo esc_attr( $fields_horizontal_padding ); ?>;
-	height: <?php echo esc_attr( $fields_height ); ?>;
 }
 
 .login input[type=text]:focus,

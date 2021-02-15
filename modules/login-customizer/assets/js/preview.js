@@ -235,7 +235,7 @@
 				var valueNumber = val.replace(valueUnit, '');
 				valueNumber = parseInt(valueNumber.trim(), 10);
 
-				var hidePwTop = (valueNumber / 2) - 10;
+				var hidePwTop = (valueNumber / 2) - 20;
 
 				var content = val ? '.login input[type=text], .login input[type=password] {height: ' + val + ';} .login .button.wp-hide-pw {margin-top: ' + hidePwTop.toString() + valueUnit + ';}' : '';
 
