@@ -55,6 +55,8 @@
 		$(document).on('click', '.udb-admin-menu--tab-menu-item', switchTab);
 		$(document).on('click', '.udb-admin-menu--remove-tab', removeTab);
 		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+		$(document).on('click', '.udb-admin-menu--expand-menu', expandCollapseMenuItem);
+		$(document).on('click', '.hide-menu', showHideMenuItem);
 
 		setupUsersSelect2();
 	}
@@ -295,73 +297,7 @@
 		var builtMenu = '';
 
 		menuList.forEach(function (menu) {
-			var template;
-			var submenuTemplate;
-			var icon;
-
-			if (menu.type === 'separator') {
-				template = udbAdminMenu.templates.menuSeparator;
-				template = template.replace(/{separator}/g, menu.url_default);
-
-
-				template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
-				template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
-				template = template.replace(/{menu_was_added}/g, menu.was_added);
-				template = template.replace(/{default_menu_id}/g, menu.id_default);
-				template = template.replace(/{default_menu_url}/g, menu.url_default);
-			} else {
-				template = udbAdminMenu.templates.menuList;
-				template = template.replace(/{menu_title}/g, menu.title);
-				template = template.replace(/{default_menu_title}/g, menu.title_default);
-
-				var parsedTitle = menu.title ? menu.title : menu.title_default;
-				template = template.replace(/{parsed_menu_title}/g, parsedTitle);
-
-				template = template.replace(/{menu_url}/g, menu.url);
-				template = template.replace(/{default_menu_url}/g, menu.url_default);
-
-				template = template.replace(/{menu_id}/g, menu.id);
-				template = template.replace(/{default_menu_id}/g, menu.id_default);
-
-				template = template.replace(/{menu_dashicon}/g, menu.dashicon);
-				template = template.replace(/{default_menu_dashicon}/g, menu.dashicon_default);
-
-				template = template.replace(/{menu_icon_svg}/g, menu.icon_svg);
-				template = template.replace(/{default_menu_icon_svg}/g, menu.icon_svg_default);
-
-				template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
-				template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
-				template = template.replace(/{menu_was_added}/g, menu.was_added);
-
-				var menuIconSuffix = menu.icon_type && menu[menu.icon_type] ? '' : '_default';
-
-				if (menu['icon_type' + menuIconSuffix] === 'icon_svg') {
-					icon = '<img alt="" src="' + menu['icon_svg' + menuIconSuffix] + '">';
-					template = template.replace(/{icon_svg_tab_is_active}/g, 'is-active');
-					template = template.replace(/{dashicon_tab_is_active}/g, '');
-				} else {
-					icon = '<i class="dashicons ' + menu['dashicon' + menuIconSuffix] + '"></i>';
-					template = template.replace(/{icon_svg_tab_is_active}/g, '');
-					template = template.replace(/{dashicon_tab_is_active}/g, 'is-active');
-				}
-
-				template = template.replace(/{menu_icon}/g, icon);
-
-				if (menu.submenu) {
-					submenuTemplate = buildSubmenu(by, value, menu);
-					template = template.replace(/{submenu_template}/g, submenuTemplate);
-				} else {
-					template = template.replace(/{submenu_template}/g, '');
-				}
-			}
-
-			if (by === 'role') {
-				template = template.replace(/{role}/g, value);
-			} else if (by === 'user_id') {
-				template = template.replace(/{user_id}/g, value);
-			}
-
-			builtMenu += template;
+			builtMenu += replaceMenuPlaceholders(by, value, menu);
 		});
 
 		listArea.innerHTML = builtMenu;
@@ -375,6 +311,83 @@
 				setupMenuItems(submenu, true);
 			});
 		}
+	}
+
+	/**
+	 * Replace menu placeholders.
+	 *
+	 * @param {string} by Either by role or user_id.
+	 * @param {string} value The role or user_id value.
+	 * @param {object} menu The menu item.
+	 */
+	function replaceMenuPlaceholders(by, value, menu) {
+		var template;
+		var submenuTemplate;
+		var icon;
+
+		if (menu.type === 'separator') {
+			template = udbAdminMenu.templates.menuSeparator;
+			template = template.replace(/{separator}/g, menu.url_default);
+
+
+			template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
+			template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
+			template = template.replace(/{menu_was_added}/g, menu.was_added);
+			template = template.replace(/{default_menu_id}/g, menu.id_default);
+			template = template.replace(/{default_menu_url}/g, menu.url_default);
+		} else {
+			template = udbAdminMenu.templates.menuList;
+			template = template.replace(/{menu_title}/g, menu.title);
+			template = template.replace(/{default_menu_title}/g, menu.title_default);
+
+			var parsedTitle = menu.title ? menu.title : menu.title_default;
+			template = template.replace(/{parsed_menu_title}/g, parsedTitle);
+
+			template = template.replace(/{menu_url}/g, menu.url);
+			template = template.replace(/{default_menu_url}/g, menu.url_default);
+
+			template = template.replace(/{menu_id}/g, menu.id);
+			template = template.replace(/{default_menu_id}/g, menu.id_default);
+
+			template = template.replace(/{menu_dashicon}/g, menu.dashicon);
+			template = template.replace(/{default_menu_dashicon}/g, menu.dashicon_default);
+
+			template = template.replace(/{menu_icon_svg}/g, menu.icon_svg);
+			template = template.replace(/{default_menu_icon_svg}/g, menu.icon_svg_default);
+
+			template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
+			template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
+			template = template.replace(/{menu_was_added}/g, menu.was_added);
+
+			var menuIconSuffix = menu.icon_type && menu[menu.icon_type] ? '' : '_default';
+
+			if (menu['icon_type' + menuIconSuffix] === 'icon_svg') {
+				icon = '<img alt="" src="' + menu['icon_svg' + menuIconSuffix] + '">';
+				template = template.replace(/{icon_svg_tab_is_active}/g, 'is-active');
+				template = template.replace(/{dashicon_tab_is_active}/g, '');
+			} else {
+				icon = '<i class="dashicons ' + menu['dashicon' + menuIconSuffix] + '"></i>';
+				template = template.replace(/{icon_svg_tab_is_active}/g, '');
+				template = template.replace(/{dashicon_tab_is_active}/g, 'is-active');
+			}
+
+			template = template.replace(/{menu_icon}/g, icon);
+
+			if (menu.submenu) {
+				submenuTemplate = buildSubmenu(by, value, menu);
+				template = template.replace(/{submenu_template}/g, submenuTemplate);
+			} else {
+				template = template.replace(/{submenu_template}/g, '');
+			}
+		}
+
+		if (by === 'role') {
+			template = template.replace(/{role}/g, value);
+		} else if (by === 'user_id') {
+			template = template.replace(/{user_id}/g, value);
+		}
+
+		return template;
 	}
 
 	/**
@@ -428,12 +441,6 @@
 		if (!isSubmenu) {
 			setupItemChanges(listArea);
 			$(listArea).find('.dashicons-picker').dashiconsPicker();
-
-			/**
-			 * These functions will register their functionality both on parent menu & their submenus.
-			 */
-			setupExpandCollapseMenu(listArea);
-			setupShowHideMenu(listArea);
 		}
 	}
 
@@ -452,90 +459,86 @@
 	}
 
 	/**
-	 * Setup menu item's expand-collapse functionality.
-	 *
-	 * @param {HTMLElement} listArea The list area.
+	 * Expand / collapse menu item.
+	 * @param {Event} e The event object.
 	 */
-	function setupExpandCollapseMenu(listArea) {
-		var triggers = listArea.querySelectorAll('.udb-admin-menu--expand-menu');
-		if (!triggers.length) return;
+	function expandCollapseMenuItem(e) {
+		var parent = this.parentNode.parentNode;
+		var target = parent.querySelector('.udb-admin-menu--expanded-panel');
 
-		triggers.forEach(function (trigger) {
-			trigger.addEventListener('click', function (e) {
-				var parent = this.parentNode.parentNode;
-				var target = parent.querySelector('.udb-admin-menu--expanded-panel');
-
-				if (parent.classList.contains('is-expanded')) {
-					$(target).stop().slideUp(350, function () {
-						parent.classList.remove('is-expanded');
-					});
-				} else {
-					$(target).stop().slideDown(350, function () {
-						parent.classList.add('is-expanded');
-					});
-				}
+		if (parent.classList.contains('is-expanded')) {
+			$(target).stop().slideUp(350, function () {
+				parent.classList.remove('is-expanded');
 			});
-		});
+		} else {
+			$(target).stop().slideDown(350, function () {
+				parent.classList.add('is-expanded');
+			});
+		}
 	}
 
 	/**
-	 * Setup show/hide menu functionality.
+	 * show / hide menu item.
 	 *
-	 * @param {HTMLElement} listArea The list area.
+	 * @param {Event} listArea The event object.
 	 */
-	function setupShowHideMenu(listArea) {
-		var triggers = listArea.querySelectorAll('.hide-menu');
-		if (!triggers.length) return;
+	function showHideMenuItem(e) {
+		var parent = this.parentNode.parentNode.parentNode;
+		var isHidden = parent.dataset.hidden === '1' ? true : false;
 
-		triggers.forEach(function (trigger) {
-			trigger.addEventListener('click', function (e) {
-				var parent = this.parentNode.parentNode.parentNode;
-				var isHidden = parent.dataset.hidden === '1' ? true : false;
-
-				if (isHidden) {
-					this.classList.add('dashicons-visibility');
-					this.classList.remove('dashicons-hidden');
-					parent.dataset.hidden = 0;
-				} else {
-					parent.dataset.hidden = 1;
-					this.classList.remove('dashicons-visibility');
-					this.classList.add('dashicons-hidden');
-				}
-
-			});
-		});
+		if (isHidden) {
+			this.classList.add('dashicons-visibility');
+			this.classList.remove('dashicons-hidden');
+			parent.dataset.hidden = 0;
+		} else {
+			parent.dataset.hidden = 1;
+			this.classList.remove('dashicons-visibility');
+			this.classList.add('dashicons-hidden');
+		}
 	}
 
+	/**
+	 * Setup item changes.
+	 * @param {HTMLElement} listArea The list area element.
+	 */
 	function setupItemChanges(listArea) {
 		var menuItems = listArea.querySelectorAll('.udb-admin-menu--menu-item');
 		if (!menuItems.length) return;
 
 		menuItems.forEach(function (menuItem) {
-			var iconFields = menuItem.querySelectorAll('.udb-admin-menu--icon-field');
-			iconFields = iconFields.length ? iconFields : [];
+			setupItemChange(menuItem);
+		});
+	}
 
-			iconFields.forEach(function (field) {
-				field.addEventListener('change', function () {
-					var iconWrapper = menuItem.querySelector('.udb-admin-menu--menu-icon');
-					var iconOutput;
+	/**
+	 * Setup item change.
+	 * @param {HTMLElement} menuItem The menu item element.
+	 */
+	function setupItemChange(menuItem) {
+		var iconFields = menuItem.querySelectorAll('.udb-admin-menu--icon-field');
+		iconFields = iconFields.length ? iconFields : [];
 
-					if (this.dataset.name === 'dashicon') {
-						iconOutput = '<i class="dashicons ' + this.value + '"></i>';
-					} else if (this.dataset.name === 'icon_svg') {
-						iconOutput = '<img alt="" src="' + this.value + '">';
-					}
+		iconFields.forEach(function (field) {
+			field.addEventListener('change', function () {
+				var iconWrapper = menuItem.querySelector('.udb-admin-menu--menu-icon');
+				var iconOutput;
 
-					iconWrapper.innerHTML = iconOutput;
-				});
+				if (this.dataset.name === 'dashicon') {
+					iconOutput = '<i class="dashicons ' + this.value + '"></i>';
+				} else if (this.dataset.name === 'icon_svg') {
+					iconOutput = '<img alt="" src="' + this.value + '">';
+				}
+
+				iconWrapper.innerHTML = iconOutput;
 			});
+		});
 
-			var titleFields = menuItem.querySelectorAll('[data-name="menu_title"]');
-			titleFields = titleFields.length ? titleFields : [];
+		var titleFields = menuItem.querySelectorAll('[data-name="menu_title"]');
+		titleFields = titleFields.length ? titleFields : [];
 
-			titleFields.forEach(function (field) {
-				field.addEventListener('change', function () {
-					menuItem.querySelector('.udb-admin-menu--menu-name').innerHTML = this.value;
-				});
+		titleFields.forEach(function (field) {
+			field.addEventListener('change', function () {
+				menuItem.querySelector('.udb-admin-menu--menu-name').innerHTML = this.value;
 			});
 		});
 	}

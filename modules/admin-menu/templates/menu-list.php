@@ -67,6 +67,22 @@ ob_start();
 								>
 							</div>
 						</div>
+						<div class="field">
+							<label for="menu_url_{role}_{default_menu_id}" class="label udb-admin-menu--label">
+								<?php _e( 'Menu URL' ); ?>
+							</label>
+							<div class="control">
+								<input 
+									type="text" 
+									name="menu_url_{role}_{default_menu_id}" 
+									id="menu_url_{role}_{default_menu_id}" 
+									value="{menu_url}" 
+									placeholder="{default_menu_url}" 
+									class="udb-admin-menu--text-field"
+									data-name="menu_url"
+								>
+							</div>
+						</div>
 						<div class="is-nested">
 							<div class="field">
 								<label for="menu_icon_{role}_{default_menu_id}" class="label udb-admin-menu--label">
