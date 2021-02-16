@@ -183,7 +183,7 @@
 
 		template = template.replace(/{user_id}/g, data.id);
 
-		elms.userTabsContent.querySelectorAll('.udb-admin-menu--tab-content-item').forEach(function (el) {
+		document.querySelectorAll('.udb-admin-menu--user-tabs > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item').forEach(function (el) {
 			el.classList.remove('is-active');
 		});
 
