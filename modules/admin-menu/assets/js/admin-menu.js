@@ -432,7 +432,7 @@
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
 
 		var submenuId = submenu.id ? submenu.id : submenu.url_default;
-		submenuId = submenuId.replace(/\//g, submenuId);
+		submenuId = submenuId.replace(/\//g, 'udbslashsign');
 		template = template.replace(/{submenu_id}/g, submenuId);
 
 		template = template.replace(/{submenu_title}/g, submenu.title);
