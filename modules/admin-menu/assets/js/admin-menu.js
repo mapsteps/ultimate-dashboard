@@ -384,6 +384,7 @@
 		if (by === 'role') {
 			template = template.replace(/{role}/g, value);
 		} else if (by === 'user_id') {
+			template = template.replace(/{role}/g, 'user-' + value);
 			template = template.replace(/{user_id}/g, value);
 		}
 
@@ -408,6 +409,7 @@
 			if (by === 'role') {
 				template = template.replace(/{role}/g, value);
 			} else if (by === 'user_id') {
+				template = template.replace(/{role}/g, 'user-' + value);
 				template = template.replace(/{user_id}/g, value);
 			}
 
