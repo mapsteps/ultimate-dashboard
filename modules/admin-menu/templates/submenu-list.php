@@ -19,7 +19,7 @@ ob_start();
 			{parsed_submenu_title}
 		</div>
 		<span class="udb-admin-menu--menu-actions">
-			<span class="dashicons dashicons-admin-page"></span>
+			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
 		</span>
 		<div class="udb-admin-menu--expand-menu">

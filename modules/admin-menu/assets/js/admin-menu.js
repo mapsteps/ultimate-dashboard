@@ -356,6 +356,7 @@
 			template = template.replace(/{default_menu_icon_svg}/g, menu.icon_svg_default);
 
 			template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
+			template = template.replace(/{trash_icon}/g, '');
 			template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
 			template = template.replace(/{menu_was_added}/g, menu.was_added);
 
@@ -425,6 +426,7 @@
 			template = template.replace(/{default_submenu_url}/g, submenu.url_default);
 
 			template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);
+			template = template.replace(/{trash_icon}/g, '');
 			template = template.replace(/{hidden_icon}/g, (submenu.is_hidden == '1' ? 'hidden' : 'visibility'));
 			template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 

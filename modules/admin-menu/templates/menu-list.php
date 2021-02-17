@@ -21,10 +21,10 @@ ob_start();
 		<div class="udb-admin-menu--menu-name">
 			{parsed_menu_title}
 		</div>
-		<span class="udb-admin-menu--menu-actions">
-			<span class="dashicons dashicons-admin-page"></span>
+		<div class="udb-admin-menu--menu-actions">
+			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
-		</span>
+		</div>
 		<div class="udb-admin-menu--expand-menu">
 			<span class="dashicons dashicons-arrow-down-alt2">
 			</span>

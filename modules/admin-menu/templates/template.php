@@ -88,6 +88,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<div id="udb-admin-menu--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
 							<ul class="udb-admin-menu--menu-list">
 								<!-- to be re-written via js -->
+								<li class="loading"></li>
 							</ul>
 
 							<?php do_action( 'udb_admin_menu_add_menu_button' ); ?>
