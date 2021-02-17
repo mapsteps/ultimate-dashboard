@@ -18,10 +18,10 @@ ob_start();
 		<div class="udb-admin-menu--menu-name">
 			{parsed_submenu_title}
 		</div>
-		<span class="udb-admin-menu--menu-actions">
+		<div class="udb-admin-menu--menu-actions">
 			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
-		</span>
+		</div>
 		<div class="udb-admin-menu--expand-menu">
 			<span class="dashicons dashicons-arrow-down-alt2">
 			</span>
@@ -44,6 +44,22 @@ ob_start();
 						placeholder="{default_submenu_title}" 
 						class="udb-admin-menu--text-field"
 						data-name="submenu_title"
+					>
+				</div>
+			</div>
+			<div class="field">
+				<label for="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" class="label udb-admin-menu--label">
+					<?php _e( 'Submenu URL' ); ?>
+				</label>
+				<div class="control">
+					<input 
+						type="text" 
+						name="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" 
+						id="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" 
+						value="{submenu_url}" 
+						placeholder="{default_submenu_url}" 
+						class="udb-admin-menu--text-field"
+						data-name="submenu_url"
 					>
 				</div>
 			</div>
