@@ -468,6 +468,16 @@ class Get_Menu {
 									if ( isset( $matched_default_submenu[ $submenu_item_key ] ) ) {
 										$new_submenu_item[ $default_submenu_item_key ] = $matched_default_submenu[ $submenu_item_key ];
 										$new_submenu_item[ $submenu_item_key ]         = $submenu_item_value;
+									} else {
+										if ( 1 === absint( $submenu_item['was_added'] ) ) {
+											if ( isset( $submenu_item[ $default_submenu_item_key ] ) ) {
+												$new_submenu_item[ $default_submenu_item_key ] = $submenu_item[ $default_submenu_item_key ];
+											} else {
+												$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
+											}
+
+											$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
+										}
 									}
 								} else {
 									$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;

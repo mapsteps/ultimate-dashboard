@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<li class="udb-admin-menu--menu-item udb-admin-menu--submenu-item" data-hidden="{submenu_is_hidden}" data-added="{submenu_was_added}" data-default-url="{default_submenu_url}">
+<li class="udb-admin-menu--menu-item udb-admin-menu--submenu-item" data-hidden="{submenu_is_hidden}" data-added="{submenu_was_added}" data-default-url="{default_submenu_url}" data-submenu-id="{submenu_id}">
 	<div class="udb-admin-menu--control-panel">
 		<div class="udb-admin-menu--menu-drag">
 			<span></span>
@@ -32,14 +32,14 @@ ob_start();
 
 		<div class="udb-admin-menu--fields udb-admin-menu--submenu-fields">
 			<div class="field">
-				<label for="submenu_title_{role}_{default_menu_id}_{default_submenu_url}" class="label udb-admin-menu--label">
+				<label for="submenu_title_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-menu--label">
 					<?php _e( 'Submenu Title' ); ?>
 				</label>
 				<div class="control">
 					<input 
 						type="text" 
-						name="submenu_title_{role}_{default_menu_id}_{default_submenu_url}" 
-						id="submenu_title_{role}_{default_menu_id}_{default_submenu_url}" 
+						name="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
+						id="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
 						value="{submenu_title}" 
 						placeholder="{default_submenu_title}" 
 						class="udb-admin-menu--text-field"
@@ -48,14 +48,14 @@ ob_start();
 				</div>
 			</div>
 			<div class="field">
-				<label for="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" class="label udb-admin-menu--label">
+				<label for="submenu_url_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-menu--label">
 					<?php _e( 'Submenu URL' ); ?>
 				</label>
 				<div class="control">
 					<input 
 						type="text" 
-						name="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" 
-						id="submenu_url_{role}_{default_menu_id}_{default_submenu_url}" 
+						name="submenu_url_{role}_{default_menu_id}_{submenu_id}" 
+						id="submenu_url_{role}_{default_menu_id}_{submenu_id}" 
 						value="{submenu_url}" 
 						placeholder="{default_submenu_url}" 
 						class="udb-admin-menu--text-field"

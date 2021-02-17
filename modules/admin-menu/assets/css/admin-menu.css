@@ -182,7 +182,7 @@
 	animation: loadingSpinAround 0.5s infinite linear;
 }
 
-.udb-admin-menu--add-menu-button {
+.udb-admin-menu--add-item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -199,7 +199,7 @@
 	cursor: pointer;
 }
 
-.udb-admin-menu--add-menu-button i {
+.udb-admin-menu--add-item i {
 	position: relative;
 	margin-top: 2px;
 	margin-right: 7px;

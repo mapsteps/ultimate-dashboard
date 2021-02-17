@@ -121,6 +121,8 @@ ob_start();
 					<ul class="udb-admin-menu--menu-list udb-admin-menu--submenu-list">
 						{submenu_template}
 					</ul>
+
+					<?php do_action( 'udb_admin_menu_add_submenu_button' ); ?>
 				</div><!-- #udb-admin-menu--submenu-tab -->
 			</div><!-- .udb-admin-menu--tab-content -->
 

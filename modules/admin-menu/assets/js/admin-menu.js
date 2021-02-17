@@ -397,43 +397,59 @@
 	 *
 	 * @param {string} by The identifier, could be "role" or "user_id".
 	 * @param {string} value The specified role or user id.
-	 * @param {array} menu The menu which contains the submenu list.
+	 * @param {array} menu The menu item which contains the submenu list.
 	 * 
 	 * @return {string} template The submenu template.
 	 */
 	function buildSubmenu(by, value, menu) {
-		var templates = '';
+		var template = '';
 
 		menu.submenu.forEach(function (submenu) {
-			var template = udbAdminMenu.templates.submenuList;
-
-			if (by === 'role') {
-				template = template.replace(/{role}/g, value);
-			} else if (by === 'user_id') {
-				template = template.replace(/{role}/g, 'user-' + value);
-				template = template.replace(/{user_id}/g, value);
-			}
-
-			template = template.replace(/{default_menu_id}/g, menu.id_default);
-
-			template = template.replace(/{submenu_title}/g, submenu.title);
-			template = template.replace(/{default_submenu_title}/g, submenu.title_default);
-
-			var parsedTitle = submenu.title ? submenu.title : submenu.title_default;
-			template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
-
-			template = template.replace(/{submenu_url}/g, submenu.url);
-			template = template.replace(/{default_submenu_url}/g, submenu.url_default);
-
-			template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);
-			template = template.replace(/{trash_icon}/g, '');
-			template = template.replace(/{hidden_icon}/g, (submenu.is_hidden == '1' ? 'hidden' : 'visibility'));
-			template = template.replace(/{submenu_was_added}/g, submenu.was_added);
-
-			templates += template;
+			template += replaceSubmenuPlaceholders(by, value, submenu, menu);
 		});
 
-		return templates;
+		return template;
+	}
+
+	/**
+	 * Replace submenu placeholders.
+	 *
+	 * @param {string} by Either by role or user_id.
+	 * @param {string} value The role or user_id value.
+	 * @param {object} submenu The submenu item.
+	 * @param {array} menu The menu item which contains the submenu list.
+	 */
+	function replaceSubmenuPlaceholders(by, value, submenu, menu) {
+		var template = udbAdminMenu.templates.submenuList;
+
+		if (by === 'role') {
+			template = template.replace(/{role}/g, value);
+		} else if (by === 'user_id') {
+			template = template.replace(/{role}/g, 'user-' + value);
+			template = template.replace(/{user_id}/g, value);
+		}
+
+		template = template.replace(/{default_menu_id}/g, menu.id_default);
+
+		var submenuId = submenu.id ? submenu.id : submenu.url_default;
+		submenuId = submenuId.replace(/\//g, submenuId);
+		template = template.replace(/{submenu_id}/g, submenuId);
+
+		template = template.replace(/{submenu_title}/g, submenu.title);
+		template = template.replace(/{default_submenu_title}/g, submenu.title_default);
+
+		var parsedTitle = submenu.title ? submenu.title : submenu.title_default;
+		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
+
+		template = template.replace(/{submenu_url}/g, submenu.url);
+		template = template.replace(/{default_submenu_url}/g, submenu.url_default);
+
+		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);
+		template = template.replace(/{trash_icon}/g, '');
+		template = template.replace(/{hidden_icon}/g, (submenu.is_hidden == '1' ? 'hidden' : 'visibility'));
+		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
+
+		return template;
 	}
 
 	/**
