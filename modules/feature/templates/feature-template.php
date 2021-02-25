@@ -17,7 +17,7 @@ return function () {
 		array(
 			'title'   => __( 'White Label', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/white-label.png',
-			'text'    => __( 'White label & rebrand the WordPress Admin area with the White Label Module.', 'ultimate-dashboard' ),
+			'text'    => __( 'White label & rebrand the WordPress admin area with the White Label module.', 'ultimate-dashboard' ),
 			'feature' => 'white_label',
 		),
 		array(
@@ -35,7 +35,7 @@ return function () {
 		array(
 			'title'   => __( 'Admin Menu Editor', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-menu.png',
-			'text'    => __( 'Rearrange, hide & rename admin menu items for specific user roles with the Admin Menu Editor module.', 'ultimate-dashboard' ),
+			'text'    => __( 'Rearrange, hide & add new admin menu items for specific users & user roles with the Admin Menu Editor module.', 'ultimate-dashboard' ),
 			'feature' => 'admin_menu_editor',
 		),
 	)
@@ -55,7 +55,7 @@ return function () {
 							<?php echo esc_html( get_admin_page_title() ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
 						</span>
-						<p class="subtitle"><?php _e( 'Enable/disable Ultimate Dashboard Features.', 'ultimate-dashboard' ); ?></p>
+						<p class="subtitle"><?php _e( 'Enable/disable Ultimate Dashboard features.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>
