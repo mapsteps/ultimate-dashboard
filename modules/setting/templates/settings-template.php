@@ -10,37 +10,65 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 	?>
 
-	<div class="wrap heatbox-wrap">
+	<div class="wrap heatbox-wrap udb-settings-page">
 
-		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+		<div class="heatbox-header heatbox-margin-bottom">
 
-		<form method="post" action="options.php" class="udb-settings-form">
+			<div class="heatbox-container heatbox-container-center">
 
-			<?php settings_fields( 'udb-settings-group' ); ?>
+				<div class="logo-container">
 
-			<div class="heatbox is-grouped">
-				<?php do_settings_sections( 'udb-widget-settings' ); ?>
+					<div>
+						<span class="title">
+							<?php _e( 'Ultimate Dashboard', 'ultimate-dashboard' ); ?>
+							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
+						</span>
+						<p class="subtitle"><?php _e( 'The #1 plugin to customize your WordPress dashboard.', 'ultimate-dashboard' ); ?></p>
+					</div>
+
+					<div>
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
+					</div>
+
+				</div>
+
 			</div>
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
-			</div>
+		</div>
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-general-settings' ); ?>
-			</div>
+		<div class="heatbox-container heatbox-container-center">
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-advanced-settings' ); ?>
-			</div>
+			<h1 style="display: none;"></h1>
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-misc-settings' ); ?>
-			</div>
+			<form method="post" action="options.php" class="udb-settings-form">
 
-			<?php submit_button(); ?>
+				<?php settings_fields( 'udb-settings-group' ); ?>
 
-		</form>
+				<div class="heatbox is-grouped">
+					<?php do_settings_sections( 'udb-widget-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-general-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-advanced-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-misc-settings' ); ?>
+				</div>
+
+				<?php submit_button( '', 'button button-primary button-larger' ); ?>
+
+			</form>
+
+		</div>
 
 	</div>
 
