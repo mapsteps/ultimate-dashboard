@@ -140,7 +140,7 @@ class Login_Customizer_Output extends Base_Output {
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_position]"></style>';
 
-		// This box_width tag is for pro version, but it needs to be placed under form_position style tag.
+		// This box_width tag is for the pro version but needs to be placed below form_position style tag.
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[box_width]"></style>';
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[form_bg_color]"></style>';
