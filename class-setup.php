@@ -57,12 +57,39 @@ class Setup {
 	public function setup() {
 
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
 		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ), 20 );
 
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
+
+	}
+
+	/**
+	 * Admin body class.
+	 */
+	public function admin_body_class( $classes ) {
+
+		$screens = array(
+			'udb_widgets_page_udb_features',
+			'udb_widgets_page_udb-license',
+			'udb_widgets_page_udb_tools',
+			'udb_widgets_page_udb_branding',
+			'udb_widgets_page_udb_settings',
+			'udb_widgets_page_udb_admin_menu',
+		);
+
+		$screen = get_current_screen();
+
+		if ( ! in_array( $screen->id, $screens ) ) {
+			return $classes;
+		}
+
+		$classes .= ' heatbox-admin has-header';
+
+		return $classes;
 
 	}
 

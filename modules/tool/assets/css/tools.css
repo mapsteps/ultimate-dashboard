@@ -1,36 +1,32 @@
-/* General */
-.clearfix::before,
-.clearfix::after {
-	display: table;
+/* Tools */
+.udb-tools-container {
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.clearfix::after {
-	clear: both;
+.udb-tools-container .heatbox {
+	display: flex;
+	flex-direction: column;
+	flex: 0 49%;
+	margin-right: 2%;
 }
 
-.left-col,
-.right-col {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+.udb-tools-container .heatbox:nth-child(even) {
+	margin-right: 0;
 }
 
-.left-col {
-	float: left;
-	padding-right: 8px;
-	width: 50%;
+@media screen and (max-width:768px) {
+	.udb-tools-container .heatbox {
+		flex: 0 100%;
+		margin-right: 0;
+	}
 }
 
-.right-col {
-	float: right;
-	padding-left: 8px;
-	width: 50%;
-}
-
-th {
+.udb-tools-container th {
 	display: none;
 }
 
-.submit {
+.udb-tools-container p.submit {
+	margin: 0;
 	padding: 20px;
-	padding-bottom: 0;
 }

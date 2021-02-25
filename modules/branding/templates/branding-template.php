@@ -10,22 +10,52 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 	?>
 
-	<div class="wrap heatbox-wrap">
+	<div class="wrap heatbox-wrap udb-branding-page">
 
-		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+		<div class="heatbox-header heatbox-margin-bottom">
 
-		<form method="post" action="options.php" class="udb-settings-form">
-			<?php settings_fields( 'udb-branding-group' ); ?>
+			<div class="heatbox-container heatbox-container-center">
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-branding-settings' ); ?>
+				<div class="logo-container">
+
+					<div>
+						<span class="title">
+							<?php echo esc_html( get_admin_page_title() ); ?>
+							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
+						</span>
+						<p class="subtitle"><?php _e( 'White label & rebrand your WordPress installation.', 'ultimate-dashboard' ); ?></p>
+					</div>
+
+					<div>
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
+					</div>
+
+				</div>
+
 			</div>
 
-			<div class="heatbox">
-				<?php do_settings_sections( 'udb-branding-misc-settings' ); ?>
+		</div>
+
+		<form method="post" action="options.php">
+
+			<div class="heatbox-container heatbox-container-center">
+
+				<h1 style="display: none;"></h1>
+
+				<?php settings_fields( 'udb-branding-group' ); ?>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-branding-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-branding-misc-settings' ); ?>
+				</div>
+
+				<?php submit_button( '', 'button button-primary button-larger' ); ?>
+
 			</div>
 
-			<?php submit_button(); ?>
 		</form>
 
 	</div>
