@@ -141,6 +141,10 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 					</ul>
 
 					<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
+						<div id="udb-admin-menu--user-empty-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( empty( $saved_user_data ) ? ' is-active' : '' ); ?>">
+							<?php _e( 'No user selected.', 'ultimate-dashboard' ); ?>
+						</div>
+
 						<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
 							<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
