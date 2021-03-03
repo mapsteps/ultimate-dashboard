@@ -118,6 +118,22 @@ return function () {
 			}
 
 			foreach ( $meta as $meta_key => $meta_value ) {
+				if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+					if ( is_serialized( $meta_value ) ) {
+						$unserialized_meta_value = unserialize( $meta_value );
+
+						/**
+						 * The value of $meta_value after serialized should be an array.
+						 * If it's still a string, then we need to unserialize it.
+						 *
+						 * This was related to widget roles issue on export / import.
+						 */
+						if ( is_string( $unserialized_meta_value ) ) {
+							$meta_value = $unserialized_meta_value;
+						}
+					}
+				}
+
 				update_post_meta( $post_id, $meta_key, $meta_value );
 			}
 		}
