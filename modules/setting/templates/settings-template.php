@@ -94,7 +94,6 @@ return function () {
 						<a href="https://wordpress.org/plugins/swift-control/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
 					</div>
 				</li>
-
 				<li class="heatbox">
 					<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank">
 						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/page-builder-framework.jpg">
