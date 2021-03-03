@@ -7,12 +7,15 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Array_Helper;
+
 return function () {
 
-	$import_file = $_FILES['udb_import_file'];
-	$file_name   = basename( sanitize_file_name( wp_unslash( $import_file['name'] ) ) );
-	$explodes    = explode( '.', $file_name );
-	$ext         = end( $explodes );
+	$array_helper = new Array_Helper();
+	$import_file  = $_FILES['udb_import_file'];
+	$file_name    = basename( sanitize_file_name( wp_unslash( $import_file['name'] ) ) );
+	$explodes     = explode( '.', $file_name );
+	$ext          = end( $explodes );
 
 	// wp_check_filetype fails here, so let's check it manually.
 	if ( 'json' !== $ext ) {
@@ -119,19 +122,7 @@ return function () {
 
 			foreach ( $meta as $meta_key => $meta_value ) {
 				if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-					if ( is_serialized( $meta_value ) ) {
-						$unserialized_meta_value = unserialize( $meta_value );
-
-						/**
-						 * The value of $meta_value after serialized should be an array.
-						 * If it's still a string, then we need to unserialize it.
-						 *
-						 * This was related to widget roles issue on export / import.
-						 */
-						if ( is_string( $unserialized_meta_value ) ) {
-							$meta_value = $unserialized_meta_value;
-						}
-					}
+					$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
 				}
 
 				update_post_meta( $post_id, $meta_key, $meta_value );
@@ -168,6 +159,10 @@ return function () {
 			}
 
 			foreach ( $meta as $meta_key => $meta_value ) {
+				if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+					$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
+				}
+
 				update_post_meta( $post_id, $meta_key, $meta_value );
 			}
 		}

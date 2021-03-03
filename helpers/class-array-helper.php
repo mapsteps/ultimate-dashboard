@@ -36,4 +36,32 @@ class Array_Helper {
 
 		return false;
 	}
+
+	/**
+	 * Clean a serialized array from nested-serialized.
+	 *
+	 * The returned $value after unserialized should be an array.
+	 * If it's still a string, then we need to unserialize it.
+	 * This was related to roles issue on export / import.
+	 *
+	 * @param string $value The value to clean.
+	 * @param int    $depth The depth of the checking.
+	 *
+	 * @return array The unserialized array.
+	 */
+	public function clean_unserialize( $value, $depth = 2 ) {
+		for ( $i = 0; $i < $depth; $i++ ) {
+			if ( is_serialized( $value ) ) {
+				$value = unserialize( $value );
+
+				if ( ! is_serialized( $value ) ) {
+					break;
+				}
+			} else {
+				break;
+			}
+		}
+
+		return $value;
+	}
 }
