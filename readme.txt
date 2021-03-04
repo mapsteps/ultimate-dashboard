@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Ultimate Dash, Ultimate Client Dash
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6
 Stable tag: 3.2.1
 License: GPLv2 or later
