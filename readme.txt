@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 3.1.3
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,15 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.2 | March 04, 2021 =
+* New: Improved & cleaned up admin & settings page design
+* New: Admin Menu Editor - Change the admin menu for specific user roles (PRO)
+* New: Admin Menu Editor - Add custom menu items to the WordPress admin menu (PRO)
+* Tweak: Admin Menu Editor - Changed sub menu name from Admin Menu to Admin Menu Editor to be more precise
+* Fixed: Widget & admin page user roles are not imported properly (PRO)
+* Fixed: Login Customizer - Border color styling
+* Fixed: Admin Menu Editor - Rare case where the admin menu was broken after using the Admin Menu Editor feature (PRO)
+* Fixed: Login Customizer - Box-width setting doesn't work (PRO)
 = 3.1.3 | December 20, 2020 =
 * Tweak: Improved "Modules" feature
 * Tweak: Improved "Login Customizer" CSS output
