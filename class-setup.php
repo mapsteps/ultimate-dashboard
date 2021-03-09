@@ -37,6 +37,7 @@ class Setup {
 			'login_customizer'  => 'true',
 			'admin_pages'       => 'true',
 			'admin_menu_editor' => 'true',
+			'admin_bar_editor'  => 'true',
 		);
 
 		$saved_modules = get_option( 'udb_modules', $defaults );
@@ -79,6 +80,7 @@ class Setup {
 			'udb_widgets_page_udb_branding',
 			'udb_widgets_page_udb_settings',
 			'udb_widgets_page_udb_admin_menu',
+			'udb_widgets_page_udb_admin_bar',
 		);
 
 		$screen = get_current_screen();
@@ -136,6 +138,10 @@ class Setup {
 
 		if ( 'true' === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
+		}
+
+		if ( 'true' === $saved_modules['admin_bar_editor'] ) {
+			$modules['Udb\\AdminBar\\Admin_Bar_Module'] = __DIR__ . '/modules/admin-bar/class-admin-bar-module.php';
 		}
 
 		$modules['Udb\\Tool\\Tool_Module'] = __DIR__ . '/modules/tool/class-tool-module.php';
