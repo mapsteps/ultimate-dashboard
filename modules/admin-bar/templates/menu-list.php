@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<li class="udb-admin-bar--menu-item" data-hidden="{menu_is_hidden}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-url="{default_menu_url}">
+<li class="udb-admin-bar--menu-item" data-hidden="{menu_is_hidden}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-href="{default_menu_href}">
 	<div class="udb-admin-bar--control-panel">
 		<div class="udb-admin-bar--menu-drag">
 			<span></span>
@@ -68,18 +68,18 @@ ob_start();
 							</div>
 						</div>
 						<div class="field">
-							<label for="menu_url_{role}_{default_menu_id}" class="label udb-admin-bar--label">
+							<label for="menu_href_{role}_{default_menu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Menu URL' ); ?>
 							</label>
 							<div class="control">
 								<input 
 									type="text" 
-									name="menu_url_{role}_{default_menu_id}" 
-									id="menu_url_{role}_{default_menu_id}" 
-									value="{menu_url}" 
-									placeholder="{default_menu_url}" 
+									name="menu_href_{role}_{default_menu_id}" 
+									id="menu_href_{role}_{default_menu_id}" 
+									value="{menu_href}" 
+									placeholder="{default_menu_href}" 
 									class="udb-admin-bar--text-field"
-									data-name="menu_url"
+									data-name="menu_href"
 								>
 							</div>
 						</div>

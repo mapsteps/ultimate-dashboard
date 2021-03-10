@@ -17,7 +17,7 @@ $existing_menu     = $this->to_nested_format( $existing_menu_raw );
 
 wp_localize_script(
 	'udb-admin-bar',
-	'existingAdminBarMenu',
+	'udbExistingAdminBarMenu',
 	$existing_menu
 );
 
@@ -53,7 +53,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<?php echo esc_html( get_admin_page_title() ); ?>
 						<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
 					</span>
-					<p class="subtitle"><?php _e( 'Fully customize the WordPress admin menu.', 'ultimate-dashboard' ); ?></p>
+					<p class="subtitle"><?php _e( 'Fully customize the WordPress admin bar.', 'ultimate-dashboard' ); ?></p>
 				</div>
 
 				<div>

@@ -140,7 +140,7 @@ class Admin_Bar_Module extends Base_Module {
 	 */
 	public function to_nested_format( $flat_array ) {
 		if ( ! $flat_array ) {
-			return [];
+			return array();
 		}
 
 		$nested_array = array();
@@ -149,13 +149,19 @@ class Admin_Bar_Module extends Base_Module {
 		foreach ( $flat_array as $node_id => $node ) {
 			if ( ! $node->parent || ! isset( $flat_array[ $node->parent ] ) ) {
 				$nested_array[ $node_id ] = array(
-					'id'      => $node->id,
-					'title'   => $node->title,
-					'parent'  => $node->parent,
-					'href'    => $node->href,
-					'group'   => $node->group,
-					'meta'    => $node->meta,
-					'submenu' => array(),
+					'id'             => $node->id,
+					'id_default'     => $node->id,
+					'title'          => $node->title,
+					'title_default'  => $node->title,
+					'parent'         => $node->parent,
+					'parent_default' => $node->parent,
+					'href'           => $node->href,
+					'href_default'   => $node->href,
+					'group'          => $node->group,
+					'group_default'  => $node->group,
+					'meta'           => $node->meta,
+					'meta_default'   => $node->meta,
+					'submenu'        => array(),
 				);
 			}
 		}
@@ -164,13 +170,18 @@ class Admin_Bar_Module extends Base_Module {
 		foreach ( $flat_array as $node_id => $node ) {
 			if ( $node->parent && isset( $flat_array[ $node->parent ] ) ) {
 				$nested_array[ $node->parent ]['submenu'] = array(
-					'id'      => $node->id,
-					'title'   => $node->title,
-					'parent'  => $node->parent,
-					'href'    => $node->href,
-					'group'   => $node->group,
-					'meta'    => $node->meta,
-					'submenu' => array(),
+					'id'             => $node->id,
+					'id_default'     => $node->id,
+					'title'          => $node->title,
+					'title_default'  => $node->title,
+					'parent'         => $node->parent,
+					'parent_default' => $node->parent,
+					'href'           => $node->href,
+					'href_default'   => $node->href,
+					'group'          => $node->group,
+					'group_default'  => $node->group,
+					'meta'           => $node->meta,
+					'meta_default'   => $node->meta,
 				);
 			}
 		}
