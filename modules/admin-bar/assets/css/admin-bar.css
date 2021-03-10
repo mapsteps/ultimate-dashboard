@@ -1,0 +1,564 @@
+@-webkit-keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+@keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+.udb-admin-bar-box {
+	max-width: 700px;
+}
+
+.udb-admin-bar-box .is-hidden {
+	display: none;
+}
+
+.udb-admin-bar-box--header {
+	position: relative;
+	display: flex;
+	padding: 20px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+}
+
+.udb-admin-bar-box--header h2 {
+	margin: 0;
+	padding: 0;
+	border-bottom-width: 0;
+}
+
+.udb-admin-bar-box--header .udb-admin-bar--search-user {
+	width: 250px;
+}
+
+.udb-admin-bar-box--header-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	font-weight: 500;
+	border-radius: 3px;
+	font-size: 13px;
+	list-style: none;
+	overflow: hidden;
+}
+
+.udb-admin-bar-box--header-tab {
+	display: inline-block;
+	margin: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 30px;
+	color: #888;
+	line-height: 30px;
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
+
+.udb-admin-bar-box--header-tab:hover {
+	background-color: #f0f0f0;
+}
+
+.udb-admin-bar-box--header-tab.is-active {
+	color: inherit;
+	background-color: #e9e9e9;
+}
+
+.udb-admin-bar-box--header-tab.is-active:hover {
+	background-color: #e2e2e2;
+}
+
+.udb-admin-bar--tab-menu {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-transform: uppercase;
+	color: #888;
+	font-weight: 500;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.udb-admin-bar--role-menu,
+.udb-admin-bar--user-menu {
+	border-top: 0;
+}
+
+.udb-admin-bar--tab-menu-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-bottom: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.udb-admin-bar--tab-menu-item button {
+	padding: 0;
+	background-color: transparent;
+	border-width: 0;
+	cursor: pointer;
+	color: inherit;
+	height: 100%;
+	border-bottom: 2px solid transparent;
+}
+
+.udb-admin-bar--user-menu .udb-admin-bar--tab-menu-item {
+	margin-right: 25px;
+}
+
+.udb-admin-bar--user-menu .delete-icon {
+	position: absolute;
+	margin-top: 1px;
+	right: -15px;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	background-color: #eee;
+	border-radius: 50%;
+	transition: none;
+}
+
+.udb-admin-bar--user-menu .delete-icon:hover {
+	color: #fff;
+	background-color: red;
+}
+
+.udb-admin-bar--tab-menu-item.is-active {
+	color: #333;
+}
+
+.udb-admin-bar--tab-menu-item.is-active button {
+	border-color: #333;
+}
+
+.udb-admin-bar--tab-menu-item button:focus {
+	outline: none;
+	color: #333;
+	border-color: #333;
+}
+
+.udb-admin-bar--edit-area {
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+
+.udb-admin-bar--tab-content .loading {
+	display: flex;
+	margin-bottom: 30px;
+	position: relative;
+	justify-content: center;
+	color: transparent !important;
+	pointer-events: none;	
+}
+
+.udb-admin-bar--tab-content .loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #197cff #197cff !important;
+	border-radius: 290486px;
+	-webkit-animation: loadingSpinAround 0.5s infinite linear;
+	animation: loadingSpinAround 0.5s infinite linear;
+}
+
+.udb-admin-bar--add-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 20px 0 0;
+	padding: 0;
+	width: 100%;
+	height: 60px;
+	font-weight: 700;
+	color: #777;
+	font-size: 12px;
+	text-transform: uppercase;
+	background-color: transparent;
+	border: 1px dashed #bbb;
+	cursor: pointer;
+}
+
+.udb-admin-bar--add-item i {
+	position: relative;
+	margin-top: 2px;
+	margin-right: 7px;
+	width: 14px;
+	height: 14px;
+	font-size: 14px;
+}
+
+.udb-admin-bar--menu-list {
+	max-width: 100%;
+	margin-bottom: 0;
+}
+
+.udb-admin-bar--menu-item {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+.udb-admin-bar--menu-item[data-hidden="1"] {
+	color: #ddd;
+	background: #f9f9f9;
+}
+
+.udb-admin-bar--control-panel {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.udb-admin-bar--control-panel > span,
+.udb-admin-bar--control-panel > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+}
+
+.udb-admin-bar--menu-drag {
+	width: 10%;
+	position: relative;
+	color: #888;
+	cursor: move;
+}
+
+.udb-admin-bar--menu-drag span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -2px;
+	width: 20px;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.udb-admin-bar--menu-drag span::before {
+	background-color: #ddd;
+	content: "";
+	display: block;
+	height: 2px;
+	-webkit-box-shadow: 0 10px 0 #ddd;
+	box-shadow: 0 6px 0 #ddd;
+}
+
+.udb-admin-bar--menu-item:hover
+	> .udb-admin-bar--control-panel
+	.udb-admin-bar--menu-drag
+	span::before {
+	background-color: #888;
+	-webkit-box-shadow: 0 10px 0 #888;
+	box-shadow: 0 6px 0 #888;
+}
+
+.udb-admin-bar--menu-item:hover {
+	box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.05);
+	border: 1px solid #aaa;
+}
+
+.udb-admin-bar--menu-icon {
+	width: 5%;
+	opacity: 0.7;
+}
+
+.udb-admin-bar--menu-icon .dashicons {
+	transition: none;
+}
+
+.udb-admin-bar--menu-icon img {
+	max-height: 25px;
+}
+
+.udb-admin-bar--menu-name {
+	padding-left: 10px;
+	width: 60%;
+	font-weight: 700;
+	opacity: 0.8;
+}
+
+.udb-admin-bar--submenu-list .udb-admin-bar--menu-name {
+	width: 65%;
+}
+
+.udb-admin-bar--control-panel > .udb-admin-bar--menu-name {
+	justify-content: flex-start;
+}
+
+.udb-admin-bar--control-panel > .udb-admin-bar--menu-actions {
+	justify-content: flex-end;
+}
+
+.udb-admin-bar--menu-actions {
+	width: 15%;
+	color: #888;
+}
+
+.udb-admin-bar--menu-actions span {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	font-size: 14px;
+	cursor: pointer;
+	text-align: right;
+}
+
+/* Let's hide the duplicate icon for now */
+.udb-admin-bar--menu-actions .dashicons-admin-page {
+	display: none !important;
+}
+
+.udb-admin-bar--menu-item:hover
+	> .udb-admin-bar--control-panel
+	.udb-admin-bar--menu-actions
+	span,
+.udb-admin-bar--menu-item.is-expanded
+	> .udb-admin-bar--control-panel
+	.udb-admin-bar--menu-actions
+	span {
+	display: flex;
+}
+
+.udb-admin-bar--menu-actions span:hover {
+	background-color: #f2f2f2;
+}
+
+.udb-admin-bar--expand-menu {
+	width: 10%;
+	color: #888;
+}
+
+.udb-admin-bar--expand-menu span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	font-size: 13px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.udb-admin-bar--menu-item.is-expanded
+	> .udb-admin-bar--control-panel
+	.udb-admin-bar--expand-menu
+	span::before {
+	content: "\f343";
+}
+
+.udb-admin-bar--expand-menu span:hover {
+	background-color: #f2f2f2;
+}
+
+.udb-admin-bar-box .heatbox-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 20px 20px;
+}
+
+.udb-admin-bar-box .heatbox-left-footer,
+.udb-admin-bar-box .heatbox-right-footer {
+	width: 50%;
+}
+
+.udb-admin-bar-box .heatbox-right-footer {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: auto;
+	justify-content: flex-end;
+}
+
+.udb-admin-bar-box .udb-admin-bar--button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.udb-admin-bar-box .udb-admin-bar--button.is-hidden {
+	display: none;
+}
+
+.udb-admin-bar-box .udb-admin-bar--button i {
+	margin-right: 5px;
+}
+
+.udb-admin-bar-box .udb-admin-bar--button.is-loading {
+	justify-content: center;
+	color: transparent !important;
+	pointer-events: none;
+}
+
+.udb-admin-bar-box .udb-admin-bar--button.is-loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #fff #fff !important;
+	border-radius: 290486px;
+	-webkit-animation: loadingSpinAround 0.5s infinite linear;
+	animation: loadingSpinAround 0.5s infinite linear;
+}
+
+.udb-admin-bar-box .udb-admin-bar--reset-button {
+	margin-left: 10px;
+	color: #fff;
+	background-color: tomato;
+	border-color: tomato;
+}
+
+.udb-admin-bar-box .udb-admin-bar--reset-button:hover,
+.udb-admin-bar-box .udb-admin-bar--reset-button:active,
+.udb-admin-bar-box .udb-admin-bar--reset-button:focus {
+	color: #fff;
+	background-color: #f5492a;
+	border-color: #f5492a;
+}
+
+.udb-admin-bar-box .udb-admin-bar--reset-button:focus {
+	box-shadow: 0 0 0 1px #fff, 0 0 0 3px #f5492a;
+}
+
+.udb-admin-bar--expanded-panel {
+	width: 100%;
+	display: none;
+}
+
+.udb-admin-bar--tab-content-item {
+	padding: 20px 20px;
+	display: none;
+}
+
+.udb-admin-bar--tab-content-item .udb-admin-bar--menu-item:last-child {
+	margin-bottom: 0;
+}
+
+.udb-admin-bar--tab-content-item.is-active {
+	display: block;
+}
+
+.udb-admin-bar--submenu-fields {
+	padding: 20px 20px;
+	border-top: 1px solid #eee;
+}
+
+.udb-admin-bar--fields .field {
+	margin-bottom: 15px;
+}
+
+.udb-admin-bar--fields .field:last-child,
+.udb-admin-bar--fields .fields:last-child {
+	margin-bottom: 0;
+}
+
+.udb-admin-bar--fields .has-2 .field {
+	width: 50%;
+}
+
+.udb-admin-bar--fields .has-2 .field:first-child {
+	padding-right: 15px;
+}
+
+.udb-admin-bar--fields .has-2 .field:last-child {
+	padding-left: 15px;
+}
+
+.udb-admin-bar--label {
+	margin-bottom: 7px;
+}
+
+.udb-admin-bar--textarea-field,
+.udb-admin-bar--text-field {
+	width: 100%;
+}
+
+.udb-admin-bar--textarea-field {
+	height: 130px;
+}
+
+.udb-admin-bar--textarea-field.is-short,
+.udb-admin-bar--text-field.is-short {
+	max-width: 25%;
+}
+
+.udb-admin-bar--textarea-field.is-half,
+.udb-admin-bar--text-field.is-half {
+	max-width: 50%;
+}
+
+.udb-admin-bar--textarea-field.is-medium,
+.udb-admin-bar--text-field.is-medium {
+	max-width: 75%;
+}
+
+.udb-admin-bar--fields .is-nested .udb-admin-bar--tab-menu {
+	padding: 0;
+}
+
+.udb-admin-bar--fields .is-nested .udb-admin-bar--tab-content-item {
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+}
+
+.udb-pro-admin-bar-nag {
+	margin-top: 15px;
+	background: #197cff;
+	color: #fff;
+	margin-bottom: 20px;
+	max-width: 700px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	font-weight: 700;
+}
+
+.udb-pro-admin-bar-nag > * {
+	margin: 0;
+}
+
+.udb-pro-admin-bar-nag .button {
+	background: rgba(0, 45, 96, 0.5);
+	padding: 5px 15px !important;
+}
+
+.udb-pro-admin-bar-nag .button:hover {
+	background: rgba(0, 45, 96, 0.6);
+}
+
+.udb-pro-admin-bar-notice {
+	border-top: none;
+	margin-top: 0;
+	padding-top: 0;
+}

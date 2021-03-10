@@ -156,4 +156,16 @@ class Screen_Helper {
 		return ( 'udb_widgets_page_udb_admin_menu' === $current_screen->id ? true : false );
 
 	}
+
+	/**
+	 * Check if current screen is admin bar page.
+	 *
+	 * @return boolean
+	 */
+	public function is_admin_bar() {
+
+		$current_screen = get_current_screen();
+		return ( 'udb_widgets_page_udb_admin_bar' === $current_screen->id ? true : false );
+
+	}
 }
