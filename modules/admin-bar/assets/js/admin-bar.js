@@ -317,6 +317,8 @@
 		
 		menuList = parseMenu(by, value, menuList);
 
+		console.log(menuList);
+
 		for (var menu in menuList) {
 			if (menuList.hasOwnProperty(menu)) {
 				builtMenu += replaceMenuPlaceholders(by, value, menuList[menu]);
