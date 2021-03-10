@@ -62,7 +62,6 @@ class Admin_Bar_Module extends Base_Module {
 		add_action( 'admin_bar_menu', array( self::get_instance(), 'get_existing_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
-		add_action( 'udb_ajax_get_admin_bar', array( self::get_instance(), 'get_admin_bar' ), 15, 2 );
 
 		$this->setup_ajax();
 
@@ -134,30 +133,6 @@ class Admin_Bar_Module extends Base_Module {
 	}
 
 	/**
-	 * Get admin menu via ajax.
-	 * This action will be called in "ajax" method in "class-get-menu.php".
-	 *
-	 * @param object $ajax_handler The ajax handler class from the free version.
-	 * @param string $role The role target to simulate.
-	 */
-	public function get_admin_bar( $ajax_handler, $role ) {
-
-		$roles = wp_get_current_user()->roles;
-		$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
-
-		if ( ! in_array( $role, $roles, true ) ) {
-			$this->user()->simulate_role( $role );
-		}
-
-		$ajax_handler->load_menu();
-
-		$response = $ajax_handler->format_response( $role );
-
-		wp_send_json_success( $response );
-
-	}
-
-	/**
 	 * Turn flat admin bar menu array to a nested format (parent -> submenu).
 	 *
 	 * @param array $flat_array The default format of admin bar menu.
@@ -165,7 +140,7 @@ class Admin_Bar_Module extends Base_Module {
 	 */
 	public function to_nested_format( $flat_array ) {
 		if ( ! $flat_array ) {
-			return $flat_array;
+			return [];
 		}
 
 		$nested_array = array();
@@ -199,6 +174,8 @@ class Admin_Bar_Module extends Base_Module {
 				);
 			}
 		}
+
+		return $nested_array;
 	}
 
 }

@@ -9,9 +9,17 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
 
-$wp_roles      = wp_roles();
-$role_names    = $wp_roles->role_names;
-$existing_menu = Vars::get( 'existing_admin_bar_menu' );
+$wp_roles   = wp_roles();
+$role_names = $wp_roles->role_names;
+
+$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
+$existing_menu     = $this->to_nested_format( $existing_menu_raw );
+
+wp_localize_script(
+	'udb-admin-bar',
+	'existingAdminBarMenu',
+	$existing_menu
+);
 
 $saved_menu      = get_option( 'udb_admin_bar', array() );
 $saved_user_data = array();

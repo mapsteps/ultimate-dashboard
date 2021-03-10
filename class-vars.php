@@ -1,8 +1,8 @@
 <?php
 /**
- * Vars.
+ * Setter & getter utility
  *
- * @package Ultimate_Dashboard
+ * @package Ultimate Dashboard
  */
 
 namespace Udb;
@@ -10,42 +10,53 @@ namespace Udb;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to manage global scoped data.
+ * Global setter & getter utility
+ *
+ * Vars::set($key, $value);
+ *
+ * @param   string/array  $key
+ * @param   mix           $value
+ *
+ * Vars::get($key);
+ * @param   string  $key
+ * @return  mix     $value
  */
 class Vars {
 
 	/**
-	 * The data wrapper
+	 * Item's container
 	 *
 	 * @var array
 	 */
-	private static $data = array();
+	private static $vars = [];
 
 	/**
-	 * Get value based on name.
+	 * Get value from a given key
 	 *
-	 * @param string $name The data name.
-	 * @return mixed The data value.
+	 * @param string $name The key name.
+	 * @return mixed
 	 */
 	public static function get( $name ) {
-
-		if ( ! isset( self::$data[ $name ] ) ) {
-			return null;
-		}
-
-		return self::$data[ $name ];
-
+		$value = isset( self::$vars[ $name ] ) ? self::$vars[ $name ] : '';
+		return $value;
 	}
 
 	/**
-	 * Set data by $name & $value pair.
+	 * Set key-value pair
+	 * - single mode: set the $key as key name, $value as the data
+	 * - multiple mode: set the $key as array of key-value pairs, and leave the $value empty
 	 *
-	 * @param string $name The data name.
-	 * @param mixed  $value The data value.
+	 * @param string $name Can be either key name or array of key-value pairs.
+	 * @param string $value The data.
+	 * @return void
 	 */
-	public static function set( $name, $value ) {
-
-		self::$data[ $name ] = $value;
-
+	public static function set( $name, $value = '' ) {
+		if ( is_array( $name ) ) {
+			foreach ( $name as $key => $value ) {
+				self::$vars[ $key ] = $value;
+			}
+		} else {
+			self::$vars[ $name ] = $value;
+		}
 	}
 }

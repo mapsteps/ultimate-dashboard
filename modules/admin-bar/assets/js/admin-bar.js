@@ -2,6 +2,8 @@
  * Used global objects:
  * - jQuery
  * - ajaxurl
+ * - udbAdminBar
+ * - existingAdminBarMenu
  */
 (function ($) {
 	if (window.NodeList && !NodeList.prototype.forEach) {
