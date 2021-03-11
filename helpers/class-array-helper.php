@@ -38,6 +38,36 @@ class Array_Helper {
 	}
 
 	/**
+	 * Check if specific array key exists in multi-dimensional array.
+	 *
+	 * @see https://stackoverflow.com/questions/19420715/check-if-specific-array-key-exists-in-multidimensional-array-php#answer-19421079
+	 * Check on "Alexandre Nucera" answer.
+	 *
+	 * @param array  $arr The array.
+	 * @param string $key The key.
+	 *
+	 * @return bool
+	 */
+	public function nested_key_exists( $arr, $key ) {
+
+		// is in base array?
+		if ( array_key_exists( $key, $arr ) ) {
+			return true;
+		}
+
+		// Check arrays contained in this array.
+		foreach ( $arr as $element ) {
+			if ( is_array( $element ) ) {
+				if ( nested_key_exists( $element, $key ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Clean a serialized array from nested-serialized.
 	 *
 	 * The returned $value after unserialized should be an array.

@@ -10,6 +10,7 @@ namespace Udb\AdminBar;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
+use Udb\Helpers\Array_Helper;
 use Udb\Base\Base_Module;
 
 /**
@@ -166,10 +167,17 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
-		// Second, get the submenu items.
+		// Second, remove collected parent array from flat_array.
+		foreach ( $nested_array as $key => $value ) {
+			if ( isset( $flat_array[ $key ] ) ) {
+				unset( $flat_array[ $key ] );
+			}
+		}
+
+		// Third, get the submenu items.
 		foreach ( $flat_array as $node_id => $node ) {
-			if ( $node->parent && isset( $flat_array[ $node->parent ] ) ) {
-				$nested_array[ $node->parent ]['submenu'] = array(
+			if ( isset( $nested_array[ $node->parent ] ) ) {
+				$nested_array[ $node->parent ]['submenu'][ $node->id ] = array(
 					'id'             => $node->id,
 					'id_default'     => $node->id,
 					'title'          => $node->title,
@@ -182,7 +190,111 @@ class Admin_Bar_Module extends Base_Module {
 					'group_default'  => $node->group,
 					'meta'           => $node->meta,
 					'meta_default'   => $node->meta,
+					'submenu'        => array(),
 				);
+
+				unset( $flat_array[ $node_id ] );
+			}
+		}
+
+		// Fourth, get the 2nd depth submenu items.
+		if ( ! empty( $flat_array ) ) {
+			// Loop the flat_array.
+			foreach ( $flat_array as $node_id => $node ) {
+				// Loop the nested_array.
+				foreach ( $nested_array as $parent_id => $parent_array ) {
+					$submenu_lv2_found = false;
+
+					if ( ! empty( $parent_array['submenu'] ) ) {
+						// Loop the parent array's submenu.
+						foreach ( $parent_array['submenu'] as $submenu_lv1_id => $submenu_lv1_array ) {
+							if ( $node->parent === $submenu_lv1_id ) {
+								if ( ! isset( $nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'] ) ) {
+									$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'] = array();
+								}
+
+								$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $node_id ] = array(
+									'id'             => $node->id,
+									'id_default'     => $node->id,
+									'title'          => $node->title,
+									'title_default'  => $node->title,
+									'parent'         => $node->parent,
+									'parent_default' => $node->parent,
+									'href'           => $node->href,
+									'href_default'   => $node->href,
+									'group'          => $node->group,
+									'group_default'  => $node->group,
+									'meta'           => $node->meta,
+									'meta_default'   => $node->meta,
+									'submenu'        => array(),
+								);
+
+								unset( $flat_array[ $node_id ] );
+								$submenu_lv2_found = true;
+								break;
+							}
+						}
+					}
+
+					if ( $submenu_lv2_found ) {
+						break;
+					}
+				}
+			}
+		}
+
+		// Fifth, get the 3rd depth submenu items.
+		if ( ! empty( $flat_array ) ) {
+			// Loop the flat_array.
+			foreach ( $flat_array as $node_id => $node ) {
+				// Loop the nested_array.
+				foreach ( $nested_array as $parent_id => $parent_array ) {
+					$submenu_lv3_found = false;
+
+					if ( ! empty( $parent_array['submenu'] ) ) {
+						// Loop the parent array's submenu.
+						foreach ( $parent_array['submenu'] as $submenu_lv1_id => $submenu_lv1_array ) {
+							if ( ! empty( $submenu_lv1_array['submenu'] ) ) {
+								// Loop the submenu level 1's submenu.
+								foreach ( $submenu_lv1_array['submenu'] as $submenu_lv2_id => $submenu_lv2_array ) {
+									if ( $node->parent === $submenu_lv2_id ) {
+										if ( ! isset( $nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'] ) ) {
+											$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'] = array();
+										}
+
+										$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $node_id ] = array(
+											'id'           => $node->id,
+											'id_default'   => $node->id,
+											'title'        => $node->title,
+											'title_default' => $node->title,
+											'parent'       => $node->parent,
+											'parent_default' => $node->parent,
+											'href'         => $node->href,
+											'href_default' => $node->href,
+											'group'        => $node->group,
+											'group_default' => $node->group,
+											'meta'         => $node->meta,
+											'meta_default' => $node->meta,
+											'submenu'      => array(),
+										);
+
+										unset( $flat_array[ $node_id ] );
+										$submenu_lv3_found = true;
+										break;
+									}
+								}
+							}
+
+							if ( $submenu_lv3_found ) {
+								break;
+							}
+						}
+					}
+
+					if ( $submenu_lv3_found ) {
+						break;
+					}
+				}
 			}
 		}
 

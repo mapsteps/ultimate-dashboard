@@ -314,7 +314,7 @@
 		if (!editArea) return;
 		var listArea = editArea.querySelector('.udb-admin-bar--menu-list');
 		var builtMenu = '';
-		
+
 		menuList = parseMenu(by, value, menuList);
 
 		console.log(menuList);
@@ -332,9 +332,9 @@
 		var submenuList = listArea.querySelectorAll('.udb-admin-bar--submenu-list');
 
 		if (submenuList.length) {
-			// submenuList.forEach(function (submenu) {
-			// 	setupMenuItems(submenu, true);
-			// });
+			submenuList.forEach(function (submenu) {
+				setupMenuItems(submenu, true);
+			});
 		}
 	}
 
@@ -354,7 +354,16 @@
 		template = template.replace(/{menu_title}/g, menu.title);
 		template = template.replace(/{default_menu_title}/g, menu.title_default);
 
-		var parsedTitle = menu.title ? menu.title : menu.title_default;
+		var parsedTitle;
+
+		if ('wp-logo' === menu.id || 'menu-toggle' === menu.id || false === menu.title_default) {
+			parsedTitle = menu.id;
+		} else {
+			parsedTitle = menu.title ? menu.title : menu.title_default;
+		}
+
+		parsedTitle = false === parsedTitle ? '' : parsedTitle;
+
 		template = template.replace(/{parsed_menu_title}/g, parsedTitle);
 
 		template = template.replace(/{menu_href}/g, menu.url);
