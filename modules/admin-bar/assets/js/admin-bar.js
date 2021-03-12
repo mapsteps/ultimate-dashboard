@@ -317,7 +317,7 @@
 
 		menuList = parseMenu(by, value, menuList);
 
-		console.log(menuList);
+		// console.log(menuList);
 
 		for (var menu in menuList) {
 			if (menuList.hasOwnProperty(menu)) {
@@ -353,21 +353,28 @@
 		template = udbAdminBar.templates.menuList;
 		template = template.replace(/{menu_title}/g, menu.title);
 		template = template.replace(/{default_menu_title}/g, menu.title_default);
+		template = template.replace(/{encoded_menu_title}/g, menu.title_encoded);
 
 		var parsedTitle;
 
-		if ('wp-logo' === menu.id || 'menu-toggle' === menu.id || false === menu.title_default) {
+		if ('wp-logo' === menu.id || 'menu-toggle' === menu.id || 'comments' === menu.id || false === menu.title_default) {
+			template = template.replace(/{menu_title_is_disabled}/g, 'disabled');
 			parsedTitle = menu.id;
 		} else {
+			template = template.replace(/{menu_title_is_disabled}/g, '');
 			parsedTitle = menu.title ? menu.title : menu.title_default;
 		}
 
-		parsedTitle = false === parsedTitle ? '' : parsedTitle;
-
 		template = template.replace(/{parsed_menu_title}/g, parsedTitle);
 
-		template = template.replace(/{menu_href}/g, menu.url);
+		template = template.replace(/{menu_href}/g, menu.href);
 		template = template.replace(/{default_menu_href}/g, menu.href_default);
+
+		if (false === menu.href_default) {
+			template = template.replace(/{menu_url_is_disabled}/g, 'disabled');
+		} else {
+			template = template.replace(/{menu_url_is_disabled}/g, '');
+		}
 
 		template = template.replace(/{menu_id}/g, menu.id);
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
@@ -375,27 +382,25 @@
 		template = template.replace(/{menu_dashicon}/g, menu.dashicon);
 		template = template.replace(/{default_menu_dashicon}/g, menu.dashicon_default);
 
-		template = template.replace(/{menu_icon_svg}/g, menu.icon_svg);
-		template = template.replace(/{default_menu_icon_svg}/g, menu.icon_svg_default);
+		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
 		template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
 		template = template.replace(/{menu_was_added}/g, menu.was_added);
 
-		var menuIconSuffix = menu.icon_type && menu[menu.icon_type] ? '' : '_default';
-
-		if (menu['icon_type' + menuIconSuffix] === 'icon_svg') {
-			icon = '<img alt="" src="' + menu['icon_svg' + menuIconSuffix] + '">';
-			template = template.replace(/{icon_svg_tab_is_active}/g, 'is-active');
-			template = template.replace(/{dashicon_tab_is_active}/g, '');
+		if (menu.was_added) {
+			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
 		} else {
-			icon = '<i class="dashicons ' + menu['dashicon' + menuIconSuffix] + '"></i>';
-			template = template.replace(/{icon_svg_tab_is_active}/g, '');
-			template = template.replace(/{dashicon_tab_is_active}/g, 'is-active');
-		}
+			template = template.replace(/{menu_icon_field_is_hidden}/g, 'is-hidden');
 
-		template = template.replace(/{menu_icon}/g, icon);
+			if (menu.icon) {
+				icon = '<i class="dashicons ' + menu.icon + '"></i>';
+				template = template.replace(/{menu_icon}/g, icon);
+			} else {
+				template = template.replace(/{menu_icon}/g, '');
+			}
+		}
 
 		if (menu.submenu && menu.submenu.length) {
 			submenuTemplate = buildSubmenu(by, value, menu);
@@ -461,11 +466,19 @@
 
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(/{default_submenu_title}/g, submenu.title_default);
+		template = template.replace(/{encoded_submenu_title}/g, submenu.title_encoded);
 
-		var parsedTitle = submenu.title ? submenu.title : submenu.title_default;
+		var parsedTitle;
+
+		if (false === menu.title_default) {
+			parsedTitle = menu.id;
+		} else {
+			parsedTitle = submenu.title ? submenu.title : submenu.title_default;
+		}
+
 		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
 
-		template = template.replace(/{submenu_href}/g, submenu.url);
+		template = template.replace(/{submenu_href}/g, submenu.href);
 		template = template.replace(/{default_submenu_href}/g, submenu.href_default);
 
 		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);

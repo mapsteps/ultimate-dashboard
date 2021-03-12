@@ -152,16 +152,18 @@ class Admin_Bar_Module extends Base_Module {
 				$nested_array[ $node_id ] = array(
 					'id'             => $node->id,
 					'id_default'     => $node->id,
-					'title'          => $node->title,
+					'title'          => '',
 					'title_default'  => $node->title,
+					'title_encoded'  => htmlentities2( $node->title ),
 					'parent'         => $node->parent,
 					'parent_default' => $node->parent,
-					'href'           => $node->href,
+					'href'           => '',
 					'href_default'   => $node->href,
 					'group'          => $node->group,
 					'group_default'  => $node->group,
 					'meta'           => $node->meta,
 					'meta_default'   => $node->meta,
+					'was_added'      => 0,
 					'submenu'        => array(),
 				);
 			}
@@ -180,16 +182,18 @@ class Admin_Bar_Module extends Base_Module {
 				$nested_array[ $node->parent ]['submenu'][ $node->id ] = array(
 					'id'             => $node->id,
 					'id_default'     => $node->id,
-					'title'          => $node->title,
+					'title'          => '',
 					'title_default'  => $node->title,
+					'title_encoded'  => htmlentities2( $node->title ),
 					'parent'         => $node->parent,
 					'parent_default' => $node->parent,
-					'href'           => $node->href,
+					'href'           => '',
 					'href_default'   => $node->href,
 					'group'          => $node->group,
 					'group_default'  => $node->group,
 					'meta'           => $node->meta,
 					'meta_default'   => $node->meta,
+					'was_added'      => 0,
 					'submenu'        => array(),
 				);
 
@@ -216,16 +220,18 @@ class Admin_Bar_Module extends Base_Module {
 								$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $node_id ] = array(
 									'id'             => $node->id,
 									'id_default'     => $node->id,
-									'title'          => $node->title,
+									'title'          => '',
 									'title_default'  => $node->title,
+									'title_encoded'  => htmlentities2( $node->title ),
 									'parent'         => $node->parent,
 									'parent_default' => $node->parent,
-									'href'           => $node->href,
+									'href'           => '',
 									'href_default'   => $node->href,
 									'group'          => $node->group,
 									'group_default'  => $node->group,
 									'meta'           => $node->meta,
 									'meta_default'   => $node->meta,
+									'was_added'      => 0,
 									'submenu'        => array(),
 								);
 
@@ -265,16 +271,18 @@ class Admin_Bar_Module extends Base_Module {
 										$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $node_id ] = array(
 											'id'           => $node->id,
 											'id_default'   => $node->id,
-											'title'        => $node->title,
+											'title'        => '',
 											'title_default' => $node->title,
+											'title_encoded' => htmlentities2( $node->title ),
 											'parent'       => $node->parent,
 											'parent_default' => $node->parent,
-											'href'         => $node->href,
+											'href'         => '',
 											'href_default' => $node->href,
 											'group'        => $node->group,
 											'group_default' => $node->group,
 											'meta'         => $node->meta,
 											'meta_default' => $node->meta,
+											'was_added'    => 0,
 											'submenu'      => array(),
 										);
 

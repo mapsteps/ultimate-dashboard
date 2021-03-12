@@ -502,6 +502,15 @@
 	width: 100%;
 }
 
+textarea.udb-admin-bar--text-field {
+	height: 30px;
+}
+
+.udb-admin-bar--textarea-field:disabled,
+.udb-admin-bar--text-field:disabled {
+	cursor: not-allowed;
+}
+
 .udb-admin-bar--textarea-field {
 	height: 130px;
 }

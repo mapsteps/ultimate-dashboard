@@ -36,15 +36,14 @@ ob_start();
 					<?php _e( 'Submenu Title' ); ?>
 				</label>
 				<div class="control">
-					<input 
-						type="text" 
+					<textarea 
+						row="1" 
 						name="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
 						id="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
-						value="{submenu_title}" 
-						placeholder="{default_submenu_title}" 
+						placeholder="{encoded_submenu_title}" 
 						class="udb-admin-bar--text-field"
 						data-name="submenu_title"
-					>
+					>{submenu_title}</textarea>
 				</div>
 			</div>
 			<div class="field">
