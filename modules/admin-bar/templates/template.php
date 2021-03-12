@@ -15,13 +15,8 @@ $role_names = $wp_roles->role_names;
 $existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
 $existing_menu     = $this->to_nested_format( $existing_menu_raw );
 
-wp_localize_script(
-	'udb-admin-bar',
-	'udbExistingAdminBarMenu',
-	$existing_menu
-);
-
 $saved_menu      = get_option( 'udb_admin_bar', array() );
+$parsed_menu     = ! $saved_menu ? $existing_menu : array();
 $saved_user_data = array();
 
 foreach ( $saved_menu as $identifier => $menu_item ) {
@@ -38,6 +33,15 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 		);
 	}
 }
+
+wp_localize_script(
+	'udb-admin-bar',
+	'udbAdminBarRender',
+	array(
+		'existingMenu' => $existing_menu,
+		'parsedMenu'   => $parsed_menu,
+	)
+);
 ?>
 
 <div class="wrap heatbox-wrap udb-admin-bar-editor-page">

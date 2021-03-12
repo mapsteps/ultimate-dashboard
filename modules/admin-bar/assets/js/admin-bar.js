@@ -289,19 +289,6 @@
 	}
 
 	/**
-	 * Parse menu returned by ajax with existing menu.
-	 *
-	 * @param {array} menuList The menu list returned from ajax response.
-	 * @return {array} The parsed menuList;
-	 */
-	function parseMenu(by, value, menuList) {
-		if (!menuList || !menuList.length) return udbExistingAdminBarMenu;
-		var parsedMenuList = {};
-
-		return parsedMenuList;
-	}
-
-	/**
 	 * Build menu list.
 	 *
 	 * @param {string} by The identifier, could be "role" or "user_id".
@@ -315,7 +302,7 @@
 		var listArea = editArea.querySelector('.udb-admin-bar--menu-list');
 		var builtMenu = '';
 
-		menuList = parseMenu(by, value, menuList);
+		menuList = udbAdminBarRender.parsedMenu;
 
 		// console.log(menuList);
 
