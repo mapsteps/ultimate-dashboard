@@ -167,6 +167,7 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'                  => $node->meta,
 					'meta_default'          => $node->meta,
 					'was_added'             => 0,
+					'is_hidden'             => 0,
 					'submenu'               => array(),
 				);
 			}
@@ -200,6 +201,7 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'                  => $node->meta,
 					'meta_default'          => $node->meta,
 					'was_added'             => 0,
+					'is_hidden'             => 0,
 					'submenu'               => array(),
 				);
 
@@ -241,6 +243,7 @@ class Admin_Bar_Module extends Base_Module {
 									'meta'                => $node->meta,
 									'meta_default'        => $node->meta,
 									'was_added'           => 0,
+									'is_hidden'           => 0,
 									'submenu'             => array(),
 								);
 
@@ -295,6 +298,7 @@ class Admin_Bar_Module extends Base_Module {
 											'meta'         => $node->meta,
 											'meta_default' => $node->meta,
 											'was_added'    => 0,
+											'is_hidden'    => 0,
 											'submenu'      => array(),
 										);
 
