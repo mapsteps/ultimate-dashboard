@@ -467,6 +467,11 @@
 	display: block;
 }
 
+.udb-admin-bar--tab-content-item > .udb-admin-bar--submenu-fields {
+	padding: 0 0;
+	border-top-width: 0;
+}
+
 .udb-admin-bar--submenu-fields {
 	padding: 20px 20px;
 	border-top: 1px solid #eee;

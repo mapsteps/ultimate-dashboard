@@ -161,7 +161,7 @@
 
 	/**
 	 * Build user tab menu item template string and append it to user tab menu.
-	 * @param {object} data The id and text pair (select2 data format).
+	 * @param {Object} data The id and text pair (select2 data format).
 	 */
 	function appendUserTabsMenu(data) {
 		var template = udbAdminBar.templates.userTabMenu;
@@ -178,7 +178,7 @@
 
 	/**
 	 * Build user tab menu item template string and append it to user tab menu.
-	 * @param {object} data The id and text pair (select2 data format).
+	 * @param {Object} data The id and text pair (select2 data format).
 	 */
 	function appendUserTabsContent(data) {
 		var template = udbAdminBar.templates.userTabContent;
@@ -343,7 +343,7 @@
 	 *
 	 * @param {string} by Either by role or user_id.
 	 * @param {string} value The role or user_id value.
-	 * @param {object} menu The menu item.
+	 * @param {Object} menu The menu item.
 	 */
 	function replaceMenuPlaceholders(by, value, menu) {
 		var template;
@@ -403,7 +403,13 @@
 		}
 
 		if (menu.submenu && Object.keys(menu.submenu).length) {
-			submenuTemplate = buildSubmenu(by, value, menu);
+			submenuTemplate = buildSubmenu({
+				by: by,
+				value: value,
+				menu: menu,
+				depth: 1
+			});
+
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
 			template = template.replace(/{submenu_template}/g, '');
@@ -422,18 +428,32 @@
 	/**
 	 * Build submenu list.
 	 *
-	 * @param {string} by The identifier, could be "role" or "user_id".
-	 * @param {string} value The specified role or user id.
-	 * @param {array} menu The menu item which contains the submenu list.
+	 * @param {Object} param The submenu parameter containing some arguments.
+	 *
+	 * @param {string} param.by The identifier, could be "role" or "user_id".
+	 * @param {string} param.value The specified role or user id.
+	 * @param {array} param.menu The menu item which contains the submenu list.
 	 * 
 	 * @return {string} template The submenu template.
 	 */
-	function buildSubmenu(by, value, menu) {
+	function buildSubmenu(param) {
+		var by = param.by;
+		var value = param.value;
+		var menu = param.menu;
+		var depth = param.depth;
+
 		var template = '';
 
 		for (var submenu in menu.submenu) {
 			if (menu.submenu.hasOwnProperty(submenu)) {
-				template += replaceSubmenuPlaceholders(by, value, menu.submenu[submenu], menu);
+				template += replaceSubmenuPlaceholders({
+					by: by,
+					value: value,
+					menu: menu,
+					// Current submenu item.
+					submenu: menu.submenu[submenu],
+					depth: depth
+				});
 			}
 		}
 
@@ -443,12 +463,20 @@
 	/**
 	 * Replace submenu placeholders.
 	 *
-	 * @param {string} by Either by role or user_id.
-	 * @param {string} value The role or user_id value.
-	 * @param {object} submenu The submenu item.
-	 * @param {array} menu The menu item which contains the submenu list.
+	 * @param {Object} param The parameter containing some arguments.
+	 *
+	 * @param {string} param.by Either by role or user_id.
+	 * @param {string} param.value The role or user_id value.
+	 * @param {Object} param.menu The menu item which contains the submenu list.
+	 * @param {Object} param.submenu The current submenu item.
 	 */
-	function replaceSubmenuPlaceholders(by, value, submenu, menu) {
+	function replaceSubmenuPlaceholders(param) {
+		var by = param.by;
+		var value = param.value;
+		var menu = param.menu;
+		var submenu = param.submenu;
+		var depth = param.depth;
+
 		var template = udbAdminBar.templates.submenuList;
 
 		if (by === 'role') {
@@ -464,6 +492,7 @@
 		submenuId = submenuId.replace(/\//g, 'udbslashsign');
 		template = template.replace(/{submenu_id}/g, submenuId);
 
+		template = template.replace(/{submenu_level}/g, depth.toString());
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(/{default_submenu_title}/g, submenu.title_default);
 		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
@@ -484,9 +513,22 @@
 		template = template.replace(/{default_submenu_href}/g, submenu.href_default);
 
 		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);
+		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{hidden_icon}/g, (submenu.is_hidden == '1' ? 'hidden' : 'visibility'));
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
+
+		if (submenu.submenu && Object.keys(submenu.submenu).length) {
+			submenuTemplate = buildSubmenu({
+				by: by,
+				value: value,
+				menu: submenu,
+				depth: depth + 1
+			});
+			template = template.replace(/{submenu_template}/g, submenuTemplate);
+		} else {
+			template = template.replace(/{submenu_template}/g, '');
+		}
 
 		return template;
 	}
