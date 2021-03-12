@@ -62,7 +62,7 @@ ob_start();
 									id="menu_title_{role}_{default_menu_id}"
 									class="udb-admin-bar--text-field"
 									data-name="menu_title"
-									placeholder="{encoded_menu_title}"
+									placeholder="{encoded_default_menu_title}"
 									{menu_title_is_disabled}
 								>{menu_title}</textarea>
 							</div>

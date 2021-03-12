@@ -353,7 +353,7 @@
 		template = udbAdminBar.templates.menuList;
 		template = template.replace(/{menu_title}/g, menu.title);
 		template = template.replace(/{default_menu_title}/g, menu.title_default);
-		template = template.replace(/{encoded_menu_title}/g, menu.title_encoded);
+		template = template.replace(/{encoded_default_menu_title}/g, menu.title_default_encoded);
 
 		var parsedTitle;
 
@@ -362,7 +362,7 @@
 			parsedTitle = menu.id;
 		} else {
 			template = template.replace(/{menu_title_is_disabled}/g, '');
-			parsedTitle = menu.title ? menu.title : menu.title_default;
+			parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
 		}
 
 		template = template.replace(/{parsed_menu_title}/g, parsedTitle);
@@ -402,7 +402,7 @@
 			}
 		}
 
-		if (menu.submenu && menu.submenu.length) {
+		if (menu.submenu && Object.keys(menu.submenu).length) {
 			submenuTemplate = buildSubmenu(by, value, menu);
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
@@ -466,14 +466,16 @@
 
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(/{default_submenu_title}/g, submenu.title_default);
-		template = template.replace(/{encoded_submenu_title}/g, submenu.title_encoded);
+		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
 
 		var parsedTitle;
 
-		if (false === menu.title_default) {
-			parsedTitle = menu.id;
+		if ('wp-logo' === submenu.id || 'menu-toggle' === submenu.id || 'comments' === submenu.id || false === submenu.title_default) {
+			template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
+			parsedTitle = submenu.id;
 		} else {
-			parsedTitle = submenu.title ? submenu.title : submenu.title_default;
+			template = template.replace(/{submenu_title_is_disabled}/g, '');
+			parsedTitle = submenu.title ? submenu.title_clean : submenu.title_default_clean;
 		}
 
 		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);

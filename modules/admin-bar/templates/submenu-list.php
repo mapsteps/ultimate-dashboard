@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<li class="udb-admin-bar--menu-item udb-admin-bar--submenu-item" data-hidden="{submenu_is_hidden}" data-added="{submenu_was_added}" data-default-url="{default_submenu_url}" data-submenu-id="{submenu_id}">
+<li class="udb-admin-bar--menu-item udb-admin-bar--submenu-item" data-hidden="{submenu_is_hidden}" data-added="{submenu_was_added}" data-default-href="{default_submenu_href}" data-submenu-id="{submenu_id}">
 	<div class="udb-admin-bar--control-panel">
 		<div class="udb-admin-bar--menu-drag">
 			<span></span>
@@ -40,25 +40,25 @@ ob_start();
 						row="1" 
 						name="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
 						id="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
-						placeholder="{encoded_submenu_title}" 
+						placeholder="{encoded_default_submenu_title}" 
 						class="udb-admin-bar--text-field"
 						data-name="submenu_title"
 					>{submenu_title}</textarea>
 				</div>
 			</div>
 			<div class="field">
-				<label for="submenu_url_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
+				<label for="submenu_href_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
 					<?php _e( 'Submenu URL' ); ?>
 				</label>
 				<div class="control">
 					<input 
 						type="text" 
-						name="submenu_url_{role}_{default_menu_id}_{submenu_id}" 
-						id="submenu_url_{role}_{default_menu_id}_{submenu_id}" 
-						value="{submenu_url}" 
-						placeholder="{default_submenu_url}" 
+						name="submenu_href_{role}_{default_menu_id}_{submenu_id}" 
+						id="submenu_href_{role}_{default_menu_id}_{submenu_id}" 
+						value="{submenu_href}" 
+						placeholder="{default_submenu_href}" 
 						class="udb-admin-bar--text-field"
-						data-name="submenu_url"
+						data-name="submenu_href"
 					>
 				</div>
 			</div>
