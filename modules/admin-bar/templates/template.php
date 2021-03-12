@@ -9,16 +9,19 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
 
-$wp_roles   = wp_roles();
-$role_names = $wp_roles->role_names;
+$wp_roles_obj = wp_roles();
+$role_names   = $wp_roles_obj->role_names;
 
 $existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
 $existing_menu     = $this->to_nested_format( $existing_menu_raw );
 
-$saved_menu      = get_option( 'udb_admin_bar', array() );
-$parsed_menu     = ! $saved_menu ? $existing_menu : array();
+$saved_menu  = get_option( 'udb_admin_bar', array() );
+$parsed_menu = ! $saved_menu ? $existing_menu : $this->parse_menu( $saved_menu, $existing_menu );
+
+// List of user data which has custom admin bar menu.
 $saved_user_data = array();
 
+// Collect values for $saved_user_data.
 foreach ( $saved_menu as $identifier => $menu_item ) {
 	if ( false !== stripos( $identifier, 'user_id_' ) ) {
 		$user_id   = absint( str_ireplace( 'user_id_', '', $identifier ) );

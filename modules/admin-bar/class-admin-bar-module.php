@@ -325,4 +325,152 @@ class Admin_Bar_Module extends Base_Module {
 		return $nested_array;
 	}
 
+	/**
+	 * Parse saved menu with existing menu.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @param array $existing_menu The nested-formatted existing menu.
+	 *
+	 * @return array The parsed menu.
+	 */
+	public function parse_menu( $saved_menu, $existing_menu ) {
+		$parsed_menu = array();
+		$new_items   = $this->get_new_items( $saved_menu, $existing_menu );
+
+		return $parsed_menu;
+	}
+
+	/**
+	 * Compare the saved menu to existing menu to get the new menu items
+	 * from existing menu if they're found.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @param array $existing_menu The nested-formatted existing menu.
+	 *
+	 * @return array The new menu items.
+	 */
+	public function get_new_items( $saved_menu, $existing_menu ) {
+		$new_items = array();
+
+		$non_udb_items = $this->get_non_udb_items( $saved_menu );
+
+		// Existing admin bar menu items (raw, flat-formatted array of WP_Admin_Bar node object).
+		$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
+
+		// Let's compare $existing_menu_raw to $non_udb_items.
+		foreach ( $existing_menu_raw as $node_id => $node ) {
+			if ( ! isset( $non_udb_items[ $node_id ] ) ) {
+				$new_items[ $node_id ] = array(
+					'id'                    => $node_id,
+					'id_default'            => $node_id,
+					'title'                 => '',
+					'title_encoded'         => '',
+					'title_clean'           => '',
+					'title_default'         => $node->title,
+					'title_default_encoded' => htmlentities2( $node->title ),
+					'title_default_clean'   => wp_strip_all_tags( $node->title ),
+					'parent'                => $node->parent,
+					'parent_default'        => $node->parent,
+					'href'                  => '',
+					'href_default'          => $node->href,
+					'group'                 => $node->group,
+					'group_default'         => $node->group,
+					'meta'                  => $node->meta,
+					'meta_default'          => $node->meta,
+					'was_added'             => 0,
+					'is_hidden'             => 0,
+					'submenu'               => array(),
+				);
+			}
+		}
+
+		return $new_items;
+	}
+
+	/**
+	 * Compare the saved menu to existing menu,
+	 * check if there's any default item (item that is not added by UDB) in saved menu
+	 * that is no longer exist in existing admin bar menu.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @param array $existing_menu The nested-formatted existing menu.
+	 *
+	 * @return array The removed menu items.
+	 */
+	public function get_removed_items( $saved_menu, $existing_menu ) {
+		$removed_items = array();
+
+		$non_udb_items = $this->get_non_udb_items( $saved_menu );
+
+		// Existing admin bar menu items (raw, flat-formatted array of WP_Admin_Bar node object).
+		$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
+
+		foreach ( $non_udb_items as $menu_id => $menu_array ) {
+			if ( ! isset( $existing_menu_raw[ $menu_id ] ) ) {
+				$removed_items[ $menu_id ] = array(
+					'parent' => $menu_array['parent'],
+				);
+			}
+		}
+
+		return $removed_items;
+	}
+
+	/**
+	 * Loop over $saved_menu and get menu items which are not added by UDB builder.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @return array The non udb menu items.
+	 */
+	public function get_non_udb_items( $saved_menu ) {
+		/**
+		 * Menu items which are not added by UDB.
+		 * The value of this variable is a flat-formatted array.
+		 */
+		$non_udb_items = array();
+
+		foreach ( $saved_menu as $menu_id => $menu_array ) {
+			if ( ! $menu_array['was_added'] ) {
+				$non_udb_items[ $menu_id ] = array(
+					'parent' => $menu_array['parent'],
+				);
+			}
+
+			if ( $menu_array['submenu'] ) {
+				// Loop over submenu level 1.
+				foreach ( $menu_array['submenu'] as $submenu_lvl_1_id => $submenu_lvl_1_array ) {
+					if ( ! $submenu_lvl_1_array['was_added'] ) {
+						$non_udb_items[ $submenu_lvl_1_id ] = array(
+							'parent' => $submenu_lvl_1_array['parent'],
+						);
+					}
+
+					if ( $submenu_lvl_1_array['submenu'] ) {
+						// Loop over submenu level 2.
+						foreach ( $submenu_lvl_1_array['submenu'] as $submenu_lvl_2_id => $submenu_lvl_2_array ) {
+							if ( ! $submenu_lvl_2_array['was_added'] ) {
+								$non_udb_items[ $submenu_lvl_2_id ] = array(
+									'parent' => $submenu_lvl_2_array['parent'],
+								);
+							}
+
+							if ( $submenu_lvl_2_array['submenu'] ) {
+								// Loop over submenu level 3.
+								foreach ( $submenu_lvl_2_array['submenu'] as $submenu_lvl_3_id => $submenu_lvl_3_array ) {
+									if ( ! $submenu_lvl_3_array['was_added'] ) {
+										$non_udb_items[ $submenu_lvl_3_id ] = array(
+											'parent' => $submenu_lvl_3_array['parent'],
+										);
+									}
+								} // End of $submenu_lvl_2_array['submenu'] foreach.
+							} // End of $submenu_lvl_2_array['submenu'] checking.
+						} // End of $submenu_lvl_1_array['submenu'] foreach.
+					} // End of $submenu_lvl_1_array['submenu'] checking.
+				} // End of $menu_array['submenu'] foreach.
+			} // End of $menu_array['submenu'] checking.
+		}
+
+		return $non_udb_items;
+	}
+
 }
