@@ -131,6 +131,8 @@ class Admin_Bar_Module extends Base_Module {
 
 		Vars::set( 'existing_admin_bar_menu', $admin_bar->get_nodes() );
 
+		error_log( print_r( $this->to_nested_format( $admin_bar->get_nodes() ), true ) );
+
 	}
 
 	/**

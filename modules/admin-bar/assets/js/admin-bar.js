@@ -24,9 +24,6 @@
 
 	var elms = {};
 	var state = {};
-	var usersSelect2 = null;
-	var usersData = [];
-	var savedUsers = [];
 
 	/**
 	 * Init the script.
@@ -35,161 +32,16 @@
 	function init() {
 		elms.searchBox = document.querySelector('.udb-admin-bar-box--search-box');
 		elms.roleTabs = document.querySelector('.udb-admin-bar--role-tabs');
-		elms.userTabs = document.querySelector('.udb-admin-bar--user-tabs');
-		elms.userTabsMenu = elms.userTabs.querySelector('.udb-admin-bar--user-menu');
-		elms.userTabsContent = elms.userTabs.querySelector('.udb-admin-bar--edit-area');
-
-		state.usersLoaded = false;
 
 		udbAdminBar.roles.forEach(function (role) {
 			getMenu('role', role.key);
 		});
 
-		var savedUserTabsContentItems = elms.userTabsContent.querySelectorAll('.udb-admin-bar--tab-content-item');
-
-		savedUserTabsContentItems.forEach(function (item) {
-			savedUsers.push(parseInt(item.dataset.userId, 10));
-			getMenu('user_id', item.dataset.userId);
-		});
-
 		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
 
 		$(document).on('click', '.udb-admin-bar--tab-menu-item', switchTab);
-		$(document).on('click', '.udb-admin-bar--remove-tab', removeTab);
-		$(document).on('click', '.udb-admin-bar-box--header-tab', switchHeaderTab);
 		$(document).on('click', '.udb-admin-bar--expand-menu', expandCollapseMenuItem);
 		$(document).on('click', '.hide-menu', showHideMenuItem);
-
-		setupUsersSelect2();
-	}
-
-	function setupUsersSelect2() {
-		if (state.usersLoaded) return;
-		loadUsers();
-	}
-
-	function switchHeaderTab(e) {
-		var tabs = document.querySelectorAll('.udb-admin-bar-box--header-tab');
-		if (!tabs.length) return;
-
-		tabs.forEach(function (tab) {
-			if (tab !== e.target) {
-				tab.classList.remove('is-active');
-			}
-		});
-
-		e.target.classList.add('is-active');
-
-		if (e.target.dataset.headerTab === 'users') {
-			elms.searchBox.classList.remove('is-hidden');
-			elms.userTabs.classList.remove('is-hidden');
-			elms.roleTabs.classList.add('is-hidden');
-		} else {
-			elms.searchBox.classList.add('is-hidden');
-			elms.userTabs.classList.add('is-hidden');
-			elms.roleTabs.classList.remove('is-hidden');
-		}
-	}
-
-	/**
-	 * Load users select2 data via ajax.
-	 */
-	function loadUsers() {
-		$.ajax({
-			type: 'get',
-			url: ajaxurl,
-			cache: false,
-			data: {
-				action: 'udb_admin_bar_get_users',
-				nonce: udbAdminBar.nonces.getUsers
-			}
-		}).done(function (r) {
-			if (!r.success) return;
-
-			var field = document.querySelector('.udb-admin-bar--search-user');
-			if (!field) return;
-
-			field.options[0].innerHTML = field.dataset.placeholder;
-			field.disabled = false;
-			usersData = r.data;
-
-			usersData.forEach(function (data, index) {
-				if (savedUsers.indexOf(data.id) >= 0) {
-					usersData[index].disabled = true;
-				}
-			});
-
-			usersSelect2 = $(field).select2({
-				placeholder: field.dataset.placeholder,
-				data: usersData
-			});
-
-			$(field).on('select2:select', onUserSelected);
-
-			state.usersLoaded = true;
-		}).fail(function () {
-			console.log('Failed to load users');
-		}).always(function () {
-			//
-		});
-	}
-
-	/**
-	 * Event handler to run when a user (inside select2) is selected.
-	 * @param {Event} e The event object.
-	 */
-	function onUserSelected(e) {
-		appendUserTabsMenu(e.params.data);
-		appendUserTabsContent(e.params.data);
-
-		usersData.forEach(function (data, index) {
-			if (data.id == e.params.data.id) {
-				usersData[index].disabled = true;
-			}
-		});
-
-		usersSelect2.select2('destroy');
-		usersSelect2.empty();
-
-		usersSelect2.select2({
-			placeholder: usersSelect2.data('placeholder'),
-			data: usersData
-		});
-
-		getMenu('user_id', e.params.data.id);
-	}
-
-	/**
-	 * Build user tab menu item template string and append it to user tab menu.
-	 * @param {Object} data The id and text pair (select2 data format).
-	 */
-	function appendUserTabsMenu(data) {
-		var template = udbAdminBar.templates.userTabMenu;
-
-		template = template.replace(/{user_id}/g, data.id);
-		template = template.replace(/{display_name}/g, data.text);
-
-		elms.userTabsMenu.querySelectorAll('.udb-admin-bar--tab-menu-item').forEach(function (el) {
-			el.classList.remove('is-active');
-		});
-
-		$(elms.userTabsMenu).append(template);
-	}
-
-	/**
-	 * Build user tab menu item template string and append it to user tab menu.
-	 * @param {Object} data The id and text pair (select2 data format).
-	 */
-	function appendUserTabsContent(data) {
-		var template = udbAdminBar.templates.userTabContent;
-
-		template = template.replace(/{user_id}/g, data.id);
-
-		document.querySelectorAll('.udb-admin-bar--user-tabs > .udb-admin-bar--tab-content > .udb-admin-bar--tab-content-item').forEach(function (el) {
-			el.classList.remove('is-active');
-		});
-
-		$(elms.userTabsContent).append(template);
 	}
 
 	/**
@@ -228,38 +80,6 @@
 				content.classList.add('is-active');
 			}
 		});
-	}
-
-	/**
-	 * Remove tab.
-	 * @param {Event} e The event object.
-	 */
-	function removeTab(e) {
-		var tabArea = this.parentNode.parentNode.parentNode;
-		var menuItem = this.parentNode;
-		var menuWrapper = tabArea.querySelector('.udb-admin-bar--tab-menu');
-		var contentWrapper = tabArea.querySelector('.udb-admin-bar--tab-content');
-
-		usersData.forEach(function (data, index) {
-			if (data.id == menuItem.dataset.userId) {
-				usersData[index].disabled = false;
-			}
-		});
-
-		usersSelect2.select2('destroy');
-		usersSelect2.empty();
-
-		usersSelect2.select2({
-			placeholder: usersSelect2.data('placeholder'),
-			data: usersData
-		});
-
-		menuWrapper.removeChild(this.parentNode);
-		contentWrapper.removeChild(tabArea.querySelector('#' + this.parentNode.dataset.udbTabContent));
-
-		if (contentWrapper.querySelectorAll('.udb-admin-bar--tab-content-item').length === 1) {
-			document.querySelector('#udb-admin-bar--user-empty-edit-area').classList.add('is-active');
-		}
 	}
 
 	/**
@@ -347,7 +167,12 @@
 			parsedTitle = menu.id;
 		} else {
 			template = template.replace(/{menu_title_is_disabled}/g, '');
-			parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
+
+			if ('updates' === menu.id) {
+				parsedTitle = menu.meta.title ? menu.meta.title : menu.id;
+			} else {
+				parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
+			}
 		}
 
 		template = template.replace(/{parsed_menu_title}/g, parsedTitle);

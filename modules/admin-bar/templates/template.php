@@ -75,18 +75,7 @@ wp_localize_script(
 
 	<div class="heatbox-container heatbox-container-center">
 
-		<h1 style="display: none;"></h1>
-
-		<?php if ( ! udb_is_pro_active() ) : ?>
-
-			<div class="udb-pro-admin-bar-nag">
-				<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-				<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-					<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-				</a>
-			</div>
-
-		<?php endif; ?>
+		<?php do_action( 'udb_admin_bar_before_form' ); ?>
 
 		<form action="options.php" method="post" class="udb-admin-bar--edit-form">
 
@@ -96,36 +85,11 @@ wp_localize_script(
 					<h2 class="udb-admin-bar-box--title">
 						<?php _e( 'Admin Bar Editor', 'ultimate-dashboard' ); ?>
 					</h2>
-					<div class="udb-admin-bar-box--search-box is-hidden">
-						<select name="udb_admin_bar_user_selector" id="udb_admin_bar_user_selector" class="udb-admin-bar--search-user" data-loading-msg="<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
-							<option value="">
-								<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>
-							</option>
-						</select>
-					</div>
-					<ul class="udb-admin-bar-box--header-tabs">
-						<li class="udb-admin-bar-box--header-tab" data-header-tab="users">
-							<?php _e( 'Users', 'ultimate-dashboard' ); ?>
-						</li>
-						<li class="udb-admin-bar-box--header-tab is-active" data-header-tab="roles">
-							<?php _e( 'Roles', 'ultimate-dashboard' ); ?>
-						</li>
-					</ul>
+
+					<?php do_action( 'udb_admin_bar_header' ); ?>
 				</div>
 
 				<div class="udb-admin-bar--tabs udb-admin-bar--role-tabs">
-					<ul class="udb-admin-bar--tab-menu udb-admin-bar--role-menu">
-						<?php foreach ( $role_names as $role_key => $role_name ) : ?>
-
-							<li class="udb-admin-bar--tab-menu-item<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-bar--<?php echo esc_html( $role_key ); ?>-edit-area" data-role="<?php echo esc_attr( $role_key ); ?>">
-								<button type="button">
-									<?php echo esc_html( ucwords( $role_name ) ); ?>
-								</button>
-							</li>
-
-						<?php endforeach; ?>
-					</ul>
-
 					<div class="udb-admin-bar--tab-content udb-admin-bar--edit-area">
 						<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
@@ -142,56 +106,19 @@ wp_localize_script(
 					</div><!-- .udb-admin-bar--tab-content -->
 				</div><!-- .udb-admin-bar--role-tabs -->
 
-				<div class="udb-admin-bar--tabs udb-admin-bar--user-tabs is-hidden">
-					<ul class="udb-admin-bar--tab-menu udb-admin-bar--user-menu">
-						<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
-
-							<li class="udb-admin-bar--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-bar--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
-								<button type="button">
-									<?php echo esc_html( $user_data['display_name'] ); ?>
-								</button>
-								<i class="dashicons dashicons-no-alt delete-icon udb-admin-bar--remove-tab"></i>
-							</li>
-
-						<?php endforeach; ?>
-
-						<!-- to be managed more via JS -->
-					</ul>
-
-					<div class="udb-admin-bar--tab-content udb-admin-bar--edit-area">
-						<div id="udb-admin-bar--user-empty-edit-area" class="udb-admin-bar--tab-content-item udb-admin-bar--workspace udb-admin-bar--user-workspace <?php echo ( empty( $saved_user_data ) ? ' is-active' : '' ); ?>">
-							<?php _e( 'No user selected.', 'ultimate-dashboard' ); ?>
-						</div>
-
-						<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
-
-							<div id="udb-admin-bar--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-bar--tab-content-item udb-admin-bar--workspace udb-admin-bar--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
-								<ul class="udb-admin-bar--menu-list">
-									<!-- to be re-written via js -->
-									<li class="loading"></li>
-								</ul>
-
-								<?php do_action( 'udb_admin_bar_add_menu_button' ); ?>
-							</div>
-
-						<?php endforeach; ?>
-
-						<!-- to be managed more via JS -->
-					</div><!-- .udb-admin-bar--tab-content -->
-				</div><!-- .udb-admin-bar--user-tabs -->
-
 				<div class="heatbox-footer">
 
-					<?php if ( ! udb_is_pro_active() ) : ?>
-
-						<div class="udb-pro-settings-page-notice udb-pro-admin-bar-notice">
-							<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-							<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-								<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-							</a>
-						</div>
-
-					<?php endif; ?>
+					<div class="heatbox-left-footer">
+						<button class="button button-large button-primary udb-admin-bar--button udb-admin-bar--submit-button">
+							<i class="dashicons dashicons-yes"></i>
+							<?php _e( 'Save Changes', 'ultimate-dashboard' ); ?>
+						</button>
+					</div>
+					<div class="heatbox-right-footer">
+						<button type="button" class="button button-large button-danger udb-admin-bar--button udb-admin-bar--reset-button udb-admin-bar--reset-all" data-role="all">
+							<?php _e( 'Reset All Menus', 'ultimate-dashboard' ); ?>
+						</button>
+					</div>
 
 					<?php do_action( 'udb_admin_bar_form_footer' ); ?>
 
