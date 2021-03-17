@@ -86,7 +86,7 @@ ob_start();
 								<select
 									name="disallowed_roles_{default_submenu_id}" 
 									id="disallowed_roles_{default_submenu_id}" 
-									class="udb-admin-bar--select-field udb-admin-bar--select2-field udb-admin-bar--users-select2-field"
+									class="udb-admin-bar--select-field udb-admin-bar--select2-field udb-admin-bar--roles-select2-field"
 									data-placeholder="<?php _e( 'Select a role' ); ?>"
 									data-name="disallowed_roles"
 									multiple

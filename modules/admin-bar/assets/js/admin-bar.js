@@ -131,11 +131,13 @@
 			});
 		}
 
-		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--users-select2-field');
+		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--select2-field');
 		
 		select2Fields.forEach(function (selectbox) {
+			if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
+
 			$(selectbox).select2({
-				data: usersData
+				data: (selectbox.dataset.name === 'disallowed_roles' ? udbAdminBar.roles : usersData)
 			});
 		});
 	}
