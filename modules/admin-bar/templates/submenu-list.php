@@ -33,12 +33,12 @@ ob_start();
 		<div class="udb-admin-bar--tabs udb-admin-bar--submenu-item-tabs">
 
 			<ul class="udb-admin-bar--tab-menu">
-				<li class="udb-admin-bar--tab-menu-item is-active" data-udb-tab-content="udb-admin-bar--settings-tab--{role}">
+				<li class="udb-admin-bar--tab-menu-item is-active" data-udb-tab-content="udb-admin-bar--settings-tab--{default_menu_id}">
 					<button type="button">
 						<?php _e( 'Settings', 'ultimate-dashboard' ); ?>
 					</button>
 				</li>
-				<li class="udb-admin-bar--tab-menu-item {submenu_tab_is_hidden}" data-udb-tab-content="udb-admin-bar--submenu-tab--{role}">
+				<li class="udb-admin-bar--tab-menu-item {submenu_tab_is_hidden}" data-udb-tab-content="udb-admin-bar--submenu-tab--{default_menu_id}">
 					<button type="button">
 						<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
 					</button>
@@ -46,17 +46,17 @@ ob_start();
 			</ul><!-- .udb-admin-bar--tab-menu -->
 
 			<div class="udb-admin-bar--tab-content">
-				<div id="udb-admin-bar--settings-tab--{role}" class="udb-admin-bar--tab-content-item is-active">
+				<div id="udb-admin-bar--settings-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item is-active">
 					<div class="udb-admin-bar--fields udb-admin-bar--submenu-fields">
 						<div class="field">
-							<label for="submenu_title_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
+							<label for="submenu_title_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Submenu Title' ); ?>
 							</label>
 							<div class="control">
 								<textarea 
 									row="1" 
-									name="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
-									id="submenu_title_{role}_{default_menu_id}_{submenu_id}" 
+									name="submenu_title_{default_menu_id}_{submenu_id}" 
+									id="submenu_title_{default_menu_id}_{submenu_id}" 
 									placeholder="{encoded_default_submenu_title}" 
 									class="udb-admin-bar--text-field"
 									data-name="submenu_title"
@@ -64,14 +64,14 @@ ob_start();
 							</div>
 						</div>
 						<div class="field">
-							<label for="submenu_href_{role}_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
+							<label for="submenu_href_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Submenu URL' ); ?>
 							</label>
 							<div class="control">
 								<input 
 									type="text" 
-									name="submenu_href_{role}_{default_menu_id}_{submenu_id}" 
-									id="submenu_href_{role}_{default_menu_id}_{submenu_id}" 
+									name="submenu_href_{default_menu_id}_{submenu_id}" 
+									id="submenu_href_{default_menu_id}_{submenu_id}" 
 									value="{submenu_href}" 
 									placeholder="{default_submenu_href}" 
 									class="udb-admin-bar--text-field"
@@ -81,7 +81,7 @@ ob_start();
 						</div>
 					</div><!-- .udb-admin-bar--fields -->
 				</div><!-- #udb-admin-bar--settings-tab -->
-				<div id="udb-admin-bar--submenu-tab--{role}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area {submenu_tab_is_hidden}">
+				<div id="udb-admin-bar--submenu-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area {submenu_tab_is_hidden}">
 					<ul class="udb-admin-bar--menu-list udb-admin-bar--submenu-list">
 						{submenu_template}
 					</ul>

@@ -458,6 +458,10 @@
 	display: none;
 }
 
+.udb-admin-bar--workspace {
+	padding: 20px 20px;
+}
+
 .udb-admin-bar--submenu-item-level-3 .udb-admin-bar--tab-content-item {
 	padding: 0 0;
 }

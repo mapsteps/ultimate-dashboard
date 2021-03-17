@@ -23,19 +23,13 @@
 	}
 
 	var elms = {};
-	var state = {};
 
 	/**
 	 * Init the script.
 	 * Call the main functions here.
 	 */
 	function init() {
-		elms.searchBox = document.querySelector('.udb-admin-bar-box--search-box');
-		elms.roleTabs = document.querySelector('.udb-admin-bar--role-tabs');
-
-		udbAdminBar.roles.forEach(function (role) {
-			getMenu('role', role.key);
-		});
+		buildMenu(udbAdminBarRender.parsedMenu);
 
 		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
 
@@ -83,50 +77,19 @@
 	}
 
 	/**
-	 * Get menu & submenu either by role or user id.
-	 *
-	 * @param {string} by The identifier, could be "role" or "user_id".
-	 * @param {string} value The specified role or user id.
-	 */
-	function getMenu(by, value) {
-		var data = {};
-
-		data.action = 'udb_admin_bar_get_menu';
-		data.nonce = udbAdminBar.nonces.getMenu;
-		data[by] = value;
-
-		$.ajax({
-			url: ajaxurl,
-			type: "post",
-			dataType: 'json',
-			data: data
-		}).done(function (r) {
-			if (!r || !r.success) return;
-			buildMenu(by, value, r.data);
-		}).always(function () {
-			//
-		});
-	}
-
-	/**
 	 * Build menu list.
 	 *
-	 * @param {string} by The identifier, could be "role" or "user_id".
-	 * @param {string} value The specified role or user id.
-	 * @param {array} menuList The menu list returned from ajax response.
+	 * @param {array} menuList List of menu object.
 	 */
-	function buildMenu(by, value, menuList) {
-		var identifier = by === 'role' ? value : 'user-' + value;
-		var editArea = document.querySelector('#udb-admin-bar--' + identifier + '-edit-area');
+	function buildMenu(menuList) {
+		var editArea = document.querySelector('#udb-admin-bar--workspace');
 		if (!editArea) return;
 		var listArea = editArea.querySelector('.udb-admin-bar--menu-list');
 		var builtMenu = '';
 
-		menuList = udbAdminBarRender.parsedMenu;
-
 		for (var menu in menuList) {
 			if (menuList.hasOwnProperty(menu)) {
-				builtMenu += replaceMenuPlaceholders(by, value, menuList[menu]);
+				builtMenu += replaceMenuPlaceholders(menuList[menu]);
 			}
 		}
 
@@ -146,11 +109,9 @@
 	/**
 	 * Replace menu placeholders.
 	 *
-	 * @param {string} by Either by role or user_id.
-	 * @param {string} value The role or user_id value.
 	 * @param {Object} menu The menu item.
 	 */
-	function replaceMenuPlaceholders(by, value, menu) {
+	function replaceMenuPlaceholders(menu) {
 		var template;
 		var submenuTemplate;
 		var icon;
@@ -214,8 +175,6 @@
 
 		if (menu.submenu && Object.keys(menu.submenu).length) {
 			submenuTemplate = buildSubmenu({
-				by: by,
-				value: value,
 				menu: menu,
 				depth: 1
 			});
@@ -223,13 +182,6 @@
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
 			template = template.replace(/{submenu_template}/g, '');
-		}
-
-		if (by === 'role') {
-			template = template.replace(/{role}/g, value);
-		} else if (by === 'user_id') {
-			template = template.replace(/{role}/g, 'user-' + value);
-			template = template.replace(/{user_id}/g, value);
 		}
 
 		return template;
@@ -240,15 +192,12 @@
 	 *
 	 * @param {Object} param The submenu parameter containing some arguments.
 	 *
-	 * @param {string} param.by The identifier, could be "role" or "user_id".
-	 * @param {string} param.value The specified role or user id.
 	 * @param {array} param.menu The menu item which contains the submenu list.
+	 * @param {int} param.depth The submenu depth level.
 	 * 
 	 * @return {string} template The submenu template.
 	 */
 	function buildSubmenu(param) {
-		var by = param.by;
-		var value = param.value;
 		var menu = param.menu;
 		var depth = param.depth;
 
@@ -257,8 +206,6 @@
 		for (var submenu in menu.submenu) {
 			if (menu.submenu.hasOwnProperty(submenu)) {
 				template += replaceSubmenuPlaceholders({
-					by: by,
-					value: value,
 					menu: menu,
 					// Current submenu item.
 					submenu: menu.submenu[submenu],
@@ -275,26 +222,16 @@
 	 *
 	 * @param {Object} param The parameter containing some arguments.
 	 *
-	 * @param {string} param.by Either by role or user_id.
-	 * @param {string} param.value The role or user_id value.
 	 * @param {Object} param.menu The menu item which contains the submenu list.
 	 * @param {Object} param.submenu The current submenu item.
+	 * @param {int} param.depth The submenu depth level.
 	 */
 	function replaceSubmenuPlaceholders(param) {
-		var by = param.by;
-		var value = param.value;
 		var menu = param.menu;
 		var submenu = param.submenu;
 		var depth = param.depth;
 
 		var template = udbAdminBar.templates.submenuList;
-
-		if (by === 'role') {
-			template = template.replace(/{role}/g, value);
-		} else if (by === 'user_id') {
-			template = template.replace(/{role}/g, 'user-' + value);
-			template = template.replace(/{user_id}/g, value);
-		}
 
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
 
@@ -330,8 +267,6 @@
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			submenuTemplate = buildSubmenu({
-				by: by,
-				value: value,
 				menu: submenu,
 				depth: depth + 1
 			});
