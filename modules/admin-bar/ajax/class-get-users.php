@@ -37,10 +37,7 @@ class Get_Users {
 		$users = get_users();
 
 		$select2_data = array(
-			array(
-				'id'   => '',
-				'text' => __( 'Select a User', 'ultimate-dashboard' ),
-			),
+			array(),
 		);
 
 		foreach ( $users as $user ) {

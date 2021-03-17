@@ -34,8 +34,8 @@ return function ( $module ) {
 			array_push(
 				$roles,
 				array(
-					'key'  => $role_key,
-					'name' => $role_name,
+					'id'  => $role_key,
+					'text' => $role_name,
 				)
 			);
 		}

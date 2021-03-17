@@ -23,19 +23,45 @@
 	}
 
 	var elms = {};
+	var usersData;
 
 	/**
 	 * Init the script.
 	 * Call the main functions here.
 	 */
 	function init() {
-		buildMenu(udbAdminBarRender.parsedMenu);
+		loadUsers();
 
 		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
 
 		$(document).on('click', '.udb-admin-bar--tab-menu-item', switchTab);
 		$(document).on('click', '.udb-admin-bar--expand-menu', expandCollapseMenuItem);
 		$(document).on('click', '.hide-menu', showHideMenuItem);
+	}
+
+	/**
+	 * Load users as select2 data.
+	 */
+	function loadUsers() {
+		$.ajax({
+			type: 'get',
+			url: ajaxurl,
+			cache: false,
+			data: {
+				action: 'udb_admin_bar_get_users',
+				nonce: udbAdminBar.nonces.getUsers
+			}
+		}).done(function (r) {
+			if (!r.success) return;
+
+			usersData = r.data;
+
+			buildMenu(udbAdminBarRender.parsedMenu);
+		}).fail(function () {
+			console.log('Failed to load users');
+		}).always(function () {
+			//
+		});
 	}
 
 	/**
@@ -104,6 +130,14 @@
 				setupMenuItems(submenu, true);
 			});
 		}
+
+		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--users-select2-field');
+
+		select2Fields.forEach(function (selectbox) {
+			$(selectbox).select2({
+				data: usersData
+			});
+		});
 	}
 
 	/**
