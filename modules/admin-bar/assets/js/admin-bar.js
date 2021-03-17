@@ -189,9 +189,7 @@
 
 		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
-		template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
 		template = template.replace(/{trash_icon}/g, '');
-		template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
 		template = template.replace(/{menu_was_added}/g, menu.was_added);
 
 		if (menu.was_added) {
@@ -292,10 +290,8 @@
 		template = template.replace(/{submenu_href}/g, submenu.href);
 		template = template.replace(/{default_submenu_href}/g, submenu.href_default);
 
-		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden);
 		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
 		template = template.replace(/{trash_icon}/g, '');
-		template = template.replace(/{hidden_icon}/g, (submenu.is_hidden == '1' ? 'hidden' : 'visibility'));
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {

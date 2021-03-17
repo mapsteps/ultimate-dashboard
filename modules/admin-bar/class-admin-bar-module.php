@@ -169,7 +169,8 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'                  => $node->meta,
 					'meta_default'          => $node->meta,
 					'was_added'             => 0,
-					'is_hidden'             => 0,
+					'disallowed_roles'      => array(),
+					'disallowed_users'      => array(),
 					'submenu'               => array(),
 				);
 			}
@@ -203,7 +204,8 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'                  => $node->meta,
 					'meta_default'          => $node->meta,
 					'was_added'             => 0,
-					'is_hidden'             => 0,
+					'disallowed_roles'      => array(),
+					'disallowed_users'      => array(),
 					'submenu'               => array(),
 				);
 
@@ -245,7 +247,8 @@ class Admin_Bar_Module extends Base_Module {
 									'meta'                => $node->meta,
 									'meta_default'        => $node->meta,
 									'was_added'           => 0,
-									'is_hidden'           => 0,
+									'disallowed_roles'    => array(),
+									'disallowed_users'    => array(),
 									'submenu'             => array(),
 								);
 
@@ -300,7 +303,8 @@ class Admin_Bar_Module extends Base_Module {
 											'meta'         => $node->meta,
 											'meta_default' => $node->meta,
 											'was_added'    => 0,
-											'is_hidden'    => 0,
+											'disallowed_roles' => array(),
+											'disallowed_users' => array(),
 											'submenu'      => array(),
 										);
 
@@ -380,7 +384,8 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'                  => $node->meta,
 					'meta_default'          => $node->meta,
 					'was_added'             => 0,
-					'is_hidden'             => 0,
+					'disallowed_roles'      => array(),
+					'disallowed_users'      => array(),
 					'submenu'               => array(),
 				);
 			}

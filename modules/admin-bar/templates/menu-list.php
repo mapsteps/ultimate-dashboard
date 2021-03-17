@@ -23,7 +23,6 @@ ob_start();
 		</div>
 		<div class="udb-admin-bar--menu-actions">
 			{trash_icon}
-			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
 		</div>
 		<div class="udb-admin-bar--expand-menu">
 			<span class="dashicons dashicons-arrow-down-alt2">
