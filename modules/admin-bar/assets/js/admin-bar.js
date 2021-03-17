@@ -132,7 +132,7 @@
 		}
 
 		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--users-select2-field');
-
+		
 		select2Fields.forEach(function (selectbox) {
 			$(selectbox).select2({
 				data: usersData
@@ -269,9 +269,8 @@
 
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
 
-		var submenuId = submenu.id ? submenu.id : submenu.href_default;
-		submenuId = submenuId.replace(/\//g, 'udbslashsign');
-		template = template.replace(/{submenu_id}/g, submenuId);
+		template = template.replace(/{submenu_id}/g, submenu.id);
+		template = template.replace(/{default_submenu_id}/g, submenu.id_default);
 
 		template = template.replace(/{submenu_level}/g, depth.toString());
 		template = template.replace(/{submenu_title}/g, submenu.title);

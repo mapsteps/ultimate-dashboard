@@ -33,12 +33,12 @@ ob_start();
 		<div class="udb-admin-bar--tabs udb-admin-bar--submenu-item-tabs">
 
 			<ul class="udb-admin-bar--tab-menu">
-				<li class="udb-admin-bar--tab-menu-item is-active" data-udb-tab-content="udb-admin-bar--settings-tab--{default_menu_id}">
+				<li class="udb-admin-bar--tab-menu-item is-active" data-udb-tab-content="udb-admin-bar--settings-tab--{default_submenu_id}">
 					<button type="button">
 						<?php _e( 'Settings', 'ultimate-dashboard' ); ?>
 					</button>
 				</li>
-				<li class="udb-admin-bar--tab-menu-item {submenu_tab_is_hidden}" data-udb-tab-content="udb-admin-bar--submenu-tab--{default_menu_id}">
+				<li class="udb-admin-bar--tab-menu-item {submenu_tab_is_hidden}" data-udb-tab-content="udb-admin-bar--submenu-tab--{default_submenu_id}">
 					<button type="button">
 						<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
 					</button>
@@ -46,7 +46,7 @@ ob_start();
 			</ul><!-- .udb-admin-bar--tab-menu -->
 
 			<div class="udb-admin-bar--tab-content">
-				<div id="udb-admin-bar--settings-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item is-active">
+				<div id="udb-admin-bar--settings-tab--{default_submenu_id}" class="udb-admin-bar--tab-content-item is-active">
 					<div class="udb-admin-bar--fields udb-admin-bar--submenu-fields">
 						<div class="field">
 							<label for="submenu_title_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
@@ -80,14 +80,14 @@ ob_start();
 							</div>
 						</div>
 						<div class="field">
-							<label for="disallowed_roles_{default_menu_id}" class="label udb-admin-bar--label">
+							<label for="disallowed_roles_{default_submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Hide from specific role(s):' ); ?>
 							</label>
 							<div class="control">
 								<select
-									name="disallowed_roles_{default_menu_id}" 
-									id="disallowed_roles_{default_menu_id}" 
-									class="udb-admin-bar--select-field"
+									name="disallowed_roles_{default_submenu_id}" 
+									id="disallowed_roles_{default_submenu_id}" 
+									class="udb-admin-bar--select-field udb-admin-bar--select2-field udb-admin-bar--users-select2-field"
 									data-placeholder="<?php _e( 'Select a role' ); ?>"
 									data-name="disallowed_roles"
 									multiple
@@ -95,14 +95,14 @@ ob_start();
 							</div>
 						</div>
 						<div class="field">
-							<label for="disallowed_users_{default_menu_id}" class="label udb-admin-bar--label">
+							<label for="disallowed_users_{default_submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Hide from specific user(s):' ); ?>
 							</label>
 							<div class="control">
 								<select
-									name="disallowed_users_{default_menu_id}" 
-									id="disallowed_users_{default_menu_id}" 
-									class="udb-admin-bar--select-field"
+									name="disallowed_users_{default_submenu_id}" 
+									id="disallowed_users_{default_submenu_id}" 
+									class="udb-admin-bar--select-field udb-admin-bar--select2-field udb-admin-bar--users-select2-field"
 									data-placeholder="<?php _e( 'Select a user' ); ?>"
 									data-name="disallowed_users"
 									multiple
@@ -111,7 +111,7 @@ ob_start();
 						</div>
 					</div><!-- .udb-admin-bar--fields -->
 				</div><!-- #udb-admin-bar--settings-tab -->
-				<div id="udb-admin-bar--submenu-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area {submenu_tab_is_hidden}">
+				<div id="udb-admin-bar--submenu-tab--{default_submenu_id}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area {submenu_tab_is_hidden}">
 					<ul class="udb-admin-bar--menu-list udb-admin-bar--submenu-list">
 						{submenu_template}
 					</ul>
