@@ -556,6 +556,10 @@ textarea.udb-admin-bar--text-field {
 	width: 100% !important;
 }
 
+.udb-admin-bar--fields .select2-search__field {
+	position: absolute;
+}
+
 .udb-admin-bar--fields .select2-container--default .select2-selection--multiple {
 	padding-bottom: 0;
 }
