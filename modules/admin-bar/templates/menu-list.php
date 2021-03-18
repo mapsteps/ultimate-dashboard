@@ -122,7 +122,7 @@ ob_start();
 								<?php _e( 'Menu Icon', 'ultimate-dashboard' ); ?>
 							</label>
 							<div class="control">
-								<input type="text" class="udb-admin-bar--text-field udb-admin-bar--icon-field dashicons-picker" data-width="100%" name="menu_icon_{default_menu_id}" id="menu_icon_{default_menu_id}" value="{menu_icon}" placeholder="<?php _e( 'Choose an icon', 'ultimate-dashboard' ); ?>" data-name="icon" {menu_icon_is_disabled} />
+								<input type="text" class="udb-admin-bar--text-field udb-admin-bar--icon-field dashicons-picker" data-width="100%" name="menu_icon_{default_menu_id}" id="menu_icon_{default_menu_id}" value="{menu_icon}" placeholder="<?php _e( 'Choose an icon', 'ultimate-dashboard' ); ?>" data-name="menu_icon" {menu_icon_is_disabled} />
 							</div>
 						</div>
 					</div><!-- .udb-admin-bar--fields -->

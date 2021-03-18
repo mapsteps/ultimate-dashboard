@@ -75,12 +75,15 @@ class Admin_Bar_Module extends Base_Module {
 
 		require_once __DIR__ . '/ajax/class-get-menu.php';
 		require_once __DIR__ . '/ajax/class-get-users.php';
+		require_once __DIR__ . '/ajax/class-save-menu.php';
 
 		$get_menu  = new Ajax\Get_Menu();
 		$get_users = new Ajax\Get_Users();
+		$save_menu = new Ajax\Save_Menu();
 
 		add_action( 'wp_ajax_udb_admin_bar_get_menu', array( $get_menu, 'ajax' ) );
 		add_action( 'wp_ajax_udb_admin_bar_get_users', array( $get_users, 'ajax' ) );
+		add_action( 'wp_ajax_udb_admin_bar_save_menu', array( $save_menu, 'ajax' ) );
 
 	}
 
@@ -131,7 +134,7 @@ class Admin_Bar_Module extends Base_Module {
 
 		Vars::set( 'existing_admin_bar_menu', $admin_bar->get_nodes() );
 
-		error_log( print_r( $this->to_nested_format( $admin_bar->get_nodes() ), true ) );
+		// error_log( print_r( $this->to_nested_format( $admin_bar->get_nodes() ), true ) );
 
 	}
 

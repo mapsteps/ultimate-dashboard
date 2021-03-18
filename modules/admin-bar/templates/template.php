@@ -53,6 +53,8 @@ wp_localize_script(
 
 	<div class="heatbox-container heatbox-container-center">
 
+		<h1 style="display: none;"></h1>
+
 		<?php do_action( 'udb_admin_bar_before_form' ); ?>
 
 		<form action="options.php" method="post" class="udb-admin-bar--edit-form">
