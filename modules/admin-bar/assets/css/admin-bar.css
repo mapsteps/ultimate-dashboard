@@ -214,6 +214,7 @@
 
 .udb-admin-bar--menu-list {
 	max-width: 100%;
+	margin-top: 0;
 	margin-bottom: 0;
 }
 
@@ -221,6 +222,10 @@
 	margin-bottom: 20px;
 	background-color: #fff;
 	border: 1px solid #ddd;
+}
+
+.udb-admin-bar--menu-list .udb-admin-bar--menu-item:last-child {
+	margin-bottom: 0;
 }
 
 .udb-admin-bar--menu-item[data-hidden="1"] {

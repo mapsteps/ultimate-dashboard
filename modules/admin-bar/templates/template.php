@@ -55,6 +55,17 @@ wp_localize_script(
 
 		<h1 style="display: none;"></h1>
 
+		<?php if ( ! udb_is_pro_active() ) : ?>
+
+			<div class="udb-pro-admin-bar-nag">
+				<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+				<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+					<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+				</a>
+			</div>
+
+		<?php endif; ?>
+
 		<?php do_action( 'udb_admin_bar_before_form' ); ?>
 
 		<form action="options.php" method="post" class="udb-admin-bar--edit-form">
@@ -82,17 +93,16 @@ wp_localize_script(
 
 				<div class="heatbox-footer">
 
-					<div class="heatbox-left-footer">
-						<button class="button button-large button-primary udb-admin-bar--button udb-admin-bar--submit-button">
-							<i class="dashicons dashicons-yes"></i>
-							<?php _e( 'Save Changes', 'ultimate-dashboard' ); ?>
-						</button>
-					</div>
-					<div class="heatbox-right-footer">
-						<button type="button" class="button button-large button-danger udb-admin-bar--button udb-admin-bar--reset-button udb-admin-bar--reset-all">
-							<?php _e( 'Reset All Menus', 'ultimate-dashboard' ); ?>
-						</button>
-					</div>
+					<?php if ( ! udb_is_pro_active() ) : ?>
+
+						<div class="udb-pro-settings-page-notice udb-pro-admin-bar-notice">
+							<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+							<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+								<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+							</a>
+						</div>
+
+					<?php endif; ?>
 
 					<?php do_action( 'udb_admin_bar_form_footer' ); ?>
 

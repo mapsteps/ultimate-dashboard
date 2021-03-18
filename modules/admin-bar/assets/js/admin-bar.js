@@ -22,8 +22,6 @@
 		};
 	}
 
-	var state = {};
-	var elms = {};
 	var usersData;
 
 	/**
@@ -34,7 +32,6 @@
 		loadUsers();
 
 		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
-		document.querySelector('.udb-admin-bar--reset-button').addEventListener('click', resetMenu);
 
 		$(document).on('click', '.udb-admin-bar--tab-menu-item', switchTab);
 		$(document).on('click', '.udb-admin-bar--expand-menu', expandCollapseMenuItem);
@@ -469,112 +466,6 @@
 	 */
 	function submitForm(e) {
 		e.preventDefault();
-
-		var workspace = this.querySelector('#udb-admin-bar--workspace');
-		var menuArray = {};
-		
-		var menuList = [];
-
-		var menuItems = document.querySelectorAll('#' + workspace.id + ' > .udb-admin-bar--menu-list > .udb-admin-bar--menu-item');
-		menuItems = menuItems.length ? menuItems : [];
-
-		menuItems.forEach(function (menuItem) {
-			var menuData = {};
-
-			menuData.was_added = menuItem.dataset.added;
-
-			menuData.id = '';
-			menuData.href_default = menuItem.dataset.defaultHref;
-
-			menuData.id_default = menuItem.dataset.defaultId;
-			menuData.title = menuItem.querySelector('[data-name="menu_title"]').value;
-			menuData.href = menuItem.querySelector('[data-name="menu_href"]').value;
-			menuData.icon = menuItem.querySelector('[data-name="menu_icon"]').value;
-
-			if (parseInt(menuItem.dataset.added, 10)) {
-				menuData.id = menuItem.dataset.defaultId;
-				menuData.class_default = 'menu-top menu-icon-custom udb-menu-top udb-menu-icon-custom';
-			}
-
-			var submenuItems = menuItem.querySelectorAll('.udb-admin-bar--submenu-item');
-			submenuItems = submenuItems.length ? submenuItems : [];
-			var submenuList = [];
-
-			submenuItems.forEach(function (submenuItem) {
-				var submenuData = {};
-
-				submenuData.was_added = submenuItem.dataset.added;
-				submenuData.title = submenuItem.querySelector('[data-name="submenu_title"]').value;
-				submenuData.href = submenuItem.querySelector('[data-name="submenu_href"]').value;
-				submenuData.href_default = submenuItem.dataset.defaultHref;
-
-				submenuList.push(submenuData);
-			});
-
-			if (submenuList) menuData.submenu = submenuList;
-			menuList.push(menuData);
-		});
-
-		menuArray[workspace.dataset.role] = menuList;
-
-		saveMenu(menuArray);
-	}
-
-	/**
-	 * Send ajax request to save the menu list.
-	 *
-	 * @param {array} menuArray The menu array.
-	 */
-	function saveMenu(menuArray) {
-		if (state.isSaving) return;
-		state.isSaving = true;
-
-		loading.start(elms.saveButton);
-
-		$.ajax({
-			url: ajaxurl,
-			type: 'post',
-			dataType: 'json',
-			data: {
-				action: 'udb_admin_bar_save_menu',
-				nonce: udbAdminBar.nonces.saveMenu,
-				menu: JSON.stringify(menuArray)
-			}
-		}).done(function (r) {
-			location.reload();
-		}).always(function () {
-			loading.stop(elms.saveButton);
-			state.isSaving = false;
-		});
-	}
-
-	/**
-	 * Send ajax request to reset the menu list.
-	 */
-	function resetMenu() {
-		var button = this;
-		var role = this.dataset.role;
-
-		if (state.isSaving) return;
-		state.isSaving = true;
-
-		loading.start(button);
-
-		$.ajax({
-			url: ajaxurl,
-			type: 'post',
-			dataType: 'json',
-			data: {
-				action: 'udb_admin_bar_reset_menu',
-				nonce: udbAdminMenu.nonces.resetMenu,
-				role: role
-			}
-		}).done(function (r) {
-			location.reload();
-		}).always(function () {
-			loading.stop(button);
-			state.isSaving = false;
-		});
 	}
 
 	init();
