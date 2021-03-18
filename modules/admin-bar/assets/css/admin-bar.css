@@ -560,13 +560,12 @@ textarea.udb-admin-bar--text-field {
 	position: absolute;
 }
 
-.udb-admin-bar--fields .select2-container--default .select2-selection--multiple {
-	padding-bottom: 0;
+.udb-admin-bar--fields .select2-container--default .select2-search--inline .select2-search__field {
+	margin-top: 7px;
 }
 
-.select2-results__options .select2-results__option:empty {
-	padding: 0;
-	margin-bottom: 0;
+.udb-admin-bar--fields .select2-container--default .select2-selection--multiple {
+	padding-bottom: 0;
 }
 
 .udb-admin-bar--fields .is-nested .udb-admin-bar--tab-menu {

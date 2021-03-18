@@ -136,8 +136,37 @@
 		select2Fields.forEach(function (selectbox) {
 			if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
 
+			var select2Data = [];
+			var disallowedRoles = [];
+			var disallowedUsers = [];
+
+			if ('disallowed_roles' === selectbox.dataset.name) {
+				disallowedRoles = selectbox.dataset.disallowedRoles.split(', ');
+				
+				udbAdminBar.roles.forEach(function (role) {
+					if (disallowedRoles.indexOf(role.id) > -1) {
+						role.selected = true;
+					}
+
+					select2Data.push(role);
+				});
+			} else if ('disallowed_users' === selectbox.dataset.name) {
+				disallowedUsers = selectbox.dataset.disallowedUsers.split(', ');
+				disallowedUsers = disallowedUsers.map(function (user) {
+					return parseInt(user, 10);
+				});
+
+				usersData.forEach(function (userData) {
+					if (disallowedUsers.indexOf(userData.id) > -1) {
+						userData.selected = true;
+					}
+
+					select2Data.push(userData);
+				});
+			}
+
 			$(selectbox).select2({
-				data: (selectbox.dataset.name === 'disallowed_roles' ? udbAdminBar.roles : usersData)
+				data: select2Data
 			});
 		});
 	}
@@ -192,7 +221,12 @@
 		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
 		template = template.replace(/{trash_icon}/g, '');
-		template = template.replace(/{menu_was_added}/g, menu.was_added);
+		
+		var disallowedRoles = menu.disallowed_roles.join(', ');
+		var disallowedUsers = menu.disallowed_users.join(', ');
+		
+		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
+		template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
@@ -295,6 +329,12 @@
 		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
+
+		var disallowedRoles = submenu.disallowed_roles.join(', ');
+		var disallowedUsers = submenu.disallowed_users.join(', ');
+
+		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
+		template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			submenuTemplate = buildSubmenu({

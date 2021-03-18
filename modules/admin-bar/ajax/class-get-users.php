@@ -36,9 +36,7 @@ class Get_Users {
 
 		$users = get_users();
 
-		$select2_data = array(
-			array(),
-		);
+		$select2_data = array();
 
 		foreach ( $users as $user ) {
 			array_push(
