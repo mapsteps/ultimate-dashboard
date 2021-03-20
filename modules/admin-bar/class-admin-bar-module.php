@@ -75,15 +75,12 @@ class Admin_Bar_Module extends Base_Module {
 
 		require_once __DIR__ . '/ajax/class-get-menu.php';
 		require_once __DIR__ . '/ajax/class-get-users.php';
-		require_once __DIR__ . '/ajax/class-save-menu.php';
 
 		$get_menu  = new Ajax\Get_Menu();
 		$get_users = new Ajax\Get_Users();
-		$save_menu = new Ajax\Save_Menu();
 
 		add_action( 'wp_ajax_udb_admin_bar_get_menu', array( $get_menu, 'ajax' ) );
 		add_action( 'wp_ajax_udb_admin_bar_get_users', array( $get_users, 'ajax' ) );
-		add_action( 'wp_ajax_udb_admin_bar_save_menu', array( $save_menu, 'ajax' ) );
 
 	}
 
@@ -133,18 +130,136 @@ class Admin_Bar_Module extends Base_Module {
 	public function get_existing_menu( $admin_bar ) {
 
 		Vars::set( 'existing_admin_bar_menu', $admin_bar->get_nodes() );
-
-		// error_log( print_r( $this->to_nested_format( $admin_bar->get_nodes() ), true ) );
-
 	}
 
 	/**
 	 * Turn flat admin bar menu array to a nested format (parent -> submenu).
 	 *
-	 * @param array $flat_array The default format of admin bar menu.
-	 * @return array The nested format of admin bar menu.
+	 * @param array $nodes The existing admin bar menu.
+	 * @return array Array in expected format.
 	 */
-	public function to_nested_format( $flat_array ) {
+	public function nodes_to_array( $nodes ) {
+		$udb_array = array();
+
+		foreach ( $nodes as $node_id => $node ) {
+			$udb_array[ $node_id ] = array(
+				'title'            => '',
+				'title_default'    => $node->title,
+				'id'               => $node->id,
+				'id_default'       => $node->id,
+				'parent'           => $node->parent,
+				'parent_default'   => $node->parent,
+				'href'             => '',
+				'href_default'     => $node->href,
+				'group'            => $node->group,
+				'group_default'    => $node->group,
+				'meta'             => '',
+				'meta_default'     => $node->meta,
+				'was_added'        => 0,
+				'disallowed_roles' => array(),
+				'disallowed_users' => array(),
+			);
+		}
+
+		return $udb_array;
+	}
+
+	/**
+	 * Parse saved menu with existing menu.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @param array $existing_menu The nested-formatted existing menu.
+	 *
+	 * @return array The parsed menu.
+	 */
+	public function parse_menu( $saved_menu, $existing_menu ) {
+		$non_udb_items_id = $this->get_non_udb_items_id( $saved_menu );
+
+		$prev_id = '';
+
+		// Get new items which are not inside $saved_menu.
+		foreach ( $existing_menu as $menu_id => $menu ) {
+			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
+				$new_item = array(
+					'id'               => $menu_id,
+					'id_default'       => $menu_id,
+					'title'            => $menu['title'],
+					'title_default'    => $menu['title'],
+					'parent'           => $menu['parent'],
+					'parent_default'   => $menu['parent'],
+					'href'             => $menu['href'],
+					'href_default'     => $menu['href'],
+					'group'            => $menu['group'],
+					'group_default'    => $menu['group'],
+					'meta'             => $menu['meta'],
+					'meta_default'     => $menu['meta'],
+					'was_added'        => 0,
+					'disallowed_roles' => array(),
+					'disallowed_users' => array(),
+				);
+
+				if ( empty( $prev_id ) ) {
+					$saved_menu = array( $menu_id => $new_item ) + $saved_menu;
+				} else {
+					$pos = array_search( $prev_id, array_keys( $saved_menu ), true );
+
+					$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
+						array( $menu_id => $new_item ) +
+						array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
+				}
+			}
+
+			$prev_id = $menu_id;
+		}
+
+		// Exclude non-udb items from $saved_menu which are no longer exist in $existing_menu.
+		foreach ( $non_udb_items_id as $menu_id ) {
+			if ( ! isset( $existing_menu[ $menu_id ] ) ) {
+				unset( $saved_menu[ $menu_id ] );
+			}
+		}
+
+		// Bring some defaults from $existing_menu to $saved_menu.
+		foreach ( $saved_menu as $menu_id => $menu ) {
+			if ( isset( $existing_menu[ $menu_id ] ) ) {
+				// Loop over matched $existing_menu item.
+				foreach ( $existing_menu[ $menu_id ] as $field_key => $field_value ) {
+					if ( ! isset( $menu[ $field_key ] ) ) {
+						$saved_menu[ $menu_id ][ $field_key ] = $field_value;
+					}
+				}
+			}
+		}
+
+		return $saved_menu;
+	}
+
+	/**
+	 * Loop over $saved_menu and collect the id of menu items which are not added by UDB builder.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @return array The non udb menu items.
+	 */
+	public function get_non_udb_items_id( $saved_menu ) {
+		// Id of menu items which are not added by UDB.
+		$non_udb_items_id = array();
+
+		foreach ( $saved_menu as $menu_id => $menu_array ) {
+			if ( ! $menu_array['was_added'] ) {
+				array_push( $non_udb_items_id, $menu_id );
+			}
+		}
+
+		return $non_udb_items_id;
+	}
+
+	/**
+	 * Turn flat admin bar array to a nested format as needed in menu builder.
+	 *
+	 * @param array $flat_array The flat array format of admin bar menu.
+	 * @return array The nested format as needed in menu builder.
+	 */
+	public function to_builder_format( $flat_array ) {
 		if ( ! $flat_array ) {
 			return array();
 		}
@@ -152,110 +267,83 @@ class Admin_Bar_Module extends Base_Module {
 		$nested_array = array();
 
 		// First, get the parent menu items.
-		foreach ( $flat_array as $node_id => $node ) {
-			if ( ! $node->parent || ! isset( $flat_array[ $node->parent ] ) ) {
-				$nested_array[ $node_id ] = array(
-					'id'                    => $node->id,
-					'id_default'            => $node->id,
-					'title'                 => '',
-					'title_encoded'         => '',
-					'title_clean'           => '',
-					'title_default'         => $node->title,
-					'title_default_encoded' => htmlentities2( $node->title ),
-					'title_default_clean'   => wp_strip_all_tags( $node->title ),
-					'parent'                => $node->parent,
-					'parent_default'        => $node->parent,
-					'href'                  => '',
-					'href_default'          => $node->href,
-					'group'                 => $node->group,
-					'group_default'         => $node->group,
-					'meta'                  => $node->meta,
-					'meta_default'          => $node->meta,
-					'was_added'             => 0,
-					'disallowed_roles'      => array(),
-					'disallowed_users'      => array(),
+		foreach ( $flat_array as $menu_id => $menu ) {
+			if ( ! $menu['parent'] || ! isset( $flat_array[ $menu['parent'] ] ) ) {
+				$nested_array[ $menu_id ] = $menu;
+
+				$additional = array(
+					'title_encoded'         => htmlentities2( $menu['title'] ),
+					'title_clean'           => wp_strip_all_tags( $menu['title'] ),
+					'title_default_encoded' => htmlentities2( $menu['title_default'] ),
+					'title_default_clean'   => wp_strip_all_tags( $menu['title_default'] ),
 					'submenu'               => array(),
 				);
+
+				$nested_array[ $menu_id ] = array_merge( $nested_array[ $menu_id ], $additional );
 			}
 		}
 
-		// Second, remove collected parent array from flat_array.
+		// Second, remove collected parent array from $flat_array.
 		foreach ( $nested_array as $key => $value ) {
 			if ( isset( $flat_array[ $key ] ) ) {
 				unset( $flat_array[ $key ] );
 			}
 		}
 
-		// Third, get the submenu items.
-		foreach ( $flat_array as $node_id => $node ) {
-			if ( isset( $nested_array[ $node->parent ] ) ) {
-				$nested_array[ $node->parent ]['submenu'][ $node->id ] = array(
-					'id'                    => $node->id,
-					'id_default'            => $node->id,
-					'title'                 => '',
-					'title_encoded'         => '',
-					'title_clean'           => '',
-					'title_default'         => $node->title,
-					'title_default_encoded' => htmlentities2( $node->title ),
-					'title_default_clean'   => wp_strip_all_tags( $node->title ),
-					'parent'                => $node->parent,
-					'parent_default'        => $node->parent,
-					'href'                  => '',
-					'href_default'          => $node->href,
-					'group'                 => $node->group,
-					'group_default'         => $node->group,
-					'meta'                  => $node->meta,
-					'meta_default'          => $node->meta,
-					'was_added'             => 0,
-					'disallowed_roles'      => array(),
-					'disallowed_users'      => array(),
+		// Third, get the 1st level submenu items.
+		foreach ( $flat_array as $menu_id => $menu ) {
+			if ( isset( $nested_array[ $menu['parent'] ] ) ) {
+				$nested_array[ $menu['parent'] ]['submenu'][ $menu['id'] ] = $menu;
+
+				$additional = array(
+					'title_encoded'         => htmlentities2( $menu['title'] ),
+					'title_clean'           => wp_strip_all_tags( $menu['title'] ),
+					'title_default_encoded' => htmlentities2( $menu['title_default'] ),
+					'title_default_clean'   => wp_strip_all_tags( $menu['title_default'] ),
 					'submenu'               => array(),
 				);
 
-				unset( $flat_array[ $node_id ] );
+				$nested_array[ $menu['parent'] ]['submenu'][ $menu['id'] ] = array_merge(
+					$nested_array[ $menu['parent'] ]['submenu'][ $menu['id'] ],
+					$additional
+				);
+
+				unset( $flat_array[ $menu_id ] );
 			}
 		}
 
-		// Fourth, get the 2nd depth submenu items.
+		// Fourth, get the 2nd level submenu items.
 		if ( ! empty( $flat_array ) ) {
-			// Loop the flat_array.
-			foreach ( $flat_array as $node_id => $node ) {
-				// Loop the nested_array.
+			// Loop over flat_array.
+			foreach ( $flat_array as $menu_id => $menu ) {
+				// Loop over nested_array.
 				foreach ( $nested_array as $parent_id => $parent_array ) {
 					$submenu_lv2_found = false;
 
 					if ( ! empty( $parent_array['submenu'] ) ) {
-						// Loop the parent array's submenu.
+						// Loop over parent array's submenu.
 						foreach ( $parent_array['submenu'] as $submenu_lv1_id => $submenu_lv1_array ) {
-							if ( $node->parent === $submenu_lv1_id ) {
+							if ( $menu['parent'] === $submenu_lv1_id ) {
 								if ( ! isset( $nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'] ) ) {
 									$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'] = array();
 								}
 
-								$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $node_id ] = array(
-									'id'                  => $node->id,
-									'id_default'          => $node->id,
-									'title'               => '',
-									'title_encoded'       => '',
-									'title_clean'         => '',
-									'title_default'       => $node->title,
-									'title_default_encoded' => htmlentities2( $node->title ),
-									'title_default_clean' => wp_strip_all_tags( $node->title ),
-									'parent'              => $node->parent,
-									'parent_default'      => $node->parent,
-									'href'                => '',
-									'href_default'        => $node->href,
-									'group'               => $node->group,
-									'group_default'       => $node->group,
-									'meta'                => $node->meta,
-									'meta_default'        => $node->meta,
-									'was_added'           => 0,
-									'disallowed_roles'    => array(),
-									'disallowed_users'    => array(),
+								$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $menu_id ] = $menu;
+
+								$additional = array(
+									'title_encoded'       => htmlentities2( $menu['title'] ),
+									'title_clean'         => wp_strip_all_tags( $menu['title'] ),
+									'title_default_encoded' => htmlentities2( $menu['title_default'] ),
+									'title_default_clean' => wp_strip_all_tags( $menu['title_default'] ),
 									'submenu'             => array(),
 								);
 
-								unset( $flat_array[ $node_id ] );
+								$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $menu_id ] = array_merge(
+									$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $menu_id ],
+									$additional
+								);
+
+								unset( $flat_array[ $menu_id ] );
 								$submenu_lv2_found = true;
 								break;
 							}
@@ -269,49 +357,41 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
-		// Fifth, get the 3rd depth submenu items.
+		// Fifth, get the 3rd level submenu items.
 		if ( ! empty( $flat_array ) ) {
-			// Loop the flat_array.
-			foreach ( $flat_array as $node_id => $node ) {
-				// Loop the nested_array.
+			// Loop over flat_array.
+			foreach ( $flat_array as $menu_id => $menu ) {
+				// Loop over nested_array.
 				foreach ( $nested_array as $parent_id => $parent_array ) {
 					$submenu_lv3_found = false;
 
 					if ( ! empty( $parent_array['submenu'] ) ) {
-						// Loop the parent array's submenu.
+						// Loop over parent array's submenu.
 						foreach ( $parent_array['submenu'] as $submenu_lv1_id => $submenu_lv1_array ) {
 							if ( ! empty( $submenu_lv1_array['submenu'] ) ) {
-								// Loop the submenu level 1's submenu.
+								// Loop over submenu level 1's submenu.
 								foreach ( $submenu_lv1_array['submenu'] as $submenu_lv2_id => $submenu_lv2_array ) {
-									if ( $node->parent === $submenu_lv2_id ) {
+									if ( $menu['parent'] === $submenu_lv2_id ) {
 										if ( ! isset( $nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'] ) ) {
 											$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'] = array();
 										}
 
-										$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $node_id ] = array(
-											'id'           => $node->id,
-											'id_default'   => $node->id,
-											'title'        => '',
-											'title_encoded' => '',
-											'title_clean'  => '',
-											'title_default' => $node->title,
-											'title_default_encoded' => htmlentities2( $node->title ),
-											'title_default_clean' => wp_strip_all_tags( $node->title ),
-											'parent'       => $node->parent,
-											'parent_default' => $node->parent,
-											'href'         => '',
-											'href_default' => $node->href,
-											'group'        => $node->group,
-											'group_default' => $node->group,
-											'meta'         => $node->meta,
-											'meta_default' => $node->meta,
-											'was_added'    => 0,
-											'disallowed_roles' => array(),
-											'disallowed_users' => array(),
-											'submenu'      => array(),
+										$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $menu_id ] = $menu;
+
+										$additional = array(
+											'title_encoded' => htmlentities2( $menu['title'] ),
+											'title_clean' => wp_strip_all_tags( $menu['title'] ),
+											'title_default_encoded' => htmlentities2( $menu['title_default'] ),
+											'title_default_clean' => wp_strip_all_tags( $menu['title_default'] ),
+											'submenu'     => array(),
 										);
 
-										unset( $flat_array[ $node_id ] );
+										$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $menu_id ] = array_merge(
+											$nested_array[ $parent_id ]['submenu'][ $submenu_lv1_id ]['submenu'][ $submenu_lv2_id ]['submenu'][ $menu_id ],
+											$additional
+										);
+
+										unset( $flat_array[ $menu_id ] );
 										$submenu_lv3_found = true;
 										break;
 									}
@@ -332,155 +412,6 @@ class Admin_Bar_Module extends Base_Module {
 		}
 
 		return $nested_array;
-	}
-
-	/**
-	 * Parse saved menu with existing menu.
-	 *
-	 * @param array $saved_menu The saved menu.
-	 * @param array $existing_menu The nested-formatted existing menu.
-	 *
-	 * @return array The parsed menu.
-	 */
-	public function parse_menu( $saved_menu, $existing_menu ) {
-		$parsed_menu = array();
-		$new_items   = $this->get_new_items( $saved_menu, $existing_menu );
-
-		return $parsed_menu;
-	}
-
-	/**
-	 * Compare the saved menu to existing menu to get the new menu items
-	 * from existing menu if they're found.
-	 *
-	 * @param array $saved_menu The saved menu.
-	 * @param array $existing_menu The nested-formatted existing menu.
-	 *
-	 * @return array The new menu items.
-	 */
-	public function get_new_items( $saved_menu, $existing_menu ) {
-		$new_items = array();
-
-		$non_udb_items = $this->get_non_udb_items( $saved_menu );
-
-		// Existing admin bar menu items (raw, flat-formatted array of WP_Admin_Bar node object).
-		$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
-
-		// Let's compare $existing_menu_raw to $non_udb_items.
-		foreach ( $existing_menu_raw as $node_id => $node ) {
-			if ( ! isset( $non_udb_items[ $node_id ] ) ) {
-				$new_items[ $node_id ] = array(
-					'id'                    => $node_id,
-					'id_default'            => $node_id,
-					'title'                 => '',
-					'title_encoded'         => '',
-					'title_clean'           => '',
-					'title_default'         => $node->title,
-					'title_default_encoded' => htmlentities2( $node->title ),
-					'title_default_clean'   => wp_strip_all_tags( $node->title ),
-					'parent'                => $node->parent,
-					'parent_default'        => $node->parent,
-					'href'                  => '',
-					'href_default'          => $node->href,
-					'group'                 => $node->group,
-					'group_default'         => $node->group,
-					'meta'                  => $node->meta,
-					'meta_default'          => $node->meta,
-					'was_added'             => 0,
-					'disallowed_roles'      => array(),
-					'disallowed_users'      => array(),
-					'submenu'               => array(),
-				);
-			}
-		}
-
-		return $new_items;
-	}
-
-	/**
-	 * Compare the saved menu to existing menu,
-	 * check if there's any default item (item that is not added by UDB) in saved menu
-	 * that is no longer exist in existing admin bar menu.
-	 *
-	 * @param array $saved_menu The saved menu.
-	 * @param array $existing_menu The nested-formatted existing menu.
-	 *
-	 * @return array The removed menu items.
-	 */
-	public function get_removed_items( $saved_menu, $existing_menu ) {
-		$removed_items = array();
-
-		$non_udb_items = $this->get_non_udb_items( $saved_menu );
-
-		// Existing admin bar menu items (raw, flat-formatted array of WP_Admin_Bar node object).
-		$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
-
-		foreach ( $non_udb_items as $menu_id => $menu_array ) {
-			if ( ! isset( $existing_menu_raw[ $menu_id ] ) ) {
-				$removed_items[ $menu_id ] = array(
-					'parent' => $menu_array['parent'],
-				);
-			}
-		}
-
-		return $removed_items;
-	}
-
-	/**
-	 * Loop over $saved_menu and get menu items which are not added by UDB builder.
-	 *
-	 * @param array $saved_menu The saved menu.
-	 * @return array The non udb menu items.
-	 */
-	public function get_non_udb_items( $saved_menu ) {
-		/**
-		 * Menu items which are not added by UDB.
-		 * The value of this variable is a flat-formatted array.
-		 */
-		$non_udb_items = array();
-
-		foreach ( $saved_menu as $menu_id => $menu_array ) {
-			if ( ! $menu_array['was_added'] ) {
-				$non_udb_items[ $menu_id ] = array(
-					'parent' => $menu_array['parent'],
-				);
-			}
-
-			if ( $menu_array['submenu'] ) {
-				// Loop over submenu level 1.
-				foreach ( $menu_array['submenu'] as $submenu_lvl_1_id => $submenu_lvl_1_array ) {
-					if ( ! $submenu_lvl_1_array['was_added'] ) {
-						$non_udb_items[ $submenu_lvl_1_id ] = array(
-							'parent' => $submenu_lvl_1_array['parent'],
-						);
-					}
-
-					if ( $submenu_lvl_1_array['submenu'] ) {
-						// Loop over submenu level 2.
-						foreach ( $submenu_lvl_1_array['submenu'] as $submenu_lvl_2_id => $submenu_lvl_2_array ) {
-							if ( ! $submenu_lvl_2_array['was_added'] ) {
-								$non_udb_items[ $submenu_lvl_2_id ] = array(
-									'parent' => $submenu_lvl_2_array['parent'],
-								);
-							}
-
-							if ( $submenu_lvl_2_array['submenu'] ) {
-								// Loop over submenu level 3.
-								foreach ( $submenu_lvl_2_array['submenu'] as $submenu_lvl_3_id => $submenu_lvl_3_array ) {
-									if ( ! $submenu_lvl_3_array['was_added'] ) {
-										$non_udb_items[ $submenu_lvl_3_id ] = array(
-											'parent' => $submenu_lvl_3_array['parent'],
-										);
-									}
-								} // End of $submenu_lvl_2_array['submenu'] foreach.
-							} // End of $submenu_lvl_2_array['submenu'] checking.
-						} // End of $submenu_lvl_1_array['submenu'] foreach.
-					} // End of $submenu_lvl_1_array['submenu'] checking.
-				} // End of $menu_array['submenu'] foreach.
-			} // End of $menu_array['submenu'] checking.
-		}
-
-		return $non_udb_items;
 	}
 
 }

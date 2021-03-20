@@ -9,18 +9,18 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
 
-$existing_menu_raw = Vars::get( 'existing_admin_bar_menu' );
-$existing_menu     = $this->to_nested_format( $existing_menu_raw );
+$existing_menu = Vars::get( 'existing_admin_bar_menu' );
+$existing_menu = $this->nodes_to_array( $existing_menu );
 
 $saved_menu  = get_option( 'udb_admin_bar', array() );
 $parsed_menu = ! $saved_menu ? $existing_menu : $this->parse_menu( $saved_menu, $existing_menu );
 
 wp_localize_script(
 	'udb-admin-bar',
-	'udbAdminBarRender',
+	'udbAdminBarBuilder',
 	array(
 		'existingMenu' => $existing_menu,
-		'parsedMenu'   => $parsed_menu,
+		'builderItems' => $this->to_builder_format( $parsed_menu ),
 	)
 );
 ?>

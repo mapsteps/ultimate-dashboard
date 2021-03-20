@@ -10,13 +10,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<li class="udb-admin-bar--menu-item" data-hidden="{menu_is_hidden}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-href="{default_menu_href}">
+<li class="udb-admin-bar--menu-item" data-default-parent="{default_menu_parent}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-href="{default_menu_href}" data-menu-id="{menu_id}">
 	<div class="udb-admin-bar--control-panel">
 		<div class="udb-admin-bar--menu-drag">
 			<span></span>
 		</div>
 		<div class="udb-admin-bar--menu-icon">
-			{menu_icon}
+			{render_menu_icon}
 		</div>
 		<div class="udb-admin-bar--menu-name">
 			{parsed_menu_title}
@@ -79,7 +79,7 @@ ob_start();
 									placeholder="{default_menu_href}" 
 									class="udb-admin-bar--text-field"
 									data-name="menu_href"
-									{menu_url_is_disabled}
+									{menu_href_is_disabled}
 								>
 							</div>
 						</div>

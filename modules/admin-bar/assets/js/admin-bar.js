@@ -55,7 +55,7 @@
 
 			usersData = r.data;
 
-			buildMenu(udbAdminBarRender.parsedMenu);
+			buildMenu(udbAdminBarBuilder.builderItems);
 		}).fail(function () {
 			console.log('Failed to load users');
 		}).always(function () {
@@ -182,19 +182,18 @@
 
 		template = udbAdminBar.templates.menuList;
 		template = template.replace(/{menu_title}/g, menu.title);
-		template = template.replace(/{default_menu_title}/g, menu.title_default);
 		template = template.replace(/{encoded_default_menu_title}/g, menu.title_default_encoded);
 
 		var parsedTitle;
 
-		if ('wp-logo' === menu.id || 'menu-toggle' === menu.id || 'comments' === menu.id || false === menu.title_default) {
+		if ('wp-logo' === menu.id_default || 'menu-toggle' === menu.id_default || 'comments' === menu.id_default || false === menu.title_default) {
 			template = template.replace(/{menu_title_is_disabled}/g, 'disabled');
-			parsedTitle = menu.id;
+			parsedTitle = menu.id ? menu.id : menu.id_default;
 		} else {
 			template = template.replace(/{menu_title_is_disabled}/g, '');
 
-			if ('updates' === menu.id) {
-				parsedTitle = menu.meta.title ? menu.meta.title : menu.id;
+			if ('updates' === menu.id_default) {
+				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
 			} else {
 				parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
 			}
@@ -206,16 +205,15 @@
 		template = template.replace(/{default_menu_href}/g, menu.href_default);
 
 		if (false === menu.href_default) {
-			template = template.replace(/{menu_url_is_disabled}/g, 'disabled');
+			template = template.replace(/{menu_href_is_disabled}/g, 'disabled');
 		} else {
-			template = template.replace(/{menu_url_is_disabled}/g, '');
+			template = template.replace(/{menu_href_is_disabled}/g, '');
 		}
 
 		template = template.replace(/{menu_id}/g, menu.id);
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
 
-		template = template.replace(/{menu_dashicon}/g, menu.dashicon);
-		template = template.replace(/{default_menu_dashicon}/g, menu.dashicon_default);
+		template = template.replace(/{default_menu_parent}/g, menu.parent_default);
 
 		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
@@ -229,15 +227,18 @@
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
-		} else {
-			template = template.replace(/{menu_icon_field_is_hidden}/g, 'is-hidden');
+			template = template.replace(/{menu_icon}/g, menu.icon);
 
 			if (menu.icon) {
 				icon = '<i class="dashicons ' + menu.icon + '"></i>';
-				template = template.replace(/{menu_icon}/g, icon);
+				template = template.replace(/{render_menu_icon}/g, icon);
 			} else {
-				template = template.replace(/{menu_icon}/g, '');
+				template = template.replace(/{render_menu_icon}/g, '');
 			}
+		} else {
+			template = template.replace(/{menu_icon_field_is_hidden}/g, 'is-hidden');
+			template = template.replace(/{menu_icon}/g, '');
+			template = template.replace(/{render_menu_icon}/g, '');
 		}
 
 		if (menu.submenu && Object.keys(menu.submenu).length) {
@@ -305,19 +306,26 @@
 		template = template.replace(/{submenu_id}/g, submenu.id);
 		template = template.replace(/{default_submenu_id}/g, submenu.id_default);
 
+		template = template.replace(/{default_submenu_parent}/g, submenu.parent_default);
+
 		template = template.replace(/{submenu_level}/g, depth.toString());
 		template = template.replace(/{submenu_title}/g, submenu.title);
-		template = template.replace(/{default_submenu_title}/g, submenu.title_default);
 		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
 
 		var parsedTitle;
 
-		if ('wp-logo' === submenu.id || 'menu-toggle' === submenu.id || 'comments' === submenu.id || false === submenu.title_default) {
+		if ('wp-logo' === submenu.id_default || 'menu-toggle' === submenu.id_default || 'comments' === submenu.id_default || false === submenu.title_default) {
 			template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
-			parsedTitle = submenu.id;
+			parsedTitle = submenu.id ? submenu.id : submenu.id_default;
 		} else {
 			template = template.replace(/{submenu_title_is_disabled}/g, '');
-			parsedTitle = submenu.title ? submenu.title_clean : submenu.title_default_clean;
+
+			if ('updates' === menu.id_default) {
+				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
+				parsedTitle = submenu.meta.title ? submenu.meta.title : submenu.id_default;
+			} else {
+				parsedTitle = submenu.title ? submenu.title_clean : submenu.title_default_clean;
+			}
 		}
 
 		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
