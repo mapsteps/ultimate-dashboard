@@ -271,12 +271,12 @@
 
 		var template = '';
 
-		for (var submenu in menu.submenu) {
-			if (menu.submenu.hasOwnProperty(submenu)) {
+		for (var submenuId in menu.submenu) {
+			if (menu.submenu.hasOwnProperty(submenuId)) {
 				template += replaceSubmenuPlaceholders({
 					menu: menu,
 					// Current submenu item.
-					submenu: menu.submenu[submenu],
+					submenu: menu.submenu[submenuId],
 					depth: depth
 				});
 			}
@@ -309,6 +309,7 @@
 		template = template.replace(/{default_submenu_parent}/g, submenu.parent_default);
 
 		template = template.replace(/{submenu_level}/g, depth.toString());
+		template = template.replace(/{submenu_next_level}/g, (depth + 1).toString());
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
 

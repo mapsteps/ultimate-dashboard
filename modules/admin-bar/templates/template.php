@@ -82,7 +82,7 @@ wp_localize_script(
 
 				<div class="udb-admin-bar--edit-area">
 					<div id="udb-admin-bar--workspace" class="udb-admin-bar--workspace">
-						<ul class="udb-admin-bar--menu-list">
+						<ul class="udb-admin-bar--menu-list" data-menu-type="parent">
 							<!-- to be re-written via js -->
 							<li class="loading"></li>
 						</ul>
