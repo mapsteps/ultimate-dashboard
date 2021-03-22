@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 ob_start();
 ?>
 
-<li class="udb-admin-bar--menu-item" data-default-parent="{default_menu_parent}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-href="{default_menu_href}" data-menu-id="{menu_id}">
+<li class="udb-admin-bar--menu-item" data-default-parent="{default_menu_parent}" data-added="{menu_was_added}" data-default-id="{default_menu_id}" data-default-href="{default_menu_href}" data-default-group="{default_menu_group}" data-menu-id="{menu_id}">
 	<div class="udb-admin-bar--control-panel">
 		<div class="udb-admin-bar--menu-drag">
 			<span></span>

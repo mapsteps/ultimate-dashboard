@@ -204,6 +204,8 @@
 		template = template.replace(/{menu_href}/g, menu.href);
 		template = template.replace(/{default_menu_href}/g, menu.href_default);
 
+		template = template.replace(/{default_menu_group}/g, (menu.group_default ? menu.group_default : "false"));
+
 		if (false === menu.href_default) {
 			template = template.replace(/{menu_href_is_disabled}/g, 'disabled');
 		} else {
@@ -333,6 +335,8 @@
 
 		template = template.replace(/{submenu_href}/g, submenu.href);
 		template = template.replace(/{default_submenu_href}/g, submenu.href_default);
+
+		template = template.replace(/{default_submenu_group}/g, (submenu.group_default ? submenu.group_default : "false"));
 
 		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
 		template = template.replace(/{trash_icon}/g, '');
