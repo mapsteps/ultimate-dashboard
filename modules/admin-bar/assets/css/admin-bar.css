@@ -614,3 +614,7 @@ textarea.udb-admin-bar--text-field {
 	margin-top: 0;
 	padding-top: 0;
 }
+
+.udb-admin-bar-output--menu-link .ab-icon {
+	top: 2px;
+}

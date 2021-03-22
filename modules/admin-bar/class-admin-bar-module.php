@@ -414,15 +414,4 @@ class Admin_Bar_Module extends Base_Module {
 		return $nested_array;
 	}
 
-	/**
-	 * Convert flat array format to array of nodes.
-	 *
-	 * @param array $menu The parsed menu in array format.
-	 * @return array Array of nodes.
-	 */
-	public function array_to_nodes( $menu ) {
-		$nodes = array();
-		return $nodes;
-	}
-
 }
