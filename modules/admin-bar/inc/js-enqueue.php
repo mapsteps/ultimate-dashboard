@@ -42,7 +42,6 @@ return function ( $module ) {
 
 		$admin_bar_data = array(
 			'nonces'    => array(
-				'getMenu'  => wp_create_nonce( 'udb_admin_bar_get_menu' ),
 				'getUsers' => wp_create_nonce( 'udb_admin_bar_get_users' ),
 			),
 			'roles'     => $roles,
