@@ -13,6 +13,7 @@ $existing_menu = Vars::get( 'existing_admin_bar_menu' );
 $existing_menu = $this->nodes_to_array( $existing_menu );
 
 $saved_menu  = get_option( 'udb_admin_bar', array() );
+$saved_menu  = apply_filters( 'udb_ms_admin_bar_saved_menu', $saved_menu );
 $parsed_menu = ! $saved_menu ? $existing_menu : $this->parse_menu( $saved_menu, $existing_menu );
 
 wp_localize_script(
