@@ -131,7 +131,7 @@
 		}
 
 		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--select2-field');
-		
+
 		select2Fields.forEach(function (selectbox) {
 			if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
 
@@ -141,7 +141,7 @@
 
 			if ('disallowed_roles' === selectbox.dataset.name) {
 				disallowedRoles = selectbox.dataset.disallowedRoles.split(', ');
-				
+
 				udbAdminBar.roles.forEach(function (role) {
 					if (disallowedRoles.indexOf(role.id) > -1) {
 						role.selected = true;
@@ -188,7 +188,14 @@
 
 		if ('wp-logo' === menu.id_default || 'menu-toggle' === menu.id_default || 'comments' === menu.id_default || false === menu.title_default) {
 			template = template.replace(/{menu_title_is_disabled}/g, 'disabled');
-			parsedTitle = menu.id ? menu.id : menu.id_default;
+
+			if ('wp-logo' === menu.id_default) {
+				parsedTitle = 'WP Logo';
+			} else if ('comments' === menu.id_default) {
+				parsedTitle = 'Comments';
+			} else {
+				parsedTitle = menu.id ? menu.id : menu.id_default;
+			}
 		} else {
 			template = template.replace(/{menu_title_is_disabled}/g, '');
 
@@ -220,10 +227,10 @@
 		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
 		template = template.replace(/{trash_icon}/g, '');
-		
+
 		var disallowedRoles = menu.disallowed_roles.join(', ');
 		var disallowedUsers = menu.disallowed_users.join(', ');
-		
+
 		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
 		template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
@@ -240,7 +247,18 @@
 		} else {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, 'is-hidden');
 			template = template.replace(/{menu_icon}/g, '');
-			template = template.replace(/{render_menu_icon}/g, '');
+
+			if ('wp-logo' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-wordpress"></i>');
+			} else if ('site-name' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-home"></i>');
+			} else if ('comments' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-comments"></i>');
+			} else if ('new-content' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-plus"></i>');
+			} else {
+				template = template.replace(/{render_menu_icon}/g, '');
+			}
 		}
 
 		if (menu.submenu && Object.keys(menu.submenu).length) {
