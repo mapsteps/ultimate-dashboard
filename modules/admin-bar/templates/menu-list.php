@@ -83,6 +83,8 @@ ob_start();
 								>
 							</div>
 						</div>
+
+						<!--
 						<div class="field">
 							<label for="disallowed_roles_{default_menu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Hide from specific role(s):' ); ?>
@@ -117,6 +119,8 @@ ob_start();
 								</select>
 							</div>
 						</div>
+						-->
+
 						<div class="field {menu_icon_field_is_hidden}">
 							<label for="menu_icon_{default_menu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Menu Icon', 'ultimate-dashboard' ); ?>

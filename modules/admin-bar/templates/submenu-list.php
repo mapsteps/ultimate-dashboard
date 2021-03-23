@@ -78,6 +78,8 @@ ob_start();
 								>
 							</div>
 						</div>
+
+						<!--
 						<div class="field">
 							<label for="disallowed_roles_{default_submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Hide from specific role(s):' ); ?>
@@ -110,6 +112,8 @@ ob_start();
 								></select>
 							</div>
 						</div>
+						-->
+
 					</div><!-- .udb-admin-bar--fields -->
 				</div><!-- #udb-admin-bar--settings-tab -->
 				<div id="udb-admin-bar--submenu-tab--{default_submenu_id}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area {submenu_tab_is_hidden}">

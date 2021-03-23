@@ -130,7 +130,16 @@
 			});
 		}
 
-		var select2Fields = listArea.querySelectorAll('.udb-admin-bar--select2-field');
+		// setupSelect2Fields(listArea);
+	}
+
+	/**
+	 * Setup select2 fields.
+	 * @param {HTMLElement} area The setup area.
+	 */
+	/**
+	function setupSelect2Fields(area) {
+		var select2Fields = area.querySelectorAll('.udb-admin-bar--select2-field');
 
 		select2Fields.forEach(function (selectbox) {
 			if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
@@ -169,6 +178,7 @@
 			});
 		});
 	}
+	*/
 
 	/**
 	 * Replace menu placeholders.
@@ -228,11 +238,13 @@
 
 		template = template.replace(/{trash_icon}/g, '');
 
+		/**
 		var disallowedRoles = menu.disallowed_roles.join(', ');
 		var disallowedUsers = menu.disallowed_users.join(', ');
 
 		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
 		template = template.replace(/{disallowed_users}/g, disallowedUsers);
+		*/
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
@@ -360,11 +372,13 @@
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
+		/**
 		var disallowedRoles = submenu.disallowed_roles.join(', ');
 		var disallowedUsers = submenu.disallowed_users.join(', ');
 
 		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
 		template = template.replace(/{disallowed_users}/g, disallowedUsers);
+		*/
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			submenuTemplate = buildSubmenu({

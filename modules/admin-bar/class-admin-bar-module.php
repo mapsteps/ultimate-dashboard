@@ -153,8 +153,10 @@ class Admin_Bar_Module extends Base_Module {
 				'meta'             => '',
 				'meta_default'     => $node->meta,
 				'was_added'        => 0,
+				/**
 				'disallowed_roles' => array(),
 				'disallowed_users' => array(),
+				*/
 			);
 		}
 
@@ -191,8 +193,10 @@ class Admin_Bar_Module extends Base_Module {
 					'meta'             => $menu['meta'],
 					'meta_default'     => $menu['meta'],
 					'was_added'        => 0,
+					/**
 					'disallowed_roles' => array(),
 					'disallowed_users' => array(),
+					*/
 				);
 
 				if ( empty( $prev_id ) ) {
