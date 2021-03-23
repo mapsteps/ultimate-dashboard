@@ -228,6 +228,19 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
+		/**
+		 * The "menu-toggle" has been removed from admin bar buider.
+		 * Now after parsing it, it's position is not at the beginning of the array.
+		 * Let's bring it back to the correct position (as first item of the array).
+		 */
+		if ( isset( $saved_menu['menu-toggle'] ) ) {
+			unset( $saved_menu['menu-toggle'] );
+		}
+
+		if ( isset( $existing_menu['menu-toggle'] ) ) {
+			$saved_menu = array( 'menu-toggle' => $existing_menu['menu-toggle'] ) + $saved_menu;
+		}
+
 		return $saved_menu;
 	}
 
@@ -259,6 +272,10 @@ class Admin_Bar_Module extends Base_Module {
 	public function to_builder_format( $flat_array ) {
 		if ( ! $flat_array ) {
 			return array();
+		}
+
+		if ( isset( $flat_array['menu-toggle'] ) ) {
+			unset( $flat_array['menu-toggle'] );
 		}
 
 		$nested_array = array();
