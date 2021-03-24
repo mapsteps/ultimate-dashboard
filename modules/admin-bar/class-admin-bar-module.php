@@ -140,19 +140,20 @@ class Admin_Bar_Module extends Base_Module {
 
 		foreach ( $nodes as $node_id => $node ) {
 			$udb_array[ $node_id ] = array(
-				'title'            => '',
-				'title_default'    => $node->title,
-				'id'               => $node->id,
-				'id_default'       => $node->id,
-				'parent'           => $node->parent,
-				'parent_default'   => $node->parent,
-				'href'             => '',
-				'href_default'     => $node->href,
-				'group'            => $node->group,
-				'group_default'    => $node->group,
-				'meta'             => '',
-				'meta_default'     => $node->meta,
-				'was_added'        => 0,
+				'title'          => '',
+				'title_default'  => $node->title,
+				'id'             => $node->id,
+				'id_default'     => $node->id,
+				'parent'         => $node->parent,
+				'parent_default' => $node->parent,
+				'href'           => '',
+				'href_default'   => $node->href,
+				'group'          => $node->group,
+				'group_default'  => $node->group,
+				'meta'           => '',
+				'meta_default'   => $node->meta,
+				'was_added'      => 0,
+				'is_hidden'      => 0,
 				/**
 				'disallowed_roles' => array(),
 				'disallowed_users' => array(),
@@ -176,23 +177,24 @@ class Admin_Bar_Module extends Base_Module {
 
 		$prev_id = '';
 
-		// Get new items which are not inside $saved_menu.
+		// Get new items from $existing_menu which are not inside $saved_menu.
 		foreach ( $existing_menu as $menu_id => $menu ) {
 			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
 				$new_item = array(
-					'id'               => $menu_id,
-					'id_default'       => $menu_id,
-					'title'            => $menu['title'],
-					'title_default'    => $menu['title'],
-					'parent'           => $menu['parent'],
-					'parent_default'   => $menu['parent'],
-					'href'             => $menu['href'],
-					'href_default'     => $menu['href'],
-					'group'            => $menu['group'],
-					'group_default'    => $menu['group'],
-					'meta'             => $menu['meta'],
-					'meta_default'     => $menu['meta'],
-					'was_added'        => 0,
+					'id'             => $menu_id,
+					'id_default'     => $menu_id,
+					'title'          => $menu['title'],
+					'title_default'  => $menu['title'],
+					'parent'         => $menu['parent'],
+					'parent_default' => $menu['parent'],
+					'href'           => $menu['href'],
+					'href_default'   => $menu['href'],
+					'group'          => $menu['group'],
+					'group_default'  => $menu['group'],
+					'meta'           => $menu['meta'],
+					'meta_default'   => $menu['meta'],
+					'was_added'      => 0,
+					'is_hidden'      => 0,
 					/**
 					'disallowed_roles' => array(),
 					'disallowed_users' => array(),
