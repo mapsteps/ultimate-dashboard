@@ -33,11 +33,121 @@ class Admin_Bar_Module extends Base_Module {
 	public $url;
 
 	/**
+	 * Frontend admin bar menu items.
+	 *
+	 * @var array
+	 */
+	public $frontend_items = array();
+
+	/**
 	 * Module constructor.
 	 */
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar';
+
+		/**
+		 * This was created by looking at wp-toolbar-editor plugin's code.
+		 * These items can be checked in wp-includes/admdin-bar.php file.
+		 */
+		$this->frontend_items = array(
+			array(
+				'parent' => 'top-secondary',
+				'id'     => 'search',
+				'title'  => '',
+				'meta'   => array(
+					'class'    => 'admin-bar-search',
+					'tabindex' => -1,
+				),
+			),
+
+			array(
+				'parent' => false,
+				'after'  => 'site-name',
+				'id'     => 'updates',
+				'title'  => '',
+				'href'   => '',
+				'meta'   => array(
+					'title' => '',
+				),
+			),
+
+			array(
+				'parent' => false,
+				'after'  => 'site-name',
+				'id'     => 'customize',
+				'title'  => __( 'Customize' ),
+				'href'   => '',
+				'meta'   => array(
+					'class' => 'hide-if-no-customize',
+				),
+			),
+
+			array(
+				'parent' => false,
+				'after'  => 'new-content',
+				'id'     => 'edit',
+				'title'  => '',
+				'href'   => '',
+			),
+
+			array(
+				'parent' => 'site-name',
+				'id'     => 'dashboard',
+				'title'  => __( 'Dashboard' ),
+				'href'   => '',
+			),
+
+			array(
+				'parent' => 'site-name',
+				'after'  => 'dashboard',
+				'id'     => 'appearance',
+				'title'  => '',
+				'href'   => '',
+				'group'  => true,
+			),
+
+			array(
+				'parent' => 'appearance',
+				'id'     => 'themes',
+				'title'  => __( 'Themes' ),
+				'href'   => '',
+			),
+
+			array(
+				'parent' => 'appearance',
+				'id'     => 'widgets',
+				'title'  => __( 'Widgets' ),
+				'href'   => '',
+			),
+
+			array(
+				'parent' => 'appearance',
+				'id'     => 'menus',
+				'title'  => __( 'Menus' ),
+				'href'   => '',
+			),
+
+			array(
+				'parent' => 'appearance',
+				'id'     => 'background',
+				'title'  => __( 'Background' ),
+				'href'   => '',
+				'meta'   => array(
+					'class' => 'hide-if-customize',
+				),
+			),
+
+			array(
+				'parent' => 'appearance',
+				'id'     => 'header',
+				'title'  => __( 'Header' ),
+				'href'   => '',
+				'meta'   => array(
+					'class' => 'hide-if-customize',
+				),
+			),
+		);
 
 	}
 
@@ -127,6 +237,7 @@ class Admin_Bar_Module extends Base_Module {
 	public function get_existing_menu( $admin_bar ) {
 
 		Vars::set( 'existing_admin_bar_menu', $admin_bar->get_nodes() );
+
 	}
 
 	/**
@@ -150,10 +261,46 @@ class Admin_Bar_Module extends Base_Module {
 				'href_default'   => $node->href,
 				'group'          => $node->group,
 				'group_default'  => $node->group,
-				'meta'           => '',
+				'meta'           => $node->meta,
 				'meta_default'   => $node->meta,
 				'was_added'      => 0,
 				'is_hidden'      => 0,
+				/**
+				'disallowed_roles' => array(),
+				'disallowed_users' => array(),
+				*/
+			);
+		}
+
+		return $udb_array;
+	}
+
+	/**
+	 * Turn frontend items array to expected UDB array.
+	 * Like what we have in nodes_to_array above.
+	 *
+	 * @return array Array in expected format.
+	 */
+	public function frontend_items_to_array() {
+		$udb_array = array();
+
+		foreach ( $this->frontend_items as $item_data ) {
+			$udb_array[ $node_id ] = array(
+				'title'          => $item_data['title'],
+				'title_default'  => $item_data['title'],
+				'id'             => $item_data['id'],
+				'id_default'     => $item_data['id'],
+				'parent'         => $item_data['parent'],
+				'parent_default' => $item_data['parent'],
+				'href'           => $item_data['href'],
+				'href_default'   => $item_data['href'],
+				'group'          => isset( $item_data['group'] ) ? $item_data['group'] : false,
+				'group_default'  => isset( $item_data['group'] ) ? $item_data['group'] : false,
+				'meta'           => isset( $item_data['meta'] ) ? $item_data['meta'] : array(),
+				'meta_default'   => isset( $item_data['meta'] ) ? $item_data['meta'] : array(),
+				'was_added'      => 0,
+				'is_hidden'      => 0,
+				'frontend_only'  => 1,
 				/**
 				'disallowed_roles' => array(),
 				'disallowed_users' => array(),
@@ -267,6 +414,18 @@ class Admin_Bar_Module extends Base_Module {
 		}
 
 		return $non_udb_items_id;
+	}
+
+	/**
+	 * Insert manual items to parsed menu.
+	 *
+	 * @param array $parsed_menu The parsed menu.
+	 * @return array
+	 */
+	public function insert_frontend_items( $parsed_menu ) {
+		$frontend_items = $this->frontend_items_to_array();
+
+		return $parsed_menu;
 	}
 
 	/**
