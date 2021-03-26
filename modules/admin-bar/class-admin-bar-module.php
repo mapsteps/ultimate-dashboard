@@ -40,6 +40,13 @@ class Admin_Bar_Module extends Base_Module {
 	public $frontend_items = array();
 
 	/**
+	 * Frontend admin bar menu in udb expected format.
+	 *
+	 * @var array
+	 */
+	public $frontend_menu = array();
+
+	/**
 	 * Module constructor.
 	 */
 	public function __construct() {
@@ -87,7 +94,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => false,
 				'after'  => 'new-content',
 				'id'     => 'edit',
-				'title'  => '',
+				'title'  => __( 'Edit' ) . ' {post_type}',
 				'href'   => '',
 			),
 
@@ -148,6 +155,8 @@ class Admin_Bar_Module extends Base_Module {
 				),
 			),
 		);
+
+		$this->frontend_menu = $this->frontend_items_to_array();
 
 	}
 
@@ -285,15 +294,17 @@ class Admin_Bar_Module extends Base_Module {
 		$udb_array = array();
 
 		foreach ( $this->frontend_items as $item_data ) {
-			$udb_array[ $node_id ] = array(
-				'title'          => $item_data['title'],
+			$item_id = $item_data['id'];
+
+			$udb_array[ $item_id ] = array(
+				'title'          => '',
 				'title_default'  => $item_data['title'],
 				'id'             => $item_data['id'],
 				'id_default'     => $item_data['id'],
 				'parent'         => $item_data['parent'],
 				'parent_default' => $item_data['parent'],
-				'href'           => $item_data['href'],
-				'href_default'   => $item_data['href'],
+				'href'           => isset( $item_data['href'] ) ? $item_data['href'] : '',
+				'href_default'   => isset( $item_data['href'] ) ? $item_data['href'] : '',
 				'group'          => isset( $item_data['group'] ) ? $item_data['group'] : false,
 				'group_default'  => isset( $item_data['group'] ) ? $item_data['group'] : false,
 				'meta'           => isset( $item_data['meta'] ) ? $item_data['meta'] : array(),
@@ -306,6 +317,10 @@ class Admin_Bar_Module extends Base_Module {
 				'disallowed_users' => array(),
 				*/
 			);
+
+			if ( isset( $item_data['after'] ) ) {
+				$udb_array[ $item_id ]['after'] = $item_data['after'];
+			}
 		}
 
 		return $udb_array;
@@ -417,15 +432,136 @@ class Admin_Bar_Module extends Base_Module {
 	}
 
 	/**
-	 * Insert manual items to parsed menu.
+	 * Loop over $saved_menu and collect the id of menu items
+	 * which are not added by UDB builder and frontend only.
 	 *
-	 * @param array $parsed_menu The parsed menu.
+	 * @param array $saved_menu The saved menu.
+	 * @return array The non udb menu items.
+	 */
+	public function get_non_udb_items_id_fontend_only( $saved_menu ) {
+		// Id of menu items which are not added by UDB & frontend only.
+		$non_udb_items_id = array();
+
+		foreach ( $saved_menu as $menu_id => $menu_array ) {
+			if ( ! $menu_array['was_added'] && isset( $menu_array['frontend_only'] ) && $menu_array['frontend_only'] ) {
+				array_push( $non_udb_items_id, $menu_id );
+			}
+		}
+
+		return $non_udb_items_id;
+	}
+
+	/**
+	 * Parse frontend items with saved menu.
+	 *
+	 * @param array $saved_menu The saved menu.
 	 * @return array
 	 */
-	public function insert_frontend_items( $parsed_menu ) {
-		$frontend_items = $this->frontend_items_to_array();
+	public function parse_frontend_items( $saved_menu ) {
+		$non_udb_items_id = $this->get_non_udb_items_id_fontend_only( $saved_menu );
 
-		return $parsed_menu;
+		$prev_id = '';
+
+		$uninserted_items = array();
+
+		// Get new items from $existing_menu which are not inside $saved_menu.
+		foreach ( $this->frontend_menu as $menu_id => $menu ) {
+			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
+				$new_item = $menu;
+
+				if ( isset( $new_item['after'] ) ) {
+					unset( $new_item['after'] );
+				}
+
+				if ( isset( $menu['after'] ) && $menu['after'] ) {
+					if ( isset( $saved_menu[ $menu['after'] ] ) ) {
+						$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );
+						$pos += 1;
+
+						$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
+							array( $menu_id => $new_item ) +
+							array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
+					} else {
+						$uninserted_items[ $menu_id ] = $new_item;
+					}
+				} else {
+					if ( empty( $prev_id ) ) {
+						$saved_menu = array( $menu_id => $new_item ) + $saved_menu;
+					} else {
+						$pos = array_search( $prev_id, array_keys( $saved_menu ), true );
+
+						$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
+							array( $menu_id => $new_item ) +
+							array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
+					}
+				}
+			}
+
+			$prev_id = $menu_id;
+		}
+
+		$saved_menu = $this->insert_uninserted_items( $saved_menu, $uninserted_items, 10 );
+
+		return $saved_menu;
+	}
+
+	/**
+	 * Insert un-inserted items to saved menu.
+	 *
+	 * @param array $saved_menu The saved menu.
+	 * @param array $uninserted_items The uninserted items.
+	 * @param int   $total_loop Max number of the the loop.
+	 *
+	 * @return array
+	 */
+	public function insert_uninserted_items( $saved_menu, $uninserted_items, $total_loop = 1 ) {
+
+		for ( $i = 0; $i < $total_loop; $i++ ) {
+			$remaining_items = array();
+
+			// Get new items from $existing_menu which are not inside $saved_menu.
+			foreach ( $uninserted_items as $menu_id => $menu ) {
+				$new_item = array(
+					'id'             => $menu_id,
+					'id_default'     => $menu_id,
+					'title'          => $menu['title'],
+					'title_default'  => $menu['title'],
+					'parent'         => $menu['parent'],
+					'parent_default' => $menu['parent'],
+					'href'           => $menu['href'],
+					'href_default'   => $menu['href'],
+					'group'          => $menu['group'],
+					'group_default'  => $menu['group'],
+					'meta'           => $menu['meta'],
+					'meta_default'   => $menu['meta'],
+					'was_added'      => 0,
+					'is_hidden'      => 0,
+				/**
+				'disallowed_roles' => array(),
+				'disallowed_users' => array(),
+				*/
+				);
+
+				if ( isset( $saved_menu[ $menu['after'] ] ) ) {
+					$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );
+					$pos += 1;
+
+					$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
+					array( $menu_id => $new_item ) +
+					array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
+				} else {
+					$remaining_items[ $menu_id ] = $new_item;
+				}
+			}
+
+			if ( empty( $remaining_items ) ) {
+				break;
+			} else {
+				$saved_menu = $this->insert_uninserted_items( $saved_menu, $remaining_items );
+			}
+		}
+
+		return $saved_menu;
 	}
 
 	/**

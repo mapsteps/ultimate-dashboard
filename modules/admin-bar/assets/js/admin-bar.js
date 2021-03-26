@@ -196,13 +196,15 @@
 
 		var parsedTitle;
 
-		if ('wp-logo' === menu.id_default || 'menu-toggle' === menu.id_default || 'comments' === menu.id_default || false === menu.title_default) {
+		if ('menu-toggle' === menu.id_default || 'wp-logo' === menu.id_default || 'appearance' === menu.id_default || 'comments' === menu.id_default || 'search' === menu.id_default || false === menu.title_default) {
 			template = template.replace(/{menu_title_is_disabled}/g, 'disabled');
 
 			if ('wp-logo' === menu.id_default) {
 				parsedTitle = 'WP Logo';
 			} else if ('comments' === menu.id_default) {
 				parsedTitle = 'Comments';
+			} else if ('search' === menu.id_default) {
+				parsedTitle = 'Search Form';
 			} else {
 				parsedTitle = menu.id ? menu.id : menu.id_default;
 			}
@@ -266,10 +268,16 @@
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-wordpress"></i>');
 			} else if ('site-name' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-home"></i>');
+			} else if ('customize' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-customizer"></i>');
+			} else if ('updates' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-update"></i>');
 			} else if ('comments' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-comments"></i>');
 			} else if ('new-content' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-plus"></i>');
+			} else if ('edit' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-edit"></i>');
 			} else {
 				template = template.replace(/{render_menu_icon}/g, '');
 			}
@@ -349,7 +357,7 @@
 
 		var parsedTitle;
 
-		if ('wp-logo' === submenu.id_default || 'menu-toggle' === submenu.id_default || 'comments' === submenu.id_default || false === submenu.title_default) {
+		if ('wp-logo' === submenu.id_default || 'appearance' === submenu.id_default || 'comments' === submenu.id_default || 'search' === submenu.id_default || false === submenu.title_default) {
 			template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
 			parsedTitle = submenu.id ? submenu.id : submenu.id_default;
 		} else {
