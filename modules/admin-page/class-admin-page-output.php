@@ -10,6 +10,7 @@ namespace Udb\AdminPage;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
+use Udb\Helpers\Array_Helper;
 
 /**
  * Class to setup admin page output.
@@ -127,6 +128,8 @@ class Admin_Page_Output extends Base_Output {
 
 		$posts = $posts ? $posts : array();
 
+		$array_helper = new Array_Helper();
+
 		foreach ( $posts as &$post ) {
 			$post_id = $post->ID;
 
@@ -137,7 +140,7 @@ class Admin_Page_Output extends Base_Output {
 			$post->icon_class    = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$post->allowed_roles = get_post_meta( $post_id, 'udb_allowed_roles', true );
 			$post->allowed_roles = empty( $post->allowed_roles ) ? array( 'all' ) : $post->allowed_roles;
-			$post->allowed_roles = is_string( $post->allowed_roles ) ? unserialize( $post->allowed_roles ) : $post->allowed_roles;
+			$post->allowed_roles = $array_helper->clean_unserialize( $post->allowed_roles, 3 );
 			$post->custom_css    = get_post_meta( $post_id, 'udb_custom_css', true );
 			$post->custom_js     = get_post_meta( $post_id, 'udb_custom_js', true );
 			$post->content_type  = get_post_meta( $post_id, 'udb_content_type', true );
