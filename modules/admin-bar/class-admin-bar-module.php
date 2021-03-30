@@ -71,17 +71,6 @@ class Admin_Bar_Module extends Base_Module {
 			array(
 				'parent' => false,
 				'after'  => 'site-name',
-				'id'     => 'updates',
-				'title'  => '',
-				'href'   => '',
-				'meta'   => array(
-					'title' => '',
-				),
-			),
-
-			array(
-				'parent' => false,
-				'after'  => 'site-name',
 				'id'     => 'customize',
 				'title'  => __( 'Customize' ),
 				'href'   => '',
@@ -133,26 +122,6 @@ class Admin_Bar_Module extends Base_Module {
 				'id'     => 'menus',
 				'title'  => __( 'Menus' ),
 				'href'   => '',
-			),
-
-			array(
-				'parent' => 'appearance',
-				'id'     => 'background',
-				'title'  => __( 'Background' ),
-				'href'   => '',
-				'meta'   => array(
-					'class' => 'hide-if-customize',
-				),
-			),
-
-			array(
-				'parent' => 'appearance',
-				'id'     => 'header',
-				'title'  => __( 'Header' ),
-				'href'   => '',
-				'meta'   => array(
-					'class' => 'hide-if-customize',
-				),
 			),
 		);
 

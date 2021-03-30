@@ -303,13 +303,13 @@
 
 .udb-admin-bar--menu-name {
 	padding-left: 10px;
-	width: 60%;
+	width: 55%;
 	font-weight: 700;
 	opacity: 0.8;
 }
 
 .udb-admin-bar--submenu-list .udb-admin-bar--menu-name {
-	width: 65%;
+	width: 60%;
 }
 
 .udb-admin-bar--control-panel > .udb-admin-bar--menu-name {
@@ -321,12 +321,23 @@
 }
 
 .udb-admin-bar--menu-actions {
-	width: 15%;
+	width: 20%;
 	color: #888;
 }
 
+.udb-admin-bar--menu-actions .udb-admin-bar--tag {
+	margin-right: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: auto;
+	background-color: #f2f2f2;
+	border-radius: 15px;
+	opacity: 1;
+	visibility: visible;
+}
+
 .udb-admin-bar--menu-actions span {
-	display: none;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 30px;
@@ -334,6 +345,8 @@
 	font-size: 14px;
 	cursor: pointer;
 	text-align: right;
+	opacity: 0;
+	visibility: hidden;
 }
 
 /* Let's hide the duplicate icon for now */
@@ -349,7 +362,8 @@
 	> .udb-admin-bar--control-panel
 	.udb-admin-bar--menu-actions
 	span {
-	display: flex;
+	opacity: 1;
+	visibility: visible;
 }
 
 .udb-admin-bar--menu-actions span:hover {
