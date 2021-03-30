@@ -61,6 +61,7 @@ class Setup {
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ), 20 );
 		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ), 20 );
 
 		$content_helper = new Content_Helper();
@@ -183,6 +184,15 @@ class Setup {
 		global $submenu;
 
 		$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
+
+	}
+
+	/**
+	 * Enqueue admin scripts.
+	 */
+	public function admin_styles() {
+
+		wp_enqueue_style( 'udb-admin', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/admin.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}
 

@@ -1,0 +1,7 @@
+/**
+ * This file is for generic styling inside admin area.
+ * For example: an admin bar output styling is needed in almost all pages in admin area.
+ */
+.udb-admin-bar-output--menu-link .ab-icon {
+	top: 2px;
+}

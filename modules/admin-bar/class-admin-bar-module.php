@@ -302,10 +302,12 @@ class Admin_Bar_Module extends Base_Module {
 	 *
 	 * @param array $saved_menu The saved menu.
 	 * @param array $existing_menu The nested-formatted existing menu.
+	 * @param bool  $target This function is being called either for the builder or the output.
+	 *              Possible vaule is 'builder' and 'output'.
 	 *
 	 * @return array The parsed menu.
 	 */
-	public function parse_menu( $saved_menu, $existing_menu ) {
+	public function parse_menu( $saved_menu, $existing_menu, $target = 'builder' ) {
 		$non_udb_items_id = $this->get_non_udb_items_id( $saved_menu );
 
 		$prev_id = '';
@@ -350,8 +352,22 @@ class Admin_Bar_Module extends Base_Module {
 
 		// Exclude non-udb items from $saved_menu which are no longer exist in $existing_menu.
 		foreach ( $non_udb_items_id as $menu_id ) {
-			if ( ! isset( $existing_menu[ $menu_id ] ) ) {
-				unset( $saved_menu[ $menu_id ] );
+			if ( 'output' === $target ) {
+				if ( ! isset( $existing_menu[ $menu_id ] ) ) {
+					unset( $saved_menu[ $menu_id ] );
+				}
+			} else {
+				if ( ! isset( $existing_menu[ $menu_id ] ) && ! isset( $this->frontend_menu[ $menu_id ] ) ) {
+					unset( $saved_menu[ $menu_id ] );
+				}
+			}
+		}
+
+		// Reset some item's property's value (such as title) so that it will use the existing item's value.
+		if ( 'output' === $target ) {
+			if ( isset( $saved_menu['edit'] ) ) {
+				$saved_menu['edit']['title']         = '';
+				$saved_menu['edit']['title_default'] = '';
 			}
 		}
 
@@ -362,6 +378,12 @@ class Admin_Bar_Module extends Base_Module {
 				foreach ( $existing_menu[ $menu_id ] as $field_key => $field_value ) {
 					if ( ! isset( $menu[ $field_key ] ) ) {
 						$saved_menu[ $menu_id ][ $field_key ] = $field_value;
+					} else {
+						if ( 'output' === $target ) {
+							if ( empty( $menu[ $field_key ] ) && ! empty( $field_value ) ) {
+								$saved_menu[ $menu_id ][ $field_key ] = $field_value;
+							}
+						}
 					}
 				}
 			}
@@ -435,7 +457,7 @@ class Admin_Bar_Module extends Base_Module {
 
 		$uninserted_items = array();
 
-		// Get new items from $existing_menu which are not inside $saved_menu.
+		// Get new items from $this->frontend_menu which are not inside $saved_menu.
 		foreach ( $this->frontend_menu as $menu_id => $menu ) {
 			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
 				$new_item = $menu;
@@ -550,6 +572,8 @@ class Admin_Bar_Module extends Base_Module {
 			unset( $flat_array['menu-toggle'] );
 		}
 
+		// error_log( print_r( $flat_array, true ) );
+
 		// First, create new site-name item for frontend as "site-name-frontend".
 		$site_name_frontend = array(
 			'title'          => '',
@@ -588,14 +612,14 @@ class Admin_Bar_Module extends Base_Module {
 		 * change their parent to "site-name-frontend".
 		 */
 		foreach ( $flat_array as $menu_id => $menu ) {
-			if ( isset( $menu['frontend_only'] ) && $menu['frontend_only'] && $menu['parent'] && 'site-name' === $menu['parent_default'] ) {
+			if ( isset( $menu['frontend_only'] ) && $menu['frontend_only'] && isset( $menu['parent'] ) && $menu['parent'] && 'site-name' === $menu['parent_default'] ) {
 				$flat_array[ $menu_id ]['parent'] = 'site-name-frontend';
 			}
 		}
 
 		// Third, get the parent menu items.
 		foreach ( $flat_array as $menu_id => $menu ) {
-			if ( ! $menu['parent'] || ! isset( $flat_array[ $menu['parent'] ] ) ) {
+			if ( ! isset( $menu['parent'] ) || ! $menu['parent'] || ! isset( $flat_array[ $menu['parent'] ] ) ) {
 				$nested_array[ $menu_id ] = $menu;
 
 				$additional = array(
