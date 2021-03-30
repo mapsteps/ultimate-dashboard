@@ -239,6 +239,7 @@
 		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
 
 		template = template.replace(/{menu_is_hidden}/g, menu.is_hidden.toString());
+		template = template.replace(/{frontend_only_indicator}/g, (menu.frontend_only ? '<span class="udb-admin-bar--tag udb-admin-bar--frontend-only-tag">Frontend</span>' : ''));
 		template = template.replace(/{group_indicator}/g, (menu.group ? '<span class="udb-admin-bar--tag udb-admin-bar--group-tag">Group</span>' : ''));
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{hidden_icon}/g, (menu.is_hidden ? 'hidden' : 'visibility'));
@@ -269,6 +270,8 @@
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-wordpress"></i>');
 			} else if ('site-name' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-home"></i>');
+			} else if ('site-name-frontend' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-dashboard"></i>');
 			} else if ('customize' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-customizer"></i>');
 			} else if ('updates' === menu.id_default) {
@@ -381,6 +384,7 @@
 
 		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
 		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden.toString());
+		template = template.replace(/{frontend_only_indicator}/g, (submenu.frontend_only ? '<span class="udb-admin-bar--tag udb-admin-bar--frontend-only-tag">Frontend</span>' : ''));
 		template = template.replace(/{group_indicator}/g, (submenu.group ? '<span class="udb-admin-bar--tag udb-admin-bar--group-tag">Group</span>' : ''));
 		template = template.replace(/{trash_icon}/g, '');
 		template = template.replace(/{hidden_icon}/g, (submenu.is_hidden ? 'hidden' : 'visibility'));

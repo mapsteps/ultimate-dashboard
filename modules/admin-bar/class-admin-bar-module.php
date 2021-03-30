@@ -550,9 +550,50 @@ class Admin_Bar_Module extends Base_Module {
 			unset( $flat_array['menu-toggle'] );
 		}
 
+		// First, create new site-name item for frontend as "site-name-frontend".
+		$site_name_frontend = array(
+			'title'          => '',
+			'title_default'  => $flat_array['site-name']['title_default'],
+			'id'             => 'site-name-frontend',
+			'id_default'     => 'site-name-frontend',
+			'parent'         => false,
+			'parent_default' => false,
+			'href'           => '',
+			'href_default'   => admin_url(),
+			'group'          => false,
+			'group_default'  => false,
+			'meta'           => array(),
+			'meta_default'   => array(),
+			'was_added'      => 0,
+			'is_hidden'      => 0,
+			'frontend_only'  => 1,
+			/**
+			'disallowed_roles' => array(),
+			'disallowed_users' => array(),
+			*/
+		);
+
+		$pos  = array_search( 'site-name', array_keys( $flat_array ), true );
+		$pos += 1;
+
+		// Then place "site-name-frontend" after "site-name".
+		$flat_array = array_slice( $flat_array, 0, $pos, true ) +
+			array( 'site-name-frontend' => $site_name_frontend ) +
+			array_slice( $flat_array, $pos, count( $flat_array ) - 1, true );
+
 		$nested_array = array();
 
-		// First, get the parent menu items.
+		/**
+		 * Second, collect frontend only items which have "site-name" as the default parent,
+		 * change their parent to "site-name-frontend".
+		 */
+		foreach ( $flat_array as $menu_id => $menu ) {
+			if ( isset( $menu['frontend_only'] ) && $menu['frontend_only'] && $menu['parent'] && 'site-name' === $menu['parent_default'] ) {
+				$flat_array[ $menu_id ]['parent'] = 'site-name-frontend';
+			}
+		}
+
+		// Third, get the parent menu items.
 		foreach ( $flat_array as $menu_id => $menu ) {
 			if ( ! $menu['parent'] || ! isset( $flat_array[ $menu['parent'] ] ) ) {
 				$nested_array[ $menu_id ] = $menu;
@@ -569,14 +610,14 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
-		// Second, remove collected parent array from $flat_array.
+		// Fourth, remove collected parent array from $flat_array.
 		foreach ( $nested_array as $key => $value ) {
 			if ( isset( $flat_array[ $key ] ) ) {
 				unset( $flat_array[ $key ] );
 			}
 		}
 
-		// Third, get the 1st level submenu items.
+		// Fifth, get the 1st level submenu items.
 		foreach ( $flat_array as $menu_id => $menu ) {
 			if ( isset( $nested_array[ $menu['parent'] ] ) ) {
 				$nested_array[ $menu['parent'] ]['submenu'][ $menu['id'] ] = $menu;
@@ -598,7 +639,7 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
-		// Fourth, get the 2nd level submenu items.
+		// Sixth, get the 2nd level submenu items.
 		if ( ! empty( $flat_array ) ) {
 			// Loop over flat_array.
 			foreach ( $flat_array as $menu_id => $menu ) {
@@ -643,7 +684,7 @@ class Admin_Bar_Module extends Base_Module {
 			}
 		}
 
-		// Fifth, get the 3rd level submenu items.
+		// Seventh, get the 3rd level submenu items.
 		if ( ! empty( $flat_array ) ) {
 			// Loop over flat_array.
 			foreach ( $flat_array as $menu_id => $menu ) {

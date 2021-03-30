@@ -22,6 +22,7 @@ ob_start();
 			{parsed_menu_title}
 		</div>
 		<div class="udb-admin-bar--menu-actions">
+			{frontend_only_indicator}
 			{group_indicator}
 			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>

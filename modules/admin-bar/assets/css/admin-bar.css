@@ -303,13 +303,13 @@
 
 .udb-admin-bar--menu-name {
 	padding-left: 10px;
-	width: 55%;
+	width: 45%;
 	font-weight: 700;
 	opacity: 0.8;
 }
 
 .udb-admin-bar--submenu-list .udb-admin-bar--menu-name {
-	width: 60%;
+	width: 50%;
 }
 
 .udb-admin-bar--control-panel > .udb-admin-bar--menu-name {
@@ -321,12 +321,12 @@
 }
 
 .udb-admin-bar--menu-actions {
-	width: 20%;
+	width: 30%;
 	color: #888;
 }
 
 .udb-admin-bar--menu-actions .udb-admin-bar--tag {
-	margin-right: 15px;
+	margin-right: 7px;
 	padding-left: 10px;
 	padding-right: 10px;
 	width: auto;
