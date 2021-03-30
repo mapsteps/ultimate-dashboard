@@ -112,6 +112,7 @@ class Admin_Bar_Module extends Base_Module {
 
 			array(
 				'parent' => 'appearance',
+				'after'  => 'themes',
 				'id'     => 'widgets',
 				'title'  => __( 'Widgets' ),
 				'href'   => '',
@@ -119,6 +120,7 @@ class Admin_Bar_Module extends Base_Module {
 
 			array(
 				'parent' => 'appearance',
+				'after'  => 'widgets',
 				'id'     => 'menus',
 				'title'  => __( 'Menus' ),
 				'href'   => '',
