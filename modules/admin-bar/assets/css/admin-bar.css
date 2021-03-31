@@ -305,6 +305,7 @@
 	padding-left: 10px;
 	width: 45%;
 	font-weight: 700;
+	text-transform: capitalize;
 	opacity: 0.8;
 }
 
