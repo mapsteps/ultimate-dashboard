@@ -50,7 +50,7 @@ ob_start();
 			<div class="udb-admin-bar--tab-content">
 				<div id="udb-admin-bar--settings-tab--{default_submenu_id}" class="udb-admin-bar--tab-content-item is-active">
 					<div class="udb-admin-bar--fields udb-admin-bar--submenu-fields">
-						<div class="field">
+						<div class="field {submenu_title_field_is_hidden}">
 							<label for="submenu_title_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Submenu Title' ); ?>
 							</label>
@@ -65,7 +65,7 @@ ob_start();
 								>{submenu_title}</textarea>
 							</div>
 						</div>
-						<div class="field">
+						<div class="field {submenu_href_field_is_hidden}">
 							<label for="submenu_href_{default_menu_id}_{submenu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Submenu URL' ); ?>
 							</label>
@@ -78,6 +78,7 @@ ob_start();
 									placeholder="{default_submenu_href}" 
 									class="udb-admin-bar--text-field"
 									data-name="submenu_href"
+									{submenu_href_is_disabled}
 								>
 							</div>
 						</div>
@@ -116,6 +117,8 @@ ob_start();
 							</div>
 						</div>
 						-->
+
+						{empty_submenu_settings_text}
 
 					</div><!-- .udb-admin-bar--fields -->
 				</div><!-- #udb-admin-bar--settings-tab -->

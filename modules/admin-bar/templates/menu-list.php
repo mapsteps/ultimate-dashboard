@@ -53,7 +53,7 @@ ob_start();
 			<div class="udb-admin-bar--tab-content">
 				<div id="udb-admin-bar--settings-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item is-active">
 					<div class="udb-admin-bar--fields">
-						<div class="field">
+						<div class="field {menu_title_field_is_hidden}">
 							<label for="menu_title_{default_menu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Menu Title' ); ?>
 							</label>
@@ -69,7 +69,7 @@ ob_start();
 								>{menu_title}</textarea>
 							</div>
 						</div>
-						<div class="field">
+						<div class="field {menu_href_field_is_hidden}">
 							<label for="menu_href_{default_menu_id}" class="label udb-admin-bar--label">
 								<?php _e( 'Menu URL' ); ?>
 							</label>
@@ -132,6 +132,8 @@ ob_start();
 								<input type="text" class="udb-admin-bar--text-field udb-admin-bar--icon-field dashicons-picker" data-width="100%" name="menu_icon_{default_menu_id}" id="menu_icon_{default_menu_id}" value="{menu_icon}" placeholder="<?php _e( 'Choose an icon', 'ultimate-dashboard' ); ?>" data-name="menu_icon" {menu_icon_is_disabled} />
 							</div>
 						</div>
+
+						{empty_menu_settings_text}
 					</div><!-- .udb-admin-bar--fields -->
 				</div><!-- #udb-admin-bar--settings-tab -->
 				<div id="udb-admin-bar--submenu-tab--{default_menu_id}" class="udb-admin-bar--tab-content-item udb-admin-bar--edit-area">

@@ -91,7 +91,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => 'site-name',
 				'id'     => 'dashboard',
 				'title'  => __( 'Dashboard' ),
-				'href'   => '',
+				'href'   => admin_url(),
 			),
 
 			array(
@@ -107,7 +107,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => 'appearance',
 				'id'     => 'themes',
 				'title'  => __( 'Themes' ),
-				'href'   => '',
+				'href'   => admin_url( 'themes.php' ),
 			),
 
 			array(
@@ -115,7 +115,7 @@ class Admin_Bar_Module extends Base_Module {
 				'after'  => 'themes',
 				'id'     => 'widgets',
 				'title'  => __( 'Widgets' ),
-				'href'   => '',
+				'href'   => admin_url( 'widgets.php' ),
 			),
 
 			array(
@@ -123,7 +123,7 @@ class Admin_Bar_Module extends Base_Module {
 				'after'  => 'widgets',
 				'id'     => 'menus',
 				'title'  => __( 'Menus' ),
-				'href'   => '',
+				'href'   => admin_url( 'nav-menus.php' ),
 			),
 		);
 
@@ -274,7 +274,7 @@ class Admin_Bar_Module extends Base_Module {
 				'id_default'     => $item_data['id'],
 				'parent'         => $item_data['parent'],
 				'parent_default' => $item_data['parent'],
-				'href'           => isset( $item_data['href'] ) ? $item_data['href'] : '',
+				'href'           => '',
 				'href_default'   => isset( $item_data['href'] ) ? $item_data['href'] : '',
 				'group'          => isset( $item_data['group'] ) ? $item_data['group'] : false,
 				'group_default'  => isset( $item_data['group'] ) ? $item_data['group'] : false,
@@ -453,6 +453,8 @@ class Admin_Bar_Module extends Base_Module {
 	public function parse_frontend_items( $saved_menu ) {
 		$non_udb_items_id = $this->get_non_udb_items_id_fontend_only( $saved_menu );
 
+		// error_log( print_r( $this->frontend_menu, true ) );
+
 		$prev_id = '';
 
 		$uninserted_items = array();
@@ -461,6 +463,10 @@ class Admin_Bar_Module extends Base_Module {
 		foreach ( $this->frontend_menu as $menu_id => $menu ) {
 			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
 				$new_item = $menu;
+
+				if ( 'dashboard' === $menu_id ) {
+					error_log( print_r( $new_item, true ) );
+				}
 
 				if ( isset( $new_item['after'] ) ) {
 					unset( $new_item['after'] );
@@ -495,6 +501,8 @@ class Admin_Bar_Module extends Base_Module {
 
 		$saved_menu = $this->insert_uninserted_items( $saved_menu, $uninserted_items, 10 );
 
+		// error_log( print_r( $saved_menu, true ) );
+
 		return $saved_menu;
 	}
 
@@ -512,28 +520,13 @@ class Admin_Bar_Module extends Base_Module {
 		for ( $i = 0; $i < $total_loop; $i++ ) {
 			$remaining_items = array();
 
-			// Get new items from $existing_menu which are not inside $saved_menu.
+			// Get new items from $uninserted_items which are not inside $saved_menu.
 			foreach ( $uninserted_items as $menu_id => $menu ) {
-				$new_item = array(
-					'id'             => $menu_id,
-					'id_default'     => $menu_id,
-					'title'          => $menu['title'],
-					'title_default'  => $menu['title'],
-					'parent'         => $menu['parent'],
-					'parent_default' => $menu['parent'],
-					'href'           => $menu['href'],
-					'href_default'   => $menu['href'],
-					'group'          => $menu['group'],
-					'group_default'  => $menu['group'],
-					'meta'           => $menu['meta'],
-					'meta_default'   => $menu['meta'],
-					'was_added'      => 0,
-					'is_hidden'      => 0,
-				/**
-				'disallowed_roles' => array(),
-				'disallowed_users' => array(),
-				*/
-				);
+				$new_item = $menu;
+
+				if ( 'dashboard' === $menu_id ) {
+					error_log( print_r( $new_item, true ) );
+				}
 
 				if ( isset( $saved_menu[ $menu['after'] ] ) ) {
 					$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );

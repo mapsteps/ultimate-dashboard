@@ -22,6 +22,7 @@ wp_localize_script(
 	'udbAdminBarBuilder',
 	array(
 		'existingMenu' => $existing_menu,
+		'parsedMenu'   => $parsed_menu,
 		'builderItems' => $this->to_builder_format( $parsed_menu ),
 	)
 );
