@@ -9,11 +9,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
+	$feature_settings  = array();
 	$settings          = array();
 	$branding_settings = array();
 	$login_settings    = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) ) {
+		$feature_settings  = get_option( 'udb_modules' );
 		$settings          = get_option( 'udb_settings' );
 		$branding_settings = get_option( 'udb_branding' );
 		$login_settings    = get_option( 'udb_login' );
@@ -74,6 +76,7 @@ return function () {
 	}
 
 	$export_data = array(
+		'feature_settings'  => $feature_settings,
 		'widgets'           => $widgets,
 		'settings'          => $settings,
 		'branding_settings' => $branding_settings,

@@ -48,6 +48,7 @@ return function () {
 	$imports = (array) json_decode( $imports, true );
 
 	// Retrieve settings & widgets.
+	$feature_settings  = isset( $imports['feature_settings'] ) ? $imports['feature_settings'] : array();
 	$settings          = isset( $imports['settings'] ) ? $imports['settings'] : array();
 	$branding_settings = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
 	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
@@ -66,7 +67,11 @@ return function () {
 
 	}
 
-	if ( $settings || $branding_settings || $login_settings ) {
+	if ( $feature_settings || $settings || $branding_settings || $login_settings ) {
+
+		if ( $feature_settings ) {
+			update_option( 'udb_modules', $feature_settings );
+		}
 
 		if ( $settings ) {
 			update_option( 'udb_settings', $settings );
