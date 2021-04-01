@@ -243,6 +243,9 @@ class Backwards_Compatibility {
 		);
 
 		if ( ! $widgets ) {
+			// Make sure we don't check again.
+			update_option( 'udb_compat_widget_status', 1 );
+
 			return;
 		}
 
