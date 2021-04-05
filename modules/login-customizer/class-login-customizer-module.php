@@ -260,6 +260,8 @@ class Login_Customizer_Module extends Base_Module {
 	 */
 	public function register_sections( $wp_customize ) {
 
+		require_once __DIR__ . '/inc/class-custom-css-setting.php';
+
 		$add_sections = require_once __DIR__ . '/inc/add-sections.php';
 		$add_sections( $wp_customize );
 
@@ -294,6 +296,7 @@ class Login_Customizer_Module extends Base_Module {
 			'labels'      => __DIR__ . '/sections/labels.php',
 			'button'      => __DIR__ . '/sections/button.php',
 			'form-footer' => __DIR__ . '/sections/form-footer.php',
+			'custom-css'  => __DIR__ . '/sections/custom-css.php',
 		);
 
 		$control_files = apply_filters( 'udb_login_customizer_control_file_paths', $control_files );

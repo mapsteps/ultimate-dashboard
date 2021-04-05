@@ -25,6 +25,7 @@
 		events.labelFieldsChange();
 		events.buttonFieldsChange();
 		events.footerFieldsChange();
+		events.customCSSChange();
 	}
 
 	events.previewerBinding = function () {
@@ -398,6 +399,16 @@
 				val = val ? val : '#00a0d2';
 
 				document.querySelector('[data-listen-value="udb_login[footer_link_color_hover]"]').innerHTML = '.login #nav a:hover, .login #nav a:focus, .login #backtoblog a:hover, .login #backtoblog a:focus {color: ' + val + ';}';
+			});
+		});
+	};
+
+	events.customCSSChange = function () {
+		wp.customize('udb_login[custom_css]', function (setting) {
+			setting.bind(function (val) {
+				val = val ? val : '';
+
+				document.querySelector('[data-listen-value="udb_login[custom_css]"]').innerHTML = val;
 			});
 		});
 	};

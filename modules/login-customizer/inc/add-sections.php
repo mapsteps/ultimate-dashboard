@@ -100,7 +100,7 @@ return function ( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_custom_css_js_section',
 		array(
-			'title' => __( 'Custom CSS & JS', 'ultimate-dashboard' ),
+			'title' => __( 'Custom CSS', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);

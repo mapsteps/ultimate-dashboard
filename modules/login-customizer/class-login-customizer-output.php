@@ -118,6 +118,11 @@ class Login_Customizer_Output extends Base_Output {
 
 		$css = ob_get_clean();
 
+		$login      = get_option( 'udb_login', array() );
+		$custom_css = isset( $login['custom_css'] ) ? $login['custom_css'] : '';
+
+		$css .= $custom_css;
+
 		echo apply_filters( 'udb_login_styles', $css );
 		echo '</style>';
 
@@ -175,6 +180,8 @@ class Login_Customizer_Output extends Base_Output {
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[footer_link_color]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[footer_link_color_hover]"></style>';
+
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[custom_css]"></style>';
 
 	}
 
