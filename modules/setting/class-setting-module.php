@@ -130,6 +130,7 @@ class Setting_Module extends Base_Module {
 		// Advanced fields.
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
+		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
@@ -249,6 +250,21 @@ class Setting_Module extends Base_Module {
 
 		$field = require __DIR__ . '/templates/fields/custom-admin-css.php';
 		$field();
+
+	}
+
+	/**
+	 * Custom login css field.
+	 */
+	public function custom_login_css_field() {
+
+		?>
+
+		<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>" class="button button-primary button-large">
+			<?php _e( 'Edit in Customizer', 'ultimate-dashboard' ); ?>
+		</a>
+
+		<?php
 
 	}
 
