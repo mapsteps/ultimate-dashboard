@@ -38,6 +38,12 @@ return function () {
 			'text'    => __( 'Rearrange, hide & add new admin menu items for specific users & user roles with the Admin Menu Editor module.', 'ultimate-dashboard' ),
 			'feature' => 'admin_menu_editor',
 		),
+		array(
+			'title'   => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
+			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-bar.png',
+			'text'    => __( 'Rearrange, hide & add new admin bar menu items with the Admin Bar Editor module.', 'ultimate-dashboard' ),
+			'feature' => 'admin_bar_editor',
+		),
 	)
 
 	?>
