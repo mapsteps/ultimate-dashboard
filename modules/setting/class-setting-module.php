@@ -260,8 +260,10 @@ class Setting_Module extends Base_Module {
 
 		?>
 
-		<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>" class="button button-primary button-large">
-			<?php _e( 'Edit in Customizer', 'ultimate-dashboard' ); ?>
+		<p class="description" style="margin: 0;"><?php _e( 'To add custom CSS to the WordPress login screen, please click the button below to launch the WordPress customizer.', 'ultimate-dashboard' ); ?></p>
+		<br>
+		<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>" class="button button-primary button-larger">
+			<?php _e( 'Add Custom Login CSS', 'ultimate-dashboard' ); ?>
 		</a>
 
 		<?php
