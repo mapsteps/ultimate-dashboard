@@ -1,14 +1,12 @@
 === Ultimate Dashboard - Custom WordPress Dashboard ===
 Contributors: davidvongries
-Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Ultimate Dash, Ultimate Client Dash
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Custom Login CSS, Login CSS, Ultimate Dash, Ultimate Client Dash
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
 Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
-Create a Custom Dashboard and give the WordPress admin area a more meaningful use.
 
 == Description ==
 === The #1 Plugin to Customize the WordPress Dashboard! ===
@@ -17,7 +15,7 @@ Create a Custom Dashboard and give the WordPress admin area a more meaningful us
 
 Replace the default WordPress dashboard widgets with your own and give the WordPress dashboard a more meaningful use.
 
-Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the user experience for clients in the WordPress admin.
+Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the user experience for clients inside the WordPress admin area.
 
 Customize the WordPress Dashboard today!
 
@@ -25,21 +23,24 @@ Customize the WordPress Dashboard today!
 Remove all or individual default WordPress widgets with just a click.
 
 == Create your own widgets ==
-Create **icon, text** & **HTML widgets** to create a customized client dashboard and send your customer to the key areas of their website - or anywhere else!
+Create **icon, text** & **HTML widgets** to create a customized **client dashboard** and send your customer to the key areas of their website - or anywhere else!
 
 == Login Customizer ==
-Completely **customize the WordPress login screen** & apply your own branding.
+White label the WordPress login area. Completely **customize the WordPress login screen** & apply your own branding with the power & live-preview capabilities of the WordPress customizer.
 
 == Clean up the WordPress admin ==
-Remove things like the **Help** tab and **Screen Options** tab from the WordPress admin area & customize the WordPress **footer text** & **version text**.
+Remove things like the **Help** tab and **Screen Options** tab from the WordPress admin area & add a custom WordPress **footer text** & **version text**.
 
 == Add Custom CSS ==
-Add your custom CSS to the WordPress dashboard and/or the entire WordPress admin area.
+Ultimate Dashboard allows you to add:
+* custom CSS to only the WordPress dashboard
+* custom CSS to the entire WordPress admin area
+* and custom CSS to the WordPress login screen with a live preview inside the WordPress customizer.
 
 == Create Custom Admin Pages ==
 Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
 
-== Other Features ==
+== More Features ==
 
 * Replace the WordPress dashboard headline
 * Define a text/icon & headline color for your Ultimate Dashboard widgets
@@ -51,14 +52,15 @@ For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.
 
 == Ultimate Dashboard PRO ==
 * Remove 3rd party widgets
-* Restrict widgets & admin pages to specific users or user roles
-* White Label WordPress
-* Advanced Login Customizer
+* Restrict dashboard widgets & admin pages to specific users or user roles
+* White label & rebrand WordPress
+* Advanced Login Customizer features
 * Create Custom Admin Pages in Elementor & Beaver Builder
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
 * Admin Menu Editor (NEW!)
+* Admin Bar Editor (NEW!)
 
 [youtube https://youtu.be/w0oEQF3C6v0]
 
