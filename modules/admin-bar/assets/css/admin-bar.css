@@ -335,6 +335,7 @@
 	border-radius: 15px;
 	opacity: 1;
 	visibility: visible;
+	font-size: 12px;
 }
 
 .udb-admin-bar--menu-actions span {
