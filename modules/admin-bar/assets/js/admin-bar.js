@@ -283,6 +283,8 @@
 
 			if ('wp-logo' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-wordpress"></i>');
+			} else if ('my-sites' === menu.id_default) {
+				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-multisite"></i>');
 			} else if ('site-name' === menu.id_default) {
 				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-home"></i>');
 			} else if ('site-name-frontend' === menu.id_default) {
