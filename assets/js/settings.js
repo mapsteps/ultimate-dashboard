@@ -1,4 +1,5 @@
 (function ($) {
+
 	var customCSSFields = document.querySelectorAll('.udb-custom-css');
 	var colorFields = document.querySelectorAll('.udb-color-field');
 
@@ -33,4 +34,5 @@
 			$(el).wpColorPicker(opts);
 		});
 	}
+
 })(jQuery);
