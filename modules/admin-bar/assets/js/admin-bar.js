@@ -195,14 +195,19 @@
 		template = template.replace(/{encoded_default_menu_title}/g, menu.title_default_encoded);
 
 		if (menu.group) {
-			template = template.replace(/{empty_menu_settings_text}/g, 'No settings available');
+			template = template.replace(/{empty_menu_settings_text}/g, 'No settings available.');
 			template = template.replace(/{menu_title_field_is_hidden}/g, 'is-hidden');
 			template = template.replace(/{menu_href_field_is_hidden}/g, 'is-hidden');
 		} else {
-			template = template.replace(/{empty_menu_settings_text}/g, '');
-			template = template.replace(/{menu_title_field_is_hidden}/g, '');
+			if ('wp-logo' === menu.id_default) {
+				template = template.replace(/{menu_title_field_is_hidden}/g, 'is-hidden');
+			} else {
+				template = template.replace(/{menu_title_field_is_hidden}/g, '');
+			}
 
-			if ('customize' === menu.id_default) {
+			template = template.replace(/{empty_menu_settings_text}/g, '');
+
+			if ('customize' === menu.id_default || 'edit' === menu.id_default) {
 				template = template.replace(/{menu_href_field_is_hidden}/g, 'is-hidden');
 			} else {
 				template = template.replace(/{menu_href_field_is_hidden}/g, '');
@@ -240,7 +245,7 @@
 
 		template = template.replace(/{default_menu_group}/g, (menu.group_default ? menu.group_default : "false"));
 
-		if (false === menu.href_default) {
+		if (false === menu.href_default || 'my-sites' === menu.id_default || 'site-name' === menu.id_default || 'site-name-frontend' === menu.id_default || 'new-content' === menu.id_default || 'comments' === menu.id_default || 'updates' === menu.id_default) {
 			template = template.replace(/{menu_href_is_disabled}/g, 'disabled');
 		} else {
 			template = template.replace(/{menu_href_is_disabled}/g, '');
@@ -377,7 +382,7 @@
 		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
 
 		if (submenu.group || submenu.id_default === 'search') {
-			template = template.replace(/{empty_submenu_settings_text}/g, 'No settings available');
+			template = template.replace(/{empty_submenu_settings_text}/g, 'No settings available.');
 			template = template.replace(/{submenu_title_field_is_hidden}/g, 'is-hidden');
 			template = template.replace(/{submenu_href_field_is_hidden}/g, 'is-hidden');
 		} else {
@@ -392,7 +397,11 @@
 			template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
 			parsedTitle = submenu.id ? submenu.id : submenu.id_default;
 		} else {
-			template = template.replace(/{submenu_title_is_disabled}/g, '');
+			if ('my-account' === submenu.id_default) {
+				template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
+			} else {
+				template = template.replace(/{submenu_title_is_disabled}/g, '');
+			}
 
 			if ('updates' === menu.id_default) {
 				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
@@ -407,7 +416,15 @@
 		if ('logout' === submenu.id_default) {
 			template = template.replace(/{submenu_href_is_disabled}/g, 'disabled');
 		} else {
-			template = template.replace(/{submenu_href_is_disabled}/g, '');
+			if (!submenu.was_added) {
+				if ('my-sites-super-admin' === submenu.parent_default || 'my-sites-list' === submenu.parent_default || 'network-admin' === submenu.parent_default || 'blog-1' === submenu.parent_default || 'site-name' === submenu.parent_default || 'site-name-frontend' === submenu.parent_default || 'appearance' === submenu.parent_default || 'new-content' === submenu.parent_default) {
+					template = template.replace(/{submenu_href_is_disabled}/g, 'disabled');
+				} else {
+					template = template.replace(/{submenu_href_is_disabled}/g, '');
+				}
+			} else {
+				template = template.replace(/{submenu_href_is_disabled}/g, '');
+			}
 		}
 
 		template = template.replace(/{submenu_href}/g, submenu.href);

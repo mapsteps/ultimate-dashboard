@@ -62,6 +62,7 @@ ob_start();
 									placeholder="{encoded_default_submenu_title}" 
 									class="udb-admin-bar--text-field"
 									data-name="submenu_title"
+									{submenu_title_is_disabled}
 								>{submenu_title}</textarea>
 							</div>
 						</div>
