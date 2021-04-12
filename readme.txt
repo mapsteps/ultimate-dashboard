@@ -96,6 +96,13 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.3 | April 13, 2021 =
+* New: Admin Bar Editor (PRO)
+* New: Add custom CSS to the WordPress login screen
+* Fixed: Cannot redeclare retrieve_password (Fatal error)
+* Fixed: Export/import issue with user roles (dashboard widgets & admin pages)
+* Fixed: Export/import functionality for "Modules" were missing
+* Fixed: All widgets were active/inactive after import, even though if they were active/inactive on the original website
 = 3.2.1 | March 04, 2021 =
 * Fixed: Module switcher no longer working
 = 3.2 | March 04, 2021 =
