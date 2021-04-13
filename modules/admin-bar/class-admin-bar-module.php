@@ -392,7 +392,7 @@ class Admin_Bar_Module extends Base_Module {
 		// Compare saved menu's default values to existing menu's default values.
 		foreach ( $saved_menu as $menu_id => $menu ) {
 			if ( isset( $existing_menu[ $menu_id ] ) ) {
-				// Loop over matched $existing_menu item.
+				// Loop over matched $saved_menu item.
 				foreach ( $menu as $field_key => $field_value ) {
 					if ( false !== stripos( $field_key, '_default' ) ) {
 						if ( isset( $existing_menu[ $menu_id ][ $field_key ] ) && $field_value !== $existing_menu[ $menu_id ][ $field_key ] ) {
