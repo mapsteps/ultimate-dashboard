@@ -83,10 +83,16 @@ class Widget_Output extends Base_Output {
 
 		$current_user = wp_get_current_user();
 
+		/**
+		 * We pass the current user role here to check against in the PRO add-on.
+		 * Note: a better variable for $user_roles would be $current_roles as that's really what it actually is.
+		 * Shouldn't be changed as parameter passed is called $user_roles.
+		 */
 		if ( empty( $user_roles ) ) {
 			$user_roles = $current_user->roles;
 		}
 
+		// Currently only used to add the super admin to current roles.
 		$user_roles = apply_filters( 'udb_widget_user_roles', $user_roles );
 
 		$args = array(

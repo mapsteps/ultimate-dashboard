@@ -140,9 +140,6 @@ class Widget_Module extends Base_Module {
 		$enqueue = require __DIR__ . '/inc/css-enqueue.php';
 		$enqueue( $this );
 
-		// Highlight PRO link in sub-menu.
-		echo '<style>#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] { color: #47D87C; }</style>';
-
 	}
 
 	/**

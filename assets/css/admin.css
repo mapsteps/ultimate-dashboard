@@ -1,7 +1,13 @@
 /**
- * This file is for generic styling inside admin area.
- * For example: an admin bar output styling is needed in almost all pages in admin area.
+ * Fix custom admin bar menu item icon.
  */
 .udb-admin-bar-output--menu-link .ab-icon {
 	top: 2px;
+}
+
+/**
+ * Highlight PRO upgrade link.
+ */
+#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] {
+	color: #47D87C;
 }
