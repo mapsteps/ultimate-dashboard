@@ -10,6 +10,7 @@ namespace Udb\AdminPage;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
+use Udb\Helpers\Array_Helper;
 
 /**
  * Class to setup admin page output.
@@ -108,6 +109,8 @@ class Admin_Page_Output extends Base_Output {
 	 * @return array Array of admin page post objects.
 	 */
 	public function get_posts( $menu_type ) {
+		$array_helper = new Array_Helper();
+
 		$posts = get_posts(
 			array(
 				'post_type'      => 'udb_admin_page',
@@ -131,20 +134,22 @@ class Admin_Page_Output extends Base_Output {
 		foreach ( $posts as &$post ) {
 			$post_id = $post->ID;
 
-			$post->menu_type    = get_post_meta( $post_id, 'udb_menu_type', true );
-			$post->menu_parent  = get_post_meta( $post_id, 'udb_menu_parent', true );
-			$post->menu_order   = get_post_meta( $post_id, 'udb_menu_order', true );
-			$post->menu_order   = $post->menu_order ? absint( $post->menu_order ) : 10;
-			$post->icon_class   = get_post_meta( $post_id, 'udb_menu_icon', true );
-			$post->custom_css   = get_post_meta( $post_id, 'udb_custom_css', true );
-			$post->content_type = get_post_meta( $post_id, 'udb_content_type', true );
-			$post->html_content = get_post_meta( $post_id, 'udb_html_content', true );
+			$post->menu_type     = get_post_meta( $post_id, 'udb_menu_type', true );
+			$post->menu_parent   = get_post_meta( $post_id, 'udb_menu_parent', true );
+			$post->menu_order    = get_post_meta( $post_id, 'udb_menu_order', true );
+			$post->menu_order    = $post->menu_order ? absint( $post->menu_order ) : 10;
+			$post->icon_class    = get_post_meta( $post_id, 'udb_menu_icon', true );
+			$post->custom_css    = get_post_meta( $post_id, 'udb_custom_css', true );
+			$post->custom_js     = get_post_meta( $post->ID, 'udb_custom_js', true );
+			$post->content_type  = get_post_meta( $post_id, 'udb_content_type', true );
+			$post->html_content  = get_post_meta( $post_id, 'udb_html_content', true );
+			$post->allowed_roles = get_post_meta( $post->ID, 'udb_allowed_roles', true );
+			$post->allowed_roles = empty( $post->allowed_roles ) ? array( 'all' ) : $post->allowed_roles;
+			$post->allowed_roles = $array_helper->clean_unserialize( $post->allowed_roles, 3 );
 
 			$post->remove_page_title    = (int) get_post_meta( $post_id, 'udb_remove_page_title', true );
 			$post->remove_page_margin   = (int) get_post_meta( $post_id, 'udb_remove_page_margin', true );
 			$post->remove_admin_notices = get_post_meta( $post_id, 'udb_remove_admin_notices', true );
-
-			apply_filters( 'udb_admin_page_post', $post );
 		}
 
 		return $posts;
