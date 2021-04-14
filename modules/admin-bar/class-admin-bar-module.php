@@ -246,6 +246,10 @@ class Admin_Bar_Module extends Base_Module {
 				'was_added'      => 0,
 				'is_hidden'      => 0,
 				/**
+				 * * These properties are not being used currently.
+				 * * But leave it here because in the future, if requested, it would be used for
+				 * * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
+				 *
 				'disallowed_roles' => array(),
 				'disallowed_users' => array(),
 				*/
@@ -284,6 +288,10 @@ class Admin_Bar_Module extends Base_Module {
 				'is_hidden'      => 0,
 				'frontend_only'  => 1,
 				/**
+				 * * These properties are not being used currently.
+				 * * But leave it here because in the future, if requested, it would be used for
+				 * * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
+				 *
 				'disallowed_roles' => array(),
 				'disallowed_users' => array(),
 				*/
@@ -331,6 +339,10 @@ class Admin_Bar_Module extends Base_Module {
 					'was_added'      => 0,
 					'is_hidden'      => 0,
 					/**
+					 * * These properties are not being used currently.
+					 * * But leave it here because in the future, if requested, it would be used for
+					 * * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
+					 *
 					'disallowed_roles' => array(),
 					'disallowed_users' => array(),
 					*/
@@ -599,6 +611,10 @@ class Admin_Bar_Module extends Base_Module {
 			'is_hidden'      => 0,
 			'frontend_only'  => 1,
 			/**
+			 * * These properties are not being used currently.
+			 * * But leave it here because in the future, if requested, it would be used for
+			 * * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
+			 *
 			'disallowed_roles' => array(),
 			'disallowed_users' => array(),
 			*/

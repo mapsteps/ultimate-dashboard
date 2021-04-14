@@ -29,7 +29,8 @@
 	 * Call the main functions here.
 	 */
 	function init() {
-		loadUsers();
+		// loadUsers();
+		buildMenu(udbAdminBarBuilder.builderItems);
 
 		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
 
@@ -40,7 +41,12 @@
 
 	/**
 	 * Load users as select2 data.
+	 * 
+	 * * This function is not used currently.
+	 * * But leave it here because in the future, if requested, it would be used for
+	 * * "hide menu item for specific user(s)" functionality (inside a dropdown).
 	 */
+	/**
 	function loadUsers() {
 		$.ajax({
 			type: 'get',
@@ -62,6 +68,7 @@
 			//
 		});
 	}
+	*/
 
 	/**
 	 * Switch tabs.
@@ -135,6 +142,11 @@
 
 	/**
 	 * Setup select2 fields.
+	 * 
+	 * * This function is not used currently.
+	 * * But leave it here because in the future, if requested, it would be used for
+	 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+	 * 
 	 * @param {HTMLElement} area The setup area.
 	 */
 	/**
@@ -265,6 +277,10 @@
 		template = template.replace(/{hidden_icon}/g, (menu.is_hidden ? 'hidden' : 'visibility'));
 
 		/**
+		 * * These codes are not being used currently.
+		 * * But leave it here because in the future, if requested, it would be used for
+		 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+		 * 
 		var disallowedRoles = menu.disallowed_roles.join(', ');
 		var disallowedUsers = menu.disallowed_users.join(', ');
 
@@ -441,6 +457,10 @@
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
 		/**
+		 * * These codes are not being used currently.
+		 * * But leave it here because in the future, if requested, it would be used for
+		 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+		 *
 		var disallowedRoles = submenu.disallowed_roles.join(', ');
 		var disallowedUsers = submenu.disallowed_users.join(', ');
 
