@@ -116,7 +116,7 @@ class Feature_Module extends Base_Module {
 	public function handle_module_actions() {
 
 		if ( empty( $_POST ) || ! wp_verify_nonce( $_POST['nonce'], 'udb_module_nonce_action' ) ) {
-			die( wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 400 ) );
+			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
 		}
 
 		$module        = new Setup();
@@ -130,7 +130,6 @@ class Feature_Module extends Base_Module {
 
 		wp_send_json_success( array( 'message' => __( 'Saved', 'ultimate-dashboard' ) ) );
 
-		die();
 	}
 
 }
