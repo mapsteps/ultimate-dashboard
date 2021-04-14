@@ -7,8 +7,11 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Array_Helper;
+
 return function () {
 
+	$array_helper      = new Array_Helper();
 	$feature_settings  = array();
 	$settings          = array();
 	$branding_settings = array();
@@ -38,9 +41,7 @@ return function () {
 
 			// Check for serialized data (when $meta_value is array).
 			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
-				// The export in the past wasn't serialized, so let's double unserialize $meta_value.
-				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
+				$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
 			}
 
 			$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
@@ -65,9 +66,7 @@ return function () {
 
 			// Check for serialized data (when $meta_value is array).
 			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
-				// The export in the past wasn't serialized, so let's double unserialize $meta_value.
-				$meta_value = is_serialized( $meta_value ) ? unserialize( $meta_value ) : $meta_value;
+				$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
 			}
 
 			$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
