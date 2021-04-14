@@ -21,7 +21,6 @@ $remove_page_title  = $post->remove_page_title;
 $remove_page_margin = $post->remove_page_margin;
 
 $custom_css = $post->custom_css;
-$custom_js  = $post->custom_js;
 ?>
 
 <style>
