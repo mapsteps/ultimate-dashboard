@@ -2,7 +2,7 @@
 /**
  * Admin menu page template.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

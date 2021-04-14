@@ -2,7 +2,7 @@
 /**
  * Accent color field.
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

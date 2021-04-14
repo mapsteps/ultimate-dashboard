@@ -2,7 +2,7 @@
 /**
  * Widget types metabox.
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

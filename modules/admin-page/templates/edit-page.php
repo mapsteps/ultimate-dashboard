@@ -2,7 +2,7 @@
 /**
  * Template Name: Ultimate Dashboard Admin Page
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

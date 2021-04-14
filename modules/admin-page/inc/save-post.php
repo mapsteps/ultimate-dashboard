@@ -2,7 +2,7 @@
 /**
  * Admin page saving process.
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 // are we sanitizing everything correctly? Not sure if all of those are actually text fields.

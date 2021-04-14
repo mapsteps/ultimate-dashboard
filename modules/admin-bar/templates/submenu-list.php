@@ -2,7 +2,7 @@
 /**
  * Submenu list template to be rendered via JS.
  *
- * @package Ultimate_Dashboard_Pro
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -83,6 +83,7 @@ ob_start();
 								>
 							</div>
 						</div>
+
 						<!--
 						These fields are not being used currently.
 						But leave it here because in the future, if requested, it would be used for

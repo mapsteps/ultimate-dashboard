@@ -6,7 +6,7 @@
  *
  * @see wp-includes/class-wp-customize-manager.php
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

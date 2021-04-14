@@ -2,7 +2,7 @@
 /**
  * Setup admin page post type.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

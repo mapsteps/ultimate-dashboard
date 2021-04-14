@@ -2,7 +2,7 @@
 /**
  * Custom image control.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  */
 
 namespace Udb;

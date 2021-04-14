@@ -4,7 +4,7 @@
  *
  * @var $wp_customize This variable is brought from login-customizer.php file.
  *
- * @package Ultimate Dashboard PRO
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

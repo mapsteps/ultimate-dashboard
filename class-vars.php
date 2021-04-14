@@ -2,7 +2,7 @@
 /**
  * Setter & getter utility
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 namespace Udb;

@@ -2,7 +2,7 @@
 /**
  * Get menu & submenu.
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 namespace Udb\AdminMenu\Ajax;

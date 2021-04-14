@@ -8,7 +8,7 @@
  * Author URI: https://mapsteps.com/
  * Text Domain: ultimate-dashboard
  *
- * @package Ultimate Dashboard
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

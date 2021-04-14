@@ -2,7 +2,7 @@
 /**
  * Submenu list template to be rendered via JS.
  *
- * @package Ultimate_Dashboard_Pro
+ * @package Ultimate_Dashboard
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
