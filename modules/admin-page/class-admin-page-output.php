@@ -189,7 +189,7 @@ class Admin_Page_Output extends Base_Output {
 		if ( false !== stripos( $icon_class, 'dashicons ' ) ) {
 			$menu_icon = str_ireplace( 'dashicons ', '', $icon_class );
 		} else {
-			$menu_icon = 'none';
+			$menu_icon = 'font-awesome';
 		}
 
 		$screen_id = 'udb_page_' . $menu_slug;
@@ -207,7 +207,7 @@ class Admin_Page_Output extends Base_Output {
 				$menu_order
 			);
 
-			if ( 'none' === $menu_icon ) {
+			if ( 'font-awesome' === $menu_icon ) {
 				add_action(
 					'admin_head',
 					function () use ( $menu_slug, $icon_class ) {
