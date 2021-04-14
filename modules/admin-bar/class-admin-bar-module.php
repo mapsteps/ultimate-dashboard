@@ -479,8 +479,6 @@ class Admin_Bar_Module extends Base_Module {
 	public function parse_frontend_items( $saved_menu ) {
 		$non_udb_items_id = $this->get_non_udb_items_id_fontend_only( $saved_menu );
 
-		// error_log( print_r( $this->frontend_menu, true ) );
-
 		$prev_id = '';
 
 		$uninserted_items = array();
@@ -489,10 +487,6 @@ class Admin_Bar_Module extends Base_Module {
 		foreach ( $this->frontend_menu as $menu_id => $menu ) {
 			if ( ! in_array( $menu_id, $non_udb_items_id, true ) ) {
 				$new_item = $menu;
-
-				if ( 'dashboard' === $menu_id ) {
-					error_log( print_r( $new_item, true ) );
-				}
 
 				if ( isset( $new_item['after'] ) ) {
 					unset( $new_item['after'] );
@@ -527,8 +521,6 @@ class Admin_Bar_Module extends Base_Module {
 
 		$saved_menu = $this->insert_uninserted_items( $saved_menu, $uninserted_items, 10 );
 
-		// error_log( print_r( $saved_menu, true ) );
-
 		return $saved_menu;
 	}
 
@@ -549,10 +541,6 @@ class Admin_Bar_Module extends Base_Module {
 			// Get new items from $uninserted_items which are not inside $saved_menu.
 			foreach ( $uninserted_items as $menu_id => $menu ) {
 				$new_item = $menu;
-
-				if ( 'dashboard' === $menu_id ) {
-					error_log( print_r( $new_item, true ) );
-				}
 
 				if ( isset( $saved_menu[ $menu['after'] ] ) ) {
 					$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );
@@ -590,8 +578,6 @@ class Admin_Bar_Module extends Base_Module {
 		if ( isset( $flat_array['menu-toggle'] ) ) {
 			unset( $flat_array['menu-toggle'] );
 		}
-
-		// error_log( print_r( $flat_array, true ) );
 
 		// First, create new site-name item for frontend as "site-name-frontend".
 		$site_name_frontend = array(
