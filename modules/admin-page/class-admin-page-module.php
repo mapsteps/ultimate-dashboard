@@ -158,7 +158,7 @@ class Admin_Page_Module extends Base_Module {
 	}
 
 	/**
-	 * Remove some metaboxes from admin page editing.
+	 * Remove some known metaboxes from admin page editing.
 	 */
 	public function remove_metaboxes() {
 
