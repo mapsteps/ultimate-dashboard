@@ -3,7 +3,7 @@
  * - jQuery
  * - ajaxurl
  * - udbAdminBar
- * - existingAdminBarMenu
+ * - udbAdminBarBuilder
  */
 (function ($) {
 	if (window.NodeList && !NodeList.prototype.forEach) {
@@ -22,7 +22,7 @@
 		};
 	}
 
-	var usersData;
+	// var usersData;
 
 	/**
 	 * Init the script.

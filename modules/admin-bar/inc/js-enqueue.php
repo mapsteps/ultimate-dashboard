@@ -18,7 +18,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
 		// Select2.
-		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
+		// wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
 
 		// Dashicons picker.
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
@@ -51,6 +51,7 @@ return function ( $module ) {
 			 * * These codes are not being used currently.
 			 * * But leave it here because in the future, if requested, it would be used for
 			 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+			 *
 			'nonces'    => array(
 				'getUsers' => wp_create_nonce( 'udb_admin_bar_get_users' ),
 			),

@@ -83,7 +83,11 @@ ob_start();
 								>
 							</div>
 						</div>
-
+						<!--
+						These fields are not being used currently.
+						But leave it here because in the future, if requested, it would be used for
+						"hide menu item for specific role(s) / user(s)" functionality.
+						-->
 						<!--
 						<div class="field">
 							<label for="disallowed_roles_{default_submenu_id}" class="label udb-admin-bar--label">
