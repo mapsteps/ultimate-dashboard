@@ -42,33 +42,31 @@
 	/**
 	 * Load users as select2 data.
 	 * 
-	 * * This function is not used currently.
-	 * * But leave it here because in the future, if requested, it would be used for
-	 * * "hide menu item for specific user(s)" functionality (inside a dropdown).
+	 * This function is not used currently.
+	 * But leave it here because in the future, if requested, it would be used for
+	 * "hide menu item for specific user(s)" functionality (inside a dropdown).
 	 */
-	/**
-	function loadUsers() {
-		$.ajax({
-			type: 'get',
-			url: ajaxurl,
-			cache: false,
-			data: {
-				action: 'udb_admin_bar_get_users',
-				nonce: udbAdminBar.nonces.getUsers
-			}
-		}).done(function (r) {
-			if (!r.success) return;
+	// function loadUsers() {
+	// 	$.ajax({
+	// 		type: 'get',
+	// 		url: ajaxurl,
+	// 		cache: false,
+	// 		data: {
+	// 			action: 'udb_admin_bar_get_users',
+	// 			nonce: udbAdminBar.nonces.getUsers
+	// 		}
+	// 	}).done(function (r) {
+	// 		if (!r.success) return;
 
-			usersData = r.data;
+	// 		usersData = r.data;
 
-			buildMenu(udbAdminBarBuilder.builderItems);
-		}).fail(function () {
-			console.log('Failed to load users');
-		}).always(function () {
-			//
-		});
-	}
-	*/
+	// 		buildMenu(udbAdminBarBuilder.builderItems);
+	// 	}).fail(function () {
+	// 		console.log('Failed to load users');
+	// 	}).always(function () {
+	// 		//
+	// 	});
+	// }
 
 	/**
 	 * Switch tabs.
@@ -143,54 +141,52 @@
 	/**
 	 * Setup select2 fields.
 	 * 
-	 * * This function is not used currently.
-	 * * But leave it here because in the future, if requested, it would be used for
-	 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+	 * This function is not used currently.
+	 * But leave it here because in the future, if requested, it would be used for
+	 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
 	 * 
 	 * @param {HTMLElement} area The setup area.
 	 */
-	/**
-	function setupSelect2Fields(area) {
-		var select2Fields = area.querySelectorAll('.udb-admin-bar--select2-field');
+	// function setupSelect2Fields(area) {
+	// 	var select2Fields = area.querySelectorAll('.udb-admin-bar--select2-field');
 
-		select2Fields.forEach(function (selectbox) {
-			if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
+	// 	select2Fields.forEach(function (selectbox) {
+	// 		if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
 
-			var select2Data = [];
-			var disallowedRoles = [];
-			var disallowedUsers = [];
+	// 		var select2Data = [];
+	// 		var disallowedRoles = [];
+	// 		var disallowedUsers = [];
 
-			if ('disallowed_roles' === selectbox.dataset.name) {
-				disallowedRoles = selectbox.dataset.disallowedRoles.split(', ');
+	// 		if ('disallowed_roles' === selectbox.dataset.name) {
+	// 			disallowedRoles = selectbox.dataset.disallowedRoles.split(', ');
 
-				udbAdminBar.roles.forEach(function (role) {
-					if (disallowedRoles.indexOf(role.id) > -1) {
-						role.selected = true;
-					}
+	// 			udbAdminBar.roles.forEach(function (role) {
+	// 				if (disallowedRoles.indexOf(role.id) > -1) {
+	// 					role.selected = true;
+	// 				}
 
-					select2Data.push(role);
-				});
-			} else if ('disallowed_users' === selectbox.dataset.name) {
-				disallowedUsers = selectbox.dataset.disallowedUsers.split(', ');
-				disallowedUsers = disallowedUsers.map(function (user) {
-					return parseInt(user, 10);
-				});
+	// 				select2Data.push(role);
+	// 			});
+	// 		} else if ('disallowed_users' === selectbox.dataset.name) {
+	// 			disallowedUsers = selectbox.dataset.disallowedUsers.split(', ');
+	// 			disallowedUsers = disallowedUsers.map(function (user) {
+	// 				return parseInt(user, 10);
+	// 			});
 
-				usersData.forEach(function (userData) {
-					if (disallowedUsers.indexOf(userData.id) > -1) {
-						userData.selected = true;
-					}
+	// 			usersData.forEach(function (userData) {
+	// 				if (disallowedUsers.indexOf(userData.id) > -1) {
+	// 					userData.selected = true;
+	// 				}
 
-					select2Data.push(userData);
-				});
-			}
+	// 				select2Data.push(userData);
+	// 			});
+	// 		}
 
-			$(selectbox).select2({
-				data: select2Data
-			});
-		});
-	}
-	*/
+	// 		$(selectbox).select2({
+	// 			data: select2Data
+	// 		});
+	// 	});
+	// }
 
 	/**
 	 * Replace menu placeholders.
@@ -277,16 +273,15 @@
 		template = template.replace(/{hidden_icon}/g, (menu.is_hidden ? 'hidden' : 'visibility'));
 
 		/**
-		 * * These codes are not being used currently.
-		 * * But leave it here because in the future, if requested, it would be used for
-		 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-		 * 
-		var disallowedRoles = menu.disallowed_roles.join(', ');
-		var disallowedUsers = menu.disallowed_users.join(', ');
+		 * These codes are not being used currently.
+		 * But leave it here because in the future, if requested, it would be used for
+		 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+		 */
+		// var disallowedRoles = menu.disallowed_roles.join(', ');
+		// var disallowedUsers = menu.disallowed_users.join(', ');
 
-		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
-		template = template.replace(/{disallowed_users}/g, disallowedUsers);
-		*/
+		// template = template.replace(/{disallowed_roles}/g, disallowedRoles);
+		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
@@ -457,16 +452,15 @@
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
 		/**
-		 * * These codes are not being used currently.
-		 * * But leave it here because in the future, if requested, it would be used for
-		 * * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-		 *
-		var disallowedRoles = submenu.disallowed_roles.join(', ');
-		var disallowedUsers = submenu.disallowed_users.join(', ');
+		 * These codes are not being used currently.
+		 * But leave it here because in the future, if requested, it would be used for
+		 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
+		 */
+		// var disallowedRoles = submenu.disallowed_roles.join(', ');
+		// var disallowedUsers = submenu.disallowed_users.join(', ');
 
-		template = template.replace(/{disallowed_roles}/g, disallowedRoles);
-		template = template.replace(/{disallowed_users}/g, disallowedUsers);
-		*/
+		// template = template.replace(/{disallowed_roles}/g, disallowedRoles);
+		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			submenuTemplate = buildSubmenu({

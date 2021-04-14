@@ -2,9 +2,9 @@
 /**
  * Get menu & submenu.
  *
- * * This class is not used currently.
- * * But leave it here because in the future, if requested, it would be used for
- * * "hide menu item for specific user(s)" functionality (inside a dropdown).
+ * This class is not used currently.
+ * But leave it here because in the future, if requested, it would be used for
+ * "hide menu item for specific user(s)" functionality (inside a dropdown).
  *
  * @package Ultimate Dashboard
  */
