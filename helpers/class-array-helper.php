@@ -68,11 +68,13 @@ class Array_Helper {
 	}
 
 	/**
-	 * Clean a serialized array from nested-serialized.
+	 * Clean up a (multiple) serialized array.
 	 *
-	 * The returned $value after unserialized should be an array.
-	 * If it's still a string, then we need to unserialize it.
-	 * This was related to roles issue on export / import.
+	 * The returned $value after unserialization should be an array by default.
+	 * If it's still a string, then we need to unserialize it again.
+	 *
+	 * This is related to a role import/export issue in earlier releases.
+	 * Note that this can't be removed in the future to maintain full backwards compatibility.
 	 *
 	 * @param string $value The value to clean.
 	 * @param int    $depth The depth of the checking.

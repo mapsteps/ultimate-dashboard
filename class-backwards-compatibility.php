@@ -259,7 +259,6 @@ class Backwards_Compatibility {
 	}
 
 	/**
-	 * Replace some submeta keys from an option meta to other option meta.
 	 * Move udb_pro_settings to udb_settings.
 	 */
 	public function replace_submeta_keys() {

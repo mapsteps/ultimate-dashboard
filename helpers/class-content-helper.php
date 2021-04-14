@@ -25,8 +25,6 @@ class Content_Helper {
 	 *
 	 * @see wp_check_filetype() https://developer.wordpress.org/reference/functions/wp_check_filetype/
 	 *
-	 * @version 1.2.2
-	 *
 	 * @param string               $image   Image filename.
 	 * @param WP_Customize_Setting $setting Setting instance.
 	 *
@@ -66,7 +64,7 @@ class Content_Helper {
 	}
 
 	/**
-	 * Get the editor/ builder of the given post.
+	 * Get the editor/builder of the given post.
 	 *
 	 * @param int $post_id ID of the post being checked.
 	 * @return string The content editor name.
@@ -79,7 +77,7 @@ class Content_Helper {
 	}
 
 	/**
-	 * Strip tags and it's content from the given string.
+	 * Strip tags and its content from the given string.
 	 *
 	 * @link https://stackoverflow.com/questions/14684077/remove-all-html-tags-from-php-string/#answer-39320168
 	 *

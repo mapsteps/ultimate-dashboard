@@ -155,6 +155,8 @@ class Setup {
 			$filter_name = str_ireplace( '-', '_', $module_name );
 			$filter_name = 'udb_' . $filter_name;
 
+			// We have a filter here udb_$module_name to allow us to prevent loading modules under certain circumstances.
+			// Not sure if currently in use.
 			if ( apply_filters( $filter_name, true ) ) {
 
 				require_once $file;
