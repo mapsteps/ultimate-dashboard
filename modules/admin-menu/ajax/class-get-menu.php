@@ -83,6 +83,16 @@ class Get_Menu {
 			require $wp_menu_file;
 		}
 
+		/**
+		 * This is related to TablePress support.
+		 *
+		 * The value of `wp_doing_ajax` was set to `false` in class-admin-menu-module.php file
+		 * inside `support_tablepress` function.
+		 *
+		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
+		 */
+		add_filter( 'wp_doing_ajax', '__return_true' );
+
 		$this->check_capability();
 
 	}
