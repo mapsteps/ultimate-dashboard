@@ -251,6 +251,8 @@ class Admin_Page_Output extends Base_Output {
 					remove_all_actions( 'admin_notices' );
 				}
 
+				do_action( 'udb_admin_page_prepare_output', $post, $screen_id );
+
 				add_action(
 					'admin_print_footer_scripts',
 					function () use ( $post ) {
