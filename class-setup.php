@@ -15,6 +15,27 @@ use Udb\Helpers\Content_Helper;
  * Class to setup Ultimate Dashboard plugin.
  */
 class Setup {
+
+	/**
+	 * The class instanace
+	 *
+	 * @var object
+	 */
+	public static $instance = null;
+
+	/**
+	 * Get the class instance.
+	 *
+	 * @return object
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
 	/**
 	 * Init the class setup.
 	 */
@@ -57,12 +78,18 @@ class Setup {
 	 */
 	public function setup() {
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
+		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
+		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+		add_filter( 'plugin_action_links_' . ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'action_links' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ), 20 );
-		register_deactivation_hook( plugin_basename( __FILE__ ), array( $this, 'deactivation' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 20 );
+		add_action( 'admin_notices', array( self::get_instance(), 'review_notice' ) );
+		add_action( 'wp_ajax_udb_dismiss_review_notice', array( $this, 'dismiss_review_notice' ) );
+
+		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ), 20 );
+
 
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
@@ -70,7 +97,23 @@ class Setup {
 	}
 
 	/**
+	 * Check plugin activation meta.
+	 */
+	public function check_activation_meta() {
+
+		if ( ! current_user_can( 'activate_plugins' ) || get_option( 'udb_plugin_activated' ) ) {
+			return;
+		}
+
+		update_option( 'udb_install_date', current_time( 'mysql' ) );
+		update_option( 'udb_plugin_activated', 1 );
+
+	}
+
+	/**
 	 * Admin body class.
+	 *
+	 * @param string $classes The class names.
 	 */
 	public function admin_body_class( $classes ) {
 
@@ -190,11 +233,76 @@ class Setup {
 	}
 
 	/**
-	 * Enqueue admin scripts.
+	 * Enqueue admin styles.
 	 */
 	public function admin_styles() {
 
 		wp_enqueue_style( 'udb-admin', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/admin.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
+	}
+
+	/**
+	 * Enqueue admin scripts.
+	 */
+	public function admin_scripts() {
+
+		wp_enqueue_script( 'udb-notice-dismissal', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/notice-dismissal.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
+	}
+
+	/**
+	 * Show review notice after certain number of day(s).
+	 */
+	public function review_notice() {
+
+		// Stop if review notice had been dismissed.
+		if ( get_option( 'review_notice_dismissed' ) ) {
+			return;
+		}
+
+		$install_date = get_option( 'udb_install_date' );
+
+		// Stop if there's no install date.
+		if ( empty( $install_date ) ) {
+			return;
+		}
+
+		$diff = round( ( time() - strtotime( $install_date ) ) / 24 / 60 / 60 );
+
+		// Don't show the notice if Ultimate Dashboard is running not more than 5 days.
+		if ( $diff < 5 ) {
+			return;
+		}
+
+		$emoji      = '😍';
+		$review_url = 'https://wordpress.org/support/plugin/ultimate-dashboard/reviews/?rate=5#new-post';
+		$link_start = '<a href="' . $review_url . '" target="_blank">';
+		$link_end   = '</a>';
+		// translators: %1$s: Emoji, %2$s: Link start tag, %3$s: Link end tag.
+		$notice   = sprintf( __( '%1$s Love using Ultimate Dashboard? - That\'s Awesome! Help us spread the word and leave us a %2$s 5-star review %3$s in the WordPress repository.', 'ultimate-dashboard' ), $emoji, $link_start, $link_end );
+		$btn_text = __( 'Sure! You deserve it!', 'ultimate-dashboard' );
+		$notice  .= '<br/>';
+		$notice  .= "<a href=\"$review_url\" style=\"margin-top: 15px;\" target='_blank' class=\"button-primary\">$btn_text</a>";
+
+		echo '<div class="notice review-notice notice-success is-dismissible is-permanent-dismissable" data-ajax-action="udb_dismiss_review_notice">';
+		echo '<p>' . $notice . '</p>';
+		echo '</div>';
+
+	}
+
+	/**
+	 * Dismiss review notice.
+	 */
+	public function dismiss_review_notice() {
+
+		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
+
+		if ( empty( $dismiss ) ) {
+			wp_send_json_error( __( 'Invalid Request', 'ultimate-dashboard' ) );
+		}
+
+		update_option( 'review_notice_dismissed', 1 );
+		wp_send_json_success( __( 'Review notice has been dismissed', 'ultimate-dashboard' ) );
 
 	}
 
@@ -223,8 +331,14 @@ class Setup {
 			delete_option( 'udb_compat_old_option' );
 
 			delete_option( 'udb_login_customizer_flush_url' );
+			delete_option( 'review_notice_dismissed' );
+
+			delete_option( 'udb_install_date' );
+			delete_option( 'udb_plugin_activated' );
+
 
 		}
 
 	}
+
 }
