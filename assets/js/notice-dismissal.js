@@ -4,7 +4,7 @@
 	function init() {
 		$(document).on(
 			"click",
-			".is-permanent-dismissable .notice-dismiss",
+			".udb-notice.is-permanent-dismissable .notice-dismiss",
 			ajax.saveDismissal
 		);
 	}
