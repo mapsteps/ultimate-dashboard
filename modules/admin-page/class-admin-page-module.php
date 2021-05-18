@@ -174,6 +174,8 @@ class Admin_Page_Module extends Base_Module {
 
 	/**
 	 * Force default template for admin page.
+	 * This could live in the PRO add-on as frontend-editing is only available via page builders.
+	 * Though, moving it is not worth the effort and this might come in handy at some point.
 	 *
 	 * @param string $template_path The template path.
 	 * @return string The template path.

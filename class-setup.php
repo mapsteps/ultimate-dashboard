@@ -284,7 +284,7 @@ class Setup {
 		$notice  .= '<br/>';
 		$notice  .= "<a href=\"$review_url\" style=\"margin-top: 15px;\" target='_blank' class=\"button-primary\">$btn_text</a>";
 
-		echo '<div class="notice udb-notice review-notice notice-success is-dismissible is-permanent-dismissable" data-ajax-action="udb_dismiss_review_notice">';
+		echo '<div class="notice udb-notice review-notice notice-success is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_review_notice">';
 		echo '<p>' . $notice . '</p>';
 		echo '</div>';
 
