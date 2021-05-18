@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 3.3
+Stable tag: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.3.1 | May 18, 2021 =
+* New: TablePress support for Admin Menu Editor (PRO)
+* New: Admin notice that kindly asks you to leave a review
+* Tweak: Pave the way to implement Brizy support for Custom Admin Pages (PRO)
 = 3.3 | April 13, 2021 =
 * New: Admin Bar Editor (PRO)
 * New: Add custom CSS to the WordPress login screen
