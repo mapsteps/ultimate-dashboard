@@ -11,7 +11,7 @@ return function () {
 	?>
 
 	<ul class="udb-pro-metabox-content">
-		<li><?php _e( 'Use <strong>Elementor</strong> or <strong>Beaver Builder</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
+		<li><?php _e( 'Use <strong>Elementor</strong>, <strong>Beaver Builder</strong> or <strong>Brizy</strong> to create custom Admin Pages', 'ultimate-dashboard' ); ?></li>
 		<li><?php _e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
 	</ul>
 
