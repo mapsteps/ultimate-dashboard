@@ -464,6 +464,9 @@ class Get_Menu {
 						if ( isset( $submenu_item['url_default'] ) ) {
 							$new_submenu_item = array();
 
+							// Let's turn the formatting to use "&amp;" instead of "&".
+							$submenu_item['url_default'] = str_ireplace( '&', '&amp;', $submenu_item['url_default'] );
+
 							if ( isset( $matched_default_menu['submenu'] ) ) {
 								$default_submenu_index   = $array_helper->find_assoc_array_index_by_value( $matched_default_menu['submenu'], 'url', $submenu_item['url_default'] );
 								$matched_default_submenu = false !== $default_submenu_index ? $matched_default_menu['submenu'][ $default_submenu_index ] : false;
