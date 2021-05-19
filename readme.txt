@@ -32,10 +32,9 @@ White label the WordPress login area. Completely **customize the WordPress login
 Remove things like the **Help** tab and **Screen Options** tab from the WordPress admin area & add a custom WordPress **footer text** & **version text**.
 
 == Add Custom CSS ==
-Ultimate Dashboard allows you to add:
-* custom CSS to only the WordPress dashboard
-* custom CSS to the entire WordPress admin area
-* and custom CSS to the WordPress login screen with a live preview inside the WordPress customizer.
+* Add custom CSS to only the **WordPress dashboard**
+* Add custom CSS to the entire **WordPress admin area**
+* Add custom CSS to the **WordPress login screen** with a live preview inside the WordPress customizer
 
 == Create Custom Admin Pages ==
 Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
@@ -55,7 +54,7 @@ For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.
 * Restrict dashboard widgets & admin pages to specific users or user roles
 * White label & rebrand WordPress
 * Advanced Login Customizer features
-* Create Custom Admin Pages in Elementor & Beaver Builder
+* Create Custom Admin Pages with Elementor, Beaver Builder & Brizy
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
