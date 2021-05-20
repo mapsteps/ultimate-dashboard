@@ -20,6 +20,7 @@ ob_start();
 		</div>
 		<div class="udb-admin-menu--menu-name">{separator}</div>
 		<span class="udb-admin-menu--menu-actions">
+			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
 		</span>
 	</div><!-- .udb-admin-menu--control-panel -->
