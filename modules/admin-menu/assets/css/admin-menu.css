@@ -182,6 +182,20 @@
 	animation: loadingSpinAround 0.5s infinite linear;
 }
 
+.udb-admin-menu--inline-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.udb-admin-menu--inline-buttons button {
+	margin-right: 10px;
+}
+
+.udb-admin-menu--inline-buttons button:last-child {
+	margin-right: 0;
+}
+
 .udb-admin-menu--add-item {
 	display: flex;
 	align-items: center;
