@@ -251,6 +251,9 @@ class Admin_Page_Output extends Base_Output {
 					remove_all_actions( 'admin_notices' );
 				}
 
+				// Remove screen options.
+				add_filter( 'screen_options_show_screen', '__return_false' );
+
 				do_action( 'udb_admin_page_prepare_output', $post, $screen_id );
 
 				add_action(
