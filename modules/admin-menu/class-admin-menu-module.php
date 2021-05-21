@@ -125,6 +125,8 @@ class Admin_Menu_Module extends Base_Module {
 	 * Get admin menu via ajax.
 	 * This action will be called in "ajax" method in "class-get-menu.php".
 	 *
+	 * @see wp-content/plugins/ultimate-dashboard/helpers/class-user-helper.php
+	 *
 	 * @param object $ajax_handler The ajax handler class from the free version.
 	 * @param string $role The role target to simulate.
 	 */
@@ -133,8 +135,11 @@ class Admin_Menu_Module extends Base_Module {
 		$roles = wp_get_current_user()->roles;
 		$roles = ! $roles || ! is_array( $roles ) ? array() : $roles;
 
-		if ( ! in_array( $role, $roles, true ) ) {
-			$this->user()->simulate_role( $role );
+		$simulate_role = in_array( $role, $roles, true ) ? false : true;
+
+		// If current user role is different with the targetted role.
+		if ( $simulate_role ) {
+			$this->user()->simulate_role( $role, true );
 		}
 
 		$ajax_handler->load_menu();

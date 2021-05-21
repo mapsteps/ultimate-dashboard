@@ -73,6 +73,7 @@ class Get_Menu {
 	public function load_menu() {
 
 		global $menu, $submenu;
+
 		$wp_menu_file = ABSPATH . 'wp-admin/menu.php';
 
 		if ( ( is_null( $menu ) || is_null( $submenu ) ) && file_exists( $wp_menu_file ) ) {
