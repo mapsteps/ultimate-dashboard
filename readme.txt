@@ -98,7 +98,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 = 3.3.2 | May 22, 2021 =
 * New: Add separators to your admin menu with the Admin Menu Editor (PRO)
 * Tweak: Remove Theme Options tab from custom Admin Pages
-* Fixed: Some sub menu items can't be removed with Admin Menu Editor (PRO)
+* Fixed: Some sub menu items can't be removed with the Admin Menu Editor (PRO)
 * Fixed: Conflict with 3rd party plugins where not all roles were loaded in the Admin Menu Editor (PRO)
 * Fixed: On multisites, all menu items are shown no matter what role is selected (PRO)
 = 3.3.1 | May 18, 2021 =
