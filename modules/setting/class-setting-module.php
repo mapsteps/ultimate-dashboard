@@ -101,7 +101,7 @@ class Setting_Module extends Base_Module {
 		do_action( 'udb_after_widget_metabox' );
 
 		// Widget styling section.
-		add_settings_section( 'udb-styling-section', __( 'Widget Styling', 'ultimate-dashboard' ), '', 'udb-widget-styling-settings' );
+		add_settings_section( 'udb-styling-section', __( 'Dashboard Widget Styling', 'ultimate-dashboard' ), '', 'udb-widget-styling-settings' );
 
 		// General section.
 		add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-settings' );
