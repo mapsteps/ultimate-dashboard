@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 3.3.1
+Stable tag: 3.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,12 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.3.2 | May 22, 2021 =
+* New: Add separators to your admin menu with the Admin Menu Editor (PRO)
+* Tweak: Remove Theme Options tab from custom Admin Pages
+* Fixed: Some sub menu items can't be removed with Admin Menu Editor (PRO)
+* Fixed: Conflict with 3rd party plugins where not all roles were loaded in the Admin Menu Editor (PRO)
+* Fixed: On multisites, all menu items are shown no matter what role is selected (PRO)
 = 3.3.1 | May 18, 2021 =
 * New: TablePress support for Admin Menu Editor (PRO)
 * New: Admin notice that kindly asks you to leave a review
