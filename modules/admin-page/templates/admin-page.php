@@ -15,7 +15,11 @@ use Udb\Helpers\Content_Helper;
 
 $content_helper = new Content_Helper();
 
+do_action( 'udb_ms_switch_blog' );
+
 $editor = $content_helper->get_content_editor( $post->ID );
+
+do_action( 'udb_ms_restore_blog' );
 
 $remove_page_title  = $post->remove_page_title;
 $remove_page_margin = $post->remove_page_margin;

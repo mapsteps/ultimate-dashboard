@@ -84,7 +84,7 @@ class Admin_Page_Output extends Base_Output {
 			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
 		}
 
-		// This is done separately in the PRO add-on to handle multisite support.
+		// This is done separately in the PRO version to handle multisite support.
 		if ( ! udb_is_pro_active() ) {
 			$parent_pages  = $this->get_posts( 'parent' );
 			$submenu_pages = $this->get_posts( 'submenu' );
@@ -98,6 +98,7 @@ class Admin_Page_Output extends Base_Output {
 			}
 		}
 
+		// Pro version hooks it's setup_menu into this hook.
 		do_action( 'udb_admin_page_setup_menu', $this );
 
 	}
