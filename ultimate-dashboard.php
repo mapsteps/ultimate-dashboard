@@ -19,7 +19,7 @@ define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', rtrim( plugin_dir_url( __FILE__ ), '/' 
 define( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION', '3.3.2' );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_FILE', plugin_basename( __FILE__ ) );
 
-// Hack to fix broken plugin updater in Ultimate Dashboard PRO 3.0
+// Hack to fix broken plugin updater in Ultimate Dashboard PRO 3.0.
 // This will be removed with a future update.
 if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, '3.0', '==' ) ) {
 
