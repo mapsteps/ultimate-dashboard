@@ -413,8 +413,8 @@ class Admin_Bar_Module extends Base_Module {
 		}
 
 		/**
-		 * The "menu-toggle" has been removed from admin bar buider.
-		 * Now after parsing it, it's position is not at the beginning of the array.
+		 * The "menu-toggle" has been removed from the admin bar buider.
+		 * Now after parsing it, its position is not at the beginning of the array.
 		 * Let's bring it back to the correct position (as first item of the array).
 		 */
 		if ( isset( $saved_menu['menu-toggle'] ) ) {

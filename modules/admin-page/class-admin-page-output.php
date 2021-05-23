@@ -98,7 +98,7 @@ class Admin_Page_Output extends Base_Output {
 			}
 		}
 
-		// Pro version hooks it's setup_menu into this hook.
+		// Pro version hooks its setup_menu here.
 		do_action( 'udb_admin_page_setup_menu', $this );
 
 	}
@@ -178,7 +178,7 @@ class Admin_Page_Output extends Base_Output {
 	}
 
 	/**
-	 * Register menu / submenu page based on it's post.
+	 * Register menu / submenu page based on its post.
 	 *
 	 * @param WP_Post $post The admin page post object.
 	 * @param bool    $from_multisite Whether or not the function is called by multisite function.

@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
  */
 class Array_Helper {
 	/**
-	 * Find associative array's index by it's key's value.
+	 * Find associative array's index by its key's value.
 	 *
 	 * We don't use the array_search combined with array_column method
 	 * because it doesn't work in udb admin menu module.

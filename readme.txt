@@ -203,7 +203,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Minor Tweaks & Improvements
 = 2.0 | 11-14-2017 =
 * Rewritten the plugin from ground up
-* Ultimate Dashboard now has it's own, top-level menu in the WordPress Dashboard
+* Ultimate Dashboard now has its own, top-level menu in the WordPress Dashboard
 * Tweak: metabox styling
 * Tweak: embedded font-awesome instead of loading it from an external source
 * Tweak: removed roboto as default font
