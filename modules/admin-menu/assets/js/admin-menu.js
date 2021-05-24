@@ -335,6 +335,7 @@
 
 
 			template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
+			template = template.replace(/{trash_icon}/g, (parseInt(menu.was_added, 10) ? '<span class="dashicons dashicons-trash udb-admin-menu--remove-menu-item"></span>' : ''));
 			template = template.replace(/{hidden_icon}/g, (menu.is_hidden == '1' ? 'hidden' : 'visibility'));
 			template = template.replace(/{menu_was_added}/g, menu.was_added);
 			template = template.replace(/{default_menu_id}/g, menu.id_default);
