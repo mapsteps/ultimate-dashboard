@@ -54,7 +54,8 @@
 
 		$(document).on('click', '.udb-admin-menu--tab-menu-item', switchTab);
 		$(document).on('click', '.udb-admin-menu--remove-tab', removeTab);
-		$(document).on('click', '.udb-admin-menu-box--header-tab', switchHeaderTab);
+		$(document).on('click', '.udb-admin-menu-box--header-tab a', switchHeaderTab);
+		checkHeaderTabState();
 		$(document).on('click', '.udb-admin-menu--expand-menu', expandCollapseMenuItem);
 		$(document).on('click', '.hide-menu', showHideMenuItem);
 
@@ -70,19 +71,42 @@
 		var tabs = document.querySelectorAll('.udb-admin-menu-box--header-tab');
 		if (!tabs.length) return;
 
+		var tabMenuItem = e.target.parentNode;
+
 		tabs.forEach(function (tab) {
-			if (tab !== e.target) {
+			if (tab !== tabMenuItem) {
 				tab.classList.remove('is-active');
 			}
 		});
 
-		e.target.classList.add('is-active');
+		tabMenuItem.classList.add('is-active');
 
-		if (e.target.dataset.headerTab === 'users') {
+		if (tabMenuItem.dataset.headerTab === 'users') {
 			elms.searchBox.classList.remove('is-hidden');
 			elms.userTabs.classList.remove('is-hidden');
 			elms.roleTabs.classList.add('is-hidden');
 		} else {
+			elms.searchBox.classList.add('is-hidden');
+			elms.userTabs.classList.add('is-hidden');
+			elms.roleTabs.classList.remove('is-hidden');
+		}
+	}
+
+	function checkHeaderTabState() {
+		var hash = window.location.hash.substr(1);;
+		if (!hash) return;
+		var tabMenuItem;
+
+		$('.udb-admin-menu-box--header-tab').removeClass('is-active');
+		
+		if (hash === 'users-menu') {
+			$('.udb-admin-menu-box--header-tab[data-header-tab="users"]').addClass('is-active');
+			elms.searchBox.classList.remove('is-hidden');
+			elms.userTabs.classList.remove('is-hidden');
+			elms.roleTabs.classList.add('is-hidden');
+			
+		} else {
+			$('.udb-admin-menu-box--header-tab[data-header-tab="roles"]').addClass('is-active');
 			elms.searchBox.classList.add('is-hidden');
 			elms.userTabs.classList.add('is-hidden');
 			elms.roleTabs.classList.remove('is-hidden');

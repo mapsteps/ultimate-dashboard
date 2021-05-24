@@ -87,10 +87,14 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 					</div>
 					<ul class="udb-admin-menu-box--header-tabs">
 						<li class="udb-admin-menu-box--header-tab" data-header-tab="users">
-							<?php _e( 'Users', 'ultimate-dashboard' ); ?>
+							<a href="#users-menu">
+								<?php _e( 'Users', 'ultimate-dashboard' ); ?>
+							</a>
 						</li>
 						<li class="udb-admin-menu-box--header-tab is-active" data-header-tab="roles">
-							<?php _e( 'Roles', 'ultimate-dashboard' ); ?>
+							<a href="#roles-menu">
+								<?php _e( 'Roles', 'ultimate-dashboard' ); ?>
+							</a>
 						</li>
 					</ul>
 				</div>
