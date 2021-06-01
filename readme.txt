@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 3.3.2
+Stable tag: 3.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.3.3 | June 1, 2021 =
+* New: Remember Users/Roles tab when saving in Admin Menu Editor (PRO)
+* Other minor tweaks & improvements
 = 3.3.2 | May 22, 2021 =
 * New: Add separators to your admin menu with the Admin Menu Editor (PRO)
 * Tweak: Remove Theme Options tab from custom Admin Pages
