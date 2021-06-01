@@ -70,6 +70,7 @@
 	color: #888;
 	text-decoration: none;
 	background-color: #f5f5f5;
+	box-shadow:  none;
 }
 
 .udb-admin-menu-box--header-tab a:hover {
