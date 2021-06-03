@@ -95,7 +95,6 @@
 	function checkHeaderTabState() {
 		var hash = window.location.hash.substr(1);;
 		if (!hash) return;
-		var tabMenuItem;
 
 		$('.udb-admin-menu-box--header-tab').removeClass('is-active');
 		
