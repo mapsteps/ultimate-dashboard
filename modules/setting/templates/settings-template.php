@@ -48,6 +48,12 @@ return function () {
 					<?php do_settings_sections( 'udb-widget-settings' ); ?>
 				</div>
 
+				<?php if ( udb_is_pro_active() ) : ?>
+					<div class="heatbox">
+						<?php do_settings_sections( 'udb-page-builder-dashboard-settings' ); ?>
+					</div>
+				<?php endif; ?>
+
 				<div class="heatbox">
 					<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
 				</div>
