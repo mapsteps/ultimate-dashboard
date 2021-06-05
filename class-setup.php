@@ -90,7 +90,6 @@ class Setup {
 
 		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ), 20 );
 
-
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
 
@@ -116,6 +115,16 @@ class Setup {
 	 * @param string $classes The class names.
 	 */
 	public function admin_body_class( $classes ) {
+
+		$current_user = wp_get_current_user();
+		$classes     .= ' udb-nicename-' . $current_user->user_nicename;
+
+		$roles = $current_user->roles;
+		$roles = $roles ? $roles : array();
+
+		foreach ( $roles as $role ) {
+			$classes .= ' udb-role-' . $role;
+		}
 
 		$screens = array(
 			'udb_widgets_page_udb_features',
@@ -335,7 +344,6 @@ class Setup {
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
-
 
 		}
 
