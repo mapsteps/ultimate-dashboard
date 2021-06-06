@@ -186,10 +186,6 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		if ( ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ) {
-			return;
-		}
-
 		echo $settings['welcome_panel_content'];
 	}
 
