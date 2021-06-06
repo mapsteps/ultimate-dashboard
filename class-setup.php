@@ -81,7 +81,7 @@ class Setup {
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
-		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_filter( 'plugin_action_links_' . ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'action_links' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 20 );
