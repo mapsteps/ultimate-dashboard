@@ -49,5 +49,10 @@
 .featured-products .credit {
 	margin-top: 20px;
 	text-align: center;
-	opacity: .5;
+	opacity: 0.5;
+}
+
+/* Specific settings page styles */
+.udb-no-label th {
+	display: none;
 }

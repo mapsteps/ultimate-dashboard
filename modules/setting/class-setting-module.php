@@ -125,7 +125,16 @@ class Setting_Module extends Base_Module {
 		add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), array( $this, 'headline_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );
 
 		// Welcome panel fields.
-		add_settings_field( 'udb-welcome-panel-field', __( 'Content', 'ultimate-dashboard' ), array( $this, 'welcome_panel_field' ), 'udb-welcome-panel-settings', 'udb-welcome-panel-section' );
+		add_settings_field(
+			'udb-welcome-panel-field',
+			'',
+			array( $this, 'welcome_panel_field' ),
+			'udb-welcome-panel-settings',
+			'udb-welcome-panel-section',
+			array(
+				'class' => 'udb-no-label',
+			)
+		);
 
 		// General fields.
 		add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), array( $this, 'remove_help_tab_field' ), 'udb-general-settings', 'udb-general-section' );
