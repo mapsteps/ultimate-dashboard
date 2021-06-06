@@ -117,7 +117,7 @@ class Setup {
 	public function admin_body_class( $classes ) {
 
 		$current_user = wp_get_current_user();
-		$classes     .= ' udb-nicename-' . $current_user->user_nicename;
+		$classes     .= ' udb-user-' . $current_user->user_nicename;
 
 		$roles = $current_user->roles;
 		$roles = $roles ? $roles : array();
