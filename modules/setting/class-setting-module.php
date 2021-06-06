@@ -97,11 +97,14 @@ class Setting_Module extends Base_Module {
 		add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
 		add_settings_section( 'udb-3rd-party-widgets-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
 
-		// We use this hook to place the Page Builder Dashboard feature here.
-		do_action( 'udb_after_widget_metabox' );
-
 		// Widget styling section.
 		add_settings_section( 'udb-styling-section', __( 'Dashboard Widget Styling', 'ultimate-dashboard' ), '', 'udb-widget-styling-settings' );
+
+		// Welcome panel section.
+		add_settings_section( 'udb-welcome-panel-section', __( 'Welcome Panel', 'ultimate-dashboard' ), '', 'udb-welcome-panel-settings' );
+
+		// We use this hook to place the Page Builder Dashboard feature here.
+		do_action( 'udb_after_widget_metabox' );
 
 		// General section.
 		add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-settings' );
@@ -120,6 +123,9 @@ class Setting_Module extends Base_Module {
 		// Widget styling fields.
 		add_settings_field( 'udb-icon-color-field', __( 'Icon/Text Color', 'ultimate-dashboard' ), array( $this, 'icon_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );
 		add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), array( $this, 'headline_color_field' ), 'udb-widget-styling-settings', 'udb-styling-section' );
+
+		// Welcome panel fields.
+		add_settings_field( 'udb-welcome-panel-field', __( 'Content', 'ultimate-dashboard' ), array( $this, 'welcome_panel_field' ), 'udb-welcome-panel-settings', 'udb-welcome-panel-section' );
 
 		// General fields.
 		add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), array( $this, 'remove_help_tab_field' ), 'udb-general-settings', 'udb-general-section' );
@@ -169,6 +175,16 @@ class Setting_Module extends Base_Module {
 		$template = apply_filters( 'udb_remove_3rd_party_widgets_field_path', $template );
 		$field    = require $template;
 
+		$field();
+
+	}
+
+	/**
+	 * Welcome panel field.
+	 */
+	public function welcome_panel_field() {
+
+		$field = require __DIR__ . '/templates/fields/welcome-panel.php';
 		$field();
 
 	}

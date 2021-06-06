@@ -73,6 +73,7 @@ class Setting_Output extends Base_Output {
 		add_action( 'admin_head', array( self::get_instance(), 'change_dashboard_headline' ) );
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
+		add_action( 'init', array( self::get_instance(), 'check_welcome_panel' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_font_awesome' ) );
 
@@ -155,9 +156,41 @@ class Setting_Output extends Base_Output {
 	 * Remove screen options on admin area.
 	 */
 	public function remove_screen_options_tab() {
+
 		$settings = get_option( 'udb_settings' );
 
 		return ( isset( $settings['remove_screen_options'] ) ? false : true );
+
+	}
+
+	/**
+	 * Check if we have custom welcome panel.
+	 */
+	public function check_welcome_panel() {
+
+		$settings = get_option( 'udb_settings' );
+
+		if ( ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ) {
+			return;
+		}
+
+		remove_action( 'welcome_panel', 'wp_welcome_panel' );
+		add_action( 'welcome_panel', array( self::get_instance(), 'custom_welcome_panel' ) );
+
+	}
+
+	/**
+	 * Output custom welcome panel.
+	 */
+	public function custom_welcome_panel() {
+
+		$settings = get_option( 'udb_settings' );
+
+		if ( ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ) {
+			return;
+		}
+
+		echo $settings['welcome_panel_content'];
 	}
 
 	/**
