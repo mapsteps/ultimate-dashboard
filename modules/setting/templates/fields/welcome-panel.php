@@ -14,9 +14,13 @@ return function () {
 	$content   = isset( $settings['welcome_panel_content'] ) ? $settings['welcome_panel_content'] : '';
 
 	if ( empty( $content ) ) {
+		do_action( 'udb_ms_switch_blog' );
+
 		ob_start();
 		do_action( 'welcome_panel' );
 		$content = ob_get_clean();
+
+		do_action( 'udb_ms_restore_blog' );
 	}
 
 	$content = trim( $content );
