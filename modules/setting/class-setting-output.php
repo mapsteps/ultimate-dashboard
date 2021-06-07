@@ -187,6 +187,7 @@ class Setting_Output extends Base_Output {
 		$settings = get_option( 'udb_settings' );
 
 		echo $settings['welcome_panel_content'];
+
 	}
 
 	/**
