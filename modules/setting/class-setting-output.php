@@ -68,7 +68,7 @@ class Setting_Output extends Base_Output {
 	 */
 	public function setup() {
 
-		add_action( 'admin_init', array( self::get_instance(), 'check_welcome_panel' ) );
+		add_action( 'admin_init', array( self::get_instance(), 'custom_welcome_panel' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'dashboard_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'admin_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'change_dashboard_headline' ) );
@@ -166,7 +166,7 @@ class Setting_Output extends Base_Output {
 	/**
 	 * Check if we have custom welcome panel.
 	 */
-	public function check_welcome_panel() {
+	public function custom_welcome_panel() {
 
 		$settings = get_option( 'udb_settings' );
 
@@ -175,14 +175,14 @@ class Setting_Output extends Base_Output {
 		}
 
 		remove_action( 'welcome_panel', 'wp_welcome_panel' );
-		add_action( 'welcome_panel', array( self::get_instance(), 'custom_welcome_panel' ) );
+		add_action( 'welcome_panel', array( self::get_instance(), 'welcome_panel_content' ) );
 
 	}
 
 	/**
-	 * Output custom welcome panel.
+	 * Output welcome panel content.
 	 */
-	public function custom_welcome_panel() {
+	public function welcome_panel_content() {
 
 		$settings = get_option( 'udb_settings' );
 		$content  = ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
@@ -191,7 +191,8 @@ class Setting_Output extends Base_Output {
 			do_action( 'udb_ms_switch_blog' );
 
 			$settings = get_option( 'udb_settings' );
-			$content  = ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
+			// This would never be empty because we already did cheking on `custom_welcome_panel` function above from multisite.
+			$content = $settings['welcome_panel_content'];
 
 			do_action( 'udb_ms_restore_blog' );
 		}
