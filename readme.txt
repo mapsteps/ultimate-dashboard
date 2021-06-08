@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 3.3.3
+Stable tag: 3.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,7 @@ Remove things like the **Help** tab and **Screen Options** tab from the WordPres
 Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
 
 == More Features ==
-
+* Change WordPress welcome panel content (New!)
 * Replace the WordPress dashboard headline
 * Define a text/icon & headline color for your Ultimate Dashboard widgets
 * Hide the WordPress admin bar from the frontend
@@ -58,8 +58,8 @@ For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
-* Admin Menu Editor (NEW!)
-* Admin Bar Editor (NEW!)
+* Admin Menu Editor (New!)
+* Admin Bar Editor (New!)
 
 [youtube https://youtu.be/w0oEQF3C6v0]
 
@@ -95,6 +95,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.3.4 | June 8, 2021 =
+* New: WordPress admin body classes (udb-user-{nicename}, udb-role-{current-user-role})
+* New: Settings to change the WordPress welcome panel
 = 3.3.3 | June 1, 2021 =
 * New: Remember Users/Roles tab when saving in Admin Menu Editor (PRO)
 * Other minor tweaks & improvements
