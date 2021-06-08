@@ -68,14 +68,14 @@ class Setting_Output extends Base_Output {
 	 */
 	public function setup() {
 
+		add_action( 'admin_init', array( self::get_instance(), 'check_welcome_panel' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'dashboard_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'admin_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'change_dashboard_headline' ) );
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
-		add_action( 'init', array( self::get_instance(), 'check_welcome_panel' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
-		add_action( 'init', array( self::get_instance(), 'remove_font_awesome' ) );
+		add_action( 'admin_init', array( self::get_instance(), 'remove_font_awesome' ) );
 
 	}
 
