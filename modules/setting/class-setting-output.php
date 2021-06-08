@@ -185,8 +185,18 @@ class Setting_Output extends Base_Output {
 	public function custom_welcome_panel() {
 
 		$settings = get_option( 'udb_settings' );
+		$content  = ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
 
-		echo $settings['welcome_panel_content'];
+		if ( empty( $content ) ) {
+			do_action( 'udb_ms_switch_blog' );
+
+			$settings = get_option( 'udb_settings' );
+			$content  = ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
+
+			do_action( 'udb_ms_restore_blog' );
+		}
+
+		echo $content;
 
 	}
 
