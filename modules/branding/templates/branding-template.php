@@ -49,6 +49,10 @@ return function () {
 				</div>
 
 				<div class="heatbox">
+					<?php do_settings_sections( 'udb-admin-colors-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
 					<?php do_settings_sections( 'udb-branding-misc-settings' ); ?>
 				</div>
 
