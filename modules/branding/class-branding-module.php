@@ -59,7 +59,7 @@ class Branding_Module extends Base_Module {
 
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		// add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
@@ -169,6 +169,32 @@ class Branding_Module extends Base_Module {
 	}
 
 	/**
+	 * Admin bar logo field.
+	 */
+	public function admin_bar_logo_field() {
+
+		$template = __DIR__ . '/templates/fields/admin-bar-logo.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
+	 * Admin bar logo url field.
+	 */
+	public function admin_bar_logo_url_field() {
+
+		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
 	 * Accent color field.
 	 */
 	public function accent_color_field() {
@@ -240,32 +266,6 @@ class Branding_Module extends Base_Module {
 
 		$template = __DIR__ . '/templates/fields/menu-item-active-color.php';
 		$template = apply_filters( 'udb_branding_menu_item_active_color_field_path', $template );
-		$field    = require $template;
-
-		$field();
-
-	}
-
-	/**
-	 * Admin bar logo field.
-	 */
-	public function admin_bar_logo_field() {
-
-		$template = __DIR__ . '/templates/fields/admin-bar-logo.php';
-		$template = apply_filters( 'udb_branding_admin_bar_logo_field_path', $template );
-		$field    = require $template;
-
-		$field();
-
-	}
-
-	/**
-	 * Admin bar logo url field.
-	 */
-	public function admin_bar_logo_url_field() {
-
-		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
-		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
 		$field    = require $template;
 
 		$field();

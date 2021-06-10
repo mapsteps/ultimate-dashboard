@@ -9,9 +9,10 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$branding = get_option( 'udb_branding' );
-	$bg_color = isset( $branding['admin_menu_bg_color'] ) ? $branding['admin_menu_bg_color'] : '#2c3338';
+	?>
 
-	echo '<input type="text" name="udb_branding[admin_menu_bg_color]" value="' . esc_attr( $bg_color ) . '" class="udb-color-field udb-branding-color-field" data-default="#0073aa" />';
+	<input type="text" name="" value="#2c3338" class="udb-color-field udb-branding-color-field udb-instant-preview-trigger" data-default="#2c3338" data-udb-trigger-name="admin-submenu-bg-color" />
+
+	<?php
 
 };

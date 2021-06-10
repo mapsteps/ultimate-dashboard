@@ -25,8 +25,8 @@
 		[].slice.call(colorFields).forEach(function (el) {
 			var opts = {
 				defaultColor: el.dataset.default,
-				change: function(event, ui){},
-				clear: function() {},
+				change: function (event, ui) {},
+				clear: function () { },
 				hide: true,
 				palettes: true
 			};

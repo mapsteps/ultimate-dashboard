@@ -9,9 +9,22 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$branding = get_option( 'udb_branding' );
-	$color    = isset( $branding['menu_item_active_color'] ) ? $branding['menu_item_active_color'] : '#72aee6';
+	?>
 
-	echo '<input type="text" name="udb_branding[menu_item_active_color]" value="' . esc_attr( $color ) . '" class="udb-color-field udb-branding-color-field" data-default="#0073aa" />';
+	<input type="text" name="" value="#0073AA" class="udb-color-field udb-branding-color-field udb-instant-preview-trigger" data-default="#0073AA" data-udb-trigger-name="menu-item-active-color" />
+
+	<br>
+
+	<div class="udb-pro-settings-page-notice">
+
+		<p><?php _e( 'This is only preview. Admin Colors feature is available in Ultimate Dashboard PRO.' ); ?></p>
+
+		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary" target="_blank">
+			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+		</a>
+
+	</div>
+
+	<?php
 
 };
