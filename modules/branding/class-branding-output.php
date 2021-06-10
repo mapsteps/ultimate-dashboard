@@ -59,7 +59,7 @@ class Branding_Output extends Base_Output {
 
 		add_filter( 'admin_footer_text', array( self::get_instance(), 'footer_text' ) );
 		add_filter( 'update_footer', array( self::get_instance(), 'version_text' ), 20 );
-		add_action( 'admin_head', array( self::get_instance(), 'instant_preview' ) );
+		add_action( 'admin_head', array( self::get_instance(), 'instant_preview' ), 20 );
 
 	}
 
@@ -104,18 +104,9 @@ class Branding_Output extends Base_Output {
 	/**
 	 * Instant preview style tags.
 	 */
-	public function instant_preview( $version_text ) {
+	public function instant_preview() {
 
-		?>
-
-		<style class="udb-instant-preview" data-udb-triggered-by="accent-color" data-udb-css-prop=""></style>
-		<style class="udb-instant-preview" data-udb-triggered-by="admin-bar-bg-color" data-udb-css-prop=""></style>
-		<style class="udb-instant-preview" data-udb-triggered-by="admin-menu-bg-color" data-udb-css-prop=""></style>
-		<style class="udb-instant-preview" data-udb-triggered-by="admin-submenu-bg-color" data-udb-css-prop=""></style>
-		<style class="udb-instant-preview" data-udb-triggered-by="menu-item-active-color" data-udb-css-prop=""></style>
-		<style class="udb-instant-preview" data-udb-triggered-by="menu-item-color" data-udb-css-prop=""></style>
-
-		<?php
+		require __DIR__ . '/templates/instant-preview.php';
 
 	}
 
