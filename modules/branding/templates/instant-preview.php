@@ -96,3 +96,41 @@
 	  background: #38404B;
 	}
 </style>
+
+<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#wpadminbar:not(.mobile) > #wp-toolbar li:hover span.ab-label,
+	#wpadminbar:not(.mobile) > #wp-toolbar li.hover span.ab-label,
+	#wpadminbar:not(.mobile) > #wp-toolbar a:focus span.ab-label {
+	  color: #fff;
+	}
+</style>
+
+<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#wpadminbar .quicklinks .menupop ul li a:hover,
+	#wpadminbar .quicklinks .menupop ul li a:focus,
+	#wpadminbar .quicklinks .menupop ul li a:hover strong,
+	#wpadminbar .quicklinks .menupop ul li a:focus strong,
+	#wpadminbar .quicklinks .ab-sub-wrapper .menupop.hover > a,
+	#wpadminbar .quicklinks .menupop.hover ul li a:hover,
+	#wpadminbar .quicklinks .menupop.hover ul li a:focus,
+	#wpadminbar.nojs .quicklinks .menupop:hover ul li a:hover,
+	#wpadminbar.nojs .quicklinks .menupop:hover ul li a:focus,
+	#wpadminbar li:hover .ab-icon:before,
+	#wpadminbar li:hover .ab-item:before,
+	#wpadminbar li a:focus .ab-icon:before,
+	#wpadminbar li .ab-item:focus:before,
+	#wpadminbar li .ab-item:focus .ab-icon:before,
+	#wpadminbar li.hover .ab-icon:before,
+	#wpadminbar li.hover .ab-item:before,
+	#wpadminbar li:hover #adminbarsearch:before,
+	#wpadminbar li #adminbarsearch.adminbar-focused:before {
+	  color: #fff;
+	}
+</style>
+
+<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#adminmenu li.menu-top:hover div.wp-menu-image:before,
+	#adminmenu li.opensub > a.menu-top div.wp-menu-image:before {
+	  color: #fff;
+	}
+</style>
