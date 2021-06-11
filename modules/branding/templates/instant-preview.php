@@ -6,11 +6,23 @@
 
 <style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="color"></style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-active-color="color"></style>
-
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
-	#adminmenu a {
+<style class="udb-instant-preview" data-udb-prop-menu-item-active-color="color" data-udb-prop-menu-item-active-color="background-color">
+	#adminmenu a:hover,
+	#adminmenu li.menu-top:hover,
+	#adminmenu li.opensub > a.menu-top,
+	#adminmenu li > a.menu-top:focus {
 		color: #fff;
+		background-color: #0073AA;
+	}
+</style>
+
+<style class="udb-instant-preview" data-udb-prop-menu-item-active-color="background">
+	#adminmenu li.current a.menu-top,
+	#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+	#adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
+	.folded #adminmenu li.current.menu-top {
+	  color: #fff;
+	  background: #0073AA;
 	}
 </style>
 
@@ -20,7 +32,13 @@
 	#adminmenu li.opensub > a.menu-top,
 	#adminmenu li > a.menu-top:focus {
 		color: #fff;
-		background-color: ;
+		background-color: #0073AA;
+	}
+</style>
+
+<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#adminmenu a {
+		color: #fff;
 	}
 </style>
 
