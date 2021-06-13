@@ -1,6 +1,7 @@
 <?php
 $accent_color           = '#0073AA';
 $admin_bar_bg_color     = '#232931';
+$admin_menu_bg_color    = '#2E3640';
 $admin_submenu_bg_color = '#38404B';
 $menu_item_active_color = $accent_color;
 $menu_item_color        = '#ffffff';
@@ -86,7 +87,13 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-menu-bg-color="color"></style>
+<style class="udb-instant-preview" data-udb-prop-admin-menu-bg-color="background">
+	#adminmenuback,
+	#adminmenuwrap,
+	#adminmenu {
+	  background: <?php echo esc_attr( $admin_menu_bg_color ); ?>;
+	}
+</style>
 
 <style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="color"></style>
 
