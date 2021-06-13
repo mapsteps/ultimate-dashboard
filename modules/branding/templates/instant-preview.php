@@ -91,11 +91,19 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	#adminmenuback,
 	#adminmenuwrap,
 	#adminmenu {
-	  background: <?php echo esc_attr( $admin_menu_bg_color ); ?>;
+		background: <?php echo esc_attr( $admin_menu_bg_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="color"></style>
+<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+	#adminmenu .wp-submenu,
+	#adminmenu .wp-has-current-submenu .wp-submenu,
+	#adminmenu .wp-has-current-submenu.opensub .wp-submenu,
+	.folded #adminmenu .wp-has-current-submenu .wp-submenu,
+	#adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+		background: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
+	}
+</style>
 
 <style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
 	#adminmenu a:hover,
