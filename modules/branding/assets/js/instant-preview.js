@@ -81,6 +81,8 @@
 			}
 
 			props.forEach(function (prop) {
+				if (!lines) return;
+
 				lines.some(function (line, index) {
 					if (!line.includes(prop)) return false;
 
