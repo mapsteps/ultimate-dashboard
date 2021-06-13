@@ -105,6 +105,19 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
+<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+	#wpadminbar .menupop .ab-sub-wrapper {
+		background: #38404B;
+	}
+</style>
+
+<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
+	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu {
+		background: #38404B;
+	}
+</style>
+
 <style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
 	#adminmenu a:hover,
 	#adminmenu li.menu-top:hover,
