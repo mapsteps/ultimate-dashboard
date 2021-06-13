@@ -15,7 +15,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'wp-color-picker' );
 
 		// Instant preview.
-		wp_enqueue_script( 'udb-branding-instant-preview', $module->url . '/assets/js/instant-preview.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-branding-instant-preview', $module->url . '/assets/js/instant-preview.js', array( 'wp-polyfill', 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 	}
 

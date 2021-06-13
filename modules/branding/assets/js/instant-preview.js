@@ -53,59 +53,84 @@
 		var targets = document.querySelectorAll('[data-udb-prop-' + triggerName + ']');
 
 		targets.forEach(function (target) {
-			var prop = target.getAttribute('data-udb-prop-' + triggerName);
 			var content = target.innerHTML;
 			// @see https://stackoverflow.com/questions/5034781/js-regex-to-split-by-line#answer-5035058
 			var lines = content.match(/[^\r\n]+/g);
 			var newCssRule = '';
 			var lineIndex = -1;
+			var prop = target.getAttribute('data-udb-prop-' + triggerName);
+			var props = [];
 
-			lines.some(function (line, index) {
-				if (line.indexOf(prop) > -1) {
+			if (prop.includes(',')) {
+				// @see https://stackoverflow.com/questions/661305/how-can-i-trim-the-leading-and-trailing-comma-in-javascript/#answer-661317
+				prop = prop.replace(/(^,)|(,$)/g, "");
+
+				props = prop.split(',');
+
+				props.forEach(function (prop, index) {
+					prop = prop.trim();
+
+					if ('' === prop) {
+						props.splice(index, 1);
+					} else {
+						props[index] = prop;
+					}
+				});
+			} else {
+				props = [prop];
+			}
+
+			props.forEach(function (prop) {
+				lines.some(function (line, index) {
+					if (!line.includes(prop)) return false;
+
 					var str = line.split(':');
 					var cssProp = str[0];
 					var format = 'hex';
 					var opacity = 1;
-					var rgb;
-
-					var checkOpacity = '';
-
-					if (str[1].indexOf('rgb') > -1) {
-						format = 'rgb';
-
-						if (str[1].indexOf('rgba') > -1) {
-							format = 'rgba';
-							checkOpacity = str[1].split(')');
-							checkOpacity = checkOpacity[0].split(',');
-							opacity = checkOpacity[3];
-						}
-					}
-
 					var cssValue = color;
+					var rgb;
+					var checkOpacity;
 
-					if ('rgb' === format || 'rgba' === format) {
-						rgb = hexToRgb(color);
-						cssValue = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
+					if ('box-shadow' === prop) {
+						cssValue = target.dataset.udbBoxShadowValue.replace(/{box_shadow_value}/g, color);
+					} else {
+						if (str[1].includes('rgb')) {
+							format = 'rgb';
 
-						if ('rgba' === format) {
-							cssValue = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + opacity + ')';
+							if (str[1].includes('rgba')) {
+								format = 'rgba';
+								checkOpacity = str[1].split(')');
+								checkOpacity = checkOpacity[0].split(',');
+								opacity = checkOpacity[3];
+							}
+						}
+
+						if ('rgb' === format || 'rgba' === format) {
+							rgb = hexToRgb(color);
+							cssValue = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
+
+							if ('rgba' === format) {
+								cssValue = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + opacity + ')';
+							}
 						}
 					}
 
 					newCssRule = cssProp + ': ' + cssValue + ';';
 					lineIndex = index;
 
-					// Stop the loop.
+					// Stop the ".some()" loop.
 					return true;
+				});
+
+				if (lineIndex > -1) {
+					lines[lineIndex] = newCssRule;
+					content = lines.join('\n');
+
+					target.innerHTML = content;
 				}
 			});
 
-			if (lineIndex > -1) {
-				lines[lineIndex] = newCssRule;
-				content = lines.join('\n');
-
-				target.innerHTML = content;
-			}
 		});
 	}
 
