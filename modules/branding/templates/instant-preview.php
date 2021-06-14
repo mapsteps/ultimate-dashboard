@@ -1,4 +1,12 @@
 <?php
+/**
+ * Style tags for instant preview.
+ *
+ * @package Ultimate_Dashboard
+ */
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
 $colors = array(
 	'menu_item_color'        => '#ffffff',
 	'accent_color'           => '#0073AA',
@@ -31,7 +39,7 @@ if ( 3 === strlen( $accent_color_hex ) ) {
 $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 ?>
 
-<style type="text/udb" type="not-a-stylesteet" class="udb-instant-preview" data-udb-prop-accent-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="color">
 	a {
 		color: <?php echo esc_attr( $accent_color ); ?>;
 	}
@@ -279,3 +287,5 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
 	}
 </style>
+
+<?php do_action( 'udb_instant_preview' ); ?>

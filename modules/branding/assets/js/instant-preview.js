@@ -1,7 +1,7 @@
 (function ($) {
 	var colorFields = document.querySelectorAll('.udb-color-field');
 	var heatboxOverlays = document.querySelectorAll('.heatbox-overlay');
-	var brandingCheckbox = document.querySelector('.enable-branding');
+	var brandingCheckbox = document.querySelector('.udb-enable-branding');
 
 	var instantPreviewStyleTags = document.querySelectorAll('.udb-instant-preview');
 

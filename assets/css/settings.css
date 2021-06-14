@@ -1,3 +1,8 @@
+/* Generic setting styles */
+.udb-is-hidden {
+	display: none;
+}
+
 /* Code Mirror */
 .CodeMirror-wrap {
 	border: 1px solid #ddd;

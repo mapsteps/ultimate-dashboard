@@ -12,7 +12,7 @@ return function () {
 
 	<label class="label checkbox-label">
 		&nbsp;
-		<input type="checkbox" name="" class="enable-branding" />
+		<input type="checkbox" name="" class="udb-enable-branding" />
 		<div class="indicator"></div>
 	</label>
 

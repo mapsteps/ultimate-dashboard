@@ -61,7 +61,7 @@ class Branding_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
-		add_action( 'admin_head', array( self::get_instance(), 'instant_preview' ), 20 );
+		add_action( 'admin_head', array( self::get_instance(), 'instant_preview' ), 120 );
 
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
