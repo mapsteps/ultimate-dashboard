@@ -59,6 +59,12 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
+<style class="udb-instant-preview" data-udb-prop-accent-color="background">
+	input[type=radio]:checked::before {
+		background: <?php echo esc_attr( $accent_color ); ?>;
+	}
+</style>
+
 <style class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
 	.wp-core-ui .button-primary {
 		background: <?php echo esc_attr( $accent_color ); ?>;
