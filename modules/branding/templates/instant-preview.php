@@ -1,21 +1,19 @@
 <?php
 $colors = array(
+	'menu_item_color'        => '#ffffff',
 	'accent_color'           => '#0073AA',
 	'admin_bar_bg_color'     => '#232931',
 	'admin_menu_bg_color'    => '#2E3640',
 	'admin_submenu_bg_color' => '#38404B',
-	'menu_item_active_color' => '#0073AA',
-	'menu_item_color'        => '#ffffff',
 );
 
 $colors = apply_filters( 'udb_branding_colors', $colors );
 
+$menu_item_color        = $colors['menu_item_color'];
 $accent_color           = $colors['accent_color'];
 $admin_bar_bg_color     = $colors['admin_bar_bg_color'];
 $admin_menu_bg_color    = $colors['admin_menu_bg_color'];
 $admin_submenu_bg_color = $colors['admin_submenu_bg_color'];
-$menu_item_active_color = $colors['menu_item_active_color'];
-$menu_item_color        = $colors['menu_item_color'];
 
 $accent_color_hex = $accent_color;
 $accent_color_hex = str_replace( '#', '', $accent_color_hex );
@@ -33,19 +31,19 @@ if ( 3 === strlen( $accent_color_hex ) ) {
 $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 ?>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="color">
+<style type="text/udb" type="not-a-stylesteet" class="udb-instant-preview" data-udb-prop-accent-color="color">
 	a {
 		color: <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="color">
 	a:hover, a:active, a:focus {
 		color: rgba(<?php echo esc_attr( $accent_color_rgb[0] ); ?>,<?php echo esc_attr( $accent_color_rgb[1] ); ?>, <?php echo esc_attr( $accent_color_rgb[2] ); ?>, .7);
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="border-color, box-shadow" data-udb-box-shadow-value="0 0 0 1px {box_shadow_value}">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="border-color, box-shadow" data-udb-box-shadow-value="0 0 0 1px {box_shadow_value}">
 	input[type="text"]:focus,
 	input[type="password"]:focus,
 	input[type="color"]:focus,
@@ -70,20 +68,20 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="background">
 	input[type=radio]:checked::before {
 		background: <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
 	.wp-core-ui .button-primary {
-		background: <?php echo esc_attr( $accent_color ); ?>;
-		border-color: <?php echo esc_attr( $accent_color ); ?>;
+		background: ;
+		border-color: ;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
 	.wp-core-ui .button-primary:hover,
 	.wp-core-ui .button-primary:focus {
 		background: rgba(<?php echo esc_attr( $accent_color_rgb[0] ); ?>,<?php echo esc_attr( $accent_color_rgb[1] ); ?>, <?php echo esc_attr( $accent_color_rgb[2] ); ?>, .85);
@@ -91,20 +89,20 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-accent-color="box-shadow" data-udb-box-shadow-value="0 0 0 1px #fff, 0 0 0 3px {box_shadow_value}">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="box-shadow" data-udb-box-shadow-value="0 0 0 1px #fff, 0 0 0 3px {box_shadow_value}">
 	.wp-core-ui .button-primary:focus {
 		box-shadow: 0 0 0 1px #fff, 0 0 0 3px <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-admin-bar-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-admin-bar-bg-color="background">
 	#wpadminbar {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
 		background: <?php echo esc_attr( $admin_bar_bg_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-menu-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-menu-bg-color="background">
 	#adminmenuback,
 	#adminmenuwrap,
 	#adminmenu {
@@ -112,7 +110,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#adminmenu .wp-submenu,
 	#adminmenu .wp-has-current-submenu .wp-submenu,
 	#adminmenu .wp-has-current-submenu.opensub .wp-submenu,
@@ -122,20 +120,20 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar .menupop .ab-sub-wrapper {
 		background: #38404B;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu {
 		background: #38404B;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
 	#adminmenu a:hover,
 	#adminmenu li.menu-top:hover,
 	#adminmenu li.opensub > a.menu-top,
@@ -145,33 +143,33 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background">
 	#adminmenu li.current a.menu-top,
 	#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
 	#adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
 	.folded #adminmenu li.current.menu-top {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
-		background: <?php echo esc_attr( $menu_item_active_color ); ?>;
+		background: <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
 	#adminmenu a:hover,
 	#adminmenu li.menu-top:hover,
 	#adminmenu li.opensub > a.menu-top,
 	#adminmenu li > a.menu-top:focus {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
-		background-color: <?php echo esc_attr( $menu_item_active_color ); ?>;
+		background-color: <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu a {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu .wp-submenu a,
 	#adminmenu .wp-has-current-submenu .wp-submenu a,
 	.folded #adminmenu .wp-has-current-submenu .wp-submenu a,
@@ -181,7 +179,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu .wp-submenu a:focus, #adminmenu .wp-submenu a:hover,
 	#adminmenu .wp-has-current-submenu .wp-submenu a:focus,
 	#adminmenu .wp-has-current-submenu .wp-submenu a:hover,
@@ -195,7 +193,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	/* Admin Menu: current */
 	#adminmenu .wp-submenu li.current a,
 	#adminmenu a.wp-has-current-submenu:focus + .wp-submenu li.current a,
@@ -204,7 +202,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu .wp-submenu li.current a:hover, #adminmenu .wp-submenu li.current a:focus,
 	#adminmenu a.wp-has-current-submenu:focus + .wp-submenu li.current a:hover,
 	#adminmenu a.wp-has-current-submenu:focus + .wp-submenu li.current a:focus,
@@ -214,7 +212,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#wpadminbar .ab-item,
 	#wpadminbar a.ab-item,
 	#wpadminbar > #wp-toolbar span.ab-label,
@@ -223,7 +221,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#wpadminbar .ab-top-menu > #wp-admin-bar-recovery-mode.hover > .ab-item,
 	#wpadminbar.nojq .quicklinks .ab-top-menu > #wp-admin-bar-recovery-mode > .ab-item:focus,
 	#wpadminbar:not(.mobile) .ab-top-menu > #wp-admin-bar-recovery-mode:hover > .ab-item,
@@ -233,7 +231,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-admin-submenu-bg-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item,
 	#wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus,
 	#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus,
@@ -244,7 +242,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#wpadminbar:not(.mobile) > #wp-toolbar li:hover span.ab-label,
 	#wpadminbar:not(.mobile) > #wp-toolbar li.hover span.ab-label,
 	#wpadminbar:not(.mobile) > #wp-toolbar a:focus span.ab-label {
@@ -252,7 +250,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#wpadminbar .quicklinks .menupop ul li a:hover,
 	#wpadminbar .quicklinks .menupop ul li a:focus,
 	#wpadminbar .quicklinks .menupop ul li a:hover strong,
@@ -275,7 +273,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu li.menu-top:hover div.wp-menu-image:before,
 	#adminmenu li.opensub > a.menu-top div.wp-menu-image:before {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;

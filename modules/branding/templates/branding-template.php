@@ -50,6 +50,12 @@ return function () {
 
 				<div class="heatbox">
 					<?php do_settings_sections( 'udb-admin-colors-settings' ); ?>
+					<div class="heatbox-overlay"></div>
+				</div>
+
+				<div class="heatbox">
+					<?php do_settings_sections( 'udb-admin-logo-settings' ); ?>
+					<div class="heatbox-overlay"></div>
 				</div>
 
 				<div class="heatbox">
