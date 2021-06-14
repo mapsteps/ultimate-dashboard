@@ -1,10 +1,21 @@
 <?php
-$accent_color           = '#0073AA';
-$admin_bar_bg_color     = '#232931';
-$admin_menu_bg_color    = '#2E3640';
-$admin_submenu_bg_color = '#38404B';
-$menu_item_active_color = $accent_color;
-$menu_item_color        = '#ffffff';
+$colors = array(
+	'accent_color'           => '#0073AA',
+	'admin_bar_bg_color'     => '#232931',
+	'admin_menu_bg_color'    => '#2E3640',
+	'admin_submenu_bg_color' => '#38404B',
+	'menu_item_active_color' => $accent_color,
+	'menu_item_color'        => '#ffffff',
+);
+
+$colors = apply_filters( 'udb_branding_colors', $colors );
+
+$accent_color           = $colors['accent_color'];
+$admin_bar_bg_color     = $colors['admin_bar_bg_color'];
+$admin_menu_bg_color    = $colors['admin_menu_bg_color'];
+$admin_submenu_bg_color = $colors['admin_submenu_bg_color'];
+$menu_item_active_color = $colors['menu_item_active_color'];
+$menu_item_color        = $colors['menu_item_color'];
 
 $accent_color_hex = $accent_color;
 $accent_color_hex = str_replace( '#', '', $accent_color_hex );
