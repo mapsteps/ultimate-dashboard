@@ -106,6 +106,10 @@ class Branding_Output extends Base_Output {
 	 */
 	public function instant_preview() {
 
+		if ( ! $this->screen()->is_branding() ) {
+			return;
+		}
+
 		require __DIR__ . '/templates/instant-preview.php';
 
 	}
