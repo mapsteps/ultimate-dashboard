@@ -61,6 +61,8 @@ class Branding_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
+		add_action( 'admin_head', array( self::get_instance(), 'instant_preview' ), 20 );
+
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
 		// The module output.
@@ -106,6 +108,19 @@ class Branding_Module extends Base_Module {
 
 		$enqueue = require __DIR__ . '/inc/js-enqueue.php';
 		$enqueue( $this );
+
+	}
+
+	/**
+	 * Instant preview style tags.
+	 */
+	public function instant_preview() {
+
+		if ( ! $this->screen()->is_branding() ) {
+			return;
+		}
+
+		require __DIR__ . '/templates/instant-preview.php';
 
 	}
 
