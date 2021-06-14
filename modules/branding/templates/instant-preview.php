@@ -141,7 +141,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-accent-color="background-color">
 	#adminmenu a:hover,
 	#adminmenu li.menu-top:hover,
 	#adminmenu li.opensub > a.menu-top,
@@ -151,7 +151,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-accent-color="background">
 	#adminmenu li.current a.menu-top,
 	#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
 	#adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head,
@@ -161,7 +161,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-menu-item-active-color="background-color">
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-accent-color="background-color">
 	#adminmenu a:hover,
 	#adminmenu li.menu-top:hover,
 	#adminmenu li.opensub > a.menu-top,
