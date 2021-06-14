@@ -288,4 +288,4 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	}
 </style>
 
-<?php do_action( 'udb_instant_preview' ); ?>
+<?php do_action( 'udb_instant_preview', $colors ); ?>
