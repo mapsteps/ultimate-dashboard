@@ -19,10 +19,15 @@ define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', rtrim( plugin_dir_url( __FILE__ ), '/' 
 define( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION', '3.3.4' );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_FILE', plugin_basename( __FILE__ ) );
 
-// Hack to fix broken plugin updater in Ultimate Dashboard PRO 3.0.
-// This will be removed with a future update.
+/**
+ * Hack to fix broken plugin updater in Ultimate Dashboard PRO 3.0.
+ * This will be removed with a future update.
+ */
 if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, '3.0', '==' ) ) {
 
+	/**
+	 * Plugin updater function.
+	 */
 	function udb_pro_plugin_updater_helper() {
 
 		// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
@@ -54,6 +59,7 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 
 // Helper classes.
 require __DIR__ . '/helpers/class-screen-helper.php';
+require __DIR__ . '/helpers/class-color-helper.php';
 require __DIR__ . '/helpers/class-widget-helper.php';
 require __DIR__ . '/helpers/class-content-helper.php';
 require __DIR__ . '/helpers/class-user-helper.php';
