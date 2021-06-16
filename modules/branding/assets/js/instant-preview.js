@@ -1,13 +1,10 @@
 (function ($) {
 	var colorFields = document.querySelectorAll('.udb-color-field');
-	var heatboxOverlays = document.querySelectorAll('.heatbox-overlay');
-	var brandingCheckbox = document.querySelector('.udb-enable-branding');
 
 	var instantPreviewStyleTags = document.querySelectorAll('.udb-instant-preview');
 
 	function init() {
-		checkBranding();
-		brandingCheckbox.addEventListener('change', checkBranding);
+		enableBranding();
 
 		colorFields.forEach(function (el) {
 			var opts = {
@@ -24,31 +21,9 @@
 		});
 	}
 
-	function checkBranding() {
-		if (brandingCheckbox.checked) {
-			enableBranding();
-		} else {
-			disableBranding();
-		}
-	}
-
 	function enableBranding() {
-		heatboxOverlays.forEach(function (overlay) {
-			overlay.classList.add('is-hidden');
-		});
-
 		instantPreviewStyleTags.forEach(function (tag) {
 			tag.type = 'text/css';
-		});
-	}
-
-	function disableBranding() {
-		heatboxOverlays.forEach(function (overlay) {
-			overlay.classList.remove('is-hidden');
-		});
-
-		instantPreviewStyleTags.forEach(function (tag) {
-			tag.type = 'text/udb';
 		});
 	}
 

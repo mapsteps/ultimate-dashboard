@@ -49,13 +49,31 @@ return function () {
 				</div>
 
 				<div class="heatbox">
-					<?php do_settings_sections( 'udb-admin-colors-settings' ); ?>
-					<div class="heatbox-overlay"></div>
+					<?php
+					do_settings_sections( 'udb-admin-colors-settings' );
+
+					if ( udb_is_pro_active() ) {
+						?>
+
+						<div class="heatbox-overlay"></div>
+
+						<?php
+					}
+					?>
 				</div>
 
 				<div class="heatbox">
-					<?php do_settings_sections( 'udb-admin-logo-settings' ); ?>
-					<div class="heatbox-overlay"></div>
+					<?php
+					do_settings_sections( 'udb-admin-logo-settings' );
+
+					if ( udb_is_pro_active() ) {
+						?>
+
+						<div class="heatbox-overlay"></div>
+
+						<?php
+					}
+					?>
 				</div>
 
 				<div class="heatbox">

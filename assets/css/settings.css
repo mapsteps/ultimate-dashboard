@@ -67,6 +67,10 @@
 	position: relative;
 }
 
+.heatbox .checkbox-label .is-disabled {
+	opacity: 0.6;
+}
+
 .heatbox .heatbox-overlay.is-hidden {
 	display: none;
 }
