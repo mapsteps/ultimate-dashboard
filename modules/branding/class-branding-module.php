@@ -137,7 +137,7 @@ class Branding_Module extends Base_Module {
 
 		$rgb = $color_helper->hex_to_rgb( $hex_color );
 
-		$rgba_string = 'rgba(' . $rgb[0] . ', ' . $rgb[1] . ', ' . $rgb[2] . ', , ' . $opacity . ')';
+		$rgba_string = 'rgba(' . $rgb[0] . ', ' . $rgb[1] . ', ' . $rgb[2] . ', ' . $opacity . ')';
 
 		echo esc_attr( $rgba_string );
 
