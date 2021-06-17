@@ -117,6 +117,24 @@ $color_helper = new Color_Helper();
 	}
 </style>
 
+<?php if ( is_rtl() ) { ?>
+
+	<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="border-left-color">
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
+			border-left-color: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
+		}
+	</style>
+
+<?php } else { ?>
+
+	<style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="border-right-color">
+		#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
+			border-right-color: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
+		}
+	</style>
+
+<?php } ?>
+
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar .menupop .ab-sub-wrapper {
 		background: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
@@ -127,16 +145,6 @@ $color_helper = new Color_Helper();
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu {
 		background: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
-	}
-</style>
-
-<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color" data-udb-prop-accent-color="background-color">
-	#adminmenu a:hover,
-	#adminmenu li.menu-top:hover,
-	#adminmenu li.opensub > a.menu-top,
-	#adminmenu li > a.menu-top:focus {
-		color: <?php echo esc_attr( $menu_item_color ); ?>;
-		background-color: <?php echo esc_attr( $accent_color ); ?>;
 	}
 </style>
 
