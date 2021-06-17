@@ -17,6 +17,8 @@ return function ( $module ) {
 		// Instant preview.
 		wp_enqueue_script( 'udb-branding-instant-preview', $module->url . '/assets/js/instant-preview.js', array( 'wp-polyfill', 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		wp_add_inline_script( 'udb-branding-instant-preview', 'var udbBrandingInstantPreview = {isProActive: ' . ( udb_is_pro_active() ? 'true' : 'false' ) . '};', 'before' );
+
 	}
 
 };

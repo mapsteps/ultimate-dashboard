@@ -9,6 +9,7 @@ namespace Udb\Branding;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Color_Helper;
 use Udb\Base\Base_Module;
 
 /**
@@ -121,6 +122,24 @@ class Branding_Module extends Base_Module {
 		}
 
 		require __DIR__ . '/templates/instant-preview.php';
+
+	}
+
+	/**
+	 * Print color in rgba format from hex color.
+	 *
+	 * @param string     $hex_color Color in hex format.
+	 * @param int|string $opacity The alpha opacity part of an rgba color.
+	 */
+	public function print_rgba_from_hex( $hex_color, $opacity ) {
+
+		$color_helper = new Color_Helper();
+
+		$rgb = $color_helper->hex_to_rgb( $hex_color );
+
+		$rgba_string = 'rgba(' . $rgb[0] . ', ' . $rgb[1] . ', ' . $rgb[2] . ', , ' . $opacity . ')';
+
+		echo esc_attr( $rgba_string );
 
 	}
 

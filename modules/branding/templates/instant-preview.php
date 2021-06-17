@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Color_Helper;
+
 $colors = array(
 	'menu_item_color'        => udb_is_pro_active() ? '#ffffff' : '#f0f0f1',
 	'accent_color'           => udb_is_pro_active() ? '#0073AA' : '#2271b1',
@@ -23,20 +25,7 @@ $admin_bar_bg_color     = $colors['admin_bar_bg_color'];
 $admin_menu_bg_color    = $colors['admin_menu_bg_color'];
 $admin_submenu_bg_color = $colors['admin_submenu_bg_color'];
 
-$accent_color_hex = $accent_color;
-$accent_color_hex = str_replace( '#', '', $accent_color_hex );
-
-if ( 3 === strlen( $accent_color_hex ) ) {
-	$accent_color_r = hexdec( substr( $accent_color_hex, 0, 1 ) . substr( $accent_color_hex, 0, 1 ) );
-	$accent_color_g = hexdec( substr( $accent_color_hex, 1, 1 ) . substr( $accent_color_hex, 1, 1 ) );
-	$accent_color_b = hexdec( substr( $accent_color_hex, 2, 1 ) . substr( $accent_color_hex, 2, 1 ) );
-} else {
-	$accent_color_r = hexdec( substr( $accent_color_hex, 0, 2 ) );
-	$accent_color_g = hexdec( substr( $accent_color_hex, 2, 2 ) );
-	$accent_color_b = hexdec( substr( $accent_color_hex, 4, 2 ) );
-}
-
-$accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
+$color_helper = new Color_Helper();
 ?>
 
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="color">
@@ -47,7 +36,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="color">
 	a:hover, a:active, a:focus {
-		color: rgba(<?php echo esc_attr( $accent_color_rgb[0] ); ?>,<?php echo esc_attr( $accent_color_rgb[1] ); ?>, <?php echo esc_attr( $accent_color_rgb[2] ); ?>, .7);
+		color: <?php $this->print_rgba_from_hex( $accent_color, 0.7 ); ?>;
 	}
 </style>
 
@@ -92,8 +81,8 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-accent-color="background, border-color">
 	.wp-core-ui .button-primary:hover,
 	.wp-core-ui .button-primary:focus {
-		background: rgba(<?php echo esc_attr( $accent_color_rgb[0] ); ?>,<?php echo esc_attr( $accent_color_rgb[1] ); ?>, <?php echo esc_attr( $accent_color_rgb[2] ); ?>, .85);
-		border-color: rgba(<?php echo esc_attr( $accent_color_rgb[0] ); ?>,<?php echo esc_attr( $accent_color_rgb[1] ); ?>, <?php echo esc_attr( $accent_color_rgb[2] ); ?>, .85);
+		background: <?php $this->print_rgba_from_hex( $accent_color, 0.85 ); ?>;
+		border-color: <?php $this->print_rgba_from_hex( $accent_color, 0.85 ); ?>;
 	}
 </style>
 
@@ -130,14 +119,14 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar .menupop .ab-sub-wrapper {
-		background: #38404B;
+		background: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
 	}
 </style>
 
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-admin-submenu-bg-color="background">
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary,
 	#wpadminbar .quicklinks .menupop ul.ab-sub-secondary .ab-submenu {
-		background: #38404B;
+		background: <?php echo esc_attr( $admin_submenu_bg_color ); ?>;
 	}
 </style>
 
@@ -183,7 +172,7 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	.folded #adminmenu .wp-has-current-submenu .wp-submenu a,
 	#adminmenu a.wp-has-current-submenu:focus + .wp-submenu a,
 	#adminmenu .wp-has-current-submenu.opensub .wp-submenu a {
-		color: rgba(255,255,255,.7);
+		color: <?php $this->print_rgba_from_hex( $menu_item_color, 0.7 ); ?>;
 	}
 </style>
 
@@ -255,6 +244,22 @@ $accent_color_rgb = array( $accent_color_r, $accent_color_g, $accent_color_b );
 	#wpadminbar:not(.mobile) > #wp-toolbar li.hover span.ab-label,
 	#wpadminbar:not(.mobile) > #wp-toolbar a:focus span.ab-label {
 		color: <?php echo esc_attr( $menu_item_color ); ?>;
+	}
+</style>
+
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#wpadminbar .ab-submenu .ab-item,
+	#wpadminbar .quicklinks .menupop ul li a,
+	#wpadminbar .quicklinks .menupop.hover ul li a,
+	#wpadminbar.nojs .quicklinks .menupop:hover ul li a {
+		color: <?php $this->print_rgba_from_hex( $menu_item_color, 0.7 ); ?>;
+	}
+</style>
+
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#wpadminbar .quicklinks li .blavatar,
+	#wpadminbar .menupop .menupop > .ab-item:before {
+		color: <?php $this->print_rgba_from_hex( $menu_item_color, 0.7 ); ?>;
 	}
 </style>
 

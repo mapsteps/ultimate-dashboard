@@ -4,7 +4,7 @@
 	var instantPreviewStyleTags = document.querySelectorAll('.udb-instant-preview');
 
 	function init() {
-		enableBranding();
+		if (!udbBrandingInstantPreview.isProActive) enableBranding();
 
 		colorFields.forEach(function (el) {
 			var opts = {
