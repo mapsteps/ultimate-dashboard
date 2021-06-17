@@ -175,6 +175,12 @@ $color_helper = new Color_Helper();
 </style>
 
 <style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
+	#adminmenu div.wp-menu-image:before {
+		color: <?php $this->print_rgba_from_hex( $menu_item_color, 0.7 ); ?>;
+	}
+</style>
+
+<style type="text/udb" class="udb-instant-preview" data-udb-prop-menu-item-color="color">
 	#adminmenu .wp-submenu a,
 	#adminmenu .wp-has-current-submenu .wp-submenu a,
 	.folded #adminmenu .wp-has-current-submenu .wp-submenu a,
