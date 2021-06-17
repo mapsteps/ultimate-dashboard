@@ -11,7 +11,7 @@ return function () {
 
 	?>
 
-	<input type="text" name="" value="#ffffff" class="udb-color-field udb-branding-color-field udb-instant-preview-trigger" data-default="#ffffff" data-udb-trigger-name="menu-item-color" />
+	<input type="text" name="" value="#f0f0f1" class="udb-color-field udb-branding-color-field udb-instant-preview-trigger" data-default="#f0f0f1" data-udb-trigger-name="menu-item-color" />
 
 	<?php
 
