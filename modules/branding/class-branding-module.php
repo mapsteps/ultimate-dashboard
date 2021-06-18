@@ -162,8 +162,8 @@ class Branding_Module extends Base_Module {
 		add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), array( $this, 'choose_layout_field' ), 'udb-branding-settings', 'udb-branding-section' );
 
 		// Admin colors fields.
-		add_settings_field( 'udb-menu-item-color-field', __( 'Menu Item Color', 'ultimate-dashboard' ), array( $this, 'menu_item_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 		add_settings_field( 'udb-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), array( $this, 'accent_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
+		add_settings_field( 'udb-menu-item-color-field', __( 'Menu Item Color', 'ultimate-dashboard' ), array( $this, 'menu_item_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 		add_settings_field( 'udb-admin-bar-bg-color-field', __( 'Admin Bar Bg Color', 'ultimate-dashboard' ), array( $this, 'admin_bar_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 		add_settings_field( 'udb-admin-menu-bg-color-field', __( 'Admin Menu Bg Color', 'ultimate-dashboard' ), array( $this, 'admin_menu_bg_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 		add_settings_field( 'udb-admin-submenu-bg-color-field', __( 'Admin Submenu Bg Color', 'ultimate-dashboard' ), array( $this, 'admin_submenu_bg_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
