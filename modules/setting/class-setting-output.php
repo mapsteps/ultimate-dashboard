@@ -170,6 +170,11 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
+		// Stop if remove-all widget is checked or if remove welcome_panel is checked.
+		if ( isset( $settings['remove-all'] ) || isset( $settings['welcome_panel'] ) ) {
+			return;
+		}
+
 		if ( ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ) {
 			return;
 		}
