@@ -1169,6 +1169,12 @@ switch ( $action ) {
 
 		login_header( __( 'Log In' ), '', $errors );
 
+		$user_login = '';
+
+		if ( isset( $_POST['log'] ) ) {
+			$user_login = ( 'incorrect_password' === $errors->get_error_code() || 'empty_password' === $errors->get_error_code() ) ? esc_attr( wp_unslash( $_POST['log'] ) ) : '';
+		}
+
 		$rememberme = ! empty( $_POST['rememberme'] );
 
 		$aria_describedby_error = '';
@@ -1198,6 +1204,8 @@ switch ( $action ) {
 			 */
 			do_action( 'login_form' );
 
+			// This is to prevent error in login customizer.
+			$redirect_to = '';
 			?>
 			<p class="forgetmenot"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <label for="rememberme"><?php esc_html_e( 'Remember Me' ); ?></label></p>
 			<p class="submit">
