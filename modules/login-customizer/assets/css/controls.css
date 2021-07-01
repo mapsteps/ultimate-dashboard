@@ -274,6 +274,6 @@ input::-moz-focus-outer {
 /**
  * Customize control's code editor.
  */
-.customize-control-code_editor .CodeMirror-wrap {
+#customize-control-udb_login-custom_css .CodeMirror-wrap {
 	height: calc(100vh - 250px);
 }
