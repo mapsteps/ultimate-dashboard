@@ -21,7 +21,7 @@
 .heatbox-divider {
 	width: 100%;
 	height: 1px;
-	margin: 50px 0;
+	margin: 40px 0;
 	background: #ccc;
 }
 
@@ -133,7 +133,7 @@
 	width: 25%;
 }
 
-/* 2 Column Layout - Responsive */
+/* 2 Column Layout - Responsiveness */
 @media screen and (max-width: 991px) {
 	.heatbox-main, .heatbox-sidebar {
 		width: 100%;
