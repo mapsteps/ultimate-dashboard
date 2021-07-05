@@ -99,6 +99,9 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 					data-alpha="true" <?php /* for old version enqueued by Kirki */ ?>
 					data-alpha-enabled="true"
 				<?php endif; ?>
+				<?php if ( $this->setting->default ) : ?>
+					data-default-color="<?php echo esc_attr( $this->setting->default ); ?>"
+				<?php endif; ?>
 				data-picker-for="<?php echo esc_attr( $input_id ); ?>"
 			>
 		</div>
