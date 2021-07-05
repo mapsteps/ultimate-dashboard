@@ -33,6 +33,7 @@ if (!String.prototype.includes) {
 	});
 
 	function setupControls() {
+		colorPickerControl();
 		rangeControl();
 		colorControl();
 		loginTemplateControl();
@@ -41,6 +42,34 @@ if (!String.prototype.includes) {
 	function listen() {
 		events.switchLoginPreview();
 		if (!udbLoginCustomizer.isProActive) events.templateFieldsChange();
+	}
+
+	function colorPickerControl() {
+		var colorFields = document.querySelectorAll('.udb-customize-color-picker-field');
+
+		if (colorFields.length) {
+			[].slice.call(colorFields).forEach(function (el) {
+				var valueField = document.getElementById(el.dataset.pickerFor);
+
+				var opts = {
+					change: function (event, ui) {
+						var rgb = ui.color.toRgb();
+						var rgba = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + ui.color._alpha + ')';
+
+						valueField.value = rgba;
+						valueField.dispatchEvent(new Event('change'));
+					},
+					clear: function () {
+						valueField.value = '';
+						valueField.dispatchEvent(new Event('change'));
+					},
+					hide: true,
+					palettes: true
+				};
+
+				$(el).wpColorPicker(opts);
+			});
+		}
 	}
 
 	function rangeControl() {

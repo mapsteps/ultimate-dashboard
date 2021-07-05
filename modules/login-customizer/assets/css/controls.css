@@ -163,11 +163,13 @@ input::-moz-focus-outer {
 /**
  * UDB Color Control
  */
+.udb-customize-control-color-picker .wp-color-result-text,
 .udb-customize-control-color .wp-color-result-text {
 	/* Set back to WordPress default instead of the dynamically generated inline rule */
 	line-height: 2.54545455 !important;
 }
 
+.udb-customize-control-color-picker .wp-picker-clear,
 .udb-customize-control-color .wp-picker-clear {
 	margin-left: 7px;
 }

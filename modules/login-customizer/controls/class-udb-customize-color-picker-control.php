@@ -19,39 +19,11 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 	public $type = 'color-picker';
 
 	/**
-	 * Statuses.
-	 *
-	 * @var array
-	 */
-	public $statuses;
-
-	/**
 	 * Whether to enable alpha opacity or not.
 	 *
 	 * @var string
 	 */
-	public $enable_alpha = false;
-
-	/**
-	 * Constructor.
-	 *
-	 * @since 3.4.0
-	 *
-	 * @see WP_Customize_Control::__construct()
-	 *
-	 * @param WP_Customize_Manager $manager Customizer bootstrap instance.
-	 * @param string               $id      Control ID.
-	 * @param array                $args    Optional. Arguments to override class property defaults.
-	 *                                      See WP_Customize_Control::__construct() for information
-	 *                                      on accepted arguments. Default empty array.
-	 */
-	public function __construct( $manager, $id, $args = array() ) {
-		if ( isset( $args['alpha'] ) ) {
-			$this->enable_alpha = true;
-		}
-
-		parent::__construct( $manager, $id, $args );
-	}
+	public $alpha = false;
 
 	/**
 	 * Enqueue scripts/styles for the color picker.
@@ -69,7 +41,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 	}
 
 	/**
-	 * Renders the range control wrapper and calls $this->render_content() for the internals.
+	 * Renders the color picker control wrapper and calls $this->render_content() for the internals.
 	 */
 	protected function render() {
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
@@ -79,7 +51,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 			$this->input_attrs['class'] = '';
 		}
 
-		$this->input_attrs['class'] .= ' udb-customize-field udb-customize-' . $this->type . '-field';
+		$this->input_attrs['class'] .= ' udb-customize-field udb-customize-' . $this->type . '-field color-picker-hex';
 
 		printf( '<li id="%s" class="%s" data-control-name="%s" data-default-value="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->id ), esc_attr( $this->value() ) );
 		$this->render_content();
@@ -87,44 +59,47 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 	}
 
 	/**
-	 * Render the range control's content.
+	 * Render the color picker control's content.
 	 *
 	 * Allows the content to be overridden without having to rewrite the wrapper in `$this::render()`.
 	 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
 	 */
 	public function render_content() {
-		$input_id       = '_customize-input-' . $this->id;
-		$description_id = '_customize-description-' . $this->id;
-
-		if ( ! isset( $this->input_attrs['class'] ) ) {
-			$this->input_attrs['class'] = '';
-		}
-
-		$this->input_attrs['class'] .= ' udb-customize-field udb-customize-range-field';
+		$input_id         = '_customize-input-' . $this->id;
+		$description_id   = '_customize-description-' . $this->id;
+		$describedby_attr = ( ! empty( $this->description ) ) ? ' aria-describedby="' . esc_attr( $description_id ) . '" ' : '';
 		?>
 
 		<header class="udb-customize-control-header">
 			<?php if ( ! empty( $this->label ) ) : ?>
-				<label for="<?php echo esc_attr( $input_id ); ?>" class="customize-control-title udb-customize-control-label udb-customize-control-title"><?php echo esc_html( $this->label ); ?></label>
+				<label for="<?php echo esc_attr( $input_id ); ?>-visual-helper" class="customize-control-title udb-customize-control-label udb-customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 			<?php endif; ?>
 			<?php if ( ! empty( $this->description ) ) : ?>
 				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo $this->description; ?></span>
 			<?php endif; ?>
-			<span class="dashicons dashicons-image-rotate udb-customize-control-reset" title="<?php _e( 'Reset Value', 'ultimate-dashboard' ); ?>" data-reset-value="<?php echo esc_attr( $this->value() ); ?>"></span>
+			<input
+				type="hidden"
+				id="<?php echo esc_attr( $input_id ); ?>"
+				<?php if ( ! isset( $this->input_attrs['value'] ) ) : ?>
+					value="<?php echo esc_attr( $this->value() ); ?>"
+				<?php endif; ?>
+				<?php $this->link(); ?>
+				<?php echo $describedby_attr; ?>
+			>
 		</header>
 		<div class="udb-customize-control-content">
 			<input
 				type="text"
-				id="<?php echo esc_attr( $input_id ); ?>"
+				id="<?php echo esc_attr( $input_id ); ?>-visual-helper"
 				class="<?php echo esc_attr( $this->input_attrs['class'] ); ?>"
 				<?php if ( ! isset( $this->input_attrs['value'] ) ) : ?>
 					value="<?php echo esc_attr( $this->value() ); ?>"
 				<?php endif; ?>
-				<?php if ( $this->enable_alpha ) : ?>
+				<?php if ( $this->alpha ) : ?>
 					data-alpha="true" <?php /* for old version enqueued by Kirki */ ?>
 					data-alpha-enabled="true"
 				<?php endif; ?>
-				<?php $this->link(); ?>
+				data-picker-for="<?php echo esc_attr( $input_id ); ?>"
 			>
 		</div>
 
