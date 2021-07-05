@@ -21,8 +21,8 @@ ul .udb-customize-control:last-child {
 	box-sizing: border-box;
 }
 
-.udb-customize-control .wp-picker-container,
-.udb-customize-control .wp-picker-container * {
+.udb-customize-control .wp-picker-holder,
+.udb-customize-control .wp-picker-holder * {
 	box-sizing: content-box;
 }
 
@@ -276,4 +276,11 @@ input::-moz-focus-outer {
  */
 #customize-control-udb_login-custom_css .CodeMirror-wrap {
 	height: calc(100vh - 250px);
+}
+
+/**
+ * Customize control's toggle switch.
+ */
+.udb-customize-control--right-col .switch-control {
+	text-align: right;
 }

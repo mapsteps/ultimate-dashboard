@@ -72,6 +72,7 @@ class Setting_Output extends Base_Output {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'dashboard_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'admin_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'change_dashboard_headline' ) );
+		add_action( 'admin_bar_menu', array( self::get_instance(), 'change_howdy_text' ) );
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
@@ -130,6 +131,31 @@ class Setting_Output extends Base_Output {
 		}
 
 		$GLOBALS['title'] = $settings['dashboard_headline'];
+
+	}
+
+	/**
+	 * Change Howdy text.
+	 *
+	 * @param WP_Admin_Bar $wp_admin_bar WP_Admin_Bar instance.
+	 */
+	public function change_howdy_text( $wp_admin_bar ) {
+
+		$settings = get_option( 'udb_settings' );
+
+		if ( ! isset( $settings['howdy_text'] ) || empty( $settings['howdy_text'] ) ) {
+			return;
+		}
+
+		$my_account = $wp_admin_bar->get_node( 'my-account' );
+
+		$my_account->title = str_ireplace( 'Howdy', $settings['howdy_text'], $my_account->title );
+
+		$wp_admin_bar->remove_node( 'my-account' );
+
+		$wp_admin_bar->add_node( $my_account );
+
+		$my_account = $wp_admin_bar->get_node( 'my-account' );
 
 	}
 

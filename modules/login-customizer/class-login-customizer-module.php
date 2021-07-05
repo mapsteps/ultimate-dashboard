@@ -280,7 +280,9 @@ class Login_Customizer_Module extends Base_Module {
 		require __DIR__ . '/controls/class-udb-customize-range-control.php';
 		require __DIR__ . '/controls/class-udb-customize-image-control.php';
 		require __DIR__ . '/controls/class-udb-customize-color-control.php';
+		require __DIR__ . '/controls/class-udb-customize-color-picker-control.php';
 		require __DIR__ . '/controls/class-udb-customize-login-template-control.php';
+		require __DIR__ . '/controls/class-udb-customize-toggle-switch-control.php';
 
 		$branding         = get_option( 'udb_branding', array() );
 		$branding_enabled = isset( $branding['enabled'] ) ? true : false;
@@ -313,6 +315,7 @@ class Login_Customizer_Module extends Base_Module {
 	 */
 	public function control_styles() {
 
+		wp_enqueue_style( 'udb-toggle-switch', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/toggle-switch.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 		wp_enqueue_style( 'udb-login-customizer', $this->url . '/assets/css/controls.css', null, ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}

@@ -141,6 +141,7 @@ class Setting_Module extends Base_Module {
 		add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options Tab', 'ultimate-dashboard' ), array( $this, 'remove_screen_option_tab_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), array( $this, 'remove_admin_bar_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), array( $this, 'headline_text_field' ), 'udb-general-settings', 'udb-general-section' );
+		add_settings_field( 'howdy-settings', __( 'Custom Howdy Text', 'ultimate-dashboard' ), array( $this, 'howdy_text_field' ), 'udb-general-settings', 'udb-general-section' );
 
 		// Advanced fields.
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
@@ -254,6 +255,16 @@ class Setting_Module extends Base_Module {
 	public function headline_text_field() {
 
 		$field = require __DIR__ . '/templates/fields/headline-text.php';
+		$field();
+
+	}
+
+	/**
+	 * Howdy text field.
+	 */
+	public function howdy_text_field() {
+
+		$field = require __DIR__ . '/templates/fields/howdy-text.php';
 		$field();
 
 	}
