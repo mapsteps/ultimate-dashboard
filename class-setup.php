@@ -264,6 +264,11 @@ class Setup {
 	 */
 	public function review_notice() {
 
+		// Stop if user isn't an admin.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		// Stop if review notice had been dismissed.
 		if ( get_option( 'review_notice_dismissed' ) ) {
 			return;
