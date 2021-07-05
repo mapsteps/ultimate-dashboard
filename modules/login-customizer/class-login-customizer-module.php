@@ -280,6 +280,7 @@ class Login_Customizer_Module extends Base_Module {
 		require __DIR__ . '/controls/class-udb-customize-range-control.php';
 		require __DIR__ . '/controls/class-udb-customize-image-control.php';
 		require __DIR__ . '/controls/class-udb-customize-color-control.php';
+		require __DIR__ . '/controls/class-udb-customize-color-picker-control.php';
 		require __DIR__ . '/controls/class-udb-customize-login-template-control.php';
 		require __DIR__ . '/controls/class-udb-customize-toggle-switch-control.php';
 
