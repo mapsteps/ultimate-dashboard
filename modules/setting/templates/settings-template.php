@@ -71,6 +71,10 @@ return function () {
 				</div>
 
 				<div class="heatbox">
+					<?php do_settings_sections( 'udb-security-settings' ); ?>
+				</div>
+
+				<div class="heatbox">
 					<?php do_settings_sections( 'udb-misc-settings' ); ?>
 				</div>
 
