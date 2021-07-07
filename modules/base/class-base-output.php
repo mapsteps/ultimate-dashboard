@@ -9,6 +9,7 @@ namespace Udb\Base;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Vars;
 use Udb\Helpers\Array_Helper;
 use Udb\Helpers\Screen_Helper;
 use Udb\Helpers\Content_Helper;
@@ -19,6 +20,25 @@ use Udb\Helpers\Widget_Helper;
  * Class to setup base output.
  */
 class Base_Output {
+
+	/**
+	 * Get UDB option data.
+	 *
+	 * @param string $option_name The option name without "udb_" prefix.
+	 * @return mixed The value of udb_{$option_name}.
+	 */
+	public function option( $option_name ) {
+
+		$value = Vars::get( 'udb_' . $option_name );
+
+		if ( $value ) {
+			return $value;
+		}
+
+		return get_option( 'udb_' . $option_name );
+
+	}
+
 	/**
 	 * Array helper.
 	 *

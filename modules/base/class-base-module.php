@@ -29,7 +29,7 @@ class Base_Module {
 	 */
 	public function option( $option_name ) {
 
-		$value = Vars::get( $option_name );
+		$value = Vars::get( 'udb_' . $option_name );
 
 		if ( $value ) {
 			return $value;

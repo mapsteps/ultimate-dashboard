@@ -108,9 +108,9 @@ class Setup {
 		$branding_opts = get_option( 'udb_branding', array() );
 		$login_opts    = get_option( 'udb_login', array() );
 
-		Vars::set( 'settings_opts', $settings_opts );
-		Vars::set( 'branding_opts', $branding_opts );
-		Vars::set( 'login_opts', $login_opts );
+		Vars::set( 'udb_settings', $settings_opts );
+		Vars::set( 'udb_branding', $branding_opts );
+		Vars::set( 'udb_login', $login_opts );
 
 	}
 
