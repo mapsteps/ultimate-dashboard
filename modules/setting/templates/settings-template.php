@@ -71,7 +71,7 @@ return function () {
 				</div>
 
 				<div class="heatbox">
-					<?php do_settings_sections( 'udb-security-settings' ); ?>
+					<?php do_settings_sections( 'udb-login-url-settings' ); ?>
 				</div>
 
 				<div class="heatbox">

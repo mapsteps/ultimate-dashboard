@@ -109,11 +109,11 @@ class Setting_Module extends Base_Module {
 		// General section.
 		add_settings_section( 'udb-general-section', __( 'General', 'ultimate-dashboard' ), '', 'udb-general-settings' );
 
+		// We use this hook to place the change login url feature here.
+		do_action( 'udb_after_general_metabox' );
+
 		// Advanced section.
 		add_settings_section( 'udb-advanced-section', __( 'Advanced', 'ultimate-dashboard' ), '', 'udb-advanced-settings' );
-
-		// Security section.
-		add_settings_section( 'udb-security-section', __( 'Change Login URL', 'ultimate-dashboard' ), '', 'udb-security-settings' );
 
 		// Misc section.
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-misc-settings' );
@@ -149,11 +149,7 @@ class Setting_Module extends Base_Module {
 		// Advanced fields.
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-
-		// Security fields.
-		add_settings_field( 'new-login-url', __( 'New Login URL', 'ultimate-dashboard' ), array( $this, 'new_login_url_field' ), 'udb-security-settings', 'udb-security-section' );
-		add_settings_field( 'old-login-url-redirect', __( 'Redirect Old URL', 'ultimate-dashboard' ), array( $this, 'old_login_url_redirect' ), 'udb-security-settings', 'udb-security-section' );
+		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );	
 
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
@@ -272,26 +268,6 @@ class Setting_Module extends Base_Module {
 	public function howdy_text_field() {
 
 		$field = require __DIR__ . '/templates/fields/howdy-text.php';
-		$field();
-
-	}
-
-	/**
-	 * New login url field.
-	 */
-	public function new_login_url_field() {
-
-		$field = require __DIR__ . '/templates/fields/new-login-url.php';
-		$field();
-
-	}
-
-	/**
-	 * Redirect old login url field.
-	 */
-	public function old_login_url_redirect() {
-
-		$field = require __DIR__ . '/templates/fields/redirect-old-login-url.php';
 		$field();
 
 	}

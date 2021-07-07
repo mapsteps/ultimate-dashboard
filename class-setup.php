@@ -192,7 +192,8 @@ class Setup {
 			$modules['Udb\\Feature\\Feature_Module'] = __DIR__ . '/modules/feature/class-feature-module.php';
 		}
 
-		$modules['Udb\\Setting\\Setting_Module'] = __DIR__ . '/modules/setting/class-setting-module.php';
+		$modules['Udb\\Setting\\Setting_Module']     = __DIR__ . '/modules/setting/class-setting-module.php';
+		$modules['Udb\\Login_Url\\Login_Url_Module'] = __DIR__ . '/modules/login-url/class-login-url-module.php';
 
 		$saved_modules = $this->saved_modules();
 
