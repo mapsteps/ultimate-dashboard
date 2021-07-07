@@ -9,6 +9,7 @@ namespace Udb;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Vars;
 use Udb\Helpers\Content_Helper;
 
 /**
@@ -78,6 +79,8 @@ class Setup {
 	 */
 	public function setup() {
 
+		$this->set_data();
+
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
@@ -92,6 +95,22 @@ class Setup {
 
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
+
+	}
+
+	/**
+	 * Provide data for the plugin.
+	 * This is optimal strategy to only get_option once across modules.
+	 */
+	public function set_data() {
+
+		$settings_opts = get_option( 'udb_settings', array() );
+		$branding_opts = get_option( 'udb_branding', array() );
+		$login_opts    = get_option( 'udb_login', array() );
+
+		Vars::set( 'settings_opts', $settings_opts );
+		Vars::set( 'branding_opts', $branding_opts );
+		Vars::set( 'login_opts', $login_opts );
 
 	}
 
