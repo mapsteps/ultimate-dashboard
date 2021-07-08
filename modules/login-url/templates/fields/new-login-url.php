@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	$settings = get_option( 'udb_settings' );
-	$slug     = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+	$slug     = isset( $settings['login_url_slug'] ) ? trim( $settings['login_url_slug'], '/' ) : '';
 	?>
 
 	<div class="udb-url-prefix-suffix-field">

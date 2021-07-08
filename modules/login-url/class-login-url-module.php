@@ -54,7 +54,7 @@ class Login_Url_Module extends Base_Module {
 
 		// Login url fields.
 		add_settings_field( 'new-login-url', __( 'New Login URL', 'ultimate-dashboard' ), array( $this, 'new_login_url_field' ), 'udb-login-url-settings', 'udb-login-url-section' );
-		add_settings_field( 'old-login-url-redirect', __( 'Redirect Old URL', 'ultimate-dashboard' ), array( $this, 'old_login_url_redirect' ), 'udb-login-url-settings', 'udb-login-url-section' );
+		add_settings_field( 'wp-admin-redirect-url', __( 'Redirect Admin Area', 'ultimate-dashboard' ), array( $this, 'wp_admin_redirect_url_field' ), 'udb-login-url-settings', 'udb-login-url-section' );
 
 	}
 
@@ -71,9 +71,9 @@ class Login_Url_Module extends Base_Module {
 	/**
 	 * Redirect old login url field.
 	 */
-	public function old_login_url_redirect() {
+	public function wp_admin_redirect_url_field() {
 
-		$field = require __DIR__ . '/templates/fields/redirect-old-login-url.php';
+		$field = require __DIR__ . '/templates/fields/wp-admin-redirect-url.php';
 		$field();
 
 	}

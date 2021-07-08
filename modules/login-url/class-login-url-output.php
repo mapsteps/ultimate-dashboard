@@ -175,14 +175,14 @@ class Login_Url_Output extends Base_Output {
 	}
 
 	/**
-	 * Get the redirect url of old login page.
+	 * Get wp-admin redirect url.
 	 *
 	 * @return string
 	 */
-	public function old_login_redirect_url() {
+	public function wp_admin_redirect_url() {
 
 		$settings      = $this->option( 'settings' );
-		$redirect_slug = isset( $settings['old_login_url_redirect_slug'] ) ? $settings['old_login_url_redirect_slug'] : '';
+		$redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
 		$redirect_url  = site_url( $redirect_slug );
 
 		if ( get_option( 'permalink_structure' ) ) {
@@ -223,7 +223,7 @@ class Login_Url_Output extends Base_Output {
 		$request_path = $request['path'];
 
 		if ( is_admin() && ! is_user_logged_in() && ! wp_doing_ajax() && 'admin-post.php' !== $pagenow && '/wp-admin/options.php' !== $request_path ) {
-			wp_safe_redirect( $this->old_login_redirect_url() );
+			wp_safe_redirect( $this->wp_admin_redirect_url() );
 			exit;
 		}
 
@@ -232,7 +232,7 @@ class Login_Url_Output extends Base_Output {
 
 		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && get_option( 'permalink_structure' ) ) {
 			wp_safe_redirect(
-				$this->maybe_trailingslashit( $this->old_login_redirect_url() ) . $add_query_string
+				$this->maybe_trailingslashit( $this->wp_admin_redirect_url() ) . $add_query_string
 			);
 			exit;
 		} elseif ( $this->is_old_login_page ) {
