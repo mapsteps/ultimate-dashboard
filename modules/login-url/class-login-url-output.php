@@ -232,7 +232,7 @@ class Login_Url_Output extends Base_Output {
 
 		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && get_option( 'permalink_structure' ) ) {
 			wp_safe_redirect(
-				$this->maybe_trailingslashit( $this->wp_admin_redirect_url() ) . $add_query_string
+				$this->maybe_trailingslashit( $this->new_login_url() ) . $add_query_string
 			);
 			exit;
 		} elseif ( $this->is_old_login_page ) {
