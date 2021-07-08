@@ -25,11 +25,18 @@ class Login_Url_Output extends Base_Output {
 	public static $instance = null;
 
 	/**
-	 * Whether current page is the old login url or not.
+	 * Whether current page is the old login page or not.
 	 *
 	 * @var bool
 	 */
-	public $is_old_page = false;
+	public $is_old_login_page = false;
+
+	/**
+	 * The new login slug.
+	 *
+	 * @var bool
+	 */
+	public $new_login_slug = '';
 
 	/**
 	 * The current module url.
@@ -75,8 +82,22 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function setup() {
 
+		$settings = $this->option( 'settings' );
+
+		$this->new_login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+
+		// Stop if custom login slug is not set.
+		if ( ! $this->new_login_slug ) {
+			return;
+		}
+
 		add_action( 'plugins_loaded', array( $this, 'change_url' ) );
-		add_action( 'wp_loaded', array( $this, 'change_url' ) );
+		add_action( 'wp_loaded', array( $this, 'set_redirect' ) );
+
+		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
+		add_action( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
+		add_action( 'wp_redirect', array( $this, 'network_site_url' ), 10, 2 );
+		add_action( 'site_option_welcome_email', array( $this, 'welcome_email' ) );
 
 	}
 
@@ -112,16 +133,16 @@ class Login_Url_Output extends Base_Output {
 			// If current page is old login page, set $pagenow to be index.php so it's not login page anymore.
 			$pagenow = 'index.php';
 
-			$this->is_old_page      = true;
-			$_SERVER['REQUEST_URI'] = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
+			$this->is_old_login_page = true;
+			$_SERVER['REQUEST_URI']  = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
 		} elseif ( home_url( $this->new_login_url(), 'relative' ) === $request_path || ( ! $using_permalink && $has_new_slug ) ) {
 			// If current page is new login page, let WordPress know if this is a login page.
 			$pagenow = 'wp-login.php';
 		} elseif ( ! is_admin() && ( $has_register_slug || site_url( 'wp-register', 'relative' ) === $request_path ) ) {
 			$pagenow = 'index.php';
 
-			$this->is_old_page      = true;
-			$_SERVER['REQUEST_URI'] = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
+			$this->is_old_login_page = true;
+			$_SERVER['REQUEST_URI']  = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
 		}
 
 	}
@@ -129,13 +150,12 @@ class Login_Url_Output extends Base_Output {
 	/**
 	 * Get new login url.
 	 *
+	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
 	 * @return string
 	 */
-	public function new_login_url() {
+	public function new_login_url( $scheme = null ) {
 
-		$settings   = $this->option( 'settings' );
-		$login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
-		$login_url  = site_url( $login_slug );
+		$login_url = site_url( $this->new_login_slug, $scheme );
 
 		if ( get_option( 'permalink_structure' ) ) {
 			return $this->maybe_trailingslashit( $login_url );
@@ -206,7 +226,7 @@ class Login_Url_Output extends Base_Output {
 				$this->maybe_trailingslashit( $this->old_login_redirect_url() ) . $add_query_string
 			);
 			exit;
-		} elseif ( $this->is_old_page ) {
+		} elseif ( $this->is_old_login_page ) {
 			$referer  = wp_get_referer();
 			$referers = wp_parse_url( $referer );
 
@@ -271,6 +291,113 @@ class Login_Url_Output extends Base_Output {
 		require_once ABSPATH . WPINC . '/template-loader.php';
 
 		exit;
+
+	}
+
+	/**
+	 * Filter old login page.
+	 *
+	 * @param string $url The url to filter.
+	 * @param string $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
+	 *
+	 * @return string
+	 */
+	public function filter_old_login_page( $url, $scheme = null ) {
+
+		if ( false !== stripos( $url, 'wp-login.php?action=postpass' ) ) {
+			return $url;
+		}
+
+		$url_contains_old_login_url     = false !== stripos( $url, 'wp-login.php' ) ? true : false;
+		$referer_contains_old_login_url = false !== stripos( wp_get_referer(), 'wp-login.php' ) ? true : false;
+
+		if ( $url_contains_old_login_url && ! $referer_contains_old_login_url ) {
+			if ( is_ssl() ) {
+				$scheme = 'https';
+			}
+
+			$url_query = explode( '?', $url );
+
+			if ( isset( $url_query[1] ) ) {
+				parse_str( $url_query[1], $args );
+
+				if ( isset( $args['login'] ) ) {
+					$args['login'] = rawurlencode( $args['login'] );
+				}
+
+				$url = add_query_arg( $args, $this->new_login_url( $scheme ) );
+			} else {
+				$url = $this->new_login_url( $scheme );
+			}
+		}
+
+		return $url;
+
+	}
+
+	/**
+	 * Filter site_url.
+	 *
+	 * @param string      $url The complete site URL including scheme and path.
+	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
+	 * @param int|null    $blog_id Site ID, or null for the current site.
+	 *
+	 * @return string
+	 */
+	public function site_url( $url, $path, $scheme, $blog_id ) {
+
+		return $this->filter_old_login_page( $url, $scheme );
+
+	}
+
+	/**
+	 * Filter site_url.
+	 *
+	 * @param string      $url The complete site URL including scheme and path.
+	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
+	 *
+	 * @return string
+	 */
+	public function network_site_url( $url, $path, $scheme ) {
+
+		return $this->filter_old_login_page( $url, $scheme );
+
+	}
+
+	/**
+	 * Filter wp_redirect.
+	 *
+	 * @param string $location The path or URL to redirect to.
+	 * @param int    $status The HTTP response status code to use.
+	 *
+	 * @return string
+	 */
+	public function wp_redirect( $location, $status ) {
+
+		// Exclude wordpress.com login page.
+		if ( false !== stripos( $location, 'https://wordpress.com/wp-login.php' ) ) {
+			return $location;
+		}
+
+		return $this->filter_old_login_page( $location );
+
+	}
+
+	/**
+	 * Filter welcome email.
+	 * Replace "wp-login.php" strings with new login slug.
+	 *
+	 * @param string $value The option value.
+	 *
+	 * @return string
+	 */
+	public function welcome_email( $value ) {
+
+		$value = str_ireplace( 'wp-login.php', trailingslashit( $this->new_login_slug ), $value );
+
+		return $value;
 
 	}
 
