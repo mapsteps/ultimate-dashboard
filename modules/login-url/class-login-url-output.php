@@ -9,7 +9,6 @@ namespace Udb\Login_Url;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use WP_Query;
 use Udb\Base\Base_Output;
 
 /**
@@ -91,13 +90,22 @@ class Login_Url_Output extends Base_Output {
 			return;
 		}
 
-		add_action( 'plugins_loaded', array( $this, 'change_url' ) );
+		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
+		add_action( 'setup_theme', array( $this, 'change_url' ) );
 		add_action( 'wp_loaded', array( $this, 'set_redirect' ) );
 
 		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
 		add_action( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
 		add_action( 'wp_redirect', array( $this, 'network_site_url' ), 10, 2 );
+		add_filter( 'login_url', array( $this, 'login_url' ), 10, 3 );
 		add_action( 'site_option_welcome_email', array( $this, 'welcome_email' ) );
+
+		// @see https://developer.wordpress.org/reference/functions/wp_redirect_admin_locations/
+		remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
+
+		add_action( 'template_redirect', array( $this, 'redirect_export_data' ) );
+		add_filter( 'user_request_action_email_content', array( $this, 'user_request_action_email_content' ) );
+		add_filter( 'site_status_tests', array( $this, 'site_status_tests' ) );
 
 	}
 
@@ -338,6 +346,8 @@ class Login_Url_Output extends Base_Output {
 	/**
 	 * Filter site_url.
 	 *
+	 * @see https://developer.wordpress.org/reference/hooks/site_url/
+	 *
 	 * @param string      $url The complete site URL including scheme and path.
 	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
@@ -352,7 +362,9 @@ class Login_Url_Output extends Base_Output {
 	}
 
 	/**
-	 * Filter site_url.
+	 * Filter network_site_url.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/network_site_url/
 	 *
 	 * @param string      $url The complete site URL including scheme and path.
 	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
@@ -367,7 +379,40 @@ class Login_Url_Output extends Base_Output {
 	}
 
 	/**
+	 * Filter login_url.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/login_url/
+	 *
+	 * @param string $login_url The login URL. Not HTML-encoded.
+	 * @param string $redirect The path to redirect to on login, if supplied.
+	 * @param bool   $force_reauth Whether to force reauthorization, even if a cookie is present.
+	 *
+	 * @return string
+	 */
+	public function login_url( $login_url, $redirect, $force_reauth ) {
+
+		if ( is_404() ) {
+			return '#';
+		}
+
+		if ( empty( $redirect ) || ! $force_reauth ) {
+			return $login_url;
+		}
+
+		$url_parts = explode( '?', $redirect );
+
+		if ( admin_url( 'options.php' ) === $url_parts[0] ) {
+			$login_url = admin_url();
+		}
+
+		return $login_url;
+
+	}
+
+	/**
 	 * Filter wp_redirect.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/wp_redirect/
 	 *
 	 * @param string $location The path or URL to redirect to.
 	 * @param int    $status The HTTP response status code to use.
@@ -398,6 +443,71 @@ class Login_Url_Output extends Base_Output {
 		$value = str_ireplace( 'wp-login.php', trailingslashit( $this->new_login_slug ), $value );
 
 		return $value;
+
+	}
+
+	/**
+	 * Redirect export data.
+	 */
+	public function redirect_export_data() {
+
+		if ( ! isset( $_GET ) || ! isset( $_GET['action'] ) || 'confirmaction' !== $_GET['action'] || ! isset( $_GET['request_id'] ) || ! isset( $_GET['confirm_key'] ) ) {
+			return;
+		}
+
+		$request_id = absint( $_GET['request_id'] );
+		$key        = sanitize_text_field( wp_unslash( $_GET['confirm_key'] ) );
+		$validation = wp_validate_user_request_key( $request_id, $key );
+
+		if ( ! is_wp_error( $validation ) ) {
+			wp_safe_redirect(
+				add_query_arg(
+					array(
+						'action'      => 'confirmaction',
+						'request_id'  => $_GET['request_id'],
+						'confirm_key' => $_GET['confirm_key'],
+					),
+					$this->new_login_url()
+				)
+			);
+			exit;
+		}
+
+	}
+
+	/**
+	 * Filters the text of the email sent when an account action is attempted.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/user_request_action_email_content/
+	 *
+	 * @param string $email_text Text in the email.
+	 * @param array  $email_data Data relating to the account action email.
+	 *
+	 * @return string
+	 */
+	public function user_request_action_email_content( $email_text, $email_data ) {
+
+		$confirm_url = str_ireplace( $this->new_login_slug . '/', 'wp-login.php', $email_data['confirm_url'] );
+		$confirm_url = esc_url_raw( $confirm_url );
+		$email_text  = str_ireplace( '###CONFIRM_URL###', $confirm_url, $email_text );
+
+		return $email_text;
+
+	}
+
+	/**
+	 * Filters the text of the email sent when an account action is attempted.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/site_status_tests/
+	 *
+	 * @param array $test_types  An associative array, where the $test_type is either direct or async, to declare if the test should run via Ajax calls after page load.
+	 * @return array
+	 */
+	public function site_status_tests( $test_types ) {
+
+		unset( $test_types['async']['loopback_requests'] );
+
+		return $test_types;
 
 	}
 
