@@ -91,7 +91,7 @@ class Login_Url_Output extends Base_Output {
 		}
 
 		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
-		add_action( 'setup_theme', array( $this, 'change_url' ) );
+		add_action( 'setup_theme', array( $this, 'change_url' ), 9999 );
 		add_action( 'wp_loaded', array( $this, 'set_redirects' ) );
 
 		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
@@ -118,7 +118,7 @@ class Login_Url_Output extends Base_Output {
 			return;
 		}
 
-		$uri = rawurlencode( $_SERVER['REQUEST_URI'] );
+		$uri = rawurldecode( $_SERVER['REQUEST_URI'] );
 
 		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' ) ? true : false;
 		$has_activate_slug = false !== stripos( $uri, 'wp-activate' ) ? true : false;
@@ -219,7 +219,7 @@ class Login_Url_Output extends Base_Output {
 			return;
 		}
 
-		$request      = wp_parse_url( rawurlencode( $_SERVER['REQUEST_URI'] ) );
+		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
 		$request_path = $request['path'];
 
 		if ( is_admin() && ! is_user_logged_in() && ! wp_doing_ajax() && 'admin-post.php' !== $pagenow && '/wp-admin/options.php' !== $request_path ) {

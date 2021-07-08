@@ -28,7 +28,7 @@ return function () {
 	</div>
 
 	<p class="description">
-		Redirect when someone tries to access <code>wp-login.php</code> or trying to access <code>/wp-admin/</code> without login
+		Redirect when someone tries to access <code>/wp-admin/</code> without login
 	</p>
 
 	<?php
