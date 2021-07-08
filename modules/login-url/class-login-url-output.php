@@ -275,6 +275,9 @@ class Login_Url_Output extends Base_Output {
 				}
 			}
 
+			// Prevent warnings in wp-login.php file by providing these globals.
+			global $user_login, $error, $iterim_login, $action;
+
 			@require_once ABSPATH . 'wp-login.php';
 			exit;
 		}
