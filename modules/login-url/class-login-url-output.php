@@ -114,25 +114,26 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function change_url() {
 
-		$settings   = $this->option( 'settings' );
-		$login_slug = isset( $settings['login_url_slug'] ) && $settings['login_url_slug'] ? $settings['login_url_slug'] : '';
-
-		if ( ! $login_slug ) {
+		if ( ! $this->new_login_slug ) {
 			return;
 		}
 
 		$uri = rawurlencode( $_SERVER['REQUEST_URI'] );
 
-		if ( ! is_multisite() && ( false !== stripos( $uri, 'wp-signup' ) || false !== stripos( $uri, 'wp-activate' ) ) ) {
+		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' ) ? true : false;
+		$has_activate_slug = false !== stripos( $uri, 'wp-activate' ) ? true : false;
+
+		if ( ! is_multisite() && ( $has_signup_slug || $has_activate_slug ) ) {
 			return;
 		}
 
 		$request      = wp_parse_url( $uri );
-		$request_path = isset( $request_path ) ? untrailingslashit( $request['path'] ) : '';
+		$request_path = isset( $request['path'] ) ? untrailingslashit( $request['path'] ) : '';
 
-		$using_permalink   = get_option( 'permalink_structure' ) ? true : false;
-		$has_new_slug      = isset( $_GET[ $login_slug ] ) && $_GET[ $login_slug ] ? true : false;
-		$has_old_slug      = false !== stripos( $uri, 'wp-login.php' ) ? true : false;
+		$using_permalink = get_option( 'permalink_structure' ) ? true : false;
+		$has_new_slug    = isset( $_GET[ $this->new_login_slug ] ) && $_GET[ $this->new_login_slug ] ? true : false;
+		$has_old_slug    = false !== stripos( $uri, 'wp-login.php' ) ? true : false;
+
 		$has_register_slug = false !== stripos( $uri, 'wp-register.php' ) ? true : false;
 
 		global $pagenow;
@@ -143,7 +144,7 @@ class Login_Url_Output extends Base_Output {
 
 			$this->is_old_login_page = true;
 			$_SERVER['REQUEST_URI']  = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
-		} elseif ( home_url( $this->new_login_url(), 'relative' ) === $request_path || ( ! $using_permalink && $has_new_slug ) ) {
+		} elseif ( site_url( $this->new_login_slug, 'relative' ) === $request_path || ( ! $using_permalink && $has_new_slug ) ) {
 			// If current page is new login page, let WordPress know if this is a login page.
 			$pagenow = 'wp-login.php';
 		} elseif ( ! is_admin() && ( $has_register_slug || site_url( 'wp-register', 'relative' ) === $request_path ) ) {
@@ -250,7 +251,7 @@ class Login_Url_Output extends Base_Output {
 
 				if ( ! empty( $signup_key ) && is_wp_error( $wpmu_activate_signup ) ) {
 					if ( 'already_active' === $wpmu_activate_signup->get_error_code() || 'blog_taken' === $wpmu_activate_signup->get_error_code() ) {
-						wp_safe_redirect( $this->new_login_url() . $query_string );
+						wp_safe_redirect( $this->new_login_url() . $add_query_string );
 						exit;
 					}
 				}
@@ -324,10 +325,10 @@ class Login_Url_Output extends Base_Output {
 				$scheme = 'https';
 			}
 
-			$url_query = explode( '?', $url );
+			$url_parts = explode( '?', $url );
 
-			if ( isset( $url_query[1] ) ) {
-				parse_str( $url_query[1], $args );
+			if ( isset( $url_parts[1] ) ) {
+				parse_str( $url_parts[1], $args );
 
 				if ( isset( $args['login'] ) ) {
 					$args['login'] = rawurlencode( $args['login'] );
