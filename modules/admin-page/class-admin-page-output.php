@@ -78,12 +78,6 @@ class Admin_Page_Output extends Base_Output {
 	 */
 	public function setup_menu() {
 
-		if ( apply_filters( 'udb_font_awesome', true ) ) {
-			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
-			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
-		}
-
 		// This is done separately in the PRO version to handle multisite support.
 		if ( ! udb_is_pro_active() ) {
 			$parent_pages  = $this->get_posts( 'parent' );
@@ -98,7 +92,7 @@ class Admin_Page_Output extends Base_Output {
 			}
 		}
 
-		// Pro version hooks its setup_menu here.
+		// Hook for the pro version to run setup_menu.
 		do_action( 'udb_admin_page_setup_menu', $this );
 
 	}
@@ -131,6 +125,12 @@ class Admin_Page_Output extends Base_Output {
 		);
 
 		$posts = $posts ? $posts : array();
+
+		if ( ! empty( $posts ) && 'parent' === $menu_type && apply_filters( 'udb_font_awesome', true ) ) {
+			// Font Awesome.
+			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
+			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
+		}
 
 		foreach ( $posts as &$post ) {
 			$post_id = $post->ID;
