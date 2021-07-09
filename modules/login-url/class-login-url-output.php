@@ -101,6 +101,11 @@ class Login_Url_Output extends Base_Output {
 		$this->wp_admin_redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
 		$this->permalink_structure    = get_option( 'permalink_structure' );
 
+		// Protect wp-admin if the slug is set in the setting.
+		if ( $this->wp_admin_redirect_slug ) {
+			add_action( 'wp_loaded', array( $this, 'protect_wp_admin' ) );
+		}
+
 		// Stop if custom login slug is not set.
 		if ( ! $this->new_login_slug ) {
 			return;
@@ -108,7 +113,7 @@ class Login_Url_Output extends Base_Output {
 
 		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
 		add_action( 'setup_theme', array( $this, 'change_url' ), 9999 );
-		add_action( 'wp_loaded', array( $this, 'set_redirects' ) );
+		add_action( 'wp_loaded', array( $this, 'protect_wp_login' ) );
 
 		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
 		add_action( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
@@ -222,15 +227,15 @@ class Login_Url_Output extends Base_Output {
 	}
 
 	/**
-	 * Set redirects.
+	 * Protect wp-admin based on the setting.
 	 */
-	public function set_redirects() {
-
-		global $pagenow;
+	public function protect_wp_admin() {
 
 		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_GET['post_password'] ) ) {
 			return;
 		}
+
+		global $pagenow;
 
 		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
 		$request_path = $request['path'];
@@ -239,6 +244,22 @@ class Login_Url_Output extends Base_Output {
 			wp_safe_redirect( $this->wp_admin_redirect_url() );
 			exit;
 		}
+
+	}
+
+	/**
+	 * Protect wp-login.php based on the setting.
+	 */
+	public function protect_wp_login() {
+
+		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_GET['post_password'] ) ) {
+			return;
+		}
+
+		global $pagenow;
+
+		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
+		$request_path = $request['path'];
 
 		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? $_SERVER['QUERY_STRING'] : '';
 		$add_query_string = $query_string ? '?' . $query_string : '';
