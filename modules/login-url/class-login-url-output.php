@@ -95,11 +95,26 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function setup() {
 
+		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
+		add_action( 'setup_theme', array( $this, 'setup_hooks' ) );
+
+	}
+
+	/**
+	 * Setup action & filter hooks.
+	 * Scripts below are not placed directly inside setup function above so that we can apply filters from multisite module.
+	 */
+	public function setup_hooks() {
+
 		$settings = $this->option( 'settings' );
 
-		$this->new_login_slug         = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+		$this->new_login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+		$this->new_login_slug = apply_filters( 'udb_login_slug', $this->new_login_slug );
+
 		$this->wp_admin_redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
-		$this->permalink_structure    = get_option( 'permalink_structure' );
+		$this->wp_admin_redirect_slug = apply_filters( 'udb_wp_admin_redirect_slug', $this->wp_admin_redirect_slug );
+
+		$this->permalink_structure = get_option( 'permalink_structure' );
 
 		// Protect wp-admin if the slug is set in the setting.
 		if ( $this->wp_admin_redirect_slug ) {
@@ -111,8 +126,8 @@ class Login_Url_Output extends Base_Output {
 			return;
 		}
 
-		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
-		add_action( 'setup_theme', array( $this, 'change_url' ), 9999 );
+		// Hooked into `init` because we're already inside `setup_theme` hook..
+		add_action( 'init', array( $this, 'change_url' ), 9999 );
 		add_action( 'wp_loaded', array( $this, 'protect_wp_login' ) );
 
 		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
