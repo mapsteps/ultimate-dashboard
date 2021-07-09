@@ -33,9 +33,23 @@ class Login_Url_Output extends Base_Output {
 	/**
 	 * The new login slug.
 	 *
-	 * @var bool
+	 * @var string
 	 */
 	public $new_login_slug = '';
+
+	/**
+	 * The wp-admin redirect url slug.
+	 *
+	 * @var string
+	 */
+	public $wp_admin_redirect_slug = '';
+
+	/**
+	 * The saved permalink structure.
+	 *
+	 * @var string
+	 */
+	public $permalink_structure = '';
 
 	/**
 	 * The current module url.
@@ -83,7 +97,9 @@ class Login_Url_Output extends Base_Output {
 
 		$settings = $this->option( 'settings' );
 
-		$this->new_login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+		$this->new_login_slug         = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
+		$this->wp_admin_redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
+		$this->permalink_structure    = get_option( 'permalink_structure' );
 
 		// Stop if custom login slug is not set.
 		if ( ! $this->new_login_slug ) {
@@ -130,7 +146,7 @@ class Login_Url_Output extends Base_Output {
 		$request      = wp_parse_url( $uri );
 		$request_path = isset( $request['path'] ) ? untrailingslashit( $request['path'] ) : '';
 
-		$using_permalink = get_option( 'permalink_structure' ) ? true : false;
+		$using_permalink = $this->permalink_structure ? true : false;
 		$has_new_slug    = isset( $_GET[ $this->new_login_slug ] ) && $_GET[ $this->new_login_slug ] ? true : false;
 		$has_old_slug    = false !== stripos( $uri, 'wp-login.php' ) ? true : false;
 
@@ -166,7 +182,7 @@ class Login_Url_Output extends Base_Output {
 
 		$login_url = site_url( $this->new_login_slug, $scheme );
 
-		if ( get_option( 'permalink_structure' ) ) {
+		if ( $this->permalink_structure ) {
 			return $this->maybe_trailingslashit( $login_url );
 		}
 
@@ -181,11 +197,9 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function wp_admin_redirect_url() {
 
-		$settings      = $this->option( 'settings' );
-		$redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
-		$redirect_url  = site_url( $redirect_slug );
+		$redirect_url = site_url( $this->wp_admin_redirect_slug );
 
-		if ( get_option( 'permalink_structure' ) ) {
+		if ( $this->permalink_structure ) {
 			return $this->maybe_trailingslashit( $redirect_url );
 		}
 
@@ -201,8 +215,7 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function maybe_trailingslashit( $string ) {
 
-		$permalink_structure = get_option( 'permalink_structure' );
-		$use_trailingslash   = '/' === substr( $permalink_structure, -1, 1 ) ? true : false;
+		$use_trailingslash = '/' === substr( $this->permalink_structure, -1, 1 ) ? true : false;
 
 		return ( $use_trailingslash ? trailingslashit( $string ) : untrailingslashit( $string ) );
 
@@ -230,7 +243,7 @@ class Login_Url_Output extends Base_Output {
 		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? $_SERVER['QUERY_STRING'] : '';
 		$add_query_string = $query_string ? '?' . $query_string : '';
 
-		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && get_option( 'permalink_structure' ) ) {
+		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && $this->permalink_structure ) {
 			wp_safe_redirect(
 				$this->maybe_trailingslashit( $this->new_login_url() ) . $add_query_string
 			);
@@ -290,6 +303,7 @@ class Login_Url_Output extends Base_Output {
 	 * @return void
 	 */
 	public function wp_template_loader() {
+
 		global $pagenow;
 
 		$pagenow = 'index.php';
