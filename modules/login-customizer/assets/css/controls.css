@@ -26,6 +26,10 @@ ul .udb-customize-control:last-child {
 	box-sizing: content-box;
 }
 
+.udb-customize-control .iris-picker-inner {
+	width: 100%;
+}
+
 .udb-customize-control--cols {
 	display: flex;
 	align-items: center;
