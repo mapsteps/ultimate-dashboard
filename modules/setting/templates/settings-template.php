@@ -12,7 +12,7 @@ return function () {
 
 	<div class="wrap heatbox-wrap udb-settings-page">
 
-		<div class="heatbox-header heatbox-margin-bottom">
+		<div class="heatbox-header heatbox-has-tab-nav heatbox-margin-bottom">
 
 			<div class="heatbox-container heatbox-container-center">
 
@@ -32,6 +32,30 @@ return function () {
 
 				</div>
 
+				<nav>
+				<ul class="heatbox-tab-nav">
+					<li class="heatbox-tab-nav-item widgets-panel">
+						<a href="#widgets"><?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?></a>
+					</li>
+
+					<?php if ( udb_is_pro_active() ) : ?>
+						<li class="heatbox-tab-nav-item page-builder-dashboard-panel">
+							<a href="#page-builder-dashboard"><?php _e( 'Page Builder Dashboard', 'ultimate-dashboard' ); ?></a>
+						</li>
+					<?php endif; ?>
+
+					<li class="heatbox-tab-nav-item general-panel">
+						<a href="#general"><?php _e( 'General', 'ultimate-dashboard' ); ?></a>
+					</li>
+					<li class="heatbox-tab-nav-item login-url-panel">
+						<a href="#login-url"><?php _e( 'Login URL', 'ultimate-dashboard' ); ?></a>
+					</li>
+					<li class="heatbox-tab-nav-item advanced-panel">
+						<a href="#advanced"><?php _e( 'Advanced', 'ultimate-dashboard' ); ?></a>
+					</li>
+				</ul>
+			</nav>
+
 			</div>
 
 		</div>
@@ -44,38 +68,50 @@ return function () {
 
 				<?php settings_fields( 'udb-settings-group' ); ?>
 
-				<div class="heatbox is-grouped">
-					<?php do_settings_sections( 'udb-widget-settings' ); ?>
-				</div>
+				<div>
+					<div class="heatbox-admin-panel udb-widgets-panel">
+						<div class="heatbox is-grouped">
+							<?php do_settings_sections( 'udb-widget-settings' ); ?>
+						</div>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
-				</div>
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
+						</div>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-welcome-panel-settings' ); ?>
-				</div>
-
-				<?php if ( udb_is_pro_active() ) : ?>
-					<div class="heatbox">
-						<?php do_settings_sections( 'udb-page-builder-dashboard-settings' ); ?>
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-welcome-panel-settings' ); ?>
+						</div>
 					</div>
-				<?php endif; ?>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-general-settings' ); ?>
-				</div>
+					<?php if ( udb_is_pro_active() ) : ?>
+						<div class="heatbox-admin-panel udb-page-builder-dashboard-panel">
+							<div class="heatbox">
+								<?php do_settings_sections( 'udb-page-builder-dashboard-settings' ); ?>
+							</div>
+						</div>
+					<?php endif; ?>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-login-url-settings' ); ?>
-				</div>
+					<div class="heatbox-admin-panel udb-general-panel">
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-general-settings' ); ?>
+						</div>
+					</div>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-advanced-settings' ); ?>
-				</div>
+					<div class="heatbox-admin-panel udb-login-url-panel">
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-login-url-settings' ); ?>
+						</div>
+					</div>
 
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-misc-settings' ); ?>
+					<div class="heatbox-admin-panel udb-advanced-panel">
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-advanced-settings' ); ?>
+						</div>
+
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-misc-settings' ); ?>
+						</div>
+					</div>
 				</div>
 
 				<?php submit_button( '', 'button button-primary button-larger' ); ?>
@@ -109,14 +145,14 @@ return function () {
 					</div>
 				</li>
 				<li class="heatbox">
-					<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank">
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/page-builder-framework.jpg">
+					<a href="https://wordpress.org/themes/ultimate-dashboard/" target="_blank">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/ultimate-dashboard.jpg">
 					</a>
 					<div class="heatbox-content">
 						<h3><?php _e( 'Page Builder Framework', 'ultimate-dashboard' ); ?></h3>
 						<p class="subheadline"><?php _e( 'The only Theme you\'ll ever need.', 'ultimate-dashboard' ); ?></p>
 						<p class="description"><?php _e( 'With its minimalistic design the Page Builder Framework theme is the perfect foundation for your next project. Build blazing fast websites with a theme that is easy to use, lightweight & highly customizable.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<a href="https://wordpress.org/themes/ultimate-dashboard/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
 					</div>
 				</li>
 				<li class="heatbox">
