@@ -146,13 +146,13 @@ return function () {
 				</li>
 				<li class="heatbox">
 					<a href="https://wordpress.org/themes/ultimate-dashboard/" target="_blank">
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/ultimate-dashboard.jpg">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/page-builder-framework.jpg">
 					</a>
 					<div class="heatbox-content">
 						<h3><?php _e( 'Page Builder Framework', 'ultimate-dashboard' ); ?></h3>
 						<p class="subheadline"><?php _e( 'The only Theme you\'ll ever need.', 'ultimate-dashboard' ); ?></p>
 						<p class="description"><?php _e( 'With its minimalistic design the Page Builder Framework theme is the perfect foundation for your next project. Build blazing fast websites with a theme that is easy to use, lightweight & highly customizable.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/themes/ultimate-dashboard/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
 					</div>
 				</li>
 				<li class="heatbox">
