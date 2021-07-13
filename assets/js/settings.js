@@ -35,12 +35,30 @@
 		});
 	}
 
+	var refererField = document.querySelector('[name="_wp_http_referer"]');
+
+	function setRefererValue(hash) {
+		if (!refererField) return;
+		var url;
+
+		if (refererField.value.includes('#')) {
+			url = refererField.value.split('#');
+			url = url[0];
+
+			refererField.value = url + '#' + hash;
+		} else {
+			refererField.value = refererField.value + '#' + hash;
+		}
+	}
+
 	$('.heatbox-tab-nav-item').on('click', function () {
 		$('.heatbox-tab-nav-item').removeClass('active');
 		$(this).addClass('active');
 
 		var link = this.querySelector('a');
 		var hashValue = link.href.substring(link.href.indexOf('#') + 1);
+
+		setRefererValue(hashValue);
 
 		$('.udb-settings-form .heatbox-admin-panel').css('display', 'none');
 		$('.udb-settings-form .udb-' + hashValue + '-panel').css('display', 'block');
@@ -53,6 +71,8 @@
 		if (!hashValue) {
 			hashValue = 'widgets';
 		}
+
+		setRefererValue(hashValue);
 
 		$('.heatbox-tab-nav-item').removeClass('active');
 		$('.heatbox-tab-nav-item.' + hashValue + '-panel').addClass('active');
