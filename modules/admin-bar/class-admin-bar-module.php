@@ -150,7 +150,7 @@ class Admin_Bar_Module extends Base_Module {
 	public function setup() {
 
 		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
-		add_action( 'admin_bar_menu', array( self::get_instance(), 'get_existing_menu' ), 999999 );
+		add_action( 'wp_before_admin_bar_render', array( self::get_instance(), 'get_existing_menu' ), 999999 );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 
@@ -211,12 +211,12 @@ class Admin_Bar_Module extends Base_Module {
 
 	/**
 	 * Get existing admin bar menu.
-	 *
-	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance.
 	 */
-	public function get_existing_menu( $admin_bar ) {
+	public function get_existing_menu() {
 
-		Vars::set( 'existing_admin_bar_menu', $admin_bar->get_nodes() );
+		global $wp_admin_bar;
+
+		Vars::set( 'existing_admin_bar_menu', $wp_admin_bar->get_nodes() );
 
 	}
 
