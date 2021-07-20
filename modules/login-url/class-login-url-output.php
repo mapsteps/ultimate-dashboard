@@ -98,6 +98,9 @@ class Login_Url_Output extends Base_Output {
 		// Hooked into `setup_theme` because this module is already loaded inside `plugins_loaded`.
 		add_action( 'setup_theme', array( $this, 'setup_hooks' ) );
 
+		// The "peters-login-redirect" plugin uses 999999999, so let's set it higher :).
+		add_filter( 'login_redirect', array( $this, 'custom_login_redirect' ), 1000000000, 3 );
+
 	}
 
 	/**
@@ -562,6 +565,49 @@ class Login_Url_Output extends Base_Output {
 		unset( $test_types['async']['loopback_requests'] );
 
 		return $test_types;
+
+	}
+
+	/**
+	 * Filters the login redirect URL.
+	 *
+	 * @param string           $redirect_to The redirect destination URL.
+	 * @param string           $requested_redirect_to The requested redirect destination URL passed as a parameter.
+	 * @param WP_User|WP_Error $user WP_User object if login was successful, WP_Error object otherwise.
+	 *
+	 * @return string
+	 */
+	public function custom_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
+
+		$settings = $this->option( 'settings' );
+		$slugs    = isset( $settings['login_redirect_slugs'] ) ? $settings['login_redirect_slugs'] : array();
+		$roles    = $user->roles;
+
+		if ( empty( $roles ) ) {
+			return $redirect_to;
+		}
+
+		$has_redirect = false;
+
+		foreach ( $roles as $role ) {
+			if ( isset( $slugs[ $role ] ) && ! empty( $slugs[ $role ] ) ) {
+				$has_redirect = true;
+
+				$slug = $slugs[ $role ];
+
+				break;
+			}
+		}
+
+		if ( $has_redirect ) {
+			return site_url( $slug );
+		}
+
+		if ( isset( $slugs['all'] ) ) {
+			return site_url( $slugs['all'] );
+		}
+
+		return $redirect_to;
 
 	}
 

@@ -101,6 +101,10 @@ return function () {
 						<div class="heatbox">
 							<?php do_settings_sections( 'udb-login-url-settings' ); ?>
 						</div>
+
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-login-redirect-settings' ); ?>
+						</div>
 					</div>
 
 					<div class="heatbox-admin-panel udb-advanced-panel">
