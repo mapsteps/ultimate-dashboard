@@ -175,7 +175,7 @@ class Setup {
 	 */
 	public function action_links( $links ) {
 
-		$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
+		$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
 
 		return array_merge( $links, $settings );
 
