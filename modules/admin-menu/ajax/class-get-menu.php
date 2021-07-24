@@ -10,7 +10,6 @@ namespace Udb\AdminMenu\Ajax;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Helpers\Content_Helper;
-use Udb\Helpers\User_Helper;
 use Udb\Helpers\Array_Helper;
 
 /**
@@ -69,6 +68,12 @@ class Get_Menu {
 
 	/**
 	 * Manually load menu & submenu.
+	 *
+	 * This method is called by `get_admin_menu` method inside modules/admin-menu/admin-menu-module.php file.
+	 * The `get_admin_menu` in that file it self is hooked into `udb_ajax_get_admin_menu`action
+	 * which will be called by `do_action` in this file (inside `ajax` method above).
+	 *
+	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
 	 */
 	public function load_menu() {
 
@@ -99,6 +104,44 @@ class Get_Menu {
 	}
 
 	/**
+	 * Format the response by merging default menu & saved menu.
+	 *
+	 * This method is called by `get_admin_menu` method inside modules/admin-menu/admin-menu-module.php file.
+	 * The `get_admin_menu` in that file it self is hooked into `udb_ajax_get_admin_menu`action
+	 * which will be called by `do_action` in this file (inside `ajax` method above).
+	 *
+	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
+	 *
+	 * @param string $role The specified role.
+	 * @return array $response The formatted response.
+	 */
+	public function format_response( $role ) {
+
+		global $menu, $submenu;
+
+		$default_menu = $this->merge_default_menu_submenu( $menu, $submenu );
+		$default_menu = $this->format_default_menu( $default_menu );
+		$saved_menu   = get_option( 'udb_admin_menu', array() );
+		$saved_menu   = empty( $saved_menu ) ? array() : $saved_menu;
+
+		if ( 'user_id' === $this->by ) {
+			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ 'user_id_' . $this->user_id ] ) ? $saved_menu[ 'user_id_' . $this->user_id ] : array();
+		} else {
+			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
+		}
+
+		if ( empty( $custom_menu ) ) {
+			$response = $this->parse_response_without_custom_menu( $default_menu );
+		} else {
+			$custom_menu = $this->get_new_default_menu_items( $role, $default_menu, $custom_menu );
+			$response    = $this->parse_response_with_custom_menu( $role, $default_menu, $custom_menu );
+		}
+
+		return $response;
+
+	}
+
+	/**
 	 * Sometimes the menu's capability is accessible by $role but
 	 * the the `show_ui` argument is set to false.
 	 *
@@ -120,7 +163,7 @@ class Get_Menu {
 	 * We provide a filter for this, so that other plugin's author / team
 	 * can also add support for UDB admin menu editor.
 	 *
-	 * How if we haven't defined a capability check for a specific plugin (that has the issue)?
+	 * How if we haven't defined a capability check for a specific plugin (which has the issue)?
 	 * Then it might be displayed in the builder, but don't worry.
 	 * Because it wouldn't be displayed in the wp-admin's side menu if it shouldn't be displayed.
 	 */
@@ -168,6 +211,7 @@ class Get_Menu {
 	 *
 	 * @param array $menu The default menu.
 	 * @param array $submenu The default submenu.
+	 *
 	 * @return array The merged menu.
 	 */
 	public function merge_default_menu_submenu( $menu, $submenu ) {
@@ -188,7 +232,7 @@ class Get_Menu {
 
 	/**
 	 * Format the default menu to our expected format.
-	 * The $menu passed here was merged by "merge_default_menu_submenu" before.
+	 * The $menu passed as paraameter here was merged by "merge_default_menu_submenu" above.
 	 *
 	 * @param array $menu The default menu in a merged format (menu & submenu merged into 1 array).
 	 * @return array $formatted_menus The formatted menu.
@@ -245,38 +289,6 @@ class Get_Menu {
 		}
 
 		return $formatted_menus;
-
-	}
-
-	/**
-	 * Format the response by merging default menu & saved menu.
-	 *
-	 * @param string $role The specified role.
-	 * @return array $response The formatted response.
-	 */
-	public function format_response( $role ) {
-
-		global $menu, $submenu;
-
-		$default_menu = $this->merge_default_menu_submenu( $menu, $submenu );
-		$default_menu = $this->format_default_menu( $default_menu );
-		$saved_menu   = get_option( 'udb_admin_menu', array() );
-		$saved_menu   = empty( $saved_menu ) ? array() : $saved_menu;
-
-		if ( 'user_id' === $this->by ) {
-			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ 'user_id_' . $this->user_id ] ) ? $saved_menu[ 'user_id_' . $this->user_id ] : array();
-		} else {
-			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
-		}
-
-		if ( empty( $custom_menu ) ) {
-			$response = $this->parse_response_without_custom_menu( $default_menu );
-		} else {
-			$custom_menu = $this->get_new_default_menu_items( $role, $default_menu, $custom_menu );
-			$response    = $this->parse_response_with_custom_menu( $role, $default_menu, $custom_menu );
-		}
-
-		return $response;
 
 	}
 
