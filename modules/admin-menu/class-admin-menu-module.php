@@ -62,6 +62,7 @@ class Admin_Menu_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 15, 2 );
 		add_action( 'init', array( self::get_instance(), 'support_tablepress' ), 5 );
+		add_action( 'admin_head', array( $this, 'save_recent_menu' ) );
 
 		$this->setup_ajax();
 
@@ -142,10 +143,13 @@ class Admin_Menu_Module extends Base_Module {
 			$this->user()->simulate_role( $role, true );
 		}
 
+		// Load the global $menu and $submenu.
 		$ajax_handler->load_menu();
 
+		// Then format the response.
 		$response = $ajax_handler->format_response( $role );
 
+		// And then send the response.
 		wp_send_json_success( $response );
 
 	}
@@ -179,6 +183,38 @@ class Admin_Menu_Module extends Base_Module {
 		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/ajax/class-get-menu.php
 		 */
 		add_filter( 'wp_doing_ajax', '__return_false' );
+
+	}
+
+	/**
+	 * Save recent / up to date global $menu and $submenu to database.
+	 *
+	 * Some plugins have some condition that makes their admin menu not being added inside ajax request.
+	 * To make sure that we have the recent menu & submenu,
+	 * we save the global $menu and $submenu everytime a user visit a page in admin area.
+	 *
+	 * This function is hooked into `admin_head` action instead of `admin_menu` action,
+	 * so that we don't have to worry about hooking priority.
+	 */
+	public function save_recent_menu() {
+
+		global $menu, $submenu;
+
+		$roles = wp_get_current_user()->roles;
+		$role  = $roles[0];
+
+		$recent_menu = $this->option( 'recent_admin_menu' );
+
+		if ( ! isset( $recent_menu[ $role ] ) ) {
+			$recent_menu[ $role ] = array();
+		}
+
+		$recent_menu[ $role ] = array(
+			'menu'    => $menu,
+			'submenu' => $submenu,
+		);
+
+		update_option( 'udb_recent_admin_menu', $recent_menu );
 
 	}
 
