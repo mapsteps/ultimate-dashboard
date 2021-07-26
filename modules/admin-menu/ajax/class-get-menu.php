@@ -113,16 +113,6 @@ class Get_Menu {
 			require $wp_menu_file;
 		}
 
-		/**
-		 * This is related to TablePress support.
-		 *
-		 * The value of `wp_doing_ajax` was set to `false` in class-admin-menu-module.php file
-		 * inside `support_tablepress` function.
-		 *
-		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
-		 */
-		add_filter( 'wp_doing_ajax', '__return_true' );
-
 		$this->compare_default_menu_with_recent_menu();
 		$this->compare_default_submenu_with_recent_menu();
 		$this->check_menu_items_capability();
@@ -176,7 +166,7 @@ class Get_Menu {
 	 * If the `udb_admin_menu_show_ui_capabilities` filter returning empty, this function will stop earlier.
 	 * So that we don't waste more resource :).
 	 *
-	 * Sometimes the menu item's capability is accessible by $role but the the `show_ui` argument is set to false.
+	 * Sometimes the menu item's capability is accessible by $role but the `show_ui` argument is set to false.
 	 * This makes the menu being rendered in the builder but not being displayed in side menu, which is fine.
 	 * The problem was, after the admin menu is saved, that item will be displayed in side menu, but broken.
 	 * It was like the issue with LifterLMS menu (Engagement & Order).
