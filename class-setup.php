@@ -104,13 +104,19 @@ class Setup {
 	 */
 	public function set_data() {
 
-		$settings_opts = get_option( 'udb_settings', array() );
-		$branding_opts = get_option( 'udb_branding', array() );
-		$login_opts    = get_option( 'udb_login', array() );
+		$settings_opts          = get_option( 'udb_settings', array() );
+		$branding_opts          = get_option( 'udb_branding', array() );
+		$login_opts             = get_option( 'udb_login', array() );
+		$admin_bar_opts         = get_option( 'udb_admin_bar', array() );
+		$admin_menu_opts        = get_option( 'udb_admin_menu', array() );
+		$recent_admin_menu_opts = get_option( 'udb_recent_admin_menu', array() );
 
 		Vars::set( 'udb_settings', $settings_opts );
 		Vars::set( 'udb_branding', $branding_opts );
 		Vars::set( 'udb_login', $login_opts );
+		Vars::set( 'udb_admin_bar', $admin_bar_opts );
+		Vars::set( 'udb_admin_menu', $admin_menu_opts );
+		Vars::set( 'udb_recent_admin_menu', $recent_admin_menu_opts );
 
 	}
 
@@ -359,6 +365,7 @@ class Setup {
 			delete_option( 'udb_login' );
 			delete_option( 'udb_import' );
 			delete_option( 'udb_modules' );
+			delete_option( 'udb_recent_admin_menu' );
 
 			delete_option( 'udb_compat_widget_type' );
 			delete_option( 'udb_compat_widget_status' );
