@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 3.4
+Stable tag: 3.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 7. Ultimate Dashboard Settings Page
 
 == Changelog ==
+= 3.4.1 | July 26, 2021 =
+* Fixed: Welcome panel cannot be removed
 = 3.4 | June 22, 2021 =
 * New: Advanced White Label settings
 = 3.3.4 | June 8, 2021 =
