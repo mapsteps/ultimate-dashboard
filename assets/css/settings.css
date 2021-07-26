@@ -8,6 +8,10 @@
 	border: 1px solid #ddd;
 }
 
+.CodeMirror-sizer {
+	margin-left: 46px !important;
+}
+
 /* PRO styling */
 .udb-pro-settings-page-notice {
 	display: inline-block;
