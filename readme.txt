@@ -88,11 +88,14 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Screenshots ==
 1. Icon Widget Dashboard
 2. Text & Icon Widget with Tooltips
-3. Custom WordPress Login Screen - Example 1
-4. Custom WordPress Login Screen - Example 2
+3. Login Customizer - Example 1
+4. Login Customizer - Example 2
 5. White Label Settings
 6. Custom Admin Page
-7. Ultimate Dashboard Settings Page
+7. Widget Settings
+8. General Settings
+9. Advanced Settings
+10. Modules Screen
 
 == Changelog ==
 = 3.4.1 | July 26, 2021 =
