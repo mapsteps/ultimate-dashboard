@@ -353,13 +353,82 @@ class Setup {
 	 */
 	public function deactivation() {
 
-		$settings = get_option( 'udb_settings' );
+		if ( $this->multisite_supported() ) {
+			$blueprint = get_site_option( 'udb_multisite_blueprint' );
+			$blueprint = $blueprint ? (int) $blueprint : 0;
 
-		$remove_on_uninstall = isset( $settings['remove-on-uninstall'] ) ? true : false;
-		$remove_on_uninstall = apply_filters( 'udb_clean_uninstall', $remove_on_uninstall );
+			$site_ids = get_sites(
+				array(
+					'fields' => 'ids',
+				)
+			);
 
-		if ( $remove_on_uninstall ) {
+			if ( $blueprint ) {
+				// When blueprint is set, we get the data removal option from blueprint only.
+				$settings    = get_blog_option( $blueprint, 'udb_settings', array() );
+				$remove_data = isset( $settings['remove-on-uninstall'] ) ? true : false;
 
+				if ( $remove_data ) {
+					foreach ( $site_ids as $site_id ) {
+						$this->delete_udb_data( $site_id );
+					}
+				}
+			} else {
+				// When blueprint is not set, we check the data removal option per-site id.
+				foreach ( $site_ids as $site_id ) {
+					$settings    = get_blog_option( $site_id, 'udb_settings', array() );
+					$remove_data = isset( $settings['remove-on-uninstall'] ) ? true : false;
+
+					if ( $remove_data ) {
+						$this->delete_udb_data( $site_id );
+					}
+				}
+			}
+		} else {
+			$settings    = get_option( 'udb_settings' );
+			$remove_data = isset( $settings['remove-on-uninstall'] ) ? true : false;
+
+			if ( $remove_data ) {
+				$this->delete_udb_data();
+			}
+		}
+
+	}
+
+	/**
+	 * Delete free-related options on plugin deactivation.
+	 *
+	 * We still have `udb_multisite_blueprint` option and
+	 * it won't be deleted on both free & pro versions deactivation.
+	 * So that it wouldn't be a problem if user deactivate free version first or pro version first.
+	 * Both versions will be able to get the blueprint value.
+	 *
+	 * So yea, `udb_multisite_blueprint` will stays in the database.
+	 *
+	 * @param int|null $site_id The site id or null.
+	 */
+	public function delete_udb_data( $site_id = null ) {
+
+		if ( $site_id ) {
+			delete_blog_option( $site_id, 'udb_settings' );
+			delete_blog_option( $site_id, 'udb_branding' );
+			delete_blog_option( $site_id, 'udb_login' );
+			delete_blog_option( $site_id, 'udb_import' );
+			delete_blog_option( $site_id, 'udb_modules' );
+			delete_blog_option( $site_id, 'udb_recent_admin_menu' );
+
+			delete_blog_option( $site_id, 'udb_compat_widget_type' );
+			delete_blog_option( $site_id, 'udb_compat_widget_status' );
+			delete_blog_option( $site_id, 'udb_compat_delete_login_customizer_page' );
+			delete_blog_option( $site_id, 'udb_compat_settings_meta' );
+			delete_blog_option( $site_id, 'udb_compat_old_option' );
+
+			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
+			delete_blog_option( $site_id, 'review_notice_dismissed' );
+
+			delete_blog_option( $site_id, 'udb_install_date' );
+			delete_blog_option( $site_id, 'udb_plugin_activated' );
+		} else {
 			delete_option( 'udb_settings' );
 			delete_option( 'udb_branding' );
 			delete_option( 'udb_login' );
@@ -378,9 +447,34 @@ class Setup {
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
-
 		}
 
+	}
+
+	/**
+	 * Check whether plugin is active on multisite or not.
+	 *
+	 * @return bool
+	 */
+	private function is_network_active() {
+		// Load plugin.php if it doesn't already exist.
+		if ( ! function_exists( 'is_plugin_active_for_network' ) || ! function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		}
+
+		return ( is_plugin_active_for_network( 'ultimate-dashboard/ultimate-dashboard.php' ) ? true : false );
+	}
+
+	/**
+	 * Check whether multisite actions are supported or not.
+	 *
+	 * But, we don't check for `udb_pro_ms_support` filter here.
+	 * That filter belongs to the pro version.
+	 *
+	 * @return bool
+	 */
+	private function multisite_supported() {
+		return ( $this->is_network_active() ? true : false );
 	}
 
 }

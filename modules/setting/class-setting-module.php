@@ -149,13 +149,18 @@ class Setting_Module extends Base_Module {
 		// Advanced fields.
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );	
+		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
 
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
 		// Misc fields.
 		add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, array( $this, 'remove_fontawesome_field' ), 'udb-misc-settings', 'udb-misc-section' );
-		add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), array( $this, 'remove_on_uninstall_field' ), 'udb-misc-settings', 'udb-misc-section' );
+
+		$show_data_removal_field = apply_filters( 'udb_show_data_removal_field', true );
+
+		if ( $show_data_removal_field ) {
+			add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), array( $this, 'remove_on_uninstall_field' ), 'udb-misc-settings', 'udb-misc-section' );
+		}
 
 	}
 
