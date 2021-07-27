@@ -370,7 +370,12 @@ class Setup {
 
 				if ( $remove_data ) {
 					foreach ( $site_ids as $site_id ) {
-						$this->delete_udb_data( $site_id );
+						if ( $site_id !== $blueprint ) {
+							// Don't restore the data removal option if $site_id is not the blueprint.
+							$this->delete_udb_data( $site_id, false );
+						} else {
+							$this->delete_udb_data( $site_id );
+						}
 					}
 				}
 			} else {
@@ -389,7 +394,7 @@ class Setup {
 			$remove_data = isset( $settings['remove-on-uninstall'] ) ? true : false;
 
 			if ( $remove_data ) {
-				$this->delete_udb_data();
+				$this->delete_udb_data( null );
 			}
 		}
 
@@ -406,8 +411,11 @@ class Setup {
 	 * So yea, `udb_multisite_blueprint` will stays in the database.
 	 *
 	 * @param int|null $site_id The site id or null.
+	 * @param bool     $restore_removal_option Whether to restore the data removal option or not.
+	 *                                         This is used to handle the case when the free version is de-activated first,
+	 *                                         then the pro version is de-activated later.
 	 */
-	public function delete_udb_data( $site_id = null ) {
+	public function delete_udb_data( $site_id, $restore_removal_option = true ) {
 
 		if ( $site_id ) {
 			delete_blog_option( $site_id, 'udb_settings' );
@@ -428,6 +436,10 @@ class Setup {
 
 			delete_blog_option( $site_id, 'udb_install_date' );
 			delete_blog_option( $site_id, 'udb_plugin_activated' );
+
+			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
+				update_blog_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
+			}
 		} else {
 			delete_option( 'udb_settings' );
 			delete_option( 'udb_branding' );
@@ -447,6 +459,10 @@ class Setup {
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
+
+			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
+				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
+			}
 		}
 
 	}
