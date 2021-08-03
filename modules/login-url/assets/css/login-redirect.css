@@ -1,0 +1,76 @@
+/* Select2 patch */
+.udb-login-redirect--field-wrapper {
+	max-width: 700px;
+}
+
+.udb-login-redirect--field-wrapper .select2-search--inline {
+	position: relative;
+	display: inline-block;
+	height: 30px;
+}
+
+.select2-container--default .select2-selection--multiple {
+	padding-bottom: 0;
+	padding-right: 0;
+}
+
+.select2-selection--multiple .select2-selection__choice__remove {
+	line-height: 1.2;
+}
+
+/* Repeater */
+.udb-login-redirect--repeater {
+	margin-top: 20px;
+}
+
+.udb-login-redirect--repeater-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	width: 100%;
+	max-width: 700px;
+	border-bottom: 1px solid #dedede;
+}
+
+.udb-login-redirect--repeater .udb-login-redirect--repeater-item:last-child {
+	border-bottom-width: 0;
+}
+
+.udb-login-redirect--field-label {
+	width: 22%;
+}
+
+.udb-login-redirect--field-control {
+	position: relative;
+	width: 78%;
+}
+
+.udb-login-redirect--field-control input {
+	width: 100%;
+}
+
+.udb-login-redirect--remove-field {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 50%;
+	right: -35px;
+	padding: 0;
+	width: 25px;
+	height: 25px;
+	background-color: #eee;
+	border-radius: 50%;
+	border-width: 0;
+	transform: translateY(-50%);
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.udb-login-redirect--remove-field:hover {
+	color: #fff;
+	background-color: red;
+	opacity: 1;
+}

@@ -36,11 +36,33 @@ class Login_Url_Module extends Base_Module {
 	 */
 	public function setup() {
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'udb_after_general_metabox', array( $this, 'add_settings' ) );
 
 		// The module output.
 		require_once __DIR__ . '/class-login-url-output.php';
 		Login_Url_Output::init();
+
+	}
+
+	/**
+	 * Enqueue admin styles.
+	 */
+	public function admin_styles() {
+
+		$enqueue = require __DIR__ . '/inc/css-enqueue.php';
+		$enqueue( $this );
+
+	}
+
+	/**
+	 * Enqueue admin scripts.
+	 */
+	public function admin_scripts() {
+
+		$enqueue = require __DIR__ . '/inc/js-enqueue.php';
+		$enqueue( $this );
 
 	}
 
@@ -58,40 +80,7 @@ class Login_Url_Module extends Base_Module {
 		add_settings_field( 'wp-admin-redirect-url', __( 'Redirect Admin Area', 'ultimate-dashboard' ), array( $this, 'wp_admin_redirect_url_field' ), 'udb-login-url-settings', 'udb-login-url-section' );
 
 		// Login redirect fields.
-		add_settings_field(
-			'login-redirect-headline',
-			__( 'User Role', 'ultimate-dashboard' ),
-			function () {
-				echo '<strong>' . __( 'Redirect URL', 'ultimate-dashboard' ) . '<strong> ';
-			},
-			'udb-login-redirect-settings',
-			'udb-login-redirect-section'
-		);
-
-		add_settings_field(
-			'login-redirect-url-all',
-			__( 'All', 'ultimate-dashboard' ),
-			function () {
-				$this->login_redirect_url( 'all' );
-			},
-			'udb-login-redirect-settings',
-			'udb-login-redirect-section'
-		);
-
-		$wp_roles   = wp_roles();
-		$role_names = $wp_roles->role_names;
-
-		foreach ( $role_names as $role_key => $role_name ) {
-			add_settings_field(
-				'login-redirect-url-' . $role_key,
-				ucwords( $role_name ),
-				function () use ( $role_key ) {
-					$this->login_redirect_url( $role_key );
-				},
-				'udb-login-redirect-settings',
-				'udb-login-redirect-section'
-			);
-		}
+		add_settings_field( 'login-redirect-url', __( 'Select Role(s)', 'ultimate-dashboard' ), array( $this, 'login_redirect_url_field' ), 'udb-login-redirect-settings', 'udb-login-redirect-section' );
 
 	}
 
@@ -117,13 +106,11 @@ class Login_Url_Module extends Base_Module {
 
 	/**
 	 * Login redirect url field.
-	 *
-	 * @param string $role_key The role key.
 	 */
-	public function login_redirect_url( $role_key ) {
+	public function login_redirect_url_field() {
 
 		$field = require __DIR__ . '/templates/fields/login-redirect-url.php';
-		$field( $role_key );
+		$field();
 
 	}
 

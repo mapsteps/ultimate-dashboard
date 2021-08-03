@@ -580,8 +580,8 @@ class Login_Url_Output extends Base_Output {
 	public function custom_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
 		$settings = $this->option( 'settings' );
-		$slugs    = isset( $settings['login_redirect_slugs'] ) ? $settings['login_redirect_slugs'] : array();
-		$roles    = $user->roles;
+		$urls     = isset( $settings['login_redirect_urls'] ) ? $settings['login_redirect_urls'] : array();
+		$roles    = property_exists( $user, 'roles' ) ? $user->roles : array();
 
 		if ( empty( $roles ) ) {
 			return $redirect_to;
@@ -590,21 +590,23 @@ class Login_Url_Output extends Base_Output {
 		$has_redirect = false;
 
 		foreach ( $roles as $role ) {
-			if ( isset( $slugs[ $role ] ) && ! empty( $slugs[ $role ] ) ) {
+			if ( isset( $urls[ $role ] ) && ! empty( $urls[ $role ] ) ) {
 				$has_redirect = true;
 
-				$slug = $slugs[ $role ];
+				$url = $urls[ $role ];
 
 				break;
 			}
 		}
 
 		if ( $has_redirect ) {
-			return site_url( $slug );
+			// Don't do escaping here, we want to keep the query string.
+			return $url;
 		}
 
-		if ( isset( $slugs['all'] ) ) {
-			return site_url( $slugs['all'] );
+		if ( isset( $urls['all'] ) ) {
+			// Don't do escaping here, we want to keep the query string.
+			return $urls['all'];
 		}
 
 		return $redirect_to;
