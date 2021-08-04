@@ -53,6 +53,7 @@
 		var defaultValue = data.element.dataset.udbDefaultUrl;
 
 		data.element.disabled = true;
+		data.element.selected = false;
 		$roleSelector.trigger('change');
 
 		var markup = '\
