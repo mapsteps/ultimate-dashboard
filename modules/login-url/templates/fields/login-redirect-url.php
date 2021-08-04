@@ -16,28 +16,22 @@ return function () {
 
 	$wp_roles   = wp_roles();
 	$role_names = $wp_roles->role_names;
-
-	$selection_order = array();
-
-	foreach ( $redirect_urls as $role_key => $redirect_url ) {
-		if ( ! empty( $redirect_url ) ) {
-			array_push( $selection_order, $role_names[ $role_key ] );
-		}
-	}
-
-	$selection_order = implode( ',', $selection_order );
 	?>
 
 	<div class="udb-login-redirect--field-wrapper">
-		<select class="udb-login-redirect--role-selector" data-placeholder="<?php _e( 'Select a Role', 'ultimate-dashboard' ); ?>" data-width="100%" data-udb-selection-order="<?php echo esc_attr( $selection_order ); ?>" multiple>
+		<select class="udb-login-redirect--role-selector" data-placeholder="<?php _e( 'Select a Role', 'ultimate-dashboard' ); ?>" data-width="200px">
+
+			<option value="" readonly>
+				<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>
+			</option>
 
 			<?php
 			foreach ( $role_names as $role_key => $role_name ) :
 				$value       = ! empty( $redirect_urls ) && isset( $redirect_urls[ $role_key ] ) ? $redirect_urls[ $role_key ] : '';
-				$is_selected = $value ? true : false;
+				$is_disabled = $value ? true : false;
 				?>
 
-				<option value="<?php echo esc_attr( $role_key ); ?>" data-udb-default-value="<?php echo esc_attr( $value ); ?>" <?php selected( $is_selected, true ); ?>>
+				<option value="<?php echo esc_attr( $role_key ); ?>" data-udb-default-url="<?php echo esc_attr( $value ); ?>" <?php disabled( $is_disabled, true ); ?>>
 					<?php echo esc_html( $role_name ); ?>
 				</option>
 

@@ -11,7 +11,6 @@
 
 	var $repeater = $('.udb-login-redirect--repeater');
 	var $roleSelector = $('.udb-login-redirect--role-selector');
-	var expectedOrder = [];
 
 	// Run the module.
 	init();
@@ -40,12 +39,7 @@
 		});
 
 		$roleSelector.on('select2:select', onRoleSelected);
-		$roleSelector.on('select2:unselect', onRoleUnselected);
-
 		$(document).on('click', '.udb-login-redirect--remove-field', onDeleteButtonClick);
-		window.addEventListener('load', function () {
-			maintainSelectedOrder('ready', {});
-		});
 
 	}
 
@@ -56,9 +50,10 @@
 	function onRoleSelected(e) {
 
 		var data = e.params.data;
-		var defaultValue = data.element.dataset.udbDefaultValue;
+		var defaultValue = data.element.dataset.udbDefaultUrl;
 
-		maintainSelectedOrder('select', data);
+		data.element.disabled = true;
+		$roleSelector.trigger('change');
 
 		var markup = '\
 		<div class="udb-login-redirect--repeater-item" data-udb-role-key="' + data.id + '" data-udb-role-name="' + data.text.trim() + '">\
@@ -79,20 +74,6 @@
 	}
 
 	/**
-	 * Event handler to run when a role (inside select2) is un-selected.
-	 * @param {Event} e The event object.
-	 */
-	function onRoleUnselected(e) {
-
-		var data = e.params.data;
-
-		maintainSelectedOrder('unselect', data);
-
-		$repeater.find('.udb-login-redirect--repeater-item[data-udb-role-key="' + data.id + '"]').remove();
-
-	}
-
-	/**
 	 * Event handler to run when a delete buttotn is clicked.
 	 *
 	 * It will then un-select the connected select2 item
@@ -103,91 +84,10 @@
 	function onDeleteButtonClick(e) {
 
 		var roleKey = this.parentNode.parentNode.dataset.udbRoleKey;
-		var roleName = this.parentNode.parentNode.dataset.udbRoleName;
-		var values = $roleSelector.val();
-		var index = values.indexOf(roleKey);
-
-		if (index > -1) {
-			values.splice(index, 1);
-			$repeater.find('.udb-login-redirect--repeater-item[data-udb-role-key="' + roleKey + '"]').remove();
-			$roleSelector.val(values).trigger('change');
-			maintainSelectedOrder('unselect', { id: roleKey, text: roleName });
-		}
-
-	}
-
-	/**
-	 * Maintain the selected select2 values order based on when they were selected.
-	 *
-	 * The solution here doesn't seem to be perfect: https://github.com/select2/select2/issues/3106
-	 * So let's write our own patch.
-	 * 
-	 * @param {string} action Accepts 'select', 'unselect', or 'ready'.
-	 * @param {Object} data Select2 selection data.
-	 */
-	function maintainSelectedOrder(action, data) {
-
-		if ('select' === action) {
-			expectedOrder.push(data.text.trim());
-		} else if ('unselect' === action) {
-			expectedOrder.some(function (orderText, index) {
-				if (data.text.trim() === orderText) {
-					expectedOrder.splice(index, 1);
-					return true;
-				}
-
-				return false;
-			});
-		} else if ('ready' === action) {
-			expectedOrder = $roleSelector[0].dataset.udbSelectionOrder.split(',');
-		}
-
-		var oldContainer = $roleSelector[0].parentNode.querySelector('.select2-container .select2-selection__rendered');
-		var selectedItems = oldContainer.querySelectorAll('.select2-selection__rendered .select2-selection__choice');
-
-		var currentOrder = [];
-		var diffItems = [];
-
-		selectedItems.forEach(function (item) {
-			var textContainer = item.querySelector('.select2-selection__choice__display');
-			currentOrder.push(textContainer.innerText.trim());
-		});
-
-		var clonedContainer = oldContainer.cloneNode(false);
-
-		expectedOrder.forEach(function (orderText) {
-			[].slice.call(selectedItems).some(function (item) {
-				var textContainer = item.querySelector('.select2-selection__choice__display');
-
-				if (textContainer.innerText.trim() === orderText) {
-					clonedContainer.appendChild(item);
-					return true;
-				}
-
-				return false;
-			});
-		});
-
-		diffItems = arrayDiff(expectedOrder, currentOrder);
-
-		if (diffItems.length) {
-			diffItems.forEach(function (diffItem) {
-				clonedContainer.appendChild(diffItem);
-			});
-		}
-
-		oldContainer.parentNode.replaceChild(clonedContainer, oldContainer);
-
-	}
-
-	/**
-	 * Find the difference between array1 and array2.
-	 *
-	 * @see https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript#answer-4026828
-	 */
-	function arrayDiff(array1, array2) {
-
-		return array1.filter(function (i) { return array2.indexOf(i) < 0; });
+		var element = $roleSelector[0].querySelector('option[value="' + roleKey + '"]');
+		if (element) element.disabled = false;
+		$repeater.find('.udb-login-redirect--repeater-item[data-udb-role-key="' + roleKey + '"]').remove();
+		$roleSelector.trigger('change');
 
 	}
 
