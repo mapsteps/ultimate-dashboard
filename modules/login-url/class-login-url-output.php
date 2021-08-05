@@ -580,33 +580,17 @@ class Login_Url_Output extends Base_Output {
 	public function custom_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
 		$settings = $this->option( 'settings' );
-		$urls     = isset( $settings['login_redirect_urls'] ) ? $settings['login_redirect_urls'] : array();
+		$slugs    = isset( $settings['login_redirect_slugs'] ) ? $settings['login_redirect_slugs'] : array();
 		$roles    = property_exists( $user, 'roles' ) ? $user->roles : array();
 
 		if ( empty( $roles ) ) {
 			return $redirect_to;
 		}
 
-		$has_redirect = false;
-
 		foreach ( $roles as $role ) {
-			if ( isset( $urls[ $role ] ) && ! empty( $urls[ $role ] ) ) {
-				$has_redirect = true;
-
-				$url = $urls[ $role ];
-
-				break;
+			if ( isset( $slugs[ $role ] ) && ! empty( $slugs[ $role ] ) ) {
+				return site_url( $slugs[ $role ] );
 			}
-		}
-
-		if ( $has_redirect ) {
-			// Don't do escaping here, we want to keep the query string.
-			return $url;
-		}
-
-		if ( isset( $urls['all'] ) ) {
-			// Don't do escaping here, we want to keep the query string.
-			return $urls['all'];
 		}
 
 		return $redirect_to;

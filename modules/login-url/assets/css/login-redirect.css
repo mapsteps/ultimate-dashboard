@@ -10,7 +10,6 @@
 	padding-top: 12px;
 	padding-bottom: 12px;
 	width: 100%;
-	max-width: 700px;
 	border-bottom: 1px solid #dedede;
 }
 
@@ -19,38 +18,71 @@
 }
 
 .udb-login-redirect--field-label {
-	width: 22%;
+	width: 20%;
 }
 
 .udb-login-redirect--field-control {
 	position: relative;
-	width: 78%;
+	width: 80%;
 }
 
 .udb-login-redirect--field-control input {
-	width: 100%;
+	width: 380px;
 }
 
 .udb-login-redirect--remove-field {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: absolute;
-	top: 50%;
-	right: -35px;
+	position: relative;
+	margin-left: 10px;
 	padding: 0;
 	width: 25px;
 	height: 25px;
 	background-color: #eee;
 	border-radius: 50%;
 	border-width: 0;
-	transform: translateY(-50%);
+	transition: background-color .2s;
 	opacity: 0.7;
 	cursor: pointer;
 }
 
 .udb-login-redirect--remove-field:hover {
-	color: #fff;
 	background-color: red;
 	opacity: 1;
+}
+
+/* Close icon: https://codepen.io/ndeniche/pen/ljbDL */
+.udb-login-redirect--close-icon {
+	position: relative;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.udb-login-redirect--remove-field:hover .udb-login-redirect--close-icon::before,
+.udb-login-redirect--remove-field:hover .udb-login-redirect--close-icon::after {
+  background-color: #fff;
+	border-radius: 5px;
+}
+
+.udb-login-redirect--close-icon::before,
+.udb-login-redirect--close-icon::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background-color: #333;
+}
+
+.udb-login-redirect--close-icon::before {
+  transform: rotate(45deg);
+}
+
+.udb-login-redirect--close-icon::after {
+  transform: rotate(-45deg);
 }

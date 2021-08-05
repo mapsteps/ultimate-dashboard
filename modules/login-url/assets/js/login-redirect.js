@@ -9,8 +9,7 @@
  */
 (function ($) {
 
-	var $repeater = $('.udb-login-redirect--repeater');
-	var $roleSelector = $('.udb-login-redirect--role-selector');
+	var roleSelectors = document.querySelectorAll('.udb-login-redirect--role-selector');
 
 	// Run the module.
 	init();
@@ -32,13 +31,19 @@
 	 */
 	function setupRoleSelector() {
 
-		if (!$roleSelector.length) return;
+		if (!roleSelectors.length) return;
 
-		$roleSelector.select2({
-			placeholder: $roleSelector[0].dataset.placeholder
+		roleSelectors.forEach(function (roleSelector) {
+			var $roleSelector = $(roleSelector);
+
+			$roleSelector.select2({
+				placeholder: roleSelector.dataset.placeholder
+			});
+
+			$roleSelector.on('select2:select', onRoleSelected);
 		});
 
-		$roleSelector.on('select2:select', onRoleSelected);
+
 		$(document).on('click', '.udb-login-redirect--remove-field', onDeleteButtonClick);
 
 	}
@@ -50,11 +55,13 @@
 	function onRoleSelected(e) {
 
 		var data = e.params.data;
-		var defaultValue = data.element.dataset.udbDefaultUrl;
+		var defaultValue = data.element.dataset.udbDefaultSlug;
 
 		data.element.disabled = true;
 		data.element.selected = false;
-		$roleSelector.trigger('change');
+		$(this).trigger('change');
+
+		var siteType = 'subsites' === data.element.parentNode.dataset.udbSiteType ? 'subsites_' : '';
 
 		var markup = '\
 		<div class="udb-login-redirect--repeater-item" data-udb-role-key="' + data.id + '" data-udb-role-name="' + data.text.trim() + '">\
@@ -62,15 +69,24 @@
 				' + data.text.trim() + '\
 			</label>\
 			<div class="udb-login-redirect--field-control">\
-				<input type="text" name="udb_settings[login_redirect_urls][' + data.id + ']" value="' + defaultValue + '" placeholder="' + udbLoginRedirect.adminUrl + '">\
-				<button type="button" class="udb-login-redirect--remove-field">\
-					<i class="fas fa-minus"></i>\
-				</button>\
+				<div class="udb-url-prefix-suffix-field">\
+					<div class="udb-url-prefix-field">\
+						<code>\
+							' + this.dataset.udbFieldPrefix + '\
+						</code>\
+					</div>\
+					<input type="text" name="udb_settings[' + siteType + 'login_redirect_slugs][' + data.id + ']" value="' + defaultValue + '" placeholder="wp-admin/">\
+					<div class="udb-url-suffix-field">\
+						<button type="button" class="udb-login-redirect--remove-field">\
+							<span class="udb-login-redirect--close-icon"></span>\
+						</button>\
+					</div>\
+				</div>\
 			</div>\
 		</div>\
 		';
 
-		$repeater.append(markup);
+		$(this).parent().find('.udb-login-redirect--repeater').append(markup);
 
 	}
 
@@ -84,11 +100,37 @@
 	 */
 	function onDeleteButtonClick(e) {
 
-		var roleKey = this.parentNode.parentNode.dataset.udbRoleKey;
-		var element = $roleSelector[0].querySelector('option[value="' + roleKey + '"]');
+		var wrapper = getParentNode(this, 6);
+		var roleKey = getParentNode(this, 4).dataset.udbRoleKey;
+		var element = wrapper.querySelector('.udb-login-redirect--role-selector option[value="' + roleKey + '"]');
 		if (element) element.disabled = false;
-		$repeater.find('.udb-login-redirect--repeater-item[data-udb-role-key="' + roleKey + '"]').remove();
-		$roleSelector.trigger('change');
+
+		var repeaterItem = wrapper.querySelector('.udb-login-redirect--repeater-item[data-udb-role-key="' + roleKey + '"]');
+		if (repeaterItem) repeaterItem.parentNode.removeChild(repeaterItem);
+		$(this).trigger('change');
+
+	}
+
+	/**
+	 * Get parent node of an element with depth level.
+	 * 
+	 * @param {HTMLElement} el The element to get the parent node from.
+	 * @param {int} depth The depth level.
+	 */
+	function getParentNode(el, depth) {
+
+		if (!depth) {
+			return el.parentNode;
+		}
+
+		var parentNode = el;
+		var i = 1;
+
+		for (; i <= depth; i++) {
+			parentNode = parentNode.parentNode;
+		}
+
+		return parentNode;
 
 	}
 

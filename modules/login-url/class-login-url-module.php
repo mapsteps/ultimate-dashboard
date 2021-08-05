@@ -71,9 +71,12 @@ class Login_Url_Module extends Base_Module {
 	 */
 	public function add_settings() {
 
+		$login_redirect_title = '<span class="udb-login-redirect--title-text">' . __( 'Redirect After Login', 'ultimate-dashboard' ) . '</span>';
+		$login_redirect_title = apply_filters( 'udb_login_redirect_title', $login_redirect_title );
+
 		// Login url section.
 		add_settings_section( 'udb-login-url-section', __( 'Change Login URL', 'ultimate-dashboard' ), '', 'udb-login-url-settings' );
-		add_settings_section( 'udb-login-redirect-section', __( 'Redirect After Login', 'ultimate-dashboard' ), '', 'udb-login-redirect-settings' );
+		add_settings_section( 'udb-login-redirect-section', $login_redirect_title, '', 'udb-login-redirect-settings' );
 
 		// Login url fields.
 		add_settings_field( 'new-login-url', __( 'New Login URL', 'ultimate-dashboard' ), array( $this, 'new_login_url_field' ), 'udb-login-url-settings', 'udb-login-url-section' );

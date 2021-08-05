@@ -17,9 +17,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'udb-login-redirect', $module->url . '/assets/js/login-redirect.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		$inline_script = '
-			var udbLoginRedirect = {
-				adminUrl: "' . admin_url() . '",
-			};
+			var udbLoginRedirect = {};
 		';
 
 		wp_add_inline_script('udb-login-redirect', $inline_script, 'before');
