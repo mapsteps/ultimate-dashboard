@@ -75,7 +75,7 @@
 							' + this.dataset.udbFieldPrefix + '\
 						</code>\
 					</div>\
-					<input type="text" name="udb_settings[' + siteType + 'login_redirect_slugs][' + data.id + ']" value="' + defaultValue + '" placeholder="wp-admin/">\
+					<input type="text" name="udb_login_redirect[' + siteType + 'login_redirect_slugs][' + data.id + ']" value="' + defaultValue + '" placeholder="wp-admin/">\
 					<div class="udb-url-suffix-field">\
 						<button type="button" class="udb-login-redirect--remove-field">\
 							<span class="udb-login-redirect--close-icon"></span>\

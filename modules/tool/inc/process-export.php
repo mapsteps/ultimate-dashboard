@@ -11,17 +11,19 @@ use Udb\Helpers\Array_Helper;
 
 return function () {
 
-	$array_helper      = new Array_Helper();
-	$feature_settings  = array();
-	$settings          = array();
-	$branding_settings = array();
-	$login_settings    = array();
+	$array_helper            = new Array_Helper();
+	$feature_settings        = array();
+	$settings                = array();
+	$branding_settings       = array();
+	$login_settings          = array();
+	$login_redirect_settings = array();
 
 	if ( isset( $_POST['udb_export_settings'] ) ) {
-		$feature_settings  = get_option( 'udb_modules' );
-		$settings          = get_option( 'udb_settings' );
-		$branding_settings = get_option( 'udb_branding' );
-		$login_settings    = get_option( 'udb_login' );
+		$feature_settings        = get_option( 'udb_modules' );
+		$settings                = get_option( 'udb_settings' );
+		$branding_settings       = get_option( 'udb_branding' );
+		$login_settings          = get_option( 'udb_login' );
+		$login_redirect_settings = get_option( 'udb_login_redirect' );
 	}
 
 	$widgets = get_posts(
@@ -75,12 +77,13 @@ return function () {
 	}
 
 	$export_data = array(
-		'feature_settings'  => $feature_settings,
-		'widgets'           => $widgets,
-		'settings'          => $settings,
-		'branding_settings' => $branding_settings,
-		'login_settings'    => $login_settings,
-		'admin_pages'       => $admin_pages,
+		'feature_settings'        => $feature_settings,
+		'widgets'                 => $widgets,
+		'settings'                => $settings,
+		'branding_settings'       => $branding_settings,
+		'login_settings'          => $login_settings,
+		'login_redirect_settings' => $login_redirect_settings,
+		'admin_pages'             => $admin_pages,
 	);
 
 	$export_data = apply_filters( 'udb_export', $export_data ); // What about calling this just udb_export?

@@ -68,30 +68,6 @@
 	display: none;
 }
 
-.udb-url-prefix-suffix-field {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
-}
-
-.udb-url-prefix-field code,
-.udb-url-suffix-field code {
-	display: inline-flex;
-	align-items: center;
-	padding: 0 7px;
-	height: 30px;
-	border-radius: 3px;
-}
-
-.udb-url-prefix-field {
-	
-}
-
-.udb-url-suffix-field {
-	
-}
-
 /* Heatbox */
 .heatbox {
 	position: relative;

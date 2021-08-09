@@ -5,7 +5,7 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Login_Url;
+namespace Udb\LoginRedirect;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -14,7 +14,7 @@ use Udb\Base\Base_Module;
 /**
  * Class to setup login url module.
  */
-class Login_Url_Module extends Base_Module {
+class Login_Redirect_Module extends Base_Module {
 	/**
 	 * The current module url.
 	 *
@@ -27,7 +27,7 @@ class Login_Url_Module extends Base_Module {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-url';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-redirect';
 
 	}
 
@@ -36,13 +36,31 @@ class Login_Url_Module extends Base_Module {
 	 */
 	public function setup() {
 
+		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
-		add_action( 'udb_after_general_metabox', array( $this, 'add_settings' ) );
+		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
 		// The module output.
-		require_once __DIR__ . '/class-login-url-output.php';
-		Login_Url_Output::init();
+		require_once __DIR__ . '/class-login-redirect-output.php';
+		Login_Redirect_Output::init();
+
+	}
+
+	/**
+	 * Add submenu page.
+	 */
+	public function submenu_page() {
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Login URL', 'ultimate-dashboard' ), __( 'Login URL', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_login_redirect', array( $this, 'submenu_page_content' ) );
+	}
+
+	/**
+	 * Submenu page content.
+	 */
+	public function submenu_page_content() {
+
+		$template = require __DIR__ . '/templates/login-redirect-template.php';
+		$template();
 
 	}
 
@@ -70,6 +88,9 @@ class Login_Url_Module extends Base_Module {
 	 * Add settings.
 	 */
 	public function add_settings() {
+
+		// Register setting.
+		register_setting( 'udb-login-redirect-group', 'udb_login_redirect' );
 
 		$login_redirect_title = '<span class="udb-login-redirect--title-text">' . __( 'Redirect After Login', 'ultimate-dashboard' ) . '</span>';
 		$login_redirect_title = apply_filters( 'udb_login_redirect_title', $login_redirect_title );

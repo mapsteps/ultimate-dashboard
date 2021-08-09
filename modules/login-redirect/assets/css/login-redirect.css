@@ -1,3 +1,20 @@
+/* Prefix-suffix field */
+.udb-url-prefix-suffix-field {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.udb-url-prefix-field code,
+.udb-url-suffix-field code {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 7px;
+	height: 30px;
+	border-radius: 3px;
+}
+
 /* Repeater */
 .udb-login-redirect--repeater {
 	margin-top: 20px;

@@ -5,7 +5,7 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Login_Url;
+namespace Udb\LoginRedirect;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -14,7 +14,7 @@ use Udb\Base\Base_Output;
 /**
  * Class to setup login url output.
  */
-class Login_Url_Output extends Base_Output {
+class Login_Redirect_Output extends Base_Output {
 
 	/**
 	 * The class instance.
@@ -76,7 +76,7 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-url';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-redirect';
 
 	}
 
@@ -109,7 +109,7 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function setup_hooks() {
 
-		$settings = $this->option( 'settings' );
+		$settings = $this->option( 'login_redirect' );
 
 		$this->new_login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
 		$this->new_login_slug = apply_filters( 'udb_login_slug', $this->new_login_slug );
@@ -579,7 +579,7 @@ class Login_Url_Output extends Base_Output {
 	 */
 	public function custom_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
-		$settings = $this->option( 'settings' );
+		$settings = $this->option( 'login_redirect' );
 		$slugs    = isset( $settings['login_redirect_slugs'] ) ? $settings['login_redirect_slugs'] : array();
 		$roles    = property_exists( $user, 'roles' ) ? $user->roles : array();
 

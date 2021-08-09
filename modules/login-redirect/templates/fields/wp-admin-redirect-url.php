@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$settings = get_option( 'udb_settings' );
+	$settings = get_option( 'udb_login_redirect' );
 	$slug     = isset( $settings['wp_admin_redirect_slug'] ) ? trim( $settings['wp_admin_redirect_slug'], '/' ) : '';
 	?>
 
@@ -20,7 +20,7 @@ return function () {
 			</code>
 		</div>
 
-		<input type="text" name="udb_settings[wp_admin_redirect_slug]" class="all-options" value="<?php echo esc_attr( $slug ); ?>" placeholder="404" />
+		<input type="text" name="udb_login_redirect[wp_admin_redirect_slug]" class="all-options" value="<?php echo esc_attr( $slug ); ?>" placeholder="404" />
 
 		<div class="udb-url-suffix-field">
 			<code>/</code>

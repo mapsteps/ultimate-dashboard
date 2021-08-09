@@ -13,7 +13,7 @@ return function ( $site_type = 'blueprint' ) {
 
 	$site_type_prefix = 'subsites' === $site_type ? 'subsites_' : '';
 
-	$settings       = Vars::get( 'udb_settings' );
+	$settings       = Vars::get( 'udb_login_redirect' );
 	$redirect_slugs = isset( $settings[ $site_type_prefix . 'login_redirect_slugs' ] ) ? $settings[ $site_type_prefix . 'login_redirect_slugs' ] : array();
 
 	$wp_roles   = wp_roles();
@@ -95,7 +95,7 @@ return function ( $site_type = 'blueprint' ) {
 										<?php echo esc_html( $field_prefix ); ?>
 									</code>
 								</div>
-								<input type="text" name="udb_settings[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo $readonly_attr; ?>>
+								<input type="text" name="udb_login_redirect[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo $readonly_attr; ?>>
 								<div class="udb-url-prefix-field">
 									<?php if ( 'super_admin' === $role_key ) : ?>
 										<?php if ( $multisite_supported && is_super_admin() ) : ?>

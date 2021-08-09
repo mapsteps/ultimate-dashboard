@@ -48,12 +48,13 @@ return function () {
 	$imports = (array) json_decode( $imports, true );
 
 	// Retrieve settings & widgets.
-	$feature_settings  = isset( $imports['feature_settings'] ) ? $imports['feature_settings'] : array();
-	$settings          = isset( $imports['settings'] ) ? $imports['settings'] : array();
-	$branding_settings = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
-	$login_settings    = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
-	$widgets           = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
-	$admin_pages       = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
+	$feature_settings        = isset( $imports['feature_settings'] ) ? $imports['feature_settings'] : array();
+	$settings                = isset( $imports['settings'] ) ? $imports['settings'] : array();
+	$branding_settings       = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
+	$login_settings          = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
+	$login_redirect_settings = isset( $imports['login_redirect_settings'] ) ? $imports['login_redirect_settings'] : array();
+	$widgets                 = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
+	$admin_pages             = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
 
 	if ( ! $imports ) {
 
@@ -67,7 +68,7 @@ return function () {
 
 	}
 
-	if ( $feature_settings || $settings || $branding_settings || $login_settings ) {
+	if ( $feature_settings || $settings || $branding_settings || $login_settings || $login_redirect_settings ) {
 
 		if ( $feature_settings ) {
 			update_option( 'udb_modules', $feature_settings );
@@ -83,6 +84,10 @@ return function () {
 
 		if ( $login_settings ) {
 			update_option( 'udb_login', $login_settings );
+		}
+
+		if ( $login_redirect_settings ) {
+			update_option( 'udb_login_redirect', $login_redirect_settings );
 		}
 
 		do_action( 'udb_import_settings', $imports );

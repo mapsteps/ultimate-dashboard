@@ -98,6 +98,18 @@ class Screen_Helper {
 	}
 
 	/**
+	 * Check if current screen is login redirect page.
+	 *
+	 * @return boolean
+	 */
+	public function is_login_redirect() {
+
+		$current_screen = get_current_screen();
+		return ( 'udb_widgets_page_udb_login_redirect' === $current_screen->id ? true : false );
+
+	}
+
+	/**
 	 * Check if current screen is tools page.
 	 *
 	 * @return boolean

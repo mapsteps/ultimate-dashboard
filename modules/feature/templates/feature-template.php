@@ -27,6 +27,12 @@ return function () {
 			'feature' => 'login_customizer',
 		),
 		array(
+			'title'   => __( 'Login Redirect', 'ultimate-dashboard' ),
+			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/login-redirect.png',
+			'text'    => __( 'Change login url, set wp-admin redirect for non logged-in users, and set redirect after login.', 'ultimate-dashboard' ),
+			'feature' => 'login_redirect',
+		),
+		array(
 			'title'   => __( 'Admin Pages', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-pages.png',
 			'text'    => __( 'Create useful custom admin pages for your customers with the Admin Pages module.', 'ultimate-dashboard' ),

@@ -57,6 +57,7 @@ class Setup {
 		$defaults = array(
 			'white_label'       => 'true',
 			'login_customizer'  => 'true',
+			'login_redirect'    => 'true',
 			'admin_pages'       => 'true',
 			'admin_menu_editor' => 'true',
 			'admin_bar_editor'  => 'true',
@@ -107,6 +108,7 @@ class Setup {
 		$settings_opts          = get_option( 'udb_settings', array() );
 		$branding_opts          = get_option( 'udb_branding', array() );
 		$login_opts             = get_option( 'udb_login', array() );
+		$login_redirect_opts    = get_option( 'udb_login_redirect', array() );
 		$admin_bar_opts         = get_option( 'udb_admin_bar', array() );
 		$admin_menu_opts        = get_option( 'udb_admin_menu', array() );
 		$recent_admin_menu_opts = get_option( 'udb_recent_admin_menu', array() );
@@ -114,6 +116,7 @@ class Setup {
 		Vars::set( 'udb_settings', $settings_opts );
 		Vars::set( 'udb_branding', $branding_opts );
 		Vars::set( 'udb_login', $login_opts );
+		Vars::set( 'udb_login_redirect', $login_redirect_opts );
 		Vars::set( 'udb_admin_bar', $admin_bar_opts );
 		Vars::set( 'udb_admin_menu', $admin_menu_opts );
 		Vars::set( 'udb_recent_admin_menu', $recent_admin_menu_opts );
@@ -157,6 +160,7 @@ class Setup {
 			'udb_widgets_page_udb_tools',
 			'udb_widgets_page_udb_branding',
 			'udb_widgets_page_udb_settings',
+			'udb_widgets_page_udb_login_redirect',
 			'udb_widgets_page_udb_admin_menu',
 			'udb_widgets_page_udb_admin_bar',
 		);
@@ -200,9 +204,6 @@ class Setup {
 
 		$modules['Udb\\Setting\\Setting_Module'] = __DIR__ . '/modules/setting/class-setting-module.php';
 
-		// There's no separate checkbox for login url module, since it stays on settings page.
-		$modules['Udb\\Login_Url\\Login_Url_Module'] = __DIR__ . '/modules/login-url/class-login-url-module.php';
-
 		$saved_modules = $this->saved_modules();
 
 		if ( 'true' === $saved_modules['white_label'] ) {
@@ -215,6 +216,10 @@ class Setup {
 
 		if ( 'true' === $saved_modules['login_customizer'] ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
+		}
+
+		if ( 'true' === $saved_modules['login_redirect'] ) {
+			$modules['Udb\\LoginRedirect\\Login_Redirect_Module'] = __DIR__ . '/modules/login-redirect/class-login-redirect-module.php';
 		}
 
 		if ( 'true' === $saved_modules['admin_menu_editor'] ) {
@@ -421,6 +426,7 @@ class Setup {
 			delete_blog_option( $site_id, 'udb_settings' );
 			delete_blog_option( $site_id, 'udb_branding' );
 			delete_blog_option( $site_id, 'udb_login' );
+			delete_blog_option( $site_id, 'udb_login_redirect' );
 			delete_blog_option( $site_id, 'udb_import' );
 			delete_blog_option( $site_id, 'udb_modules' );
 			delete_blog_option( $site_id, 'udb_recent_admin_menu' );
@@ -444,6 +450,7 @@ class Setup {
 			delete_option( 'udb_settings' );
 			delete_option( 'udb_branding' );
 			delete_option( 'udb_login' );
+			delete_option( 'udb_login_redirect' );
 			delete_option( 'udb_import' );
 			delete_option( 'udb_modules' );
 			delete_option( 'udb_recent_admin_menu' );
