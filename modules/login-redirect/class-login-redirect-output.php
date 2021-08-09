@@ -85,8 +85,7 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public static function init() {
 
-		$class = new self();
-		$class->setup();
+		self::get_instance()->setup();
 
 	}
 

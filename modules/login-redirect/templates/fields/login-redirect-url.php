@@ -19,7 +19,7 @@ return function ( $site_type = 'blueprint' ) {
 	$wp_roles   = wp_roles();
 	$role_names = $wp_roles->role_names;
 
-	$multisite_supported = apply_filters( 'udb_ms_is_supported', false );
+	$multisite_supported = apply_filters( 'udb_ms_supported', false );
 	$is_blueprint        = apply_filters( 'udb_ms_is_blueprint', false );
 
 	$field_prefix = esc_url( site_url( '/' ) );
