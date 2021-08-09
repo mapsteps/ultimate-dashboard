@@ -3,13 +3,15 @@
 	display: none;
 }
 
-/* Code Mirror */
 .CodeMirror-wrap {
 	border: 1px solid #ddd;
 }
 
 .CodeMirror-sizer {
 	margin-left: 46px !important;
+}
+.CodeMirror-linenumbers {
+	width: 29px !important;
 }
 
 /* PRO styling */
