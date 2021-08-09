@@ -2,9 +2,9 @@
 Contributors: davidvongries
 Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Custom Login CSS, Login CSS, Ultimate Dash, Ultimate Client Dash
 Requires at least: 4.6
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 3.4.1
+Stable tag: 3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,18 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 10. Modules Screen
 
 == Changelog ==
+= 3.5 | August 10, 2021 =
+* New: Change WordPress' Howdy text
+* New: Change WordPress login URL
+* New: Redirect yoursite.com/wp-admin/ for non logged-in users
+* New: Login Redirect feature
+* Tweak: Show review notice only to admins
+* Tweak: New tabbed layout on Settings page
+* Fixed: Some 3rd party menu items did not appear in the Admin Menu Editor
+* Fixed: Some 3rd party menu items did not appear in the Admin Bar Editor
+* Fixed: Only load FontAwesome in the WordPress admin if an admin page exists
+* Fixed: Settings link on the plugin screen links to non-existent page
+* Fixed: Remove data on uninstall on multisite installations
 = 3.4.1 | July 26, 2021 =
 * Fixed: Welcome panel cannot be removed
 = 3.4 | June 22, 2021 =
