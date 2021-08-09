@@ -112,8 +112,8 @@ class Setting_Module extends Base_Module {
 		// We use this hook to place the change login url feature here.
 		do_action( 'udb_after_general_metabox' );
 
-		// Advanced section.
-		add_settings_section( 'udb-advanced-section', __( 'Advanced', 'ultimate-dashboard' ), '', 'udb-advanced-settings' );
+		// Custom CSS section.
+		add_settings_section( 'udb-custom-css-section', __( 'Custom CSS', 'ultimate-dashboard' ), '', 'udb-custom-css-settings' );
 
 		// Misc section.
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-misc-settings' );
@@ -146,11 +146,6 @@ class Setting_Module extends Base_Module {
 		add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), array( $this, 'headline_text_field' ), 'udb-general-settings', 'udb-general-section' );
 		add_settings_field( 'howdy-settings', __( 'Custom Howdy Text', 'ultimate-dashboard' ), array( $this, 'howdy_text_field' ), 'udb-general-settings', 'udb-general-section' );
 
-		// Advanced fields.
-		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-advanced-settings', 'udb-advanced-section' );
-
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
 		// Misc fields.
@@ -161,6 +156,11 @@ class Setting_Module extends Base_Module {
 		if ( $show_data_removal_field ) {
 			add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), array( $this, 'remove_on_uninstall_field' ), 'udb-misc-settings', 'udb-misc-section' );
 		}
+
+		// Custom CSS fields.
+		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
+		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
+		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
 
 	}
 

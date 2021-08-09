@@ -50,8 +50,8 @@ return function () {
 					<li class="heatbox-tab-nav-item login-url-panel">
 						<a href="#login-url"><?php _e( 'Login URL', 'ultimate-dashboard' ); ?></a>
 					</li>
-					<li class="heatbox-tab-nav-item advanced-panel">
-						<a href="#advanced"><?php _e( 'Advanced', 'ultimate-dashboard' ); ?></a>
+					<li class="heatbox-tab-nav-item custom-css-panel">
+						<a href="#custom-css"><?php _e( 'Custom CSS', 'ultimate-dashboard' ); ?></a>
 					</li>
 				</ul>
 			</nav>
@@ -95,6 +95,10 @@ return function () {
 						<div class="heatbox">
 							<?php do_settings_sections( 'udb-general-settings' ); ?>
 						</div>
+
+						<div class="heatbox">
+							<?php do_settings_sections( 'udb-misc-settings' ); ?>
+						</div>
 					</div>
 
 					<div class="heatbox-admin-panel udb-login-url-panel">
@@ -107,13 +111,9 @@ return function () {
 						</div>
 					</div>
 
-					<div class="heatbox-admin-panel udb-advanced-panel">
+					<div class="heatbox-admin-panel udb-custom-css-panel">
 						<div class="heatbox">
-							<?php do_settings_sections( 'udb-advanced-settings' ); ?>
-						</div>
-
-						<div class="heatbox">
-							<?php do_settings_sections( 'udb-misc-settings' ); ?>
+							<?php do_settings_sections( 'udb-custom-css-settings' ); ?>
 						</div>
 					</div>
 				</div>
