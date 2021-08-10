@@ -57,10 +57,12 @@ class Tool_Module extends Base_Module {
 	 */
 	public function setup() {
 
+		/**
+		 * These 4 actions will be removed on multisite if current site is not a blueprint.
+		 */
 		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		// add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
-
 		add_action( 'admin_init', array( self::get_instance(), 'add_settings' ) );
 
 	}
