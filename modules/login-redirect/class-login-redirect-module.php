@@ -57,33 +57,17 @@ class Login_Redirect_Module extends Base_Module {
 	 */
 	public function setup() {
 
-		add_action( 'init', array( $this, 'setup_hooks' ) );
+		/**
+		 * These 4 actions will be removed on multisite if current site is not a blueprint.
+		 */
+		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
+		add_action( 'admin_init', array( self::get_instance(), 'add_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 
 		// The module output.
 		require_once __DIR__ . '/class-login-redirect-output.php';
 		Login_Redirect_Output::init();
-
-	}
-
-	/**
-	 * Setup functions hooking on init.
-	 * In order to get the filter works, we need to add the filter on init hook.
-	 */
-	public function setup_hooks() {
-
-		$multisite_supported = apply_filters( 'udb_ms_supported', false );
-		$is_blueprint        = apply_filters( 'udb_ms_is_blueprint', false );
-
-		// Don't add these actions when we're on a multisite and the current site is not a blueprint.
-		if ( $multisite_supported && ! $is_blueprint ) {
-			return;
-		}
-
-		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
-		add_action( 'admin_init', array( $this, 'add_settings' ) );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 	}
 
