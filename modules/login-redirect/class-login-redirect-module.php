@@ -15,6 +15,14 @@ use Udb\Base\Base_Module;
  * Class to setup login url module.
  */
 class Login_Redirect_Module extends Base_Module {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
 	/**
 	 * The current module url.
 	 *
@@ -28,6 +36,19 @@ class Login_Redirect_Module extends Base_Module {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/login-redirect';
+
+	}
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 
 	}
 
@@ -58,7 +79,7 @@ class Login_Redirect_Module extends Base_Module {
 			return;
 		}
 
-		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
+		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ) );
 		add_action( 'admin_init', array( $this, 'add_settings' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
