@@ -58,10 +58,12 @@ class Feature_Module extends Base_Module {
 	 */
 	public function setup() {
 
+		/**
+		 * These 4 actions will be removed on multisite if current site is not a blueprint.
+		 */
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
-
 		add_action( 'wp_ajax_udb_handle_module_actions', array( $this, 'handle_module_actions' ) );
 
 		// The module output.
