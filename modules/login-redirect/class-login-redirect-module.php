@@ -70,7 +70,7 @@ class Login_Redirect_Module extends Base_Module {
 	 * Add submenu page.
 	 */
 	public function submenu_page() {
-		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Login URL', 'ultimate-dashboard' ), __( 'Login URL', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_login_redirect', array( $this, 'submenu_page_content' ) );
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Login Redirect', 'ultimate-dashboard' ), __( 'Login Redirect', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_login_redirect', array( $this, 'submenu_page_content' ) );
 	}
 
 	/**
