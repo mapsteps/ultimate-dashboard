@@ -62,7 +62,9 @@ class Admin_Menu_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 15, 2 );
 		add_action( 'init', array( self::get_instance(), 'support_tablepress' ), 5 );
-		add_action( 'admin_head', array( $this, 'save_recent_menu' ) );
+
+		// Save the recent menu and the priority should be lower than our output.
+		add_action( 'admin_menu', array( $this, 'save_recent_menu' ), 9000 );
 
 		$this->setup_ajax();
 
