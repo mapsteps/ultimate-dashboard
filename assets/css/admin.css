@@ -15,6 +15,10 @@
 /**
  * Notices for metabox.
  */
+.udb-notice-metabox .heatbox-content p:last-child {
+	margin-bottom: 0;
+}
+
 .udb-notice-metabox.is-success {
 	border-left-width: 4px;
 	border-left-color: #00a32a;
