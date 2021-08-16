@@ -96,9 +96,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 5. White Label Settings
 6. Custom Admin Page
 7. Widget Settings
-8. General Settings
-9. Advanced Settings
-10. Modules Screen
+8. Login Redirect Settings
+9. General Settings
+10. Custom CSS Settings
+11. Modules Screen
 
 == Changelog ==
 = 3.5 | August 16, 2021 =
