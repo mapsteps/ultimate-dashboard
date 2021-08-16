@@ -28,8 +28,8 @@ Create **icon, text** & **HTML widgets** to create a customized **client dashboa
 == Login Customizer ==
 White label the WordPress login area. Completely **customize the WordPress login screen** & apply your own branding with the power & live-preview capabilities of the WordPress customizer.
 
-== Clean up the WordPress admin ==
-Remove things like the **Help** tab and **Screen Options** tab from the WordPress admin area & add a custom WordPress **footer text** & **version text**.
+== Login Redirect ==
+The Login Redirect featur allows you to **change the WordPress login URL**, **hide the /wp-admin/ URL for non logged-in users** and **redirect users after login** on a per-role basis.
 
 == Add Custom CSS ==
 * Add custom CSS to only the **WordPress dashboard**
@@ -40,26 +40,29 @@ Remove things like the **Help** tab and **Screen Options** tab from the WordPres
 Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
 
 == More Features ==
-* Change WordPress welcome panel content (New!)
-* Replace the WordPress dashboard headline
-* Define a text/icon & headline color for your Ultimate Dashboard widgets
+* Change the WordPress welcome panel content
+* Change the WordPress "Howdy" text
+* Set a custom WordPress dashboard headline
 * Hide the WordPress admin bar from the frontend
+* Remove "Help" tab
+* Remove "Screen Options" tab
+* Customize the WordPress footer & version text
 * Export/import dashboard widgets & settings
-* Remove data on uninstall
 
-For more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
+
+For even more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
 == Ultimate Dashboard PRO ==
 * Remove 3rd party widgets
 * Restrict dashboard widgets & admin pages to specific users or user roles
-* White label & rebrand WordPress
+* Fully white label & rebrand WordPress
 * Advanced Login Customizer features
 * Create Custom Admin Pages with Elementor, Beaver Builder & Brizy
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
-* Admin Menu Editor (New!)
-* Admin Bar Editor (New!)
+* Admin Menu Editor
+* Admin Bar Editor
 
 [youtube https://youtu.be/w0oEQF3C6v0]
 
