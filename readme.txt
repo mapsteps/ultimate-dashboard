@@ -19,27 +19,27 @@ Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the
 
 Customize the WordPress Dashboard today!
 
-== Remove dashboard widgets ==
+== ❌ Remove dashboard widgets ==
 Remove all or individual default WordPress widgets with just a click.
 
-== Create your own widgets ==
+== ➕ Create your own widgets ==
 Create **icon, text** & **HTML widgets** to create a customized **client dashboard** and send your customer to the key areas of their website - or anywhere else!
 
-== Login Customizer ==
+== 🎨 Login Customizer ==
 White label the WordPress login area. Completely **customize the WordPress login screen** & apply your own branding with the power & live-preview capabilities of the WordPress customizer.
 
-== Login Redirect ==
+== ↔️ Login Redirect ==
 The Login Redirect featur allows you to **change the WordPress login URL**, **hide the /wp-admin/ URL for non logged-in users** and **redirect users after login** on a per-role basis.
 
-== Add Custom CSS ==
+== 🖌️ Add Custom CSS ==
 * Add custom CSS to only the **WordPress dashboard**
 * Add custom CSS to the entire **WordPress admin area**
 * Add custom CSS to the **WordPress login screen** with a live preview inside the WordPress customizer
 
-== Create Custom Admin Pages ==
+== 📋 Create Custom Admin Pages ==
 Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
 
-== More Features ==
+== ✨ More Features ==
 * Change the WordPress welcome panel content
 * Change the WordPress "Howdy" text
 * Set a custom WordPress dashboard headline
@@ -52,7 +52,7 @@ Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default 
 
 For even more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
 
-== Ultimate Dashboard PRO ==
+== 🏆 Ultimate Dashboard PRO ==
 * Remove 3rd party widgets
 * Restrict dashboard widgets & admin pages to specific users or user roles
 * Fully white label & rebrand WordPress
