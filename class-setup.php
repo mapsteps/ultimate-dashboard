@@ -206,27 +206,27 @@ class Setup {
 
 		$saved_modules = $this->saved_modules();
 
-		if ( 'true' === $saved_modules['white_label'] ) {
+		if ( isset( $saved_modules['white_label'] ) && 'true' === $saved_modules['white_label'] ) {
 			$modules['Udb\\Branding\\Branding_Module'] = __DIR__ . '/modules/branding/class-branding-module.php';
 		}
 
-		if ( 'true' === $saved_modules['admin_pages'] ) {
+		if ( isset( $saved_modules['admin_pages'] ) && 'true' === $saved_modules['admin_pages'] ) {
 			$modules['Udb\\AdminPage\\Admin_Page_Module'] = __DIR__ . '/modules/admin-page/class-admin-page-module.php';
 		}
 
-		if ( 'true' === $saved_modules['login_customizer'] ) {
+		if ( isset( $saved_modules['login_customizer'] ) && 'true' === $saved_modules['login_customizer'] ) {
 			$modules['Udb\\LoginCustomizer\\Login_Customizer_Module'] = __DIR__ . '/modules/login-customizer/class-login-customizer-module.php';
 		}
 
-		if ( 'true' === $saved_modules['login_redirect'] ) {
+		if ( isset( $saved_modules['login_redirect'] ) && 'true' === $saved_modules['login_redirect'] ) {
 			$modules['Udb\\LoginRedirect\\Login_Redirect_Module'] = __DIR__ . '/modules/login-redirect/class-login-redirect-module.php';
 		}
 
-		if ( 'true' === $saved_modules['admin_menu_editor'] ) {
+		if ( isset( $saved_modules['admin_menu_editor'] ) && 'true' === $saved_modules['admin_menu_editor'] ) {
 			$modules['Udb\\AdminMenu\\Admin_Menu_Module'] = __DIR__ . '/modules/admin-menu/class-admin-menu-module.php';
 		}
 
-		if ( 'true' === $saved_modules['admin_bar_editor'] ) {
+		if ( isset( $saved_modules['admin_bar_editor'] ) && 'true' === $saved_modules['admin_bar_editor'] ) {
 			$modules['Udb\\AdminBar\\Admin_Bar_Module'] = __DIR__ . '/modules/admin-bar/class-admin-bar-module.php';
 		}
 
