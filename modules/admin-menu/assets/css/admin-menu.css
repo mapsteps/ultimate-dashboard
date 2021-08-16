@@ -15,8 +15,16 @@
 	}
 }
 
+.udb_widgets_page_udb_admin_menu .heatbox-main {
+	width: 68%;
+}
+
+.udb_widgets_page_udb_admin_menu .heatbox-sidebar {
+	width: 30%;
+}
+
 .udb-admin-menu-box {
-	max-width: 700px;
+	/* max-width: 700px; */
 }
 
 .udb-admin-menu-box .is-hidden {

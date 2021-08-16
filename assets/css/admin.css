@@ -11,3 +11,21 @@
 #adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] {
 	color: #47D87C;
 }
+
+/**
+ * Notices for metabox.
+ */
+.udb-notice-metabox.is-success {
+	border-left-width: 4px;
+	border-left-color: #00a32a;
+}
+
+.udb-notice-metabox.is-warning {
+	border-left-width: 4px;
+	border-left-color: #dba617;
+}
+
+.udb-notice-metabox.is-info {
+	border-left-width: 4px;
+	border-left-color: #72aee6;
+}
