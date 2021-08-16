@@ -98,7 +98,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 10. Modules Screen
 
 == Changelog ==
-= 3.5 | August 10, 2021 =
+= 3.5 | August 16, 2021 =
 * New: Change WordPress' Howdy text
 * New: Change WordPress login URL
 * New: Redirect yoursite.com/wp-admin/ for non logged-in users
