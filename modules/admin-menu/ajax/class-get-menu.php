@@ -257,14 +257,6 @@ class Get_Menu {
 		$recent_menus = $this->recent_menus;
 		$role         = $this->role;
 
-		if ( $_POST['role'] && 'administrator' === $_POST['role'] ) {
-			error_log( print_r($menu, true) );
-		}
-		
-		// if ( $_POST['role'] && 'administrator' === $_POST['role'] ) {
-		// 	error_log( print_r($this->recent_menus, true) );
-		// }
-
 		if ( empty( $recent_menus ) || ! isset( $recent_menus[ $role ] ) || empty( $recent_menus[ $role ] ) ) {
 			return;
 		}
@@ -277,14 +269,7 @@ class Get_Menu {
 
 		$array_helper = new Array_Helper();
 
-		// if ( $_POST['role'] && 'administrator' === $_POST['role'] ) {
-		// 	error_log( print_r($recent_menu, true) );
-		// }
-
 		foreach ( $recent_menu as $menu_index => $menu_item ) {
-			// if ( $_POST['role'] && 'administrator' === $_POST['role'] ) {
-			// 	error_log( print_r($menu_item[2], true) );
-			// }
 			$menu_type = empty( $menu_item[0] ) && empty( $menu_item[3] ) ? 'separator' : 'menu';
 
 			$menu_search_key = 'separator' === $menu_type ? 2 : 5; // 2 = slug, 5 = index.
@@ -292,10 +277,6 @@ class Get_Menu {
 
 			$matched_menu_index = $array_helper->find_assoc_array_index_by_value( $menu, $menu_search_key, $value_to_search );
 			$matched_menu_item  = false !== $matched_menu_index ? $menu[ $matched_menu_index ] : null;
-
-			// if ( $_POST['role'] && 'administrator' === $_POST['role'] && 'wpseo_dashboard' === $menu_item[2] ) {
-			// 	error_log( print_r($matched_menu_item, true) );
-			// }
 
 			if ( ! $matched_menu_item ) {
 				$new_menu_index = $this->generate_unique_index( $menu, $menu_index );
@@ -306,10 +287,6 @@ class Get_Menu {
 		}
 
 		ksort( $menu );
-
-		// if ( $_POST['role'] && 'administrator' === $_POST['role'] ) {
-		// 	error_log( print_r($menu, true) );
-		// }
 
 	}
 
