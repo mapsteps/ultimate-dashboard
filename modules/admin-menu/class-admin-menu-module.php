@@ -193,8 +193,7 @@ class Admin_Menu_Module extends Base_Module {
 	 * To make sure that we have the recent menu & submenu,
 	 * we save the global $menu and $submenu everytime a user visit a page in admin area.
 	 *
-	 * This function is hooked into `admin_head` action instead of `admin_menu` action,
-	 * so that we don't have to worry about hooking priority.
+	 * This function is hooked into `admin_menu` action but the priority should be lower than our output.
 	 */
 	public function save_recent_menu() {
 
