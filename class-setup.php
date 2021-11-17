@@ -363,7 +363,7 @@ class Setup {
 
 		// Stop if PRO version is active.
 		if ( udb_is_pro_active() ) {
-			// return;
+			return;
 		}
 
 		// Stop here if current user is not an admin.
@@ -371,36 +371,41 @@ class Setup {
 			return;
 		}
 
-	    global $pagenow;
-
 		$screen_helper = new Screen_Helper();
 
-	    // Stop if we are not on the dashboard page.
-		if ( $pagenow !== 'index.php' &&
+		// Stop if we are not on a UDB page.
+		if ( ! $screen_helper->is_dashboard() &&
 			! $screen_helper->is_new_widget() &&
 			! $screen_helper->is_edit_widget() &&
+			! $screen_helper->is_features() &&
+			! $screen_helper->is_settings() &&
+			! $screen_helper->is_branding() &&
+			! $screen_helper->is_login_redirect() &&
+			! $screen_helper->is_tools() &&
+			! $screen_helper->is_new_admin_page() &&
+			! $screen_helper->is_edit_admin_page() &&
+			! $screen_helper->is_admin_page_list() &&
+			! $screen_helper->is_admin_menu() &&
+			! $screen_helper->is_admin_bar() &&
 			! $screen_helper->is_widget_list() ) {
 			return;
 		}
 
-	    $start = strtotime( 'november 22nd, 2021' );
-	    $end   = strtotime( 'november 30th, 2021' );
-	    $now   = time();
+		$start = strtotime( 'november 22nd, 2021' );
+		$end   = strtotime( 'november 30th, 2021' );
+		$now   = time();
 
-	    $now = strtotime( 'november 22nd, 2021' ); // Remove before pushing.
-
-	    // Stop here if we are not in the sales period.
-	    if ( $now < $start || $now > $end ) {
-	    	return;
-	    }
+		// Stop here if we are not in the sales period.
+		if ( $now < $start || $now > $end ) {
+			return;
+		}
 
 		// Stop here if notice has been dismissed.
 		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
 			return;
 		}
 
-
-		$bfcm_url = 'https://wp-pagebuilderframework.com/pricing/?utm_source=repository&utm_medium=bfcm_banner&utm_campaign=wpbf';
+		$bfcm_url = 'https://ultimatedashboard.io/pricing/?utm_source=repository&utm_medium=bfcm_banner&utm_campaign=udb';
 		?>
 
 		<div class="notice udb-notice udb-bfcm-notice notice-info is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_bfcm_notice">
@@ -534,6 +539,7 @@ class Setup {
 
 			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
 			delete_blog_option( $site_id, 'review_notice_dismissed' );
+			delete_blog_option( $site_id, 'udb_bfcm_notice_dismissed' );
 
 			delete_blog_option( $site_id, 'udb_install_date' );
 			delete_blog_option( $site_id, 'udb_plugin_activated' );
@@ -558,6 +564,7 @@ class Setup {
 
 			delete_option( 'udb_login_customizer_flush_url' );
 			delete_option( 'review_notice_dismissed' );
+			delete_option( 'udb_bfcm_notice_dismissed' );
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
