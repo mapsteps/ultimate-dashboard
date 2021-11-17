@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
 use Udb\Helpers\Content_Helper;
+use Udb\Helpers\Screen_Helper;
 
 /**
  * Class to setup Ultimate Dashboard plugin.
@@ -358,7 +359,7 @@ class Setup {
 	/**
 	 * Show BFCM notice.
 	 */
-	public function bfcm_notice( $module ) {
+	public function bfcm_notice() {
 
 		// Stop if PRO version is active.
 		if ( udb_is_pro_active() ) {
@@ -372,11 +373,13 @@ class Setup {
 
 	    global $pagenow;
 
+		$screen_helper = new Screen_Helper();
+
 	    // Stop if we are not on the dashboard page.
 		if ( $pagenow !== 'index.php' &&
-			! $module->screen()->is_new_widget() &&
-			! $module->screen()->is_edit_widget() &&
-			! $module->screen()->is_widget_list() ) {
+			! $screen_helper->is_new_widget() &&
+			! $screen_helper->is_edit_widget() &&
+			! $screen_helper->is_widget_list() ) {
 			return;
 		}
 
