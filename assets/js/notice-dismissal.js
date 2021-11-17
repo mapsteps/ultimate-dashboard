@@ -4,7 +4,12 @@
 	function init() {
 		$(document).on(
 			"click",
-			".udb-notice.is-permanent-dismissible .notice-dismiss",
+			".udb-review-notice.is-permanent-dismissible .notice-dismiss",
+			ajax.saveDismissal
+		);
+		$(document).on(
+			"click",
+			".udb-bfcm-notice.is-permanent-dismissible .notice-dismiss",
 			ajax.saveDismissal
 		);
 	}

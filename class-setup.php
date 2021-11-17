@@ -90,7 +90,9 @@ class Setup {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 20 );
 		add_action( 'admin_notices', array( self::get_instance(), 'review_notice' ) );
+		add_action( 'admin_notices', array( self::get_instance(), 'bfcm_notice' ) );
 		add_action( 'wp_ajax_udb_dismiss_review_notice', array( $this, 'dismiss_review_notice' ) );
+		add_action( 'wp_ajax_udb_dismiss_bfcm_notice', array( $this, 'dismiss_bfcm_notice' ) );
 
 		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ), 20 );
 
@@ -331,7 +333,7 @@ class Setup {
 		$notice  .= '<br/>';
 		$notice  .= "<a href=\"$review_url\" style=\"margin-top: 15px;\" target='_blank' class=\"button-primary\">$btn_text</a>";
 
-		echo '<div class="notice udb-notice review-notice notice-success is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_review_notice">';
+		echo '<div class="notice udb-notice udb-review-notice notice-success is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_review_notice">';
 		echo '<p>' . $notice . '</p>';
 		echo '</div>';
 
@@ -345,11 +347,101 @@ class Setup {
 		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
 
 		if ( empty( $dismiss ) ) {
-			wp_send_json_error( __( 'Invalid Request', 'ultimate-dashboard' ) );
+			wp_send_json_error( 'Invalid Request' );
 		}
 
 		update_option( 'review_notice_dismissed', 1 );
-		wp_send_json_success( __( 'Review notice has been dismissed', 'ultimate-dashboard' ) );
+		wp_send_json_success( 'Review notice has been dismissed.' );
+
+	}
+
+	/**
+	 * Show BFCM notice.
+	 */
+	public function bfcm_notice( $module ) {
+
+		// Stop if PRO version is active.
+		if ( udb_is_pro_active() ) {
+			// return;
+		}
+
+		// Stop here if current user is not an admin.
+		if ( ! current_user_can( 'administrator' ) ) {
+			return;
+		}
+
+	    global $pagenow;
+
+	    // Stop if we are not on the dashboard page.
+		if ( $pagenow !== 'index.php' &&
+			! $module->screen()->is_new_widget() &&
+			! $module->screen()->is_edit_widget() &&
+			! $module->screen()->is_widget_list() ) {
+			return;
+		}
+
+	    $start = strtotime( 'november 22nd, 2021' );
+	    $end   = strtotime( 'november 30th, 2021' );
+	    $now   = time();
+
+	    $now = strtotime( 'november 22nd, 2021' ); // Remove before pushing.
+
+	    // Stop here if we are not in the sales period.
+	    if ( $now < $start || $now > $end ) {
+	    	return;
+	    }
+
+		// Stop here if notice has been dismissed.
+		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
+			return;
+		}
+
+
+		$bfcm_url = 'https://wp-pagebuilderframework.com/pricing/?utm_source=repository&utm_medium=bfcm_banner&utm_campaign=wpbf';
+		?>
+
+		<div class="notice udb-notice udb-bfcm-notice notice-info is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_bfcm_notice">
+			<div class="notice-body">
+				<div class="notice-icon">
+					<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="Ultimate Dashboard Logo">
+				</div>
+				<div class="notice-content">
+					<h2>
+						<?php _e( 'Up to 30% Off Ultimate Dashboard PRO - Black Friday Sale*', 'ultimate-dashboard' ); ?>
+					</h2>
+					<p>
+						<?php _e( 'Save big & upgrade to the <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
+					</p>
+					<p>
+						<?php _e( 'Hurry up! The deal will expire soon!', 'ultimate-dashboard' ); ?><br>
+						<em><?php _e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
+					</p>
+					<p>
+						<a href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
+							<?php _e( 'Get the Deal', 'ultimate-dashboard' ); ?>
+						</a>
+						<small><?php _e( '*Only Administrators will see this message!', 'ultimate-dashboard' ); ?></small>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<?php
+	}
+
+	/**
+	 * Dismiss BFCM notice.
+	 */
+	public function dismiss_bfcm_notice() {
+
+		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
+
+		if ( empty( $dismiss ) ) {
+			wp_send_json_error( 'Invalid Request' );
+		}
+
+		update_option( 'udb_bfcm_notice_dismissed', 1 );
+		wp_send_json_success( 'Review notice has been dismissed.' );
 
 	}
 

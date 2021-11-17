@@ -33,3 +33,41 @@
 	border-left-width: 4px;
 	border-left-color: #72aee6;
 }
+
+/**
+ * BFCM Notice.
+ */
+.udb-bfcm-notice {
+	padding: 25px 20px;
+}
+
+.udb-bfcm-notice .notice-body {
+	display: flex;
+}
+
+.udb-bfcm-notice .notice-icon {
+	padding-right: 25px;
+}
+
+.udb-bfcm-notice .notice-icon img {
+	max-width: 55px;
+}
+
+.udb-bfcm-notice .notice-content {
+	width: 100%;
+}
+
+.udb-bfcm-notice .notice-content h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+
+.udb-bfcm-notice .notice-content > p {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.udb-bfcm-notice .notice-content > p:last-child {
+	margin-bottom: 0;
+}
