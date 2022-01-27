@@ -142,7 +142,7 @@ class Login_Redirect_Output extends Base_Output {
 		remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
 
 		add_action( 'template_redirect', array( $this, 'redirect_export_data' ) );
-		add_filter( 'user_request_action_email_content', array( $this, 'user_request_action_email_content' ) );
+		add_filter( 'user_request_action_email_content', array( $this, 'user_request_action_email_content' ), 10, 2 );
 		add_filter( 'site_status_tests', array( $this, 'site_status_tests' ) );
 
 	}
