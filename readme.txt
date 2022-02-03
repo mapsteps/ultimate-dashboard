@@ -102,6 +102,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+
+= 3.5.2 | February 03, 2022 =
+* xxx
+
 = 3.5.1 | November 11, 2021 =
 * Tweak: Updated admin notice
 = 3.5 | August 16, 2021 =
