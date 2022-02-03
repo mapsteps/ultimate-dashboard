@@ -29,7 +29,7 @@ return function () {
 
 
 	<p class="description">
-		Protect your website by changing the login url and preventing access to <code>wp-login.php</code>.
+		<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( home_url() ) ); ?>
 	</p>
 
 	<?php
