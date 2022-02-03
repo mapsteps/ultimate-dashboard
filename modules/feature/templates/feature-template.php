@@ -29,7 +29,7 @@ return function () {
 		array(
 			'title'   => __( 'Login Redirect', 'ultimate-dashboard' ),
 			'img'     => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/login-redirect.png',
-			'text'    => __( 'Change login url, set wp-admin redirect for non logged-in users, and set redirect after login.', 'ultimate-dashboard' ),
+			'text'    => __( 'Change the WordPress login url, redirect users after login & set a <code>/wp-admin/</code> redirect for non logged-in users.', 'ultimate-dashboard' ),
 			'feature' => 'login_redirect',
 		),
 		array(
