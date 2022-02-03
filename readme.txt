@@ -104,8 +104,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Changelog ==
 
 = 3.5.2 | February 03, 2022 =
-* xxx
-
+* Tested up to 5.9
+* Tweak: Updated texts
+* Fixed: Fatal error in WordPress' tools section
+* Fixed: Content of Custom CSS fields on settings page appear empty until clicked
 = 3.5.1 | November 11, 2021 =
 * Tweak: Updated admin notice
 = 3.5 | August 16, 2021 =
