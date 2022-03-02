@@ -73,7 +73,7 @@ Learn more about [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_sour
 If you like Ultimate Dashboard, make sure to check out our other products:
 
 * **[Page Builder Framework](https://wp-pagebuilderframework.com/?utm_source=udb&utm_medium=repository&utm_campaign=wpbf)** - A fast & minimalistic WordPress theme designed for the new WordPress era.
-* **[WP Swift Control](https://wpswiftcontrol.com/?utm_source=udb&utm_medium=repository&utm_campaign=swiftcontrol)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
+* **[Better Admin Bar](https://betteradminbar.com/?utm_source=udb&utm_medium=repository&utm_campaign=bab)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
 
 == Installation ==
 1. Download the ultimate-dashboard.zip file to your computer.
