@@ -78,6 +78,7 @@ class Login_Customizer_Module extends Base_Module {
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'control_scripts' ) );
 		add_action( 'login_enqueue_scripts', array( $this, 'preview_styles' ), 99 );
 		add_action( 'customize_preview_init', array( $this, 'preview_scripts' ) );
+		add_action( 'login_enqueue_scripts', array( $this, 'login_scripts' ), 99 );
 
 		// The module output.
 		require_once __DIR__ . '/class-login-customizer-output.php';
@@ -383,6 +384,15 @@ class Login_Customizer_Module extends Base_Module {
 			'udbLoginCustomizer',
 			$this->create_js_object()
 		);
+
+	}
+
+	/**
+	 * Enqueue scripts to the actual login page.
+	 */
+	public function login_scripts() {
+
+		wp_enqueue_script( 'udb-login-page', $this->url . '/assets/js/login-page.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 	}
 
