@@ -27,6 +27,7 @@
 	var usersSelect2 = null;
 	var usersData = [];
 	var savedUsers = [];
+	var loadedRoleMenu = [];
 
 	/**
 	 * Init the script.
@@ -45,9 +46,8 @@
 
 		state.usersLoaded = false;
 
-		udbAdminMenu.roles.forEach(function (role) {
-			getMenu("role", role.key);
-		});
+		// Load administrator's menu as it's shown in initial load.
+		getMenu("role", "administrator");
 
 		var savedUserTabsContentItems = elms.userTabsContent.querySelectorAll(
 			".udb-admin-menu--tab-content-item"
@@ -288,6 +288,12 @@
 				content.classList.add("is-active");
 			}
 		});
+
+		if (this.parentNode.classList.contains("udb-admin-menu--role-menu")) {
+			if (loadedRoleMenu.indexOf(this.dataset.role) === -1) {
+				getMenu("role", this.dataset.role);
+			}
+		}
 	}
 
 	/**
@@ -350,6 +356,11 @@
 		})
 			.done(function (r) {
 				if (!r || !r.success) return;
+
+				if (by === "role" && loadedRoleMenu.indexOf(value) === -1) {
+					loadedRoleMenu.push(value);
+				}
+
 				buildMenu(by, value, r.data);
 			})
 			.always(function () {
