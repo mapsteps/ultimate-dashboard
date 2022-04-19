@@ -194,13 +194,44 @@ class Admin_Menu_Module extends Base_Module {
 	 * we save the global $menu and $submenu everytime a user visit a page in admin area.
 	 *
 	 * This function is hooked into `admin_menu` action but the priority should be lower than our output.
+	 * 
+	 * @param bool $is_direct_call Whether the function is called directly or not.
 	 */
 	public function save_recent_menu() {
+
+		/**
+		 * Prevent this function from being executed by do_action( 'admin_menu' )
+		 * when it's inside ajax request.
+		 *
+		 * When inside ajax request, this function will be called directly
+		 * instead of being executed by do_action( 'admin_menu' ).
+		 *
+		 * This is to prevent the wrong result of saving the global $menu and $submenu
+		 * during the ajax request when getting menu for our admin menu editor (for the builder).
+		 */
+		if ( wp_doing_ajax() ) {
+			return;
+		}
 
 		global $menu, $submenu;
 
 		$roles = wp_get_current_user()->roles;
 		$role  = $roles[0];
+
+		$this->direct_save_recent_menu( $role, $menu, $submenu );
+
+	}
+
+	/**
+	 * Save $menu & $submenu to the database.
+	 * The $menu & $submenu is provided as parameter here
+	 * instead of calling global $menu & $submenu.
+	 * 
+	 * @param string $role The targetted role.
+	 * @param array $menu The menu array.
+	 * @param array $submenu The submenu array.
+	 */
+	public function direct_save_recent_menu( $role, $menu, $submenu ) {
 
 		$recent_menu = $this->option( 'recent_admin_menu' );
 

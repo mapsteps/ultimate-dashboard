@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Helpers\Content_Helper;
 use Udb\Helpers\Array_Helper;
+use Udb\AdminMenu\Admin_Menu_Module;
 
 /**
  * Class to get menu & submenu.
@@ -68,8 +69,6 @@ class Get_Menu {
 			$this->role = $user->roles[0];
 		}
 
-		$this->recent_menus = get_option( 'udb_recent_admin_menu', array() );
-
 		/**
 		 * This hook is used in the admin menu output in the pro version (multisite & non-multisite).
 		 * It's used to remove the output so that the builder is able to get the original output.
@@ -122,6 +121,11 @@ class Get_Menu {
 		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
 		 */
 		add_filter( 'wp_doing_ajax', '__return_true' );
+
+		$admin_menu_module = Admin_Menu_Module::get_instance();
+		$admin_menu_module->direct_save_recent_menu( $this->role, $menu, $submenu );
+
+		$this->recent_menus = get_option( 'udb_recent_admin_menu', array() );
 
 		$this->compare_default_menu_with_recent_menu();
 		$this->compare_default_submenu_with_recent_menu();
@@ -356,7 +360,12 @@ class Get_Menu {
 	public function generate_unique_index( $array, $index ) {
 
 		if ( isset( $array[ $index ] ) ) {
+			if ( is_string( $index ) ) {
+				$index = (float) $index;
+			}
+
 			$index += 0.05;
+			$index = (string) $index;
 
 			if ( isset( $array[ $index ] ) ) {
 				$index = $this->generate_unique_index( $array, $index );
