@@ -87,6 +87,22 @@ return function () {
 		}
 
 		if ( $login_redirect_settings ) {
+			$login_url_slug = isset( $login_redirect_settings['login_url_slug'] ) ? $login_redirect_settings['login_url_slug'] : '';
+
+			if ( ! empty( $login_url_slug ) ) {
+				if ( false !== stripos( $login_url_slug, '{site_url}' ) ) {
+					$login_redirect_settings['login_url_slug'] = str_ireplace( '{site_url}', site_url(), $login_url_slug );
+				}
+			}
+
+			$wp_admin_redirect_slug = isset( $login_redirect_settings['wp_admin_redirect_slug'] ) ? $login_redirect_settings['wp_admin_redirect_slug'] : '';
+
+			if ( ! empty( $wp_admin_redirect_slug ) ) {
+				if ( false !== stripos( $wp_admin_redirect_slug, '{site_url}' ) ) {
+					$login_redirect_settings['wp_admin_redirect_slug'] = str_ireplace( '{site_url}', site_url(), $wp_admin_redirect_slug );
+				}
+			}
+
 			update_option( 'udb_login_redirect', $login_redirect_settings );
 		}
 

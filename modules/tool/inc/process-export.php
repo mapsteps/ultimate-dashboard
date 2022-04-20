@@ -76,6 +76,24 @@ return function () {
 		}
 	}
 
+	if ( ! empty( $login_redirect_settings ) ) {
+		$login_url_slug = isset( $login_redirect_settings['login_url_slug'] ) ? $login_redirect_settings['login_url_slug'] : '';
+
+		if ( ! empty( $login_url_slug ) ) {
+			if ( 0 === stripos( $login_url_slug, site_url() ) ) {
+				$login_redirect_settings['login_url_slug'] = str_ireplace( site_url(), '{site_url}', $login_url_slug );
+			}
+		}
+
+		$wp_admin_redirect_slug = isset( $login_redirect_settings['wp_admin_redirect_slug'] ) ? $login_redirect_settings['wp_admin_redirect_slug'] : '';
+
+		if ( ! empty( $wp_admin_redirect_slug ) ) {
+			if ( 0 === stripos( $wp_admin_redirect_slug, site_url() ) ) {
+				$login_redirect_settings['wp_admin_redirect_slug'] = str_ireplace( site_url(), '{site_url}', $wp_admin_redirect_slug );
+			}
+		}
+	}
+
 	$export_data = array(
 		'feature_settings'        => $feature_settings,
 		'widgets'                 => $widgets,

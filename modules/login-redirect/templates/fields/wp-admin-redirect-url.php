@@ -16,7 +16,7 @@ return function () {
 	<div class="udb-url-prefix-suffix-field">
 		<div class="udb-url-prefix-field">
 			<code>
-				<?php echo esc_url( home_url() ); ?>/
+				<?php echo esc_url( site_url() ); ?>/
 			</code>
 		</div>
 
@@ -28,7 +28,7 @@ return function () {
 	</div>
 
 	<p class="description">
-		<?php printf( __( 'Redirect non-logged-in users that try to access <code>%1$s/wp-admin/</code>.', 'ultimate-dashboard' ), esc_url( home_url() ) ); ?>
+		<?php printf( __( 'Redirect non-logged-in users that try to access <code>%1$s/wp-admin/</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
 	</p>
 
 	<?php

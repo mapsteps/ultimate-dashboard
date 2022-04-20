@@ -16,7 +16,7 @@ return function () {
 	<div class="udb-url-prefix-suffix-field">
 		<div class="udb-url-prefix-field">
 			<code>
-				<?php echo esc_url( home_url() ); ?>/
+				<?php echo esc_url( site_url() ); ?>/
 			</code>
 		</div>
 
@@ -29,7 +29,7 @@ return function () {
 
 
 	<p class="description">
-		<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( home_url() ) ); ?>
+		<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
 	</p>
 
 	<?php
