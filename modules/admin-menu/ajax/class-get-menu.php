@@ -389,11 +389,19 @@ class Get_Menu {
 		$merged_menu = array();
 
 		foreach ( $menu as $index => $menu_item ) {
-			if ( isset( $submenu[ $menu_item[2] ] ) ) {
-				$menu_item['submenu'] = $submenu[ $menu_item[2] ];
+			$cap_allowed = true;
+
+			if ( ! empty( $menu_item[1] ) ) {
+				$cap_allowed = current_user_can( $menu_item[1] );
 			}
 
-			$merged_menu[ $index ] = $menu_item;
+			if ( $cap_allowed ) {
+				if ( isset( $submenu[ $menu_item[2] ] ) ) {
+					$menu_item['submenu'] = $submenu[ $menu_item[2] ];
+				}
+	
+				$merged_menu[ $index ] = $menu_item;
+			}
 		}
 
 		return $merged_menu;
