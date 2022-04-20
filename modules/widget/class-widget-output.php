@@ -110,6 +110,7 @@ class Widget_Output extends Base_Output {
 
 			$post_id     = get_the_ID();
 			$title       = get_the_title();
+			$title       = do_shortcode( $title );
 			$icon        = get_post_meta( $post_id, 'udb_icon_key', true );
 			$link        = get_post_meta( $post_id, 'udb_link', true );
 			$target      = get_post_meta( $post_id, 'udb_link_target', true );
