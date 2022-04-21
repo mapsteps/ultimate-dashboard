@@ -62,7 +62,7 @@ class Tool_Module extends Base_Module {
 		 */
 		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
-		// add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'admin_init', array( self::get_instance(), 'add_settings' ) );
 
 	}
@@ -116,8 +116,8 @@ class Tool_Module extends Base_Module {
 		register_setting( 'udb-import-group', 'udb_import', array( 'sanitize_callback' => array( $this, 'process_import' ) ) );
 
 		// Settings sections.
-		add_settings_section( 'udb-export-section', __( 'Export Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard-export' );
-		add_settings_section( 'udb-import-section', __( 'Import Widgets', 'ultimate-dashboard' ), '', 'ultimate-dashboard-import' );
+		add_settings_section( 'udb-export-section', __( 'Export', 'ultimate-dashboard' ), '', 'ultimate-dashboard-export' );
+		add_settings_section( 'udb-import-section', __( 'Import', 'ultimate-dashboard' ), '', 'ultimate-dashboard-import' );
 
 		// Settings fields.
 		add_settings_field( 'udb-export-field', '', array( $this, 'render_export_field' ), 'ultimate-dashboard-export', 'udb-export-section', array( 'class' => 'is-gapless has-small-text' ) );

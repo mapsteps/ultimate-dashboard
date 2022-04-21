@@ -46,15 +46,25 @@ return function () {
 
 	$imports = file_get_contents( $tmp_file, true );
 	$imports = (array) json_decode( $imports, true );
-
+	
 	// Retrieve settings & widgets.
-	$feature_settings        = isset( $imports['feature_settings'] ) ? $imports['feature_settings'] : array();
-	$settings                = isset( $imports['settings'] ) ? $imports['settings'] : array();
-	$branding_settings       = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
-	$login_settings          = isset( $imports['login_settings'] ) ? $imports['login_settings'] : array();
-	$login_redirect_settings = isset( $imports['login_redirect_settings'] ) ? $imports['login_redirect_settings'] : array();
-	$widgets                 = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
-	$admin_pages             = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
+	$modules_manager_settings  = isset( $imports['modules_manager_settings'] ) ? $imports['modules_manager_settings'] : array();
+	$settings                  = isset( $imports['settings'] ) ? $imports['settings'] : array();
+	$branding_settings         = isset( $imports['branding_settings'] ) ? $imports['branding_settings'] : array();
+	$login_customizer_settings = isset( $imports['login_customizer_settings'] ) ? $imports['login_customizer_settings'] : array();
+	$login_redirect_settings   = isset( $imports['login_redirect_settings'] ) ? $imports['login_redirect_settings'] : array();
+	$widgets                   = isset( $imports['widgets'] ) ? $imports['widgets'] : array();
+	$admin_pages               = isset( $imports['admin_pages'] ) ? $imports['admin_pages'] : array();
+
+	// Backwards compatibility for "feature_settings".
+	if ( empty( $modules_manager_settings ) ) {
+		$modules_manager_settings = isset( $imports['feature_settings'] ) ? $imports['feature_settings'] : $modules_manager_settings;
+	}
+
+	// Backwards compatibility for "login_settings".
+	if ( empty( $login_customizer_settings ) ) {
+		$login_customizer_settings = isset( $imports['login_settings'] ) ? $imports['login_settings'] : $login_customizer_settings;
+	}
 
 	if ( ! $imports ) {
 
@@ -68,10 +78,10 @@ return function () {
 
 	}
 
-	if ( $feature_settings || $settings || $branding_settings || $login_settings || $login_redirect_settings ) {
+	if ( $modules_manager_settings || $settings || $branding_settings || $login_customizer_settings || $login_redirect_settings ) {
 
-		if ( $feature_settings ) {
-			update_option( 'udb_modules', $feature_settings );
+		if ( $modules_manager_settings ) {
+			update_option( 'udb_modules', $modules_manager_settings );
 		}
 
 		if ( $settings ) {
@@ -82,8 +92,8 @@ return function () {
 			update_option( 'udb_branding', $branding_settings );
 		}
 
-		if ( $login_settings ) {
-			update_option( 'udb_login', $login_settings );
+		if ( $login_customizer_settings ) {
+			update_option( 'udb_login', $login_customizer_settings );
 		}
 
 		if ( $login_redirect_settings ) {

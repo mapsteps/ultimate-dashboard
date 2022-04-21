@@ -11,80 +11,113 @@ use Udb\Helpers\Array_Helper;
 
 return function () {
 
-	$array_helper            = new Array_Helper();
-	$feature_settings        = array();
-	$settings                = array();
-	$branding_settings       = array();
-	$login_settings          = array();
-	$login_redirect_settings = array();
+	$array_helper = new Array_Helper();
 
-	if ( isset( $_POST['udb_export_settings'] ) ) {
-		$feature_settings        = get_option( 'udb_modules' );
-		$settings                = get_option( 'udb_settings' );
-		$branding_settings       = get_option( 'udb_branding' );
-		$login_settings          = get_option( 'udb_login' );
-		$login_redirect_settings = get_option( 'udb_login_redirect' );
-	}
+	$selected_modules = isset( $_POST['udb_export_modules'] ) && is_array( $_POST['udb_export_modules'] ) ? $_POST['udb_export_modules'] : array();
 
-	$widgets = get_posts(
-		array(
-			'post_type'   => 'udb_widgets',
-			'numberposts' => -1,
-		)
-	);
-	$widgets = $widgets ? $widgets : array();
+	$export_data = array();
 
-	foreach ( $widgets as &$widget ) {
-		$meta = get_post_meta( $widget->ID );
+	if ( in_array( 'modules_manager', $selected_modules, true ) ) {
+		$modules_manager_settings = get_option( 'udb_modules', [] );
 
-		$widget->meta = array();
-
-		foreach ( $meta as $meta_key => $meta_value ) {
-
-			// Check for serialized data (when $meta_value is array).
-			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-				$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
-			}
-
-			$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
-
+		if ( ! empty( $modules_manager_settings ) ) {
+			$export_data['modules_manager_settings'] = $modules_manager_settings;
 		}
 	}
 
-	$admin_pages = get_posts(
-		array(
-			'post_type'   => 'udb_admin_page',
-			'numberposts' => -1,
-		)
-	);
-	$admin_pages = $admin_pages ? $admin_pages : array();
+	if ( in_array( 'settings', $selected_modules, true ) ) {
+		$settings = get_option( 'udb_settings', [] );
 
-	foreach ( $admin_pages as &$admin_page ) {
-		$meta = get_post_meta( $admin_page->ID );
-
-		$admin_page->meta = array();
-
-		foreach ( $meta as $meta_key => $meta_value ) {
-
-			// Check for serialized data (when $meta_value is array).
-			if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-				$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
-			}
-
-			$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
-
+		if ( ! empty( $settings ) ) {
+			$export_data['settings'] = $settings;
 		}
 	}
 
-	$export_data = array(
-		'feature_settings'        => $feature_settings,
-		'widgets'                 => $widgets,
-		'settings'                => $settings,
-		'branding_settings'       => $branding_settings,
-		'login_settings'          => $login_settings,
-		'login_redirect_settings' => $login_redirect_settings,
-		'admin_pages'             => $admin_pages,
-	);
+	if ( in_array( 'widgets', $selected_modules, true ) ) {
+		$widgets = get_posts(
+			array(
+				'post_type'   => 'udb_widgets',
+				'numberposts' => -1,
+			)
+		);
+		$widgets = $widgets ? $widgets : array();
+
+		if ( ! empty( $widgets ) ) {
+			foreach ( $widgets as &$widget ) {
+				$meta = get_post_meta( $widget->ID );
+
+				$widget->meta = array();
+
+				foreach ( $meta as $meta_key => $meta_value ) {
+
+					// Check for serialized data (when $meta_value is array).
+					if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+						$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
+					}
+
+					$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+
+				}
+			}
+
+			$export_data['widgets'] = $widgets;
+		}
+	}
+
+	if ( in_array( 'branding', $selected_modules, true ) ) {
+		$branding_settings = get_option( 'udb_branding', [] );
+
+		if ( ! empty( $branding_settings ) ) {
+			$export_data['branding_settings'] = $branding_settings;
+		}
+	}
+
+	if ( in_array( 'login_customizer', $selected_modules, true ) ) {
+		$login_customizer_settings = get_option( 'udb_login', [] );
+
+		if ( ! empty( $login_customizer_settings ) ) {
+			$export_data['login_customizer_settings'] = $login_customizer_settings;
+		}
+	}
+
+	if ( in_array( 'login_redirect', $selected_modules, true ) ) {
+		$login_redirect_settings = get_option( 'udb_login_redirect', [] );
+
+		if ( ! empty( $login_redirect_settings ) ) {
+			$export_data['login_redirect_settings'] = $login_redirect_settings;
+		}
+	}
+
+	if ( in_array( 'admin_pages', $selected_modules, true ) ) {
+		$admin_pages = get_posts(
+			array(
+				'post_type'   => 'udb_admin_page',
+				'numberposts' => -1,
+			)
+		);
+		$admin_pages = $admin_pages ? $admin_pages : array();
+
+		if ( ! empty( $admin_pages ) ) {
+			foreach ( $admin_pages as &$admin_page ) {
+				$meta = get_post_meta( $admin_page->ID );
+
+				$admin_page->meta = array();
+
+				foreach ( $meta as $meta_key => $meta_value ) {
+
+					// Check for serialized data (when $meta_value is array).
+					if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+						$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
+					}
+
+					$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+
+				}
+			}
+
+			$export_data['admin_pages'] = $admin_pages;
+		}
+	}
 
 	$export_data = apply_filters( 'udb_export', $export_data );
 
