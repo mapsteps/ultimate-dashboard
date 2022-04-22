@@ -15,6 +15,7 @@ use Udb\Base\Base_Module;
  * Class to setup widget module.
  */
 class Widget_Module extends Base_Module {
+
 	/**
 	 * The current module url.
 	 *
@@ -194,6 +195,7 @@ class Widget_Module extends Base_Module {
 			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_widgets', 'side' );
 		}
 
+		add_meta_box( 'udb-placeholder-tags-metabox', __( 'Placeholder Tags', 'ultimate-dashboard' ), array( $this, 'placeholder_tags_metabox' ), 'udb_widgets', 'side' );
 		add_meta_box( 'udb-position-metabox', __( 'Position', 'ultimate-dashboard' ), array( $this, 'position_metabox' ), 'udb_widgets', 'side' );
 		add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), array( $this, 'priority_metabox' ), 'udb_widgets', 'side' );
 
@@ -227,6 +229,16 @@ class Widget_Module extends Base_Module {
 	public function pro_link_metabox() {
 
 		$metabox = require __DIR__ . '/templates/metaboxes/pro-link.php';
+		$metabox();
+
+	}
+
+	/**
+	 * Placeholder tags metabox.
+	 */
+	public function placeholder_tags_metabox() {
+
+		$metabox = require __DIR__ . '/templates/metaboxes/placeholder-tags.php';
 		$metabox();
 
 	}
