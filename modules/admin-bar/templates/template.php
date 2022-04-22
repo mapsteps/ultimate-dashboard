@@ -122,8 +122,21 @@ wp_localize_script(
 				<div class="heatbox-content">
 					<p><?php _e( 'Use the placeholder tags below in title or url fields to output certain information.', 'ultimate-dashboard' ); ?></p>
 					<p class="tags-wrapper">
-						<code>{site_name}</code>, <code>{site_url}</code>
-						<?php do_action( 'udb_admin_menu_placeholder_tags_list' ); ?>
+						<?php
+						$placeholder_tags = [
+							'{site_name}',
+							'{site_url}',
+						];
+
+						$placeholder_tags = apply_filters( 'udb_admin_menu_placeholder_tags', $placeholder_tags );
+						$total_tags       = count( $placeholder_tags );
+
+						foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
+							?>
+							<code><?php echo esc_attr( $placeholder_tag ); ?></code><?php echo ( $total_tags - 1 === $tag_index ? '' : ',' ); ?>
+							<?php
+						}
+						?>
 					</p>
 				</div>
 			</div>
