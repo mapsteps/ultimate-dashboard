@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use WP_Query;
 use Udb\Base\Base_Output;
+use Udb\Widget\Widget_Output;
 
 /**
  * Class to setup setting output.
@@ -228,7 +229,13 @@ class Setting_Output extends Base_Output {
 			do_action( 'udb_ms_restore_blog' );
 		}
 
-		echo do_shortcode( $content );
+		$widget_output = Widget_Output::get_instance();
+
+		$content = $widget_output->convert_placeholder_tags( $content );
+		$content = do_shortcode( $content );
+		$content = wpautop( $content );
+
+		echo $content;
 
 	}
 

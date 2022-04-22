@@ -32,6 +32,20 @@ class Widget_Output extends Base_Output {
 	public $url;
 
 	/**
+	 * The default placeholder tags.
+	 *
+	 * @var array
+	 */
+	public $placeholder_tags;
+
+	/**
+	 * The default placeholder tag values.
+	 *
+	 * @var array
+	 */
+	public $placeholder_values;
+
+	/**
 	 * Get instance of the class.
 	 *
 	 * @return object
@@ -50,6 +64,30 @@ class Widget_Output extends Base_Output {
 	public function __construct() {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/widget';
+
+		$this->placeholder_tags = [
+			'{first_name}',
+			'{last_name}',
+			'{display_name}',
+			'{user_email}',
+
+			'{admin_email}',
+			'{site_name}',
+			'{site_url}',
+		];
+
+		$current_user = wp_get_current_user();
+
+		$this->placeholder_values = [
+			$current_user->first_name,
+			$current_user->last_name,
+			$current_user->display_name,
+			$current_user->user_email,
+
+			get_option( 'admin_email' ),
+			get_bloginfo( 'name' ),
+			site_url(),
+		];
 
 	}
 
@@ -111,6 +149,7 @@ class Widget_Output extends Base_Output {
 			$post_id     = get_the_ID();
 			$title       = get_the_title();
 			$title       = do_shortcode( $title );
+			$title       = $this->convert_placeholder_tags( $title );
 			$icon        = get_post_meta( $post_id, 'udb_icon_key', true );
 			$link        = get_post_meta( $post_id, 'udb_link', true );
 			$target      = get_post_meta( $post_id, 'udb_link_target', true );
@@ -137,6 +176,7 @@ class Widget_Output extends Base_Output {
 
 				$html   = get_post_meta( $post_id, 'udb_html', true );
 				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
+				$output = $this->convert_placeholder_tags( $output );
 
 			} elseif ( 'text' === $widget_type ) { // Text widget output.
 
@@ -144,12 +184,14 @@ class Widget_Output extends Base_Output {
 				$contentheight = get_post_meta( $post_id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $post_id, 'udb_content_height', true ) . '"' : '';
 
 				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
+				$output = $this->convert_placeholder_tags( $output );
 
 			} elseif ( 'icon' === $widget_type ) { // Icon widget output.
 
 				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
 
 				if ( $tooltip ) {
+					$tooltip = $this->convert_placeholder_tags( $tooltip );
 					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
 				}
 			}
@@ -216,6 +258,22 @@ class Widget_Output extends Base_Output {
 		$css = ob_get_clean();
 
 		wp_add_inline_style( 'udb-dashboard', $css );
+
+	}
+
+	/**
+	 * Convert placeholder tags with their values.
+	 *
+	 * @param string $str The string to replace the tags in.
+	 * @return string The modified string.
+	 */
+	public function convert_placeholder_tags($str)
+	{
+
+		$str = str_replace($this->placeholder_tags, $this->placeholder_values, $str);
+		$str = apply_filters( 'udb_widgets_convert_placeholder_tags', $str );
+
+		return $str;
 
 	}
 
