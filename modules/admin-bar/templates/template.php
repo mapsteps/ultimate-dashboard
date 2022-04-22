@@ -117,6 +117,17 @@ wp_localize_script(
 			</form>
 		</div>
 		<div class="heatbox-sidebar">
+			<div class="heatbox udb-tags-metabox">
+				<h2><?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?></h2>
+				<div class="heatbox-content">
+					<p><?php _e( 'Use the placeholder tags below in title or url fields to output certain information.', 'ultimate-dashboard' ); ?></p>
+					<p class="tags-wrapper">
+						<code>{site_name}</code>, <code>{site_url}</code>
+						<?php do_action( 'udb_admin_menu_placeholder_tags_list' ); ?>
+					</p>
+				</div>
+			</div>
+
 			<?php do_action( 'udb_admin_bar_sidebar' ); ?>
 		</div>
 	</div>
