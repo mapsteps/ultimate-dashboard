@@ -28,7 +28,7 @@ return function () {
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="widgets" checked />
-			<?php _e( 'Widgets', 'ultimate-dashboard' ); ?>
+			<?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
