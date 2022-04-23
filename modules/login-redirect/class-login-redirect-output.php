@@ -255,7 +255,7 @@ class Login_Redirect_Output extends Base_Output {
 		global $pagenow;
 
 		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
-		$request_path = $request['path'];
+		$request_path = isset( $request['path'] ) ? $request['path'] : '';
 
 		if ( is_admin() && ! is_user_logged_in() && ! wp_doing_ajax() && 'admin-post.php' !== $pagenow && '/wp-admin/options.php' !== $request_path ) {
 			wp_safe_redirect( $this->wp_admin_redirect_url() );
