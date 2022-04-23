@@ -120,7 +120,7 @@ wp_localize_script(
 			<div class="heatbox udb-tags-metabox">
 				<h2><?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?></h2>
 				<div class="heatbox-content">
-					<p><?php _e( 'Use the placeholder tags below in title or url fields to output certain information.', 'ultimate-dashboard' ); ?></p>
+					<p><?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?></p>
 					<p class="tags-wrapper">
 						<?php
 						$placeholder_tags = [

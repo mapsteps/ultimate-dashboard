@@ -17,9 +17,7 @@ return function () {
 	$total_tags       = count( $placeholder_tags );
 	?>
 
-	<p>
-		Use the placeholder tags below in title or content fields to output certain information.
-	</p>
+	<p><?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?></p>
 
 	<p>
 		<?php
