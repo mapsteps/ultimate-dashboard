@@ -106,7 +106,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * New: Allow rendering shortcodes in the WordPress welcome panel
 * New: Allow rendering shortcodes in the Ultimate Dashboard widget titles
 * New: Refactored import/export functionality to allow for more granular control when exporting settings
-* New: Placeholder tags to display information dynamically in widgets, welcome panel, admin bar & admin menu editor
+* New: Placeholder tags to display information dynamically in widgets & welcome panel
 * Tweak: Rewrite URL's when exporting & importing settings to a different WordPress install
 * Fixed: PHP Warning: Undefined array key "path" (https://wordpress.org/support/topic/php-message-php-warning-undefined-array-key-path/)
 * Fixed: Build Admin Menu Editor only when a specific role is clicked instead of loading them all at once (in a row). This was causing performance issues & was interpreted as a security issue by some installs.
