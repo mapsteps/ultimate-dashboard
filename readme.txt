@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 3.5.3
+Stable tag: 3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,7 +102,15 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-
+= 3.6 | April 25, 2022 =
+* New: Allow rendering shortcodes in the WordPress welcome panel
+* New: Allow rendering shortcodes in the Ultimate Dashboard widget titles
+* New: Refactored import/export functionality to allow for more granular control when exporting settings
+* New: Placeholder tags to display information dynamically in widgets, welcome panel, admin bar & admin menu editor
+* Tweak: Rewrite URL's when exporting & importing settings to a different WordPress install
+* Fixed: PHP Warning: Undefined array key "path" (https://wordpress.org/support/topic/php-message-php-warning-undefined-array-key-path/)
+* Fixed: Build Admin Menu Editor only when a specific role is clicked instead of loading them all at once (in a row). This was causing performance issues & was interpreted as a security issue by some installs.
+* Fixed: Reliability & accuracy of the Admin Menu Editor has been improved
 = 3.5.3 | March 02, 2022 =
 * New: Added support for WordPress' new language switcher on login screen
 * Updated description
