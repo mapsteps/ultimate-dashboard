@@ -5,7 +5,7 @@
  * Description: Create a custom Dashboard and give the WordPress admin area a more meaningful use.
  * Version: 3.6
  * Author: David Vongries
- * Author URI: https://mapsteps.com/
+ * Author URI: https://davidvongries.com/
  * Text Domain: ultimate-dashboard
  *
  * @package Ultimate_Dashboard
