@@ -667,7 +667,7 @@ class Get_Menu {
 								 * For this case, let's try to search using the original "&" sign.
 								 */
 								if ( false === $default_submenu_index ) {
-									$default_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_default_menu['submenu'], 'url', $original_url_default );
+									// $default_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_default_menu['submenu'], 'url', $original_url_default );
 								}
 
 								$matched_default_submenu = false !== $default_submenu_index ? $matched_default_menu['submenu'][ $default_submenu_index ] : false;
