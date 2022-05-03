@@ -194,7 +194,7 @@ class Admin_Menu_Module extends Base_Module {
 	 * we save the global $menu and $submenu everytime a user visit a page in admin area.
 	 *
 	 * This function is hooked into `admin_menu` action but the priority should be lower than our output.
-	 * 
+	 *
 	 * @param bool $is_direct_call Whether the function is called directly or not.
 	 */
 	public function save_recent_menu() {
@@ -226,10 +226,10 @@ class Admin_Menu_Module extends Base_Module {
 	 * Save $menu & $submenu to the database.
 	 * The $menu & $submenu is provided as parameter here
 	 * instead of calling global $menu & $submenu.
-	 * 
+	 *
 	 * @param string $role The targetted role.
-	 * @param array $menu The menu array.
-	 * @param array $submenu The submenu array.
+	 * @param array  $menu The menu array.
+	 * @param array  $submenu The submenu array.
 	 */
 	public function direct_save_recent_menu( $role, $menu, $submenu ) {
 
