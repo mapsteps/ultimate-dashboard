@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 3.6
+Stable tag: 3.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.6.1 | May 04, 2022 =
+* Tweak: Changed plugin header information, updated images & footer links
+* Fixed: Some sub-menu items won't loade in the Admin Menu Editor, for instance in the WooCommerce Analytics section. If you still don't see certain menu or sub-menu items appear, please try resetting the Admin Menu Editor for all or specific user roles.
 = 3.6 | April 25, 2022 =
 * New: Allow rendering shortcodes in the WordPress welcome panel
 * New: Allow rendering shortcodes in the Ultimate Dashboard widget titles
