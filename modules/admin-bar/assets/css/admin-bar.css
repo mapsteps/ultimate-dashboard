@@ -606,35 +606,3 @@ textarea.udb-admin-bar--text-field {
 	padding-right: 0;
 	padding-bottom: 0;
 }
-
-.udb-pro-admin-bar-nag {
-	margin-top: 15px;
-	background: #197cff;
-	color: #fff;
-	margin-bottom: 20px;
-	max-width: 700px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px;
-	font-weight: 700;
-}
-
-.udb-pro-admin-bar-nag > * {
-	margin: 0;
-}
-
-.udb-pro-admin-bar-nag .button {
-	background: rgba(0, 45, 96, 0.5);
-	padding: 5px 15px !important;
-}
-
-.udb-pro-admin-bar-nag .button:hover {
-	background: rgba(0, 45, 96, 0.6);
-}
-
-.udb-pro-admin-bar-notice {
-	border-top: none;
-	margin-top: 0;
-	padding-top: 0;
-}

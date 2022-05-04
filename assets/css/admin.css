@@ -71,3 +71,48 @@
 .udb-bfcm-notice .notice-content > p:last-child {
 	margin-bottom: 0;
 }
+
+/**
+ * Upgrade nag.
+ */
+.udb-pro-upgrade-nag {
+	margin-top: 15px;
+	background: #197cff;
+	color: #fff;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	font-weight: 700;
+}
+
+.udb-pro-upgrade-nag > * {
+	margin: 0;
+}
+
+.udb-pro-upgrade-nag .button {
+	background: rgba(0, 45, 96, 0.5);
+	padding: 5px 15px !important;
+}
+
+.udb-pro-upgrade-nag .button:hover {
+	background: rgba(0, 45, 96, 0.6);
+}
+
+.udb-pro-admin-bar-notice {
+	border-top: none;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+@media screen and (max-width: 991px) {
+	.udb-pro-upgrade-nag {
+		flex-wrap: wrap;
+	}
+	.udb-pro-upgrade-nag .button {
+		margin-top: 20px;
+		margin-bottom: 0;
+	}
+
+}

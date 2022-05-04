@@ -62,7 +62,7 @@ wp_localize_script(
 		<div class="heatbox-main">
 			<?php if ( ! udb_is_pro_active() ) : ?>
 
-				<div class="udb-pro-admin-bar-nag">
+				<div class="udb-pro-upgrade-nag">
 					<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 					<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
 						<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
