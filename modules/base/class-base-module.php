@@ -35,7 +35,7 @@ class Base_Module {
 			return $value;
 		}
 
-		return get_option( 'udb_' . $option_name );
+		return get_option( 'udb_' . $option_name, [] );
 
 	}
 

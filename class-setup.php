@@ -83,7 +83,16 @@ class Setup {
 
 		$this->set_data();
 
+		/**
+		 * We use 20 as the priority in the free version
+		 * because the PRO version has to run first.
+		 *
+		 * The PRO version has to run before the free version
+		 * because the PRO version hooks some action/filter to the free version.
+		 * So in order to make them executed, the PRO version has to run first.
+		 */
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
+
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
@@ -104,7 +113,7 @@ class Setup {
 
 	/**
 	 * Provide data for the plugin.
-	 * This is optimal strategy to only get_option once across modules.
+	 * This will reduce the repeated call of get_option across modules.
 	 */
 	public function set_data() {
 

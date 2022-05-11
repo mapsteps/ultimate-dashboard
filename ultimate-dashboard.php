@@ -57,6 +57,10 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 
 }
 
+// Admin menu specific support.
+require_once __DIR__ . '/modules/admin-menu/inc/not-doing-ajax.php';
+udb_admin_menu_not_doing_ajax();
+
 // Helper classes.
 require __DIR__ . '/helpers/class-screen-helper.php';
 require __DIR__ . '/helpers/class-color-helper.php';

@@ -61,7 +61,6 @@ class Admin_Menu_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 15, 2 );
-		add_action( 'init', array( self::get_instance(), 'support_tablepress' ), 5 );
 
 		// Save the recent menu and the priority should be lower than our output.
 		add_action( 'admin_menu', array( $this, 'save_recent_menu' ), 9000 );
@@ -157,36 +156,6 @@ class Admin_Menu_Module extends Base_Module {
 	}
 
 	/**
-	 * TablePress has some controllers such as: frontend, backend, & ajax.
-	 * They don't load frontend controller if it's inside admin area.
-	 * Even they don't load backend controller if it's inside admin area but is doing ajax.
-	 *
-	 * Their admin page registration is inside backend controller.
-	 * While we get the menu with role simulation through ajax.
-	 *
-	 * See "run" function inside class-tablepress.php
-	 *
-	 * @see wp-content/plugins/tablepress/classes/class-tablepress.php
-	 */
-	public function support_tablepress() {
-
-		if ( ! defined( 'TABLEPRESS_ABSPATH' ) || ! is_admin() || ! wp_doing_ajax() ) {
-			return;
-		}
-		if ( ! isset( $_POST['action'] ) || 'udb_admin_menu_get_menu' !== $_POST['action'] ) {
-			return;
-		}
-		/**
-		 * The value of `wp_doing_ajax` will be set back to `true` in class-get-menu.php file
-		 * inside `load_menu` function.
-		 *
-		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/ajax/class-get-menu.php
-		 */
-		add_filter( 'wp_doing_ajax', '__return_false' );
-
-	}
-
-	/**
 	 * Save recent / up to date global $menu and $submenu to database.
 	 *
 	 * Some plugins have some condition that makes their admin menu not being added inside ajax request.
@@ -200,14 +169,20 @@ class Admin_Menu_Module extends Base_Module {
 		/**
 		 * Prevent this function from being executed by do_action( 'admin_menu' )
 		 * when it's inside ajax request.
-		 *
-		 * When inside ajax request, this function will be called directly
-		 * instead of being executed by do_action( 'admin_menu' ).
-		 *
-		 * This is to prevent the wrong result of saving the global $menu and $submenu
-		 * during the ajax request when getting menu for our admin menu editor (for the builder).
 		 */
 		if ( wp_doing_ajax() ) {
+			return;
+		}
+
+		/**
+		 * Stop if current request is ajax request `udb_admin_menu_get_menu`.
+		 * When doing `udb_admin_menu_get_menu`, wp_doing_ajax() is temporarily set to `true`,
+		 * that's why the checking above alone is not enough.
+		 *
+		 * This is to prevent the wrong result of saving the global $menu and $submenu
+		 * during the ajax request when getting menu for our admin menu editor (the builder).
+		 */
+		if ( isset( $_POST['action'] ) && 'udb_admin_menu_get_menu' === $_POST['action'] ) {
 			return;
 		}
 

@@ -96,6 +96,11 @@ class Get_Menu {
 	 * which will be called by `do_action` in this file (inside `ajax` method above).
 	 *
 	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
+	 *
+	 * Also, when this function is called, `wp_doing_ajax` was set to false
+	 * in order to get the reliable $menu & $submenu.
+	 *
+	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/inc/not-doing-ajax.php
 	 */
 	public function load_menu() {
 
@@ -112,19 +117,26 @@ class Get_Menu {
 		}
 
 		/**
-		 * This is related to TablePress support.
+		 * Set the wp_doing_ajax back to true.
 		 *
-		 * The value of `wp_doing_ajax` was set to `false` in class-admin-menu-module.php file
-		 * inside `support_tablepress` function.
+		 * The value of `wp_doing_ajax` was set to `false` in ultimate-dashboard/ultimate-dashboard.php file
+		 * by calling `udb_admin_menu_not_doing_ajax` function.
 		 *
-		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
+		 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/inc/not-doing-ajax.php
 		 */
 		add_filter( 'wp_doing_ajax', '__return_true' );
 
 		$this->recent_menus = get_option( 'udb_recent_admin_menu', array() );
 
+		/**
+		 * The call of these 2 functions are necessary
+		 * because some plugins are conditionally register their admin menu
+		 * and they check for DOING_AJAX constant directly instead of
+		 * checking for wp_doing_ajax() function.
+		 */
 		$this->compare_default_menu_with_recent_menu();
 		$this->compare_default_submenu_with_recent_menu();
+
 		$this->check_menu_items_capability();
 
 	}
@@ -286,7 +298,7 @@ class Get_Menu {
 			}
 		}
 
-		ksort( $menu );
+		ksort( $menu, SORT_NUMERIC );
 
 	}
 
@@ -339,7 +351,7 @@ class Get_Menu {
 					}
 				}
 
-				ksort( $submenu[ $submenu_key ] );
+				ksort( $submenu[ $submenu_key ], SORT_NUMERIC );
 			}
 		}
 
