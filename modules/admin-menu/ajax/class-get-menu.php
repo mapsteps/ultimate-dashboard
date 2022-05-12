@@ -139,13 +139,15 @@ class Get_Menu {
 		$this->compare_default_menu_with_recent_menu();
 		$this->compare_default_submenu_with_recent_menu();
 
+		// This needs to be called here (after the 2 compares above).
+		$submenu = $this->fix_woo_products_submenu( $submenu );
+
 		$this->check_menu_items_capability();
 
 	}
 
 	/**
-	 * The process of getting the global $menu & $submenu
-	 * for the editor/builder happens via ajax request.
+	 * The process of getting the global $menu & $submenu for the editor/builder happens via ajax request.
 	 * It makes the URL of `Customize` submenu (under Appearance menu) become like this:
 	 * customize.php?return=%2Fwp-admin%2Fadmin-ajax.php
 	 *
@@ -170,13 +172,43 @@ class Get_Menu {
 
 				$submenu['themes.php'][ $submenu_index ][2] = $customize_url;
 
-				error_log( print_r( $submenu['themes.php'][ $submenu_index ][2], true ) );
-
 				break;
 			}
 		}
 
 		return $submenu;
+	}
+
+	/**
+	 * In admin menu editor (in the builder), we have some submenu items that shouldn't be there.
+	 * They are under WooCommerce's "Products" menu:
+	 * - Product Import
+	 * - Product Export
+	 *
+	 * WooCommerce registers those submenu items in `admin_menu` hook and then remove it in `admin_head` hook.
+	 * They only needs the actual page and don't want the submenu items.
+	 *
+	 * The `udb_recent_admin_menu` is done in the `admin_menu` hook before UDB's admin menu output is implemented.
+	 * So we can't use `admin_head` to save the recent menu.
+	 * That's why this specific support for WooCommerce is here.
+	 *
+	 * @param array $submenu The submenu array.
+	 * @return array The modified submenu array.
+	 */
+	public function fix_woo_products_submenu( $submenu ) {
+
+		if ( ! isset( $submenu['edit.php?post_type=product'] ) ) {
+			return $submenu;
+		}
+
+		foreach ( $submenu['edit.php?post_type=product'] as $submenu_index => $submenu_item ) {
+			if ( 'product_importer' === $submenu_item[2] || 'product_exporter' === $submenu_item[2] ) {
+				unset( $submenu['edit.php?post_type=product'][ $submenu_index ] );
+			}
+		}
+
+		return $submenu;
+
 	}
 
 	/**
