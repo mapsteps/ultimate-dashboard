@@ -128,6 +128,8 @@ class Get_Menu {
 
 		$this->recent_menus = get_option( 'udb_recent_admin_menu', array() );
 
+		$submenu = $this->fix_submenu_customizer_link( $submenu );
+
 		/**
 		 * The call of these 2 functions are necessary
 		 * because some plugins are conditionally register their admin menu
@@ -139,6 +141,42 @@ class Get_Menu {
 
 		$this->check_menu_items_capability();
 
+	}
+
+	/**
+	 * The process of getting the global $menu & $submenu
+	 * for the editor/builder happens via ajax request.
+	 * It makes the URL of `Customize` submenu (under Appearance menu) become like this:
+	 * customize.php?return=%2Fwp-admin%2Fadmin-ajax.php
+	 *
+	 * That return path should be changed to the current admin menu editor (the builder) path.
+	 * If we don't convert it properly, it will cause double "Customize" submenu item.
+	 *
+	 * @param array $submenu The submenu array.
+	 * @return array The modified submenu array.
+	 */
+	public function fix_submenu_customizer_link( $submenu ) {
+
+		if ( ! isset( $submenu['themes.php'] ) ) {
+			return $submenu;
+		}
+
+		foreach ( $submenu['themes.php'] as $submenu_index => $submenu_item ) {
+			if ( 'customize.php?return=%2Fwp-admin%2Fadmin-ajax.php' === $submenu_item[2] ) {
+				$return_path   = wp_get_referer();
+				$return_path   = str_replace( site_url(), '', $return_path );
+				$return_path   = rawurlencode( $return_path );
+				$customize_url = 'customize.php?return=' . $return_path;
+
+				$submenu['themes.php'][ $submenu_index ][2] = $customize_url;
+
+				error_log( print_r( $submenu['themes.php'][ $submenu_index ][2], true ) );
+
+				break;
+			}
+		}
+
+		return $submenu;
 	}
 
 	/**
