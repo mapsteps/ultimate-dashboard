@@ -793,12 +793,12 @@ class Get_Menu {
 	}
 
 	/**
-	 * Get new items from default menu, add it to our custom menu if exist.
+	 * Get new items from default menu and add it to our custom menu.
 	 *
 	 * @see https://stackoverflow.com/questions/3797239/insert-new-item-in-array-on-any-position-in-php
 	 *
-	 * @param array $default_menu The default menu.
-	 * @param array $custom_menu The custom menu.
+	 * @param array $default_menu The default menu (taken from WP default).
+	 * @param array $custom_menu The custom menu (taken from database).
 	 *
 	 * @return array The modified custom menu.
 	 */
@@ -818,7 +818,51 @@ class Get_Menu {
 			} else {
 				if ( isset( $menu_item['submenu'] ) ) {
 					foreach ( $menu_item['submenu'] as $submenu_index => $submenu_item ) {
-						$custom_submenu_index   = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_item['url'] );
+						$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_item['url'] );
+
+						if ( false === $custom_submenu_index ) {
+							/**
+							 * If $custom_submenu_index is false, there's possibility that
+							 * the url_default of submenu item we're looking for (inside of the $matched_custom_menu['submenu'])
+							 * is using &amp; code instead of & sign.
+							 *
+							 * Please note, some submenu items may have &amp; code instead of & sign.
+							 * Such as taxonomy submenu items of a custom post type.
+							 *
+							 * However, when rendered into the builder,
+							 * the &amp; code is converted to & sign automatically (browser behavior maybe?).
+							 * That url default is rendered in the url field's placeholder & in the `data-default-url` attribute of the submenu item's `li` tag.
+							 *
+							 * That means, even though those taxonomy submenu items of a custom post type
+							 * are using &amp; code instead of & sign, they will be saved as & sign in the database.
+							 *
+							 * It will cause a doubled menu items in the array when we try to load it via ajax.
+							 * But they will not be doubled in the builder.
+							 *
+							 * This is because the doubled items will be elimited to 1 item in `parse_response_with_custom_menu` execution.
+							 * However, the elimination from doubled items into 1 item in that execution resulting wrong result:
+							 * The hidden taxonomy submenu item of custom a post type is not hidden in the builder.
+							 * That's why we need this extra handling.
+							 */
+							if ( false !== stripos( $submenu_item['url'], '&amp;' ) ) {
+								$submenu_url_default = str_ireplace( '&amp;', '&', $submenu_item['url'] );
+
+								// Try to look up using & sign instead of &amp; code.
+								$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_url_default );
+
+								/**
+								 * If $custom_submenu_index is not false (is found),
+								 * That means the url_default of $matched_custom_menu['submenu'][ $custom_submenu_index ] is using &amp; code instead of & sign.
+								 *
+								 * In this case, we should also update our related custom menu to use &amp; code
+								 * as related WP default menu is also using it.
+								 */
+								if ( false !== $custom_submenu_index ) {
+									$custom_menu[ $custom_menu_index ]['submenu'][ $custom_submenu_index ]['url_default'] = $submenu_item['url'];
+								}
+							}
+						}
+
 						$matched_custom_submenu = false !== $custom_submenu_index ? $matched_custom_menu['submenu'][ $custom_submenu_index ] : false;
 
 						if ( ! $matched_custom_submenu ) {
