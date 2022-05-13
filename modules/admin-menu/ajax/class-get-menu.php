@@ -180,6 +180,8 @@ class Get_Menu {
 	}
 
 	/**
+	 * Fix WooCommerce products submenu for the builder.
+	 *
 	 * In admin menu editor (in the builder), we have some submenu items that shouldn't be there.
 	 * They are under WooCommerce's "Products" menu:
 	 * - Product Import
