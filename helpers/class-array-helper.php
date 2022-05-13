@@ -58,7 +58,7 @@ class Array_Helper {
 		// Check arrays contained in this array.
 		foreach ( $arr as $element ) {
 			if ( is_array( $element ) ) {
-				if ( nested_key_exists( $element, $key ) ) {
+				if ( $this->nested_key_exists( $element, $key ) ) {
 					return true;
 				}
 			}
