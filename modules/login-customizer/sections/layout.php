@@ -378,7 +378,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '#cccccc',
+		'default'           => '#dddddd',
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)
