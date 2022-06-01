@@ -4,7 +4,7 @@
 	}
 
 	function moveLanguageSwitcher() {
-		var loginDiv = document.querySelector('#login');
+		var loginDiv = document.querySelector("#login");
 		if (!loginDiv) return;
 
 		var langSwitcher = document.querySelector(".language-switcher");
