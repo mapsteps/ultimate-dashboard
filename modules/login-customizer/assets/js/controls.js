@@ -42,7 +42,12 @@ if (!String.prototype.includes) {
 	function listen() {
 		events.switchLoginPreview();
 		events.bgFieldsChange();
-		if (!udbLoginCustomizer.isProActive) events.templateFieldsChange();
+
+		if (!udbLoginCustomizer.isProActive) {
+			events.templateFieldsChange();
+		} else {
+			document.body.classList.add('udb-pro-active');
+		}
 	}
 
 	function colorPickerControl() {

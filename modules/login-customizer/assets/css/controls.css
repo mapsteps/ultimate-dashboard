@@ -220,7 +220,7 @@ input::-moz-focus-outer {
 /**
  * Individual Controls Tweak
  */
-#customize-control-udb_login-form_position {
+body:not(.udb-pro-active) #customize-control-udb_login-form_position {
 	margin-bottom: 0;
 	padding-bottom: 0;
 	border-bottom-width: 0;
