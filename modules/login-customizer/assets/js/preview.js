@@ -275,6 +275,45 @@
 				document.querySelector('[data-listen-value="udb_login[form_border_radius]"]').innerHTML = content;
 			});
 		});
+
+		wp.customize('udb_login[enable_form_shadow]', function (setting) {
+			setting.bind(function (val) {
+				var shadowStructure;
+				var shadowColor;
+				var content;
+
+				if (val) {
+					shadowStructure = wp.customize("udb_login[form_shadow_structure]").get();
+					shadowColor = wp.customize("udb_login[form_shadow_color]").get();
+					content = buildBoxShadowValue(shadowStructure, shadowColor);
+				} else {
+					content = "box-shadow: none;";
+				}
+
+				content = "#loginform {" + content + "}";
+				document.querySelector('[data-listen-value="udb_login[form_shadow]"]').textContent = content;
+			});
+		});
+
+		wp.customize('udb_login[form_shadow_structure]', function (setting) {
+			setting.bind(function (val) {
+				var shadowColor = wp.customize("udb_login[form_shadow_color]").get();
+				var content = buildBoxShadowValue(val, shadowColor);
+				content = "#loginform {" + content + "}";
+
+				document.querySelector('[data-listen-value="udb_login[form_shadow]"]').textContent = content;
+			});
+		});
+
+		wp.customize('udb_login[form_shadow_color]', function (setting) {
+			setting.bind(function (val) {
+				var shadowStructure = wp.customize("udb_login[form_shadow_structure]").get();
+				var content = buildBoxShadowValue(shadowStructure, val);
+				content = "#loginform {" + content + "}";
+
+				document.querySelector('[data-listen-value="udb_login[form_shadow]"]').textContent = content;
+			});
+		});
 	};
 
 	events.formFieldsChange = function () {
@@ -462,6 +501,15 @@
 			});
 		});
 	};
+
+	function buildBoxShadowValue(structure, color) {
+		var content = "box-shadow: none;";
+		if (!structure || !color) return content;
+
+		content = "box-shadow: " + structure + " " + color + ";";
+
+		return content;
+	}
 
 	function showProNotice(autoHide) {
 		var notice = document.querySelector('.udb-pro-login-customizer-notice');

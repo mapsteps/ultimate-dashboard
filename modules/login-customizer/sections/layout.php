@@ -16,6 +16,7 @@ use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Pro_Control;
 use Udb\Udb_Customize_Color_Control;
 use Udb\Udb_Customize_Range_Control;
+use Udb\Udb_Customize_Toggle_Switch_Control;
 
 if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 	$wp_customize->add_setting(
@@ -318,6 +319,79 @@ $wp_customize->add_control(
 				'max'  => 80,
 				'step' => 1,
 			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[enable_form_shadow]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 0,
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Toggle_Switch_Control(
+		$wp_customize,
+		'udb_login[enable_form_shadow]',
+		array(
+			'settings' => 'udb_login[enable_form_shadow]',
+			'section'  => 'udb_login_customizer_layout_section',
+			'label'    => __( "Enable form's box shadow", 'ultimate-dashboard' ),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[form_shadow_structure]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '0 4px 10px -1px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Control(
+		$wp_customize,
+		'udb_login[form_shadow_structure]',
+		array(
+			'type'        => 'text',
+			'section'     => 'udb_login_customizer_layout_section',
+			'settings'    => 'udb_login[form_shadow_structure]',
+			'label'       => __( 'Shadow Structure', 'ultimate-dashboard' ),
+			'input_attrs' => array(
+				'placeholder' => 'Powered by WordPress',
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[form_shadow_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#cccccc',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[form_shadow_color]',
+		array(
+			'label'    => __( 'Shadow Color', 'ultimate-dashboard' ),
+			'section'  => 'udb_login_customizer_layout_section',
+			'settings' => 'udb_login[form_shadow_color]',
 		)
 	)
 );
