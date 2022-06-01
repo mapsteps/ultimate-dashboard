@@ -20,7 +20,11 @@ $logo_image  = isset( $login['logo_image'] ) ? $login['logo_image'] : '';
 $logo_image  = apply_filters( 'udb_login_logo', $logo_image );
 $logo_height = isset( $login['logo_height'] ) ? $login['logo_height'] : '100%';
 
-$bg_color = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
+$bg_color    = isset( $login['bg_color'] ) ? $login['bg_color'] : '';
+$bg_image    = isset( $login['bg_image'] ) ? $login['bg_image'] : '';
+$bg_position = isset( $login['bg_position'] ) ? $login['bg_position'] : 'center';
+$bg_size     = isset( $login['bg_size'] ) ? $login['bg_size'] : 'cover';
+$bg_repeat   = isset( $login['bg_repeat'] ) ? $login['bg_repeat'] : 'no-repeat';
 
 $form_bg_color           = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '';
@@ -65,11 +69,27 @@ $footer_link_color_hover = isset( $login['footer_link_color_hover'] ) ? $login['
 $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $accent_color : $footer_link_color_hover; // Additional checking to inherit wp-admin accent color by default.
 ?>
 
-<?php if ( $bg_color ) : ?>
-	body.login {
+body.login {
+	<?php if ( $bg_color ) : ?>
 		background-color: <?php echo esc_attr( $bg_color ); ?>;
-	}
-<?php endif; ?>
+	<?php endif; ?>
+
+	<?php if ( $bg_image ) : ?>
+		background-image: url(<?php echo esc_attr( $bg_image ); ?>);
+
+		<?php if ( $bg_position ) : ?>
+			background-position: <?php echo esc_attr( $bg_position ); ?>;
+		<?php endif; ?>
+
+		<?php if ( $bg_size ) : ?>
+			background-size: <?php echo esc_attr( $bg_size ); ?>;
+		<?php endif; ?>
+
+		<?php if ( $bg_repeat ) : ?>
+			background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
+		<?php endif; ?>
+	<?php endif; ?>
+}
 
 .login h1 {
 	padding: 0 12px;

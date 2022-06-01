@@ -41,6 +41,7 @@ if (!String.prototype.includes) {
 
 	function listen() {
 		events.switchLoginPreview();
+		events.bgFieldsChange();
 		if (!udbLoginCustomizer.isProActive) events.templateFieldsChange();
 	}
 
@@ -173,6 +174,48 @@ if (!String.prototype.includes) {
 			});
 		});
 	}
+
+	events.bgFieldsChange = function () {
+		wp.customize.section("udb_login_customizer_bg_section", function (section) {
+			section.expanded.bind(function (isExpanded) {
+				if (isExpanded) {
+
+					if (wp.customize("udb_login[bg_image]").get()) {
+						wp.customize.control("udb_login[bg_position]").activate();
+						wp.customize.control("udb_login[bg_size]").activate();
+						wp.customize.control("udb_login[bg_repeat]").activate();
+					} else {
+						wp.customize.control("udb_login[bg_position]").deactivate();
+						wp.customize.control("udb_login[bg_size]").deactivate();
+						wp.customize.control("udb_login[bg_repeat]").deactivate();
+					}
+
+				}
+			});
+		});
+
+		wp.customize("udb_login[bg_image]", function (setting) {
+			setting.bind(function (val) {
+				if (val) {
+					document
+						.querySelector('[data-control-name="udb_login[bg_image]"]')
+						.classList.remove("is-empty");
+
+					wp.customize.control("udb_login[bg_position]").activate();
+					wp.customize.control("udb_login[bg_size]").activate();
+					wp.customize.control("udb_login[bg_repeat]").activate();
+				} else {
+					document
+						.querySelector('[data-control-name="udb_login[bg_image]"]')
+						.classList.add("is-empty");
+
+					wp.customize.control("udb_login[bg_position]").deactivate();
+					wp.customize.control("udb_login[bg_size]").deactivate();
+					wp.customize.control("udb_login[bg_repeat]").deactivate();
+				}
+			});
+		});
+	};
 
 	events.templateFieldsChange = function () {
 		wp.customize.section('udb_login_customizer_template_section', function (section) {

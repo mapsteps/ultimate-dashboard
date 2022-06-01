@@ -140,6 +140,10 @@ class Login_Customizer_Output extends Base_Output {
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[logo_height]"></style>';
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_color]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_image]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_position]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_size]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[bg_repeat]"></style>';
 
 		do_action( 'udb_login_customizer_live_styles' );
 

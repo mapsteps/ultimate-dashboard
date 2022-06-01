@@ -97,6 +97,48 @@
 				document.querySelector('[data-listen-value="udb_login[bg_color]"]').innerHTML = 'body.login {background-color: ' + val + ';}';
 			});
 		});
+
+		wp.customize("udb_login[bg_image]", function (setting) {
+			setting.bind(function (val) {
+				var rule = val
+					? "background-image: url(" + val + ");"
+					: "background-image: none;";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[bg_image]"]'
+				).innerHTML = "body.login {" + rule + "}";
+			});
+		});
+
+		wp.customize("udb_login[bg_position]", function (setting) {
+			setting.bind(function (val) {
+				var rule = "background-position: " + val + ";";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[bg_position]"]'
+				).innerHTML = "body.login {" + rule + "}";
+			});
+		});
+
+		wp.customize("udb_login[bg_size]", function (setting) {
+			setting.bind(function (val) {
+				var rule = "background-size: " + val + ";";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[bg_size]"]'
+				).innerHTML = "body.login {" + rule + "}";
+			});
+		});
+
+		wp.customize("udb_login[bg_repeat]", function (setting) {
+			setting.bind(function (val) {
+				var rule = "background-repeat: " + val + ";";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[bg_repeat]"]'
+				).innerHTML = "body.login {" + rule + "}";
+			});
+		});
 	};
 
 	events.templateFieldsChange = function () {
