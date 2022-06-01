@@ -106,48 +106,77 @@
 			});
 		});
 
-		wp.customize("udb_login[bg_image]", function (setting) {
+		handleBgFieldsChange("", "body.login");
+		handleBgFieldsChange("form_", ".login form, #loginform");
+	};
+
+	function handleBgFieldsChange(keyPrefix, selector) {
+		wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting) {
 			setting.bind(function (val) {
+				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				if (keyPrefix === "form_" && formPosition !== "default") {
+					selector = "#login";
+				}
+
 				var rule = val
 					? "background-image: url(" + val + ");"
 					: "background-image: none;";
 
 				document.querySelector(
-					'[data-listen-value="udb_login[bg_image]"]'
-				).innerHTML = "body.login {" + rule + "}";
+					'[data-listen-value="udb_login[' + keyPrefix + 'bg_image]"]'
+				).innerHTML = selector + " {" + rule + "}";
 			});
 		});
 
-		wp.customize("udb_login[bg_position]", function (setting) {
+		wp.customize("udb_login[" + keyPrefix + "bg_repeat]", function (setting) {
 			setting.bind(function (val) {
-				var rule = "background-position: " + val + ";";
+				var formPosition = wp.customize("udb_login[form_position]").get();
 
-				document.querySelector(
-					'[data-listen-value="udb_login[bg_position]"]'
-				).innerHTML = "body.login {" + rule + "}";
-			});
-		});
+				if (keyPrefix === "form_" && formPosition !== "default") {
+					selector = "#login";
+				}
 
-		wp.customize("udb_login[bg_size]", function (setting) {
-			setting.bind(function (val) {
-				var rule = "background-size: " + val + ";";
-
-				document.querySelector(
-					'[data-listen-value="udb_login[bg_size]"]'
-				).innerHTML = "body.login {" + rule + "}";
-			});
-		});
-
-		wp.customize("udb_login[bg_repeat]", function (setting) {
-			setting.bind(function (val) {
 				var rule = "background-repeat: " + val + ";";
 
 				document.querySelector(
-					'[data-listen-value="udb_login[bg_repeat]"]'
-				).innerHTML = "body.login {" + rule + "}";
+					'[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]'
+				).innerHTML = selector + " {" + rule + "}";
 			});
 		});
-	};
+
+		wp.customize("udb_login[" + keyPrefix + "bg_position]", function (setting) {
+			setting.bind(function (val) {
+				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				if (keyPrefix === "form_" && formPosition !== "default") {
+					selector = "#login";
+				}
+
+				var rule = "background-position: " + val + ";";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]'
+				).innerHTML = selector + " {" + rule + "}";
+			});
+		});
+
+		wp.customize("udb_login[" + keyPrefix + "bg_size]", function (setting) {
+			setting.bind(function (val) {
+				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				if (keyPrefix === "form_" && formPosition !== "default") {
+					selector = "#login";
+				}
+
+				var rule = "background-size: " + val + ";";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]'
+				).innerHTML = selector + " {" + rule + "}";
+			});
+		});
+	}
 
 	events.templateFieldsChange = function () {
 		wp.customize("udb_login[template]", function (setting) {

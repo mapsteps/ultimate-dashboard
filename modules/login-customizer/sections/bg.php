@@ -63,6 +63,36 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
+	'udb_login[bg_repeat]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 'no-repeat',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Control(
+		$wp_customize,
+		'udb_login[bg_repeat]',
+		array(
+			'type'     => 'select',
+			'section'  => 'udb_login_customizer_bg_section',
+			'settings' => 'udb_login[bg_repeat]',
+			'label'    => __( 'Background Repeat', 'ultimate-dashboard' ),
+			'choices'  => array(
+				'no-repeat' => __( 'no-repeat', 'ultimate-dashboard' ),
+				'repeat'    => __( 'repeat', 'ultimate-dashboard' ),
+				'repeat-x'  => __( 'repeat-x', 'ultimate-dashboard' ),
+				'repeat-y'  => __( 'repeat-y', 'ultimate-dashboard' ),
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
 	'udb_login[bg_position]',
 	array(
 		'type'              => 'option',
@@ -121,36 +151,6 @@ $wp_customize->add_control(
 				'auto'    => __( 'auto', 'ultimate-dashboard' ),
 				'cover'   => __( 'cover', 'ultimate-dashboard' ),
 				'contain' => __( 'contain', 'ultimate-dashboard' ),
-			),
-		)
-	)
-);
-
-$wp_customize->add_setting(
-	'udb_login[bg_repeat]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => 'no-repeat',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-
-$wp_customize->add_control(
-	new Udb_Customize_Control(
-		$wp_customize,
-		'udb_login[bg_repeat]',
-		array(
-			'type'     => 'select',
-			'section'  => 'udb_login_customizer_bg_section',
-			'settings' => 'udb_login[bg_repeat]',
-			'label'    => __( 'Background Repeat', 'ultimate-dashboard' ),
-			'choices'  => array(
-				'no-repeat' => __( 'no-repeat', 'ultimate-dashboard' ),
-				'repeat'    => __( 'repeat', 'ultimate-dashboard' ),
-				'repeat-x'  => __( 'repeat-x', 'ultimate-dashboard' ),
-				'repeat-y'  => __( 'repeat-y', 'ultimate-dashboard' ),
 			),
 		)
 	)
