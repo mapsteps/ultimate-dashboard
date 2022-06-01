@@ -347,27 +347,29 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
-	'udb_login[form_shadow_structure]',
+	'udb_login[form_shadow_blur]',
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '0 4px 10px -1px',
+		'default'           => '10px',
 		'transport'         => 'postMessage',
-		'sanitize_callback' => 'sanitize_text_field',
+		'sanitize_callback' => 'esc_attr',
 	)
 );
 
 $wp_customize->add_control(
-	new Udb_Customize_Control(
+	new Udb_Customize_Range_Control(
 		$wp_customize,
-		'udb_login[form_shadow_structure]',
+		'udb_login[form_shadow_blur]',
 		array(
-			'type'        => 'text',
+			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
-			'settings'    => 'udb_login[form_shadow_structure]',
-			'label'       => __( 'Shadow Structure', 'ultimate-dashboard' ),
+			'settings'    => 'udb_login[form_shadow_blur]',
+			'label'       => __( 'Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
-				'placeholder' => 'Powered by WordPress',
+				'min'  => 0,
+				'max'  => 100,
+				'step' => 1,
 			),
 		)
 	)

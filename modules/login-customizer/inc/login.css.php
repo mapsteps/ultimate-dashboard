@@ -36,9 +36,9 @@ $form_border_style       = isset( $login['form_border_style'] ) ? $login['form_b
 $form_border_color       = isset( $login['form_border_color'] ) ? $login['form_border_color'] : '#dddddd';
 $form_border_radius      = isset( $login['form_border_radius'] ) ? $login['form_border_radius'] : '4px';
 
-$enable_form_shadow    = isset( $login['enable_form_shadow'] ) ? $login['enable_form_shadow'] : 0;
-$form_shadow_structure = isset( $login['form_shadow_structure'] ) ? $login['form_shadow_structure'] : '0 4px 10px -1px';
-$form_shadow_color     = isset( $login['form_shadow_color'] ) ? $login['form_shadow_color'] : '#cccccc';
+$enable_form_shadow = isset( $login['enable_form_shadow'] ) ? $login['enable_form_shadow'] : 0;
+$form_shadow_blur   = isset( $login['form_shadow_blur'] ) ? $login['form_shadow_blur'] : '10px';
+$form_shadow_color  = isset( $login['form_shadow_color'] ) ? $login['form_shadow_color'] : '#cccccc';
 
 $fields_height             = isset( $login['fields_height'] ) ? $login['fields_height'] : '50px';
 $fields_horizontal_padding = isset( $login['fields_horizontal_padding'] ) ? $login['fields_horizontal_padding'] : '10px';
@@ -126,7 +126,7 @@ body.login {
 	border-radius: <?php echo esc_attr( $form_border_radius ); ?>;
 
 	<?php if ( $enable_form_shadow ) : ?>
-		box-shadow: <?php echo esc_attr( $form_shadow_structure ); ?> <?php echo esc_attr( $form_shadow_color ); ?>;
+		box-shadow: 0 0 <?php echo esc_attr( $form_shadow_blur ); ?> 0 <?php echo esc_attr( $form_shadow_color ); ?>;
 	<?php endif; ?>
 
 	<?php if ( $form_bg_color ) : ?>

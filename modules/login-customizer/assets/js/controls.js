@@ -288,14 +288,14 @@ if (!String.prototype.includes) {
 							wp.customize.control("udb_login[enable_form_shadow]").activate();
 
 							if (formShadowEnabled) {
-								wp.customize
-									.control("udb_login[form_shadow_structure]")
-									.activate();
+								wp.customize.control("udb_login[form_shadow_blur]").activate();
+
 								wp.customize.control("udb_login[form_shadow_color]").activate();
 							} else {
 								wp.customize
-									.control("udb_login[form_shadow_structure]")
+									.control("udb_login[form_shadow_blur]")
 									.deactivate();
+
 								wp.customize
 									.control("udb_login[form_shadow_color]")
 									.deactivate();
@@ -309,10 +309,10 @@ if (!String.prototype.includes) {
 		wp.customize("udb_login[enable_form_shadow]", function (setting) {
 			setting.bind(function (val) {
 				if (val) {
-					wp.customize.control("udb_login[form_shadow_structure]").activate();
+					wp.customize.control("udb_login[form_shadow_blur]").activate();
 					wp.customize.control("udb_login[form_shadow_color]").activate();
 				} else {
-					wp.customize.control("udb_login[form_shadow_structure]").deactivate();
+					wp.customize.control("udb_login[form_shadow_blur]").deactivate();
 					wp.customize.control("udb_login[form_shadow_color]").deactivate();
 				}
 			});

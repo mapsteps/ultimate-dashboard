@@ -340,16 +340,14 @@
 
 		wp.customize("udb_login[enable_form_shadow]", function (setting) {
 			setting.bind(function (val) {
-				var shadowStructure;
+				var shadowBlur;
 				var shadowColor;
 				var content;
 
 				if (val) {
-					shadowStructure = wp
-						.customize("udb_login[form_shadow_structure]")
-						.get();
+					shadowBlur = wp.customize("udb_login[form_shadow_blur]").get();
 					shadowColor = wp.customize("udb_login[form_shadow_color]").get();
-					content = buildBoxShadowValue(shadowStructure, shadowColor);
+					content = buildBoxShadowValue(shadowBlur, shadowColor);
 				} else {
 					content = "box-shadow: none;";
 				}
@@ -361,7 +359,7 @@
 			});
 		});
 
-		wp.customize("udb_login[form_shadow_structure]", function (setting) {
+		wp.customize("udb_login[form_shadow_blur]", function (setting) {
 			setting.bind(function (val) {
 				var shadowColor = wp.customize("udb_login[form_shadow_color]").get();
 				var content = buildBoxShadowValue(val, shadowColor);
@@ -375,10 +373,8 @@
 
 		wp.customize("udb_login[form_shadow_color]", function (setting) {
 			setting.bind(function (val) {
-				var shadowStructure = wp
-					.customize("udb_login[form_shadow_structure]")
-					.get();
-				var content = buildBoxShadowValue(shadowStructure, val);
+				var shadowBlur = wp.customize("udb_login[form_shadow_blur]").get();
+				var content = buildBoxShadowValue(shadowBlur, val);
 				content = "#loginform {" + content + "}";
 
 				document.querySelector(
@@ -683,11 +679,11 @@
 		});
 	};
 
-	function buildBoxShadowValue(structure, color) {
+	function buildBoxShadowValue(blur, color) {
 		var content = "box-shadow: none;";
-		if (!structure || !color) return content;
+		if (!blur || !color) return content;
 
-		content = "box-shadow: " + structure + " " + color + ";";
+		content = "box-shadow: 0 0 " + blur + " 0 " + color + ";";
 
 		return content;
 	}
