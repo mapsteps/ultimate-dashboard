@@ -252,6 +252,14 @@
 			});
 		});
 
+		wp.customize('udb_login[form_border_style]', function (setting) {
+			setting.bind(function (val) {
+				var content = val ? '#loginform {border-style: ' + val + ';}' : '';
+
+				document.querySelector('[data-listen-value="udb_login[form_border_style]"]').innerHTML = content;
+			});
+		});
+
 		wp.customize('udb_login[form_border_color]', function (setting) {
 			setting.bind(function (val) {
 				val = val ? val : '#dddddd';

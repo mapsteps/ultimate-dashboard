@@ -17,56 +17,60 @@ use Udb\Udb_Customize_Pro_Control;
 use Udb\Udb_Customize_Color_Control;
 use Udb\Udb_Customize_Range_Control;
 
-$wp_customize->add_setting(
-	'udb_login[form_position]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => 'default',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
-
-$wp_customize->add_control(
-	new Udb_Customize_Control(
-		$wp_customize,
+if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
+	$wp_customize->add_setting(
 		'udb_login[form_position]',
 		array(
-			'type'     => 'select',
-			'section'  => 'udb_login_customizer_layout_section',
-			'settings' => 'udb_login[form_position]',
-			'label'    => __( 'Layout', 'ultimate-dashboard' ),
-			'choices'  => array(
-				'default' => __( 'Default', 'ultimate-dashboard' ),
-			),
+			'type'              => 'option',
+			'capability'        => 'edit_theme_options',
+			'default'           => 'default',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
 		)
-	)
-);
+	);
 
-$wp_customize->add_setting(
-	'udb_login[pro_layout]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => '',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'sanitize_text_field',
-	)
-);
+	$wp_customize->add_control(
+		new Udb_Customize_Control(
+			$wp_customize,
+			'udb_login[form_position]',
+			array(
+				'type'     => 'select',
+				'section'  => 'udb_login_customizer_layout_section',
+				'settings' => 'udb_login[form_position]',
+				'label'    => __( 'Layout', 'ultimate-dashboard' ),
+				// The PRO version contains more than "default".
+				'choices'  => array(
+					'default' => __( 'Default', 'ultimate-dashboard' ),
+				),
+			)
+		)
+	);
 
-$wp_customize->add_control(
-	new Udb_Customize_Pro_Control(
-		$wp_customize,
+	$wp_customize->add_setting(
 		'udb_login[pro_layout]',
 		array(
-			'label'       => '',
-			'description' => __( 'More layouts (left & right) available in Ultimate Dashboard PRO.' ),
-			'section'     => 'udb_login_customizer_layout_section',
-			'settings'    => 'udb_login[pro_layout]',
+			'type'              => 'option',
+			'capability'        => 'edit_theme_options',
+			'default'           => '',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
 		)
-	)
-);
+	);
+
+	$wp_customize->add_control(
+		new Udb_Customize_Pro_Control(
+			$wp_customize,
+			'udb_login[pro_layout]',
+			array(
+				'label'       => '',
+				'description' => __( 'More layouts (left & right) available in Ultimate Dashboard PRO.' ),
+				'section'     => 'udb_login_customizer_layout_section',
+				'settings'    => 'udb_login[pro_layout]',
+			)
+		)
+	);
+}
+
 
 $wp_customize->add_setting(
 	'udb_login[form_bg_color]',
@@ -231,6 +235,36 @@ $wp_customize->add_control(
 				'min'  => 0,
 				'max'  => 50,
 				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[form_border_style]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 'solid',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Control(
+		$wp_customize,
+		'udb_login[form_border_style]',
+		array(
+			'type'     => 'select',
+			'section'  => 'udb_login_customizer_layout_section',
+			'settings' => 'udb_login[form_border_style]',
+			'label'    => __( 'Border Style', 'ultimate-dashboard' ),
+			'choices'  => array(
+				'solid'  => __( 'solid', 'ultimate-dashboard' ),
+				'dotted' => __( 'dotted', 'ultimate-dashboard' ),
+				'dashed' => __( 'dashed', 'ultimate-dashboard' ),
+				'none'   => __( 'none', 'ultimate-dashboard' ),
 			),
 		)
 	)

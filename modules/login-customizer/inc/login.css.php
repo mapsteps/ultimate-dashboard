@@ -31,8 +31,9 @@ $form_width              = isset( $login['form_width'] ) ? $login['form_width'] 
 $form_top_padding        = isset( $login['form_top_padding'] ) ? $login['form_top_padding'] : '';
 $form_bottom_padding     = isset( $login['form_bottom_padding'] ) ? $login['form_bottom_padding'] : '';
 $form_horizontal_padding = isset( $login['form_horizontal_padding'] ) ? $login['form_horizontal_padding'] : ''; // Not in use?
-$form_border_color       = isset( $login['form_border_color'] ) ? $login['form_border_color'] : '#dddddd';
 $form_border_width       = isset( $login['form_border_width'] ) ? $login['form_border_width'] : '2px';
+$form_border_style       = isset( $login['form_border_style'] ) ? $login['form_border_style'] : 'solid';
+$form_border_color       = isset( $login['form_border_color'] ) ? $login['form_border_color'] : '#dddddd';
 $form_border_radius      = isset( $login['form_border_radius'] ) ? $login['form_border_radius'] : '4px';
 
 $fields_height             = isset( $login['fields_height'] ) ? $login['fields_height'] : '50px';
@@ -76,18 +77,9 @@ body.login {
 
 	<?php if ( $bg_image ) : ?>
 		background-image: url(<?php echo esc_attr( $bg_image ); ?>);
-
-		<?php if ( $bg_position ) : ?>
-			background-position: <?php echo esc_attr( $bg_position ); ?>;
-		<?php endif; ?>
-
-		<?php if ( $bg_size ) : ?>
-			background-size: <?php echo esc_attr( $bg_size ); ?>;
-		<?php endif; ?>
-
-		<?php if ( $bg_repeat ) : ?>
-			background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
-		<?php endif; ?>
+		background-position: <?php echo esc_attr( $bg_position ); ?>;
+		background-size: <?php echo esc_attr( $bg_size ); ?>;
+		background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
 	<?php endif; ?>
 }
 
@@ -125,6 +117,7 @@ body.login {
 #loginform {
 	box-shadow: none;
 	border-width: <?php echo esc_attr( $form_border_width ); ?>;
+	border-style: <?php echo esc_attr( $form_border_style ); ?>;
 	border-color: <?php echo esc_attr( $form_border_color ); ?>;
 	border-radius: <?php echo esc_attr( $form_border_radius ); ?>;
 	<?php if ( $form_bg_color ) : ?>
