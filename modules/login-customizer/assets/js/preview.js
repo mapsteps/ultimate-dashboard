@@ -118,6 +118,10 @@
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
+
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					selector = "#login";
 				}
@@ -126,6 +130,34 @@
 					el: bgImageStyleTag,
 					selector: selector,
 					rules: "background-image: url(" + val + ");",
+				});
+
+				var bgRepeat = wp
+					.customize("udb_login[" + keyPrefix + "bg_repeat]")
+					.get();
+
+				writeStyleContent({
+					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]',
+					selector: selector,
+					rules: "background-repeat: " + bgRepeat + ";",
+				});
+
+				var bgPosition = wp
+					.customize("udb_login[" + keyPrefix + "bg_position]")
+					.get();
+
+				writeStyleContent({
+					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+					selector: selector,
+					rules: "background-position: " + bgPosition + ";",
+				});
+
+				var bgSize = wp.customize("udb_login[" + keyPrefix + "bg_size]").get();
+
+				writeStyleContent({
+					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]',
+					selector: selector,
+					rules: "background-size: " + bgSize + ";",
 				});
 			});
 		});
@@ -137,6 +169,10 @@
 
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					selector = "#login";
@@ -154,6 +190,10 @@
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
+
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					selector = "#login";
 				}
@@ -169,6 +209,10 @@
 		wp.customize("udb_login[" + keyPrefix + "bg_size]", function (setting) {
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					selector = "#login";
@@ -372,6 +416,10 @@
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
+
 				val = val ? val : "#ffffff";
 				formPosition = formPosition ? formPosition : "default";
 
@@ -397,6 +445,11 @@
 		wp.customize("udb_login[form_width]", function (setting) {
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
+
+				formPosition = !udbLoginCustomizer.isProActive
+					? "default"
+					: formPosition;
+
 				var content = "";
 
 				formPosition = formPosition ? formPosition : "default";

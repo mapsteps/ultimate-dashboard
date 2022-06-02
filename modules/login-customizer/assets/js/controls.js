@@ -318,10 +318,10 @@ if (!String.prototype.includes) {
 
 					if (isExpanded) {
 						if (wp.customize("udb_login[form_position]").get() === "default") {
-							wp.customize.control("udb_login[box_width]").deactivate();
 							wp.customize
 								.control("udb_login[form_horizontal_padding]")
 								.activate();
+
 							wp.customize.control("udb_login[form_border_width]").activate();
 							wp.customize.control("udb_login[form_border_style]").activate();
 							wp.customize.control("udb_login[form_border_color]").activate();
