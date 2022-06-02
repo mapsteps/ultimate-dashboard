@@ -16,29 +16,6 @@ use Udb\Udb_Customize_Color_Control;
 use Udb\Udb_Customize_Range_Control;
 
 $wp_customize->add_setting(
-	'udb_login[labels_color]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => '#444444',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'sanitize_hex_color',
-	)
-);
-
-$wp_customize->add_control(
-	new Udb_Customize_Color_Control(
-		$wp_customize,
-		'udb_login[labels_color]',
-		array(
-			'label'    => __( 'Text Color', 'ultimate-dashboard' ),
-			'section'  => 'udb_login_customizer_labels_section',
-			'settings' => 'udb_login[labels_color]',
-		)
-	)
-);
-
-$wp_customize->add_setting(
 	'udb_login[labels_font_size]',
 	array(
 		'type'              => 'option',
@@ -63,6 +40,29 @@ $wp_customize->add_control(
 				'max'  => 100,
 				'step' => 1,
 			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[labels_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '#444444',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_hex_color',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Control(
+		$wp_customize,
+		'udb_login[labels_color]',
+		array(
+			'label'    => __( 'Text Color', 'ultimate-dashboard' ),
+			'section'  => 'udb_login_customizer_labels_section',
+			'settings' => 'udb_login[labels_color]',
 		)
 	)
 );
