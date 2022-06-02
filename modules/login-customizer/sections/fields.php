@@ -132,6 +132,35 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
+	'udb_login[fields_font_size]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '24px',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[fields_font_size]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_fields_section',
+			'settings'    => 'udb_login[fields_font_size]',
+			'label'       => __( 'Font Size', 'ultimate-dashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 100,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
 	'udb_login[fields_text_color]',
 	array(
 		'type'              => 'option',

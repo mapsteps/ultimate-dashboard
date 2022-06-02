@@ -603,6 +603,18 @@
 			});
 		});
 
+		wp.customize("udb_login[fields_font_size]", function (setting) {
+			setting.bind(function (val) {
+				val = val ? val : "24px";
+
+				writeStyleContent({
+					el: '[data-listen-value="udb_login[fields_font_size]"]',
+					selector: ".login input[type=text], .login input[type=password]",
+					rules: "font-size: " + val + ";",
+				});
+			});
+		});
+
 		wp.customize("udb_login[fields_text_color]", function (setting) {
 			setting.bind(function (val) {
 				var content = val

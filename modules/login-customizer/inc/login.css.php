@@ -49,6 +49,7 @@ $fields_height             = isset( $login['fields_height'] ) ? $login['fields_h
 $fields_horizontal_padding = isset( $login['fields_horizontal_padding'] ) ? $login['fields_horizontal_padding'] : '10px';
 $fields_border_width       = isset( $login['fields_border_width'] ) ? $login['fields_border_width'] : '2px';
 $fields_border_radius      = isset( $login['fields_border_radius'] ) ? $login['fields_border_radius'] : '4px';
+$fields_font_size          = isset( $login['fields_font_size'] ) ? $login['fields_font_size'] : '';
 $fields_text_color         = isset( $login['fields_text_color'] ) ? $login['fields_text_color'] : '';
 $fields_text_color_focus   = isset( $login['fields_text_color_focus'] ) ? $login['fields_text_color_focus'] : '';
 $fields_bg_color           = isset( $login['fields_bg_color'] ) ? $login['fields_bg_color'] : '';
@@ -173,11 +174,17 @@ body.login {
 	border-width: <?php echo esc_attr( $fields_border_width ); ?>;
 	padding: 0 <?php echo esc_attr( $fields_horizontal_padding ); ?>;
 	height: <?php echo esc_attr( $fields_height ); ?>;
+
+	<?php if ( $fields_font_size ) : ?>
+		font-size: <?php echo esc_attr( $fields_font_size ); ?>;
+	<?php endif; ?>
+
 	<?php if ( $fields_text_color ) : ?>
 		color: <?php echo esc_attr( $fields_text_color ); ?>;
 	<?php endif; ?>
+
 	<?php if ( $fields_bg_color ) : ?>
-	background-color: <?php echo esc_attr( $fields_bg_color ); ?>;
+		background-color: <?php echo esc_attr( $fields_bg_color ); ?>;
 	<?php endif; ?>
 }
 

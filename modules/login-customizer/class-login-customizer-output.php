@@ -172,6 +172,7 @@ class Login_Customizer_Output extends Base_Output {
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_horizontal_padding]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_border_width]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_border_radius]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_font_size]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_text_color]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_text_color_focus]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[fields_bg_color]"></style>';
