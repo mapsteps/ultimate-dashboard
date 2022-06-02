@@ -62,6 +62,53 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
+	'udb_login[remove_register_lost_pw_link]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 0,
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Toggle_Switch_Control(
+		$wp_customize,
+		'udb_login[remove_register_lost_pw_link]',
+		array(
+			'section'  => 'udb_login_customizer_form_footer_section',
+			'settings' => 'udb_login[remove_register_lost_pw_link]',
+			'label'    => __( 'Remove "Register | Lost your password?" link', 'ultimatedashboard' ),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[remove_back_to_site_link]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 0,
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Toggle_Switch_Control(
+		$wp_customize,
+		'udb_login[remove_back_to_site_link]',
+		array(
+			'section'  => 'udb_login_customizer_form_footer_section',
+			'settings' => 'udb_login[remove_back_to_site_link]',
+			'label'    => __( 'Remove "Back to website" link', 'ultimatedashboard' ),
+		)
+	)
+);
+
+
+$wp_customize->add_setting(
 	'udb_login[remove_lang_switcher]',
 	array(
 		'type'              => 'option',

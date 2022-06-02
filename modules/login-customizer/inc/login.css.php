@@ -79,7 +79,10 @@ $button_border_radius      = isset( $login['button_border_radius'] ) ? $login['b
 $footer_link_color       = isset( $login['footer_link_color'] ) ? $login['footer_link_color'] : '';
 $footer_link_color_hover = isset( $login['footer_link_color_hover'] ) ? $login['footer_link_color_hover'] : '';
 $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $accent_color : $footer_link_color_hover; // Additional checking to inherit wp-admin accent color by default.
-$remove_lang_switcher    = isset( $login['remove_lang_switcher'] ) ? absint( $login['remove_lang_switcher'] ) : 0;
+
+$remove_register_lost_pw_link = isset( $login['remove_register_lost_pw_link'] ) ? absint( $login['remove_register_lost_pw_link'] ) : 0;
+$remove_back_to_site_link     = isset( $login['remove_back_to_site_link'] ) ? absint( $login['remove_back_to_site_link'] ) : 0;
+$remove_lang_switcher         = isset( $login['remove_lang_switcher'] ) ? absint( $login['remove_lang_switcher'] ) : 0;
 ?>
 
 body.login {
@@ -256,6 +259,18 @@ body.login {
 		border-color: <?php echo esc_attr( $button_bg_color_hover ); ?>;
 	<?php endif; ?>
 }
+
+<?php if ( $remove_register_lost_pw_link ) : ?>
+	.login #nav {
+		display: none;
+	}
+<?php endif; ?>
+
+<?php if ( $remove_back_to_site_link ) : ?>
+	.login #backtoblog {
+		display: none;
+	}
+<?php endif; ?>
 
 <?php if ( $remove_lang_switcher ) : ?>
 	#login .language-switcher {

@@ -193,6 +193,8 @@ class Login_Customizer_Output extends Base_Output {
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[footer_link_color]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[footer_link_color_hover]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[remove_register_lost_pw_link]"></style>';
+		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[remove_back_to_site_link]"></style>';
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[remove_lang_switcher]"></style>';
 
 		echo '<style class="udb-login-customizer-live-style" data-listen-value="udb_login[custom_css]"></style>';

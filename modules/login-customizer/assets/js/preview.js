@@ -839,6 +839,26 @@
 			});
 		});
 
+		wp.customize("udb_login[remove_register_lost_pw_link]", function (setting) {
+			setting.bind(function (val) {
+				val = val ? "none" : "block";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[remove_register_lost_pw_link]"]'
+				).innerHTML = ".login #nav {display: " + val + ";}";
+			});
+		});
+
+		wp.customize("udb_login[remove_back_to_site_link]", function (setting) {
+			setting.bind(function (val) {
+				val = val ? "none" : "block";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[remove_back_to_site_link]"]'
+				).innerHTML = ".login #backtoblog {display: " + val + ";}";
+			});
+		});
+
 		wp.customize("udb_login[remove_lang_switcher]", function (setting) {
 			setting.bind(function (val) {
 				val = val ? "none" : "block";
