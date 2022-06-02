@@ -79,6 +79,7 @@ $button_border_radius      = isset( $login['button_border_radius'] ) ? $login['b
 $footer_link_color       = isset( $login['footer_link_color'] ) ? $login['footer_link_color'] : '';
 $footer_link_color_hover = isset( $login['footer_link_color_hover'] ) ? $login['footer_link_color_hover'] : '';
 $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $accent_color : $footer_link_color_hover; // Additional checking to inherit wp-admin accent color by default.
+$remove_lang_switcher    = isset( $login['remove_lang_switcher'] ) ? absint( $login['remove_lang_switcher'] ) : 0;
 ?>
 
 body.login {
@@ -211,19 +212,19 @@ body.login {
 }
 
 <?php if ( $footer_link_color ) : ?>
-.login #nav a,
-.login #backtoblog a {
-	color: <?php echo esc_attr( $footer_link_color ); ?>;
-}
+	.login #nav a,
+	.login #backtoblog a {
+		color: <?php echo esc_attr( $footer_link_color ); ?>;
+	}
 <?php endif; ?>
 
 <?php if ( $footer_link_color_hover ) : ?>
-.login #nav a:hover,
-.login #nav a:focus,
-.login #backtoblog a:hover,
-.login #backtoblog a:focus {
+	.login #nav a:hover,
+	.login #nav a:focus,
+	.login #backtoblog a:hover,
+	.login #backtoblog a:focus {
 		color: <?php echo esc_attr( $footer_link_color_hover ); ?>;
-}
+	}
 <?php endif; ?>
 
 .wp-core-ui .button {
@@ -255,3 +256,9 @@ body.login {
 		border-color: <?php echo esc_attr( $button_bg_color_hover ); ?>;
 	<?php endif; ?>
 }
+
+<?php if ( $remove_lang_switcher ) : ?>
+	#login .language-switcher {
+		display: none;
+	}
+<?php endif; ?>

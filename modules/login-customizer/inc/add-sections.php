@@ -68,7 +68,7 @@ return function ( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_form_footer_section',
 		array(
-			'title' => __( 'Footer Links', 'ultimate-dashboard' ),
+			'title' => __( 'Footer Part', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);

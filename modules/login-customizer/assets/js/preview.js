@@ -838,6 +838,16 @@
 					";}";
 			});
 		});
+
+		wp.customize("udb_login[remove_lang_switcher]", function (setting) {
+			setting.bind(function (val) {
+				val = val ? "none" : "block";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[remove_lang_switcher]"]'
+				).innerHTML = "#login .language-switcher {display: " + val + ";}";
+			});
+		});
 	};
 
 	events.customCSSChange = function () {

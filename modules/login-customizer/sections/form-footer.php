@@ -13,6 +13,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Udb_Customize_Color_Control;
+use Udb\Udb_Customize_Toggle_Switch_Control;
 
 $wp_customize->add_setting(
 	'udb_login[footer_link_color]',
@@ -56,6 +57,29 @@ $wp_customize->add_control(
 			'label'    => __( 'Link Color (Hover)', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[footer_link_color_hover]',
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[remove_lang_switcher]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 0,
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Toggle_Switch_Control(
+		$wp_customize,
+		'udb_login[remove_lang_switcher]',
+		array(
+			'section'  => 'udb_login_customizer_form_footer_section',
+			'settings' => 'udb_login[remove_lang_switcher]',
+			'label'    => __( 'Remove language switcher', 'ultimatedashboard' ),
 		)
 	)
 );
