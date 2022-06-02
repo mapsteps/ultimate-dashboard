@@ -698,6 +698,16 @@
 				).innerHTML = "#loginform label {color: " + val + ";}";
 			});
 		});
+
+		wp.customize("udb_login[labels_font_size]", function (setting) {
+			setting.bind(function (val) {
+				val = val ? val : "14px";
+
+				document.querySelector(
+					'[data-listen-value="udb_login[labels_font_size]"]'
+				).innerHTML = "#loginform label {font-size: " + val + ";}";
+			});
+		});
 	};
 
 	events.buttonFieldsChange = function () {

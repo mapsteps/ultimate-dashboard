@@ -57,7 +57,8 @@ $fields_border_color       = isset( $login['fields_border_color'] ) ? $login['fi
 $fields_border_color_focus = isset( $login['fields_border_color_focus'] ) ? $login['fields_border_color_focus'] : '';
 $fields_border_color_focus = ! $fields_border_color_focus && $has_accent_color ? $accent_color : $fields_border_color_focus; // Additional checking to inherit wp-admin accent color by default.
 
-$labels_color = isset( $login['labels_color'] ) ? $login['labels_color'] : '';
+$labels_color     = isset( $login['labels_color'] ) ? $login['labels_color'] : '';
+$labels_font_size = isset( $login['labels_font_size'] ) ? $login['labels_font_size'] : '';
 
 $fields_height_unit   = preg_replace( '/\d+/', '', $fields_height );
 $fields_height_number = str_ireplace( $fields_height_unit, '', $fields_height );
@@ -110,9 +111,16 @@ body.login {
 	}
 <?php endif; ?>
 
-<?php if ( $labels_color ) : ?>
+<?php if ( $labels_color || $labels_font_size ) : ?>
 	#loginform label {
-		color: <?php echo esc_attr( $labels_color ); ?>;
+
+		<?php if ( $labels_color ) : ?>
+			color: <?php echo esc_attr( $labels_color ); ?>;
+		<?php endif; ?>
+
+		<?php if ( $labels_font_size ) : ?>
+			font-size: <?php echo esc_attr( $labels_font_size ); ?>;
+		<?php endif; ?>
 	}
 <?php endif; ?>
 
