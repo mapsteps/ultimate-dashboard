@@ -236,6 +236,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_width]',
+			'priority'    => 15, // We need to insert "Box Width" control before this one.
 			'label'       => __( 'Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 200,
@@ -265,6 +266,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_top_padding]',
+			'priority'    => 15,
 			'label'       => __( 'Top Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -294,6 +296,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_bottom_padding]',
+			'priority'    => 15,
 			'label'       => __( 'Bottom Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -323,6 +326,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_horizontal_padding]',
+			'priority'    => 15,
 			'label'       => __( 'Side Padding', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -352,6 +356,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_border_width]',
+			'priority'    => 15,
 			'label'       => __( 'Border Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -381,6 +386,7 @@ $wp_customize->add_control(
 			'type'     => 'select',
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_border_style]',
+			'priority' => 15,
 			'label'    => __( 'Border Style', 'ultimate-dashboard' ),
 			'choices'  => array(
 				'solid'  => __( 'solid', 'ultimate-dashboard' ),
@@ -411,6 +417,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Border Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_border_color]',
+			'priority' => 15,
 		)
 	)
 );
@@ -434,6 +441,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_border_radius]',
+			'priority'    => 15,
 			'label'       => __( 'Border Radius', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -460,8 +468,9 @@ $wp_customize->add_control(
 		$wp_customize,
 		'udb_login[enable_form_shadow]',
 		array(
-			'settings' => 'udb_login[enable_form_shadow]',
 			'section'  => 'udb_login_customizer_layout_section',
+			'settings' => 'udb_login[enable_form_shadow]',
+			'priority' => 15,
 			'label'    => __( "Enable form's box shadow", 'ultimate-dashboard' ),
 		)
 	)
@@ -486,6 +495,7 @@ $wp_customize->add_control(
 			'type'        => 'range',
 			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_shadow_blur]',
+			'priority'    => 15,
 			'label'       => __( 'Width', 'ultimate-dashboard' ),
 			'input_attrs' => array(
 				'min'  => 0,
@@ -515,6 +525,7 @@ $wp_customize->add_control(
 			'label'    => __( 'Shadow Color', 'ultimate-dashboard' ),
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[form_shadow_color]',
+			'priority' => 15,
 		)
 	)
 );

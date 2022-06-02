@@ -8,7 +8,6 @@
  */
 (function ($, api) {
 	var events = {};
-	var state = {};
 
 	wp.customize.bind("preview-ready", function () {
 		listen();
@@ -112,6 +111,10 @@
 
 	function handleBgFieldsChange(keyPrefix, selector) {
 		wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting) {
+			var bgImageStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[' + keyPrefix + 'bg_image]"]'
+			);
+
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
@@ -119,17 +122,19 @@
 					selector = "#login";
 				}
 
-				var rule = val
-					? "background-image: url(" + val + ");"
-					: "background-image: none;";
-
-				document.querySelector(
-					'[data-listen-value="udb_login[' + keyPrefix + 'bg_image]"]'
-				).innerHTML = selector + " {" + rule + "}";
+				writeStyleContent({
+					el: bgImageStyleTag,
+					selector: selector,
+					rules: "background-image: url(" + val + ");",
+				});
 			});
 		});
 
 		wp.customize("udb_login[" + keyPrefix + "bg_repeat]", function (setting) {
+			var bgRepeatStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]'
+			);
+
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
@@ -137,11 +142,11 @@
 					selector = "#login";
 				}
 
-				var rule = "background-repeat: " + val + ";";
-
-				document.querySelector(
-					'[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]'
-				).innerHTML = selector + " {" + rule + "}";
+				writeStyleContent({
+					el: bgRepeatStyleTag,
+					selector: selector,
+					rules: "background-repeat: " + val + ";",
+				});
 			});
 		});
 
@@ -195,32 +200,123 @@
 			var formPositionStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[form_position]"]'
 			);
+
+			var formBgColorStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_color]"]'
+			);
+
+			var formBgImageStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_image]"]'
+			);
+
+			var formBgRepeatStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_repeat]"]'
+			);
+
+			var formBgPositionStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_position]"]'
+			);
+
+			var formBgSizeStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_size]"]'
+			);
+
 			var formWidthStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[form_width]"]'
 			);
+
 			var formHorizontalPaddingStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[form_horizontal_padding]"]'
 			);
+
 			var formBorderWidthStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[form_border_width]"]'
 			);
 
+			var formBorderStyleStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_border_style]"]'
+			);
+
+			var formBorderColorStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_border_color]"]'
+			);
+
 			setting.bind(function (val) {
+				var formBgColor = wp.customize("udb_login[form_bg_color]").get();
+				var formBgImage = wp.customize("udb_login[form_bg_image]").get();
+				var formBgRepeat = wp.customize("udb_login[form_bg_repeat]").get();
+				var formBgPosition = wp.customize("udb_login[form_bg_position]").get();
+				var formBgSize = wp.customize("udb_login[form_bg_size]").get();
 				var formWidth = wp.customize("udb_login[form_width]").get();
+
 				var formHorizontalPadding = wp
 					.customize("udb_login[form_horizontal_padding]")
 					.get();
-				var formBorderWidth = wp
-					.customize("udb_login[form_border_width]")
-					.get();
 
 				formWidth = formWidth ? formWidth : "320px";
+
 				formHorizontalPadding = formHorizontalPadding
 					? formHorizontalPadding
 					: "24px";
-				formBorderWidth = formBorderWidth ? formBorderWidth : "2px";
 
+				// The non "default" value is handled in the pro version.
 				if (val === "default") {
+					if (formBgColor) {
+						writeStylesContent({
+							el: formBgColorStyleTag,
+							styles: [
+								{
+									selector: "#login",
+									rules: "background-color: transparent;",
+								},
+								{
+									selector: ".login form, #loginform",
+									rules: "background-color: " + formBgColor + ";",
+								},
+							],
+						});
+					}
+
+					if (formBgImage) {
+						writeStylesContent({
+							el: formBgImageStyleTag,
+							styles: [
+								{
+									selector: "#login",
+									rules: "background-image: none;",
+								},
+								{
+									selector: ".login form, #loginform",
+									rules: "background-image: url(" + formBgImage + ");",
+								},
+							],
+						});
+					}
+
+					if (formBgRepeat) {
+						writeStyleContent({
+							el: formBgRepeatStyleTag,
+							selector: ".login form, #loginform",
+							rules: "background-repeat: " + formBgRepeat + ";",
+						});
+					}
+
+					if (formBgPosition) {
+						writeStyleContent({
+							el: formBgPositionStyleTag,
+							selector: ".login form, #loginform",
+							rules: "background-position: " + formBgPosition + ";",
+						});
+					}
+
+					if (formBgSize) {
+						writeStyleContent({
+							el: formBgSizeStyleTag,
+							selector: ".login form, #loginform",
+							rules: "background-size: " + formBgSize + ";",
+						});
+					}
+
 					formWidthStyleTag.innerHTML = formWidthStyleTag.innerHTML.replace(
 						"#loginform {max-width:",
 						"#login {width:"
@@ -238,37 +334,63 @@
 						formHorizontalPadding +
 						";}";
 
+					var formBorderWidth = wp
+						.customize("udb_login[form_border_width]")
+						.get();
+
+					formBorderWidth = formBorderWidth ? formBorderWidth : "2px";
+
 					formBorderWidthStyleTag.innerHTML =
 						"#loginform {border-width: " + formBorderWidth + ";}";
+
+					var formBorderStyle = wp
+						.customize("udb_login[form_border_style]")
+						.get();
+
+					formBorderStyle = formBorderStyle ? formBorderStyle : "solid";
+
+					formBorderStyleStyleTag.innerHTML =
+						"#loginform {border-style: " + formBorderStyle + ";}";
+
+					var formBorderColor = wp
+						.customize("udb_login[form_border_color]")
+						.get();
+
+					formBorderColor = formBorderColor ? formBorderColor : "#dddddd";
+
+					formBorderColorStyleTag.innerHTML =
+						"#loginform {border-color: " + formBorderColor + ";}";
 				}
 			});
 		});
 
 		wp.customize("udb_login[form_bg_color]", function (setting) {
+			var formBgColorStyleTag = document.querySelector(
+				'[data-listen-value="udb_login[form_bg_color]"]'
+			);
+
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
-				var content = "";
 
 				val = val ? val : "#ffffff";
 				formPosition = formPosition ? formPosition : "default";
 
+				// The non "default" value is handled in the pro version.
 				if (formPosition === "default") {
-					content =
-						"#login {background-color: transparent;} #loginform {background-color: " +
-						val +
-						";}";
-				} else {
-					content =
-						"#login {background-color: " +
-						val +
-						";} #loginform {background-color: " +
-						val +
-						";}";
+					writeStylesContent({
+						el: formBgColorStyleTag,
+						styles: [
+							{
+								selector: "#login",
+								rules: "background-color: transparent;",
+							},
+							{
+								selector: ".login form, #loginform",
+								rules: "background-color: " + val + ";",
+							},
+						],
+					});
 				}
-
-				document.querySelector(
-					'[data-listen-value="udb_login[form_bg_color]"]'
-				).innerHTML = content;
 			});
 		});
 
@@ -376,7 +498,7 @@
 				if (val) {
 					shadowBlur = wp.customize("udb_login[form_shadow_blur]").get();
 					shadowColor = wp.customize("udb_login[form_shadow_color]").get();
-					content = buildBoxShadowValue(shadowBlur, shadowColor);
+					content = buildBoxShadowCssRule(shadowBlur, shadowColor);
 				} else {
 					content = "box-shadow: none;";
 				}
@@ -384,31 +506,31 @@
 				content = "#loginform {" + content + "}";
 				document.querySelector(
 					'[data-listen-value="udb_login[form_shadow]"]'
-				).textContent = content;
+				).innerHTML = content;
 			});
 		});
 
 		wp.customize("udb_login[form_shadow_blur]", function (setting) {
 			setting.bind(function (val) {
 				var shadowColor = wp.customize("udb_login[form_shadow_color]").get();
-				var content = buildBoxShadowValue(val, shadowColor);
+				var content = buildBoxShadowCssRule(val, shadowColor);
 				content = "#loginform {" + content + "}";
 
 				document.querySelector(
 					'[data-listen-value="udb_login[form_shadow]"]'
-				).textContent = content;
+				).innerHTML = content;
 			});
 		});
 
 		wp.customize("udb_login[form_shadow_color]", function (setting) {
 			setting.bind(function (val) {
 				var shadowBlur = wp.customize("udb_login[form_shadow_blur]").get();
-				var content = buildBoxShadowValue(shadowBlur, val);
+				var content = buildBoxShadowCssRule(shadowBlur, val);
 				content = "#loginform {" + content + "}";
 
 				document.querySelector(
 					'[data-listen-value="udb_login[form_shadow]"]'
-				).textContent = content;
+				).innerHTML = content;
 			});
 		});
 	};
@@ -708,13 +830,48 @@
 		});
 	};
 
-	function buildBoxShadowValue(blur, color) {
-		var content = "box-shadow: none;";
-		if (!blur || !color) return content;
+	function buildBoxShadowCssRule(blur, color) {
+		var rule = "box-shadow: none;";
+		if (!blur || !color) return rule;
 
-		content = "box-shadow: 0 0 " + blur + " 0 " + color + ";";
+		rule = "box-shadow: 0 0 " + blur + " 0 " + color + ";";
 
-		return content;
+		return rule;
+	}
+
+	function writeStyleContent(opts) {
+		var el = opts.el;
+		var selector = opts.selector;
+		var rules = opts.rules;
+
+		if (!el.tagName) {
+			el = document.querySelector(el);
+		}
+
+		if (!el) return;
+
+		el.innerHTML = selector + " {" + rules + "}";
+	}
+
+	function writeStylesContent(opts) {
+		var el = opts.el;
+		var styles = opts.styles;
+
+		if (!Array.isArray(styles)) return;
+
+		if (!el.tagName) {
+			el = document.querySelector(el);
+		}
+
+		if (!el) return;
+
+		var output = "";
+
+		styles.forEach(function (style) {
+			output += style.selector + " {" + style.rules + "}";
+		});
+
+		el.innerHTML = output;
 	}
 
 	function showProNotice(autoHide) {
