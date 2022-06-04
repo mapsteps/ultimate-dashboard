@@ -13,6 +13,7 @@ use Udb\Helpers\Content_Helper;
 use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Image_Control;
 use Udb\Udb_Customize_Color_Control;
+use Udb\Udb_Customize_Range_Control;
 
 $wp_customize->add_setting(
 	'udb_login[bg_color]',
@@ -122,6 +123,73 @@ $wp_customize->add_control(
 				'right top'     => __( 'right top', 'ultimate-dashboard' ),
 				'right center'  => __( 'right center', 'ultimate-dashboard' ),
 				'right bottom'  => __( 'right bottom', 'ultimate-dashboard' ),
+				'custom'        => __( 'custom', 'ultimate-dashboard' ),
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[bg_horizontal_position]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '0%',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[bg_horizontal_position]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_bg_section',
+			'settings'    => 'udb_login[bg_horizontal_position]',
+			'label'       => __( 'Background Horizontal Position', 'ultimate-dashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				/**
+				 * A percent unit max should be 100, but what about px and other units?
+				 * Thats why the max here is 1000.
+				 */
+				'max'  => 1000,
+				'step' => 1,
+			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[bg_vertical_position]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => '0%',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'esc_attr',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Range_Control(
+		$wp_customize,
+		'udb_login[bg_vertical_position]',
+		array(
+			'type'        => 'range',
+			'section'     => 'udb_login_customizer_bg_section',
+			'settings'    => 'udb_login[bg_vertical_position]',
+			'label'       => __( 'Background Vertical Position', 'ultimate-dashboard' ),
+			'input_attrs' => array(
+				'min'  => 0,
+				/**
+				 * A percent unit max should be 100, but what about px and other units?
+				 * Thats why the max here is 1000.
+				 */
+				'max'  => 1000,
+				'step' => 1,
 			),
 		)
 	)

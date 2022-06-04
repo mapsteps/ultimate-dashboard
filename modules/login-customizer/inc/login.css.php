@@ -26,11 +26,17 @@ $bg_position = isset( $login['bg_position'] ) ? $login['bg_position'] : 'center'
 $bg_size     = isset( $login['bg_size'] ) ? $login['bg_size'] : 'cover';
 $bg_repeat   = isset( $login['bg_repeat'] ) ? $login['bg_repeat'] : 'no-repeat';
 
+$bg_horizontal_position = isset( $login['bg_horizontal_position'] ) ? $login['bg_horizontal_position'] : '0%';
+$bg_vertical_position   = isset( $login['bg_vertical_position'] ) ? $login['bg_vertical_position'] : '0%';
+
 $form_bg_color    = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
 $form_bg_image    = isset( $login['form_bg_image'] ) ? $login['form_bg_image'] : '';
 $form_bg_position = isset( $login['form_bg_position'] ) ? $login['form_bg_position'] : 'center';
 $form_bg_size     = isset( $login['form_bg_size'] ) ? $login['form_bg_size'] : 'cover';
 $form_bg_repeat   = isset( $login['form_bg_repeat'] ) ? $login['form_bg_repeat'] : 'no-repeat';
+
+$form_bg_horizontal_position = isset( $login['form_bg_horizontal_position'] ) ? $login['form_bg_horizontal_position'] : '0%';
+$form_bg_vertical_position   = isset( $login['form_bg_vertical_position'] ) ? $login['form_bg_vertical_position'] : '0%';
 
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '';
 $form_top_padding        = isset( $login['form_top_padding'] ) ? $login['form_top_padding'] : '';
@@ -92,7 +98,13 @@ body.login {
 
 	<?php if ( $bg_image ) : ?>
 		background-image: url(<?php echo esc_attr( $bg_image ); ?>);
-		background-position: <?php echo esc_attr( $bg_position ); ?>;
+
+		<?php if ( 'custom' === $bg_position ) : ?>
+			background-position: <?php echo esc_attr( $bg_horizontal_position ); ?> <?php echo esc_attr( $bg_vertical_position ); ?>;
+		<?php else : ?>
+			background-position: <?php echo esc_attr( $bg_position ); ?>;
+		<?php endif; ?>
+
 		background-size: <?php echo esc_attr( $bg_size ); ?>;
 		background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
 	<?php endif; ?>
@@ -153,7 +165,13 @@ body.login {
 
 	<?php if ( $form_bg_image ) : ?>
 		background-image: url(<?php echo esc_attr( $form_bg_image ); ?>);
-		background-position: <?php echo esc_attr( $form_bg_position ); ?>;
+
+		<?php if ( 'custom' === $form_bg_position ) : ?>
+			background-position: <?php echo esc_attr( $form_bg_horizontal_position ); ?> <?php echo esc_attr( $form_bg_vertical_position ); ?>;
+		<?php else : ?>
+			background-position: <?php echo esc_attr( $form_bg_position ); ?>;
+		<?php endif; ?>
+
 		background-size: <?php echo esc_attr( $form_bg_size ); ?>;
 		background-repeat: <?php echo esc_attr( $form_bg_repeat ); ?>;
 	<?php endif; ?>

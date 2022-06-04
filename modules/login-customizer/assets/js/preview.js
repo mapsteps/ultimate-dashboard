@@ -111,6 +111,8 @@
 
 	function handleBgFieldsChange(keyPrefix, selector) {
 		wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting) {
+			var cssSelector = selector;
+
 			var bgImageStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[' + keyPrefix + 'bg_image]"]'
 			);
@@ -123,12 +125,12 @@
 					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
-					selector = "#login";
+					cssSelector = "#login";
 				}
 
 				writeStyleContent({
 					el: bgImageStyleTag,
-					selector: selector,
+					selector: cssSelector,
 					rules: "background-image: url(" + val + ");",
 				});
 
@@ -138,7 +140,7 @@
 
 				writeStyleContent({
 					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]',
-					selector: selector,
+					selector: cssSelector,
 					rules: "background-repeat: " + bgRepeat + ";",
 				});
 
@@ -146,23 +148,26 @@
 					.customize("udb_login[" + keyPrefix + "bg_position]")
 					.get();
 
-				writeStyleContent({
+				writeBgPositionStyleContent({
 					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
-					selector: selector,
-					rules: "background-position: " + bgPosition + ";",
+					keyPrefix: keyPrefix,
+					selector: cssSelector,
+					bgPosition: bgPosition,
 				});
 
 				var bgSize = wp.customize("udb_login[" + keyPrefix + "bg_size]").get();
 
 				writeStyleContent({
 					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]',
-					selector: selector,
+					selector: cssSelector,
 					rules: "background-size: " + bgSize + ";",
 				});
 			});
 		});
 
 		wp.customize("udb_login[" + keyPrefix + "bg_repeat]", function (setting) {
+			var cssSelector = selector;
+
 			var bgRepeatStyleTag = document.querySelector(
 				'[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]'
 			);
@@ -175,18 +180,20 @@
 					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
-					selector = "#login";
+					cssSelector = "#login";
 				}
 
 				writeStyleContent({
 					el: bgRepeatStyleTag,
-					selector: selector,
+					selector: cssSelector,
 					rules: "background-repeat: " + val + ";",
 				});
 			});
 		});
 
 		wp.customize("udb_login[" + keyPrefix + "bg_position]", function (setting) {
+			var cssSelector = selector;
+
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
@@ -195,18 +202,85 @@
 					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
-					selector = "#login";
+					cssSelector = "#login";
 				}
 
-				var rule = "background-position: " + val + ";";
-
-				document.querySelector(
-					'[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]'
-				).innerHTML = selector + " {" + rule + "}";
+				writeBgPositionStyleContent({
+					el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+					keyPrefix: keyPrefix,
+					selector: cssSelector,
+					bgPosition: val,
+				});
 			});
 		});
 
+		// Binding bg_horizontal_position
+		wp.customize(
+			"udb_login[" + keyPrefix + "bg_horizontal_position]",
+			function (setting) {
+				var cssSelector = selector;
+
+				setting.bind(function (val) {
+					var formPosition = wp.customize("udb_login[form_position]").get();
+
+					formPosition = !udbLoginCustomizer.isProActive
+						? "default"
+						: formPosition;
+
+					if (keyPrefix === "form_" && formPosition !== "default") {
+						cssSelector = "#login";
+					}
+
+					var bgPosition = wp
+						.customize("udb_login[" + keyPrefix + "bg_position]")
+						.get();
+
+					writeBgPositionStyleContent({
+						el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+						keyPrefix: keyPrefix,
+						selector: cssSelector,
+						bgPosition: bgPosition,
+						bgHorizontalPosition: val,
+					});
+				});
+			}
+		);
+
+		// Binding bg_vertical_position
+		wp.customize(
+			"udb_login[" + keyPrefix + "bg_vertical_position]",
+			function (setting) {
+				var cssSelector = selector;
+
+				setting.bind(function (val) {
+					var formPosition = wp.customize("udb_login[form_position]").get();
+
+					formPosition = !udbLoginCustomizer.isProActive
+						? "default"
+						: formPosition;
+
+					if (keyPrefix === "form_" && formPosition !== "default") {
+						cssSelector = "#login";
+					}
+
+					var bgPosition = wp
+						.customize("udb_login[" + keyPrefix + "bg_position]")
+						.get();
+
+					writeBgPositionStyleContent({
+						el: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+						keyPrefix: keyPrefix,
+						selector: cssSelector,
+						bgPosition: bgPosition,
+						bgVerticalPosition: val,
+					});
+				});
+			}
+		);
+
 		wp.customize("udb_login[" + keyPrefix + "bg_size]", function (setting) {
+			var cssSelector = selector;
+
 			setting.bind(function (val) {
 				var formPosition = wp.customize("udb_login[form_position]").get();
 
@@ -215,14 +289,14 @@
 					: formPosition;
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
-					selector = "#login";
+					cssSelector = "#login";
 				}
 
 				var rule = "background-size: " + val + ";";
 
 				document.querySelector(
 					'[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]'
-				).innerHTML = selector + " {" + rule + "}";
+				).innerHTML = cssSelector + " {" + rule + "}";
 			});
 		});
 	}
@@ -346,10 +420,11 @@
 					}
 
 					if (formBgPosition) {
-						writeStyleContent({
+						writeBgPositionStyleContent({
 							el: formBgPositionStyleTag,
+							keyPrefix: "form_",
 							selector: ".login form, #loginform",
-							rules: "background-position: " + formBgPosition + ";",
+							bgPosition: formBgPosition,
 						});
 					}
 
@@ -977,6 +1052,58 @@
 		});
 
 		el.innerHTML = output;
+	}
+
+	function writeBgPositionStyleContent(opts) {
+		var el = opts.el;
+		var selector = opts.selector;
+		var keyPrefix = opts.keyPrefix ? opts.keyPrefix : "";
+		var bgPosition = opts.bgPosition;
+
+		var bgHorizontalPosition = opts.bgHorizontalPosition
+			? opts.bgHorizontalPosition
+			: "";
+
+		var bgVerticalPosition = opts.bgVerticalPosition
+			? opts.bgVerticalPosition
+			: "";
+
+		if (!el.tagName) {
+			el = document.querySelector(el);
+		}
+
+		if (!el) return;
+
+		bgHorizontalPosition = bgHorizontalPosition
+			? bgHorizontalPosition
+			: wp
+					.customize("udb_login[" + keyPrefix + "bg_horizontal_position]")
+					.get();
+
+		bgVerticalPosition = bgVerticalPosition
+			? bgVerticalPosition
+			: wp.customize("udb_login[" + keyPrefix + "bg_vertical_position]").get();
+
+		var customBgPosition = "";
+
+		if (bgPosition === "custom") {
+			customBgPosition =
+				(!bgHorizontalPosition ? "0%" : bgHorizontalPosition) +
+				" " +
+				(!bgVerticalPosition ? "0%" : bgVerticalPosition);
+
+			writeStyleContent({
+				el: el,
+				selector: selector,
+				rules: "background-position: " + customBgPosition + ";",
+			});
+		} else {
+			writeStyleContent({
+				el: el,
+				selector: selector,
+				rules: "background-position: " + bgPosition + ";",
+			});
+		}
 	}
 
 	function showProNotice(autoHide) {

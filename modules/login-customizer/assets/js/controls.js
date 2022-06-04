@@ -214,10 +214,16 @@ if (!String.prototype.includes) {
 		wp.customize.section(sectionName, function (section) {
 			section.expanded.bind(function (isExpanded) {
 				if (isExpanded) {
+					var bgPosition = wp
+						.customize("udb_login[" + keyPrefix + "bg_position]")
+						.get();
+
 					if (wp.customize("udb_login[" + keyPrefix + "bg_image]").get()) {
 						wp.customize
 							.control("udb_login[" + keyPrefix + "bg_position]")
 							.activate();
+
+						handleBgCustomPostion(keyPrefix, bgPosition);
 
 						wp.customize
 							.control("udb_login[" + keyPrefix + "bg_size]")
@@ -229,6 +235,14 @@ if (!String.prototype.includes) {
 					} else {
 						wp.customize
 							.control("udb_login[" + keyPrefix + "bg_position]")
+							.deactivate();
+
+						wp.customize
+							.control("udb_login[" + keyPrefix + "bg_horizontal_position]")
+							.deactivate();
+
+						wp.customize
+							.control("udb_login[" + keyPrefix + "bg_vertical_position]")
 							.deactivate();
 
 						wp.customize
@@ -245,6 +259,10 @@ if (!String.prototype.includes) {
 
 		wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting) {
 			setting.bind(function (val) {
+				var bgPosition = wp
+					.customize("udb_login[" + keyPrefix + "bg_position]")
+					.get();
+
 				if (val) {
 					document
 						.querySelector(
@@ -255,6 +273,8 @@ if (!String.prototype.includes) {
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_position]")
 						.activate();
+
+					handleBgCustomPostion(keyPrefix, bgPosition);
 
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_size]")
@@ -282,6 +302,12 @@ if (!String.prototype.includes) {
 						.control("udb_login[" + keyPrefix + "bg_repeat]")
 						.deactivate();
 				}
+			});
+		});
+
+		wp.customize("udb_login[" + keyPrefix + "bg_position]", function (setting) {
+			setting.bind(function (val) {
+				handleBgCustomPostion(keyPrefix, val);
 			});
 		});
 	}
@@ -373,5 +399,25 @@ if (!String.prototype.includes) {
 		$(proLink).insertBefore(
 			"#accordion-section-udb_login_customizer_template_section"
 		);
+	}
+
+	function handleBgCustomPostion(keyPrefix, position) {
+		if (position == "custom") {
+			wp.customize
+				.control("udb_login[" + keyPrefix + "bg_horizontal_position]")
+				.activate();
+
+			wp.customize
+				.control("udb_login[" + keyPrefix + "bg_vertical_position]")
+				.activate();
+		} else {
+			wp.customize
+				.control("udb_login[" + keyPrefix + "bg_horizontal_position]")
+				.deactivate();
+
+			wp.customize
+				.control("udb_login[" + keyPrefix + "bg_vertical_position]")
+				.deactivate();
+		}
 	}
 })(jQuery, wp.customize);
