@@ -1,5 +1,5 @@
-# Sass Cache
-.sass-cache/
+# Cache
+.parcel-cache/
 
 # DS_Store
 .DS_Store
@@ -9,9 +9,7 @@
 phpcs.xml
 .editorconfig
 
-# ignore build tools (if possible).
+# ignore build tools
 node_modules/
-gulpfile.js
-package.json
 package-lock.json
 manifest.json
