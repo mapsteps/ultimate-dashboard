@@ -1,8 +1,8 @@
-import proNotice from "./pro-notice";
+import proNotice from "../helpers/pro-notice";
 
 declare var wp: any;
 
-const listenPreviewer = () => {
+const listenProNoticeEvent = () => {
 	wp.customize.preview.bind("pro_notice", function (action: string) {
 		if (action === "show") {
 			proNotice.show();
@@ -12,4 +12,4 @@ const listenPreviewer = () => {
 	});
 };
 
-export default listenPreviewer;
+export default listenProNoticeEvent;

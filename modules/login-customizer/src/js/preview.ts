@@ -2,12 +2,14 @@
 import jQuery from 'jquery';
 
 import { udbLoginCustomizerInterface } from './global';
-import listenPreviewer from './preview/listen-previewer';
-import listenToggleLoginPreview from './preview/toggle-login-preview';
 
-// Specific to fields changes.
+// Custom event functions.
+import listenProNoticeEvent from './preview/listen-changes/pro-notice-event';
+import listenLoginPreviewToggle from './preview/login-preview-toggle';
+
+// Fields change functions.
 import listenLogoFieldsChange from './preview/listen-changes/logo-fields';
-import listenBgFieldsChange from './preview/listen-changes/bg-fields';
+import { listenBgColorFieldChange, listenBgFieldsChange } from './preview/listen-changes/bg-fields';
 import listenTemplateFieldsChange from './preview/listen-changes/template-fields';
 import listenLayoutFieldsChange from './preview/listen-changes/layout-fields';
 import listenFormFieldsChange from './preview/listen-changes/form-fields';
@@ -33,10 +35,22 @@ declare var udbLoginCustomizer: udbLoginCustomizerInterface;
 	});
 
 	function listen() {
-		if (!udbLoginCustomizer.isProActive) listenPreviewer();
-		listenToggleLoginPreview();
+		if (!udbLoginCustomizer.isProActive) listenProNoticeEvent();
+
+		listenLoginPreviewToggle();
 		listenLogoFieldsChange();
-		listenBgFieldsChange();
+		listenBgColorFieldChange();
+
+		listenBgFieldsChange({
+			keyPrefix: "",
+			cssSelector: "body.login"
+		});
+
+		listenBgFieldsChange({
+			keyPrefix: "form_",
+			cssSelector: ".login form, #loginform"
+		});
+
 		if (!udbLoginCustomizer.isProActive) listenTemplateFieldsChange();
 		listenLayoutFieldsChange();
 		listenFormFieldsChange();

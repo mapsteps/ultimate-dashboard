@@ -1,4 +1,4 @@
-import proNotice from "../pro-notice";
+import proNotice from "../helpers/pro-notice";
 
 declare var wp: any;
 

@@ -3,7 +3,7 @@ import { udbLoginCustomizerInterface } from "../global";
 declare var wp: any;
 declare var udbLoginCustomizer: udbLoginCustomizerInterface;
 
-const listenToggleLoginPreview = () => {
+const listenLoginPreviewToggle = () => {
 	wp.customize.preview.bind(
 		"udb-login-customizer-goto-login-page",
 		function (data: any) {
@@ -22,4 +22,4 @@ const listenToggleLoginPreview = () => {
 	);
 };
 
-export default listenToggleLoginPreview;
+export default listenLoginPreviewToggle;

@@ -1,24 +1,28 @@
 import { udbLoginCustomizerInterface } from "../../global";
 import writeBgPositionStyle from "../css-utilities/write-bg-position-style";
 import writeStyle from "../css-utilities/write-style";
+import getFormPosition from "../helpers/get-form-position";
 
 declare var wp: any;
 declare var udbLoginCustomizer: udbLoginCustomizerInterface;
 
-const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
+interface listenBgFieldsChangeParam {
+	keyPrefix: string;
+	cssSelector: string;
+}
+
+export const listenBgFieldsChange = (opts: listenBgFieldsChangeParam) => {
+	const keyPrefix = opts.keyPrefix;
+
 	wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting: any) {
-		var cssSelector = selector;
+		let cssSelector = opts.cssSelector;
 
 		const bgImageStyleTag = document.querySelector(
 			'[data-listen-value="udb_login[' + keyPrefix + 'bg_image]"]'
 		) as HTMLStyleElement;
 
 		setting.bind(function (val: string) {
-			var formPosition = wp.customize("udb_login[form_position]").get();
-
-			formPosition = !udbLoginCustomizer.isProActive
-				? "default"
-				: formPosition;
+			const formPosition = getFormPosition();
 
 			if (keyPrefix === "form_" && formPosition !== "default") {
 				cssSelector = "#login";
@@ -62,18 +66,14 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	});
 
 	wp.customize("udb_login[" + keyPrefix + "bg_repeat]", function (setting: any) {
-		var cssSelector = selector;
+		let cssSelector = opts.cssSelector;
 
 		const bgRepeatStyleTag = document.querySelector(
 			'[data-listen-value="udb_login[' + keyPrefix + 'bg_repeat]"]'
 		) as HTMLStyleElement;
 
 		setting.bind(function (val: string) {
-			var formPosition = wp.customize("udb_login[form_position]").get();
-
-			formPosition = !udbLoginCustomizer.isProActive
-				? "default"
-				: formPosition;
+			const formPosition = getFormPosition();
 
 			if (keyPrefix === "form_" && formPosition !== "default") {
 				cssSelector = "#login";
@@ -88,14 +88,10 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	});
 
 	wp.customize("udb_login[" + keyPrefix + "bg_position]", function (setting: any) {
-		var cssSelector = selector;
+		let cssSelector = opts.cssSelector;
 
 		setting.bind(function (val: string) {
-			var formPosition = wp.customize("udb_login[form_position]").get();
-
-			formPosition = !udbLoginCustomizer.isProActive
-				? "default"
-				: formPosition;
+			const formPosition = getFormPosition();
 
 			if (keyPrefix === "form_" && formPosition !== "default") {
 				cssSelector = "#login";
@@ -114,14 +110,10 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	wp.customize(
 		"udb_login[" + keyPrefix + "bg_horizontal_position]",
 		function (setting: any) {
-			var cssSelector = selector;
+			let cssSelector = opts.cssSelector;
 
 			setting.bind(function (val: string) {
-				var formPosition = wp.customize("udb_login[form_position]").get();
-
-				formPosition = !udbLoginCustomizer.isProActive
-					? "default"
-					: formPosition;
+				const formPosition = getFormPosition();
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					cssSelector = "#login";
@@ -146,14 +138,10 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	wp.customize(
 		"udb_login[" + keyPrefix + "bg_vertical_position]",
 		function (setting: any) {
-			var cssSelector = selector;
+			let cssSelector = opts.cssSelector;
 
 			setting.bind(function (val: any) {
-				var formPosition = wp.customize("udb_login[form_position]").get();
-
-				formPosition = !udbLoginCustomizer.isProActive
-					? "default"
-					: formPosition;
+				const formPosition = getFormPosition();
 
 				if (keyPrefix === "form_" && formPosition !== "default") {
 					cssSelector = "#login";
@@ -175,14 +163,10 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	);
 
 	wp.customize("udb_login[" + keyPrefix + "bg_size]", function (setting: any) {
-		var cssSelector = selector;
+		let cssSelector = opts.cssSelector;
 
 		setting.bind(function (val: string) {
-			var formPosition = wp.customize("udb_login[form_position]").get();
-
-			formPosition = !udbLoginCustomizer.isProActive
-				? "default"
-				: formPosition;
+			const formPosition = getFormPosition();
 
 			if (keyPrefix === "form_" && formPosition !== "default") {
 				cssSelector = "#login";
@@ -197,7 +181,7 @@ const handleBgFieldsChange = (keyPrefix: string, selector: string) => {
 	});
 };
 
-const listenBgFieldsChange = () => {
+export const listenBgColorFieldChange = () => {
 	wp.customize("udb_login[bg_color]", function (setting: any) {
 		const bgColorStyleTag = document.querySelector(
 			'[data-listen-value="udb_login[bg_color]"]'
@@ -209,9 +193,4 @@ const listenBgFieldsChange = () => {
 			bgColorStyleTag.innerHTML = "body.login {background-color: " + val + ";}";
 		});
 	});
-
-	handleBgFieldsChange("", "body.login");
-	handleBgFieldsChange("form_", ".login form, #loginform");
 };
-
-export default listenBgFieldsChange;
