@@ -7,60 +7,34 @@ export interface WriteBgPositionStyleParam {
 	cssSelector: string;
 	bgPosition: string;
 	keyPrefix?: string;
-	bgHorizontalPosition?: string;
-	bgVerticalPosition?: string;
-};
+	bgCustomPosition?: string;
+}
 
 const writeBgPositionStyle = (opts: WriteBgPositionStyleParam) => {
 	let el = opts.styleEl;
 	const selector = opts.cssSelector;
 	const keyPrefix = opts.keyPrefix ? opts.keyPrefix : "";
 	const bgPosition = opts.bgPosition;
+	let bgCustomPosition = opts.bgCustomPosition ? opts.bgCustomPosition : "";
 
-	let bgHorizontalPosition = opts.bgHorizontalPosition
-		? opts.bgHorizontalPosition
-		: "";
-
-	let bgVerticalPosition = opts.bgVerticalPosition
-		? opts.bgVerticalPosition
-		: "";
-
-	if (typeof el === 'string') {
+	if (typeof el === "string") {
 		el = document.querySelector(el) as HTMLStyleElement;
 	}
 
 	if (!el) return;
 
-	bgHorizontalPosition = bgHorizontalPosition
-		? bgHorizontalPosition
-		: wp
-			.customize("udb_login[" + keyPrefix + "bg_horizontal_position]")
-			.get();
+	bgCustomPosition = bgCustomPosition
+		? bgCustomPosition
+		: wp.customize("udb_login[" + keyPrefix + "bg_custom_position]").get();
 
-	bgVerticalPosition = bgVerticalPosition
-		? bgVerticalPosition
-		: wp.customize("udb_login[" + keyPrefix + "bg_vertical_position]").get();
-
-	let customBgPosition = "";
-
-	if (bgPosition === "custom") {
-		customBgPosition =
-			(!bgHorizontalPosition ? "0%" : bgHorizontalPosition) +
-			" " +
-			(!bgVerticalPosition ? "0%" : bgVerticalPosition);
-
-		writeStyle({
-			styleEl: el,
-			cssSelector: selector,
-			cssRules: "background-position: " + customBgPosition + ";",
-		});
-	} else {
-		writeStyle({
-			styleEl: el,
-			cssSelector: selector,
-			cssRules: "background-position: " + bgPosition + ";",
-		});
-	}
+	writeStyle({
+		styleEl: el,
+		cssSelector: selector,
+		cssRules:
+			"background-position: " +
+			(bgPosition === "custom" ? bgCustomPosition : bgPosition) +
+			";",
+	});
 };
 
 export default writeBgPositionStyle;

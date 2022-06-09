@@ -1,10 +1,9 @@
 import { BgFieldsOpts } from "../../interfaces";
-import listenBgHorizontalPositionFieldChange from "./fields/bg/bg-horizontal-position";
 import listenBgImageFieldChange from "./fields/bg/bg-image";
 import listenBgPositionFieldChange from "./fields/bg/bg-position";
+import listenBgCustomPositionFieldChange from "./fields/bg/bg-custom-position";
 import listenBgRepeatFieldChange from "./fields/bg/bg-repeat";
 import listenBgSizeFieldChange from "./fields/bg/bg-size";
-import listenBgVerticalPositionFieldChange from "./fields/bg/bg-vertical-position";
 
 const listenBgFieldsChange = (opts: BgFieldsOpts) => {
 	const keyPrefix = opts.keyPrefix;
@@ -24,12 +23,7 @@ const listenBgFieldsChange = (opts: BgFieldsOpts) => {
 		cssSelector: opts.cssSelector,
 	});
 
-	listenBgHorizontalPositionFieldChange({
-		keyPrefix: keyPrefix,
-		cssSelector: opts.cssSelector,
-	});
-
-	listenBgVerticalPositionFieldChange({
+	listenBgCustomPositionFieldChange({
 		keyPrefix: keyPrefix,
 		cssSelector: opts.cssSelector,
 	});

@@ -1,8 +1,4 @@
-import {
-	BgFieldsOpts,
-	LogoLinkOpts,
-	udbLoginCustomizerInterface,
-} from "../../../../interfaces";
+import { BgFieldsOpts } from "../../../../interfaces";
 import writeBgPositionStyle from "../../../css-utilities/write-bg-position-style";
 import getFormPosition from "../../../helpers/get-form-position";
 

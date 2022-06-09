@@ -1,6 +1,9 @@
 const proNotice = {
 	show: (autoHide?: boolean) => {
-		const notice: HTMLElement = document.querySelector(".udb-pro-login-customizer-notice");
+		const notice: HTMLElement = document.querySelector(
+			".udb-pro-login-customizer-notice"
+		);
+
 		if (!notice) return;
 
 		notice.classList.add("is-shown");
@@ -9,11 +12,14 @@ const proNotice = {
 	},
 
 	hide: () => {
-		var notice: HTMLElement = document.querySelector(".udb-pro-login-customizer-notice");
+		var notice: HTMLElement = document.querySelector(
+			".udb-pro-login-customizer-notice"
+		);
+
 		if (!notice) return;
 
 		notice.classList.remove("is-shown");
-	}
+	},
 };
 
 export default proNotice;

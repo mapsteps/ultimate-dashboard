@@ -2,21 +2,21 @@ import setupPolyfills from "./polyfills";
 import { udbLoginCustomizerInterface } from "./interfaces";
 import insertProLink from "./controls/helpers/insert-pro-link";
 
-// Controls setup functions.
+// Import controls setup functions.
 import setupLoginTemplateControl from "./controls/setup-controls/login-template-control";
 import setupColorControl from "./controls/setup-controls/color-control";
 import setupRangeControl from "./controls/setup-controls/range-control";
 import setupColorPickerControl from "./controls/setup-controls/color-picker-control";
 
-// Panels listener functions.
+// Imports panels state listener.
 import listenLoginCustomizerPanelState from "./controls/listen-changes/panels/login-customizer-panel";
 
-// Sections listener functions.
+// Imports sections state listener.
 import listenBgSectionState from "./controls/listen-changes/sections/bg-section";
 import listenTemplateSectionState from "./controls/listen-changes/sections/template-section";
 import listenLayoutSectionState from "./controls/listen-changes/sections/layout-section";
 
-// Controls listener functions.
+// Imports fields change listener.
 import listenEnableFormShadowFieldChange from "./controls/listen-changes/fields/enable-form-shadow";
 import listenBgImageFieldChange from "./controls/listen-changes/fields/bg-image";
 import listenBgPositionFieldChange from "./controls/listen-changes/fields/bg-position";
@@ -56,19 +56,19 @@ setupPolyfills();
 
 	const listenPanelsState = () => {
 		listenLoginCustomizerPanelState();
-	}
+	};
 
 	const listenSectionsState = () => {
 		listenLayoutSectionState();
 
 		listenBgSectionState({
 			sectionName: "udb_login_customizer_bg_section",
-			keyPrefix: ""
+			keyPrefix: "",
 		});
 
 		listenBgSectionState({
 			sectionName: "udb_login_customizer_layout_section",
-			keyPrefix: "form_"
+			keyPrefix: "form_",
 		});
 
 		if (!udbLoginCustomizer.isProActive) {
@@ -76,25 +76,25 @@ setupPolyfills();
 		} else {
 			document.body.classList.add("udb-pro-active");
 		}
-	}
+	};
 
 	const listenFieldsChange = () => {
 		listenBgImageFieldChange({
-			keyPrefix: ""
+			keyPrefix: "",
 		});
 
 		listenBgImageFieldChange({
-			keyPrefix: "form_"
+			keyPrefix: "form_",
 		});
 
 		listenBgPositionFieldChange({
-			keyPrefix: ""
+			keyPrefix: "",
 		});
 
 		listenBgPositionFieldChange({
-			keyPrefix: "form_"
+			keyPrefix: "form_",
 		});
 
 		listenEnableFormShadowFieldChange();
-	}
+	};
 })();

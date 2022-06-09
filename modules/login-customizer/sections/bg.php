@@ -130,66 +130,28 @@ $wp_customize->add_control(
 );
 
 $wp_customize->add_setting(
-	'udb_login[bg_horizontal_position]',
+	'udb_login[bg_custom_position]',
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '0%',
+		'default'           => '',
 		'transport'         => 'postMessage',
-		'sanitize_callback' => 'esc_attr',
+		'sanitize_callback' => 'sanitize_text_field',
 	)
 );
 
 $wp_customize->add_control(
-	new Udb_Customize_Range_Control(
+	new Udb_Customize_Control(
 		$wp_customize,
-		'udb_login[bg_horizontal_position]',
+		'udb_login[bg_custom_position]',
 		array(
-			'type'        => 'range',
-			'section'     => 'udb_login_customizer_bg_section',
-			'settings'    => 'udb_login[bg_horizontal_position]',
-			'label'       => __( 'Background Horizontal Position', 'ultimate-dashboard' ),
+			'type'        => 'text',
+			'section'     => 'udb_login_customizer_logo_section',
+			'settings'    => 'udb_login[bg_custom_position]',
+			'label'       => __( 'Background Custom Position', 'ultimate-dashboard' ),
+			'description' => '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">Read more</a> for more information.',
 			'input_attrs' => array(
-				'min'  => 0,
-				/**
-				 * A percent unit max should be 100, but what about px and other units?
-				 * Thats why the max here is 1000.
-				 */
-				'max'  => 1000,
-				'step' => 1,
-			),
-		)
-	)
-);
-
-$wp_customize->add_setting(
-	'udb_login[bg_vertical_position]',
-	array(
-		'type'              => 'option',
-		'capability'        => 'edit_theme_options',
-		'default'           => '0%',
-		'transport'         => 'postMessage',
-		'sanitize_callback' => 'esc_attr',
-	)
-);
-
-$wp_customize->add_control(
-	new Udb_Customize_Range_Control(
-		$wp_customize,
-		'udb_login[bg_vertical_position]',
-		array(
-			'type'        => 'range',
-			'section'     => 'udb_login_customizer_bg_section',
-			'settings'    => 'udb_login[bg_vertical_position]',
-			'label'       => __( 'Background Vertical Position', 'ultimate-dashboard' ),
-			'input_attrs' => array(
-				'min'  => 0,
-				/**
-				 * A percent unit max should be 100, but what about px and other units?
-				 * Thats why the max here is 1000.
-				 */
-				'max'  => 1000,
-				'step' => 1,
+				'placeholder' => 'Powered by WordPress',
 			),
 		)
 	)

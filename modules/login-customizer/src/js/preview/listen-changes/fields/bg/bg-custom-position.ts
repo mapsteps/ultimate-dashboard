@@ -1,14 +1,14 @@
-import { BgFieldsOpts } from '../../../../interfaces';
-import writeBgPositionStyle from '../../../css-utilities/write-bg-position-style';
-import getFormPosition from '../../../helpers/get-form-position';
+import { BgFieldsOpts } from "../../../../interfaces";
+import writeBgPositionStyle from "../../../css-utilities/write-bg-position-style";
+import getFormPosition from "../../../helpers/get-form-position";
 
 declare var wp: any;
 
-const listenBgHorizontalPositionFieldChange = (opts: BgFieldsOpts) => {
+const listenBgCustomPositionFieldChange = (opts: BgFieldsOpts) => {
 	const keyPrefix = opts.keyPrefix;
 
 	wp.customize(
-		"udb_login[" + keyPrefix + "bg_horizontal_position]",
+		"udb_login[" + keyPrefix + "bg_custom_position]",
 		function (setting: any) {
 			let cssSelector = opts.cssSelector;
 
@@ -24,15 +24,16 @@ const listenBgHorizontalPositionFieldChange = (opts: BgFieldsOpts) => {
 					.get();
 
 				writeBgPositionStyle({
-					styleEl: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+					styleEl:
+						'[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
 					keyPrefix: keyPrefix,
 					cssSelector: cssSelector,
 					bgPosition: bgPosition,
-					bgHorizontalPosition: val,
+					bgCustomPosition: val,
 				});
 			});
 		}
 	);
 };
 
-export default listenBgHorizontalPositionFieldChange;
+export default listenBgCustomPositionFieldChange;

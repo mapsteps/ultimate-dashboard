@@ -5,7 +5,7 @@ const listenLayoutSectionState = () => {
 		"udb_login_customizer_layout_section",
 		function (section: any) {
 			section.expanded.bind(function (isExpanded: boolean | number) {
-				var formShadowEnabled = wp
+				const formShadowEnabled = wp
 					.customize("udb_login[enable_form_shadow]")
 					.get();
 
@@ -23,22 +23,16 @@ const listenLayoutSectionState = () => {
 
 						if (formShadowEnabled) {
 							wp.customize.control("udb_login[form_shadow_blur]").activate();
-
 							wp.customize.control("udb_login[form_shadow_color]").activate();
 						} else {
-							wp.customize
-								.control("udb_login[form_shadow_blur]")
-								.deactivate();
-
-							wp.customize
-								.control("udb_login[form_shadow_color]")
-								.deactivate();
+							wp.customize.control("udb_login[form_shadow_blur]").deactivate();
+							wp.customize.control("udb_login[form_shadow_color]").deactivate();
 						}
 					}
 				}
 			});
 		}
 	);
-}
+};
 
 export default listenLayoutSectionState;

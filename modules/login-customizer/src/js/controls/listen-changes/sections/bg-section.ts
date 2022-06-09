@@ -14,7 +14,7 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 	wp.customize.section(sectionName, function (section: any) {
 		section.expanded.bind(function (isExpanded: boolean | number) {
 			if (isExpanded) {
-				var bgPosition = wp
+				const bgPosition = wp
 					.customize("udb_login[" + keyPrefix + "bg_position]")
 					.get();
 
@@ -38,11 +38,7 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 						.deactivate();
 
 					wp.customize
-						.control("udb_login[" + keyPrefix + "bg_horizontal_position]")
-						.deactivate();
-
-					wp.customize
-						.control("udb_login[" + keyPrefix + "bg_vertical_position]")
+						.control("udb_login[" + keyPrefix + "bg_custom_position]")
 						.deactivate();
 
 					wp.customize
@@ -56,6 +52,6 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 			}
 		});
 	});
-}
+};
 
 export default listenBgSectionState;
