@@ -20,6 +20,7 @@ import listenLayoutSectionState from "./controls/listen-changes/sections/layout-
 import listenEnableFormShadowFieldChange from "./controls/listen-changes/fields/enable-form-shadow";
 import listenBgImageFieldChange from "./controls/listen-changes/fields/bg-image";
 import listenBgPositionFieldChange from "./controls/listen-changes/fields/bg-position";
+import listenBgSizeFieldChange from "./controls/listen-changes/fields/bg-size";
 
 declare var wp: any;
 declare var udbLoginCustomizer: udbLoginCustomizerInterface;
@@ -92,6 +93,14 @@ setupPolyfills();
 		});
 
 		listenBgPositionFieldChange({
+			keyPrefix: "form_",
+		});
+
+		listenBgSizeFieldChange({
+			keyPrefix: "",
+		});
+
+		listenBgSizeFieldChange({
 			keyPrefix: "form_",
 		});
 

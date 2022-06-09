@@ -1,5 +1,6 @@
-import { BgFieldsOpts } from '../../../../interfaces';
-import getFormPosition from '../../../helpers/get-form-position';
+import { BgFieldsOpts } from "../../../../interfaces";
+import writeBgSizeStyle from "../../../css-utilities/write-bg-size-style";
+import getFormPosition from "../../../helpers/get-form-position";
 
 declare var wp: any;
 
@@ -16,11 +17,12 @@ const listenBgSizeFieldChange = (opts: BgFieldsOpts) => {
 				cssSelector = "#login";
 			}
 
-			var rule = "background-size: " + val + ";";
-
-			document.querySelector(
-				'[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]'
-			).innerHTML = cssSelector + " {" + rule + "}";
+			writeBgSizeStyle({
+				styleEl: '[data-listen-value="udb_login[' + keyPrefix + 'bg_size]"]',
+				keyPrefix: keyPrefix,
+				cssSelector: cssSelector,
+				bgSize: val,
+			});
 		});
 	});
 };

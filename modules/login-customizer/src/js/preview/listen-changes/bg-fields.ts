@@ -4,6 +4,7 @@ import listenBgPositionFieldChange from "./fields/bg/bg-position";
 import listenBgCustomPositionFieldChange from "./fields/bg/bg-custom-position";
 import listenBgRepeatFieldChange from "./fields/bg/bg-repeat";
 import listenBgSizeFieldChange from "./fields/bg/bg-size";
+import listenBgCustomSizeFieldChange from "./fields/bg/bg-custom-size";
 
 const listenBgFieldsChange = (opts: BgFieldsOpts) => {
 	const keyPrefix = opts.keyPrefix;
@@ -29,6 +30,11 @@ const listenBgFieldsChange = (opts: BgFieldsOpts) => {
 	});
 
 	listenBgSizeFieldChange({
+		keyPrefix: keyPrefix,
+		cssSelector: opts.cssSelector,
+	});
+
+	listenBgCustomSizeFieldChange({
 		keyPrefix: keyPrefix,
 		cssSelector: opts.cssSelector,
 	});

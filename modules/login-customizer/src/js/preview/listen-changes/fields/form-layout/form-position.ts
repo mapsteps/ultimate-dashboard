@@ -1,6 +1,7 @@
-import writeBgPositionStyle from "../../../css-utilities/write-bg-position-style";
 import writeStyle from "../../../css-utilities/write-style";
 import writeStyles from "../../../css-utilities/write-styles";
+import writeBgPositionStyle from "../../../css-utilities/write-bg-position-style";
+import writeBgSizeStyle from "../../../css-utilities/write-bg-size-style";
 
 declare var wp: any;
 
@@ -120,10 +121,11 @@ const listenFormPositionFieldChange = () => {
 				}
 
 				if (formBgSize) {
-					writeStyle({
+					writeBgSizeStyle({
 						styleEl: formBgSizeStyleTag,
+						keyPrefix: "form_",
 						cssSelector: ".login form, #loginform",
-						cssRules: "background-size: " + formBgSize + ";",
+						bgSize: formBgSize,
 					});
 				}
 
@@ -144,7 +146,7 @@ const listenFormPositionFieldChange = () => {
 					formHorizontalPadding +
 					";}";
 
-				var formBorderWidth = wp
+				let formBorderWidth = wp
 					.customize("udb_login[form_border_width]")
 					.get();
 
@@ -153,7 +155,7 @@ const listenFormPositionFieldChange = () => {
 				formBorderWidthStyleTag.innerHTML =
 					"#loginform {border-width: " + formBorderWidth + ";}";
 
-				var formBorderStyle = wp
+				let formBorderStyle = wp
 					.customize("udb_login[form_border_style]")
 					.get();
 
@@ -162,7 +164,7 @@ const listenFormPositionFieldChange = () => {
 				formBorderStyleStyleTag.innerHTML =
 					"#loginform {border-style: " + formBorderStyle + ";}";
 
-				var formBorderColor = wp
+				let formBorderColor = wp
 					.customize("udb_login[form_border_color]")
 					.get();
 

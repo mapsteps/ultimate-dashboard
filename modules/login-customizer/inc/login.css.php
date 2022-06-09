@@ -26,6 +26,7 @@ $bg_position = isset( $login['bg_position'] ) ? $login['bg_position'] : 'center'
 $bg_size     = isset( $login['bg_size'] ) ? $login['bg_size'] : 'cover';
 $bg_repeat   = isset( $login['bg_repeat'] ) ? $login['bg_repeat'] : 'no-repeat';
 
+$bg_custom_size     = isset( $login['bg_custom_size'] ) ? $login['bg_custom_size'] : '';
 $bg_custom_position = isset( $login['bg_custom_position'] ) ? $login['bg_custom_position'] : '';
 
 $form_bg_color    = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
@@ -34,6 +35,7 @@ $form_bg_position = isset( $login['form_bg_position'] ) ? $login['form_bg_positi
 $form_bg_size     = isset( $login['form_bg_size'] ) ? $login['form_bg_size'] : 'cover';
 $form_bg_repeat   = isset( $login['form_bg_repeat'] ) ? $login['form_bg_repeat'] : 'no-repeat';
 
+$form_bg_custom_size     = isset( $login['form_bg_custom_size'] ) ? $login['form_bg_custom_size'] : '';
 $form_bg_custom_position = isset( $login['form_bg_custom_position'] ) ? $login['form_bg_custom_position'] : '';
 
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '';
@@ -105,7 +107,14 @@ body.login {
 			background-position: <?php echo esc_attr( $bg_position ); ?>;
 		<?php endif; ?>
 
-		background-size: <?php echo esc_attr( $bg_size ); ?>;
+		<?php if ( 'custom' === $bg_size ) : ?>
+			<?php if ( ! empty( $bg_custom_size ) ) : ?>
+				background-size: <?php echo esc_attr( $bg_custom_size ); ?>;
+			<?php endif; ?>
+		<?php else : ?>
+			background-size: <?php echo esc_attr( $bg_size ); ?>;
+		<?php endif; ?>
+
 		background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
 	<?php endif; ?>
 }
@@ -174,7 +183,14 @@ body.login {
 			background-position: <?php echo esc_attr( $form_bg_position ); ?>;
 		<?php endif; ?>
 
-		background-size: <?php echo esc_attr( $form_bg_size ); ?>;
+		<?php if ( 'custom' === $form_bg_size ) : ?>
+			<?php if ( ! empty( $form_bg_custom_size ) ) : ?>
+				background-size: <?php echo esc_attr( $form_bg_custom_size ); ?>;
+			<?php endif; ?>
+		<?php else : ?>
+			background-size: <?php echo esc_attr( $form_bg_size ); ?>;
+		<?php endif; ?>
+
 		background-repeat: <?php echo esc_attr( $form_bg_repeat ); ?>;
 	<?php endif; ?>
 

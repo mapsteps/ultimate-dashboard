@@ -1,5 +1,6 @@
 import handleBgCustomPostion from "../../helpers/handle-bg-custom-position";
 import { OptsWithKeyPrefix } from "../../../interfaces";
+import handleBgCustomSize from "../../helpers/handle-bg-custom-size";
 
 declare var wp: any;
 
@@ -8,9 +9,11 @@ const listenBgImageFieldChange = (opts: OptsWithKeyPrefix) => {
 
 	wp.customize("udb_login[" + keyPrefix + "bg_image]", function (setting: any) {
 		setting.bind(function (val: string) {
-			var bgPosition = wp
+			const bgPosition = wp
 				.customize("udb_login[" + keyPrefix + "bg_position]")
 				.get();
+
+			const bgSize = wp.customize("udb_login[" + keyPrefix + "bg_size]").get();
 
 			if (val) {
 				document
@@ -25,9 +28,9 @@ const listenBgImageFieldChange = (opts: OptsWithKeyPrefix) => {
 
 				handleBgCustomPostion(keyPrefix, bgPosition);
 
-				wp.customize
-					.control("udb_login[" + keyPrefix + "bg_size]")
-					.activate();
+				wp.customize.control("udb_login[" + keyPrefix + "bg_size]").activate();
+
+				handleBgCustomSize(keyPrefix, bgSize);
 
 				wp.customize
 					.control("udb_login[" + keyPrefix + "bg_repeat]")
@@ -44,7 +47,15 @@ const listenBgImageFieldChange = (opts: OptsWithKeyPrefix) => {
 					.deactivate();
 
 				wp.customize
+					.control("udb_login[" + keyPrefix + "bg_custom_position]")
+					.deactivate();
+
+				wp.customize
 					.control("udb_login[" + keyPrefix + "bg_size]")
+					.deactivate();
+
+				wp.customize
+					.control("udb_login[" + keyPrefix + "bg_custom_size]")
 					.deactivate();
 
 				wp.customize
@@ -53,6 +64,6 @@ const listenBgImageFieldChange = (opts: OptsWithKeyPrefix) => {
 			}
 		});
 	});
-}
+};
 
 export default listenBgImageFieldChange;
