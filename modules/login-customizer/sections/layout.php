@@ -206,7 +206,7 @@ $wp_customize->add_control(
 		'udb_login[form_bg_custom_position]',
 		array(
 			'type'        => 'text',
-			'section'     => 'udb_login_customizer_logo_section',
+			'section'     => 'udb_login_customizer_layout_section',
 			'settings'    => 'udb_login[form_bg_custom_position]',
 			'label'       => __( 'Background Custom Position', 'ultimate-dashboard' ),
 			'description' => '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position">Read more</a> for more information.',
