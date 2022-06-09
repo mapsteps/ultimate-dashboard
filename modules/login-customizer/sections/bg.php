@@ -209,7 +209,7 @@ $wp_customize->add_control(
 			'label'       => __( 'Background Custom Size', 'ultimate-dashboard' ),
 			'description' => '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-size" target="_blank">Click here</a> for more information.',
 			'input_attrs' => array(
-				'placeholder' => '0% 0%',
+				'placeholder' => 'auto auto',
 			),
 		)
 	)
