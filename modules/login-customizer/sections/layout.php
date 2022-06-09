@@ -450,6 +450,7 @@ $wp_customize->add_control(
 				'solid'  => __( 'solid', 'ultimate-dashboard' ),
 				'dotted' => __( 'dotted', 'ultimate-dashboard' ),
 				'dashed' => __( 'dashed', 'ultimate-dashboard' ),
+				'double' => __( 'double', 'ultimate-dashboard' ),
 				'none'   => __( 'none', 'ultimate-dashboard' ),
 			),
 		)
