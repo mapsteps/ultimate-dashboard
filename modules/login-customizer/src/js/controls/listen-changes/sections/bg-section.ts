@@ -1,4 +1,5 @@
 import handleBgCustomPostion from "../../helpers/handle-bg-custom-position";
+import handleBgCustomSize from "../../helpers/handle-bg-custom-size";
 
 interface ListenBgSectionChangeOpts {
 	sectionName: string;
@@ -18,16 +19,17 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 					.customize("udb_login[" + keyPrefix + "bg_position]")
 					.get();
 
+				const bgSize = wp
+					.customize("udb_login[" + keyPrefix + "bg_size]")
+					.get();
+
 				if (wp.customize("udb_login[" + keyPrefix + "bg_image]").get()) {
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_position]")
 						.activate();
 
 					handleBgCustomPostion(keyPrefix, bgPosition);
-
-					wp.customize
-						.control("udb_login[" + keyPrefix + "bg_size]")
-						.activate();
+					handleBgCustomSize(keyPrefix, bgSize);
 
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_repeat]")
@@ -43,6 +45,10 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_size]")
+						.deactivate();
+
+					wp.customize
+						.control("udb_login[" + keyPrefix + "bg_custom_size]")
 						.deactivate();
 
 					wp.customize

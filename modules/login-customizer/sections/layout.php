@@ -241,7 +241,7 @@ $wp_customize->add_control(
 				'auto'    => __( 'auto', 'ultimate-dashboard' ),
 				'cover'   => __( 'cover', 'ultimate-dashboard' ),
 				'contain' => __( 'contain', 'ultimate-dashboard' ),
-				'contain' => __( 'custom', 'ultimate-dashboard' ),
+				'custom'  => __( 'custom', 'ultimate-dashboard' ),
 			),
 		)
 	)
