@@ -13,7 +13,6 @@ use Udb\Helpers\Content_Helper;
 use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Image_Control;
 use Udb\Udb_Customize_Color_Control;
-use Udb\Udb_Customize_Range_Control;
 
 $wp_customize->add_setting(
 	'udb_login[bg_color]',
