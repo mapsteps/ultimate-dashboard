@@ -1,10 +1,10 @@
-import proNotice from "../helpers/pro-notice";
+import proNotice from "../../helpers/pro-notice";
 
 declare var wp: any;
 
-const listenTemplateFieldsChange = () => {
+const listenTemplateFieldChange = () => {
 	wp.customize("udb_login[template]", function (setting: any) {
-		setting.bind(function (val:any) {
+		setting.bind(function (val: any) {
 			if (val !== "default") {
 				proNotice.show();
 			} else {
@@ -14,4 +14,4 @@ const listenTemplateFieldsChange = () => {
 	});
 };
 
-export default listenTemplateFieldsChange;
+export default listenTemplateFieldChange;

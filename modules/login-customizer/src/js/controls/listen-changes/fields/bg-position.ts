@@ -1,5 +1,5 @@
 import handleBgCustomPostion from "../../helpers/handle-bg-custom-position";
-import { OptsWithKeyPrefix } from "../interfaces";
+import { OptsWithKeyPrefix } from "../../../interfaces";
 
 declare var wp: any;
 

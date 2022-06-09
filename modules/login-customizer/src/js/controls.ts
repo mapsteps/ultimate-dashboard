@@ -1,5 +1,5 @@
 import setupPolyfills from "./polyfills";
-import { udbLoginCustomizerInterface } from "./global";
+import { udbLoginCustomizerInterface } from "./interfaces";
 import insertProLink from "./controls/helpers/insert-pro-link";
 
 // Controls setup functions.

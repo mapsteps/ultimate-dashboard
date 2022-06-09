@@ -1,4 +1,4 @@
-import { udbLoginCustomizerInterface } from "../../global";
+import { udbLoginCustomizerInterface } from "../../interfaces";
 
 declare var wp: any;
 declare var udbLoginCustomizer: udbLoginCustomizerInterface;
