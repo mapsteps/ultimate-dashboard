@@ -147,7 +147,7 @@ $wp_customize->add_control(
 			'type'        => 'text',
 			'section'     => 'udb_login_customizer_bg_section',
 			'settings'    => 'udb_login[bg_custom_position]',
-			'label'       => __( 'Background Custom Position', 'ultimate-dashboard' ),
+			'label'       => __( 'Custom Background Position', 'ultimate-dashboard' ),
 			'description' => '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position" target="_blank">Click here</a> for more information.',
 			'input_attrs' => array(
 				'placeholder' => '0% 0%',
@@ -205,7 +205,7 @@ $wp_customize->add_control(
 			'type'        => 'text',
 			'section'     => 'udb_login_customizer_bg_section',
 			'settings'    => 'udb_login[bg_custom_size]',
-			'label'       => __( 'Background Custom Size', 'ultimate-dashboard' ),
+			'label'       => __( 'Custom Background Size', 'ultimate-dashboard' ),
 			'description' => '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-size" target="_blank">Click here</a> for more information.',
 			'input_attrs' => array(
 				'placeholder' => 'auto auto',
