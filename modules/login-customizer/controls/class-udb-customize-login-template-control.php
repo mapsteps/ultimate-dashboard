@@ -101,7 +101,7 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 				}
 				?>
 				<li class="udb-customize-control-template <?php echo esc_attr( $class ); ?>">
-					<img src="<?php echo esc_url( $template['thumbnail'] ); ?>" alt="Template" data-template-name="<?php echo esc_attr( $template_name ); ?>" data-bg-image="<?php echo esc_url( $template['bg_image'] ); ?>">
+					<img src="<?php echo esc_url( $template['thumbnail'] ); ?>" alt="Layout" data-template-name="<?php echo esc_attr( $template_name ); ?>" data-bg-image="<?php echo esc_url( $template['bg_image'] ); ?>">
 				</li>
 			<?php endforeach; ?>
 		</ul>

@@ -12,7 +12,7 @@ return function ( $wp_customize ) {
 	$wp_customize->add_section(
 		'udb_login_customizer_template_section',
 		array(
-			'title' => __( 'Templates', 'ultimate-dashboard' ),
+			'title' => __( 'Layouts', 'ultimate-dashboard' ),
 			'panel' => 'udb_login_customizer_panel',
 		)
 	);
