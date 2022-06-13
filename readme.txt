@@ -102,8 +102,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.7 | Release Pending =
-* New: Greatly improved Login Customizer with features such as Background Image, Background Overlay, Form Box Shadow, etc.
+= 3.7 | June 15, 2022 =
+* New: Improved Login Customizer with features such as Background Image, Background Overlay, Form Box Shadow, etc.
 = 3.6.3 | May 13, 2022 =
 * Tweak: Further improved Admin Menu Editor functionality
 = 3.6.2 | May 10, 2022 =
