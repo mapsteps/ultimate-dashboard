@@ -19,6 +19,7 @@ import listenLayoutSectionState from "./controls/listen-changes/sections/layout-
 // Imports fields change listener.
 import listenEnableFormShadowFieldChange from "./controls/listen-changes/fields/enable-form-shadow";
 import listenBgImageFieldChange from "./controls/listen-changes/fields/bg-image";
+import listenEnableBgOverlayFieldChange from "./controls/listen-changes/fields/enable-bg-overlay";
 import listenBgPositionFieldChange from "./controls/listen-changes/fields/bg-position";
 import listenBgSizeFieldChange from "./controls/listen-changes/fields/bg-size";
 
@@ -83,6 +84,8 @@ setupPolyfills();
 		listenBgImageFieldChange({
 			keyPrefix: "",
 		});
+
+		listenEnableBgOverlayFieldChange();
 
 		listenBgImageFieldChange({
 			keyPrefix: "form_",

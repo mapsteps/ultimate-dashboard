@@ -1,7 +1,8 @@
-import { BgFieldsOpts } from '../../../../interfaces';
-import writeBgPositionStyle from '../../../css-utilities/write-bg-position-style';
-import writeStyle from '../../../css-utilities/write-style';
-import getFormPosition from '../../../helpers/get-form-position';
+import { BgFieldsOpts } from "../../../../interfaces";
+import writeBgPositionStyle from "../../../css-utilities/write-bg-position-style";
+import writeStyle from "../../../css-utilities/write-style";
+import getFormPosition from "../../../helpers/get-form-position";
+import toggleBgOverlay from "../../../helpers/toggle-bg-overlay";
 
 declare var wp: any;
 
@@ -22,13 +23,39 @@ const listenBgImageFieldChange = (opts: BgFieldsOpts) => {
 				cssSelector = "#login";
 			}
 
-			writeStyle({
-				styleEl: bgImageStyleTag,
-				cssSelector: cssSelector,
-				cssRules: "background-image: url(" + val + ");",
-			});
+			if (val) {
+				writeStyle({
+					styleEl: bgImageStyleTag,
+					cssSelector: cssSelector,
+					cssRules: "background-image: url(" + val + ");",
+				});
 
-			var bgRepeat = wp
+				// The overlay feature is only for bg_image, not for for form_bg_image.
+				if (!keyPrefix) {
+					const enableBgOverlay = wp
+						.customize("udb_login[enable_bg_overlay_color]")
+						.get();
+
+					if (enableBgOverlay) {
+						toggleBgOverlay(true);
+					} else {
+						toggleBgOverlay(false);
+					}
+				}
+			} else {
+				writeStyle({
+					styleEl: bgImageStyleTag,
+					cssSelector: cssSelector,
+					cssRules: "background-image: none;",
+				});
+
+				// The overlay feature is only for bg_image, not for for form_bg_image.
+				if (!keyPrefix) {
+					toggleBgOverlay(false);
+				}
+			}
+
+			const bgRepeat = wp
 				.customize("udb_login[" + keyPrefix + "bg_repeat]")
 				.get();
 
@@ -43,7 +70,8 @@ const listenBgImageFieldChange = (opts: BgFieldsOpts) => {
 				.get();
 
 			writeBgPositionStyle({
-				styleEl: '[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
+				styleEl:
+					'[data-listen-value="udb_login[' + keyPrefix + 'bg_position]"]',
 				keyPrefix: keyPrefix,
 				cssSelector: cssSelector,
 				bgPosition: bgPosition,
@@ -56,9 +84,7 @@ const listenBgImageFieldChange = (opts: BgFieldsOpts) => {
 				cssSelector: cssSelector,
 				cssRules: "background-size: " + bgSize + ";",
 			});
-
 		}); // End of setting.bind();
-
 	}); // End of wp.customize();
 };
 

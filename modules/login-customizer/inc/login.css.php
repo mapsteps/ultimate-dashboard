@@ -29,6 +29,10 @@ $bg_repeat   = isset( $login['bg_repeat'] ) ? $login['bg_repeat'] : 'no-repeat';
 $bg_custom_size     = isset( $login['bg_custom_size'] ) ? $login['bg_custom_size'] : '';
 $bg_custom_position = isset( $login['bg_custom_position'] ) ? $login['bg_custom_position'] : '';
 
+// The udb toggle switch control saves the value as 0 if it's un-checked.
+$bg_overlay_enabled = isset( $login['enable_bg_overlay_color'] ) ? absint( $login['enable_bg_overlay_color'] ) : 0;
+$bg_overlay_color   = isset( $login['bg_overlay_color'] ) ? $login['bg_overlay_color'] : '';
+
 $form_bg_color    = isset( $login['form_bg_color'] ) ? $login['form_bg_color'] : '';
 $form_bg_image    = isset( $login['form_bg_image'] ) ? $login['form_bg_image'] : '';
 $form_bg_position = isset( $login['form_bg_position'] ) ? $login['form_bg_position'] : 'center';
@@ -117,6 +121,20 @@ body.login {
 
 		background-repeat: <?php echo esc_attr( $bg_repeat ); ?>;
 	<?php endif; ?>
+}
+
+.udb-bg-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	<?php if ( $bg_image && $bg_overlay_enabled && $bg_overlay_color ) : ?>
+		background-color: <?php echo esc_attr( $bg_overlay_color ); ?>;
+	<?php endif; ?>
+	z-index: 0;
+}
+
+#login {
+	position: relative;
 }
 
 .login h1 {

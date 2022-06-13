@@ -69,6 +69,7 @@ class Login_Customizer_Output extends Base_Output {
 
 		add_filter( 'login_headertext', array( self::get_instance(), 'login_headertext' ), 20 );
 		add_filter( 'login_headerurl', array( self::get_instance(), 'login_logo_url' ), 20 );
+		add_action( 'login_header', array( self::get_instance(), 'add_bg_overlay' ) );
 		add_action( 'login_head', array( self::get_instance(), 'print_login_styles' ), 20 );
 		add_action( 'login_head', array( self::get_instance(), 'print_login_live_styles' ), 30 );
 
@@ -104,6 +105,15 @@ class Login_Customizer_Output extends Base_Output {
 		}
 
 		return $url;
+
+	}
+
+	/**
+	 * Add background overlay markup.
+	 */
+	public function add_bg_overlay() {
+
+		echo '<div class="udb-bg-overlay"></div>';
 
 	}
 

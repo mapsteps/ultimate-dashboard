@@ -34,6 +34,19 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_repeat]")
 						.activate();
+
+					// The overlay feature is only for bg_image, not for for form_bg_image.
+					if (!keyPrefix) {
+						wp.customize
+							.control("udb_login[enable_bg_overlay_color]")
+							.activate();
+
+						if (wp.customize("udb_login[enable_bg_overlay_color]").get()) {
+							wp.customize.control("udb_login[bg_overlay_color]").activate();
+						} else {
+							wp.customize.control("udb_login[bg_overlay_color]").deactivate();
+						}
+					}
 				} else {
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_position]")
@@ -54,6 +67,15 @@ const listenBgSectionState = (opts: ListenBgSectionChangeOpts) => {
 					wp.customize
 						.control("udb_login[" + keyPrefix + "bg_repeat]")
 						.deactivate();
+
+					// The overlay feature is only for bg_image, not for for form_bg_image.
+					if (!keyPrefix) {
+						wp.customize
+							.control("udb_login[enable_bg_overlay_color]")
+							.deactivate();
+
+						wp.customize.control("udb_login[bg_overlay_color]").deactivate();
+					}
 				}
 			}
 		});

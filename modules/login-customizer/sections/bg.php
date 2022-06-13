@@ -13,6 +13,8 @@ use Udb\Helpers\Content_Helper;
 use Udb\Udb_Customize_Control;
 use Udb\Udb_Customize_Image_Control;
 use Udb\Udb_Customize_Color_Control;
+use Udb\Udb_Customize_Toggle_Switch_Control;
+use Udb\Udb_Customize_Color_Picker_Control;
 
 $wp_customize->add_setting(
 	'udb_login[bg_color]',
@@ -210,6 +212,61 @@ $wp_customize->add_control(
 			'input_attrs' => array(
 				'placeholder' => 'auto auto',
 			),
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'udb_login[enable_bg_overlay_color]',
+	array(
+		'type'              => 'option',
+		'capability'        => 'edit_theme_options',
+		'default'           => 0,
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'absint',
+	)
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Toggle_Switch_Control(
+		$wp_customize,
+		'udb_login[enable_bg_overlay_color]',
+		array(
+			'settings' => 'udb_login[enable_bg_overlay_color]',
+			'section'  => 'udb_login_customizer_bg_section',
+			'label'    => __( 'Background Overlay', 'ultimatedashboard' ),
+		)
+	)
+);
+
+$setting_args = array(
+	'type'              => 'option',
+	'capability'        => 'edit_theme_options',
+	'transport'         => 'postMessage',
+	// @todo Provide proper sanitize based on WPTT color alpha repo.
+	'sanitize_callback' => 'sanitize_text_field', // Because sanitize_hex_color wouldn't work on rgba.
+);
+
+$opts = get_option( 'udb_login', array() );
+
+if ( isset( $opts['bg_overlay_color'] ) ) {
+	$setting_args['default'] = $opts['bg_overlay_color'];
+}
+
+$wp_customize->add_setting(
+	'udb_login[bg_overlay_color]',
+	$setting_args
+);
+
+$wp_customize->add_control(
+	new Udb_Customize_Color_Picker_Control(
+		$wp_customize,
+		'udb_login[bg_overlay_color]',
+		array(
+			'settings' => 'udb_login[bg_overlay_color]',
+			'section'  => 'udb_login_customizer_bg_section',
+			'label'    => __( 'Overlay Color', 'ultimatedashboard' ),
+			'alpha'    => true,
 		)
 	)
 );
