@@ -146,7 +146,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-top: 35px;
+	margin-top: 20px;
 	padding-top: 35px;
 	width: 100%;
 	border-top: 1px solid #eee;
@@ -201,7 +201,7 @@
 .udb-subscription-form {
 	margin-left: auto;
 	margin-right: auto;
-	width: 60%;
+	width: 70%;
 }
 
 .udb-form-row {
