@@ -16,12 +16,13 @@ return function () {
 
 	$modules = array(
 		array(
+			'module'      => 'login_customizer',
+			'title'       => __( 'Login Customizer', 'ultimate-dashboard' ),
+		),
+		array(
 			'module'      => 'white_label',
 			'title'       => __( 'White Label', 'ultimate-dashboard' ),
 		),
-		array(
-			'module'      => 'login_customizer',
-			'title'       => __( 'Login Customizer', 'ultimate-dashboard' ),		),
 		array(
 			'module'      => 'login_redirect',
 			'title'       => __( 'Login Redirect', 'ultimate-dashboard' ),
