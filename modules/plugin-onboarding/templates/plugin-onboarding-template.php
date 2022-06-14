@@ -17,39 +17,26 @@ return function () {
 	$modules = array(
 		array(
 			'module'      => 'white_label',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/white-label.png',
 			'title'       => __( 'White Label', 'ultimate-dashboard' ),
-			'description' => __( 'White label & rebrand the WordPress admin area with the White Label module.', 'ultimate-dashboard' ),
 		),
 		array(
 			'module'      => 'login_customizer',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/login-customizer.png',
-			'title'       => __( 'Login Customizer', 'ultimate-dashboard' ),
-			'description' => __( 'Fully customize the login screen, directly within the WordPress customizer.', 'ultimate-dashboard' ),
-		),
+			'title'       => __( 'Login Customizer', 'ultimate-dashboard' ),		),
 		array(
 			'module'      => 'login_redirect',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/login-redirect.png',
 			'title'       => __( 'Login Redirect', 'ultimate-dashboard' ),
-			'description' => __( 'Change the WordPress login url, redirect users after login & set a <code>/wp-admin/</code> redirect for non logged-in users.', 'ultimate-dashboard' ),
 		),
 		array(
 			'module'      => 'admin_pages',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-pages.png',
 			'title'       => __( 'Admin Pages', 'ultimate-dashboard' ),
-			'description' => __( 'Create useful custom admin pages for your customers with the Admin Pages module.', 'ultimate-dashboard' ),
 		),
 		array(
 			'module'      => 'admin_menu_editor',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-menu.png',
 			'title'       => __( 'Admin Menu Editor', 'ultimate-dashboard' ),
-			'description' => __( 'Rearrange, hide & add new admin menu items for specific users & user roles with the Admin Menu Editor module.', 'ultimate-dashboard' ),
 		),
 		array(
 			'module'      => 'admin_bar_editor',
-			'icon'        => ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/img/admin-bar.png',
 			'title'       => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
-			'description' => __( 'Rearrange, hide & add new items to the WordPress toolbar with the Admin Bar Editor module.', 'ultimate-dashboard' ),
 		),
 	)
 
@@ -63,15 +50,16 @@ return function () {
 
 				<div class="logo-container">
 
-					<div>
+					<div style="width: 80%">
 						<span class="title">
-							<?php echo esc_html( get_admin_page_title() ); ?>
-							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
+							Welcome to Ultimate Dashboard
 						</span>
-						<p class="subtitle"><?php _e( 'Get started with Ultimate Dashboard.', 'ultimate-dashboard' ); ?></p>
+						<p class="subtitle">
+							Complete the 1-Click Setup & get an exclusive <strong style="font-weight: 700; color: #47d87c;">40% Discount</strong> on Ultimate Dashboard PRO
+						</p>
 					</div>
 
-					<div>
+					<div style="width: 20%">
 						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
 					</div>
 
@@ -93,11 +81,11 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
 
 							<h2>
-								<?php _e( 'Ultimate Dashboard Features', 'ultimate-dashboard' ); ?>
+								Features
 							</h2>
 
 							<p>
-								<?php _e( "Choose the features you want to enable or disable. The login customizer is always enabled to implement your Erident's settings.", 'ultimate-dashboard' ); ?>
+								Choose what features you would like to enable/disable. You can always manage this later from the Modules page.
 							</p>
 						</header>
 
@@ -106,9 +94,7 @@ return function () {
 							<?php foreach ( $modules as $module ) : ?>
 								<?php
 								$slug          = $module['module'];
-								$icon          = $module['icon'];
 								$title         = $module['title'];
-								$description   = $module['description'];
 								$disabled_attr = 'login_customizer' === $slug ? 'disabled' : '';
 								$is_checked    = true;
 
@@ -122,18 +108,12 @@ return function () {
 								?>
 
 								<li>
-									<div class="module-image">
-										<img src="<?php echo esc_url( $icon ); ?>" alt="">
-									</div>
 									<div class="module-text">
 										<h3>
 											<label for="udb_modules__<?php echo esc_attr( $slug ); ?>">
 												<?php echo esc_html( $title ); ?>
 											</label>
 										</h3>
-										<p>
-											<?php echo $description; ?>
-										</p>
 									</div>
 									<div class="module-toggle">
 										<label for="udb_modules__<?php echo esc_attr( $slug ); ?>" class="label checkbox-label">
@@ -161,11 +141,11 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								<?php _e( 'Signup For Updates', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Exclusive 40% Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Get notified about the latest updates and module releases. We also offers discount for Ultimate Dashboard PRO in some events.', 'ultimate-dashboard' ); ?>
+								<?php _e( 'We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & save 40%.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -178,7 +158,7 @@ return function () {
 							</div>
 							<div class="udb-form-row">
 								<button type="button" class="button button-primary button-large udb-button subscribe-button">
-									<?php esc_html_e( 'Subscribe Now', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
 						</div>
@@ -220,7 +200,7 @@ return function () {
 					</div>
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large button-primary udb-button save-button">
-							Save Changes
+							Done
 						</button>
 					</div>
 				</footer>

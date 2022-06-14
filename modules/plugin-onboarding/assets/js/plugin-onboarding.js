@@ -61,7 +61,7 @@
 	function onModulesSlideSelected() {
 		buttonsWrapper.classList.remove("is-hidden");
 		skipButton.textContent = "Skip";
-		saveButton.textContent = "Save Changes";
+		saveButton.textContent = "Done";
 		saveButton.classList.remove("is-invisible");
 	}
 
