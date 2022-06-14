@@ -1,0 +1,259 @@
+/* Animation */
+@-webkit-keyframes udbLoadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+@keyframes udbLoadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+/* Onboarding */
+.udb-onboarding-page .notice {
+	display: none !important;
+}
+
+.udb-onboarding-page .heatbox-container-center {
+	max-width: 900px;
+}
+
+.onboarding-heatbox {
+	padding: 35px 40px;
+	border-radius: 10px;
+}
+
+.onboarding-heatbox h2 {
+	margin-bottom: 20px;
+	padding: 0;
+	border-bottom-width: 0;
+}
+
+.udb-onboarding-slides {
+	position: relative;
+}
+
+.udb-onboarding-slide header {
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.udb-onboarding-slide .udb-illustration {
+	margin-bottom: 30px;
+	max-width: 70%;
+}
+
+.udb-onboarding-slide .subscription-illustration {
+	max-width: 50%;
+}
+
+.udb-onboarding-slide header h2 {
+	margin-top: 0;
+	font-size: 22px;
+}
+
+.udb-onboarding-slide header p {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 75%;
+	font-size: 16px;
+}
+
+.udb-modules {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.udb-modules li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.udb-modules .module-image {
+	width: 10%;
+}
+
+.udb-modules .module-image img {
+	max-width: 40px;
+	height: auto;
+}
+
+.udb-modules .module-text {
+	display: block;
+	width: 85%;
+	text-align: left;
+}
+
+.udb-modules .module-text h3 {
+	margin-bottom: 5px;
+	font-size: 16px;
+	line-height: 1;
+}
+
+.udb-modules .module-text p {
+	margin-bottom: 0;
+}
+
+.udb-modules .module-toggle {
+	width: 20%;
+	text-align: right;
+}
+
+.udb-modules .checkbox-label {
+	height: 25px;
+}
+
+.udb-modules .checkbox-label input {
+	visibility: hidden;
+}
+
+/* Override WordPress style */
+.udb-modules .checkbox-label input:checked:before {
+	content: "";
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.udb-modules .checkbox-label .indicator {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+}
+
+.udb-modules .checkbox-label .indicator::after {
+	top: 7px;
+	left: 10px;
+}
+
+.heatbox .label input:disabled ~ .indicator {
+	opacity: 0.9;
+}
+
+.onboarding-heatbox .heatbox-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 35px;
+	padding-top: 35px;
+	width: 100%;
+	border-top: 1px solid #eee;
+}
+
+.onboarding-heatbox .heatbox-footer-item {
+	width: 33%;
+}
+
+.onboarding-heatbox .heatbox-footer-item:nth-child(2) {
+	text-align: center;
+}
+
+.onboarding-heatbox .heatbox-footer-item:last-child {
+	text-align: right;
+}
+
+.onboarding-heatbox *.is-hidden {
+	display: none;
+}
+
+.onboarding-heatbox *.is-invisible {
+	opacity: 0;
+	visibility: hidden;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.udb-dots .tns-nav [aria-controls] {
+	cursor: pointer;
+}
+
+.udb-dots .tns-nav > [aria-controls] {
+	width: 9px;
+	height: 9px;
+	padding: 0;
+	margin: 0 5px;
+	border-radius: 50%;
+	background: #ddd;
+	border: 0;
+}
+
+.udb-dots .tns-nav > .tns-nav-active {
+	background: #999;
+}
+
+/* Hide the dot button for finished slide */
+.udb-dots .tns-nav [data-nav="2"] {
+	display: none;
+}
+
+.udb-subscription-form {
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+
+.udb-form-row {
+	margin-bottom: 20px;
+}
+
+.udb-form-row .udb-input {
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+	height: 45px;
+	font-size: 16px;
+	border: 2px solid #ddd;
+}
+
+.udb-subscription-form .subscribe-button {
+	width: 100%;
+	height: 45px;
+	font-size: 16px;
+}
+
+.onboarding-heatbox .udb-button.is-loading {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	color: transparent !important;
+	pointer-events: none;
+}
+
+.onboarding-heatbox .udb-button.is-loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #fff #fff !important;
+	border-radius: 290486px;
+	-webkit-animation: udbLoadingSpinAround 0.5s infinite linear;
+	animation: udbLoadingSpinAround 0.5s infinite linear;
+}
+
+.onboarding-heatbox .finish-button-wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}
+
+.onboarding-heatbox .finish-button {
+	width: 100%;
+	height: 45px;
+	line-height: 43px;
+	text-align: center;
+	font-size: 16px;
+}

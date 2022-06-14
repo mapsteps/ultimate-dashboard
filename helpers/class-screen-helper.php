@@ -180,4 +180,16 @@ class Screen_Helper {
 		return ( 'udb_widgets_page_udb_admin_bar' === $current_screen->id ? true : false );
 
 	}
+
+	/**
+	 * Check if current screen is plugin onboarding page.
+	 *
+	 * @return boolean
+	 */
+	public function is_plugin_onboarding() {
+
+		$current_screen = get_current_screen();
+		return ( 'udb_widgets_page_udb_plugin_onboarding' === $current_screen->id ? true : false );
+
+	}
 }

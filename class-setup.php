@@ -92,6 +92,7 @@ class Setup {
 		 * So in order to make them executed, the PRO version has to run first.
 		 */
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );
 
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
@@ -175,11 +176,12 @@ class Setup {
 			'udb_widgets_page_udb_login_redirect',
 			'udb_widgets_page_udb_admin_menu',
 			'udb_widgets_page_udb_admin_bar',
+			'udb_widgets_page_udb_plugin_onboarding',
 		);
 
 		$screen = get_current_screen();
 
-		if ( ! in_array( $screen->id, $screens ) ) {
+		if ( ! in_array( $screen->id, $screens, true ) ) {
 			return $classes;
 		}
 
@@ -262,6 +264,26 @@ class Setup {
 
 			}
 		}
+
+	}
+
+	/**
+	 * Load plugin onboarding module.
+	 */
+	public function load_plugin_onboarding_module() {
+
+		$need_setup = get_option( 'udb_migration_from_erident' );
+
+		// ! FOR TESTING PURPOSE.
+		$need_setup = true;
+
+		if ( ! $need_setup ) {
+			return;
+		}
+
+		require_once __DIR__ . '/modules/plugin-onboarding/class-plugin-onboarding-module.php';
+		$module = new PluginOnboarding\Plugin_Onboarding_Module();
+		$module->setup();
 
 	}
 
@@ -546,6 +568,8 @@ class Setup {
 			delete_blog_option( $site_id, 'udb_compat_settings_meta' );
 			delete_blog_option( $site_id, 'udb_compat_old_option' );
 
+			delete_blog_option( $site_id, 'udb_migration_from_erident' );
+
 			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
 			delete_blog_option( $site_id, 'review_notice_dismissed' );
 			delete_blog_option( $site_id, 'udb_bfcm_notice_dismissed' );
@@ -570,6 +594,8 @@ class Setup {
 			delete_option( 'udb_compat_delete_login_customizer_page' );
 			delete_option( 'udb_compat_settings_meta' );
 			delete_option( 'udb_compat_old_option' );
+
+			delete_option( 'udb_migration_from_erident' );
 
 			delete_option( 'udb_login_customizer_flush_url' );
 			delete_option( 'review_notice_dismissed' );

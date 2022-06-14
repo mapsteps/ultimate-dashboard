@@ -1,0 +1,7 @@
+.DS_Store
+vendor
+nbproject/*
+.idea
+composer.lock
+build
+.phpunit.result.cache

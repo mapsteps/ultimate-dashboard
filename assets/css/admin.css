@@ -8,8 +8,9 @@
 /**
  * Highlight PRO upgrade link.
  */
-#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"] {
-	color: #47D87C;
+#adminmenu #menu-posts-udb_widgets a[href="https://ultimatedashboard.io/pro/"],
+#adminmenu #menu-posts-udb_widgets a[href="edit.php?post_type=udb_widgets&page=udb_plugin_onboarding"] {
+	color: #47d87c;
 }
 
 /**
@@ -114,5 +115,4 @@
 		margin-top: 20px;
 		margin-bottom: 0;
 	}
-
 }
