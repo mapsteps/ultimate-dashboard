@@ -188,6 +188,7 @@ return function () {
 					<div class="udb-onboarding-slide udb-finished-slide">
 
 						<header>
+							<!-- Thanks: https://pngroyale.com/confetti-popper-png-download-image-2/ -->
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/Confetti-Popper-PNG-Download-Image-.png" alt="Finished!" class="udb-illustration subscription-illustration">
 
 							<h2>
