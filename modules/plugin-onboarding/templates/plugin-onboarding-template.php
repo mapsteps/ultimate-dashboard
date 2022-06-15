@@ -213,7 +213,7 @@ return function () {
 				</footer>
 
 				<div class="udb-discount-notif is-hidden">
-					This is an exclusive discount for Erident users. This discount will not come back!
+					This is an exclusive discount for Erident users.<br> <strong>This discount will not come back!</strong>
 				</div>
 
 			</div>
