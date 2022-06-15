@@ -7,13 +7,22 @@
 	var subscribeButton = document.querySelector(
 		".onboarding-heatbox .subscribe-button"
 	);
+	var discountNotif = document.querySelector(
+		".onboarding-heatbox .udb-discount-notif"
+	);
 	var slideIndexes = ["modules", "subscription", "finished"];
 	var currentSlide = "modules";
 	var doingAjax = false;
 	var slider;
 
 	function init() {
-		if (!buttonsWrapper || !skipButton || !saveButton || !subscribeButton) {
+		if (
+			!buttonsWrapper ||
+			!skipButton ||
+			!saveButton ||
+			!discountNotif ||
+			!subscribeButton
+		) {
 			return;
 		}
 
@@ -59,19 +68,17 @@
 	}
 
 	function onModulesSlideSelected() {
+		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
-		skipButton.textContent = "Skip";
-		saveButton.textContent = "Done";
-		saveButton.classList.remove("is-invisible");
 	}
 
 	function onSubscriptionSlideSelected() {
-		buttonsWrapper.classList.remove("is-hidden");
-		skipButton.textContent = "Go to Dashboard";
-		saveButton.classList.add("is-invisible");
+		discountNotif.classList.remove("is-hidden");
+		buttonsWrapper.classList.add("is-hidden");
 	}
 
 	function onFinishedSlideSelected() {
+		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.add("is-hidden");
 	}
 
