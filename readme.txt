@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Custom Login CSS, Login CSS, Ultimate Dash, Ultimate Client Dash
 Requires at least: 4.6
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 5.6
 Stable tag: 3.7
 License: GPLv2 or later
@@ -104,6 +104,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Changelog ==
 = 3.7 | June 15, 2022 =
 * New: Improved Login Customizer with features such as Background Image, Background Overlay, Form Box Shadow, etc.
+* Fixed: Issues when configuring Admin Menu Editor for specific users
 = 3.6.3 | May 13, 2022 =
 * Tweak: Further improved Admin Menu Editor functionality
 = 3.6.2 | May 10, 2022 =
