@@ -75,28 +75,35 @@ class Subscribe {
 	 */
 	private function subscribe() {
 
-		require_once ULTIMATE_DASHBOARD_PLUGIN_DIR . '/modules/plugin-onboarding/vendor/autoload.php';
-
 		// Mailerlite related vars.
-		// $mailerlite_api      = '1750aca41d5ce588d3587083d3788e12';
-		$mailerlite_api = '';
-		// $mailerlite_group_id = '111240296';
-		$mailerlite_group_id = '';
-
-		$mailerlite_group_api = ( new \MailerLiteApi\MailerLite( $mailerlite_api ) )->groups();
+		$mailerlite_api_key  = '17ca6c148dc69064b0f4f409776be3b8';
+		$mailerlite_group_id = '111311793';
+		$mailerlite_api_url  = "https://api.mailerlite.com/api/v2/groups/$mailerlite_group_id/subscribers";
 
 		$mailerlite_subscriber = [
 			'email'  => $this->email,
-			'fields' => [
-				'name' => $this->name,
-			],
+			'name'   => $this->name,
+			'fields' => [],
 		];
 
-		$response = $mailerlite_group_api->addSubscriber( $mailerlite_group_id, $mailerlite_subscriber );
+		$response = wp_remote_post(
+			$mailerlite_api_url,
+			[
+				'body'    => wp_json_encode( $mailerlite_subscriber ),
+				'headers' => [
+					'X-MailerLite-ApiKey' => $mailerlite_api_key,
+					'Content-Type'        => 'application/json',
+					'Accept'              => 'application/json',
+				],
+			]
+		);
 
-		delete_option( 'udb_migration_from_erident' );
+		if ( ! is_wp_error( $response ) ) {
+			delete_option( 'udb_migration_from_erident' );
+			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
+		}
 
-		wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
+		wp_send_json_error( $response->get_error_message(), 403 );
 
 	}
 
