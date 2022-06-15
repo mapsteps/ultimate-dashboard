@@ -16,28 +16,28 @@ return function () {
 
 	$modules = array(
 		array(
-			'module'      => 'login_customizer',
-			'title'       => __( 'Login Customizer', 'ultimate-dashboard' ),
+			'module' => 'login_customizer',
+			'title'  => __( 'Login Customizer', 'ultimate-dashboard' ),
 		),
 		array(
-			'module'      => 'white_label',
-			'title'       => __( 'White Label', 'ultimate-dashboard' ),
+			'module' => 'white_label',
+			'title'  => __( 'White Label', 'ultimate-dashboard' ),
 		),
 		array(
-			'module'      => 'login_redirect',
-			'title'       => __( 'Login Redirect', 'ultimate-dashboard' ),
+			'module' => 'login_redirect',
+			'title'  => __( 'Login Redirect', 'ultimate-dashboard' ),
 		),
 		array(
-			'module'      => 'admin_pages',
-			'title'       => __( 'Admin Pages', 'ultimate-dashboard' ),
+			'module' => 'admin_pages',
+			'title'  => __( 'Admin Pages', 'ultimate-dashboard' ),
 		),
 		array(
-			'module'      => 'admin_menu_editor',
-			'title'       => __( 'Admin Menu Editor', 'ultimate-dashboard' ),
+			'module' => 'admin_menu_editor',
+			'title'  => __( 'Admin Menu Editor', 'ultimate-dashboard' ),
 		),
 		array(
-			'module'      => 'admin_bar_editor',
-			'title'       => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
+			'module' => 'admin_bar_editor',
+			'title'  => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
 		),
 	)
 
@@ -142,11 +142,11 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								<?php _e( 'Exclusive 40% Discount 🥳', 'ultimate-dashboard' ); ?>
+								Exclusive 40% Discount 🥳
 							</h2>
 
 							<p>
-								<?php _e( 'We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & save 40%.', 'ultimate-dashboard' ); ?>
+								We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & save 40%.
 							</p>
 						</header>
 
@@ -173,11 +173,11 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/Confetti-Popper-PNG-Download-Image-.png" alt="Finished!" class="udb-illustration subscription-illustration">
 
 							<h2>
-								<?php _e( 'Setup done, enjoy!', 'ultimate-dashboard' ); ?>
+								Setup done, enjoy!
 							</h2>
 
 							<p>
-								<?php _e( "Your Ultimate Dashboard plugin has been setup. What's next? You can manage your widgets, or customize your login, or do other settings by clicking on \"Ultimate Dashboard\" menu in the sidebar.", 'ultimate-dashboard' ); ?>
+								Your Ultimate Dashboard plugin has been setup. What's next? You can manage your widgets, or customize your login, or do other settings by clicking on "Ultimate Dashboard" menu in the sidebar.
 							</p>
 						</header>
 
