@@ -165,7 +165,12 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 										<li class="loading"></li>
 									</ul>
 
-									<?php do_action( 'udb_admin_menu_add_menu_button' ); ?>
+									<div class="udb-admin-menu--inline-buttons">
+										<?php
+										do_action( 'udb_admin_menu_add_menu_button' );
+										do_action( 'udb_admin_menu_add_separator_button' );
+										?>
+									</div>
 								</div>
 
 							<?php endforeach; ?>
