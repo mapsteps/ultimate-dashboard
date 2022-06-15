@@ -173,11 +173,17 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/Confetti-Popper-PNG-Download-Image-.png" alt="Finished!" class="udb-illustration subscription-illustration">
 
 							<h2>
-								Setup done, enjoy!
+								Setup Complete. Enjoy!
 							</h2>
 
 							<p>
-								Your Ultimate Dashboard plugin has been setup. What's next? You can manage your widgets, or customize your login, or do other settings by clicking on "Ultimate Dashboard" menu in the sidebar.
+								We will send you an email with a 40% Discount Code for Ultimate Dashboard PRO in just a minute.
+							</p>
+							<p>
+								What's next? Explore all the new Features from the "Ultimate Dash..." admin menu.
+							</p>
+							<p>
+								Enjoy!
 							</p>
 						</header>
 
