@@ -1,6 +1,6 @@
 === Ultimate Dashboard - Custom WordPress Dashboard ===
 Contributors: davidvongries
-Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Custom Login CSS, Login CSS, Ultimate Dash, Ultimate Client Dash
+Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashboard, Custom Dashboard, Login Customizer, Custom Login Screen, WP Admin, WordPress Admin, Screen Options, Remove Screen Options, Hide Admin Bar, Remove Admin Bar, Dashboard CSS, Admin CSS, Custom Admin CSS, Custom Login CSS, Login CSS, Ultimate Dash, Ultimate Client Dash, Login Redirect, Admin Bar Editor, Admin Menu Editor
 Requires at least: 4.6
 Tested up to: 6.0
 Requires PHP: 5.6
