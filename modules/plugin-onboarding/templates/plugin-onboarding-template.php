@@ -146,7 +146,7 @@ return function () {
 							</h2>
 
 							<p>
-								We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & save 40%.
+								We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get 40% off.
 							</p>
 						</header>
 
