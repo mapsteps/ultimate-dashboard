@@ -44,7 +44,7 @@ class Base_Output {
 	 *
 	 * @return object Instance of array helper.
 	 */
-	public function array() {
+	public function array_helper() {
 
 		return new Array_Helper();
 
