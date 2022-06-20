@@ -1,3 +1,7 @@
+.udb-is-hidden {
+	display: none;
+}
+
 /**
  * Fix custom admin bar menu item icon.
  */
