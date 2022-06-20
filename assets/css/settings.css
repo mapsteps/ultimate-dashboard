@@ -7,6 +7,10 @@
 	opacity: 0.6;
 }
 
+.is-hidden {
+	display: none;
+}
+
 .CodeMirror-wrap {
 	border: 1px solid #ddd;
 }
