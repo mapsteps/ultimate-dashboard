@@ -170,6 +170,7 @@ class Branding_Module extends Base_Module {
 
 		add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
 		add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_url_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
+		add_settings_field( 'udb-branding-blocks-editor-logo-image-field', __( 'Blocks Editor Logo', 'ultimate-dashboard' ), array( $this, 'blocks_editor_logo_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
 
 		// Misc fields.
 		add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), array( $this, 'footer_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
@@ -223,6 +224,19 @@ class Branding_Module extends Base_Module {
 
 		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
 		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
+	 * Gutenberg blocks editor logo field.
+	 */
+	public function blocks_editor_logo_field() {
+
+		$template = __DIR__ . '/templates/fields/blocks-editor-logo.php';
+		$template = apply_filters( 'udb_branding_blocks_editor_logo_field_path', $template );
 		$field    = require $template;
 
 		$field();

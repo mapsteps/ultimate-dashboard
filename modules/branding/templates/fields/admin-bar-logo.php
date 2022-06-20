@@ -14,7 +14,9 @@ return function () {
 
 		<div class="setting-field">
 			<input class="all-options" type="text" disabled />
-			<a href="javascript:void(0)" class="button-secondary button-disabled disabled"><?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?></a>
+			<button type="button" class="button-secondary button-disabled disabled">
+				<?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?>
+			</button>
 		</div>
 
 		<div class="setting-field">

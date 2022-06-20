@@ -3,6 +3,10 @@
 	display: none;
 }
 
+.description.is-disabled {
+	opacity: 0.6;
+}
+
 .CodeMirror-wrap {
 	border: 1px solid #ddd;
 }
