@@ -1,6 +1,6 @@
 <?php
 /**
- * Blocks editor logo field.
+ * Block editor logo field.
  *
  * @package Ultimate_Dashboard
  */
@@ -21,6 +21,7 @@ return function () {
 
 		<p class="description is-disabled">
 			The top left corner logo when editing a post/page using blocks editor.
+			<?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?>
 		</p>
 
 	</div>
