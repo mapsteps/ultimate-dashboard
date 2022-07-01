@@ -20,8 +20,8 @@ return function () {
 		</div>
 
 		<p class="description is-disabled">
-			The top left corner logo when editing a post/page using blocks editor.
-			<?php _e( 'Add or Upload File', 'ultimate-dashboard' ); ?>
+			<?php _e( 'Replace the logo on the top-left inside the WordPress block editor.', 'ultimate-dashboard' ); ?><br>
+			<?php _e( '<strong>Recommended image size:</strong> 512px x 512px.', 'ultimate-dashboard' ); ?>
 		</p>
 
 	</div>
