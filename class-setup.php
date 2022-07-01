@@ -274,8 +274,6 @@ class Setup {
 
 		$need_setup = get_option( 'udb_migration_from_erident' );
 
-		$need_setup = true;
-
 		if ( ! $need_setup ) {
 			return;
 		}
