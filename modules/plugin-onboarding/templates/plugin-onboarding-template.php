@@ -56,7 +56,7 @@ return function () {
 							Welcome to Ultimate Dashboard
 						</span>
 						<p class="subtitle">
-							Complete the 1-Click Setup & get an exclusive <strong style="font-weight: 700; color: #47d87c;">40% Discount</strong> on Ultimate Dashboard PRO
+							Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive 40% Discount</strong> on <strong>Ultimate Dashboard PRO</strong>
 						</p>
 					</div>
 
@@ -82,7 +82,7 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
 
 							<h2>
-								Features
+								1-Click Setup
 							</h2>
 
 							<p>
@@ -169,18 +169,19 @@ return function () {
 					<div class="udb-onboarding-slide udb-finished-slide">
 
 						<header>
-							<!-- Thanks: https://pngroyale.com/confetti-popper-png-download-image-2/ -->
-							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/Confetti-Popper-PNG-Download-Image-.png" alt="Finished!" class="udb-illustration subscription-illustration">
+							<div class="udb-video-container">
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/UGS21xyhTcw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
 
 							<h2>
 								Setup Complete. Enjoy!
 							</h2>
 
 							<p>
-								We will send you an email with a 40% Discount Code for Ultimate Dashboard PRO in just a minute.
+								We will send you an email with a <strong>40% Discount Code for Ultimate Dashboard PRO</strong> in just a minute.
 							</p>
 							<p>
-								What's next? Explore all the new Features from the "Ultimate Dash..." admin menu.
+								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
 							</p>
 							<p>
 								Enjoy!

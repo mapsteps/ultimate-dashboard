@@ -17,6 +17,10 @@
 }
 
 /* Onboarding */
+.udb-video-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
+
+.udb-video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
 .udb-onboarding-page .notice {
 	display: none !important;
 }
@@ -57,7 +61,16 @@
 
 .udb-onboarding-slide header h2 {
 	margin-top: 0;
-	font-size: 22px;
+	font-size: 26px;
+}
+
+.udb-subscription-slide header h2 {
+	line-height: 1.2;
+	font-size: 42px;
+}
+
+.udb-finished-slide header h2 {
+	margin-top: 20px;
 }
 
 .udb-onboarding-slide header p {
