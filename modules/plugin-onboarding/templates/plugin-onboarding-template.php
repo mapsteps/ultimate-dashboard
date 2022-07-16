@@ -178,19 +178,16 @@ return function () {
 							</h2>
 
 							<p>
-								We will send you an email with a <strong>40% Discount Code for Ultimate Dashboard PRO</strong> in just a minute.
+								We will send you an email with a <strong>40% Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
 							</p>
 							<p>
 								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
 							</p>
-							<p>
-								Enjoy!
-							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
-							<a href="<?php echo esc_url( admin_url() ); ?>" class="button button-primary finish-button">
-								<?php _e( 'Back to Dashboard', 'ultimate-dashboard' ); ?>
+							<a href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
+								<?php _e( 'Grab the Deal - Get 40% Off', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
