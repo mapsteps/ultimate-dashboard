@@ -186,7 +186,7 @@ return function () {
 						</header>
 
 						<div class="finish-button-wrapper">
-							<a href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
+							<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
 								<?php _e( 'Grab the Deal - Get 40% Off', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
