@@ -102,16 +102,21 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.7.1.4 | July 16, 2022 =
+= 3.7.1.4 | July 20, 2022 =
 * Tweak: Wording
-= 3.7.1.3 | July 16, 2022 =
+
+= 3.7.1.3 | July 19, 2022 =
 * Tweak: Open link in a new tab
+
 = 3.7.1.2 | July 16, 2022 =
 * Fixed: Wording
+
 = 3.7.1.1 | July 1, 2022 =
 * Minor tweaks
+
 = 3.7.1 | July 1, 2022 =
 * New: Field to replace the block editor logo (Ultimate Dashboard PRO)
+
 = 3.7 | June 15, 2022 =
 * New: Improved Login Customizer with features such as Background Image, Background Overlay, Form Box Shadow, etc.
 * Fixed: Issues when configuring Admin Menu Editor for specific users
