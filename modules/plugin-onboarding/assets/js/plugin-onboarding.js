@@ -7,12 +7,17 @@
 	var subscribeButton = document.querySelector(
 		".onboarding-heatbox .subscribe-button"
 	);
+	var skipDiscount = document.querySelector(".udb-skip-discount a");
+	var skippedDiscountContent = document.querySelectorAll(
+		".udb-skipped-discount"
+	);
 	var discountNotif = document.querySelector(
 		".onboarding-heatbox .udb-discount-notif"
 	);
 	var slideIndexes = ["modules", "subscription", "finished"];
 	var currentSlide = "modules";
 	var doingAjax = false;
+	var discountSkipped = false;
 	var slider;
 
 	function init() {
@@ -21,7 +26,8 @@
 			!skipButton ||
 			!saveButton ||
 			!discountNotif ||
-			!subscribeButton
+			!subscribeButton ||
+			!skipDiscount
 		) {
 			return;
 		}
@@ -53,6 +59,7 @@
 		skipButton.addEventListener("click", onSkipButtonClick);
 		saveButton.addEventListener("click", onSaveButtonClick);
 		subscribeButton.addEventListener("click", onSubscribeButtonClick);
+		skipDiscount.addEventListener("click", onSkipDiscountClick);
 	}
 
 	function onSliderIndexChanged(e) {
@@ -146,6 +153,36 @@
 			.fail(onAjaxFail)
 			.always(function () {
 				stopLoading(subscribeButton);
+			});
+	}
+
+	function onSkipDiscountClick(e) {
+		e.preventDefault();
+		if (doingAjax) return;
+
+		startLoading(skipDiscount);
+
+		$.ajax({
+			url: udbPluginOnboarding.ajaxUrl,
+			type: "POST",
+			data: {
+				action: "udb_plugin_onboarding_skip_discount",
+				nonce: udbPluginOnboarding.nonces.skipDiscount,
+			},
+		})
+			.done(function (r) {
+				if (!r.success) return;
+				discountSkipped = true;
+
+				skippedDiscountContent.forEach(function (content) {
+					content.style.display = "none";
+				});
+
+				slider.goTo("next");
+			})
+			.fail(onAjaxFail)
+			.always(function () {
+				stopLoading(skipDiscount);
 			});
 	}
 

@@ -162,6 +162,11 @@ return function () {
 									<?php esc_html_e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
+							<div class="udb-form-row udb-skip-discount">
+								<a href="">
+									"No, I don't want a 40% discount
+								</a>
+							</div>
 						</div>
 
 					</div>
@@ -177,7 +182,7 @@ return function () {
 								Setup Complete. Enjoy!
 							</h2>
 
-							<p>
+							<p class="udb-skipped-discount">
 								We will send you an email with a <strong>40% Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
 							</p>
 							<p>
@@ -185,7 +190,7 @@ return function () {
 							</p>
 						</header>
 
-						<div class="finish-button-wrapper">
+						<div class="finish-button-wrapper udb-skipped-discount">
 							<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
 								<?php _e( 'Grab the Deal - Get 40% Off', 'ultimate-dashboard' ); ?>
 							</a>

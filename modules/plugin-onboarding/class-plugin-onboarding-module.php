@@ -68,6 +68,9 @@ class Plugin_Onboarding_Module extends Base_Module {
 		require_once __DIR__ . '/ajax/class-subscribe.php';
 		new Ajax\Subscribe();
 
+		require_once __DIR__ . '/ajax/class-skip-discount.php';
+		new Ajax\SkipDiscount();
+
 	}
 
 	/**

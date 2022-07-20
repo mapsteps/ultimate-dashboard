@@ -278,3 +278,11 @@
 	text-align: center;
 	border-top: 1px solid #eee;
 }
+
+.udb-skip-discount {
+	text-align: center;
+}
+
+.udb-skip-discount a {
+	text-decoration: none;
+}

@@ -23,8 +23,9 @@ return function ( $module ) {
 				'adminUrl' => admin_url(),
 				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
 				'nonces'   => [
-					'saveModules' => wp_create_nonce( 'udb_plugin_onboarding_save_modules_nonce' ),
-					'subscribe'   => wp_create_nonce( 'udb_plugin_onboarding_subscribe_nonce' ),
+					'saveModules'  => wp_create_nonce( 'udb_plugin_onboarding_save_modules_nonce' ),
+					'subscribe'    => wp_create_nonce( 'udb_plugin_onboarding_subscribe_nonce' ),
+					'skipDiscount' => wp_create_nonce( 'udb_plugin_onboarding_skip_discount_nonce' ),
 				],
 			)
 		);
