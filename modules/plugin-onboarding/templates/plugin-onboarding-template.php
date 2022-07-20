@@ -164,7 +164,7 @@ return function () {
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-									No, I don't want a 40% discount
+									No, I don't want the 40% discount
 								</a>
 							</div>
 						</div>
@@ -191,7 +191,7 @@ return function () {
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								Wants the discount without subscribe? You can still check the link below.
+								<strong>Last chance to get 40% off Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
 							</p>
 						</header>
 
