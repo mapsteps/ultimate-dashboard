@@ -8,8 +8,11 @@
 		".onboarding-heatbox .subscribe-button"
 	);
 	var skipDiscount = document.querySelector(".udb-skip-discount a");
-	var skippedDiscountContent = document.querySelectorAll(
-		".udb-skipped-discount"
+	var contentAfterSubscribe = document.querySelectorAll(
+		"[data-udb-show-on='subscribe']"
+	);
+	var contentAfterSkipDiscount = document.querySelectorAll(
+		"[data-udb-show-on='skip-discount']"
 	);
 	var discountNotif = document.querySelector(
 		".onboarding-heatbox .udb-discount-notif"
@@ -148,6 +151,11 @@
 		})
 			.done(function (r) {
 				if (!r.success) return;
+
+				contentAfterSkipDiscount.forEach(function (content) {
+					content.style.display = "none";
+				});
+
 				slider.goTo("next");
 			})
 			.fail(onAjaxFail)
@@ -160,7 +168,7 @@
 		e.preventDefault();
 		if (doingAjax) return;
 
-		startLoading(skipDiscount);
+		startLoading(skipDiscount.parentNode);
 
 		$.ajax({
 			url: udbPluginOnboarding.ajaxUrl,
@@ -174,7 +182,7 @@
 				if (!r.success) return;
 				discountSkipped = true;
 
-				skippedDiscountContent.forEach(function (content) {
+				contentAfterSubscribe.forEach(function (content) {
 					content.style.display = "none";
 				});
 
@@ -182,7 +190,7 @@
 			})
 			.fail(onAjaxFail)
 			.always(function () {
-				stopLoading(skipDiscount);
+				stopLoading(skipDiscount.parentNode);
 			});
 	}
 

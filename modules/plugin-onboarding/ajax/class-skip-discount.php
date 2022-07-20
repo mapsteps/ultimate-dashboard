@@ -1,6 +1,6 @@
 <?php
 /**
- * Subscribe.
+ * Skip discount.
  *
  * @package Ultimate_Dashboard
  */
