@@ -401,26 +401,8 @@ class Setup {
 
 		$screen_helper = new Screen_Helper();
 
-		// Stop if we are not on a UDB page.
-		if ( ! $screen_helper->is_dashboard() &&
-			! $screen_helper->is_new_widget() &&
-			! $screen_helper->is_edit_widget() &&
-			! $screen_helper->is_features() &&
-			! $screen_helper->is_settings() &&
-			! $screen_helper->is_branding() &&
-			! $screen_helper->is_login_redirect() &&
-			! $screen_helper->is_tools() &&
-			! $screen_helper->is_new_admin_page() &&
-			! $screen_helper->is_edit_admin_page() &&
-			! $screen_helper->is_admin_page_list() &&
-			! $screen_helper->is_admin_menu() &&
-			! $screen_helper->is_admin_bar() &&
-			! $screen_helper->is_widget_list() ) {
-			return;
-		}
-
-		$start = strtotime( 'november 22nd, 2021' );
-		$end   = strtotime( 'november 30th, 2021' );
+		$start = strtotime( 'november 25th, 2022' );
+		$end   = strtotime( 'november 30th, 2022' );
 		$now   = time();
 
 		// Stop here if we are not in the sales period.
