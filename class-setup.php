@@ -407,8 +407,8 @@ class Setup {
 		// Intentional: using manually written string instead of gmdate( 'Y' ).
 		$this_year = '2022';
 		$last_year = $this_year - 1;
-		$start     = strtotime( 'november 25th, 2022' . $this_year );
-		$end       = strtotime( 'november 30th, 2022' . $this_year );
+		$start     = strtotime( 'november 25th, ' . $this_year );
+		$end       = strtotime( 'november 30th, ' . $this_year );
 		$now       = time();
 
 		// Stop here if we are not in the sales period.
