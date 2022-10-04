@@ -404,19 +404,30 @@ class Setup {
 			return;
 		}
 
-		$screen_helper = new Screen_Helper();
-
-		$start = strtotime( 'november 25th, 2022' );
-		$end   = strtotime( 'november 30th, 2022' );
-		$now   = time();
+		// Intentional: using manually written string instead of gmdate( 'Y' ).
+		$this_year = '2022';
+		$last_year = $this_year - 1;
+		$start     = strtotime( 'november 25th, 2022' . $this_year );
+		$end       = strtotime( 'november 30th, 2022' . $this_year );
+		$now       = time();
 
 		// Stop here if we are not in the sales period.
 		if ( $now < $start || $now > $end ) {
 			return;
 		}
 
+		if ( $this_year < 2023 ) {
+			if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
+				delete_option( 'udb_bfcm_notice_dismissed' );
+			}
+		}
+
+		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed_' . $last_year, 0 ) ) ) {
+			delete_option( 'udb_bfcm_notice_dismissed_' . $last_year );
+		}
+
 		// Stop here if notice has been dismissed.
-		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed_2022', 0 ) ) ) {
+		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed_' . $this_year, 0 ) ) ) {
 			return;
 		}
 
@@ -556,7 +567,9 @@ class Setup {
 
 			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
 			delete_blog_option( $site_id, 'review_notice_dismissed' );
-			delete_blog_option( $site_id, 'udb_bfcm_notice_dismissed' ); // We will no longer have to remove related data on multisites as from 2022 on we will only show the bfcm notice on the main site.
+
+			// We will no longer have to remove related data on multisites as from 2022 on we will only show the bfcm notice on the main site.
+			delete_blog_option( $site_id, 'udb_bfcm_notice_dismissed' );
 
 			delete_blog_option( $site_id, 'udb_install_date' );
 			delete_blog_option( $site_id, 'udb_plugin_activated' );
