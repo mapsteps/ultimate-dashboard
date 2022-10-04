@@ -425,18 +425,18 @@ class Setup {
 				</div>
 				<div class="notice-content">
 					<h2>
-						<?php _e( 'Up to 30% Off Ultimate Dashboard PRO - Black Friday Sale*', 'ultimate-dashboard' ); ?>
+						<?php _e( 'Up to 30% Off Ultimate Dashboard PRO - Black Friday Sale!', 'ultimate-dashboard' ); ?>
 					</h2>
 					<p>
 						<?php _e( 'Save big & upgrade to the <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
 					</p>
 					<p>
-						<?php _e( 'Hurry up! The deal will expire soon!', 'ultimate-dashboard' ); ?><br>
+						<?php _e( 'But hurry up! The deal will expire soon!', 'ultimate-dashboard' ); ?><br>
 						<em><?php _e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
 					</p>
 					<p>
-						<a href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
-							<?php _e( 'Get the Deal', 'ultimate-dashboard' ); ?>
+						<a target="_blank" href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
+							<?php _e( 'Learn more', 'ultimate-dashboard' ); ?>
 						</a>
 						<small><?php _e( '*Only Administrators will see this message!', 'ultimate-dashboard' ); ?></small>
 					</p>
