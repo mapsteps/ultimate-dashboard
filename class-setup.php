@@ -416,10 +416,8 @@ class Setup {
 			return;
 		}
 
-		if ( $this_year < 2023 ) {
-			if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
-				delete_option( 'udb_bfcm_notice_dismissed' );
-			}
+		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
+			delete_option( 'udb_bfcm_notice_dismissed' );
 		}
 
 		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed_' . $last_year, 0 ) ) ) {
@@ -568,7 +566,10 @@ class Setup {
 			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
 			delete_blog_option( $site_id, 'review_notice_dismissed' );
 
-			// We will no longer have to remove related data on multisites as from 2022 on we will only show the bfcm notice on the main site.
+			/**
+			 * Backwards compatibility
+			 * We will no longer have to remove related data on multisites as from 2022 on we will only show the bfcm notice on the main site.
+			 */
 			delete_blog_option( $site_id, 'udb_bfcm_notice_dismissed' );
 
 			delete_blog_option( $site_id, 'udb_install_date' );
@@ -596,8 +597,6 @@ class Setup {
 
 			delete_option( 'udb_login_customizer_flush_url' );
 			delete_option( 'review_notice_dismissed' );
-			delete_option( 'udb_bfcm_notice_dismissed' );
-			delete_option( 'udb_bfcm_notice_dismissed_2022' );
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
