@@ -248,7 +248,7 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function protect_wp_admin() {
 
-		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_GET['post_password'] ) ) {
+		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_POST['post_password'] ) ) {
 			return;
 		}
 
@@ -269,7 +269,7 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function protect_wp_login() {
 
-		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_GET['post_password'] ) ) {
+		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_POST['post_password'] ) ) {
 			return;
 		}
 
