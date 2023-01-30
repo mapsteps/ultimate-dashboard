@@ -56,7 +56,7 @@ return function () {
 							Welcome to Ultimate Dashboard
 						</span>
 						<p class="subtitle">
-							Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive 40% Discount</strong> on <strong>Ultimate Dashboard PRO</strong>
+							Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>
 						</p>
 					</div>
 
@@ -142,11 +142,11 @@ return function () {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								Exclusive 40% Discount 🥳
+								Exclusive <br>Discount 🥳
 							</h2>
 
 							<p>
-								We are offering all <strong>Erident users an exclusive 40% Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get 40% off.
+								We are offering all <strong>Erident users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.
 							</p>
 						</header>
 
@@ -164,7 +164,7 @@ return function () {
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-									No, I don't want the 40% discount
+									No, I don't want any Discount :/
 								</a>
 							</div>
 						</div>
@@ -183,7 +183,7 @@ return function () {
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								We will send you an email with a <strong>40% Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
+								We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
 							</p>
 
 							<p>
@@ -191,13 +191,13 @@ return function () {
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong>Last chance to get 40% off Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
+								<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
 							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab the Deal - Get 40% Off', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
