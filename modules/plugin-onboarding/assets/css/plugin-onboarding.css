@@ -83,8 +83,9 @@
 	font-size: 42px;
 }
 
+/* This was at 20px with the video we had earlier */
 .udb-finished-slide header h2 {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .udb-onboarding-slide header p {
