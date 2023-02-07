@@ -43,7 +43,7 @@ return function ( $referrer = '' ) {
 
 	?>
 
-	<div class="wrap heatbox-wrap udb-onboarding-page">
+	<div class="wrap heatbox-wrap udb-onboarding-page" data-udb-referrer="<?php echo esc_attr( $referrer ); ?>">
 
 		<div class="heatbox-header heatbox-margin-bottom">
 

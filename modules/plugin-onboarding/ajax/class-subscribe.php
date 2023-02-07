@@ -27,6 +27,13 @@ class Subscribe {
 	private $email;
 
 	/**
+	 * The referrer where UDB was installed from.
+	 *
+	 * @var string
+	 */
+	private $referrer;
+
+	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -68,6 +75,8 @@ class Subscribe {
 		if ( empty( $this->email ) ) {
 			wp_send_json_error( __( 'Email field is empty', 'ultimate-dashboard' ), 401 );
 		}
+
+		$this->referrer = isset( $_POST['referrer'] ) ? sanitize_text_field( wp_unslash( $_POST['referrer'] ) ) : '';
 	}
 
 	/**
@@ -99,8 +108,13 @@ class Subscribe {
 		);
 
 		if ( ! is_wp_error( $response ) ) {
-			delete_option( 'udb_migration_from_erident' );
-			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
+			if ( 'erident' === $this->referrer ) {
+				delete_option( 'udb_migration_from_erident' );
+			} elseif ( 'kirki' === $this->referrer ) {
+				delete_option( 'udb_referred_by_kirki' );
+			}
+
+			wp_send_json_success( __( 'Subscription done', 'ultimate - dashboard' ) );
 		}
 
 		wp_send_json_error( $response->get_error_message(), 403 );

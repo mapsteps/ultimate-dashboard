@@ -1,4 +1,5 @@
 (function ($) {
+	var page = document.querySelector(".udb-onboarding-page");
 	var buttonsWrapper = document.querySelector(
 		".onboarding-heatbox .heatbox-footer"
 	);
@@ -25,6 +26,7 @@
 
 	function init() {
 		if (
+			!page ||
 			!buttonsWrapper ||
 			!skipButton ||
 			!saveButton ||
@@ -147,6 +149,7 @@
 				nonce: udbPluginOnboarding.nonces.subscribe,
 				name: nameField.value,
 				email: emailField.value,
+				referrer: page.dataset.udbReferrer,
 			},
 		})
 			.done(function (r) {
@@ -176,6 +179,7 @@
 			data: {
 				action: "udb_plugin_onboarding_skip_discount",
 				nonce: udbPluginOnboarding.nonces.skipDiscount,
+				referrer: page.dataset.udbReferrer,
 			},
 		})
 			.done(function (r) {

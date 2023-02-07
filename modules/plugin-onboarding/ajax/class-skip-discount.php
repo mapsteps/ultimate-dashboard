@@ -13,6 +13,13 @@ namespace Udb\PluginOnboarding\Ajax;
 class SkipDiscount {
 
 	/**
+	 * The referrer where UDB was installed from.
+	 *
+	 * @var string
+	 */
+	private $referrer;
+
+	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -43,6 +50,8 @@ class SkipDiscount {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
 
+		$this->referrer = isset( $_POST['referrer'] ) ? sanitize_text_field( wp_unslash( $_POST['referrer'] ) ) : '';
+
 	}
 
 	/**
@@ -50,7 +59,12 @@ class SkipDiscount {
 	 */
 	private function skip_discount() {
 
-		delete_option( 'udb_migration_from_erident' );
+		if ( 'erident' === $this->referrer ) {
+			delete_option( 'udb_migration_from_erident' );
+		} elseif ( 'kirki' === $this->referrer ) {
+			delete_option( 'udb_referred_by_kirki' );
+		}
+
 		wp_send_json_success( __( 'Discount skipped', 'ultimate-dashboard' ) );
 
 	}
