@@ -17,18 +17,18 @@ use Udb\Base\Base_Module;
 class Plugin_Onboarding_Module extends Base_Module {
 
 	/**
-	 * The class instance.
-	 *
-	 * @var object
-	 */
-	public static $instance;
-
-	/**
 	 * The current module url.
 	 *
 	 * @var string
 	 */
 	public $url;
+
+	/**
+	 * The referrer where UDB was installed from.
+	 *
+	 * @var string
+	 */
+	public $referrer;
 
 	/**
 	 * Module constructor.
@@ -40,27 +40,23 @@ class Plugin_Onboarding_Module extends Base_Module {
 	}
 
 	/**
-	 * Get instance of the class.
-	 */
-	public static function get_instance() {
-
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-
-	}
-
-	/**
 	 * Setup dashboard module.
+	 *
+	 * @param string $referrer The referrer where UDB was installed from.
 	 */
-	public function setup() {
+	public function setup( $referrer = '' ) {
 
-		// @todo Please remove these 3 actions on multisite if current site is not a blueprint.
-		add_action( 'admin_menu', array( self::get_instance(), 'submenu_page' ), 20 );
-		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
+		$this->referrer = $referrer;
+
+		/**
+		 * We need to remove them on multisite if current site is not a blueprint.
+		 * But we don't use singleton pattern because we need to use the referrer.
+		 *
+		 * @todo Find a better way to do it.
+		 */
+		add_action( 'admin_menu', array( $this, 'submenu_page' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		require_once __DIR__ . '/ajax/class-save-modules.php';
 		new Ajax\Save_Modules();
@@ -88,7 +84,7 @@ class Plugin_Onboarding_Module extends Base_Module {
 	public function submenu_page_content() {
 
 		$template = require __DIR__ . '/templates/plugin-onboarding-template.php';
-		$template();
+		$template( $this->referrer );
 
 	}
 

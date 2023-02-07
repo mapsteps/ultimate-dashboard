@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Setup;
 
-return function () {
+return function ( $referrer = '' ) {
 
 	$udb_core      = new Setup();
 	$saved_modules = $udb_core->saved_modules();
@@ -96,8 +96,12 @@ return function () {
 								<?php
 								$slug          = $module['module'];
 								$title         = $module['title'];
-								$disabled_attr = 'login_customizer' === $slug ? 'disabled' : '';
+								$disabled_attr = '';
 								$is_checked    = true;
+
+								if ( 'erident' === $referrer ) {
+									$disabled_attr = 'login_customizer' === $slug ? 'disabled' : $disabled_attr;
+								}
 
 								if ( isset( $saved_modules[ $slug ] ) && 'false' === $saved_modules[ $slug ] ) {
 									$is_checked = false;
@@ -146,7 +150,7 @@ return function () {
 							</h2>
 
 							<p>
-								We are offering all <strong>Erident users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.
+								We are offering all <strong><?php echo esc_attr( ucwords( $referrer ) ); ?> users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.
 							</p>
 						</header>
 
@@ -186,16 +190,20 @@ return function () {
 								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
 							</p>
 
-							<p data-udb-show-on="skip-discount">
-								<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
-							</p>
+							<?php if ( 'erident' === $referrer ) : ?>
+								<p data-udb-show-on="skip-discount">
+									<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
+								</p>
+							<?php endif; ?>
 						</header>
 
-						<div class="finish-button-wrapper">
-							<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
-							</a>
-						</div>
+						<?php if ( 'erident' === $referrer ) : ?>
+							<div class="finish-button-wrapper">
+								<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
+									<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
+								</a>
+							</div>
+						<?php endif; ?>
 
 					</div>
 				</div>
@@ -217,7 +225,7 @@ return function () {
 				</footer>
 
 				<div class="udb-discount-notif is-hidden">
-					This is an exclusive discount for Erident users.<br> <strong>This discount will not come back!</strong>
+					This is an exclusive discount for <?php echo esc_attr( ucwords( $referrer ) ); ?> users.<br> <strong>This discount will not come back!</strong>
 				</div>
 
 			</div>

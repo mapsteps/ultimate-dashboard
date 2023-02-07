@@ -272,7 +272,18 @@ class Setup {
 	 */
 	public function load_plugin_onboarding_module() {
 
-		$need_setup = get_option( 'udb_migration_from_erident' );
+		$need_setup = false;
+		$referrer   = '';
+
+		// Erident's migration takes the highest priority.
+		if ( get_option( 'udb_migration_from_erident' ) ) {
+			$need_setup = true;
+			$referrer   = 'erident';
+		} elseif ( get_option( 'udb_referred_by_kirki' ) ) {
+			$need_setup = true;
+			$referrer   = 'kirki';
+		}
+		// In the future, we might allow UDB to be installed from other plugins as well.
 
 		if ( ! $need_setup ) {
 			return;
@@ -280,7 +291,7 @@ class Setup {
 
 		require_once __DIR__ . '/modules/plugin-onboarding/class-plugin-onboarding-module.php';
 		$module = new PluginOnboarding\Plugin_Onboarding_Module();
-		$module->setup();
+		$module->setup( $referrer );
 
 	}
 
