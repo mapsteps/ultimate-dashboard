@@ -190,20 +190,16 @@ return function ( $referrer = '' ) {
 								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
 							</p>
 
-							<?php if ( 'erident' === $referrer ) : ?>
-								<p data-udb-show-on="skip-discount">
-									<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
-								</p>
-							<?php endif; ?>
+							<p data-udb-show-on="skip-discount">
+								<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
+							</p>
 						</header>
 
-						<?php if ( 'erident' === $referrer ) : ?>
-							<div class="finish-button-wrapper">
-								<a target="_blank" href="https://ultimatedashboard.io/erident-discount/" class="button button-primary finish-button">
-									<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
-								</a>
-							</div>
-						<?php endif; ?>
+						<div class="finish-button-wrapper">
+							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
+								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
+							</a>
+						</div>
 
 					</div>
 				</div>
