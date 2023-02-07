@@ -285,6 +285,10 @@ class Setup {
 		}
 		// In the future, we might allow UDB to be installed from other plugins as well.
 
+		// Un-comment lines below to test the plugin onboarding module.
+		// $need_setup = true;
+		// $referrer   = 'kirki';
+
 		if ( ! $need_setup ) {
 			return;
 		}
