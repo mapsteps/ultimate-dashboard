@@ -102,7 +102,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.7.3 | February 07, 2023 =
+= 3.7.4 | February 07, 2023 =
 * Tweak: Updated logo
 = 3.7.3 | January 30, 2023 =
 * Tweak: Wording
