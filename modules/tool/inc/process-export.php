@@ -103,14 +103,11 @@ return function () {
 
 				$admin_page->meta = array();
 
-				foreach ( $meta as $meta_key => $meta_value ) {
+				foreach ( $meta as $meta_key => $raw_meta_value ) {
 
-					// Check for serialized data (when $meta_value is array).
-					if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-						$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
-					}
+					$meta_value = get_post_meta( $admin_page->ID, $meta_key, true );
 
-					$admin_page->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+					$admin_page->meta[ $meta_key ] = $meta_value;
 
 				}
 			}
