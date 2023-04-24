@@ -139,6 +139,13 @@ class Content_Helper {
 			'picture-in-picture'  => true,
 		);
 
+		$tags['source'] = array(
+			'src'    => true,
+			'type'   => true,
+			'srcset' => true,
+			'media'  => true,
+		);
+
 		return $tags;
 
 	}
