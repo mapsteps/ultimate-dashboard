@@ -46,7 +46,7 @@ return function () {
 
 	$imports = file_get_contents( $tmp_file, true );
 	$imports = (array) json_decode( $imports, true );
-	
+
 	// Retrieve settings & widgets.
 	$modules_manager_settings  = isset( $imports['modules_manager_settings'] ) ? $imports['modules_manager_settings'] : array();
 	$settings                  = isset( $imports['settings'] ) ? $imports['settings'] : array();
