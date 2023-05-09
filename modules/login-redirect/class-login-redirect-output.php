@@ -132,7 +132,7 @@ class Login_Redirect_Output extends Base_Output {
 		add_action( 'init', array( $this, 'change_url' ), 9999 );
 		add_action( 'wp_loaded', array( $this, 'protect_wp_login' ) );
 
-		add_action( 'site_url', array( $this, 'site_url' ), 10, 4 );
+		add_filter( 'site_url', array( $this, 'site_url' ), 10, 4 );
 		add_action( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
 		add_action( 'wp_redirect', array( $this, 'wp_redirect' ), 10, 2 );
 		add_filter( 'login_url', array( $this, 'login_url' ), 10, 3 );
@@ -367,6 +367,8 @@ class Login_Redirect_Output extends Base_Output {
 	 * @return string
 	 */
 	public function filter_old_login_page( $url, $scheme = null ) {
+
+		error_log( 'bagus: ' . print_r( wp_get_referer(), true ) );
 
 		if ( false !== stripos( $url, 'wp-login.php?action=postpass' ) ) {
 			return $url;
