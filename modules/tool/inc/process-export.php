@@ -107,6 +107,11 @@ return function () {
 
 					$meta_value = get_post_meta( $admin_page->ID, $meta_key, true );
 
+					// Backwards compatibility: check for nested-serialized data.
+					if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+						$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
+					}
+
 					$admin_page->meta[ $meta_key ] = $meta_value;
 
 				}
