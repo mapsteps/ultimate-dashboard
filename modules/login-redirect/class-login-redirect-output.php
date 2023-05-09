@@ -368,14 +368,20 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function filter_old_login_page( $url, $scheme = null ) {
 
-		error_log( 'bagus: ' . print_r( wp_get_referer(), true ) );
-
+		// Skip wp-login.php?action=postpass from the filtering.
 		if ( false !== stripos( $url, 'wp-login.php?action=postpass' ) ) {
 			return $url;
 		}
 
+		/**
+		 * We can't use `wp_get_referer` here because
+		 * it will call `wp_validate_referer` and it was causing
+		 * fatal error (infinite loop) with Google Site Kit installed.
+		 */
+		$referer = esc_url( wp_get_raw_referer() );
+
 		$url_contains_old_login_url     = false !== stripos( $url, 'wp-login.php' ) ? true : false;
-		$referer_contains_old_login_url = false !== stripos( wp_get_referer(), 'wp-login.php' ) ? true : false;
+		$referer_contains_old_login_url = false !== stripos( $referer, 'wp-login.php' ) ? true : false;
 
 		if ( $url_contains_old_login_url && ! $referer_contains_old_login_url ) {
 			if ( is_ssl() ) {
