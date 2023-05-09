@@ -134,10 +134,9 @@ class Login_Redirect_Output extends Base_Output {
 
 		add_filter( 'site_url', array( $this, 'site_url' ), 10, 4 );
 		add_filter( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
-
-		add_action( 'wp_redirect', array( $this, 'wp_redirect' ), 10, 2 );
+		add_filter( 'wp_redirect', array( $this, 'wp_redirect' ), 10, 2 );
 		add_filter( 'login_url', array( $this, 'login_url' ), 10, 3 );
-		add_action( 'site_option_welcome_email', array( $this, 'welcome_email' ) );
+		add_filter( 'site_option_welcome_email', array( $this, 'welcome_email' ) );
 
 		// @see https://developer.wordpress.org/reference/functions/wp_redirect_admin_locations/
 		remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
