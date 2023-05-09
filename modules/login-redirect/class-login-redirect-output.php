@@ -133,7 +133,8 @@ class Login_Redirect_Output extends Base_Output {
 		add_action( 'wp_loaded', array( $this, 'protect_wp_login' ) );
 
 		add_filter( 'site_url', array( $this, 'site_url' ), 10, 4 );
-		add_action( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
+		add_filter( 'network_site_url', array( $this, 'network_site_url' ), 10, 3 );
+
 		add_action( 'wp_redirect', array( $this, 'wp_redirect' ), 10, 2 );
 		add_filter( 'login_url', array( $this, 'login_url' ), 10, 3 );
 		add_action( 'site_option_welcome_email', array( $this, 'welcome_email' ) );
