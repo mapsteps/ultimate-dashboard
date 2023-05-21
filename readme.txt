@@ -4,7 +4,7 @@ Tags: Dashboard, Wordpress Dashboard, Dashboard Widgets, Custom WordPress Dashbo
 Requires at least: 4.6
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 3.7.5
+Stable tag: 3.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.7.6 | May 21, 2023 =
+* Tweak: Minor security fix
 = 3.7.5 | May 11, 2023 =
 * Tweak: Improve export/import functionality
 * Tweak: Allow source tag in HTML widget
