@@ -9,7 +9,6 @@ namespace Udb\Setting;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use WP_Query;
 use Udb\Base\Base_Output;
 use Udb\Widget\Widget_Output;
 
