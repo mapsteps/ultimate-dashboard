@@ -149,7 +149,7 @@ class Setting_Output extends Base_Output {
 
 		$my_account = $wp_admin_bar->get_node( 'my-account' );
 
-		$my_account->title = str_ireplace( 'Howdy', $settings['howdy_text'], $my_account->title );
+		$my_account->title = str_ireplace( 'Howdy', esc_html( $settings['howdy_text'] ), $my_account->title );
 
 		$wp_admin_bar->remove_node( 'my-account' );
 
