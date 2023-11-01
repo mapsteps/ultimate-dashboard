@@ -91,7 +91,13 @@ class Setting_Output extends Base_Output {
 			return;
 		}
 
-		wp_add_inline_style( 'udb-dashboard', $settings['custom_css'] );
+		$custom_css = $settings['custom_css'];
+		$custom_css = str_ireplace( '<style>', '', $custom_css );
+		$custom_css = str_ireplace( '</style>', '', $custom_css );
+		$custom_css = str_ireplace( '<script>', '', $custom_css );
+		$custom_css = str_ireplace( '</script>', '', $custom_css );
+
+		wp_add_inline_style( 'udb-dashboard', esc_html( $custom_css ) );
 
 	}
 
@@ -105,10 +111,16 @@ class Setting_Output extends Base_Output {
 		if ( ! isset( $settings['custom_admin_css'] ) || empty( $settings['custom_admin_css'] ) ) {
 			return;
 		}
+
+		$custom_admin_css = $settings['custom_admin_css'];
+		$custom_admin_css = str_ireplace( '<style>', '', $custom_admin_css );
+		$custom_admin_css = str_ireplace( '</style>', '', $custom_admin_css );
+		$custom_admin_css = str_ireplace( '<script>', '', $custom_admin_css );
+		$custom_admin_css = str_ireplace( '</script>', '', $custom_admin_css );
 		?>
 
 		<style>
-			<?php echo $settings['custom_admin_css']; ?>
+			<?php echo esc_html( $custom_admin_css ); ?>
 		</style>
 
 		<?php
