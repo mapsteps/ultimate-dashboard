@@ -92,10 +92,7 @@ class Setting_Output extends Base_Output {
 		}
 
 		$custom_css = $settings['custom_css'];
-		$custom_css = str_ireplace( '<style>', '', $custom_css );
-		$custom_css = str_ireplace( '</style>', '', $custom_css );
-		$custom_css = str_ireplace( '<script>', '', $custom_css );
-		$custom_css = str_ireplace( '</script>', '', $custom_css );
+		$custom_css = $this->sanitize_css_output( $custom_css );
 
 		wp_add_inline_style( 'udb-dashboard', esc_html( $custom_css ) );
 
@@ -112,18 +109,38 @@ class Setting_Output extends Base_Output {
 			return;
 		}
 
-		$custom_admin_css = $settings['custom_admin_css'];
-		$custom_admin_css = str_ireplace( '<style>', '', $custom_admin_css );
-		$custom_admin_css = str_ireplace( '</style>', '', $custom_admin_css );
-		$custom_admin_css = str_ireplace( '<script>', '', $custom_admin_css );
-		$custom_admin_css = str_ireplace( '</script>', '', $custom_admin_css );
+		$custom_css = $settings['custom_admin_css'];
+		$custom_css = $this->sanitize_css_output( $custom_css );
 		?>
 
 		<style>
-			<?php echo esc_html( $custom_admin_css ); ?>
+			<?php echo $custom_css; ?>
 		</style>
 
 		<?php
+
+	}
+
+	/**
+	 * Sanitize CSS for output.
+	 *
+	 * @param string $css The CSS content to sanitize.
+	 * @return string Sanitized CSS.
+	 */
+	private function sanitize_css_output( $css ) {
+
+		$sanitized_css = wp_strip_all_tags( $css );
+		$sanitized_css = wp_filter_nohtml_kses( $sanitized_css );
+		$sanitized_css = strtr(
+			$sanitized_css,
+			array(
+				'&gt;' => '>',
+				"\'"   => "'",
+				'\"'   => '"',
+			)
+		);
+
+		return $sanitized_css;
 
 	}
 

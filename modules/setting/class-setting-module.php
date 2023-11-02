@@ -91,7 +91,13 @@ class Setting_Module extends Base_Module {
 	public function add_settings() {
 
 		// Register setting.
-		register_setting( 'udb-settings-group', 'udb_settings' );
+		register_setting(
+			'udb-settings-group',
+			'udb_settings',
+			[
+				'sanitize_callback' => array( $this, 'sanitize_input' ),
+			]
+		);
 
 		// Widget sections.
 		add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
@@ -161,6 +167,51 @@ class Setting_Module extends Base_Module {
 		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array( $this, 'custom_dashboard_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
 		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array( $this, 'custom_admin_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
 		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array( $this, 'custom_login_css_field' ), 'udb-custom-css-settings', 'udb-custom-css-section' );
+
+	}
+
+	/**
+	 * Sanitize input.
+	 *
+	 * @param array $input Array of input data to sanitize.
+	 * @return array Sanitized input.
+	 */
+	public function sanitize_input( $input ) {
+
+		$output = $input;
+
+		if ( isset( $output['custom_admin_css'] ) ) {
+			$output['custom_admin_css'] = $this->sanitize_css( $output['custom_admin_css'] );
+		}
+
+		if ( isset( $output['custom_css'] ) ) {
+			$output['custom_css'] = $this->sanitize_css( $output['custom_css'] );
+		}
+
+		return $output;
+
+	}
+
+	/**
+	 * Sanitize CSS for saving to database.
+	 *
+	 * @param string $css The CSS content to sanitize.
+	 * @return string Sanitized CSS content.
+	 */
+	private function sanitize_css( $css ) {
+
+		$sanitized_css = wp_strip_all_tags( $css );
+		$sanitized_css = wp_filter_nohtml_kses( $sanitized_css );
+		$sanitized_css = strtr(
+			$sanitized_css,
+			array(
+				'&gt;' => '>',
+				"\'"   => "'",
+				'\"'   => '"',
+			)
+		);
+
+		return $sanitized_css;
 
 	}
 
