@@ -102,6 +102,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.7.10 | November 22, 2023 =
+* Fixed: Bug where BFCM notice was not dismissible
 = 3.7.9 | November 22, 2023 =
 * Update BFCM deal details
 = 3.7.8 | November 07, 2023 =
