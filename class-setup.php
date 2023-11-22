@@ -416,10 +416,10 @@ class Setup {
 		}
 
 		// Intentional: using manually written string instead of gmdate( 'Y' ).
-		$this_year = '2022';
+		$this_year = '2023';
 		$last_year = $this_year - 1;
-		$start     = strtotime( 'november 25th, ' . $this_year );
-		$end       = strtotime( 'november 30th, ' . $this_year );
+		$start     = strtotime( 'november 20th, ' . $this_year );
+		$end       = strtotime( 'november 27th, ' . $this_year );
 		$now       = time();
 
 		// Stop here if we are not in the sales period.
@@ -427,10 +427,12 @@ class Setup {
 			return;
 		}
 
+		// Clean up: Delete initial deal dismissal if triggered.
 		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed', 0 ) ) ) {
 			delete_option( 'udb_bfcm_notice_dismissed' );
 		}
 
+		// Clean up: Delete last years dismissal if triggered.
 		if ( ! empty( get_option( 'udb_bfcm_notice_dismissed_' . $last_year, 0 ) ) ) {
 			delete_option( 'udb_bfcm_notice_dismissed_' . $last_year );
 		}
@@ -450,20 +452,20 @@ class Setup {
 				</div>
 				<div class="notice-content">
 					<h2>
-						<?php _e( 'Up to 30% Off Ultimate Dashboard PRO - Black Friday Sale!', 'ultimate-dashboard' ); ?>
+						<?php _e( 'Up to 25% Off Ultimate Dashboard PRO - Black Friday Sale!', 'ultimate-dashboard' ); ?>
 					</h2>
 					<p>
-						<?php _e( 'Save big & upgrade to the <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
+						<?php _e( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
 					</p>
 					<p>
-						<?php _e( 'But hurry up! The deal will expire soon!', 'ultimate-dashboard' ); ?><br>
+						<?php _e( 'But hurry up, the deal will expire soon!', 'ultimate-dashboard' ); ?><br>
 						<em><?php _e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
 					</p>
 					<p>
 						<a target="_blank" href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
 							<?php _e( 'Learn more', 'ultimate-dashboard' ); ?>
 						</a>
-						<small><?php _e( '*Only Administrators will see this message!', 'ultimate-dashboard' ); ?></small>
+						<small><?php _e( '*Only Administrators will see this message.', 'ultimate-dashboard' ); ?></small>
 					</p>
 				</div>
 			</div>
