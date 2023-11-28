@@ -75,10 +75,10 @@ class Widget_Helper {
 					if ( false !== $widget ) {
 
 						$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
+						$widget['context']        = $context;
 
 					}
 
-					$widget['context']   = $context;
 					$flat_widgets[ $id ] = $widget;
 				}
 			}
