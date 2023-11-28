@@ -11,7 +11,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
 use Udb\Helpers\Content_Helper;
-use Udb\Helpers\Screen_Helper;
 
 /**
  * Class to setup Ultimate Dashboard plugin.
