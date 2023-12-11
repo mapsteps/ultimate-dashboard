@@ -286,7 +286,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
  *
  * @since 3.1.0
  *
- * @param string $input_id Which input to auto-focus.
+ * @param string $input_id Which input to autofocus.
  */
 function login_footer( $input_id = '' ) {
 	global $interim_login;
@@ -401,7 +401,7 @@ function wp_shake_js() {
 	function s(id,pos){g(id).left=pos+'px';}
 	function g(id){return document.getElementById(id).style;}
 	function shake(id,a,d){c=a.shift();s(id,c);if(a.length>0){setTimeout(function(){shake(id,a,d);},d);}else{try{g(id).position='static';wp_attempt_focus();}catch(e){}}}
-	addLoadEvent(function(){ var p=new Array(15,30,15,0,-15,-30,-15,0);p=p.concat(p.concat(p));var i=document.forms[0].id;g(i).position='relative';shake(i,p,20);});
+	addLoadEvent(function(){ var p=[15,30,15,0,-15,-30,-15,0];p=p.concat(p.concat(p));var i=document.forms[0].id;g(i).position='relative';shake(i,p,20);});
 	</script>
 	<?php
 }
@@ -424,10 +424,12 @@ if ( ! function_exists( 'retrieve_password' ) ) {
 	 *
 	 * @since 2.5.0
 	 *
-	 * @return bool|WP_Error True: when finish. WP_Error on error
+	 * @return bool|WP_Error True: when finished. WP_Error on error
 	 */
 	function retrieve_password() {
 		$errors = new WP_Error();
+
+		$user_data = false;
 
 		if ( empty( $_POST['user_login'] ) || ! is_string( $_POST['user_login'] ) ) {
 			$errors->add( 'empty_username', __( '<strong>ERROR</strong>: Enter a username or email address.' ) );
@@ -561,7 +563,7 @@ $default_actions = array(
 	WP_Recovery_Mode_Link_Service::LOGIN_ACTION_ENTERED,
 );
 
-// Validate action so as to default to the login screen.
+// Validate action to default to the login screen.
 if ( ! in_array( $action, $default_actions, true ) && false === has_filter( 'login_form_' . $action ) ) {
 	$action = 'login';
 }
@@ -606,7 +608,7 @@ do_action( 'login_init' );
  *
  * @since 2.8.0
  */
-do_action( "login_form_{$action}" );
+do_action( "login_form_$action" );
 
 $http_post     = ( 'POST' === $_SERVER['REQUEST_METHOD'] );
 $interim_login = isset( $_REQUEST['interim-login'] );
@@ -625,7 +627,7 @@ switch ( $action ) {
 	case 'confirm_admin_email':
 		// Note that `is_user_logged_in()` will return false immediately after logging in
 		// as the current user is not set, see wp-includes/pluggable.php.
-		// However this action runs on a redirect after logging in.
+		// However, this action runs on a redirect after logging in.
 		if ( ! is_user_logged_in() ) {
 			wp_safe_redirect( wp_login_url() );
 			exit;
@@ -851,7 +853,7 @@ switch ( $action ) {
 		}
 
 		/**
-		 * Filters the log out redirect URL.
+		 * Filters the log-out redirect URL.
 		 *
 		 * @since 4.2.0
 		 *
@@ -1009,7 +1011,7 @@ switch ( $action ) {
 		 */
 		do_action( 'validate_password_reset', $errors, $user );
 
-		if ( ( ! $errors->has_errors() ) && isset( $_POST['pass1'] ) && ! empty( $_POST['pass1'] ) ) {
+		if ( ( ! $errors->has_errors() ) && ! empty( $_POST['pass1'] ) ) {
 			reset_password( $user, $_POST['pass1'] );
 			setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 			login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
@@ -1098,7 +1100,7 @@ switch ( $action ) {
 			 *
 			 * @since 3.0.0
 			 *
-			 * @param string $sign_up_url The sign up URL.
+			 * @param string $sign_up_url The sign-up URL.
 			 */
 			wp_redirect( apply_filters( 'wp_signup_location', network_site_url( 'wp-signup.php' ) ) );
 			exit;
