@@ -207,6 +207,14 @@ class Login_Redirect_Output extends Base_Output {
 
 		$login_url = site_url( $this->new_login_slug, $scheme );
 
+		if ( is_multisite() ) {
+			$uri = rawurldecode( $_SERVER['REQUEST_URI'] );
+
+			$has_install_slug = false !== stripos( $uri, '/wp-admin/install.php' );
+
+			$login_url = $has_install_slug ? admin_url() : $login_url;
+		}
+
 		if ( $this->permalink_structure ) {
 			return $this->maybe_trailingslashit( $login_url );
 		}
