@@ -5,6 +5,7 @@
 .DS_Store
 
 # phpcs & editor's setting related
+.idea
 .vscode/
 phpcs.xml
 .editorconfig
