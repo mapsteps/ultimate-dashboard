@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 use Udb\Base\Base_Output;
 
 /**
- * Class to setup login url output.
+ * Class to set up login url output.
  */
 class Login_Redirect_Output extends Base_Output {
 
@@ -128,7 +128,7 @@ class Login_Redirect_Output extends Base_Output {
 			return;
 		}
 
-		// Hooked into `init` because we're already inside `setup_theme` hook..
+		// Hooked into `init` because we're already inside `setup_theme` hook.
 		add_action( 'init', array( $this, 'change_url' ), 9999 );
 		add_action( 'wp_loaded', array( $this, 'protect_wp_login' ) );
 
@@ -158,8 +158,8 @@ class Login_Redirect_Output extends Base_Output {
 
 		$uri = rawurldecode( $_SERVER['REQUEST_URI'] );
 
-		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' ) ? true : false;
-		$has_activate_slug = false !== stripos( $uri, 'wp-activate' ) ? true : false;
+		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' );
+		$has_activate_slug = false !== stripos( $uri, 'wp-activate' );
 
 		if ( ! is_multisite() && ( $has_signup_slug || $has_activate_slug ) ) {
 			return;
@@ -168,16 +168,16 @@ class Login_Redirect_Output extends Base_Output {
 		$request      = wp_parse_url( $uri );
 		$request_path = isset( $request['path'] ) ? untrailingslashit( $request['path'] ) : '';
 
-		$using_permalink = $this->permalink_structure ? true : false;
-		$has_new_slug    = isset( $_GET[ $this->new_login_slug ] ) && $_GET[ $this->new_login_slug ] ? true : false;
-		$has_old_slug    = false !== stripos( $uri, 'wp-login.php' ) ? true : false;
+		$using_permalink = (bool) $this->permalink_structure;
+		$has_new_slug    = isset( $_GET[ $this->new_login_slug ] ) && $_GET[ $this->new_login_slug ];
+		$has_old_slug    = false !== stripos( $uri, 'wp-login.php' );
 
-		$has_register_slug = false !== stripos( $uri, 'wp-register.php' ) ? true : false;
+		$has_register_slug = false !== stripos( $uri, 'wp-register.php' );
 
 		global $pagenow;
 
 		if ( ! is_admin() && ( $has_old_slug || site_url( 'wp-login', 'relative' ) === $request_path ) ) {
-			// If current page is old login page, set $pagenow to be index.php so it's not login page anymore.
+			// If current page is old login page, set $pagenow to be index.php, so it's not login page anymore.
 			$pagenow = 'index.php';
 
 			$this->is_old_login_page = true;
@@ -198,6 +198,7 @@ class Login_Redirect_Output extends Base_Output {
 	 * Get new login url.
 	 *
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
+	 *
 	 * @return string
 	 */
 	public function new_login_url( $scheme = null ) {
@@ -233,11 +234,12 @@ class Login_Redirect_Output extends Base_Output {
 	 * Return a string with or without trailing slash based on permalink structure.
 	 *
 	 * @param string $string The string to return.
+	 *
 	 * @return string
 	 */
 	public function maybe_trailingslashit( $string ) {
 
-		$use_trailingslash = '/' === substr( $this->permalink_structure, -1, 1 ) ? true : false;
+		$use_trailingslash = '/' === substr( $this->permalink_structure, - 1, 1 );
 
 		return ( $use_trailingslash ? trailingslashit( $string ) : untrailingslashit( $string ) );
 
@@ -290,7 +292,7 @@ class Login_Redirect_Output extends Base_Output {
 			$referer  = wp_get_referer();
 			$referers = wp_parse_url( $referer );
 
-			$referer_contains_activate_url = false !== stripos( $referer, 'wp-activate.php' ) ? true : false;
+			$referer_contains_activate_url = false !== stripos( $referer, 'wp-activate.php' );
 
 			if ( $referer_contains_activate_url && ! empty( $referers['query'] ) ) {
 				parse_str( $referers['query'], $referer_queries );
@@ -298,7 +300,10 @@ class Login_Redirect_Output extends Base_Output {
 				$signup_key           = $referer_queries['key'];
 				$wpmu_activate_signup = wpmu_activate_signup( $signup_key );
 
-				@require_once WPINC . '/ms-functions.php';
+				if ( file_exists( WPINC . '/ms-functions.php' ) ) {
+					@require_once WPINC . '/ms-functions.php';
+				}
+
 
 				if ( ! empty( $signup_key ) && is_wp_error( $wpmu_activate_signup ) ) {
 					if ( 'already_active' === $wpmu_activate_signup->get_error_code() || 'blog_taken' === $wpmu_activate_signup->get_error_code() ) {
@@ -380,8 +385,8 @@ class Login_Redirect_Output extends Base_Output {
 		 */
 		$referer = esc_url( wp_get_raw_referer() );
 
-		$url_contains_old_login_url     = false !== stripos( $url, 'wp-login.php' ) ? true : false;
-		$referer_contains_old_login_url = false !== stripos( $referer, 'wp-login.php' ) ? true : false;
+		$url_contains_old_login_url     = false !== stripos( $url, 'wp-login.php' );
+		$referer_contains_old_login_url = false !== stripos( $referer, 'wp-login.php' );
 
 		if ( $url_contains_old_login_url && ! $referer_contains_old_login_url ) {
 			if ( is_ssl() ) {
@@ -412,10 +417,10 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/site_url/
 	 *
-	 * @param string      $url The complete site URL including scheme and path.
-	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string $url The complete site URL including scheme and path.
+	 * @param string $path Path relative to the site URL. Blank string if no path is specified.
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
-	 * @param int|null    $blog_id Site ID, or null for the current site.
+	 * @param int|null $blog_id Site ID, or null for the current site.
 	 *
 	 * @return string
 	 */
@@ -430,8 +435,8 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/network_site_url/
 	 *
-	 * @param string      $url The complete site URL including scheme and path.
-	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string $url The complete site URL including scheme and path.
+	 * @param string $path Path relative to the site URL. Blank string if no path is specified.
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
 	 *
 	 * @return string
@@ -449,7 +454,7 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @param string $login_url The login URL. Not HTML-encoded.
 	 * @param string $redirect The path to redirect to on login, if supplied.
-	 * @param bool   $force_reauth Whether to force reauthorization, even if a cookie is present.
+	 * @param bool $force_reauth Whether to force reauthorization, even if a cookie is present.
 	 *
 	 * @return string
 	 */
@@ -479,7 +484,7 @@ class Login_Redirect_Output extends Base_Output {
 	 * @see https://developer.wordpress.org/reference/hooks/wp_redirect/
 	 *
 	 * @param string $location The path or URL to redirect to.
-	 * @param int    $status The HTTP response status code to use.
+	 * @param int $status The HTTP response status code to use.
 	 *
 	 * @return string
 	 */
@@ -504,9 +509,7 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function welcome_email( $value ) {
 
-		$value = str_ireplace( 'wp-login.php', trailingslashit( $this->new_login_slug ), $value );
-
-		return $value;
+		return str_ireplace( 'wp-login.php', trailingslashit( $this->new_login_slug ), $value );
 
 	}
 
@@ -545,7 +548,7 @@ class Login_Redirect_Output extends Base_Output {
 	 * @see https://developer.wordpress.org/reference/hooks/user_request_action_email_content/
 	 *
 	 * @param string $email_text Text in the email.
-	 * @param array  $email_data Data relating to the account action email.
+	 * @param array $email_data Data relating to the account action email.
 	 *
 	 * @return string
 	 */
@@ -553,9 +556,8 @@ class Login_Redirect_Output extends Base_Output {
 
 		$confirm_url = str_ireplace( $this->new_login_slug . '/', 'wp-login.php', $email_data['confirm_url'] );
 		$confirm_url = esc_url_raw( $confirm_url );
-		$email_text  = str_ireplace( '###CONFIRM_URL###', $confirm_url, $email_text );
 
-		return $email_text;
+		return str_ireplace( '###CONFIRM_URL###', $confirm_url, $email_text );
 
 	}
 
@@ -564,7 +566,8 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/site_status_tests/
 	 *
-	 * @param array $test_types  An associative array, where the $test_type is either direct or async, to declare if the test should run via Ajax calls after page load.
+	 * @param array $test_types An associative array, where the $test_type is either direct or async, to declare if the test should run via Ajax calls after page load.
+	 *
 	 * @return array
 	 */
 	public function site_status_tests( $test_types ) {
@@ -578,8 +581,8 @@ class Login_Redirect_Output extends Base_Output {
 	/**
 	 * Filters the login redirect URL.
 	 *
-	 * @param string           $redirect_to The redirect destination URL.
-	 * @param string           $requested_redirect_to The requested redirect destination URL passed as a parameter.
+	 * @param string $redirect_to The redirect destination URL.
+	 * @param string $requested_redirect_to The requested redirect destination URL passed as a parameter.
 	 * @param WP_User|WP_Error $user WP_User object if login was successful, WP_Error object otherwise.
 	 *
 	 * @return string
@@ -595,7 +598,7 @@ class Login_Redirect_Output extends Base_Output {
 		}
 
 		foreach ( $roles as $role ) {
-			if ( isset( $slugs[ $role ] ) && ! empty( $slugs[ $role ] ) ) {
+			if ( ! empty( $slugs[ $role ] ) ) {
 				return site_url( $slugs[ $role ] );
 			}
 		}
