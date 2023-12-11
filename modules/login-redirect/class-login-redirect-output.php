@@ -10,6 +10,8 @@ namespace Udb\LoginRedirect;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
+use WP_User;
+use WP_Error;
 
 /**
  * Class to set up login url output.
