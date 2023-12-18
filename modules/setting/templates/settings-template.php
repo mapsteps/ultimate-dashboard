@@ -159,7 +159,7 @@ return function () {
 				</li>
 			</ul>
 
-			<p class="credit"><?php _e( 'Made with ❤ in Aschaffenburg, Germany', 'ultimate-dashboard' ); ?></p>
+			<p class="credit"><?php _e( 'Made with ❤ in Torsby, Sweden', 'ultimate-dashboard' ); ?></p>
 
 		</div>
 
