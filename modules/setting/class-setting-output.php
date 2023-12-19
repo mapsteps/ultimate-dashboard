@@ -10,6 +10,7 @@ namespace Udb\Setting;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
+use Udb\Helpers\Content_Helper;
 use Udb\Widget\Widget_Output;
 
 /**
@@ -91,8 +92,10 @@ class Setting_Output extends Base_Output {
 			return;
 		}
 
+		$content_helper = new Content_Helper();
+
 		$custom_css = $settings['custom_css'];
-		$custom_css = $this->sanitize_css_output( $custom_css );
+		$custom_css = $content_helper->sanitize_css( $custom_css );
 
 		wp_add_inline_style( 'udb-dashboard', esc_html( $custom_css ) );
 
@@ -109,8 +112,10 @@ class Setting_Output extends Base_Output {
 			return;
 		}
 
+		$content_helper = new Content_Helper();
+
 		$custom_css = $settings['custom_admin_css'];
-		$custom_css = $this->sanitize_css_output( $custom_css );
+		$custom_css = $content_helper->sanitize_css( $custom_css );
 		?>
 
 		<style>
@@ -118,30 +123,6 @@ class Setting_Output extends Base_Output {
 		</style>
 
 		<?php
-
-	}
-
-	/**
-	 * Sanitize CSS for output.
-	 *
-	 * @param string $css The CSS content to sanitize.
-	 *
-	 * @return string Sanitized CSS.
-	 */
-	private function sanitize_css_output( $css ) {
-
-		$sanitized_css = wp_strip_all_tags( $css );
-		$sanitized_css = wp_filter_nohtml_kses( $sanitized_css );
-		$sanitized_css = strtr(
-			$sanitized_css,
-			array(
-				'&gt;' => '>',
-				"\'"   => "'",
-				'\"'   => '"',
-			)
-		);
-
-		return $sanitized_css;
 
 	}
 
