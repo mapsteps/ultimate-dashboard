@@ -7,6 +7,8 @@
 
 namespace Udb\Helpers;
 
+use WP_Customize_Setting;
+
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
@@ -48,7 +50,7 @@ class Content_Helper {
 
 		// Allowed svg mime type in version 1.2.2.
 		$allowed_mime   = get_allowed_mime_types();
-		$svg_mime_check = isset( $allowed_mime['svg'] ) ? true : false;
+		$svg_mime_check = isset( $allowed_mime['svg'] );
 
 		if ( $svg_mime_check ) {
 			$allow_mime = array( 'svg' => 'image/svg+xml' );
@@ -67,13 +69,13 @@ class Content_Helper {
 	 * Get the editor/builder of the given post.
 	 *
 	 * @param int $post_id ID of the post being checked.
+	 *
 	 * @return string The content editor name.
 	 */
 	public function get_content_editor( $post_id ) {
 		$content_editor = 'default';
-		$content_editor = apply_filters( 'udb_content_editor', $content_editor, $post_id );
 
-		return $content_editor;
+		return apply_filters( 'udb_content_editor', $content_editor, $post_id );
 	}
 
 	/**
@@ -82,15 +84,15 @@ class Content_Helper {
 	 * @link https://stackoverflow.com/questions/14684077/remove-all-html-tags-from-php-string/#answer-39320168
 	 *
 	 * @param string $text The string being stripped.
+	 *
 	 * @return string The stripped string.
 	 */
 	public function strip_tags_content( $text ) {
 
 		$cleanup = preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
 		$cleanup = wp_strip_all_tags( $cleanup );
-		$cleanup = trim( $cleanup );
 
-		return $cleanup;
+		return trim( $cleanup );
 
 	}
 
@@ -100,6 +102,7 @@ class Content_Helper {
 	 * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
 	 *
 	 * @param string $text The string being sanitized.
+	 *
 	 * @return string The sanitized string.
 	 */
 	public function sanitize_css_content( $text ) {
@@ -113,9 +116,35 @@ class Content_Helper {
 	}
 
 	/**
+	 * Sanitize css.
+	 *
+	 * @param string $text The string being sanitized.
+	 *
+	 * @return string The sanitized string.
+	 */
+	public function sanitize_css( $text ) {
+
+		$sanitized_css = str_ireplace( '\\', 'backslash', $text );
+		$sanitized_css = wp_strip_all_tags( $sanitized_css );
+		$sanitized_css = wp_filter_nohtml_kses( $sanitized_css );
+		$sanitized_css = strtr(
+			$sanitized_css,
+			array(
+				' & gt;' => ' > ',
+				"\'"     => "'",
+				'\"'     => '"',
+			)
+		);
+
+		return str_ireplace( 'backslash', '\\', $sanitized_css );
+
+	}
+
+	/**
 	 * Allow iframes & attributes in HTML widget.
 	 *
 	 * @param array $tags The allowed tags & attributes.
+	 *
 	 * @return array $tags The midified $tags.
 	 */
 	public function allow_iframes_in_html( $tags ) {

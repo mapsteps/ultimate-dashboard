@@ -125,6 +125,7 @@ class Setting_Output extends Base_Output {
 	 * Sanitize CSS for output.
 	 *
 	 * @param string $css The CSS content to sanitize.
+	 *
 	 * @return string Sanitized CSS.
 	 */
 	private function sanitize_css_output( $css ) {
