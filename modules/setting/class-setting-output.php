@@ -88,7 +88,7 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		if ( ! isset( $settings['custom_css'] ) || empty( $settings['custom_css'] ) ) {
+		if ( empty( $settings['custom_css'] ) ) {
 			return;
 		}
 
@@ -108,7 +108,7 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		if ( ! isset( $settings['custom_admin_css'] ) || empty( $settings['custom_admin_css'] ) ) {
+		if ( empty( $settings['custom_admin_css'] ) ) {
 			return;
 		}
 
@@ -137,7 +137,7 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		if ( ! isset( $settings['dashboard_headline'] ) || empty( $settings['dashboard_headline'] ) ) {
+		if ( empty( $settings['dashboard_headline'] ) ) {
 			return;
 		}
 
@@ -154,7 +154,7 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		if ( ! isset( $settings['howdy_text'] ) || empty( $settings['howdy_text'] ) ) {
+		if ( empty( $settings['howdy_text'] ) ) {
 			return;
 		}
 
@@ -196,7 +196,7 @@ class Setting_Output extends Base_Output {
 
 		$settings = get_option( 'udb_settings' );
 
-		return ( isset( $settings['remove_screen_options'] ) ? false : true );
+		return ! isset( $settings['remove_screen_options'] );
 
 	}
 
@@ -212,7 +212,7 @@ class Setting_Output extends Base_Output {
 			return;
 		}
 
-		if ( ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ) {
+		if ( empty( $settings['welcome_panel_content'] ) ) {
 			return;
 		}
 
@@ -227,7 +227,7 @@ class Setting_Output extends Base_Output {
 	public function welcome_panel_content() {
 
 		$settings = get_option( 'udb_settings' );
-		$content  = ! isset( $settings['welcome_panel_content'] ) || empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
+		$content  = empty( $settings['welcome_panel_content'] ) ? '' : $settings['welcome_panel_content'];
 
 		if ( empty( $content ) ) {
 			do_action( 'udb_ms_switch_blog' );
