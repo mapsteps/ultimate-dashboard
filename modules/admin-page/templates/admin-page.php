@@ -29,18 +29,19 @@ $custom_css = $post->custom_css;
 
 <style>
 	<?php if ( $remove_page_margin ) : ?>
-		#wpcontent {
-			padding-left: 0;
-		}
+	#wpcontent {
+		padding-left: 0;
+	}
 
-		.wrap {
-			margin: 0;
-		}
+	.wrap {
+		margin: 0;
+	}
+
 	<?php endif; ?>
 
 	<?php
 	if ( $custom_css ) {
-		echo $custom_css;
+		echo $content_helper->sanitize_css( $custom_css );
 	}
 	?>
 </style>

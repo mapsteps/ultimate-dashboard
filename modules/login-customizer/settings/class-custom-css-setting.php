@@ -9,6 +9,7 @@
 
 namespace Udb\LoginCustomizer;
 
+use Udb\Helpers\Content_Helper;
 use WP_Customize_Setting;
 use WP_Error;
 
@@ -119,5 +120,29 @@ class Custom_Css_Setting extends WP_Customize_Setting {
 		}
 
 		return $validity;
+	}
+
+	/**
+	 * Sanitize an input.
+	 *
+	 * @param string|array $value The value to sanitize.
+	 * @return string|array|null|WP_Error Sanitized value, or `null`/`WP_Error` if invalid.
+	 */
+	public function sanitize( $value ) {
+
+		$content_helper = new Content_Helper();
+
+		$value = $content_helper->sanitize_css( $value );
+
+		/**
+		 * Filters a Customize setting value in un-slashed form.
+		 *
+		 * @since 3.4.0
+		 *
+		 * @param mixed                $value   Value of the setting.
+		 * @param WP_Customize_Setting $setting WP_Customize_Setting instance.
+		 */
+		return apply_filters( "customize_sanitize_{$this->id}", $value, $this );
+
 	}
 }

@@ -10,6 +10,7 @@ namespace Udb\LoginCustomizer;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
+use Udb\Helpers\Content_Helper;
 
 /**
  * Class to setup login customizer output.
@@ -79,6 +80,7 @@ class Login_Customizer_Output extends Base_Output {
 	 * Set login page header text.
 	 *
 	 * @param string $text The existing header text.
+	 *
 	 * @return string The modified header text.
 	 */
 	public function login_headertext( $text ) {
@@ -94,6 +96,7 @@ class Login_Customizer_Output extends Base_Output {
 	 * Change login logo url.
 	 *
 	 * @param string $url The existing login logo url.
+	 *
 	 * @return string The modified login logo url.
 	 */
 	public function login_logo_url( $url ) {
@@ -133,7 +136,12 @@ class Login_Customizer_Output extends Base_Output {
 
 		$css .= $custom_css;
 
-		echo apply_filters( 'udb_login_styles', $css );
+		$css = apply_filters( 'udb_login_styles', $css );
+
+		$content_helper = new Content_Helper();
+
+		echo $content_helper->sanitize_css( $css );
+
 		echo '</style>';
 
 	}

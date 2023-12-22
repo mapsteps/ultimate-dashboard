@@ -9,6 +9,12 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+/**
+ * Save admin page.
+ *
+ * @param \Udb\AdminPage\Admin_Page_Module $module The admin page module.
+ * @param int $post_id The post ID.
+ */
 return function ( $module, $post_id ) {
 
 	if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
@@ -19,7 +25,7 @@ return function ( $module, $post_id ) {
 		return;
 	}
 
-	if ( ! isset( $_POST['udb_nonce'] ) || ! wp_verify_nonce( $_POST['udb_nonce'], 'udb_edit_admin_page' )) {
+	if ( ! isset( $_POST['udb_nonce'] ) || ! wp_verify_nonce( $_POST['udb_nonce'], 'udb_edit_admin_page' ) ) {
 		return;
 	}
 
@@ -83,7 +89,7 @@ return function ( $module, $post_id ) {
 
 	// Custom css.
 	if ( isset( $_POST['udb_custom_css'] ) ) {
-		update_post_meta( $post_id, 'udb_custom_css', $module->content()->sanitize_css_content( $_POST['udb_custom_css'] ) );
+		update_post_meta( $post_id, 'udb_custom_css', $module->content()->sanitize_css( $_POST['udb_custom_css'] ) );
 	}
 
 	do_action( 'udb_save_admin_page', $post_id );

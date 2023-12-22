@@ -99,6 +99,7 @@ class Content_Helper {
 	/**
 	 * Sanitize css content (not a real sanitizing).
 	 *
+	 * @deprecated 3.7.12 Use sanitize_css() instead.
 	 * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
 	 *
 	 * @param string $text The string being sanitized.
@@ -107,11 +108,7 @@ class Content_Helper {
 	 */
 	public function sanitize_css_content( $text ) {
 
-		if ( preg_match( '#</?\w+#', $text ) ) {
-			return '';
-		} else {
-			return $text;
-		}
+		return $this->sanitize_css( $text );
 
 	}
 

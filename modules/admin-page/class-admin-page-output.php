@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
 use Udb\Helpers\Array_Helper;
+use Udb\Helpers\Content_Helper;
 
 /**
  * Class to setup admin page output.
@@ -160,7 +161,7 @@ class Admin_Page_Output extends Base_Output {
 	 * Register admin page's menu & submenu pages.
 	 *
 	 * @param array $posts Array of admin page post object (parent or submenu).
-	 * @param bool  $from_multisite Whether or not the function is called by multisite function.
+	 * @param bool $from_multisite Whether or not the function is called by multisite function.
 	 */
 	public function prepare_menu( $posts, $from_multisite = false ) {
 
@@ -181,7 +182,7 @@ class Admin_Page_Output extends Base_Output {
 	 * Register menu / submenu page based on its post.
 	 *
 	 * @param WP_Post $post The admin page post object.
-	 * @param bool    $from_multisite Whether or not the function is called by multisite function.
+	 * @param bool $from_multisite Whether or not the function is called by multisite function.
 	 */
 	public function add_menu( $post, $from_multisite = false ) {
 
@@ -272,7 +273,7 @@ class Admin_Page_Output extends Base_Output {
 	 * Render admin page.
 	 *
 	 * @param WP_Post $post The admin page post object.
-	 * @param bool    $from_multisite Whether or not the function is called by multisite function.
+	 * @param bool $from_multisite Whether or not the function is called by multisite function.
 	 */
 	public function render_admin_page( $post, $from_multisite = false ) {
 
