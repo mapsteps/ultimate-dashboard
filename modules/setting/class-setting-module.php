@@ -16,6 +16,7 @@ use Udb\Helpers\Content_Helper;
  * Class to setup setting module.
  */
 class Setting_Module extends Base_Module {
+
 	/**
 	 * The current module url.
 	 *
@@ -53,10 +54,16 @@ class Setting_Module extends Base_Module {
 	 * Add submenu page.
 	 */
 	public function submenu_page() {
-		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Settings', 'ultimate-dashboard' ), __( 'Settings', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_settings', array(
-			$this,
-			'submenu_page_content'
-		) );
+
+		add_submenu_page(
+			'edit.php?post_type=udb_widgets',
+			__( 'Settings', 'ultimate-dashboard' ),
+			__( 'Settings', 'ultimate-dashboard' ),
+			apply_filters( 'udb_settings_capability', 'manage_options' ),
+			'udb_settings',
+			array( $this, 'submenu_page_content' )
+		);
+
 	}
 
 	/**
@@ -98,9 +105,9 @@ class Setting_Module extends Base_Module {
 		register_setting(
 			'udb-settings-group',
 			'udb_settings',
-			[
+			array(
 				'sanitize_callback' => array( $this, 'sanitize_input' ),
-			]
+			)
 		);
 
 		// Widget sections.
@@ -129,28 +136,46 @@ class Setting_Module extends Base_Module {
 		add_settings_section( 'udb-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-misc-settings' );
 
 		// Widget fields.
-		add_settings_field( 'remove-all-widgets', __( 'Remove All Widgets', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_all_widgets_field'
-		), 'udb-widget-settings', 'udb-widgets-section' );
-		add_settings_field( 'remove-individual-widgets', __( 'Remove Individual Widgets', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_individual_widgets_field'
-		), 'udb-widget-settings', 'udb-widgets-section' );
-		add_settings_field( 'remove-3rd-party-widgets', __( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_3rd_party_widgets_field'
-		), 'udb-widget-settings', 'udb-3rd-party-widgets-section' );
+		add_settings_field(
+			'remove-all-widgets',
+			__( 'Remove All Widgets', 'ultimate-dashboard' ),
+			array( $this, 'remove_all_widgets_field' ),
+			'udb-widget-settings',
+			'udb-widgets-section'
+		);
+
+		add_settings_field(
+			'remove-individual-widgets',
+			__( 'Remove Individual Widgets', 'ultimate-dashboard' ),
+			array( $this, 'remove_individual_widgets_field' ),
+			'udb-widget-settings',
+			'udb-widgets-section'
+		);
+
+		add_settings_field(
+			'remove-3rd-party-widgets',
+			__( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ),
+			array( $this, 'remove_3rd_party_widgets_field' ),
+			'udb-widget-settings',
+			'udb-3rd-party-widgets-section'
+		);
 
 		// Widget styling fields.
-		add_settings_field( 'udb-icon-color-field', __( 'Icon/Text Color', 'ultimate-dashboard' ), array(
-			$this,
-			'icon_color_field'
-		), 'udb-widget-styling-settings', 'udb-styling-section' );
-		add_settings_field( 'udb-headline-color-field', __( 'Headline Color', 'ultimate-dashboard' ), array(
-			$this,
-			'headline_color_field'
-		), 'udb-widget-styling-settings', 'udb-styling-section' );
+		add_settings_field(
+			'udb-icon-color-field',
+			__( 'Icon/Text Color', 'ultimate-dashboard' ),
+			array( $this, 'icon_color_field' ),
+			'udb-widget-styling-settings',
+			'udb-styling-section'
+		);
+
+		add_settings_field(
+			'udb-headline-color-field',
+			__( 'Headline Color', 'ultimate-dashboard' ),
+			array( $this, 'headline_color_field' ),
+			'udb-widget-styling-settings',
+			'udb-styling-section'
+		);
 
 		// Welcome panel fields.
 		add_settings_field(
@@ -159,63 +184,97 @@ class Setting_Module extends Base_Module {
 			array( $this, 'welcome_panel_field' ),
 			'udb-welcome-panel-settings',
 			'udb-welcome-panel-section',
-			array(
-				'class' => 'udb-no-label',
-			)
+			array( 'class' => 'udb-no-label' )
 		);
 
 		// General fields.
-		add_settings_field( 'remove-help-tab-settings', __( 'Remove Help Tab', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_help_tab_field'
-		), 'udb-general-settings', 'udb-general-section' );
-		add_settings_field( 'remove-screen-options-settings', __( 'Remove Screen Options Tab', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_screen_option_tab_field'
-		), 'udb-general-settings', 'udb-general-section' );
-		add_settings_field( 'remove-admin-bar-settings', __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ), array(
-			$this,
-			'remove_admin_bar_field'
-		), 'udb-general-settings', 'udb-general-section' );
-		add_settings_field( 'headline-settings', __( 'Custom Dashboard Headline', 'ultimate-dashboard' ), array(
-			$this,
-			'headline_text_field'
-		), 'udb-general-settings', 'udb-general-section' );
-		add_settings_field( 'howdy-settings', __( 'Custom Howdy Text', 'ultimate-dashboard' ), array(
-			$this,
-			'howdy_text_field'
-		), 'udb-general-settings', 'udb-general-section' );
+		add_settings_field(
+			'remove-help-tab-settings',
+			__( 'Remove Help Tab', 'ultimate-dashboard' ),
+			array( $this, 'remove_help_tab_field' ),
+			'udb-general-settings',
+			'udb-general-section'
+		);
+
+		add_settings_field(
+			'remove-screen-options-settings',
+			__( 'Remove Screen Options Tab', 'ultimate-dashboard' ),
+			array( $this, 'remove_screen_option_tab_field' ),
+			'udb-general-settings',
+			'udb-general-section'
+		);
+
+		add_settings_field(
+			'remove-admin-bar-settings',
+			__( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ),
+			array( $this, 'remove_admin_bar_field' ),
+			'udb-general-settings',
+			'udb-general-section'
+		);
+
+		add_settings_field(
+			'headline-settings',
+			__( 'Custom Dashboard Headline', 'ultimate-dashboard' ),
+			array( $this, 'headline_text_field' ),
+			'udb-general-settings',
+			'udb-general-section'
+		);
+
+		add_settings_field(
+			'howdy-settings',
+			__( 'Custom Howdy Text', 'ultimate-dashboard' ),
+			array( $this, 'howdy_text_field' ),
+			'udb-general-settings',
+			'udb-general-section'
+		);
 
 		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
 
 		// Misc fields.
-		add_settings_field( 'remove_font_awesome', __( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description, array(
-			$this,
-			'remove_fontawesome_field'
-		), 'udb-misc-settings', 'udb-misc-section' );
+		add_settings_field(
+			'remove_font_awesome',
+			__( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description,
+			array( $this, 'remove_fontawesome_field' ),
+			'udb-misc-settings',
+			'udb-misc-section'
+		);
 
 		$show_data_removal_field = apply_filters( 'udb_show_data_removal_field', true );
 
 		if ( $show_data_removal_field ) {
-			add_settings_field( 'remove-all-settings', __( 'Remove Data on Uninstall', 'ultimate-dashboard' ), array(
-				$this,
-				'remove_on_uninstall_field'
-			), 'udb-misc-settings', 'udb-misc-section' );
+			add_settings_field(
+				'remove-all-settings',
+				__( 'Remove Data on Uninstall', 'ultimate-dashboard' ),
+				array( $this, 'remove_on_uninstall_field' ),
+				'udb-misc-settings',
+				'udb-misc-section'
+			);
 		}
 
 		// Custom CSS fields.
-		add_settings_field( 'custom-dashboard-css', __( 'Custom Dashboard CSS', 'ultimate-dashboard' ), array(
-			$this,
-			'custom_dashboard_css_field'
-		), 'udb-custom-css-settings', 'udb-custom-css-section' );
-		add_settings_field( 'custom-admin-css', __( 'Custom Admin CSS', 'ultimate-dashboard' ), array(
-			$this,
-			'custom_admin_css_field'
-		), 'udb-custom-css-settings', 'udb-custom-css-section' );
-		add_settings_field( 'custom-login-css', __( 'Custom Login CSS', 'ultimate-dashboard' ), array(
-			$this,
-			'custom_login_css_field'
-		), 'udb-custom-css-settings', 'udb-custom-css-section' );
+		add_settings_field(
+			'custom-dashboard-css',
+			__( 'Custom Dashboard CSS', 'ultimate-dashboard' ),
+			array( $this, 'custom_dashboard_css_field' ),
+			'udb-custom-css-settings',
+			'udb-custom-css-section'
+		);
+
+		add_settings_field(
+			'custom-admin-css',
+			__( 'Custom Admin CSS', 'ultimate-dashboard' ),
+			array( $this, 'custom_admin_css_field' ),
+			'udb-custom-css-settings',
+			'udb-custom-css-section'
+		);
+
+		add_settings_field(
+			'custom-login-css',
+			__( 'Custom Login CSS', 'ultimate-dashboard' ),
+			array( $this, 'custom_login_css_field' ),
+			'udb-custom-css-settings',
+			'udb-custom-css-section'
+		);
 
 	}
 
@@ -381,15 +440,15 @@ class Setting_Module extends Base_Module {
 	 * Custom login css field.
 	 */
 	public function custom_login_css_field() {
-
 		?>
 
-		<p class="description"
-		   style="margin: 0;"><?php _e( 'To add custom CSS to the WordPress login screen, please click the button below to launch the WordPress customizer.', 'ultimate-dashboard' ); ?></p>
+		<p class="description" style="margin: 0;">
+			<?php esc_html_e( 'To add custom CSS to the WordPress login screen, please click the button below to launch the WordPress customizer.', 'ultimate-dashboard' ); ?>
+		</p>
 		<br>
 		<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>"
-		   class="button button-primary button-larger">
-			<?php _e( 'Add Custom Login CSS', 'ultimate-dashboard' ); ?>
+			class="button button-primary button-larger">
+			<?php esc_html_e( 'Add Custom Login CSS', 'ultimate-dashboard' ); ?>
 		</a>
 
 		<?php
