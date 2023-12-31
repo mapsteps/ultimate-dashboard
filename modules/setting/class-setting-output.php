@@ -14,7 +14,7 @@ use Udb\Helpers\Content_Helper;
 use Udb\Widget\Widget_Output;
 
 /**
- * Class to setup setting output.
+ * Class to set up setting output.
  */
 class Setting_Output extends Base_Output {
 
@@ -38,11 +38,13 @@ class Setting_Output extends Base_Output {
 	 * @return object
 	 */
 	public static function get_instance() {
+
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
 
 		return self::$instance;
+
 	}
 
 	/**
@@ -253,22 +255,26 @@ class Setting_Output extends Base_Output {
 	 * Remove admin bar from frontend.
 	 */
 	public function remove_admin_bar() {
+
 		$settings = get_option( 'udb_settings' );
 
 		if ( isset( $settings['remove_admin_bar'] ) ) {
 			add_filter( 'show_admin_bar', '__return_false' );
 		}
+
 	}
 
 	/**
 	 * Remove Font Awesome.
 	 */
 	public function remove_font_awesome() {
+
 		$settings = get_option( 'udb_settings' );
 
 		if ( isset( $settings['remove_font_awesome'] ) ) {
 			add_filter( 'udb_font_awesome', '__return_false' );
 		}
+
 	}
 
 }
