@@ -14,6 +14,7 @@ return function () {
 		'singular_name'      => _x( 'Dashboard Widget', 'Post type singular name', 'ultimate-dashboard' ),
 		'menu_name'          => _x( 'Ultimate Dash...', 'Admin Menu text', 'ultimate-dashboard' ),
 		'name_admin_bar'     => _x( 'Dashboard Widget', 'Add New on Toolbar', 'ultimate-dashboard' ),
+		'add_new'            => __( 'Add New', 'ultimate-dashboard' ),
 		'add_new_item'       => __( 'Add Dashboard Widget', 'ultimate-dashboard' ),
 		'new_item'           => __( 'New Dashboard Widget', 'ultimate-dashboard' ),
 		'edit_item'          => __( 'Edit Dashboard Widget', 'ultimate-dashboard' ),
