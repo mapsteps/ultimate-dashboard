@@ -257,9 +257,11 @@ class Admin_Page_Output extends Base_Output {
 				// Remove screen options.
 				add_filter( 'screen_options_show_screen', '__return_false' );
 
+				$content_type = get_post_meta( $post->ID, 'udb_content_type', true );
+
 				$content_helper = new Content_Helper();
 
-				if ( $content_helper->is_built_with_blocks( $post ) ) {
+				if ( 'html' !== $content_type && $content_helper->is_built_with_blocks( $post ) ) {
 					$blocks_helper = new Blocks_Helper( $post );
 
 					$blocks_helper->prepare_hooks();

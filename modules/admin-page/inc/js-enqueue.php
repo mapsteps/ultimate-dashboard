@@ -18,7 +18,14 @@ return function ( $module ) {
 		wp_enqueue_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// CodeMirror.
-		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
+		wp_enqueue_code_editor(
+			array(
+				'type'       => 'text/html',
+				'codemirror' => array(
+					'autoRefresh' => true,
+				),
+			)
+		);
 
 		// Edit admin page.
 		wp_enqueue_script( 'udb-edit-admin-page', $module->url . '/assets/js/edit-admin-page.js', array( 'select2' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );

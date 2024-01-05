@@ -7,13 +7,15 @@
 
 // are we sanitizing everything correctly? Not sure if all of those are actually text fields.
 
+use Udb\AdminPage\Admin_Page_Module;
+
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
  * Save admin page.
  *
- * @param \Udb\AdminPage\Admin_Page_Module $module The admin page module.
- * @param int $post_id The post ID.
+ * @param Admin_Page_Module $module The admin page module.
+ * @param int               $post_id The post ID.
  */
 return function ( $module, $post_id ) {
 
@@ -22,6 +24,10 @@ return function ( $module, $post_id ) {
 	}
 
 	if ( 'udb_admin_page' !== get_post_type( $post_id ) ) {
+		return;
+	}
+
+	if ( empty( $_POST ) ) {
 		return;
 	}
 
