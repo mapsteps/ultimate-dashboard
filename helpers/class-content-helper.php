@@ -8,6 +8,7 @@
 namespace Udb\Helpers;
 
 use WP_Customize_Setting;
+use WP_Post;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -27,7 +28,7 @@ class Content_Helper {
 	 *
 	 * @see wp_check_filetype() https://developer.wordpress.org/reference/functions/wp_check_filetype/
 	 *
-	 * @param string               $image   Image filename.
+	 * @param string               $image Image filename.
 	 * @param WP_Customize_Setting $setting Setting instance.
 	 *
 	 * @return string The image filename if the extension is allowed; otherwise, the setting default.
@@ -99,12 +100,11 @@ class Content_Helper {
 	/**
 	 * Sanitize css content (not a real sanitizing).
 	 *
-	 * @deprecated 3.7.12 Use sanitize_css() instead.
-	 * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
-	 *
 	 * @param string $text The string being sanitized.
 	 *
 	 * @return string The sanitized string.
+	 * @deprecated 3.7.12 Use sanitize_css() instead.
+	 * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
 	 */
 	public function sanitize_css_content( $text ) {
 
@@ -173,6 +173,26 @@ class Content_Helper {
 		);
 
 		return $tags;
+
+	}
+
+	/**
+	 * Check whether post is built with Breakdance Builder.
+	 *
+	 * @param WP_Post|int $post The post being checked.
+	 *
+	 * @return bool
+	 */
+	public function is_built_with_blocks( $post ) {
+
+		$post_id = is_object( $post ) && property_exists( $post, 'ID' ) ? $post->ID : $post;
+		$post    = is_object( $post ) && property_exists( $post, 'ID' ) ? $post : get_post( $post );
+
+		if ( ! $post ) {
+			return false;
+		}
+
+		return ( new Blocks_Helper( $post ) )->built_with_blocks();
 
 	}
 

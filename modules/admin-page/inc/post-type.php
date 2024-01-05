@@ -46,7 +46,7 @@ return function () {
 		'public'              => true,
 		'exclude_from_search' => true,
 		'show_in_menu'        => false,
-		'show_in_rest'        => false,
+		'show_in_rest'        => true,
 		'query_var'           => false,
 		'rewrite'             => false,
 		'map_meta_cap'        => false,
