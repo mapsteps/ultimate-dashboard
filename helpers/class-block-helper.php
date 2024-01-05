@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 /**
  * Class to set up Blocks helper.
  */
-class Blocks_Helper {
+class Block_Helper {
 
 	/**
 	 * WP_Post instance.
@@ -41,6 +41,10 @@ class Blocks_Helper {
 	 */
 	public function is_active() {
 
+		if ( version_compare( $GLOBALS['wp_version'], '5.0', '<' ) ) {
+			return false;
+		}
+
 		if ( function_exists( '\has_blocks' ) ) {
 			return true;
 		}
@@ -54,7 +58,7 @@ class Blocks_Helper {
 	 *
 	 * @return bool
 	 */
-	public function built_with_blocks() {
+	public function built_with_block() {
 
 		if ( ! $this->is_active() ) {
 			return false;

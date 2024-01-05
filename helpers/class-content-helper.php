@@ -183,7 +183,7 @@ class Content_Helper {
 	 *
 	 * @return bool
 	 */
-	public function is_built_with_blocks( $post ) {
+	public function is_built_with_block( $post ) {
 
 		$post_id = is_object( $post ) && property_exists( $post, 'ID' ) ? $post->ID : $post;
 		$post    = is_object( $post ) && property_exists( $post, 'ID' ) ? $post : get_post( $post );
@@ -192,7 +192,7 @@ class Content_Helper {
 			return false;
 		}
 
-		return ( new Blocks_Helper( $post ) )->built_with_blocks();
+		return ( new Block_Helper( $post ) )->built_with_block();
 
 	}
 

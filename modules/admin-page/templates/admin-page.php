@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-use Udb\Helpers\Blocks_Helper;
+use Udb\Helpers\Block_Helper;
 use Udb\Helpers\Content_Helper;
 
 $content_helper = new Content_Helper();
@@ -59,9 +59,9 @@ $custom_css = $post->custom_css;
 		if ( 'html' === $post->content_type ) {
 			echo $post->html_content;
 		} else {
-			$blocks_helper = new Blocks_Helper( $post );
+			$blocks_helper = new Block_Helper( $post );
 
-			if ( $blocks_helper->built_with_blocks() ) {
+			if ( $blocks_helper->built_with_block() ) {
 				$blocks_helper->before_output();
 				$blocks_helper->render_content();
 				$blocks_helper->after_output();

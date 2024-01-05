@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
 use Udb\Helpers\Array_Helper;
-use Udb\Helpers\Blocks_Helper;
+use Udb\Helpers\Block_Helper;
 use Udb\Helpers\Content_Helper;
 use WP_Post;
 
@@ -261,8 +261,8 @@ class Admin_Page_Output extends Base_Output {
 
 				$content_helper = new Content_Helper();
 
-				if ( 'html' !== $content_type && $content_helper->is_built_with_blocks( $post ) ) {
-					$blocks_helper = new Blocks_Helper( $post );
+				if ( 'html' !== $content_type && $content_helper->is_built_with_block( $post ) ) {
+					$blocks_helper = new Block_Helper( $post );
 
 					$blocks_helper->prepare_hooks();
 				}
@@ -322,22 +322,26 @@ class Admin_Page_Output extends Base_Output {
 				content: "<?php echo esc_attr( $icon_unicode ); ?>";
 
 			<?php
-			if ( false !== stripos( $icon_class, 'fab ' ) ) :
+			if ( false !== stripos( $icon_class, 'fab ' ) ) {
 				?>
 				font-family: "Font Awesome 5 Brands";
 				<?php
-else :
-	?>
-	font-family: "Font Awesome 5 Free";
-			<?php endif; ?> <?php
-			if ( false !== stripos( $icon_class, 'fas ' ) ) :
+			} else {
 				?>
-				font-weight: 900;
+			font-family: "Font Awesome 5 Free";
 				<?php
-elseif ( false !== stripos( $icon_class, 'far ' ) ) :
-	?>
-	font-weight: 400;
-			<?php endif; ?>
+			}
+
+			if ( false !== stripos( $icon_class, 'fas ' ) ) {
+				?>
+			font-weight: 900;
+				<?php
+			} elseif ( false !== stripos( $icon_class, 'far ' ) ) {
+				?>
+			font-weight: 400;
+				<?php
+			}
+			?>
 			}
 		</style>
 
