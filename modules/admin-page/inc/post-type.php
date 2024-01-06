@@ -46,7 +46,7 @@ return function () {
 		'public'              => true,
 		'exclude_from_search' => true,
 		'show_in_menu'        => false,
-		'show_in_rest'        => true,
+		'show_in_rest'        => false,
 		'query_var'           => false,
 		'rewrite'             => false,
 		'map_meta_cap'        => false,
@@ -55,6 +55,8 @@ return function () {
 		'hierarchical'        => false,
 		'supports'            => array( 'title', 'editor' ),
 	);
+
+	$args = apply_filters( 'udb_admin_page_post_type_args', $args );
 
 	register_post_type( 'udb_admin_page', $args );
 

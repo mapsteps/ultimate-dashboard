@@ -7,6 +7,7 @@
 
 namespace Udb\Helpers;
 
+use UdbPro\Helpers\Block_Helper;
 use WP_Customize_Setting;
 use WP_Post;
 
@@ -173,26 +174,6 @@ class Content_Helper {
 		);
 
 		return $tags;
-
-	}
-
-	/**
-	 * Check whether post is built with Breakdance Builder.
-	 *
-	 * @param WP_Post|int $post The post being checked.
-	 *
-	 * @return bool
-	 */
-	public function is_built_with_block( $post ) {
-
-		$post_id = is_object( $post ) && property_exists( $post, 'ID' ) ? $post->ID : $post;
-		$post    = is_object( $post ) && property_exists( $post, 'ID' ) ? $post : get_post( $post );
-
-		if ( ! $post ) {
-			return false;
-		}
-
-		return ( new Block_Helper( $post ) )->built_with_block();
 
 	}
 

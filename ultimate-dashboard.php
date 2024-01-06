@@ -39,8 +39,8 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 		// Retrieve our license key from the DB.
 		$license_key = trim( get_option( 'ultimate_dashboard_license_key' ) );
 
-		// Setup the updater.
-		$edd_updater = new EDD_SL_Plugin_Updater(
+		// Set up the updater.
+		new EDD_SL_Plugin_Updater(
 			ULTIMATE_DASHBOARD_PRO_STORE_URL,
 			ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . '\ultimate-dashboard-pro.php',
 			array(
@@ -53,6 +53,7 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 		);
 
 	}
+
 	add_action( 'init', 'udb_pro_plugin_updater_helper' );
 
 }
@@ -66,7 +67,6 @@ require __DIR__ . '/helpers/class-screen-helper.php';
 require __DIR__ . '/helpers/class-color-helper.php';
 require __DIR__ . '/helpers/class-widget-helper.php';
 require __DIR__ . '/helpers/class-content-helper.php';
-require __DIR__ . '/helpers/class-block-helper.php';
 require __DIR__ . '/helpers/class-user-helper.php';
 require __DIR__ . '/helpers/class-array-helper.php';
 
@@ -80,13 +80,13 @@ require __DIR__ . '/class-vars.php';
 require __DIR__ . '/class-setup.php';
 
 /**
- * Check whether or not Ultimate Dashboard Pro is active.
+ * Check whether Ultimate Dashboard Pro is active.
  * This function can be called anywhere after "plugins_loaded" hook.
  *
  * @return bool
  */
 function udb_is_pro_active() {
-	return ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ? true : false );
+	return defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' );
 }
 
 Udb\Backwards_Compatibility::init();

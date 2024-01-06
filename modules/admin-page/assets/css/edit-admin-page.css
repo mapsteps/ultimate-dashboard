@@ -37,6 +37,12 @@
 	display: block;
 }
 
+.udb-use-html-editor .edit-post-header-toolbar,
+.udb-use-html-editor .edit-post-visual-editor,
+.udb-use-html-editor .edit-post-sidebar__panel-tabs > ul > li:nth-child(2) {
+	display: none;
+}
+
 /* Attributes metabox */
 #udb-menu-metabox input,
 #udb-menu-metabox select {

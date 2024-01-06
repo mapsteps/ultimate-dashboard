@@ -11,8 +11,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
 use Udb\Helpers\Array_Helper;
-use Udb\Helpers\Block_Helper;
 use Udb\Helpers\Content_Helper;
+use UdbPro\Helpers\Block_Helper;
 use WP_Post;
 
 /**
@@ -256,16 +256,6 @@ class Admin_Page_Output extends Base_Output {
 
 				// Remove screen options.
 				add_filter( 'screen_options_show_screen', '__return_false' );
-
-				$content_type = get_post_meta( $post->ID, 'udb_content_type', true );
-
-				$content_helper = new Content_Helper();
-
-				if ( 'html' !== $content_type && $content_helper->is_built_with_block( $post ) ) {
-					$blocks_helper = new Block_Helper( $post );
-
-					$blocks_helper->prepare_hooks();
-				}
 
 				do_action( 'udb_admin_page_prepare_output', $post, $screen_id );
 
