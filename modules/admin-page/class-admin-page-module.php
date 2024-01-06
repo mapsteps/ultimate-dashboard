@@ -65,7 +65,6 @@ class Admin_Page_Module extends Base_Module {
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
 
 		add_filter( 'template_include', array( $this, 'include_template' ), 1 );
-		add_filter( 'wp', array( $this, 'restrict_admin_page' ), 99999 );
 
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_filter( 'submenu_file', array( $this, 'highlight_submenu' ), 10, 2 );
@@ -189,24 +188,6 @@ class Admin_Page_Module extends Base_Module {
 		}
 
 		return __DIR__ . '/templates/edit-page.php';
-
-	}
-
-	/**
-	 * Restrict admin page.
-	 */
-	public function restrict_admin_page() {
-
-		if ( 'udb_admin_page' !== get_post_type() ) {
-			return;
-		}
-
-		// Force hide admin bar.
-		add_filter( 'show_admin_bar', '__return_false', 99999 );
-
-		if ( isset( $_GET['udb-inside-iframe'] ) ) {
-			wp_enqueue_script( 'udb-admin-page-iframe', $this->url . '/assets/js/admin-page-iframe.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
-		}
 
 	}
 

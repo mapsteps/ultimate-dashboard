@@ -5,8 +5,17 @@
  * @package Ultimate_Dashboard
  */
 
+use Udb\AdminPage\Admin_Page_Module;
+
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+/**
+ * Setup column content on admin page list screen.
+ *
+ * @param Admin_Page_Module $module The module class instance.
+ * @param string            $column The column name.
+ * @param int               $post_id The post ID.
+ */
 return function ( $module, $column, $post_id ) {
 
 	$menu_type = get_post_meta( $post_id, 'udb_menu_type', true );
@@ -64,7 +73,7 @@ return function ( $module, $column, $post_id ) {
 				$suffix = 'default' === $editor ? __( 'Editor', 'utlimate-dashboard' ) : __( 'Builder', 'utlimate-dashboard' );
 				$suffix = 'elementor' === $editor ? '' : $suffix;
 				$text   = wp_sprintf(
-					// translators: %1$s: is the text prefix, %2$s: is the editor or builder name, %3$s: is the text suffix.
+				// translators: %1$s: is the text prefix, %2$s: is the editor or builder name, %3$s: is the text suffix.
 					__( '%1$s %2$s %3$s', 'ultimate-dashboard' ),
 					$editor,
 					$suffix
@@ -85,7 +94,7 @@ return function ( $module, $column, $post_id ) {
 			$icon_class = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$icon_class = $icon_class ? $icon_class : 'dashicons dashicons-no is-empty';
 
-			echo ( 'submenu' === $menu_type ? __( 'None', 'ultimate-dashboard' ) : '<i class="' . esc_attr( $icon_class ) . '"></i>' );
+			echo( 'submenu' === $menu_type ? __( 'None', 'ultimate-dashboard' ) : '<i class="' . esc_attr( $icon_class ) . '"></i>' );
 			break;
 
 	}
