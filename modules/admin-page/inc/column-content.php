@@ -94,7 +94,7 @@ return function ( $module, $column, $post_id ) {
 			$icon_class = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$icon_class = $icon_class ? $icon_class : 'dashicons dashicons-no is-empty';
 
-			echo( 'submenu' === $menu_type ? __( 'None', 'ultimate-dashboard' ) : '<i class="' . esc_attr( $icon_class ) . '"></i>' );
+			echo ( 'submenu' === $menu_type ? __( 'None', 'ultimate-dashboard' ) : '<i class="' . esc_attr( $icon_class ) . '"></i>' );
 			break;
 
 	}
