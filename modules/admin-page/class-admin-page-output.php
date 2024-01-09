@@ -308,31 +308,21 @@ class Admin_Page_Output extends Base_Output {
 		?>
 
 		<style>
-			#toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> .wp-menu-image::before {
-				content: "<?php echo esc_attr( $icon_unicode ); ?>";
+		#toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> .wp-menu-image::before {
+			content: "<?php echo esc_attr( $icon_unicode ); ?>";
 
-			<?php
-			if ( false !== stripos( $icon_class, 'fab ' ) ) {
-				?>
+			<?php if ( false !== stripos( $icon_class, 'fab ' ) ) : ?>
 				font-family: "Font Awesome 5 Brands";
-				<?php
-			} else {
-				?>
-			font-family: "Font Awesome 5 Free";
-				<?php
-			}
+			<?php else : ?>
+				font-family: "Font Awesome 5 Free";
+			<?php endif; ?>
 
-			if ( false !== stripos( $icon_class, 'fas ' ) ) {
-				?>
-			font-weight: 900;
-				<?php
-			} elseif ( false !== stripos( $icon_class, 'far ' ) ) {
-				?>
-			font-weight: 400;
-				<?php
-			}
-			?>
-			}
+			<?php if ( false !== stripos( $icon_class, 'fas ' ) ) : ?>
+				font-weight: 900;
+			<?php elseif ( false !== stripos( $icon_class, 'far ' ) ) : ?>
+				font-weight: 400;
+			<?php endif; ?>
+		}
 		</style>
 
 		<?php
