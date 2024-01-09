@@ -12,7 +12,6 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Helpers\Content_Helper;
-use UdbPro\Helpers\Block_Helper;
 
 $content_helper = new Content_Helper();
 
