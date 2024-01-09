@@ -39,8 +39,8 @@ if ( defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) && version_compare( ULTI
 		// Retrieve our license key from the DB.
 		$license_key = trim( get_option( 'ultimate_dashboard_license_key' ) );
 
-		// Set up the updater.
-		new EDD_SL_Plugin_Updater(
+		// Setup the updater.
+		$edd_updater = new EDD_SL_Plugin_Updater(
 			ULTIMATE_DASHBOARD_PRO_STORE_URL,
 			ULTIMATE_DASHBOARD_PRO_PLUGIN_DIR . '\ultimate-dashboard-pro.php',
 			array(
