@@ -197,7 +197,7 @@ return function ( $referrer = '' ) {
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								Grab the deal
+								Grab the Deal
 							</a>
 						</div>
 
