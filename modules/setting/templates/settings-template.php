@@ -21,7 +21,7 @@ return function () {
 					<div>
 						<span class="title">
 							<?php _e( 'Ultimate Dashboard', 'ultimate-dashboard' ); ?>
-							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
+							<span class="version"><?php echo ULTIMATE_DASHBOARD_PLUGIN_VERSION; ?></span>
 						</span>
 						<p class="subtitle"><?php _e( 'The #1 plugin to customize your WordPress dashboard.', 'ultimate-dashboard' ); ?></p>
 					</div>

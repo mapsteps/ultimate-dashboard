@@ -65,7 +65,7 @@ return function () {
 					<div>
 						<span class="title">
 							<?php echo esc_html( get_admin_page_title() ); ?>
-							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
+							<span class="version"><?php echo ULTIMATE_DASHBOARD_PLUGIN_VERSION; ?></span>
 						</span>
 						<p class="subtitle"><?php _e( 'Enable/disable Ultimate Dashboard features.', 'ultimate-dashboard' ); ?></p>
 					</div>

@@ -163,7 +163,7 @@ return function ( $referrer = '' ) {
 							</div>
 							<div class="udb-form-row">
 								<button type="button" class="button button-primary button-large udb-button subscribe-button">
-									<?php esc_html_e( 'Subscribe', 'ultimate-dashboard' ); ?>
+									Subscribe
 								</button>
 							</div>
 							<div class="udb-form-row udb-skip-discount">
@@ -197,7 +197,7 @@ return function ( $referrer = '' ) {
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
+								Grab the deal
 							</a>
 						</div>
 
