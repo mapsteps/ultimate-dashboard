@@ -11,8 +11,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
 use Udb\Helpers\Array_Helper;
-use Udb\Helpers\Content_Helper;
-use UdbPro\Helpers\Block_Helper;
 use WP_Post;
 
 /**
