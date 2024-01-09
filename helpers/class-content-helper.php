@@ -7,14 +7,12 @@
 
 namespace Udb\Helpers;
 
-use UdbPro\Helpers\Block_Helper;
 use WP_Customize_Setting;
-use WP_Post;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Class to setup content helper.
+ * Class to set up content helper.
  */
 class Content_Helper {
 
@@ -101,11 +99,11 @@ class Content_Helper {
 	/**
 	 * Sanitize css content (not a real sanitizing).
 	 *
-	 * @param string $text The string being sanitized.
-	 *
-	 * @return string The sanitized string.
 	 * @deprecated 3.7.12 Use sanitize_css() instead.
 	 * @see https://github.com/WordPress/WordPress/blob/56c162fbc9867f923862f64f1b4570d885f1ff03/wp-includes/customize/class-wp-customize-custom-css-setting.php#L157
+	 *
+	 * @param string $text The string being sanitized.
+	 * @return string The sanitized string.
 	 */
 	public function sanitize_css_content( $text ) {
 
