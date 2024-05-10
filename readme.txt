@@ -102,7 +102,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.7.14 | January 09, 2024 =
+= 3.7.14 | May 10, 2024 =
 * Tested up to WordPress 6.5
 = 3.7.13 | January 09, 2024 =
 * Fixed: "Add New" text in the WordPress admin menu for adding new widgets & admin pages
