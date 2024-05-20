@@ -8,6 +8,29 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
+
+	$setting_tab_menus = array(
+		array(
+			'id'     => 'widgets',
+			'text'   => __( 'Dashboard Widgets', 'ultimate-dashboard' ),
+			'active' => true,
+		),
+		array(
+			'id'     => 'page-builder-dashboard',
+			'text'   => __( 'Page Builder Dashboard', 'ultimate-dashboard' ),
+			'is_pro' => true,
+		),
+		array(
+			'id'   => 'general',
+			'text' => __( 'General', 'ultimate-dashboard' ),
+		),
+		array(
+			'id'   => 'custom-css',
+			'text' => __( 'Custom CSS', 'ultimate-dashboard' ),
+		),
+	);
+
+	$setting_tab_menus = apply_filters( 'udb_setting_tab_menus', $setting_tab_menus );
 	?>
 
 	<div class="wrap heatbox-wrap udb-settings-page">
@@ -33,25 +56,19 @@ return function () {
 				</div>
 
 				<nav>
-				<ul class="heatbox-tab-nav">
-					<li class="heatbox-tab-nav-item widgets-panel">
-						<a href="#widgets"><?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?></a>
-					</li>
-
-					<?php if ( udb_is_pro_active() ) : ?>
-						<li class="heatbox-tab-nav-item page-builder-dashboard-panel">
-							<a href="#page-builder-dashboard"><?php _e( 'Page Builder Dashboard', 'ultimate-dashboard' ); ?></a>
-						</li>
-					<?php endif; ?>
-
-					<li class="heatbox-tab-nav-item general-panel">
-						<a href="#general"><?php _e( 'General', 'ultimate-dashboard' ); ?></a>
-					</li>
-					<li class="heatbox-tab-nav-item custom-css-panel">
-						<a href="#custom-css"><?php _e( 'Custom CSS', 'ultimate-dashboard' ); ?></a>
-					</li>
-				</ul>
-			</nav>
+					<ul class="heatbox-tab-nav">
+						<?php foreach ( $setting_tab_menus as $tab_index => $tab ) : ?>
+							<?php
+							if ( ! empty( $tab['is_pro'] ) && ! udb_is_pro_active() ) {
+								continue;
+							}
+							?>
+							<li class="heatbox-tab-nav-item <?php echo esc_attr( $tab['id'] ); ?>-panel">
+								<a href="#<?php echo esc_attr( $tab['id'] ); ?>"><?php echo esc_html( $tab['text'] ); ?></a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</nav>
 
 			</div>
 
@@ -80,6 +97,8 @@ return function () {
 						</div>
 					</div>
 
+					<?php do_action( 'udb_after_widgets_panel' ); ?>
+
 					<?php if ( udb_is_pro_active() ) : ?>
 						<div class="heatbox-admin-panel udb-page-builder-dashboard-panel">
 							<div class="heatbox">
@@ -98,11 +117,15 @@ return function () {
 						</div>
 					</div>
 
+					<?php do_action( 'udb_after_general_panel' ); ?>
+
 					<div class="heatbox-admin-panel udb-custom-css-panel">
 						<div class="heatbox">
 							<?php do_settings_sections( 'udb-custom-css-settings' ); ?>
 						</div>
 					</div>
+
+					<?php do_action( 'udb_after_custom_panel' ); ?>
 				</div>
 
 				<?php submit_button( '', 'button button-primary button-larger' ); ?>
