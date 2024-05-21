@@ -51,17 +51,7 @@ return function () {
 				<?php do_action( 'udb_after_branding_layout_metabox' ); ?>
 
 				<div class="heatbox">
-					<?php
-					do_settings_sections( 'udb-darkmode-settings' );
-
-					if ( udb_is_pro_active() ) {
-						?>
-
-						<div class="heatbox-overlay"></div>
-
-						<?php
-					}
-					?>
+					<?php do_settings_sections( 'udb-darkmode-settings' ); ?>
 				</div>
 
 				<?php do_action( 'udb_after_darkmode_metabox' ); ?>
