@@ -192,4 +192,25 @@ class Screen_Helper {
 		return ( 'udb_widgets_page_udb_plugin_onboarding' === $current_screen->id ? true : false );
 
 	}
+
+	/**
+	 * Check if current screen is block editor page.
+	 *
+	 * @return boolean
+	 */
+	public function is_block_editor_page() {
+
+		$current_screen = get_current_screen();
+
+		if ( property_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor ) {
+			return true;
+		}
+
+		if ( 'block-editor-page' === $current_screen->id ) {
+			return true;
+		}
+
+		return false;
+
+	}
 }

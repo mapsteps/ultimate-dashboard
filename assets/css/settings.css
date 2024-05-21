@@ -89,6 +89,10 @@
 	display: none;
 }
 
+.dark-mode .heatbox .heatbox-overlay {
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
 .heatbox .heatbox-overlay {
 	position: absolute;
 	top: 0;
