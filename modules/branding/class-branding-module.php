@@ -176,6 +176,8 @@ class Branding_Module extends Base_Module {
 		add_settings_field( 'udb-branding-footer-text-field', __( 'Footer Text', 'ultimate-dashboard' ), array( $this, 'footer_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
 		add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), array( $this, 'version_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
 
+		do_action( 'udb_branding_setting_fields' );
+
 	}
 
 	/**

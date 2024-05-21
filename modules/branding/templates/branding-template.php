@@ -48,6 +48,8 @@ return function () {
 					<?php do_settings_sections( 'udb-branding-settings' ); ?>
 				</div>
 
+				<?php do_action( 'udb_after_branding_layout_metabox' ); ?>
+
 				<div class="heatbox">
 					<?php
 					do_settings_sections( 'udb-admin-colors-settings' );
@@ -61,6 +63,8 @@ return function () {
 					}
 					?>
 				</div>
+
+				<?php do_action( 'udb_after_admin_colors_metabox' ); ?>
 
 				<div class="heatbox">
 					<?php
@@ -76,9 +80,13 @@ return function () {
 					?>
 				</div>
 
+				<?php do_action( 'udb_after_admin_logo_metabox' ); ?>
+
 				<div class="heatbox">
 					<?php do_settings_sections( 'udb-branding-misc-settings' ); ?>
 				</div>
+
+				<?php do_action( 'udb_after_branding_misc_metabox' ); ?>
 
 				<?php submit_button( '', 'button button-primary button-larger' ); ?>
 
