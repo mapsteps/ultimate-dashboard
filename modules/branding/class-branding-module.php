@@ -153,6 +153,7 @@ class Branding_Module extends Base_Module {
 
 		// Sections.
 		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-branding-settings' );
+		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode', 'ultimatedashboard' ), '', 'udb-darkmode-settings' );
 		add_settings_section( 'udb-admin-colors-section', __( 'WordPress Admin Colors', 'ultimate-dashboard' ), '', 'udb-admin-colors-settings' );
 		add_settings_section( 'udb-admin-logo-section', __( 'WordPress Admin Logo', 'ultimate-dashboard' ), '', 'udb-admin-logo-settings' );
 		add_settings_section( 'udb-branding-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-branding-misc-settings' );
@@ -160,6 +161,10 @@ class Branding_Module extends Base_Module {
 		// Branding fields.
 		add_settings_field( 'udb-branding-enable-field', __( 'Enable', 'ultimate-dashboard' ), array( $this, 'enable_field' ), 'udb-branding-settings', 'udb-branding-section' );
 		add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), array( $this, 'choose_layout_field' ), 'udb-branding-settings', 'udb-branding-section' );
+
+		// Darkmode fields.
+		add_settings_field( 'wp-admin-darkmode', __( 'WP Admin', 'ultimatedashboard' ), array( $this, 'wp_admin_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
+		add_settings_field( 'block-editor-darkmode', __( 'Block Editor', 'ultimatedashboard' ), array( $this, 'block_editor_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
 
 		// Admin colors fields.
 		add_settings_field( 'udb-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), array( $this, 'accent_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
@@ -207,12 +212,12 @@ class Branding_Module extends Base_Module {
 	}
 
 	/**
-	 * Admin bar logo field.
+	 * WP Admin darkmode field.
 	 */
-	public function admin_bar_logo_field() {
+	public function wp_admin_darkmode_field() {
 
-		$template = __DIR__ . '/templates/fields/admin-bar-logo.php';
-		$template = apply_filters( 'udb_branding_admin_bar_logo_field_path', $template );
+		$template = __DIR__ . '/templates/fields/wp-admin-darkmode.php';
+		$template = apply_filters( 'udb_branding_wp_admin_darkmode_field_path', $template );
 		$field    = require $template;
 
 		$field();
@@ -220,25 +225,12 @@ class Branding_Module extends Base_Module {
 	}
 
 	/**
-	 * Admin bar logo url field.
+	 * Block editor (Gutenberg editor) darkmode field.
 	 */
-	public function admin_bar_logo_url_field() {
+	public function block_editor_darkmode_field() {
 
-		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
-		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
-		$field    = require $template;
-
-		$field();
-
-	}
-
-	/**
-	 * Gutenberg block editor logo field.
-	 */
-	public function block_editor_logo_field() {
-
-		$template = __DIR__ . '/templates/fields/block-editor-logo.php';
-		$template = apply_filters( 'udb_branding_block_editor_logo_field_path', $template );
+		$template = __DIR__ . '/templates/fields/block-editor-darkmode.php';
+		$template = apply_filters( 'udb_branding_block_editor_darkmode_field_path', $template );
 		$field    = require $template;
 
 		$field();
@@ -317,6 +309,45 @@ class Branding_Module extends Base_Module {
 
 		$template = __DIR__ . '/templates/fields/menu-item-active-color.php';
 		$template = apply_filters( 'udb_branding_menu_item_active_color_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
+	 * Admin bar logo field.
+	 */
+	public function admin_bar_logo_field() {
+
+		$template = __DIR__ . '/templates/fields/admin-bar-logo.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
+	 * Admin bar logo url field.
+	 */
+	public function admin_bar_logo_url_field() {
+
+		$template = __DIR__ . '/templates/fields/admin-bar-logo-url.php';
+		$template = apply_filters( 'udb_branding_admin_bar_logo_url_field_path', $template );
+		$field    = require $template;
+
+		$field();
+
+	}
+
+	/**
+	 * Gutenberg block editor logo field.
+	 */
+	public function block_editor_logo_field() {
+
+		$template = __DIR__ . '/templates/fields/block-editor-logo.php';
+		$template = apply_filters( 'udb_branding_block_editor_logo_field_path', $template );
 		$field    = require $template;
 
 		$field();

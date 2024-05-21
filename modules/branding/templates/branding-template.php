@@ -52,6 +52,22 @@ return function () {
 
 				<div class="heatbox">
 					<?php
+					do_settings_sections( 'udb-darkmode-settings' );
+
+					if ( udb_is_pro_active() ) {
+						?>
+
+						<div class="heatbox-overlay"></div>
+
+						<?php
+					}
+					?>
+				</div>
+
+				<?php do_action( 'udb_after_darkmode_metabox' ); ?>
+
+				<div class="heatbox">
+					<?php
 					do_settings_sections( 'udb-admin-colors-settings' );
 
 					if ( udb_is_pro_active() ) {
