@@ -118,7 +118,7 @@ ob_start();
 					</div><!-- .udb-admin-menu--fields -->
 				</div><!-- #udb-admin-menu--settings-tab -->
 				<div id="udb-admin-menu--submenu-tab--{role}" class="udb-admin-menu--tab-content-item udb-admin-menu--edit-area">
-					<ul class="udb-admin-menu--menu-list udb-admin-menu--submenu-list">
+					<ul class="udb-admin-menu--menu-list udb-admin-menu--submenu-list udb-admin-menu-sortable">
 						{submenu_template}
 					</ul>
 
