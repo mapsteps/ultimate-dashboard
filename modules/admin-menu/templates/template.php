@@ -119,7 +119,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
 								<div id="udb-admin-menu--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
-									<ul class="udb-admin-menu--menu-list">
+									<ul class="udb-admin-menu--menu-list udb-admin-menu-sortable">
 										<!-- to be re-written via js -->
 										<li class="loading"></li>
 									</ul>
@@ -160,7 +160,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
 								<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
-									<ul class="udb-admin-menu--menu-list">
+									<ul class="udb-admin-menu--menu-list udb-admin-menu-sortable">
 										<!-- to be re-written via js -->
 										<li class="loading"></li>
 									</ul>
