@@ -153,7 +153,7 @@ class Branding_Module extends Base_Module {
 
 		// Sections.
 		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-branding-settings' );
-		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode', 'ultimatedashboard' ), '', 'udb-darkmode-settings' );
+		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode (Experimental)', 'ultimatedashboard' ), '', 'udb-darkmode-settings' );
 		add_settings_section( 'udb-admin-colors-section', __( 'WordPress Admin Colors', 'ultimate-dashboard' ), '', 'udb-admin-colors-settings' );
 		add_settings_section( 'udb-admin-logo-section', __( 'WordPress Admin Logo', 'ultimate-dashboard' ), '', 'udb-admin-logo-settings' );
 		add_settings_section( 'udb-branding-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-branding-misc-settings' );
