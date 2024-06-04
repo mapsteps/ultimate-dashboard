@@ -217,7 +217,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 						foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
 							?>
-							<code><?php echo esc_attr( $placeholder_tag ); ?></code><?php echo ( $total_tags - 1 === $tag_index ? '' : ',' ); ?>
+							<code><?php echo esc_attr( $placeholder_tag ); ?></code>
 							<?php
 						}
 						?>
