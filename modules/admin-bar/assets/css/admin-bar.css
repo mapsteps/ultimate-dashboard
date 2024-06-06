@@ -328,14 +328,17 @@
 
 .udb-admin-bar--menu-actions .udb-admin-bar--tag {
 	margin-right: 7px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 8px;
+	padding-right: 8px;
 	width: auto;
 	background-color: #f2f2f2;
-	border-radius: 15px;
+	border: 1px solid #ddd;
+	border-radius: 12px;
 	opacity: 1;
 	visibility: visible;
-	font-size: 12px;
+	font-size: 11px;
+	font-weight: 700;
+	height: 24px;
 }
 
 .udb-admin-bar--menu-actions span {
