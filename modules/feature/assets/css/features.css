@@ -7,11 +7,11 @@
 .udb-features-container .heatbox {
 	display: flex;
 	flex-direction: column;
-	flex: 0 49%;
+	flex: 0 32%;
 	margin-right: 2%;
 }
 
-.udb-features-container .heatbox:nth-child(even) {
+.udb-features-container .heatbox:nth-child(3n) {
 	margin-right: 0;
 }
 
