@@ -723,6 +723,7 @@ class Get_Menu {
 					$new_submenu = array();
 
 					$formatted_default_submenu = ! empty( $matched_formatted_default_menu_item['submenu'] ) ? $matched_formatted_default_menu_item['submenu'] : array();
+					$formatted_default_submenu = is_array( $formatted_default_submenu ) ? $formatted_default_submenu : [];
 
 					/**
 					 * Looping $custom_menu_item_value.
@@ -979,6 +980,7 @@ class Get_Menu {
 				}
 
 				$matched_custom_submenu_item = false !== $matched_custom_submenu_index ? $custom_submenu[ $matched_custom_submenu_index ] : false;
+				$matched_custom_submenu_item = is_array( $matched_custom_submenu_item ) ? $matched_custom_submenu_item : false;
 
 				/**
 				 * If $matched_custom_submenu_item is false, let's try to check in other submenus.
@@ -988,19 +990,28 @@ class Get_Menu {
 					$submenu_url_default = $formatted_default_submenu_item['url'];
 
 					foreach ( $custom_menu as $custom_menu_index => $custom_menu_item ) {
-						if ( empty( $custom_menu_item['submenu'] ) ) {
+						if ( ! is_array( $custom_menu_item ) || empty( $custom_menu_item ) ) {
 							continue;
 						}
 
+						if ( ! is_array( $custom_menu_item['submenu'] ) || empty( $custom_menu_item['submenu'] ) ) {
+							continue;
+						}
+
+						/**
+						 * Custom submenu.
+						 *
+						 * @var array $custom_submenu
+						 */
 						$custom_submenu = $custom_menu_item['submenu'];
 
-						$matched_custom_submenu_item_index_under_its_parent = -1;
-
 						foreach ( $custom_submenu as $looped_custom_submenu_index => $looped_custom_submenu_item ) {
+							if ( ! is_array( $looped_custom_submenu_item ) || empty( $looped_custom_submenu_item ) ) {
+								continue;
+							}
+
 							if ( $looped_custom_submenu_item['url_default'] === $submenu_url_default ) {
 								$matched_custom_submenu_item = $looped_custom_submenu_item;
-
-								$matched_custom_submenu_item_index_under_its_parent = $looped_custom_submenu_index;
 
 								break;
 							}
@@ -1012,8 +1023,6 @@ class Get_Menu {
 								// Try to look up using & sign instead of &amp; code.
 								if ( $looped_custom_submenu_item['url_default'] === $submenu_url_default ) {
 									$matched_custom_submenu_item = $looped_custom_submenu_item;
-
-									$matched_custom_submenu_item_index_under_its_parent = $looped_custom_submenu_index;
 
 									/**
 									 * If this block is reached, it means $submenu_url_default is using &amp; code instead of & sign.
