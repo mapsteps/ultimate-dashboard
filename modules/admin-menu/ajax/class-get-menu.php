@@ -234,13 +234,15 @@ class Get_Menu {
 		$merged_default_menu = $this->format_merged_default_menu( $merged_default_menu );
 
 		$saved_menu = get_option( 'udb_admin_menu', array() );
-		$saved_menu = empty( $saved_menu ) ? array() : $saved_menu;
+		$saved_menu = ! empty( $saved_menu ) && is_array( $saved_menu ) ? $saved_menu : array();
 
 		if ( 'user_id' === $this->by ) {
-			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ 'user_id_' . $this->user_id ] ) && ! empty( $saved_menu[ 'user_id_' . $this->user_id ] ) ? $saved_menu[ 'user_id_' . $this->user_id ] : array();
+			$custom_menu = ! empty( $saved_menu ) && ! empty( $saved_menu[ 'user_id_' . $this->user_id ] ) ? $saved_menu[ 'user_id_' . $this->user_id ] : array();
 		} else {
-			$custom_menu = ! empty( $saved_menu ) && isset( $saved_menu[ $role ] ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
+			$custom_menu = ! empty( $saved_menu ) && ! empty( $saved_menu[ $role ] ) ? $saved_menu[ $role ] : array();
 		}
+
+		$custom_menu = is_array( $custom_menu ) ? $custom_menu : [];
 
 		if ( empty( $custom_menu ) ) {
 			$response = $this->parse_response_without_custom_menu( $merged_default_menu );
