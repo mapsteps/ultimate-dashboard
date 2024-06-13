@@ -690,7 +690,7 @@ class Get_Menu {
 		$array_helper = new Array_Helper();
 
 		foreach ( $custom_menu as $custom_menu_index => $custom_menu_item ) {
-			if ( ! is_array( $custom_menu_item ) || empty( $custom_menu_index ) ) {
+			if ( ! is_array( $custom_menu_item ) || empty( $custom_menu_item ) ) {
 				continue;
 			}
 
