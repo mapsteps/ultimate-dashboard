@@ -690,6 +690,10 @@ class Get_Menu {
 		$array_helper = new Array_Helper();
 
 		foreach ( $custom_menu as $custom_menu_index => $custom_menu_item ) {
+			if ( ! is_array( $custom_menu_item ) || empty( $custom_menu_index ) ) {
+				continue;
+			}
+
 			$parsed_menu_item = array();
 
 			$menu_search_key = 'separator' === $custom_menu_item['type'] ? 'url' : 'id';
