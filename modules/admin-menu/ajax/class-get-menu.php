@@ -682,7 +682,7 @@ class Get_Menu {
 	 * @param array $formatted_default_menu The well formatted default menu (with their submenu) array.
 	 * @param array $custom_menu The custom (role/user based) menu from database.
 	 *
-	 * @return $response The parsed response.
+	 * @return array The parsed response.
 	 */
 	public function parse_response_with_custom_menu( $formatted_default_menu, $custom_menu ) {
 
