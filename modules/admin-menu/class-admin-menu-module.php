@@ -19,7 +19,7 @@ class Admin_Menu_Module extends Base_Module {
 	/**
 	 * The class instance.
 	 *
-	 * @var object
+	 * @var Admin_Menu_Module
 	 */
 	public static $instance;
 
@@ -41,6 +41,8 @@ class Admin_Menu_Module extends Base_Module {
 
 	/**
 	 * Get instance of the class.
+	 *
+	 * @return Admin_Menu_Module
 	 */
 	public static function get_instance() {
 
@@ -129,8 +131,8 @@ class Admin_Menu_Module extends Base_Module {
 	 *
 	 * @see wp-content/plugins/ultimate-dashboard/helpers/class-user-helper.php
 	 *
-	 * @param object $ajax_handler The ajax handler class from the free version.
-	 * @param string $role The role target to simulate.
+	 * @param Ajax\Get_Menu $ajax_handler The ajax handler class from the free version.
+	 * @param string        $role The role target to simulate.
 	 */
 	public function get_admin_menu( $ajax_handler, $role ) {
 

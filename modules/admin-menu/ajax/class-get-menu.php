@@ -111,7 +111,8 @@ class Get_Menu {
 		if ( ( is_null( $menu ) || is_null( $submenu ) ) && file_exists( $wp_menu_file ) ) {
 			global $menu_order, $default_menu_order, $_wp_last_object_menu, $_wp_submenu_nopriv;
 
-			$menu_order = $default_menu_order = array();
+			$menu_order         = array();
+			$default_menu_order = array();
 
 			require $wp_menu_file;
 		}
@@ -573,11 +574,11 @@ class Get_Menu {
 	 * Build custom menu item from default menu item.
 	 *
 	 * @param array $default_menu_item The default menu item.
-	 * @param bool  $clone Whether or not to totally clone the item.
+	 * @param bool  $clone_item Whether to totally clone the item.
 	 *
 	 * @return array The custom menu item.
 	 */
-	public function build_custom_menu_item( $default_menu_item, $clone = false ) {
+	public function build_custom_menu_item( $default_menu_item, $clone_item = false ) {
 
 		$custom_menu_item = array();
 
@@ -588,24 +589,20 @@ class Get_Menu {
 			if ( 'submenu' !== $menu_item_key ) {
 				$default_menu_item_key = $menu_item_key . '_default';
 
-				if ( $clone ) {
+				if ( $clone_item ) {
 					if ( 'type' !== $menu_item_key ) {
 						$custom_menu_item[ $default_menu_item_key ] = $menu_item_value;
 						$custom_menu_item[ $menu_item_key ]         = '';
 					} else {
 						$custom_menu_item[ $menu_item_key ] = $menu_item_value;
 					}
+				} elseif ( 'url' === $menu_item_key || 'id' === $menu_item_key ) {
+					$custom_menu_item[ $default_menu_item_key ] = $menu_item_value;
+					$custom_menu_item[ $menu_item_key ]         = '';
+				} elseif ( 'type' === $menu_item_key ) {
+					$custom_menu_item[ $menu_item_key ] = $menu_item_value;
 				} else {
-					if ( 'url' === $menu_item_key || 'id' === $menu_item_key ) {
-						$custom_menu_item[ $default_menu_item_key ] = $menu_item_value;
-						$custom_menu_item[ $menu_item_key ]         = '';
-					} else {
-						if ( 'type' === $menu_item_key ) {
-							$custom_menu_item[ $menu_item_key ] = $menu_item_value;
-						} else {
-							$custom_menu_item[ $menu_item_key ] = '';
-						}
-					}
+					$custom_menu_item[ $menu_item_key ] = '';
 				}
 			} else {
 				$new_submenu = array();
@@ -619,24 +616,20 @@ class Get_Menu {
 					foreach ( $submenu_item as $submenu_item_key => $submenu_item_value ) {
 						$default_submenu_item_key = $submenu_item_key . '_default';
 
-						if ( $clone ) {
+						if ( $clone_item ) {
 							if ( 'type' !== $menu_item_key ) {
 								$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
 								$new_submenu_item[ $submenu_item_key ]         = '';
 							} else {
 								$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
 							}
+						} elseif ( 'url' === $submenu_item_key ) {
+							$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
+							$new_submenu_item[ $submenu_item_key ]         = '';
+						} elseif ( 'type' === $submenu_item_key ) {
+							$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
 						} else {
-							if ( 'url' === $submenu_item_key ) {
-								$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
-								$new_submenu_item[ $submenu_item_key ]         = '';
-							} else {
-								if ( 'type' === $submenu_item_key ) {
-									$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
-								} else {
-									$new_submenu_item[ $submenu_item_key ] = '';
-								}
-							}
+							$new_submenu_item[ $submenu_item_key ] = '';
 						}
 					}
 
@@ -670,12 +663,10 @@ class Get_Menu {
 			if ( 'url' === $submenu_item_key ) {
 				$custom_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
 				$custom_submenu_item[ $submenu_item_key ]         = '';
-			} else {
-				if ( 'type' === $submenu_item_key ) {
+			} elseif ( 'type' === $submenu_item_key ) {
 					$custom_submenu_item[ $submenu_item_key ] = $submenu_item_value;
-				} else {
-					$custom_submenu_item[ $submenu_item_key ] = '';
-				}
+			} else {
+				$custom_submenu_item[ $submenu_item_key ] = '';
 			}
 		}
 
@@ -712,16 +703,14 @@ class Get_Menu {
 						if ( isset( $matched_default_menu[ $menu_item_key ] ) ) {
 							$new_menu_item[ $default_menu_item_key ] = $matched_default_menu[ $menu_item_key ];
 							$new_menu_item[ $menu_item_key ]         = $menu_item_value;
-						} else {
-							if ( 1 === absint( $menu_item['was_added'] ) ) {
-								if ( isset( $menu_item[ $default_menu_item_key ] ) ) {
-									$new_menu_item[ $default_menu_item_key ] = $menu_item[ $default_menu_item_key ];
-								} else {
-									$new_menu_item[ $default_menu_item_key ] = $menu_item_value;
-								}
-
-								$new_menu_item[ $menu_item_key ] = $menu_item_value;
+						} elseif ( 1 === absint( $menu_item['was_added'] ) ) {
+							if ( isset( $menu_item[ $default_menu_item_key ] ) ) {
+								$new_menu_item[ $default_menu_item_key ] = $menu_item[ $default_menu_item_key ];
+							} else {
+								$new_menu_item[ $default_menu_item_key ] = $menu_item_value;
 							}
+
+							$new_menu_item[ $menu_item_key ] = $menu_item_value;
 						}
 					} else {
 						$new_menu_item[ $menu_item_key ] = $menu_item_value;
@@ -751,16 +740,14 @@ class Get_Menu {
 									if ( isset( $matched_default_submenu[ $submenu_item_key ] ) ) {
 										$new_submenu_item[ $default_submenu_item_key ] = $matched_default_submenu[ $submenu_item_key ];
 										$new_submenu_item[ $submenu_item_key ]         = $submenu_item_value;
-									} else {
-										if ( 1 === absint( $submenu_item['was_added'] ) ) {
-											if ( isset( $submenu_item[ $default_submenu_item_key ] ) ) {
-												$new_submenu_item[ $default_submenu_item_key ] = $submenu_item[ $default_submenu_item_key ];
-											} else {
-												$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
-											}
-
-											$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
+									} elseif ( 1 === absint( $submenu_item['was_added'] ) ) {
+										if ( isset( $submenu_item[ $default_submenu_item_key ] ) ) {
+											$new_submenu_item[ $default_submenu_item_key ] = $submenu_item[ $default_submenu_item_key ];
+										} else {
+											$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
 										}
+
+										$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
 									}
 								} else {
 									$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
@@ -817,61 +804,59 @@ class Get_Menu {
 				$custom_menu_item = $this->build_custom_menu_item( $menu_item );
 
 				array_splice( $custom_menu, $menu_index, 0, array( $custom_menu_item ) );
-			} else {
-				if ( isset( $menu_item['submenu'] ) ) {
-					foreach ( $menu_item['submenu'] as $submenu_index => $submenu_item ) {
-						$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_item['url'] );
+			} elseif ( isset( $menu_item['submenu'] ) ) {
+				foreach ( $menu_item['submenu'] as $submenu_index => $submenu_item ) {
+					$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_item['url'] );
 
-						if ( false === $custom_submenu_index ) {
+					if ( false === $custom_submenu_index ) {
+						/**
+						 * If $custom_submenu_index is false, there's possibility that
+						 * the url_default of submenu item we're looking for (inside of the $matched_custom_menu['submenu'])
+						 * is using &amp; code instead of & sign.
+						 *
+						 * Please note, some submenu items may have &amp; code instead of & sign.
+						 * Such as taxonomy submenu items of a custom post type.
+						 *
+						 * However, when rendered into the builder,
+						 * the &amp; code is converted to & sign automatically (browser behavior maybe?).
+						 * That url default is rendered in the url field's placeholder & in the `data-default-url` attribute of the submenu item's `li` tag.
+						 *
+						 * That means, even though those taxonomy submenu items of a custom post type
+						 * are using &amp; code instead of & sign, they will be saved as & sign in the database.
+						 *
+						 * It will cause a doubled menu items in the array when we try to load it via ajax.
+						 * But they will not be doubled in the builder.
+						 *
+						 * This is because the doubled items will be elimited to 1 item in `parse_response_with_custom_menu` execution.
+						 * However, the elimination from doubled items into 1 item in that execution resulting wrong result:
+						 * The hidden taxonomy submenu item of custom a post type is not hidden in the builder.
+						 * That's why we need this extra handling.
+						 */
+						if ( false !== stripos( $submenu_item['url'], '&amp;' ) ) {
+							$submenu_url_default = str_ireplace( '&amp;', '&', $submenu_item['url'] );
+
+							// Try to look up using & sign instead of &amp; code.
+							$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_url_default );
+
 							/**
-							 * If $custom_submenu_index is false, there's possibility that
-							 * the url_default of submenu item we're looking for (inside of the $matched_custom_menu['submenu'])
-							 * is using &amp; code instead of & sign.
+							 * If $custom_submenu_index is not false (is found),
+							 * That means the url_default of $matched_custom_menu['submenu'][ $custom_submenu_index ] is using &amp; code instead of & sign.
 							 *
-							 * Please note, some submenu items may have &amp; code instead of & sign.
-							 * Such as taxonomy submenu items of a custom post type.
-							 *
-							 * However, when rendered into the builder,
-							 * the &amp; code is converted to & sign automatically (browser behavior maybe?).
-							 * That url default is rendered in the url field's placeholder & in the `data-default-url` attribute of the submenu item's `li` tag.
-							 *
-							 * That means, even though those taxonomy submenu items of a custom post type
-							 * are using &amp; code instead of & sign, they will be saved as & sign in the database.
-							 *
-							 * It will cause a doubled menu items in the array when we try to load it via ajax.
-							 * But they will not be doubled in the builder.
-							 *
-							 * This is because the doubled items will be elimited to 1 item in `parse_response_with_custom_menu` execution.
-							 * However, the elimination from doubled items into 1 item in that execution resulting wrong result:
-							 * The hidden taxonomy submenu item of custom a post type is not hidden in the builder.
-							 * That's why we need this extra handling.
+							 * In this case, we should also update our related custom menu to use &amp; code
+							 * as related WP default menu is also using it.
 							 */
-							if ( false !== stripos( $submenu_item['url'], '&amp;' ) ) {
-								$submenu_url_default = str_ireplace( '&amp;', '&', $submenu_item['url'] );
-
-								// Try to look up using & sign instead of &amp; code.
-								$custom_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_custom_menu['submenu'], 'url_default', $submenu_url_default );
-
-								/**
-								 * If $custom_submenu_index is not false (is found),
-								 * That means the url_default of $matched_custom_menu['submenu'][ $custom_submenu_index ] is using &amp; code instead of & sign.
-								 *
-								 * In this case, we should also update our related custom menu to use &amp; code
-								 * as related WP default menu is also using it.
-								 */
-								if ( false !== $custom_submenu_index ) {
-									$custom_menu[ $custom_menu_index ]['submenu'][ $custom_submenu_index ]['url_default'] = $submenu_item['url'];
-								}
+							if ( false !== $custom_submenu_index ) {
+								$custom_menu[ $custom_menu_index ]['submenu'][ $custom_submenu_index ]['url_default'] = $submenu_item['url'];
 							}
 						}
+					}
 
-						$matched_custom_submenu = false !== $custom_submenu_index ? $matched_custom_menu['submenu'][ $custom_submenu_index ] : false;
+					$matched_custom_submenu = false !== $custom_submenu_index ? $matched_custom_menu['submenu'][ $custom_submenu_index ] : false;
 
-						if ( ! $matched_custom_submenu ) {
-							$custom_submenu_item = $this->build_custom_submenu_item( $submenu_item );
+					if ( ! $matched_custom_submenu ) {
+						$custom_submenu_item = $this->build_custom_submenu_item( $submenu_item );
 
-							array_splice( $custom_menu[ $custom_menu_index ]['submenu'], $submenu_index, 0, array( $custom_submenu_item ) );
-						}
+						array_splice( $custom_menu[ $custom_menu_index ]['submenu'], $submenu_index, 0, array( $custom_submenu_item ) );
 					}
 				}
 			}
