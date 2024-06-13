@@ -21,14 +21,14 @@ class Array_Helper {
 	 *
 	 * @see https://stackoverflow.com/questions/8102221/php-multidimensional-array-searching-find-key-by-specific-value
 	 *
-	 * @param array  $array The haystack array.
+	 * @param array  $arr The haystack array.
 	 * @param string $key The key to search in.
 	 * @param mixed  $value The value to search for.
 	 *
 	 * @return array The index if found.
 	 */
-	public function find_assoc_array_index_by_value( $array, $key, $value ) {
-		foreach ( $array as $index => $item ) {
+	public function find_assoc_array_index_by_value( $arr, $key, $value ) {
+		foreach ( $arr as $index => $item ) {
 			if ( isset( $item[ $key ] ) && $item[ $key ] === $value ) {
 				return $index;
 			}
