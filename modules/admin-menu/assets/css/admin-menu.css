@@ -317,6 +317,7 @@
 	width: 60%;
 	font-weight: 700;
 	opacity: 0.8;
+	cursor: pointer;
 }
 
 .udb-admin-menu--submenu-list .udb-admin-menu--menu-name {

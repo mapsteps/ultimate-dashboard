@@ -79,6 +79,12 @@
 
 		$(document).on(
 			"click",
+			".udb-admin-menu--menu-name",
+			expandCollapseMenuItem
+		);
+
+		$(document).on(
+			"click",
 			".udb-admin-menu--menu-actions .hide-menu",
 			showHideMenuItem
 		);
@@ -605,7 +611,9 @@
 	 * @param {Event} e The event object.
 	 */
 	function expandCollapseMenuItem(e) {
-		var parent = this.parentNode.parentNode.parentNode;
+		var parent = this.classList.contains("expand-menu")
+			? this.parentNode.parentNode.parentNode
+			: this.parentNode.parentNode;
 		var target = parent.querySelector(".udb-admin-menu--expanded-panel");
 
 		if (parent.classList.contains("is-expanded")) {
