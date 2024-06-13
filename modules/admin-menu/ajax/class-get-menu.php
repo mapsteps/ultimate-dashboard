@@ -610,6 +610,10 @@ class Get_Menu {
 				$new_submenu = array();
 
 				foreach ( $menu_item_value as $submenu_index => $submenu_item ) {
+					if ( ! is_array( $submenu_item ) || empty( $submenu_item ) ) {
+						continue;
+					}
+
 					$new_submenu_item = array();
 
 					$new_submenu_item['is_hidden'] = 0;
@@ -701,9 +705,9 @@ class Get_Menu {
 			$matched_formatted_default_menu_index = $array_helper->find_assoc_array_index_by_value( $formatted_default_menu, $menu_search_key, $custom_menu_item[ $menu_search_key . '_default' ] );
 
 			$matched_formatted_default_menu_item = false !== $matched_formatted_default_menu_index ? $formatted_default_menu[ $matched_formatted_default_menu_index ] : false;
+			$matched_formatted_default_menu_item = is_array( $matched_formatted_default_menu_item ) ? $matched_formatted_default_menu_item : false;
 
 			foreach ( $custom_menu_item as $custom_menu_item_key => $custom_menu_item_value ) {
-
 				if ( 'submenu' !== $custom_menu_item_key ) {
 					$default_menu_item_key = $custom_menu_item_key . '_default';
 
@@ -742,6 +746,8 @@ class Get_Menu {
 							continue;
 						}
 
+						$custom_submenu_item['url_default'] = (string) $custom_submenu_item['url_default'];
+
 						$new_submenu_item = array();
 
 						/**
@@ -757,6 +763,11 @@ class Get_Menu {
 							if ( false === $default_submenu_index ) {
 								// If $default_submenu_index is false and the url_default is using & sign instead of &amp; code.
 								if ( false !== stripos( $custom_submenu_item['url_default'], '&' ) && false === stripos( $custom_submenu_item['url_default'], '&amp;' ) ) {
+									/**
+									 * Submenu item's url_default.
+									 *
+									 * @var string $submenu_url_default
+									 */
 									$submenu_url_default = str_ireplace( '&', '&amp;', $custom_submenu_item['url_default'] );
 
 									// Try to look up using &amp; instead of &.
@@ -786,9 +797,18 @@ class Get_Menu {
 						 * Because we allow moving submenu items across parent menus.
 						 */
 						if ( false === $matched_default_submenu ) {
+							/**
+							 * Submenu item's url_default.
+							 *
+							 * @var string $submenu_url_default
+							 */
 							$submenu_url_default = $custom_submenu_item['url_default'];
 
 							foreach ( $formatted_default_menu as $formatted_default_menu_loop_index => $looped_formatted_default_menu_item ) {
+								if ( ! is_array( $looped_formatted_default_menu_item ) || empty( $looped_formatted_default_menu_item ) ) {
+									continue;
+								}
+
 								if ( empty( $looped_formatted_default_menu_item['submenu'] ) ) {
 									continue;
 								}
@@ -796,6 +816,14 @@ class Get_Menu {
 								$matched_submenu_item_index_under_its_parent = -1;
 
 								foreach ( $looped_formatted_default_menu_item['submenu'] as $looped_formatted_submenu_item_index => $looped_formatted_submenu_item ) {
+									if ( ! is_int( $looped_formatted_submenu_item_index ) && ! is_float( $looped_formatted_submenu_item_index ) ) {
+										continue;
+									}
+
+									if ( ! is_array( $looped_formatted_submenu_item ) || empty( $looped_formatted_submenu_item ) ) {
+										continue;
+									}
+
 									if ( $looped_formatted_submenu_item['url'] === $submenu_url_default ) {
 										$matched_default_submenu = $looped_formatted_submenu_item;
 
@@ -806,6 +834,11 @@ class Get_Menu {
 
 									// If condition above doesn't match and the $submenu_url_default is using & sign instead of &amp; code.
 									if ( false !== stripos( $submenu_url_default, '&' ) && false === stripos( $submenu_url_default, '&amp;' ) ) {
+										/**
+										 * Submenu item's url_default.
+										 *
+										 * @var string $submenu_url_default
+										 */
 										$submenu_url_default = str_ireplace( '&', '&amp;', $submenu_url_default );
 
 										// Try to look up using &amp; instead of &.
