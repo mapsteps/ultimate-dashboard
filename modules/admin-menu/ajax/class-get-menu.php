@@ -719,49 +719,51 @@ class Get_Menu {
 					$new_submenu = array();
 
 					foreach ( $menu_item_value as $submenu_index => $submenu_item ) {
-						if ( isset( $submenu_item['url_default'] ) ) {
-							$new_submenu_item = array();
+						if ( ! isset( $submenu_item['url_default'] ) ) {
+							continue;
+						}
 
-							// Let's turn the formatting to use "&amp;" instead of "&".
-							// $submenu_item['url_default'] = str_ireplace( '&', '&amp;', $submenu_item['url_default'] );
+						$new_submenu_item = array();
 
-							if ( isset( $matched_default_menu['submenu'] ) ) {
-								$default_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_default_menu['submenu'], 'url', $submenu_item['url_default'] );
+						// Let's turn the formatting to use "&amp;" instead of "&".
+						// $submenu_item['url_default'] = str_ireplace( '&', '&amp;', $submenu_item['url_default'] );
 
-								$matched_default_submenu = false !== $default_submenu_index ? $matched_default_menu['submenu'][ $default_submenu_index ] : false;
-							} else {
-								$matched_default_submenu = false;
-							}
+						if ( isset( $matched_default_menu['submenu'] ) ) {
+							$default_submenu_index = $array_helper->find_assoc_array_index_by_value( $matched_default_menu['submenu'], 'url', $submenu_item['url_default'] );
 
-							foreach ( $submenu_item as $submenu_item_key => $submenu_item_value ) {
-								$default_submenu_item_key = $submenu_item_key . '_default';
+							$matched_default_submenu = false !== $default_submenu_index ? $matched_default_menu['submenu'][ $default_submenu_index ] : false;
+						} else {
+							$matched_default_submenu = false;
+						}
 
-								if ( 'type' !== $submenu_item_key && 'is_hidden' !== $submenu_item_key && 'was_added' !== $submenu_item_key && 'url_default' !== $submenu_item_key ) {
-									if ( isset( $matched_default_submenu[ $submenu_item_key ] ) ) {
-										$new_submenu_item[ $default_submenu_item_key ] = $matched_default_submenu[ $submenu_item_key ];
-										$new_submenu_item[ $submenu_item_key ]         = $submenu_item_value;
-									} elseif ( 1 === absint( $submenu_item['was_added'] ) ) {
-										if ( isset( $submenu_item[ $default_submenu_item_key ] ) ) {
-											$new_submenu_item[ $default_submenu_item_key ] = $submenu_item[ $default_submenu_item_key ];
-										} else {
-											$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
-										}
+						foreach ( $submenu_item as $submenu_item_key => $submenu_item_value ) {
+							$default_submenu_item_key = $submenu_item_key . '_default';
 
-										$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
+							if ( 'type' !== $submenu_item_key && 'is_hidden' !== $submenu_item_key && 'was_added' !== $submenu_item_key && 'url_default' !== $submenu_item_key ) {
+								if ( isset( $matched_default_submenu[ $submenu_item_key ] ) ) {
+									$new_submenu_item[ $default_submenu_item_key ] = $matched_default_submenu[ $submenu_item_key ];
+									$new_submenu_item[ $submenu_item_key ]         = $submenu_item_value;
+								} elseif ( 1 === absint( $submenu_item['was_added'] ) ) {
+									if ( isset( $submenu_item[ $default_submenu_item_key ] ) ) {
+										$new_submenu_item[ $default_submenu_item_key ] = $submenu_item[ $default_submenu_item_key ];
+									} else {
+										$new_submenu_item[ $default_submenu_item_key ] = $submenu_item_value;
 									}
-								} else {
+
 									$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
 								}
-							}
-
-							if ( ! $submenu_item['was_added'] ) {
-								if ( $matched_default_submenu ) {
-									array_push( $new_submenu, $new_submenu_item );
-								}
 							} else {
+								$new_submenu_item[ $submenu_item_key ] = $submenu_item_value;
+							}
+						}
+
+						if ( ! $submenu_item['was_added'] ) {
+							if ( $matched_default_submenu ) {
 								array_push( $new_submenu, $new_submenu_item );
-							} // End of $matched_default_submenu checking.
-						} // End of $submenu_item['url_default'] checking.
+							}
+						} else {
+							array_push( $new_submenu, $new_submenu_item );
+						} // End of $matched_default_submenu checking.
 					} // End of $menu_item_value foreach.
 
 					$new_menu_item['submenu'] = $new_submenu;
