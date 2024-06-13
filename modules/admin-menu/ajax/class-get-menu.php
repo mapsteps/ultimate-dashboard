@@ -556,7 +556,7 @@ class Get_Menu {
 	 * Parse response without custom menu (when custom menu is empty).
 	 *
 	 * @param array $default_menu The well formatted default menu.
-	 * @return $response The parsed response.
+	 * @return array The parsed response.
 	 */
 	public function parse_response_without_custom_menu( $default_menu ) {
 
