@@ -70,7 +70,7 @@
 	color: #888;
 	text-decoration: none;
 	background-color: #f5f5f5;
-	box-shadow:  none;
+	box-shadow: none;
 }
 
 .udb-admin-menu-box--header-tab a:hover {
@@ -172,7 +172,7 @@
 	position: relative;
 	justify-content: center;
 	color: transparent !important;
-	pointer-events: none;	
+	pointer-events: none;
 }
 
 .udb-admin-menu--tab-content .loading::after {
@@ -332,8 +332,13 @@
 }
 
 .udb-admin-menu--menu-actions {
-	width: 15%;
+	padding-right: 25px;
+	width: 25%;
 	color: #888;
+}
+
+.udb-admin-menu--menu-actions span:last-child {
+	margin-left: 5px;
 }
 
 .udb-admin-menu--menu-actions span {
@@ -367,31 +372,11 @@
 	background-color: #f2f2f2;
 }
 
-.udb-admin-menu--expand-menu {
-	width: 10%;
-	color: #888;
-}
-
-.udb-admin-menu--expand-menu span {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 30px;
-	height: 30px;
-	font-size: 13px;
-	background-color: transparent;
-	cursor: pointer;
-}
-
 .udb-admin-menu--menu-item.is-expanded
 	> .udb-admin-menu--control-panel
-	.udb-admin-menu--expand-menu
-	span::before {
+	.udb-admin-menu--menu-actions
+	.expand-menu::before {
 	content: "\f343";
-}
-
-.udb-admin-menu--expand-menu span:hover {
-	background-color: #f2f2f2;
 }
 
 .udb-admin-menu-box .heatbox-footer {
@@ -466,7 +451,9 @@
 }
 
 .udb-admin-menu-box .udb-admin-menu--reset-button:focus {
-	box-shadow: 0 0 0 1px #fff, 0 0 0 3px #f5492a;
+	box-shadow:
+		0 0 0 1px #fff,
+		0 0 0 3px #f5492a;
 }
 
 .udb-admin-menu--expanded-panel {

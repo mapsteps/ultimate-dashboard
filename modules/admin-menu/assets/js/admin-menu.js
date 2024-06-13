@@ -38,10 +38,10 @@
 		elms.roleTabs = document.querySelector(".udb-admin-menu--role-tabs");
 		elms.userTabs = document.querySelector(".udb-admin-menu--user-tabs");
 		elms.userTabsMenu = elms.userTabs.querySelector(
-			".udb-admin-menu--user-menu",
+			".udb-admin-menu--user-menu"
 		);
 		elms.userTabsContent = elms.userTabs.querySelector(
-			".udb-admin-menu--edit-area",
+			".udb-admin-menu--edit-area"
 		);
 
 		state.usersLoaded = false;
@@ -50,7 +50,7 @@
 		getMenu("role", "administrator");
 
 		var savedUserTabsContentItems = elms.userTabsContent.querySelectorAll(
-			".udb-admin-menu--tab-content-item",
+			".udb-admin-menu--tab-content-item"
 		);
 
 		savedUserTabsContentItems.forEach(function (item) {
@@ -67,15 +67,21 @@
 		$(document).on(
 			"click",
 			".udb-admin-menu-box--header-tab a",
-			switchHeaderTab,
+			switchHeaderTab
 		);
 		checkHeaderTabState();
+
 		$(document).on(
 			"click",
-			".udb-admin-menu--expand-menu",
-			expandCollapseMenuItem,
+			".udb-admin-menu--menu-actions .expand-menu",
+			expandCollapseMenuItem
 		);
-		$(document).on("click", ".hide-menu", showHideMenuItem);
+
+		$(document).on(
+			"click",
+			".udb-admin-menu--menu-actions .hide-menu",
+			showHideMenuItem
+		);
 
 		setupUsersSelect2();
 	}
@@ -118,14 +124,14 @@
 
 		if (hash === "users-menu") {
 			$('.udb-admin-menu-box--header-tab[data-header-tab="users"]').addClass(
-				"is-active",
+				"is-active"
 			);
 			elms.searchBox.classList.remove("is-hidden");
 			elms.userTabs.classList.remove("is-hidden");
 			elms.roleTabs.classList.add("is-hidden");
 		} else {
 			$('.udb-admin-menu-box--header-tab[data-header-tab="roles"]').addClass(
-				"is-active",
+				"is-active"
 			);
 			elms.searchBox.classList.add("is-hidden");
 			elms.userTabs.classList.add("is-hidden");
@@ -234,7 +240,7 @@
 
 		document
 			.querySelectorAll(
-				".udb-admin-menu--user-tabs > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item",
+				".udb-admin-menu--user-tabs > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item"
 			)
 			.forEach(function (el) {
 				el.classList.remove("is-active");
@@ -263,12 +269,12 @@
 		var menus = document.querySelectorAll(
 			"#" +
 				tabArea.id +
-				" > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item",
+				" > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item"
 		);
 		var contents = document.querySelectorAll(
 			"#" +
 				tabArea.id +
-				" > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item",
+				" > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item"
 		);
 
 		if (!tabHasIdByDefault) tabArea.removeAttribute("id");
@@ -322,7 +328,7 @@
 
 		menuWrapper.removeChild(this.parentNode);
 		contentWrapper.removeChild(
-			tabArea.querySelector("#" + this.parentNode.dataset.udbTabContent),
+			tabArea.querySelector("#" + this.parentNode.dataset.udbTabContent)
 		);
 
 		if (
@@ -378,7 +384,7 @@
 	function buildMenu(by, value, menuList) {
 		var identifier = by === "role" ? value : "user-" + value;
 		var editArea = document.querySelector(
-			"#udb-admin-menu--" + identifier + "-edit-area",
+			"#udb-admin-menu--" + identifier + "-edit-area"
 		);
 		if (!editArea) return;
 		var listArea = editArea.querySelector(".udb-admin-menu--menu-list");
@@ -393,7 +399,7 @@
 		setupMenuItems(listArea);
 
 		var submenuList = listArea.querySelectorAll(
-			".udb-admin-menu--submenu-list",
+			".udb-admin-menu--submenu-list"
 		);
 
 		if (submenuList.length) {
@@ -424,11 +430,11 @@
 				/{trash_icon}/g,
 				parseInt(menu.was_added, 10)
 					? '<span class="dashicons dashicons-trash udb-admin-menu--remove-menu-item"></span>'
-					: "",
+					: ""
 			);
 			template = template.replace(
 				/{hidden_icon}/g,
-				menu.is_hidden == "1" ? "hidden" : "visibility",
+				menu.is_hidden == "1" ? "hidden" : "visibility"
 			);
 			template = template.replace(/{menu_was_added}/g, menu.was_added);
 			template = template.replace(/{default_menu_id}/g, menu.id_default);
@@ -450,20 +456,20 @@
 			template = template.replace(/{menu_dashicon}/g, menu.dashicon);
 			template = template.replace(
 				/{default_menu_dashicon}/g,
-				menu.dashicon_default,
+				menu.dashicon_default
 			);
 
 			template = template.replace(/{menu_icon_svg}/g, menu.icon_svg);
 			template = template.replace(
 				/{default_menu_icon_svg}/g,
-				menu.icon_svg_default,
+				menu.icon_svg_default
 			);
 
 			template = template.replace(/{menu_is_hidden}/g, menu.is_hidden);
 			template = template.replace(/{trash_icon}/g, "");
 			template = template.replace(
 				/{hidden_icon}/g,
-				menu.is_hidden == "1" ? "hidden" : "visibility",
+				menu.is_hidden == "1" ? "hidden" : "visibility"
 			);
 			template = template.replace(/{menu_was_added}/g, menu.was_added);
 
@@ -547,7 +553,7 @@
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(
 			/{default_submenu_title}/g,
-			submenu.title_default,
+			submenu.title_default
 		);
 
 		var parsedTitle = submenu.title ? submenu.title : submenu.title_default;
@@ -560,7 +566,7 @@
 		template = template.replace(/{trash_icon}/g, "");
 		template = template.replace(
 			/{hidden_icon}/g,
-			submenu.is_hidden == "1" ? "hidden" : "visibility",
+			submenu.is_hidden == "1" ? "hidden" : "visibility"
 		);
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
@@ -599,7 +605,7 @@
 	 * @param {Event} e The event object.
 	 */
 	function expandCollapseMenuItem(e) {
-		var parent = this.parentNode.parentNode;
+		var parent = this.parentNode.parentNode.parentNode;
 		var target = parent.querySelector(".udb-admin-menu--expanded-panel");
 
 		if (parent.classList.contains("is-expanded")) {

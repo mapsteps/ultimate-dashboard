@@ -24,10 +24,7 @@ ob_start();
 		<div class="udb-admin-menu--menu-actions">
 			{trash_icon}
 			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
-		</div>
-		<div class="udb-admin-menu--expand-menu">
-			<span class="dashicons dashicons-arrow-down-alt2">
-			</span>
+			<span class="dashicons dashicons-arrow-down-alt2 expand-menu"></span>
 		</div>
 	</div><!-- .udb-admin-menu--control-panel -->
 
