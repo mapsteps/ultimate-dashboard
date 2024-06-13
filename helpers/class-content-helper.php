@@ -89,6 +89,10 @@ class Content_Helper {
 	 */
 	public function strip_tags_content( $text ) {
 
+		if ( is_null( $text ) ) {
+			return '';
+		}
+
 		$cleanup = preg_replace( '@<(\w+)\b.*?>.*?</\1>@si', '', $text );
 		$cleanup = wp_strip_all_tags( $cleanup );
 
