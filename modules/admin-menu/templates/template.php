@@ -202,10 +202,17 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 		<div class="heatbox-sidebar">
 			<div class="heatbox udb-tags-metabox">
-				<h2><?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?></h2>
+				<h2>
+					<?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
+					<span class="action-status">📋 Copied</span>
+				</h2>
+
 				<div class="heatbox-content">
-					<p><?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?></p>
-					<p class="tags-wrapper">
+					<p>
+						<?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?>
+						<br><strong><?php esc_html_e( '(Click to copy)', 'ultimate-dashboard' ); ?></strong>
+					</p>
+					<div class="tags-wrapper">
 						<?php
 						$placeholder_tags = [
 							'{site_name}',
@@ -221,7 +228,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<?php
 						}
 						?>
-					</p>
+					</div>
 				</div>
 			</div>
 

@@ -23,6 +23,9 @@ return function ( $module ) {
 		// Dashicons picker.
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		// Template tags.
+		wp_enqueue_script( 'udb-admin', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/template-tags.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
 		// Admin menu.
 		wp_enqueue_script( 'udb-admin-bar', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/js/admin-bar.js', array( 'jquery', 'dashicons-picker', 'jquery-ui-sortable' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
@@ -36,13 +39,13 @@ return function ( $module ) {
 		// $roles      = array();
 
 		// foreach ( $role_names as $role_key => $role_name ) {
-		// 	array_push(
-		// 		$roles,
-		// 		array(
-		// 			'id'   => $role_key,
-		// 			'text' => $role_name,
-		// 		)
-		// 	);
+		// array_push(
+		// $roles,
+		// array(
+		// 'id'   => $role_key,
+		// 'text' => $role_name,
+		// )
+		// );
 		// }
 
 		$admin_bar_data = array(
@@ -52,7 +55,7 @@ return function ( $module ) {
 			 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
 			 */
 			// 'nonces'    => array(
-			// 	'getUsers' => wp_create_nonce( 'udb_admin_bar_get_users' ),
+			// 'getUsers' => wp_create_nonce( 'udb_admin_bar_get_users' ),
 			// ),
 			// 'roles'     => $roles,
 			'templates' => array(

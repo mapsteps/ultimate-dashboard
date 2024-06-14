@@ -16,6 +16,9 @@ return function ( $module ) {
 		// Icon picker.
 		wp_enqueue_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		// Template tags.
+		wp_enqueue_script( 'udb-admin', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/template-tags.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
 		// CodeMirror.
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
