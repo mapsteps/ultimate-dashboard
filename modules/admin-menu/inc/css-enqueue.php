@@ -20,8 +20,8 @@ return function ( $module ) {
 		// Heatbox.
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Admin menu.
-		wp_enqueue_style( 'udb-admin-menu', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/css/admin-menu.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// Menu builder.
+		wp_enqueue_style( 'udb-menu-builder', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/css/udb-menu-builder.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}
 

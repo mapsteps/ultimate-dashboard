@@ -29,7 +29,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 }
 ?>
 
-<div class="wrap heatbox-wrap udb-admin-menu-editor-page">
+<div class="wrap heatbox-wrap udb-admin-menu udb-menu-builder-editor-page">
 
 	<div class="heatbox-header heatbox-margin-bottom">
 
@@ -73,28 +73,28 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 			<?php endif; ?>
 
-			<form action="options.php" method="post" class="udb-admin-menu--edit-form">
+			<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 
-				<div class="heatbox udb-admin-menu-box">
+				<div class="heatbox udb-menu-builder-box">
 
-					<div class="udb-admin-menu-box--header">
-						<h2 class="udb-admin-menu-box--title">
+					<div class="udb-menu-builder-box--header">
+						<h2 class="udb-menu-builder-box--title">
 							<?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
 						</h2>
-						<div class="udb-admin-menu-box--search-box is-hidden">
-							<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-admin-menu--search-user" data-loading-msg="<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
+						<div class="udb-menu-builder-box--search-box is-hidden">
+							<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-menu-builder--search-user" data-loading-msg="<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
 								<option value="">
 									<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>
 								</option>
 							</select>
 						</div>
-						<ul class="udb-admin-menu-box--header-tabs">
-							<li class="udb-admin-menu-box--header-tab is-active" data-header-tab="roles">
+						<ul class="udb-menu-builder-box--header-tabs">
+							<li class="udb-menu-builder-box--header-tab is-active" data-header-tab="roles">
 								<a href="#roles-menu">
 									<?php _e( 'Roles', 'ultimate-dashboard' ); ?>
 								</a>
 							</li>
-							<li class="udb-admin-menu-box--header-tab" data-header-tab="users">
+							<li class="udb-menu-builder-box--header-tab" data-header-tab="users">
 								<a href="#users-menu">
 									<?php _e( 'Users', 'ultimate-dashboard' ); ?>
 								</a>
@@ -102,11 +102,11 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						</ul>
 					</div>
 
-					<div class="udb-admin-menu--tabs udb-admin-menu--role-tabs">
-						<ul class="udb-admin-menu--tab-menu udb-admin-menu--role-menu">
+					<div class="udb-menu-builder--tabs udb-menu-builder--role-tabs">
+						<ul class="udb-menu-builder--tab-menu udb-menu-builder--role-menu">
 							<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
-								<li class="udb-admin-menu--tab-menu-item<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-menu--<?php echo esc_html( $role_key ); ?>-edit-area" data-role="<?php echo esc_attr( $role_key ); ?>">
+								<li class="udb-menu-builder--tab-menu-item<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--<?php echo esc_html( $role_key ); ?>-edit-area" data-role="<?php echo esc_attr( $role_key ); ?>">
 									<button type="button">
 										<?php echo esc_html( ucwords( $role_name ) ); ?>
 									</button>
@@ -115,16 +115,16 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<?php endforeach; ?>
 						</ul>
 
-						<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
+						<div class="udb-menu-builder--tab-content udb-menu-builder--edit-area">
 							<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
-								<div id="udb-admin-menu--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
-									<ul class="udb-admin-menu--menu-list udb-admin-menu-sortable">
+								<div id="udb-menu-builder--<?php echo esc_attr( $role_key ); ?>-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--role-workspace<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-role="<?php echo esc_attr( $role_key ); ?>">
+									<ul class="udb-menu-builder--menu-list udb-menu-builder-sortable">
 										<!-- to be re-written via js -->
 										<li class="loading"></li>
 									</ul>
 
-									<div class="udb-admin-menu--inline-buttons">
+									<div class="udb-menu-builder--inline-buttons">
 										<?php
 										do_action( 'udb_admin_menu_add_menu_button' );
 										do_action( 'udb_admin_menu_add_separator_button' );
@@ -133,18 +133,18 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 								</div>
 
 							<?php endforeach; ?>
-						</div><!-- .udb-admin-menu--tab-content -->
-					</div><!-- .udb-admin-menu--role-tabs -->
+						</div><!-- .udb-menu-builder--tab-content -->
+					</div><!-- .udb-menu-builder--role-tabs -->
 
-					<div class="udb-admin-menu--tabs udb-admin-menu--user-tabs is-hidden">
-						<ul class="udb-admin-menu--tab-menu udb-admin-menu--user-menu">
+					<div class="udb-menu-builder--tabs udb-menu-builder--user-tabs is-hidden">
+						<ul class="udb-menu-builder--tab-menu udb-menu-builder--user-menu">
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-								<li class="udb-admin-menu--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+								<li class="udb-menu-builder--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
 									<button type="button">
 										<?php echo esc_html( $user_data['display_name'] ); ?>
 									</button>
-									<i class="dashicons dashicons-no-alt delete-icon udb-admin-menu--remove-tab"></i>
+									<i class="dashicons dashicons-no-alt delete-icon udb-menu-builder--remove-tab"></i>
 								</li>
 
 							<?php endforeach; ?>
@@ -152,20 +152,20 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<!-- to be managed more via JS -->
 						</ul>
 
-						<div class="udb-admin-menu--tab-content udb-admin-menu--edit-area">
-							<div id="udb-admin-menu--user-empty-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( empty( $saved_user_data ) ? ' is-active' : '' ); ?>">
+						<div class="udb-menu-builder--tab-content udb-menu-builder--edit-area">
+							<div id="udb-menu-builder--user-empty-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--user-workspace <?php echo ( empty( $saved_user_data ) ? ' is-active' : '' ); ?>">
 								<?php _e( 'No user selected.', 'ultimate-dashboard' ); ?>
 							</div>
 
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-								<div id="udb-admin-menu--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-admin-menu--tab-content-item udb-admin-menu--workspace udb-admin-menu--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
-									<ul class="udb-admin-menu--menu-list udb-admin-menu-sortable">
+								<div id="udb-menu-builder--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+									<ul class="udb-menu-builder--menu-list udb-menu-builder-sortable">
 										<!-- to be re-written via js -->
 										<li class="loading"></li>
 									</ul>
 
-									<div class="udb-admin-menu--inline-buttons">
+									<div class="udb-menu-builder--inline-buttons">
 										<?php
 										do_action( 'udb_admin_menu_add_menu_button' );
 										do_action( 'udb_admin_menu_add_separator_button' );
@@ -176,8 +176,8 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 							<?php endforeach; ?>
 
 							<!-- to be managed more via JS -->
-						</div><!-- .udb-admin-menu--tab-content -->
-					</div><!-- .udb-admin-menu--user-tabs -->
+						</div><!-- .udb-menu-builder--tab-content -->
+					</div><!-- .udb-menu-builder--user-tabs -->
 
 					<div class="heatbox-footer">
 

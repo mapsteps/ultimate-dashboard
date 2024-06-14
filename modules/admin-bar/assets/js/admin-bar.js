@@ -12,12 +12,14 @@
 
 	if (!String.prototype.includes) {
 		String.prototype.includes = function (search, start) {
-			'use strict';
+			"use strict";
 
 			if (search instanceof RegExp) {
-				throw TypeError('first argument must not be a RegExp');
+				throw TypeError("first argument must not be a RegExp");
 			}
-			if (start === undefined) { start = 0; }
+			if (start === undefined) {
+				start = 0;
+			}
 			return this.indexOf(search, start) !== -1;
 		};
 	}
@@ -32,16 +34,34 @@
 		// loadUsers();
 		buildMenu(udbAdminBarBuilder.builderItems);
 
-		document.querySelector('.udb-admin-bar--edit-form').addEventListener('submit', submitForm);
+		document
+			.querySelector(".udb-menu-builder--edit-form")
+			.addEventListener("submit", submitForm);
 
-		$(document).on('click', '.udb-admin-bar--tab-menu-item', switchTab);
-		$(document).on('click', '.udb-admin-bar--expand-menu', expandCollapseMenuItem);
-		$(document).on('click', '.hide-menu', showHideMenuItem);
+		$(document).on("click", ".udb-menu-builder--tab-menu-item", switchTab);
+
+		$(document).on(
+			"click",
+			".udb-menu-builder--menu-actions .expand-menu",
+			expandCollapseMenuItem
+		);
+
+		$(document).on(
+			"click",
+			".udb-menu-builder--menu-name",
+			expandCollapseMenuItem
+		);
+
+		$(document).on(
+			"click",
+			".udb-menu-builder--menu-actions .hide-menu",
+			showHideMenuItem
+		);
 	}
 
 	/**
 	 * Load users as select2 data.
-	 * 
+	 *
 	 * This function is not used currently.
 	 * But leave it here because in the future, if requested, it would be used for
 	 * "hide menu item for specific user(s)" functionality (inside a dropdown).
@@ -72,7 +92,7 @@
 	 * Switch tabs.
 	 */
 	function switchTab(e) {
-		if (e.target.classList.contains('delete-icon')) return;
+		if (e.target.classList.contains("delete-icon")) return;
 		var tabArea = this.parentNode.parentNode;
 		var tabId = this.dataset.udbTabContent;
 
@@ -81,27 +101,36 @@
 		if (tabArea.id) {
 			tabHasIdByDefault = true;
 		} else {
-			tabArea.id = 'udb-admin-bar--tab' + Math.random().toString(36).substring(7);
+			tabArea.id =
+				"udb-menu-builder--tab" + Math.random().toString(36).substring(7);
 		}
 
-		var menus = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-bar--tab-menu > .udb-admin-bar--tab-menu-item');
-		var contents = document.querySelectorAll('#' + tabArea.id + ' > .udb-admin-bar--tab-content > .udb-admin-bar--tab-content-item');
+		var menus = document.querySelectorAll(
+			"#" +
+				tabArea.id +
+				" > .udb-menu-builder--tab-menu > .udb-menu-builder--tab-menu-item"
+		);
+		var contents = document.querySelectorAll(
+			"#" +
+				tabArea.id +
+				" > .udb-menu-builder--tab-content > .udb-menu-builder--tab-content-item"
+		);
 
-		if (!tabHasIdByDefault) tabArea.removeAttribute('id');
+		if (!tabHasIdByDefault) tabArea.removeAttribute("id");
 
 		menus.forEach(function (menu) {
 			if (menu.dataset.udbTabContent !== tabId) {
-				menu.classList.remove('is-active');
+				menu.classList.remove("is-active");
 			} else {
-				menu.classList.add('is-active');
+				menu.classList.add("is-active");
 			}
 		});
 
 		contents.forEach(function (content) {
 			if (content.id !== tabId) {
-				content.classList.remove('is-active');
+				content.classList.remove("is-active");
 			} else {
-				content.classList.add('is-active');
+				content.classList.add("is-active");
 			}
 		});
 	}
@@ -112,10 +141,10 @@
 	 * @param {array} menuList List of menu object.
 	 */
 	function buildMenu(menuList) {
-		var editArea = document.querySelector('#udb-admin-bar--workspace');
+		var editArea = document.querySelector("#udb-menu-builder--workspace");
 		if (!editArea) return;
-		var listArea = editArea.querySelector('.udb-admin-bar--menu-list');
-		var builtMenu = '';
+		var listArea = editArea.querySelector(".udb-menu-builder--menu-list");
+		var builtMenu = "";
 
 		for (var menu in menuList) {
 			if (menuList.hasOwnProperty(menu)) {
@@ -127,7 +156,9 @@
 
 		setupMenuItems(listArea);
 
-		var submenuList = listArea.querySelectorAll('.udb-admin-bar--submenu-list');
+		var submenuList = listArea.querySelectorAll(
+			".udb-menu-builder--submenu-list"
+		);
 
 		if (submenuList.length) {
 			submenuList.forEach(function (submenu) {
@@ -140,15 +171,15 @@
 
 	/**
 	 * Setup select2 fields.
-	 * 
+	 *
 	 * This function is not used currently.
 	 * But leave it here because in the future, if requested, it would be used for
 	 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-	 * 
+	 *
 	 * @param {HTMLElement} area The setup area.
 	 */
 	// function setupSelect2Fields(area) {
-	// 	var select2Fields = area.querySelectorAll('.udb-admin-bar--select2-field');
+	// 	var select2Fields = area.querySelectorAll('.udb-menu-builder--select2-field');
 
 	// 	select2Fields.forEach(function (selectbox) {
 	// 		if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
@@ -200,46 +231,67 @@
 
 		template = udbAdminBar.templates.menuList;
 		template = template.replace(/{menu_title}/g, menu.title);
-		template = template.replace(/{encoded_default_menu_title}/g, menu.title_default_encoded);
+		template = template.replace(
+			/{encoded_default_menu_title}/g,
+			menu.title_default_encoded
+		);
 
 		if (menu.group) {
-			template = template.replace(/{empty_menu_settings_text}/g, 'No settings available.');
-			template = template.replace(/{menu_title_field_is_hidden}/g, 'is-hidden');
-			template = template.replace(/{menu_href_field_is_hidden}/g, 'is-hidden');
+			template = template.replace(
+				/{empty_menu_settings_text}/g,
+				"No settings available."
+			);
+			template = template.replace(/{menu_title_field_is_hidden}/g, "is-hidden");
+			template = template.replace(/{menu_href_field_is_hidden}/g, "is-hidden");
 		} else {
-			if ('wp-logo' === menu.id_default) {
-				template = template.replace(/{menu_title_field_is_hidden}/g, 'is-hidden');
+			if ("wp-logo" === menu.id_default) {
+				template = template.replace(
+					/{menu_title_field_is_hidden}/g,
+					"is-hidden"
+				);
 			} else {
-				template = template.replace(/{menu_title_field_is_hidden}/g, '');
+				template = template.replace(/{menu_title_field_is_hidden}/g, "");
 			}
 
-			template = template.replace(/{empty_menu_settings_text}/g, '');
+			template = template.replace(/{empty_menu_settings_text}/g, "");
 
-			if ('customize' === menu.id_default || 'edit' === menu.id_default) {
-				template = template.replace(/{menu_href_field_is_hidden}/g, 'is-hidden');
+			if ("customize" === menu.id_default || "edit" === menu.id_default) {
+				template = template.replace(
+					/{menu_href_field_is_hidden}/g,
+					"is-hidden"
+				);
 			} else {
-				template = template.replace(/{menu_href_field_is_hidden}/g, '');
+				template = template.replace(/{menu_href_field_is_hidden}/g, "");
 			}
 		}
 
 		var parsedTitle;
 
-		if ('menu-toggle' === menu.id_default || 'wp-logo' === menu.id_default || 'updates' === menu.id_default || 'edit' === menu.id_default || 'appearance' === menu.id_default || 'comments' === menu.id_default || 'search' === menu.id_default || false === menu.title_default) {
-			template = template.replace(/{menu_title_is_disabled}/g, 'disabled');
+		if (
+			"menu-toggle" === menu.id_default ||
+			"wp-logo" === menu.id_default ||
+			"updates" === menu.id_default ||
+			"edit" === menu.id_default ||
+			"appearance" === menu.id_default ||
+			"comments" === menu.id_default ||
+			"search" === menu.id_default ||
+			false === menu.title_default
+		) {
+			template = template.replace(/{menu_title_is_disabled}/g, "disabled");
 
-			if ('wp-logo' === menu.id_default) {
-				parsedTitle = 'WP Logo';
-			} else if ('comments' === menu.id_default) {
-				parsedTitle = 'Comments';
-			} else if ('search' === menu.id_default) {
-				parsedTitle = 'Search Form';
+			if ("wp-logo" === menu.id_default) {
+				parsedTitle = "WP Logo";
+			} else if ("comments" === menu.id_default) {
+				parsedTitle = "Comments";
+			} else if ("search" === menu.id_default) {
+				parsedTitle = "Search Form";
 			} else {
 				parsedTitle = menu.id ? menu.id : menu.id_default;
 			}
 		} else {
-			template = template.replace(/{menu_title_is_disabled}/g, '');
+			template = template.replace(/{menu_title_is_disabled}/g, "");
 
-			if ('updates' === menu.id_default) {
+			if ("updates" === menu.id_default) {
 				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
 			} else {
 				parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
@@ -251,12 +303,23 @@
 		template = template.replace(/{menu_href}/g, menu.href);
 		template = template.replace(/{default_menu_href}/g, menu.href_default);
 
-		template = template.replace(/{default_menu_group}/g, (menu.group_default ? menu.group_default : "false"));
+		template = template.replace(
+			/{default_menu_group}/g,
+			menu.group_default ? menu.group_default : "false"
+		);
 
-		if (false === menu.href_default || 'my-sites' === menu.id_default || 'site-name' === menu.id_default || 'site-name-frontend' === menu.id_default || 'new-content' === menu.id_default || 'comments' === menu.id_default || 'updates' === menu.id_default) {
-			template = template.replace(/{menu_href_is_disabled}/g, 'disabled');
+		if (
+			false === menu.href_default ||
+			"my-sites" === menu.id_default ||
+			"site-name" === menu.id_default ||
+			"site-name-frontend" === menu.id_default ||
+			"new-content" === menu.id_default ||
+			"comments" === menu.id_default ||
+			"updates" === menu.id_default
+		) {
+			template = template.replace(/{menu_href_is_disabled}/g, "disabled");
 		} else {
-			template = template.replace(/{menu_href_is_disabled}/g, '');
+			template = template.replace(/{menu_href_is_disabled}/g, "");
 		}
 
 		template = template.replace(/{menu_id}/g, menu.id);
@@ -264,13 +327,29 @@
 
 		template = template.replace(/{default_menu_parent}/g, menu.parent_default);
 
-		template = template.replace(/{menu_icon_is_disabled}/g, (menu.was_added ? '' : 'disabled'));
+		template = template.replace(
+			/{menu_icon_is_disabled}/g,
+			menu.was_added ? "" : "disabled"
+		);
 
 		template = template.replace(/{menu_is_hidden}/g, menu.is_hidden.toString());
-		template = template.replace(/{frontend_only_indicator}/g, (menu.frontend_only ? '<span class="udb-admin-bar--tag udb-admin-bar--frontend-only-tag">Frontend</span>' : ''));
-		template = template.replace(/{group_indicator}/g, (menu.group ? '<span class="udb-admin-bar--tag udb-admin-bar--group-tag">Group</span>' : ''));
-		template = template.replace(/{trash_icon}/g, '');
-		template = template.replace(/{hidden_icon}/g, (menu.is_hidden ? 'hidden' : 'visibility'));
+		template = template.replace(
+			/{frontend_only_indicator}/g,
+			menu.frontend_only
+				? '<span class="udb-menu-builder--tag udb-menu-builder--frontend-only-tag">Frontend</span>'
+				: ""
+		);
+		template = template.replace(
+			/{group_indicator}/g,
+			menu.group
+				? '<span class="udb-menu-builder--tag udb-menu-builder--group-tag">Group</span>'
+				: ""
+		);
+		template = template.replace(/{trash_icon}/g, "");
+		template = template.replace(
+			/{hidden_icon}/g,
+			menu.is_hidden ? "hidden" : "visibility"
+		);
 
 		/**
 		 * These codes are not being used currently.
@@ -284,51 +363,78 @@
 		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (menu.was_added) {
-			template = template.replace(/{menu_icon_field_is_hidden}/g, '');
+			template = template.replace(/{menu_icon_field_is_hidden}/g, "");
 			template = template.replace(/{menu_icon}/g, menu.icon);
 
 			if (menu.icon) {
 				icon = '<i class="dashicons ' + menu.icon + '"></i>';
 				template = template.replace(/{render_menu_icon}/g, icon);
 			} else {
-				template = template.replace(/{render_menu_icon}/g, '');
+				template = template.replace(/{render_menu_icon}/g, "");
 			}
 		} else {
-			template = template.replace(/{menu_icon_field_is_hidden}/g, 'is-hidden');
-			template = template.replace(/{menu_icon}/g, '');
+			template = template.replace(/{menu_icon_field_is_hidden}/g, "is-hidden");
+			template = template.replace(/{menu_icon}/g, "");
 
-			if ('wp-logo' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-wordpress"></i>');
-			} else if ('my-sites' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-multisite"></i>');
-			} else if ('site-name' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-home"></i>');
-			} else if ('site-name-frontend' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-dashboard"></i>');
-			} else if ('customize' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-customizer"></i>');
-			} else if ('updates' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-update"></i>');
-			} else if ('comments' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-admin-comments"></i>');
-			} else if ('new-content' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-plus"></i>');
-			} else if ('edit' === menu.id_default) {
-				template = template.replace(/{render_menu_icon}/g, '<i class="dashicons dashicons-edit"></i>');
+			if ("wp-logo" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-wordpress"></i>'
+				);
+			} else if ("my-sites" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-admin-multisite"></i>'
+				);
+			} else if ("site-name" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-admin-home"></i>'
+				);
+			} else if ("site-name-frontend" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-dashboard"></i>'
+				);
+			} else if ("customize" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-admin-customizer"></i>'
+				);
+			} else if ("updates" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-update"></i>'
+				);
+			} else if ("comments" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-admin-comments"></i>'
+				);
+			} else if ("new-content" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-plus"></i>'
+				);
+			} else if ("edit" === menu.id_default) {
+				template = template.replace(
+					/{render_menu_icon}/g,
+					'<i class="dashicons dashicons-edit"></i>'
+				);
 			} else {
-				template = template.replace(/{render_menu_icon}/g, '');
+				template = template.replace(/{render_menu_icon}/g, "");
 			}
 		}
 
 		if (menu.submenu && Object.keys(menu.submenu).length) {
 			submenuTemplate = buildSubmenu({
 				menu: menu,
-				depth: 1
+				depth: 1,
 			});
 
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
-			template = template.replace(/{submenu_template}/g, '');
+			template = template.replace(/{submenu_template}/g, "");
 		}
 
 		return template;
@@ -341,14 +447,14 @@
 	 *
 	 * @param {array} param.menu The menu item which contains the submenu list.
 	 * @param {int} param.depth The submenu depth level.
-	 * 
+	 *
 	 * @return {string} template The submenu template.
 	 */
 	function buildSubmenu(param) {
 		var menu = param.menu;
 		var depth = param.depth;
 
-		var template = '';
+		var template = "";
 
 		for (var submenuId in menu.submenu) {
 			if (menu.submenu.hasOwnProperty(submenuId)) {
@@ -356,7 +462,7 @@
 					menu: menu,
 					// Current submenu item.
 					submenu: menu.submenu[submenuId],
-					depth: depth
+					depth: depth,
 				});
 			}
 		}
@@ -385,70 +491,136 @@
 		template = template.replace(/{submenu_id}/g, submenu.id);
 		template = template.replace(/{default_submenu_id}/g, submenu.id_default);
 
-		template = template.replace(/{default_submenu_parent}/g, submenu.parent_default);
+		template = template.replace(
+			/{default_submenu_parent}/g,
+			submenu.parent_default
+		);
 
 		template = template.replace(/{submenu_level}/g, depth.toString());
-		template = template.replace(/{submenu_next_level}/g, (depth + 1).toString());
+		template = template.replace(
+			/{submenu_next_level}/g,
+			(depth + 1).toString()
+		);
 		template = template.replace(/{submenu_title}/g, submenu.title);
-		template = template.replace(/{encoded_default_submenu_title}/g, submenu.title_default_encoded);
+		template = template.replace(
+			/{encoded_default_submenu_title}/g,
+			submenu.title_default_encoded
+		);
 
-		if (submenu.group || submenu.id_default === 'search') {
-			template = template.replace(/{empty_submenu_settings_text}/g, 'No settings available.');
-			template = template.replace(/{submenu_title_field_is_hidden}/g, 'is-hidden');
-			template = template.replace(/{submenu_href_field_is_hidden}/g, 'is-hidden');
+		if (submenu.group || submenu.id_default === "search") {
+			template = template.replace(
+				/{empty_submenu_settings_text}/g,
+				"No settings available."
+			);
+			template = template.replace(
+				/{submenu_title_field_is_hidden}/g,
+				"is-hidden"
+			);
+			template = template.replace(
+				/{submenu_href_field_is_hidden}/g,
+				"is-hidden"
+			);
 		} else {
-			template = template.replace(/{empty_submenu_settings_text}/g, '');
-			template = template.replace(/{submenu_title_field_is_hidden}/g, '');
-			template = template.replace(/{submenu_href_field_is_hidden}/g, '');
+			template = template.replace(/{empty_submenu_settings_text}/g, "");
+			template = template.replace(/{submenu_title_field_is_hidden}/g, "");
+			template = template.replace(/{submenu_href_field_is_hidden}/g, "");
 		}
 
 		var parsedTitle;
 
-		if ('wp-logo' === submenu.id_default || 'appearance' === submenu.id_default || 'comments' === submenu.id_default || 'search' === submenu.id_default || 'user-info' === submenu.id_default || false === submenu.title_default) {
-			template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
+		if (
+			"wp-logo" === submenu.id_default ||
+			"appearance" === submenu.id_default ||
+			"comments" === submenu.id_default ||
+			"search" === submenu.id_default ||
+			"user-info" === submenu.id_default ||
+			false === submenu.title_default
+		) {
+			template = template.replace(/{submenu_title_is_disabled}/g, "disabled");
 			parsedTitle = submenu.id ? submenu.id : submenu.id_default;
 		} else {
-			if ('my-account' === submenu.id_default) {
-				template = template.replace(/{submenu_title_is_disabled}/g, 'disabled');
+			if ("my-account" === submenu.id_default) {
+				template = template.replace(/{submenu_title_is_disabled}/g, "disabled");
 			} else {
-				template = template.replace(/{submenu_title_is_disabled}/g, '');
+				template = template.replace(/{submenu_title_is_disabled}/g, "");
 			}
 
-			if ('updates' === menu.id_default) {
+			if ("updates" === menu.id_default) {
 				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
-				parsedTitle = submenu.meta.title ? submenu.meta.title : submenu.id_default;
+				parsedTitle = submenu.meta.title
+					? submenu.meta.title
+					: submenu.id_default;
 			} else {
-				parsedTitle = submenu.title ? submenu.title_clean : submenu.title_default_clean;
+				parsedTitle = submenu.title
+					? submenu.title_clean
+					: submenu.title_default_clean;
 			}
 		}
 
 		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
 
-		if ('logout' === submenu.id_default) {
-			template = template.replace(/{submenu_href_is_disabled}/g, 'disabled');
+		if ("logout" === submenu.id_default) {
+			template = template.replace(/{submenu_href_is_disabled}/g, "disabled");
 		} else {
 			if (!submenu.was_added) {
-				if ('my-sites-super-admin' === submenu.parent_default || 'my-sites-list' === submenu.parent_default || 'network-admin' === submenu.parent_default || 'blog-1' === submenu.parent_default || 'site-name' === submenu.parent_default || 'site-name-frontend' === submenu.parent_default || 'appearance' === submenu.parent_default || 'new-content' === submenu.parent_default) {
-					template = template.replace(/{submenu_href_is_disabled}/g, 'disabled');
+				if (
+					"my-sites-super-admin" === submenu.parent_default ||
+					"my-sites-list" === submenu.parent_default ||
+					"network-admin" === submenu.parent_default ||
+					"blog-1" === submenu.parent_default ||
+					"site-name" === submenu.parent_default ||
+					"site-name-frontend" === submenu.parent_default ||
+					"appearance" === submenu.parent_default ||
+					"new-content" === submenu.parent_default
+				) {
+					template = template.replace(
+						/{submenu_href_is_disabled}/g,
+						"disabled"
+					);
 				} else {
-					template = template.replace(/{submenu_href_is_disabled}/g, '');
+					template = template.replace(/{submenu_href_is_disabled}/g, "");
 				}
 			} else {
-				template = template.replace(/{submenu_href_is_disabled}/g, '');
+				template = template.replace(/{submenu_href_is_disabled}/g, "");
 			}
 		}
 
 		template = template.replace(/{submenu_href}/g, submenu.href);
-		template = template.replace(/{default_submenu_href}/g, submenu.href_default);
+		template = template.replace(
+			/{default_submenu_href}/g,
+			submenu.href_default
+		);
 
-		template = template.replace(/{default_submenu_group}/g, (submenu.group_default ? submenu.group_default : "false"));
+		template = template.replace(
+			/{default_submenu_group}/g,
+			submenu.group_default ? submenu.group_default : "false"
+		);
 
-		template = template.replace(/{submenu_tab_is_hidden}/g, (3 === depth ? 'is-hidden' : ''));
-		template = template.replace(/{submenu_is_hidden}/g, submenu.is_hidden.toString());
-		template = template.replace(/{frontend_only_indicator}/g, (submenu.frontend_only ? '<span class="udb-admin-bar--tag udb-admin-bar--frontend-only-tag">Frontend</span>' : ''));
-		template = template.replace(/{group_indicator}/g, (submenu.group ? '<span class="udb-admin-bar--tag udb-admin-bar--group-tag">Group</span>' : ''));
-		template = template.replace(/{trash_icon}/g, '');
-		template = template.replace(/{hidden_icon}/g, (submenu.is_hidden ? 'hidden' : 'visibility'));
+		template = template.replace(
+			/{submenu_tab_is_hidden}/g,
+			3 === depth ? "is-hidden" : ""
+		);
+		template = template.replace(
+			/{submenu_is_hidden}/g,
+			submenu.is_hidden.toString()
+		);
+		template = template.replace(
+			/{frontend_only_indicator}/g,
+			submenu.frontend_only
+				? '<span class="udb-menu-builder--tag udb-menu-builder--frontend-only-tag">Frontend</span>'
+				: ""
+		);
+		template = template.replace(
+			/{group_indicator}/g,
+			submenu.group
+				? '<span class="udb-menu-builder--tag udb-menu-builder--group-tag">Group</span>'
+				: ""
+		);
+		template = template.replace(/{trash_icon}/g, "");
+		template = template.replace(
+			/{hidden_icon}/g,
+			submenu.is_hidden ? "hidden" : "visibility"
+		);
 		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
 
 		/**
@@ -465,11 +637,11 @@
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			submenuTemplate = buildSubmenu({
 				menu: submenu,
-				depth: depth + 1
+				depth: depth + 1,
 			});
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
-			template = template.replace(/{submenu_template}/g, '');
+			template = template.replace(/{submenu_template}/g, "");
 		}
 
 		return template;
@@ -483,7 +655,7 @@
 
 		if (!isSubmenu) {
 			setupItemChanges(listArea);
-			$(listArea).find('.dashicons-picker').dashiconsPicker();
+			$(listArea).find(".dashicons-picker").dashiconsPicker();
 		}
 	}
 
@@ -497,7 +669,7 @@
 			},
 			update: function (e, ui) {
 				//
-			}
+			},
 		});
 	}
 
@@ -506,17 +678,24 @@
 	 * @param {Event} e The event object.
 	 */
 	function expandCollapseMenuItem(e) {
-		var parent = this.parentNode.parentNode;
-		var target = parent.querySelector('.udb-admin-bar--expanded-panel');
+		var parent = this.classList.contains("expand-menu")
+			? this.parentNode.parentNode.parentNode
+			: this.parentNode.parentNode;
 
-		if (parent.classList.contains('is-expanded')) {
-			$(target).stop().slideUp(350, function () {
-				parent.classList.remove('is-expanded');
-			});
+		var target = parent.querySelector(".udb-menu-builder--expanded-panel");
+
+		if (parent.classList.contains("is-expanded")) {
+			$(target)
+				.stop()
+				.slideUp(350, function () {
+					parent.classList.remove("is-expanded");
+				});
 		} else {
-			$(target).stop().slideDown(350, function () {
-				parent.classList.add('is-expanded');
-			});
+			$(target)
+				.stop()
+				.slideDown(350, function () {
+					parent.classList.add("is-expanded");
+				});
 		}
 	}
 
@@ -527,16 +706,16 @@
 	 */
 	function showHideMenuItem(e) {
 		var parent = this.parentNode.parentNode.parentNode;
-		var isHidden = parent.dataset.hidden === '1' ? true : false;
+		var isHidden = parent.dataset.hidden === "1" ? true : false;
 
 		if (isHidden) {
-			this.classList.add('dashicons-visibility');
-			this.classList.remove('dashicons-hidden');
+			this.classList.add("dashicons-visibility");
+			this.classList.remove("dashicons-hidden");
 			parent.dataset.hidden = 0;
 		} else {
 			parent.dataset.hidden = 1;
-			this.classList.remove('dashicons-visibility');
-			this.classList.add('dashicons-hidden');
+			this.classList.remove("dashicons-visibility");
+			this.classList.add("dashicons-hidden");
 		}
 	}
 
@@ -545,7 +724,7 @@
 	 * @param {HTMLElement} listArea The list area element.
 	 */
 	function setupItemChanges(listArea) {
-		var menuItems = listArea.querySelectorAll('.udb-admin-bar--menu-item');
+		var menuItems = listArea.querySelectorAll(".udb-menu-builder--menu-item");
 		if (!menuItems.length) return;
 
 		menuItems.forEach(function (menuItem) {
@@ -558,17 +737,19 @@
 	 * @param {HTMLElement} menuItem The menu item element.
 	 */
 	function setupItemChange(menuItem) {
-		var iconFields = menuItem.querySelectorAll('.udb-admin-bar--icon-field');
+		var iconFields = menuItem.querySelectorAll(".udb-menu-builder--icon-field");
 		iconFields = iconFields.length ? iconFields : [];
 
 		iconFields.forEach(function (field) {
-			field.addEventListener('change', function () {
-				var iconWrapper = menuItem.querySelector('.udb-admin-bar--menu-icon');
+			field.addEventListener("change", function () {
+				var iconWrapper = menuItem.querySelector(
+					".udb-menu-builder--menu-icon"
+				);
 				var iconOutput;
 
-				if (this.dataset.name === 'dashicon') {
+				if (this.dataset.name === "dashicon") {
 					iconOutput = '<i class="dashicons ' + this.value + '"></i>';
-				} else if (this.dataset.name === 'icon_svg') {
+				} else if (this.dataset.name === "icon_svg") {
 					iconOutput = '<img alt="" src="' + this.value + '">';
 				}
 
@@ -580,8 +761,9 @@
 		titleFields = titleFields.length ? titleFields : [];
 
 		titleFields.forEach(function (field) {
-			field.addEventListener('change', function () {
-				menuItem.querySelector('.udb-admin-bar--menu-name').innerHTML = this.value;
+			field.addEventListener("change", function () {
+				menuItem.querySelector(".udb-menu-builder--menu-name").innerHTML =
+					this.value;
 			});
 		});
 	}

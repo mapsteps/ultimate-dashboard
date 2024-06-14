@@ -34,14 +34,16 @@
 	 * Call the main functions here.
 	 */
 	function init() {
-		elms.searchBox = document.querySelector(".udb-admin-menu-box--search-box");
-		elms.roleTabs = document.querySelector(".udb-admin-menu--role-tabs");
-		elms.userTabs = document.querySelector(".udb-admin-menu--user-tabs");
+		elms.searchBox = document.querySelector(
+			".udb-menu-builder-box--search-box"
+		);
+		elms.roleTabs = document.querySelector(".udb-menu-builder--role-tabs");
+		elms.userTabs = document.querySelector(".udb-menu-builder--user-tabs");
 		elms.userTabsMenu = elms.userTabs.querySelector(
-			".udb-admin-menu--user-menu"
+			".udb-menu-builder--user-menu"
 		);
 		elms.userTabsContent = elms.userTabs.querySelector(
-			".udb-admin-menu--edit-area"
+			".udb-menu-builder--edit-area"
 		);
 
 		state.usersLoaded = false;
@@ -50,7 +52,7 @@
 		getMenu("role", "administrator");
 
 		var savedUserTabsContentItems = elms.userTabsContent.querySelectorAll(
-			".udb-admin-menu--tab-content-item"
+			".udb-menu-builder--tab-content-item"
 		);
 
 		savedUserTabsContentItems.forEach(function (item) {
@@ -59,33 +61,33 @@
 		});
 
 		document
-			.querySelector(".udb-admin-menu--edit-form")
+			.querySelector(".udb-menu-builder--edit-form")
 			.addEventListener("submit", submitForm);
 
-		$(document).on("click", ".udb-admin-menu--tab-menu-item", switchTab);
-		$(document).on("click", ".udb-admin-menu--remove-tab", removeTab);
+		$(document).on("click", ".udb-menu-builder--tab-menu-item", switchTab);
+		$(document).on("click", ".udb-menu-builder--remove-tab", removeTab);
 		$(document).on(
 			"click",
-			".udb-admin-menu-box--header-tab a",
+			".udb-menu-builder-box--header-tab a",
 			switchHeaderTab
 		);
 		checkHeaderTabState();
 
 		$(document).on(
 			"click",
-			".udb-admin-menu--menu-actions .expand-menu",
+			".udb-menu-builder--menu-actions .expand-menu",
 			expandCollapseMenuItem
 		);
 
 		$(document).on(
 			"click",
-			".udb-admin-menu--menu-name",
+			".udb-menu-builder--menu-name",
 			expandCollapseMenuItem
 		);
 
 		$(document).on(
 			"click",
-			".udb-admin-menu--menu-actions .hide-menu",
+			".udb-menu-builder--menu-actions .hide-menu",
 			showHideMenuItem
 		);
 
@@ -98,7 +100,7 @@
 	}
 
 	function switchHeaderTab(e) {
-		var tabs = document.querySelectorAll(".udb-admin-menu-box--header-tab");
+		var tabs = document.querySelectorAll(".udb-menu-builder-box--header-tab");
 		if (!tabs.length) return;
 
 		var tabMenuItem = e.target.parentNode;
@@ -126,17 +128,17 @@
 		var hash = window.location.hash.substr(1);
 		if (!hash) return;
 
-		$(".udb-admin-menu-box--header-tab").removeClass("is-active");
+		$(".udb-menu-builder-box--header-tab").removeClass("is-active");
 
 		if (hash === "users-menu") {
-			$('.udb-admin-menu-box--header-tab[data-header-tab="users"]').addClass(
+			$('.udb-menu-builder-box--header-tab[data-header-tab="users"]').addClass(
 				"is-active"
 			);
 			elms.searchBox.classList.remove("is-hidden");
 			elms.userTabs.classList.remove("is-hidden");
 			elms.roleTabs.classList.add("is-hidden");
 		} else {
-			$('.udb-admin-menu-box--header-tab[data-header-tab="roles"]').addClass(
+			$('.udb-menu-builder-box--header-tab[data-header-tab="roles"]').addClass(
 				"is-active"
 			);
 			elms.searchBox.classList.add("is-hidden");
@@ -161,7 +163,7 @@
 			.done(function (r) {
 				if (!r.success) return;
 
-				var field = document.querySelector(".udb-admin-menu--search-user");
+				var field = document.querySelector(".udb-menu-builder--search-user");
 				if (!field) return;
 
 				field.options[0].innerHTML = field.dataset.placeholder;
@@ -227,7 +229,7 @@
 		template = template.replace(/{display_name}/g, data.text);
 
 		elms.userTabsMenu
-			.querySelectorAll(".udb-admin-menu--tab-menu-item")
+			.querySelectorAll(".udb-menu-builder--tab-menu-item")
 			.forEach(function (el) {
 				el.classList.remove("is-active");
 			});
@@ -246,7 +248,7 @@
 
 		document
 			.querySelectorAll(
-				".udb-admin-menu--user-tabs > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item"
+				".udb-menu-builder--user-tabs > .udb-menu-builder--tab-content > .udb-menu-builder--tab-content-item"
 			)
 			.forEach(function (el) {
 				el.classList.remove("is-active");
@@ -269,18 +271,18 @@
 			tabHasIdByDefault = true;
 		} else {
 			tabArea.id =
-				"udb-admin-menu--tab" + Math.random().toString(36).substring(7);
+				"udb-menu-builder--tab" + Math.random().toString(36).substring(7);
 		}
 
 		var menus = document.querySelectorAll(
 			"#" +
 				tabArea.id +
-				" > .udb-admin-menu--tab-menu > .udb-admin-menu--tab-menu-item"
+				" > .udb-menu-builder--tab-menu > .udb-menu-builder--tab-menu-item"
 		);
 		var contents = document.querySelectorAll(
 			"#" +
 				tabArea.id +
-				" > .udb-admin-menu--tab-content > .udb-admin-menu--tab-content-item"
+				" > .udb-menu-builder--tab-content > .udb-menu-builder--tab-content-item"
 		);
 
 		if (!tabHasIdByDefault) tabArea.removeAttribute("id");
@@ -301,7 +303,7 @@
 			}
 		});
 
-		if (this.parentNode.classList.contains("udb-admin-menu--role-menu")) {
+		if (this.parentNode.classList.contains("udb-menu-builder--role-menu")) {
 			if (loadedRoleMenu.indexOf(this.dataset.role) === -1) {
 				getMenu("role", this.dataset.role);
 			}
@@ -315,8 +317,10 @@
 	function removeTab(e) {
 		var tabArea = this.parentNode.parentNode.parentNode;
 		var menuItem = this.parentNode;
-		var menuWrapper = tabArea.querySelector(".udb-admin-menu--tab-menu");
-		var contentWrapper = tabArea.querySelector(".udb-admin-menu--tab-content");
+		var menuWrapper = tabArea.querySelector(".udb-menu-builder--tab-menu");
+		var contentWrapper = tabArea.querySelector(
+			".udb-menu-builder--tab-content"
+		);
 
 		usersData.forEach(function (data, index) {
 			if (data.id == menuItem.dataset.userId) {
@@ -338,11 +342,11 @@
 		);
 
 		if (
-			contentWrapper.querySelectorAll(".udb-admin-menu--tab-content-item")
+			contentWrapper.querySelectorAll(".udb-menu-builder--tab-content-item")
 				.length === 1
 		) {
 			document
-				.querySelector("#udb-admin-menu--user-empty-edit-area")
+				.querySelector("#udb-menu-builder--user-empty-edit-area")
 				.classList.add("is-active");
 		}
 	}
@@ -390,10 +394,10 @@
 	function buildMenu(by, value, menuList) {
 		var identifier = by === "role" ? value : "user-" + value;
 		var editArea = document.querySelector(
-			"#udb-admin-menu--" + identifier + "-edit-area"
+			"#udb-menu-builder--" + identifier + "-edit-area"
 		);
 		if (!editArea) return;
-		var listArea = editArea.querySelector(".udb-admin-menu--menu-list");
+		var listArea = editArea.querySelector(".udb-menu-builder--menu-list");
 		var builtMenu = "";
 
 		menuList.forEach(function (menu) {
@@ -405,7 +409,7 @@
 		setupMenuItems(listArea);
 
 		var submenuList = listArea.querySelectorAll(
-			".udb-admin-menu--submenu-list"
+			".udb-menu-builder--submenu-list"
 		);
 
 		if (submenuList.length) {
@@ -435,7 +439,7 @@
 			template = template.replace(
 				/{trash_icon}/g,
 				parseInt(menu.was_added, 10)
-					? '<span class="dashicons dashicons-trash udb-admin-menu--remove-menu-item"></span>'
+					? '<span class="dashicons dashicons-trash udb-menu-builder--remove-menu-item"></span>'
 					: ""
 			);
 			template = template.replace(
@@ -596,7 +600,7 @@
 	 */
 	function setupSortable(listArea, isSubmenu) {
 		$(listArea).sortable({
-			connectWith: isSubmenu ? ".udb-admin-menu--submenu-list" : false,
+			connectWith: isSubmenu ? ".udb-menu-builder--submenu-list" : false,
 			receive: function (e, ui) {
 				//
 			},
@@ -614,7 +618,7 @@
 		var parent = this.classList.contains("expand-menu")
 			? this.parentNode.parentNode.parentNode
 			: this.parentNode.parentNode;
-		var target = parent.querySelector(".udb-admin-menu--expanded-panel");
+		var target = parent.querySelector(".udb-menu-builder--expanded-panel");
 
 		if (parent.classList.contains("is-expanded")) {
 			$(target)
@@ -656,7 +660,7 @@
 	 * @param {HTMLElement} listArea The list area element.
 	 */
 	function setupItemChanges(listArea) {
-		var menuItems = listArea.querySelectorAll(".udb-admin-menu--menu-item");
+		var menuItems = listArea.querySelectorAll(".udb-menu-builder--menu-item");
 		if (!menuItems.length) return;
 
 		menuItems.forEach(function (menuItem) {
@@ -669,12 +673,14 @@
 	 * @param {HTMLElement} menuItem The menu item element.
 	 */
 	function setupItemChange(menuItem) {
-		var iconFields = menuItem.querySelectorAll(".udb-admin-menu--icon-field");
+		var iconFields = menuItem.querySelectorAll(".udb-menu-builder--icon-field");
 		iconFields = iconFields.length ? iconFields : [];
 
 		iconFields.forEach(function (field) {
 			field.addEventListener("change", function () {
-				var iconWrapper = menuItem.querySelector(".udb-admin-menu--menu-icon");
+				var iconWrapper = menuItem.querySelector(
+					".udb-menu-builder--menu-icon"
+				);
 				var iconOutput;
 
 				if (this.dataset.name === "dashicon") {
@@ -692,7 +698,7 @@
 
 		titleFields.forEach(function (field) {
 			field.addEventListener("change", function () {
-				menuItem.querySelector(".udb-admin-menu--menu-name").innerHTML =
+				menuItem.querySelector(".udb-menu-builder--menu-name").innerHTML =
 					this.value;
 			});
 		});

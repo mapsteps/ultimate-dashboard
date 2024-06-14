@@ -28,7 +28,7 @@ wp_localize_script(
 );
 ?>
 
-<div class="wrap heatbox-wrap udb-admin-bar-editor-page">
+<div class="wrap heatbox-wrap udb-admin-bar udb-menu-builder-editor-page">
 
 	<div class="heatbox-header heatbox-margin-bottom">
 
@@ -73,21 +73,21 @@ wp_localize_script(
 
 			<?php do_action( 'udb_admin_bar_before_form' ); ?>
 
-			<form action="options.php" method="post" class="udb-admin-bar--edit-form">
+			<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 
-				<div class="heatbox udb-admin-bar-box">
+				<div class="heatbox udb-menu-builder-box">
 
-					<div class="udb-admin-bar-box--header">
-						<h2 class="udb-admin-bar-box--title">
+					<div class="udb-menu-builder-box--header">
+						<h2 class="udb-menu-builder-box--title">
 							<?php _e( 'Admin Bar Editor', 'ultimate-dashboard' ); ?>
 						</h2>
 
 						<?php do_action( 'udb_admin_bar_header' ); ?>
 					</div>
 
-					<div class="udb-admin-bar--edit-area">
-						<div id="udb-admin-bar--workspace" class="udb-admin-bar--workspace">
-							<ul class="udb-admin-bar--menu-list" data-menu-type="parent">
+					<div class="udb-menu-builder--edit-area">
+						<div id="udb-menu-builder--workspace" class="udb-menu-builder--workspace">
+							<ul class="udb-menu-builder--menu-list" data-menu-type="parent">
 								<!-- to be re-written via js -->
 								<li class="loading"></li>
 							</ul>
