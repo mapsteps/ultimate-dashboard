@@ -4,7 +4,7 @@
 	function init() {
 		patchWpMetabox();
 
-		const metabox = document.querySelector(".udb-tags-metabox");
+		const metabox = document.querySelector(".tags-heatbox");
 		if (!metabox) return;
 
 		const tags = metabox.querySelectorAll("code");
@@ -20,7 +20,7 @@
 
 		if (metaboxById) {
 			metaboxById.classList.add("heatbox");
-			metaboxById.classList.add("udb-tags-metabox");
+			metaboxById.classList.add("tags-heatbox");
 
 			const metaboxContent = metaboxById.querySelector(".inside");
 
@@ -45,7 +45,7 @@
 		// Copy value to clipboard.
 		await copyToClipboard(value);
 
-		const notice = document.querySelector(".udb-tags-metabox .action-status");
+		const notice = document.querySelector(".tags-heatbox .action-status");
 		if (!notice) return;
 
 		notice.classList.add("is-shown");
