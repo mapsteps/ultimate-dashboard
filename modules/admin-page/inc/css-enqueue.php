@@ -26,12 +26,8 @@ return function ( $module ) {
 		// Heatbox.
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Toggle switch.
-		wp_enqueue_style( 'udb-toggle-switch', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/toggle-switch.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-
 		// Edit admin page.
 		wp_enqueue_style( 'udb-edit-admin-page', $module->url . '/assets/css/edit-admin-page.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-
 
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
@@ -41,8 +37,8 @@ return function ( $module ) {
 			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
 		}
 
-		// Toggle switch.
-		wp_enqueue_style( 'udb-toggle-switch', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/toggle-switch.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// Heatbox.
+		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}
 

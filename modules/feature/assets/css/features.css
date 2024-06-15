@@ -15,7 +15,7 @@
 	margin-right: 0;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
 	.udb-features-container .heatbox {
 		flex: 0 100%;
 		margin-right: 0;
@@ -30,7 +30,7 @@
 .udb-features-container .heatbox h2 img {
 	width: 32px;
 	margin-right: 10px;
-	opacity: .75;
+	opacity: 0.75;
 }
 
 .heatbox-content {
@@ -54,7 +54,7 @@
 	width: 50%;
 }
 
-.feature-status .switch-control {
+.feature-status .status-switch {
 	text-align: right;
 }
 

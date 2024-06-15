@@ -1,40 +1,51 @@
-(function($) {
-  function init() {
-    setupWidgetType();
+(function ($) {
+	function init() {
+		setupMetaboxes();
+		setupWidgetType();
 		setupIconPicker();
 		setupCodeEditor();
-  }
+	}
 
-  function setupWidgetType() {
-    var $type = $('[name="udb_widget_type');
-    var $fields = $(".udb-main-metabox .widget-fields");
-    var value = $type.val();
+	function setupMetaboxes() {
+		var postboxContainers = document.querySelectorAll(".postbox-container");
 
-    $fields.find('[data-type="' + value + '"]').addClass("is-active");
+		if (postboxContainers.length) {
+			[].slice.call(postboxContainers).forEach(function (postboxContainer) {
+				postboxContainer.classList.add("heatbox-wrap");
+			});
+		}
+	}
 
-    $type.on("change", function(e) {
-      value = $(this).val();
+	function setupWidgetType() {
+		var $type = $('[name="udb_widget_type');
+		var $fields = $(".udb-main-metabox .widget-fields");
+		var value = $type.val();
 
-      $fields.find("[data-type]").removeClass("is-active");
-      $fields.find('[data-type="' + value + '"]').addClass("is-active");
-    });
-  }
+		$fields.find('[data-type="' + value + '"]').addClass("is-active");
 
-  function setupIconPicker() {
-    var $iconPreview = $(".icon-preview");
-    var $iconSelect = $('[name="udb_icon"]');
+		$type.on("change", function (e) {
+			value = $(this).val();
 
-    $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+			$fields.find("[data-type]").removeClass("is-active");
+			$fields.find('[data-type="' + value + '"]').addClass("is-active");
+		});
+	}
 
-    $iconSelect.on("change", function(e) {
-      $iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
-    });
+	function setupIconPicker() {
+		var $iconPreview = $(".icon-preview");
+		var $iconSelect = $('[name="udb_icon"]');
 
-		window.addEventListener('load', function () {
+		$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+
+		$iconSelect.on("change", function (e) {
+			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+		});
+
+		window.addEventListener("load", function () {
 			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 		});
 	}
-	
+
 	function setupCodeEditor() {
 		if ($('[name="udb_html"]').length) {
 			var editorSettings = wp.codeEditor.defaultSettings
@@ -43,7 +54,7 @@
 			editorSettings.codemirror = _.extend({}, editorSettings.codemirror, {
 				indentUnit: 4,
 				tabSize: 4,
-				mode: "html"
+				mode: "html",
 			});
 			var editor = wp.codeEditor.initialize(
 				$('[name="udb_html"]'),
@@ -52,5 +63,5 @@
 		}
 	}
 
-  init();
+	init();
 })(jQuery);

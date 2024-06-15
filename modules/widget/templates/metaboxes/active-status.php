@@ -21,12 +21,13 @@ return function ( $post ) {
 	?>
 
 	<?php wp_nonce_field( 'udb_widget_active', 'udb_widget_active_nonce' ); ?>
-	<div class="switch-control is-rounded is-small">
-		<label for="udb_is_active">
-			<input type="checkbox" name="udb_is_active" id="udb_is_active" value="1" <?php checked( $is_active, 1 ); ?>>
-			<span class="switch"></span>
-		</label>
-	</div>
+
+	<label for="udb_is_active" class="toggle-switch">
+		<input type="checkbox" name="udb_is_active" id="udb_is_active" value="1" <?php checked( $is_active, 1 ); ?>>
+		<div class="switch-track">
+			<div class="switch-thumb"></div>
+		</div>
+	</label>
 
 	<?php
 

@@ -107,14 +107,17 @@ return function () {
 										<?php echo empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</span>
 								</div>
-								<div class="switch-control is-rounded">
-									<label for="udb_is_active_<?php echo $feature['feature']; ?>">
+								<div class="status-switch">
+									<label for="udb_is_active_<?php echo $feature['feature']; ?>" class="toggle-switch">
 										<input
 											type="checkbox"
 											name="<?php echo esc_attr( $feature['feature'] ); ?>"
 											id="udb_is_active_<?php echo $feature['feature']; ?>"
-											<?php checked( empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ); ?> >
-										<span class="switch"></span>
+											<?php checked( empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ); ?>
+										/>
+										<div class="switch-track">
+											<div class="switch-thumb"></div>
+										</div>
 									</label>
 								</div>
 							</div>

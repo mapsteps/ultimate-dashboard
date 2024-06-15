@@ -3,7 +3,7 @@
 		.on("udb_dashboard_jquery_init", function () {
 			var nonce = $(".udb-features-page").find("#udb_module_nonce"),
 				checkboxes = $(".udb-features-page").find(
-					'.switch-control input[type="checkbox"]'
+					'.status-switch input[type="checkbox"]'
 				);
 
 			checkboxes.on("change", function () {

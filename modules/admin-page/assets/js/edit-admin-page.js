@@ -17,23 +17,34 @@
 	 * Setup metaboxes
 	 */
 	function setupMetaboxes() {
-		var postboxes = document.querySelectorAll('.postbox');
-		if (!postboxes) return;
+		var postboxContainers = document.querySelectorAll(".postbox-container");
 
-		[].slice.call(postboxes).forEach(function (postbox) {
-			var postboxContent = postbox.querySelector('.postbox-content.has-lines');
-			if (!postboxContent) return;
+		if (postboxContainers.length) {
+			[].slice.call(postboxContainers).forEach(function (postboxContainer) {
+				postboxContainer.classList.add("heatbox-wrap");
+			});
+		}
 
-			postboxContent.parentNode.parentNode.classList.add('has-lines');
-			postboxContent.classList.remove('has-lines');
-		});
+		var postboxes = document.querySelectorAll(".postbox");
+
+		if (postboxes.length) {
+			[].slice.call(postboxes).forEach(function (postbox) {
+				var postboxContent = postbox.querySelector(
+					".postbox-content.has-lines"
+				);
+				if (!postboxContent) return;
+
+				postboxContent.parentNode.parentNode.classList.add("has-lines");
+				postboxContent.classList.remove("has-lines");
+			});
+		}
 	}
 
 	/**
 	 * Setup fields chaining/ dependency.
 	 */
 	function setupChainingFields() {
-		var children = document.querySelectorAll('[data-show-if-field]');
+		var children = document.querySelectorAll("[data-show-if-field]");
 		if (!children.length) return;
 
 		[].slice.call(children).forEach(function (child) {
@@ -48,11 +59,11 @@
 	 */
 	function setupChainingEvent(child) {
 		var parentName = child.dataset.showIfField;
-		var parentField = document.querySelector('#' + parentName);
+		var parentField = document.querySelector("#" + parentName);
 
 		checkChainingState(child, parentField);
 
-		parentField.addEventListener('change', function (_e) {
+		parentField.addEventListener("change", function (_e) {
 			checkChainingState(child, parentField);
 		});
 	}
@@ -67,16 +78,16 @@
 		var wantedValue = child.dataset.showIfValue;
 		var parentValue;
 
-		if (parent.tagName.toLocaleLowerCase() === 'select') {
+		if (parent.tagName.toLocaleLowerCase() === "select") {
 			parentValue = parent.options[parent.selectedIndex].value;
 		} else {
 			parentValue = parent.value;
 		}
 
 		if (parentValue === wantedValue) {
-			child.style.display = 'block';
+			child.style.display = "block";
 		} else {
-			child.style.display = 'none';
+			child.style.display = "none";
 		}
 	}
 
@@ -93,7 +104,7 @@
 			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 		});
 
-		window.addEventListener('load', function () {
+		window.addEventListener("load", function () {
 			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
 		});
 	}
@@ -102,7 +113,7 @@
 	 * Setup widget roles.
 	 */
 	function setupWidgetRoles() {
-		var fields = document.querySelectorAll('.udb-widget-roles-field');
+		var fields = document.querySelectorAll(".udb-widget-roles-field");
 		if (!fields.length) return;
 
 		fields.forEach(function (field) {
@@ -120,23 +131,23 @@
 
 		$field.select2();
 
-		$field.on('select2:select', function (e) {
-			var selections = $field.select2('data');
+		$field.on("select2:select", function (e) {
+			var selections = $field.select2("data");
 			var values = [];
 
-			if (e.params.data.id === 'all') {
-				$field.val('all');
-				$field.trigger('change');
+			if (e.params.data.id === "all") {
+				$field.val("all");
+				$field.trigger("change");
 			} else {
 				if (selections.length) {
 					selections.forEach(function (role) {
-						if (role.id !== 'all') {
+						if (role.id !== "all") {
 							values.push(role.id);
 						}
 					});
 
 					$field.val(values);
-					$field.trigger('change');
+					$field.trigger("change");
 				}
 			}
 		});
@@ -150,34 +161,33 @@
 		 * Compatibility if the free version is updated first.
 		 * Because UDB Pro version <=3.8.0 doesn't have the `udb-codemirror` class.
 		 */
-		var jsFields = document.querySelectorAll('.udb-custom-js');
+		var jsFields = document.querySelectorAll(".udb-custom-js");
 
 		[].slice.call(jsFields).forEach(function (field) {
-			field.classList.add('udb-codemirror');
-			field.setAttribute('data-content-mode', 'js');
+			field.classList.add("udb-codemirror");
+			field.setAttribute("data-content-mode", "js");
 		});
 
-		var fields = document.querySelectorAll('.udb-codemirror');
+		var fields = document.querySelectorAll(".udb-codemirror");
 		if (!fields.length) return;
 
 		[].slice.call(fields).forEach(function (field) {
-			var contentMode = 'html';
+			var contentMode = "html";
 
-			if (field.getAttribute('data-content-mode')) {
-				contentMode = field.getAttribute('data-content-mode');
+			if (field.getAttribute("data-content-mode")) {
+				contentMode = field.getAttribute("data-content-mode");
 			}
 
-			var editorSettings = wp && wp.codeEditor && wp.codeEditor.defaultSettings ? _.clone(wp.codeEditor.defaultSettings) : {};
+			var editorSettings =
+				wp && wp.codeEditor && wp.codeEditor.defaultSettings
+					? _.clone(wp.codeEditor.defaultSettings)
+					: {};
 
-			editorSettings.codemirror = _.extend(
-				{},
-				editorSettings.codemirror,
-				{
-					indentUnit: 4,
-					tabSize: 4,
-					mode: contentMode,
-				}
-			);
+			editorSettings.codemirror = _.extend({}, editorSettings.codemirror, {
+				indentUnit: 4,
+				tabSize: 4,
+				mode: contentMode,
+			});
 
 			wp.codeEditor.initialize(field, editorSettings);
 		});
@@ -186,7 +196,7 @@
 			// @see https://github.com/WordPress/gutenberg/issues/13645
 			wp.data.subscribe(function () {
 				[].slice.call(fields).forEach(function (field) {
-					var cm = jQuery(field).next('.CodeMirror').get(0).CodeMirror;
+					var cm = jQuery(field).next(".CodeMirror").get(0).CodeMirror;
 					cm.save();
 				});
 			});
@@ -210,8 +220,7 @@
 			}, timeout);
 		});
 
-
-		select.addEventListener('change', function () {
+		select.addEventListener("change", function () {
 			contentTypeSwitch(this.options[this.selectedIndex].value);
 		});
 	}
@@ -222,58 +231,70 @@
 	 * @param {string} value The content type value.
 	 */
 	function contentTypeSwitch(value) {
-		var htmlEditor = document.querySelector('#udb-html-metabox');
-		var elementorSwitch = document.querySelector('#elementor-switch-mode');
-		var elementorEditor = document.querySelector('#elementor-editor');
-		var brizyButtons = document.querySelector('#post-body-content > .brizy-buttons');
-		var beaverTabs = document.querySelector('#post-body-content > .fl-builder-admin');
-		var diviButtons = document.querySelector('#post-body-content > .et_pb_toggle_builder_wrapper');
-		var diviEditor = document.querySelector('#et_pb_layout');
-		var oxygenEditor = document.querySelector('#ct_views_cpt');
-		var normalEditor = document.querySelector('#postdivrich');
+		var htmlEditor = document.querySelector("#udb-html-metabox");
+		var elementorSwitch = document.querySelector("#elementor-switch-mode");
+		var elementorEditor = document.querySelector("#elementor-editor");
+		var brizyButtons = document.querySelector(
+			"#post-body-content > .brizy-buttons"
+		);
+		var beaverTabs = document.querySelector(
+			"#post-body-content > .fl-builder-admin"
+		);
+		var diviButtons = document.querySelector(
+			"#post-body-content > .et_pb_toggle_builder_wrapper"
+		);
+		var diviEditor = document.querySelector("#et_pb_layout");
+		var oxygenEditor = document.querySelector("#ct_views_cpt");
+		var normalEditor = document.querySelector("#postdivrich");
 
-		if (value === 'html') {
-			document.body.classList.add('udb-use-html-editor');
-			document.body.classList.remove('udb-use-default-editor');
+		if (value === "html") {
+			document.body.classList.add("udb-use-html-editor");
+			document.body.classList.remove("udb-use-default-editor");
 
-			htmlEditor.style.display = 'block';
+			htmlEditor.style.display = "block";
 
-			if (elementorSwitch) elementorSwitch.style.display = 'none';
-			if (!document.body.classList.contains('elementor-editor-inactive')) {
-				if (elementorEditor) elementorEditor.style.display = 'none';
+			if (elementorSwitch) elementorSwitch.style.display = "none";
+			if (!document.body.classList.contains("elementor-editor-inactive")) {
+				if (elementorEditor) elementorEditor.style.display = "none";
 			}
-			if (brizyButtons) brizyButtons.style.display = 'none';
-			if (beaverTabs) beaverTabs.style.display = 'none';
-			if (diviButtons) diviButtons.style.display = 'none';
-			if (diviEditor) diviEditor.style.display = 'none';
-			if (oxygenEditor) oxygenEditor.style.display = 'none';
+			if (brizyButtons) brizyButtons.style.display = "none";
+			if (beaverTabs) beaverTabs.style.display = "none";
+			if (diviButtons) diviButtons.style.display = "none";
+			if (diviEditor) diviEditor.style.display = "none";
+			if (oxygenEditor) oxygenEditor.style.display = "none";
 
-			if (!document.body.classList.contains('fl-builder-enabled')) {
-				if (normalEditor && !normalEditor.parentNode.classList.contains('et_pb_post_body_hidden')) {
-					if (normalEditor) normalEditor.style.display = 'none';
+			if (!document.body.classList.contains("fl-builder-enabled")) {
+				if (
+					normalEditor &&
+					!normalEditor.parentNode.classList.contains("et_pb_post_body_hidden")
+				) {
+					if (normalEditor) normalEditor.style.display = "none";
 				}
 			}
 		} else {
-			document.body.classList.remove('udb-use-html-editor');
-			document.body.classList.add('udb-use-default-editor');
+			document.body.classList.remove("udb-use-html-editor");
+			document.body.classList.add("udb-use-default-editor");
 
-			htmlEditor.style.display = 'none';
+			htmlEditor.style.display = "none";
 
-			if (elementorSwitch) elementorSwitch.style.display = 'block';
+			if (elementorSwitch) elementorSwitch.style.display = "block";
 
-			if (!document.body.classList.contains('elementor-editor-inactive')) {
-				if (elementorEditor) elementorEditor.style.display = 'block';
+			if (!document.body.classList.contains("elementor-editor-inactive")) {
+				if (elementorEditor) elementorEditor.style.display = "block";
 			}
 
-			if (brizyButtons) brizyButtons.style.display = 'block';
-			if (beaverTabs) beaverTabs.style.display = 'block';
-			if (diviButtons) diviButtons.style.display = 'block';
-			if (diviEditor) diviEditor.style.display = 'block';
-			if (oxygenEditor) oxygenEditor.style.display = 'block';
+			if (brizyButtons) brizyButtons.style.display = "block";
+			if (beaverTabs) beaverTabs.style.display = "block";
+			if (diviButtons) diviButtons.style.display = "block";
+			if (diviEditor) diviEditor.style.display = "block";
+			if (oxygenEditor) oxygenEditor.style.display = "block";
 
-			if (!document.body.classList.contains('fl-builder-enabled')) {
-				if (normalEditor && !normalEditor.parentNode.classList.contains('et_pb_post_body_hidden')) {
-					if (normalEditor) normalEditor.style.display = 'block';
+			if (!document.body.classList.contains("fl-builder-enabled")) {
+				if (
+					normalEditor &&
+					!normalEditor.parentNode.classList.contains("et_pb_post_body_hidden")
+				) {
+					if (normalEditor) normalEditor.style.display = "block";
 				}
 			}
 		}

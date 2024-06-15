@@ -69,8 +69,8 @@ class Udb_Customize_Toggle_Switch_Control extends \WP_Customize_Control {
 			</div>
 			<div class="udb-customize-control--right-col">
 
-				<div class="switch-control is-rounded is-small">
-					<label for="<?php echo esc_attr( $input_id ); ?>">
+				<div class="switch-control heatbox-wrap">
+					<label for="<?php echo esc_attr( $input_id ); ?>" class="toggle-switch">
 						<input
 							type="checkbox"
 							id="<?php echo esc_attr( $input_id ); ?>"
@@ -79,8 +79,9 @@ class Udb_Customize_Toggle_Switch_Control extends \WP_Customize_Control {
 							<?php $this->link(); ?>
 							<?php checked( $this->value() ); ?>
 						>
-
-						<span class="switch"></span>
+						<div class="switch-track">
+							<div class="switch-thumb"></div>
+						</div>
 					</label>
 				</div>
 

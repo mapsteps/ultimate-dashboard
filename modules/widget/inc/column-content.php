@@ -36,15 +36,15 @@ return function ( $column, $post_id ) {
 			$allowed_roles = __( 'All', 'ultimate-dashboard' );
 			$allowed_roles = apply_filters( 'udb_widget_list_roles_column_content', $allowed_roles, $post_id );
 
-			echo ucwords( $allowed_roles );
+			echo esc_html( ucwords( $allowed_roles ) );
 			break;
 
 		case 'is_active':
 			$is_active = get_post_meta( $post_id, 'udb_is_active', true );
 			?>
 
-			<div class="switch-control is-rounded is-small">
-				<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>">
+			<div class="heatbox-wrap status-switch">
+				<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>" class="toggle-switch">
 					<input
 						type="checkbox"
 						name="udb_is_active"
@@ -53,9 +53,10 @@ return function ( $column, $post_id ) {
 						data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_widget_' . $post_id . '_change_active_status' ) ); ?>"
 						data-post-id="<?php echo esc_attr( $post_id ); ?>"
 						<?php checked( $is_active, 1 ); ?>
-					>
-
-					<span class="switch"></span>
+					/>
+					<div class="switch-track">
+						<div class="switch-thumb"></div>
+					</div>
 				</label>
 			</div>
 
