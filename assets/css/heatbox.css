@@ -138,13 +138,15 @@
 
 /* Version */
 .heatbox-wrap .version {
-	font-size: 50%;
+	font-size: 45%;
 	opacity: 0.6;
 	font-weight: 600;
 	background: #ccc;
 	border-radius: 5px;
 	padding: 5px 12px;
 	line-height: 1;
+	vertical-align: middle;
+	margin: 0 5px;
 }
 
 /* 2 Column Layout - Wrapper */
