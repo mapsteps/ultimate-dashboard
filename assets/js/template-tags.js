@@ -19,6 +19,18 @@
 		const metaboxById = document.querySelector("#udb-tags-metabox");
 
 		if (metaboxById) {
+			const styleTag = document.createElement("style");
+			styleTag.innerHTML = `
+				.tags-heatbox, .tags-heatbox * {
+					box-sizing: border-box;
+				}
+
+				#udb-tags-metabox h2 .action-status {
+					right: 0;
+				}
+			`;
+			document.head.appendChild(styleTag);
+
 			metaboxById.classList.add("heatbox");
 			metaboxById.classList.add("tags-heatbox");
 
