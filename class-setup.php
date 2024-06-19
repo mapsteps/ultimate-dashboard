@@ -117,13 +117,12 @@ class Setup {
 	 */
 	public function set_data() {
 
-		$settings_opts          = get_option( 'udb_settings', array() );
-		$branding_opts          = get_option( 'udb_branding', array() );
-		$login_opts             = get_option( 'udb_login', array() );
-		$login_redirect_opts    = get_option( 'udb_login_redirect', array() );
-		$admin_bar_opts         = get_option( 'udb_admin_bar', array() );
-		$admin_menu_opts        = get_option( 'udb_admin_menu', array() );
-		$recent_admin_menu_opts = get_option( 'udb_recent_admin_menu', array() );
+		$settings_opts       = get_option( 'udb_settings', array() );
+		$branding_opts       = get_option( 'udb_branding', array() );
+		$login_opts          = get_option( 'udb_login', array() );
+		$login_redirect_opts = get_option( 'udb_login_redirect', array() );
+		$admin_bar_opts      = get_option( 'udb_admin_bar', array() );
+		$admin_menu_opts     = get_option( 'udb_admin_menu', array() );
 
 		Vars::set( 'udb_settings', $settings_opts );
 		Vars::set( 'udb_branding', $branding_opts );
@@ -131,7 +130,6 @@ class Setup {
 		Vars::set( 'udb_login_redirect', $login_redirect_opts );
 		Vars::set( 'udb_admin_bar', $admin_bar_opts );
 		Vars::set( 'udb_admin_menu', $admin_menu_opts );
-		Vars::set( 'udb_recent_admin_menu', $recent_admin_menu_opts );
 
 	}
 
