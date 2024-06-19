@@ -218,7 +218,7 @@ class Admin_Menu_Module extends Base_Module {
 			'submenu' => $submenu,
 		);
 
-		update_option( 'udb_recent_admin_menu', $recent_menu );
+		update_option( 'udb_recent_admin_menu', $recent_menu, false );
 
 	}
 
