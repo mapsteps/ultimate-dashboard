@@ -24,7 +24,7 @@ class Base_Module {
 	/**
 	 * Get UDB option data.
 	 *
-	 * @deprecated 3.7.14 Use get_option() instead.
+	 * @deprecated 3.7.15 Use get_option() instead.
 	 *
 	 * @param string $option_name The option name without "udb_" prefix.
 	 * @return mixed The value of udb_{$option_name}.

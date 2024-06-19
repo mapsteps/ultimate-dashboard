@@ -112,24 +112,12 @@ class Setup {
 	}
 
 	/**
-	 * Provide data for the plugin.
+	 * Preload UDB settings.
 	 * This will reduce the repeated call of get_option across modules.
+	 *
+	 * @deprecated 3.7.15 Not good for performance. This method was called both in admin & front area. The benefits were not much, because there was only few places where the preloaded data was re-used.
 	 */
-	public function set_data() {
-
-		$settings_opts   = get_option( 'udb_settings', array() );
-		$branding_opts   = get_option( 'udb_branding', array() );
-		$login_opts      = get_option( 'udb_login', array() );
-		$admin_bar_opts  = get_option( 'udb_admin_bar', array() );
-		$admin_menu_opts = get_option( 'udb_admin_menu', array() );
-
-		Vars::set( 'udb_settings', $settings_opts );
-		Vars::set( 'udb_branding', $branding_opts );
-		Vars::set( 'udb_login', $login_opts );
-		Vars::set( 'udb_admin_bar', $admin_bar_opts );
-		Vars::set( 'udb_admin_menu', $admin_menu_opts );
-
-	}
+	public function set_data() {}
 
 	/**
 	 * Check plugin activation meta.
