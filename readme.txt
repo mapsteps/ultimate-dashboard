@@ -4,7 +4,7 @@ Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress
 Requires at least: 4.6
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 3.7.14
+Stable tag: 3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,12 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8 | June 19, 2024 =
+* New: Dark Mode (experimental)
+* New: Move sub-menu items across top-level menu items in the Admin Menu Editor
+* Tweak: Overall UI/UX improvements
+* Tweak: Overall improvements to the Admin Menu Editor
+* Fixed: Performance issues related to the Admin Menu Editor
 = 3.7.14 | May 10, 2024 =
 * Tested up to WordPress 6.5
 = 3.7.13 | January 09, 2024 =
