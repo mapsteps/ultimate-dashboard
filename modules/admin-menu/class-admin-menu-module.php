@@ -10,6 +10,7 @@ namespace Udb\AdminMenu;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
+use Udb\Helpers\Screen_Helper;
 
 /**
  * Class to setup admin menu module.
@@ -185,6 +186,12 @@ class Admin_Menu_Module extends Base_Module {
 		 * during the ajax request when getting menu for our admin menu editor (the builder).
 		 */
 		if ( isset( $_POST['action'] ) && 'udb_admin_menu_get_menu' === $_POST['action'] ) {
+			return;
+		}
+
+		$screen_helper = new Screen_Helper();
+
+		if ( ! $screen_helper->is_admin_menu() ) {
 			return;
 		}
 
