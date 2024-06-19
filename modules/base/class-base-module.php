@@ -24,6 +24,8 @@ class Base_Module {
 	/**
 	 * Get UDB option data.
 	 *
+	 * @deprecated 3.7.14 Use get_option() instead.
+	 *
 	 * @param string $option_name The option name without "udb_" prefix.
 	 * @return mixed The value of udb_{$option_name}.
 	 */
@@ -35,7 +37,7 @@ class Base_Module {
 			return $value;
 		}
 
-		return get_option( 'udb_' . $option_name, [] );
+		return get_option( 'udb_' . $option_name, array() );
 
 	}
 

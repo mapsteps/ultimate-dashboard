@@ -13,7 +13,7 @@ return function ( $site_type = 'blueprint' ) {
 
 	$site_type_prefix = 'subsites' === $site_type ? 'subsites_' : '';
 
-	$settings       = Vars::get( 'udb_login_redirect' );
+	$settings       = get_option( 'udb_login_redirect', array() );
 	$redirect_slugs = isset( $settings[ $site_type_prefix . 'login_redirect_slugs' ] ) ? $settings[ $site_type_prefix . 'login_redirect_slugs' ] : array();
 
 	$wp_roles   = wp_roles();

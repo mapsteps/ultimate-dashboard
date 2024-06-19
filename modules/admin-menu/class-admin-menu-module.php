@@ -207,7 +207,7 @@ class Admin_Menu_Module extends Base_Module {
 		$roles = wp_get_current_user()->roles;
 		$role  = $roles[0];
 
-		$recent_menu = $this->option( 'recent_admin_menu' );
+		$recent_menu = get_option( 'udb_recent_admin_menu', array() );
 
 		if ( ! isset( $recent_menu[ $role ] ) ) {
 			$recent_menu[ $role ] = array();
