@@ -106,11 +106,13 @@ class Login_Redirect_Output extends Base_Output {
 
 	/**
 	 * Setup action & filter hooks.
-	 * Scripts below are not placed directly inside setup function above so that we can apply filters from multisite module.
+	 *
+	 * Scripts below are not placed directly inside `setup` method above
+	 * so that we can apply filters from multisite module.
 	 */
 	public function setup_hooks() {
 
-		$settings = $this->option( 'login_redirect' );
+		$settings = get_option( 'udb_login_redirect', array() );
 
 		$this->new_login_slug = isset( $settings['login_url_slug'] ) ? $settings['login_url_slug'] : '';
 		$this->new_login_slug = apply_filters( 'udb_login_slug', $this->new_login_slug );
@@ -314,7 +316,6 @@ class Login_Redirect_Output extends Base_Output {
 					@require_once WPINC . '/ms-functions.php';
 				}
 
-
 				if ( ! empty( $signup_key ) && is_wp_error( $wpmu_activate_signup ) ) {
 					if ( 'already_active' === $wpmu_activate_signup->get_error_code() || 'blog_taken' === $wpmu_activate_signup->get_error_code() ) {
 						wp_safe_redirect( $this->new_login_url() . $add_query_string );
@@ -427,10 +428,10 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/site_url/
 	 *
-	 * @param string $url The complete site URL including scheme and path.
-	 * @param string $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string      $url The complete site URL including scheme and path.
+	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
-	 * @param int|null $blog_id Site ID, or null for the current site.
+	 * @param int|null    $blog_id Site ID, or null for the current site.
 	 *
 	 * @return string
 	 */
@@ -445,8 +446,8 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/network_site_url/
 	 *
-	 * @param string $url The complete site URL including scheme and path.
-	 * @param string $path Path relative to the site URL. Blank string if no path is specified.
+	 * @param string      $url The complete site URL including scheme and path.
+	 * @param string      $path Path relative to the site URL. Blank string if no path is specified.
 	 * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
 	 *
 	 * @return string
@@ -464,7 +465,7 @@ class Login_Redirect_Output extends Base_Output {
 	 *
 	 * @param string $login_url The login URL. Not HTML-encoded.
 	 * @param string $redirect The path to redirect to on login, if supplied.
-	 * @param bool $force_reauth Whether to force reauthorization, even if a cookie is present.
+	 * @param bool   $force_reauth Whether to force reauthorization, even if a cookie is present.
 	 *
 	 * @return string
 	 */
@@ -494,7 +495,7 @@ class Login_Redirect_Output extends Base_Output {
 	 * @see https://developer.wordpress.org/reference/hooks/wp_redirect/
 	 *
 	 * @param string $location The path or URL to redirect to.
-	 * @param int $status The HTTP response status code to use.
+	 * @param int    $status The HTTP response status code to use.
 	 *
 	 * @return string
 	 */
@@ -558,7 +559,7 @@ class Login_Redirect_Output extends Base_Output {
 	 * @see https://developer.wordpress.org/reference/hooks/user_request_action_email_content/
 	 *
 	 * @param string $email_text Text in the email.
-	 * @param array $email_data Data relating to the account action email.
+	 * @param array  $email_data Data relating to the account action email.
 	 *
 	 * @return string
 	 */
@@ -591,15 +592,15 @@ class Login_Redirect_Output extends Base_Output {
 	/**
 	 * Filters the login redirect URL.
 	 *
-	 * @param string $redirect_to The redirect destination URL.
-	 * @param string $requested_redirect_to The requested redirect destination URL passed as a parameter.
+	 * @param string           $redirect_to The redirect destination URL.
+	 * @param string           $requested_redirect_to The requested redirect destination URL passed as a parameter.
 	 * @param WP_User|WP_Error $user WP_User object if login was successful, WP_Error object otherwise.
 	 *
 	 * @return string
 	 */
 	public function custom_login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
-		$settings = $this->option( 'login_redirect' );
+		$settings = get_option( 'udb_login_redirect', array() );
 		$slugs    = isset( $settings['login_redirect_slugs'] ) ? $settings['login_redirect_slugs'] : array();
 		$roles    = property_exists( $user, 'roles' ) ? $user->roles : array();
 
