@@ -10,7 +10,6 @@ namespace Udb\AdminMenu;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
-use Udb\Helpers\Screen_Helper;
 
 /**
  * Class to setup admin menu module.
@@ -189,9 +188,17 @@ class Admin_Menu_Module extends Base_Module {
 			return;
 		}
 
-		$screen_helper = new Screen_Helper();
+		/**
+		 * We can't simply use the Screen_Helper class and check for is_admin_menu here.
+		 * Because we also need to check if get_current_screen() is null.
+		 */
+		$current_screen = get_current_screen();
 
-		if ( ! $screen_helper->is_admin_menu() ) {
+		if ( is_null( $current_screen ) ) {
+			return;
+		}
+
+		if ( 'edit-udb_widgets_page_udb_admin_menu' !== $current_screen->id ) {
 			return;
 		}
 
