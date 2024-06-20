@@ -103,10 +103,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.8 | June 19, 2024 =
-* New: Dark Mode (experimental)
-* New: Move sub-menu items across top-level menu items in the Admin Menu Editor
+* New: Dark Mode (PRO)
+* New: Move sub-menu items across top-level menu items in the Admin Menu Editor (PRO)
+* Tweak: Overall improvements to the Admin Menu Editor (PRO)
 * Tweak: Overall UI/UX improvements
-* Tweak: Overall improvements to the Admin Menu Editor
 * Fixed: Performance issues related to the Admin Menu Editor
 = 3.7.14 | May 10, 2024 =
 * Tested up to WordPress 6.5
