@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return function () {
 
 	$field_description = __(
-		'Enable dark mode for the block editor (Gutenberg editor).',
+		'Enable dark mode for the block editor (Gutenberg).',
 		'ultimatedashboard'
 	);
 	?>

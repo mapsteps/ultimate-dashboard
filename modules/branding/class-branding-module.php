@@ -225,7 +225,7 @@ class Branding_Module extends Base_Module {
 	}
 
 	/**
-	 * Block editor (Gutenberg editor) darkmode field.
+	 * Block editor (Gutenberg) darkmode field.
 	 */
 	public function block_editor_darkmode_field() {
 
