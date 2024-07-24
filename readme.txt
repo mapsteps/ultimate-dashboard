@@ -4,7 +4,7 @@ Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress
 Requires at least: 4.6
 Tested up to: 6.4
 Requires PHP: 5.6
-Stable tag: 3.8
+Stable tag: 3.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.1 | July 24, 2024 =
+* Fixed: Fatal error in the WordPress admin area if "Howdy"-text was changed due to recent WordPress core update (6.1.1)
 = 3.8 | June 19, 2024 =
 * New: Dark Mode (PRO)
 * New: Move sub-menu items across top-level menu items in the Admin Menu Editor (PRO)
