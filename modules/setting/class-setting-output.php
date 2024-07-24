@@ -9,6 +9,7 @@ namespace Udb\Setting;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use WP_Admin_Bar;
 use Udb\Base\Base_Output;
 use Udb\Helpers\Content_Helper;
 use Udb\Widget\Widget_Output;
@@ -75,7 +76,7 @@ class Setting_Output extends Base_Output {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'dashboard_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'admin_custom_css' ), 200 );
 		add_action( 'admin_head', array( self::get_instance(), 'change_dashboard_headline' ) );
-		add_action( 'admin_bar_menu', array( self::get_instance(), 'change_howdy_text' ) );
+		add_action( 'admin_bar_menu', array( self::get_instance(), 'change_howdy_text' ), 10000 );
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
@@ -162,13 +163,15 @@ class Setting_Output extends Base_Output {
 
 		$my_account = $wp_admin_bar->get_node( 'my-account' );
 
+		if ( is_null( $my_account ) || ! is_object( $my_account ) || ! property_exists( $my_account, 'title' ) ) {
+			return;
+		}
+
 		$my_account->title = str_ireplace( 'Howdy', esc_html( $settings['howdy_text'] ), $my_account->title );
 
 		$wp_admin_bar->remove_node( 'my-account' );
 
 		$wp_admin_bar->add_node( $my_account );
-
-		$my_account = $wp_admin_bar->get_node( 'my-account' );
 
 	}
 
