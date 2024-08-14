@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress Admin, Branda
 Requires at least: 4.6
-Tested up to: 6.4
+Tested up to: 6.6
 Requires PHP: 5.6
 Stable tag: 3.8.1
 License: GPLv2 or later
