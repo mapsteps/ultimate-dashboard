@@ -295,7 +295,7 @@ class Setup {
 
 		global $submenu;
 
-		$submenu['edit.php?post_type=udb_widgets'][] = array( 'PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
+		$submenu['edit.php?post_type=udb_widgets'][] = array( 'Upgrade to PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
 
 	}
 
