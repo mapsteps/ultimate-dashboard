@@ -90,8 +90,11 @@ class Setup {
 		 * because the PRO version hooks some action/filter to the free version.
 		 * So in order to make them executed, the PRO version has to run first.
 		 */
+
+		register_activation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'on_plugin_activation' ), 20 );
+
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );		
 
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
@@ -185,6 +188,15 @@ class Setup {
 		$settings = array( '<a href="' . admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) . '">' . __( 'Settings', 'ultimate-dashboard' ) . '</a>' );
 
 		return array_merge( $links, $settings );
+
+	}
+
+	/**
+	 * Store an option that tracks the plugin activation.
+	 */
+	public function on_plugin_activation() {
+
+		update_option( 'udb_plugin_activation', true );
 
 	}
 
@@ -595,7 +607,7 @@ class Setup {
 			delete_option( 'review_notice_dismissed' );
 
 			delete_option( 'udb_install_date' );
-			delete_option( 'udb_plugin_activated' );
+			delete_option( 'udb_plugin_activated' );			
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
