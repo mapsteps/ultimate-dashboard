@@ -309,6 +309,9 @@ class Setup {
 		} elseif ( get_option( 'udb_plugin_activation' ) ) {
 			$need_setup = true;
 			$referrer   = 'plugin_activation';
+
+			// redirect to wizard page.
+			add_action( 'current_screen', array( $this, 'redirect_to_wizard_page' ), 20 );
 		}
 		// In the future, we might allow UDB to be installed from other plugins as well.
 
@@ -319,6 +322,25 @@ class Setup {
 		require_once __DIR__ . '/modules/wizard/class-wizard-module.php';
 		$module = new Wizard\Wizard_Module();
 		$module->setup( $referrer );
+
+	}
+
+	/**
+	 * Redirect to the Wizard page after activate the plugin.
+	 */
+	public function redirect_to_wizard_page() {
+
+		// Avoid redirecting when already on the wizard page.
+		if ( isset( $_GET['page'] ) && $_GET['page'] === 'udb_wizard' ) {
+			return;
+		}
+
+		// Check if the plugin was just activated.
+		if ( get_option( 'udb_plugin_activation' ) ) {
+			// Redirect to the Wizard page.
+			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_wizard' ) );
+			exit;
+		}
 
 	}
 
@@ -639,7 +661,7 @@ class Setup {
 			delete_option( 'review_notice_dismissed' );
 
 			delete_option( 'udb_install_date' );
-			delete_option( 'udb_plugin_activated' );			
+			delete_option( 'udb_plugin_activated' );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
