@@ -94,7 +94,8 @@ class Setup {
 		register_activation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'on_plugin_activation' ), 20 );
 
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );		
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );
+		add_action( 'plugins_loaded', array( $this, 'load_wizard_module' ), 20 );
 
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
@@ -286,6 +287,37 @@ class Setup {
 
 		require_once __DIR__ . '/modules/plugin-onboarding/class-plugin-onboarding-module.php';
 		$module = new PluginOnboarding\Plugin_Onboarding_Module();
+		$module->setup( $referrer );
+
+	}
+
+	/**
+	 * Load wizard module.
+	 */
+	public function load_wizard_module() {
+
+		$need_setup = false;
+		$referrer   = '';
+
+		// Erident's migration takes the highest priority.
+		if ( get_option( 'udb_migration_from_erident' ) ) {
+			$need_setup = true;
+			$referrer   = 'erident';
+		} elseif ( get_option( 'udb_referred_by_kirki' ) ) {
+			$need_setup = true;
+			$referrer   = 'kirki';
+		} elseif ( get_option( 'udb_plugin_activation' ) ) {
+			$need_setup = true;
+			$referrer   = 'plugin_activation';
+		}
+		// In the future, we might allow UDB to be installed from other plugins as well.
+
+		if ( ! $need_setup ) {
+			return;
+		}
+
+		require_once __DIR__ . '/modules/wizard/class-wizard-module.php';
+		$module = new Wizard\Wizard_Module();
 		$module->setup( $referrer );
 
 	}
