@@ -61,6 +61,15 @@ class Wizard_Module extends Base_Module {
 		require_once __DIR__ . '/ajax/class-save-modules.php';
 		new Ajax\Save_Modules();
 
+		require_once __DIR__ . '/ajax/class-save-widgets.php';
+		new Ajax\Save_Widgets();
+
+		require_once __DIR__ . '/ajax/class-save-settings.php';
+		new Ajax\Save_Settings();
+
+		require_once __DIR__ . '/ajax/class-save-custom-login-url.php';
+		new Ajax\Save_Custom_Login_Url();
+
 		require_once __DIR__ . '/ajax/class-subscribe.php';
 		new Ajax\Subscribe();
 
