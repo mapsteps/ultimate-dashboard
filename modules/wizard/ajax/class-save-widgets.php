@@ -77,10 +77,6 @@ class Save_Widgets {
 	 */
 	private function save() {
 
-		// Check if the 'udb_settings' option already exists.
-		// Retrieve the existing settings or an empty array if not present.
-		$existing_settings = get_option( 'udb_settings', [] );
-
 		// Initialize an array to hold the selected widgets.
 		$udb_settings = [];
 
@@ -92,12 +88,9 @@ class Save_Widgets {
 				$udb_settings[ $available_widget ] = true;
 			}
 		}
-
-		// Merge the new selected widgets with existing settings.
-		$updated_settings = array_merge( $existing_settings, $udb_settings );
-
+		
 		// Save the updated settings to the 'udb_settings' option.
-		update_option( 'udb_settings', $updated_settings );
+		update_option( 'udb_settings', $udb_settings );
 
 		wp_send_json_success( __( 'Widgets saved', 'ultimate-dashboard' ) );
 
