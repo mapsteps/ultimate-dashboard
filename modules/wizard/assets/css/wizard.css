@@ -223,7 +223,7 @@
 
 /* Hide the dot button for finished slide */
 .udb-dots .tns-nav [data-nav="2"] {
-	display: none;
+	/* display: none; */
 }
 
 .udb-subscription-form {
