@@ -18,11 +18,19 @@
 	var discountNotif = document.querySelector(
 		".wizard-heatbox .udb-discount-notif"
 	);
-	var slideIndexes = ["modules", "subscription", "finished"];
+	var slideIndexes = [
+		"modules",
+		"widgets",
+		"general_settings",
+		"custom_login_url",
+		"subscription",
+		"finished",
+	];
 	var currentSlide = "modules";
 	var doingAjax = false;
 	var discountSkipped = false;
 	var slider;
+	let loginRedirectUnChecked = false;
 
 	function init() {
 		if (
@@ -67,11 +75,24 @@
 		skipDiscount.addEventListener("click", onSkipDiscountClick);
 	}
 
+	function reinitializeSlider() {
+		if (slider) {
+			slider.destroy(); // Destroy the current instance.
+		}
+		setupSlider(); // Reinitialize the slider.
+	}
+
 	function onSliderIndexChanged(e) {
 		currentSlide = slideIndexes[e.index];
 
 		if (currentSlide === "modules") {
 			onModulesSlideSelected();
+		} else if (currentSlide === "widgets") {
+			onWidgetsSlideSelected();
+		} else if (currentSlide === "general_settings") {
+			onGeneralSettingsSlideSelected();
+		} else if (currentSlide === "custom_login_url") {
+			onCustomLoginUrlSlideSelected();
 		} else if (currentSlide === "subscription") {
 			onSubscriptionSlideSelected();
 		} else if (currentSlide === "finished") {
@@ -80,6 +101,37 @@
 	}
 
 	function onModulesSlideSelected() {
+		discountNotif.classList.add("is-hidden");
+		buttonsWrapper.classList.remove("is-hidden");
+
+		saveButton.classList.remove("js-save-widgets");
+		saveButton.classList.remove("js-save-general-settings");
+		saveButton.classList.remove("js-save-custom-login-url");
+	}
+
+	function onWidgetsSlideSelected() {
+		saveButton.classList.add("js-save-widgets");
+		saveButton.classList.remove("js-save-general-settings");
+		saveButton.classList.remove("js-save-custom-login-url");
+
+		discountNotif.classList.add("is-hidden");
+		buttonsWrapper.classList.remove("is-hidden");
+	}
+
+	function onGeneralSettingsSlideSelected() {
+		saveButton.classList.add("js-save-general-settings");
+		saveButton.classList.remove("js-save-widgets");
+		saveButton.classList.remove("js-save-custom-login-url");
+
+		discountNotif.classList.add("is-hidden");
+		buttonsWrapper.classList.remove("is-hidden");
+	}
+
+	function onCustomLoginUrlSlideSelected() {
+		saveButton.classList.add("js-save-custom-login-url");
+		saveButton.classList.remove("js-save-widgets");
+		saveButton.classList.remove("js-save-general-settings");
+
 		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
 	}
@@ -101,6 +153,21 @@
 				slider.goTo("next");
 				break;
 
+			case "widgets":
+				// Go to next slide.
+				slider.goTo("next");
+				break;
+
+			case "general_settings":
+				// Go to next slide.
+				slider.goTo("next");
+				break;
+
+			case "custom_login_url":
+				// Go to next slide.
+				slider.goTo("next");
+				break;
+
 			case "subscription":
 				// Go to dashboard.
 				window.location.href = udbWizard.adminUrl;
@@ -115,18 +182,58 @@
 		if (doingAjax) return;
 		startLoading(saveButton);
 
+		// Get the clicked element
+		const target = e.currentTarget;
+
+		// Initialize data object for saving modules by default
+		let data = {
+			action: "udb_wizard_save_modules",
+			nonce: udbWizard.nonces.saveModules,
+			modules: getSelectedModules(),
+		};
+
+		// Check if the clicked element has specific classes
+		if (target.classList.contains("js-save-widgets")) {
+			data = {
+				action: "udb_wizard_save_widgets",
+				nonce: udbWizard.nonces.saveWidgets,
+				widgets: getSelectedWidgets(),
+			};
+		} else if (target.classList.contains("js-save-general-settings")) {
+			data = {
+				action: "udb_wizard_save_general_settings",
+				nonce: udbWizard.nonces.saveGeneralSettings,
+				settings: getSelectedGeneralSettings(),
+			};
+		} else if (target.classList.contains("js-save-custom-login-url")) {
+			var customLoginUrlField = document.querySelector("#udb_login_redirect");
+
+			data = {
+				action: "udb_wizard_save_custom_login_url",
+				nonce: udbWizard.nonces.saveCustomLoginUrl,
+				custom_login_url: customLoginUrlField.value,
+			};
+		}
+
 		$.ajax({
 			url: udbWizard.ajaxUrl,
 			type: "POST",
-			data: {
-				action: "udb_wizard_save_modules",
-				nonce: udbWizard.nonces.saveModules,
-				modules: getSelectedModules(),
-			},
+			data: data,
 		})
 			.done(function (r) {
 				if (!r.success) return;
-				slider.goTo("next");
+
+				// Check if login_redirect is false or does not exist.
+				if (r.data.login_redirect && r.data.login_redirect === "false") {
+					loginRedirectUnChecked = true;
+				}
+
+				if (currentSlide === "general_settings" && loginRedirectUnChecked) {
+					// Go to next slide.
+					slider.goTo(4);
+				} else {
+					slider.goTo("next");
+				}
 			})
 			.fail(onAjaxFail)
 			.always(function () {
@@ -235,6 +342,45 @@
 		});
 
 		return modules;
+	}
+
+	function getSelectedWidgets() {
+		var checkboxes = document.querySelectorAll(
+			'.udb-widgets-slide .widget-toggle input[type="checkbox"]'
+		);
+
+		if (!checkboxes.length) return [];
+
+		var widgets = [];
+
+		[].slice.call(checkboxes).forEach(function (checkbox) {
+			var widget = checkbox.id.replace("udb_widgets__", "");
+
+			if (checkbox.checked) {
+				widgets.push(widget);
+			}
+		});
+
+		return widgets;
+	}
+
+	function getSelectedGeneralSettings() {
+		var checkboxes = document.querySelectorAll(
+			'.udb-general-settings-slide .setting-toggle input[type="checkbox"]'
+		);
+		if (!checkboxes.length) return [];
+
+		var settings = [];
+
+		[].slice.call(checkboxes).forEach(function (checkbox) {
+			var setting = checkbox.id.replace("udb_settings__", "");
+
+			if (checkbox.checked) {
+				settings.push(setting);
+			}
+		});
+
+		return settings;
 	}
 
 	init();
