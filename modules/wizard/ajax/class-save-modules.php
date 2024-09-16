@@ -102,7 +102,7 @@ class Save_Modules {
 		// Send a JSON response with the login_redirect data.
 		wp_send_json_success( [
 			'message'        => __( 'Modules saved', 'ultimate-dashboard' ),
-			'login_redirect' => $login_redirect, // Add login_redirect to the response.
+			'login_redirect' => $login_redirect,
 		] );
 	}
 
