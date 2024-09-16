@@ -23,9 +23,12 @@ return function ( $module ) {
 				'adminUrl' => admin_url(),
 				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
 				'nonces'   => [
-					'saveModules'  => wp_create_nonce( 'udb_wizard_save_modules_nonce' ),
-					'subscribe'    => wp_create_nonce( 'udb_wizard_subscribe_nonce' ),
-					'skipDiscount' => wp_create_nonce( 'udb_wizard_skip_discount_nonce' ),
+					'saveModules'         => wp_create_nonce( 'udb_wizard_save_modules_nonce' ),
+					'saveWidgets'         => wp_create_nonce( 'udb_wizard_save_widgets_nonce' ),
+					'saveGeneralSettings' => wp_create_nonce( 'udb_wizard_save_general_settings_nonce' ),
+					'saveCustomLoginUrl'  => wp_create_nonce( 'udb_wizard_save_custom_login_url_nonce' ),
+					'subscribe'           => wp_create_nonce( 'udb_wizard_subscribe_nonce' ),
+					'skipDiscount'        => wp_create_nonce( 'udb_wizard_skip_discount_nonce' ),
 				],
 			)
 		);
