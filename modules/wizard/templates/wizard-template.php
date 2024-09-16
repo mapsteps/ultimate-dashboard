@@ -8,11 +8,33 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Setup;
+use Udb\Helpers\Widget_Helper;
 
 return function ( $referrer = '' ) {
 
 	$udb_core      = new Setup();
 	$saved_modules = $udb_core->saved_modules();
+
+	$settings                 = get_option( 'udb_settings' );
+	$welcome_panel_is_checked = isset( $settings['welcome_panel'] ) ? 1 : 0;
+
+	$login_redirect = get_option( 'udb_login_redirect' );
+	$login_slug     = isset( $login_redirect['login_url_slug'] ) ? trim( $login_redirect['login_url_slug'], '/' ) : '';
+
+	$general_settings = array(
+		array(
+			'name'  => 'remove_help_tab',
+			'title' => __( 'Remove Help Tab', 'ultimate-dashboard' ),
+		),
+		array(
+			'name'  => 'remove_screen_options',
+			'title' => __( 'Remove Screen Options Tab', 'ultimate-dashboard' ),
+		),
+		array(
+			'name'  => 'remove_admin_bar',
+			'title' => __( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ),
+		),
+	);
 
 	$modules = array(
 		array(
@@ -39,8 +61,10 @@ return function ( $referrer = '' ) {
 			'module' => 'admin_bar_editor',
 			'title'  => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
 		),
-	)
+	);
 
+	$widget_helper = new Widget_Helper();
+	$widgets       = $widget_helper->get_default();
 	?>
 
 	<div class="wrap heatbox-wrap udb-wizard-page" data-udb-referrer="<?php echo esc_attr( $referrer ); ?>">
@@ -140,6 +164,173 @@ return function ( $referrer = '' ) {
 						</ul>
 
 					</div>
+
+					<div class="udb-wizard-slide udb-widgets-slide">
+
+						<header>
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
+
+							<h2>
+								WordPress Dashboard Widgets
+							</h2>
+
+							<p>
+								Choose which widget you would like to enable/disable. You can always manage this later from the Settings page.
+							</p>
+						</header>
+ 
+						<ul class="udb-modules">
+							<li>
+								<div class="module-text">
+									<h3>
+										<label for="udb_widgets__welcome_panel">
+											Welcome Panel
+										</label>
+									</h3>
+								</div>
+								<div class="widget-toggle">
+									<label for="udb_widgets__welcome_panel" class="label checkbox-label">
+										<input
+											type="checkbox"
+											name="udb_widgets[welcome_panel]"
+											id="udb_widgets__welcome_panel"
+											value="1"
+											<?php checked( $welcome_panel_is_checked, 1 ); ?>
+											<?php echo esc_attr( $disabled_attr ); ?>
+										>
+
+										<div class="indicator"></div>
+									</label>
+								</div>
+							</li>
+
+						<?php foreach ( $widgets as $id => $widget ) : ?>
+							<?php
+							$disabled_attr = '';
+							$is_checked    = isset( $settings[ $id ] ) ? 1 : 0;
+							$title         = isset( $widget['title_stripped'] ) ? $widget['title_stripped'] : '';
+							$slug          = isset( $widget['id'] ) ? $widget['id'] : '';
+							?>
+
+							<li>
+								<div class="module-text">
+									<h3>
+										<label for="udb_widgets__<?php echo esc_attr( $slug ); ?>">
+											<?php echo esc_html( $title ); ?>
+										</label>
+									</h3>
+								</div>
+								<div class="widget-toggle">
+									<label for="udb_widgets__<?php echo esc_attr( $slug ); ?>" class="label checkbox-label">
+										<input
+											type="checkbox"
+											name="udb_widgets[<?php echo esc_attr( $slug ); ?>]"
+											id="udb_widgets__<?php echo esc_attr( $slug ); ?>"
+											value="1"
+											<?php checked( $is_checked, 1 ); ?>
+											<?php echo esc_attr( $disabled_attr ); ?>
+										>
+
+										<div class="indicator"></div>
+									</label>
+								</div>
+							</li>
+
+							<?php endforeach; ?>
+						</ul>
+												
+
+					</div>
+
+					<div class="udb-wizard-slide udb-general-settings-slide">
+
+						<header>
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
+
+							<h2>
+								General Settings
+							</h2>
+
+							<p>
+								Choose which one you would like to remove. You can always manage this later from the Settings page.
+							</p>
+						</header>
+ 
+						<ul class="udb-modules">
+						<?php foreach ( $general_settings as $setting ) : ?>
+							<?php
+							$disabled_attr = '';
+							$is_checked    = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
+							$title         = isset( $setting['title'] ) ? $setting['title'] : '';
+							$slug          = isset( $setting['name'] ) ? $setting['name'] : '';
+							?>
+
+							<li>
+								<div class="module-text">
+									<h3>
+										<label for="udb_settings__<?php echo esc_attr( $slug ); ?>">
+											<?php echo esc_html( $title ); ?>
+										</label>
+									</h3>
+								</div>
+								<div class="setting-toggle">
+									<label for="udb_settings__<?php echo esc_attr( $slug ); ?>" class="label checkbox-label">
+										<input
+											type="checkbox"
+											name="udb_settings[<?php echo esc_attr( $slug ); ?>]"
+											id="udb_settings__<?php echo esc_attr( $slug ); ?>"
+											value="1"
+											<?php checked( $is_checked, 1 ); ?>
+											<?php echo esc_attr( $disabled_attr ); ?>
+										>
+
+										<div class="indicator"></div>
+									</label>
+								</div>
+							</li>
+
+							<?php endforeach; ?>
+						</ul>
+												
+
+					</div>
+					
+					<div class="udb-wizard-slide udb-custom-login-url-slide">
+
+						<header>
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
+
+							<h2>
+								Custom Login URL
+							</h2>
+
+							<p>
+								Set a custom login URL. You can always manage this later from the Login Redirect page.
+							</p>
+						</header>
+
+						<div class="udb-subscription-form"> 					 
+
+							<div class="udb-form-row">
+								<code>
+									<?php echo esc_url( site_url() ); ?>/
+								</code>
+							</div>
+
+							<div class="udb-form-row">
+								<input type="text" name="udb_login_redirect[login_url_slug]" id="udb_login_redirect" class="udb-input" value="<?php echo esc_attr( $login_slug ); ?>" placeholder="Login URL" >
+							</div>  
+
+							<div class="udb-form-row">
+								<p class="description">
+									<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
+								</p>
+							</div>
+
+						</div>						
+  
+					</div>
+
 					<div class="udb-wizard-slide udb-subscription-slide">
 
 						<header>
