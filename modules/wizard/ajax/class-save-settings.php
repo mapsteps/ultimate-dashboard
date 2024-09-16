@@ -87,6 +87,11 @@ class Save_Settings {
 			// If the setting is selected (exists in $this->settings), save it as 'true'.
 			if ( in_array( $available_setting, $this->settings, true ) ) {
 				$udb_settings[ $available_setting ] = true;
+			} else {
+				// If the setting is not selected, remove it from the existing settings.
+				if ( isset( $existing_settings[ $available_setting ] ) ) {
+					unset( $existing_settings[ $available_setting ] );
+				}
 			}
 		}
 

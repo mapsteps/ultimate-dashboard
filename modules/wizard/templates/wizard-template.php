@@ -116,6 +116,7 @@ return function ( $referrer = '' ) {
 
 
 						<ul class="udb-modules">
+					
 							<?php foreach ( $modules as $module ) : ?>
 								<?php
 								$slug          = $module['module'];
