@@ -84,6 +84,7 @@ class Save_Modules {
 
 		$module_statuses = [];
 
+		// Iterate through the available modules and set their statuses.
 		foreach ( $this->available_modules as $available_module ) {
 			if ( in_array( $available_module, $this->modules, true ) ) {
 				$module_statuses[ $available_module ] = 'true';
@@ -92,10 +93,18 @@ class Save_Modules {
 			}
 		}
 
+		// Save the modules status.
 		update_option( 'udb_modules', $module_statuses );
 
-		wp_send_json_success( __( 'Modules saved', 'ultimate-dashboard' ) );
+		// Get the login_redirect value from udb_modules.
+		$login_redirect = isset( $module_statuses['login_redirect'] ) ? $module_statuses['login_redirect'] : null;
 
+		// Send a JSON response with the login_redirect data.
+		wp_send_json_success( [
+			'message'        => __( 'Modules saved', 'ultimate-dashboard' ),
+			'login_redirect' => $login_redirect, // Add login_redirect to the response.
+		] );
 	}
+
 
 }
