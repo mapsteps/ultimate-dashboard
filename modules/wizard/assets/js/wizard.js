@@ -75,13 +75,6 @@
 		skipDiscount.addEventListener("click", onSkipDiscountClick);
 	}
 
-	function reinitializeSlider() {
-		if (slider) {
-			slider.destroy(); // Destroy the current instance.
-		}
-		setupSlider(); // Reinitialize the slider.
-	}
-
 	function onSliderIndexChanged(e) {
 		currentSlide = slideIndexes[e.index];
 
@@ -229,7 +222,7 @@
 				}
 
 				if (currentSlide === "general_settings" && loginRedirectUnChecked) {
-					// Go to next slide.
+					// jump to the slide after custom login url.
 					slider.goTo(4);
 				} else {
 					slider.goTo("next");
