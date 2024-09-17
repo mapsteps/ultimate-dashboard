@@ -103,8 +103,6 @@ return function ( $referrer = '' ) {
 					<div class="udb-wizard-slide udb-modules-slide">
 
 						<header>
-							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
-
 							<h2>
 								1-Click Setup
 							</h2>
@@ -169,8 +167,6 @@ return function ( $referrer = '' ) {
 					<div class="udb-wizard-slide udb-widgets-slide">
 
 						<header>
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
-
 							<h2>
 								WordPress Dashboard Widgets
 							</h2>
@@ -246,8 +242,6 @@ return function ( $referrer = '' ) {
 					<div class="udb-wizard-slide udb-general-settings-slide">
 
 						<header>
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
-
 							<h2>
 								General Settings
 							</h2>
@@ -299,8 +293,6 @@ return function ( $referrer = '' ) {
 					<div class="udb-wizard-slide udb-custom-login-url-slide">
 
 						<header>
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
-
 							<h2>
 								Custom Login URL
 							</h2>
