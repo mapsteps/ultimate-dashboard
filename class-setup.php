@@ -297,6 +297,10 @@ class Setup {
 	 */
 	public function load_wizard_module() {
 
+		if ( $this->multisite_supported() ) {
+			return;
+		}
+
 		$need_setup = false;
 		$referrer   = '';
 
