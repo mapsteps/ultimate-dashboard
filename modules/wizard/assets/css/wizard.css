@@ -366,3 +366,6 @@
     background-color: #006999; /* Customize hover color */
 }
 
+.is-hidden {
+	display: none !important;
+}

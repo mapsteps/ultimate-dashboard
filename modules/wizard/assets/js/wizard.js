@@ -118,9 +118,9 @@
 		const skipWizardElement = document.querySelector(".skip-wizard");
 
 		if (currentSlide === "subscription" || currentSlide === "finished") {
-			skipWizardElement.style.display = "none";
+			skipWizardElement.classList.add("is-hidden");
 		} else {
-			skipWizardElement.style.display = "block";
+			skipWizardElement.classList.remove("is-hidden");
 		}
 	}
 
