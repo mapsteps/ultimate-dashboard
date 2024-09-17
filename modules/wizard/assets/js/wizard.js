@@ -8,6 +8,9 @@
 	var subscribeButton = document.querySelector(
 		".wizard-heatbox .subscribe-button"
 	);
+	var removeAllWidgetsCheckbox = document.querySelector(
+		"#udb_widgets__remove-all"
+	);
 	var skipDiscount = document.querySelector(".udb-skip-discount a");
 	var contentAfterSubscribe = document.querySelectorAll(
 		"[data-udb-show-on='subscribe']"
@@ -73,11 +76,14 @@
 		saveButton.addEventListener("click", onSaveButtonClick);
 		subscribeButton.addEventListener("click", onSubscribeButtonClick);
 		skipDiscount.addEventListener("click", onSkipDiscountClick);
+		removeAllWidgetsCheckbox.addEventListener(
+			"change",
+			onRemoveAllWidgetsCheckboxClick
+		);
 	}
 
 	function onSliderIndexChanged(e) {
 		currentSlide = slideIndexes[e.index];
-		var indexPrev = e.indexCached;
 
 		if (currentSlide === "modules") {
 			onModulesSlideSelected();
@@ -368,6 +374,24 @@
 			.always(function () {
 				stopLoading(skipDiscount.parentNode);
 			});
+	}
+
+	function onRemoveAllWidgetsCheckboxClick(e) {
+		// Check if the checkbox is checked
+		var isChecked = removeAllWidgetsCheckbox.checked;
+
+		// Select all checkboxes below it
+		var allCheckboxes = document.querySelectorAll(
+			'.widget-toggle input[type="checkbox"]'
+		);
+
+		// Iterate over each checkbox
+		allCheckboxes.forEach(function (checkbox) {
+			// Skip the "Remove all" checkbox itself
+			if (checkbox.id !== "udb_widgets__remove-all") {
+				checkbox.checked = isChecked;
+			}
+		});
 	}
 
 	function onAjaxFail(jqXHR) {
