@@ -34,7 +34,7 @@
 	var doingAjax = false;
 	var discountSkipped = false;
 	var slider;
-	let loginRedirectUnChecked = false;
+	var loginRedirectUnChecked = false;
 
 	function init() {
 		if (
@@ -206,6 +206,15 @@
 		// Define the index for the slide with index 4 (discount screen)
 		var slideIndexToGo = 4;
 
+		// Check if the checkbox with name udb_modules[login_redirect] is checked
+		var loginRedirectCheckbox = document.querySelector(
+			'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
+		);
+
+		if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+			loginRedirectUnChecked = true;
+		}
+
 		// Check the current slide and handle navigation accordingly
 		switch (currentSlide) {
 			case "modules":
@@ -219,10 +228,6 @@
 				break;
 
 			case "general_settings":
-				// Check if the checkbox with name udb_modules[login_redirect] is checked
-				var loginRedirectCheckbox = document.querySelector(
-					'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
-				);
 				if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
 					// If the checkbox is not checked, go to the slide with index 4
 					slider.goTo(slideIndexToGo);
@@ -251,12 +256,12 @@
 		}
 	}
 
-		function onSkipWizardButtonClick(e) {
-			// Define the index for the slide with index 4 (discount screen)
-			var slideIndexToGo = 4; 
+	function onSkipWizardButtonClick(e) {
+		// Define the index for the slide with index 4 (discount screen)
+		var slideIndexToGo = 4;
 
-			slider.goTo(slideIndexToGo);
-		}
+		slider.goTo(slideIndexToGo);
+	}
 
 	function onSaveButtonClick(e) {
 		if (doingAjax) return;
