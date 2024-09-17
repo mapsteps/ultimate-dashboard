@@ -75,7 +75,7 @@
 
 .udb-wizard-slide header h2 {
 	margin-top: 0;
-	font-size: 26px;
+	font-size: 22px;
 }
 
 .udb-subscription-slide header h2 {
@@ -366,4 +366,10 @@
 
 .is-hidden {
 	display: none !important;
+}
+
+li.udb_widgets__remove-all {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 16px;
+	margin-bottom: 15px;
 }
