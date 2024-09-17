@@ -3,6 +3,7 @@
 	var buttonsWrapper = document.querySelector(
 		".wizard-heatbox .heatbox-footer"
 	);
+
 	var skipButton = document.querySelector(".wizard-heatbox .skip-button");
 	var saveButton = document.querySelector(".wizard-heatbox .save-button");
 	var skipWizardButton = document.getElementById("skip-setup-wizard");
@@ -19,9 +20,8 @@
 	var contentAfterSkipDiscount = document.querySelectorAll(
 		"[data-udb-show-on='skip-discount']"
 	);
-	var discountNotif = document.querySelector(
-		".wizard-heatbox .udb-discount-notif"
-	);
+	var discountNotif = document.querySelector(".wizard-heatbox .for-discount");
+
 	var slideIndexes = [
 		"modules",
 		"widgets",
@@ -185,14 +185,14 @@
 		buttonsWrapper.classList.remove("is-hidden");
 
 		// Check if the checkbox with name udb_modules[login_redirect] is checked
-		var loginRedirectCheckbox = document.querySelector(
-			'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
-		);
-		if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
-			saveButton.textContent = "Complete Setup";
-		} else {
-			saveButton.textContent = "Next";
-		}
+		// var loginRedirectCheckbox = document.querySelector(
+		// 	'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
+		// );
+		// if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+		// 	saveButton.textContent = "Complete Setup";
+		// } else {
+		// 	saveButton.textContent = "Next";
+		// }
 	}
 
 	function onCustomLoginUrlSlideSelected() {
@@ -204,7 +204,7 @@
 		buttonsWrapper.classList.remove("is-hidden");
 
 		// Change the button text to 'Complete Setup'
-		saveButton.textContent = "Complete Setup";
+		// saveButton.textContent = "Complete Setup";
 	}
 
 	function onSubscriptionSlideSelected() {
@@ -259,12 +259,12 @@
 					// If the checkbox is not checked, go to the slide with index 4
 					slider.goTo(slideIndexToGo);
 					// Change save button text to "Next"
-					saveButton.textContent = "Complete Setup";
+					// saveButton.textContent = "Next";
 				} else {
 					// Otherwise, just go to the next slide
 					slider.goTo("next");
 					// Change save button text to "Complete Setup"
-					saveButton.textContent = "Complete Setup";
+					// saveButton.textContent = "Complete Setup";
 				}
 				break;
 
@@ -312,15 +312,10 @@
 				widgets: getSelectedWidgets(),
 			};
 		} else if (target.classList.contains("js-save-general-settings")) {
-			var loginRedirectCheckbox = document.getElementById(
-				"udb_modules__login_redirect"
-			);
-
 			data = {
 				action: "udb_wizard_save_general_settings",
 				nonce: udbWizard.nonces.saveGeneralSettings,
 				settings: getSelectedGeneralSettings(),
-				login_redirect_module: loginRedirectCheckbox.checked,
 			};
 		} else if (target.classList.contains("js-save-custom-login-url")) {
 			var customLoginUrlField = document.querySelector("#udb_login_redirect");

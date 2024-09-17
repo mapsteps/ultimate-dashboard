@@ -31,13 +31,6 @@ class Save_Settings {
 	private $settings = [];
 
 	/**
-	 * The selected login redirect module.
-	 *
-	 * @var boolean
-	 */
-	private $is_login_redirect_module_selected = false;
-
-	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -67,8 +60,6 @@ class Save_Settings {
 		if ( ! wp_verify_nonce( $nonce, 'udb_wizard_save_general_settings_nonce' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
-
-		$this->is_login_redirect_module_selected = isset( $_POST['login_redirect_module'] ) && $_POST['login_redirect_module'] ? true : false;
 
 		foreach ( $_POST['settings'] as $index => $setting ) {
 			if ( is_string( $setting ) ) {
@@ -109,11 +100,6 @@ class Save_Settings {
 
 		// Save the updated settings to the 'udb_settings' option.
 		update_option( 'udb_settings', $updated_settings );
-
-		if ( $this->is_login_redirect_module_selected === (bool) 1 ) {
-			// set setup_wizard_completed to true.
-			update_option( 'udb_setup_wizard_completed', true );
-		}
 
 		wp_send_json_success( __( 'Settings saved', 'ultimate-dashboard' ) );
 
