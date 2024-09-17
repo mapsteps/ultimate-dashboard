@@ -335,8 +335,16 @@ class Setup {
 			return;
 		}
 
+		// Check if the redirect option is set.
+		if ( get_option( 'udb_wizard_redirect_handled' ) ) {
+			return;
+		}
+
 		// Check if the plugin was just activated.
 		if ( get_option( 'udb_plugin_activation' ) ) {
+			// Set the option to prevent redirection in the current session.
+        	update_option( 'udb_wizard_redirect_handled', true );
+
 			// Redirect to the Wizard page.
 			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_wizard' ) );
 			exit;
