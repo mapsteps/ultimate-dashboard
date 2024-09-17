@@ -399,7 +399,7 @@ return function ( $referrer = '' ) {
 					</div>
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large button-primary udb-button save-button">
-							Done
+							Next
 						</button>
 					</div>
 				</footer>
