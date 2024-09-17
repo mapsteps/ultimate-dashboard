@@ -77,6 +77,7 @@
 
 	function onSliderIndexChanged(e) {
 		currentSlide = slideIndexes[e.index];
+		var indexPrev = e.indexCached;
 
 		if (currentSlide === "modules") {
 			onModulesSlideSelected();
@@ -92,19 +93,42 @@
 			onFinishedSlideSelected();
 		}
 
-		// Logic to check if the step is completed
-    if (e.index > 0) {
-			markStepAsComplete(e.index - 1);
-		}
+		// Get the current active index
+		var activeIndex = e.index;
 
+		// Mark all dots before the active dot as completed
+		markDotsBeforeActive();
+
+		// Optionally, remove the completed class from dots after the current active index
+		var allDots = document.querySelectorAll(".tns-nav > button");
+		allDots.forEach(function (dot, index) {
+			if (index >= activeIndex) {
+				dot.classList.remove("completed");
+			}
+		});
 	}
 
-	function markStepAsComplete(stepIndex) {
-    // Get the corresponding dot by its index
-    var dots = document.querySelectorAll('.udb-dots .tns-nav > button');
-    if (dots[stepIndex]) {
-        dots[stepIndex].classList.add('completed');
-    }
+	function getDotsBeforeActive() {
+		// Get all the dots (slider navigation elements)
+		var dots = document.querySelectorAll(".tns-nav > button");
+
+		// Get the index of the currently active dot
+		var activeIndex = Array.from(dots).findIndex((dot) =>
+			dot.classList.contains("tns-nav-active")
+		);
+
+		// Get all dots on the left of the current active dot
+		var dotsBeforeActive = Array.from(dots).slice(0, activeIndex);
+
+		return dotsBeforeActive;
+	}
+
+	function markDotsBeforeActive() {
+		var dotsBeforeActive = getDotsBeforeActive();
+
+		dotsBeforeActive.forEach(function (dot) {
+			dot.classList.add("completed");
+		});
 	}
 
 	function onModulesSlideSelected() {
@@ -114,6 +138,8 @@
 		saveButton.classList.remove("js-save-widgets");
 		saveButton.classList.remove("js-save-general-settings");
 		saveButton.classList.remove("js-save-custom-login-url");
+
+		saveButton.textContent = "Next";
 	}
 
 	function onWidgetsSlideSelected() {
@@ -123,6 +149,8 @@
 
 		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
+
+		saveButton.textContent = "Next";
 	}
 
 	function onGeneralSettingsSlideSelected() {
@@ -132,6 +160,9 @@
 
 		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
+
+		// Change the button text to 'Complete Setup'
+		saveButton.textContent = "Complete Setup";
 	}
 
 	function onCustomLoginUrlSlideSelected() {
@@ -141,6 +172,9 @@
 
 		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
+
+		// Change the button text to 'Complete Setup'
+		saveButton.textContent = "Complete Setup";
 	}
 
 	function onSubscriptionSlideSelected() {
