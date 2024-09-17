@@ -18,6 +18,7 @@ class Save_Widgets {
 	 * @var array
 	 */
 	private $available_widgets = [
+		'remove-all',
 		'welcome_panel',
 		'dashboard_activity',
 		'dashboard_right_now',

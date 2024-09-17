@@ -17,6 +17,7 @@ return function ( $referrer = '' ) {
 
 	$settings                 = get_option( 'udb_settings' );
 	$welcome_panel_is_checked = isset( $settings['welcome_panel'] ) ? 1 : 0;
+	$remove_all_is_checked    = isset( $settings['remove-all'] ) ? 1 : 0;
 
 	$login_redirect = get_option( 'udb_login_redirect' );
 	$login_slug     = isset( $login_redirect['login_url_slug'] ) ? trim( $login_redirect['login_url_slug'], '/' ) : '';
@@ -177,6 +178,30 @@ return function ( $referrer = '' ) {
 						</header>
  
 						<ul class="udb-modules">
+							<li>
+								<div class="module-text">
+									<h3>
+										<label for="udb_widgets__remove-all">
+											Remove all Dashboard Widgets
+										</label>
+									</h3>
+								</div>
+								<div class="widget-toggle">
+									<label for="udb_widgets__remove-all" class="label checkbox-label">
+										<input
+											type="checkbox"
+											name="udb_widgets[remove-all]"
+											id="udb_widgets__remove-all"
+											value="1"
+											<?php checked( $remove_all_is_checked, 1 ); ?>
+											<?php echo esc_attr( $disabled_attr ); ?>
+										>
+
+										<div class="indicator"></div>
+									</label>
+								</div>
+							</li>
+								<br>
 							<li>
 								<div class="module-text">
 									<h3>
