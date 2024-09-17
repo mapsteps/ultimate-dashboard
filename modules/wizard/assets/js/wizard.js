@@ -114,6 +114,14 @@
 				dot.classList.remove("completed");
 			}
 		});
+
+		const skipWizardElement = document.querySelector(".skip-wizard");
+
+		if (currentSlide === "subscription" || currentSlide === "finished") {
+			skipWizardElement.style.display = "none";
+		} else {
+			skipWizardElement.style.display = "block";
+		}
 	}
 
 	function getDotsBeforeActive() {
