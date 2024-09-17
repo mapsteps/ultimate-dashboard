@@ -161,8 +161,15 @@
 		discountNotif.classList.add("is-hidden");
 		buttonsWrapper.classList.remove("is-hidden");
 
-		// Change the button text to 'Complete Setup'
-		saveButton.textContent = "Complete Setup";
+		// Check if the checkbox with name udb_modules[login_redirect] is checked
+		var loginRedirectCheckbox = document.querySelector(
+			'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
+		);
+		if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+			saveButton.textContent = "Complete Setup";
+		} else {
+			saveButton.textContent = "Next";
+		}
 	}
 
 	function onCustomLoginUrlSlideSelected() {
@@ -188,6 +195,10 @@
 	}
 
 	function onSkipButtonClick(e) {
+		// Define the index for the slide with index 4
+		var slideIndexToGo = 4; // Replace with the correct index if needed
+
+		// Check the current slide and handle navigation accordingly
 		switch (currentSlide) {
 			case "modules":
 				// Go to next slide.
@@ -200,8 +211,21 @@
 				break;
 
 			case "general_settings":
-				// Go to next slide.
-				slider.goTo("next");
+				// Check if the checkbox with name udb_modules[login_redirect] is checked
+				var loginRedirectCheckbox = document.querySelector(
+					'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
+				);
+				if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+					// If the checkbox is not checked, go to the slide with index 4
+					slider.goTo(slideIndexToGo);
+					// Change save button text to "Next"
+					saveButton.textContent = "Complete Setup";
+				} else {
+					// Otherwise, just go to the next slide
+					slider.goTo("next");
+					// Change save button text to "Complete Setup"
+					saveButton.textContent = "Next";
+				}
 				break;
 
 			case "custom_login_url":
