@@ -178,7 +178,7 @@ return function ( $referrer = '' ) {
 						</header>
  
 						<ul class="udb-modules">
-							<li class="udb_widgets__remove-all">
+							<li>
 								<div class="module-text">
 									<h3>
 										<label for="udb_widgets__remove-all">
@@ -201,6 +201,8 @@ return function ( $referrer = '' ) {
 									</label>
 								</div>
 							</li>
+
+							<footer class="heatbox-footer"></footer>
 							
 							<li>
 								<div class="module-text">

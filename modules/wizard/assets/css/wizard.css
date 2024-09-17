@@ -367,9 +367,3 @@
 .is-hidden {
 	display: none !important;
 }
-
-li.udb_widgets__remove-all {
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 16px;
-	margin-bottom: 15px;
-}
