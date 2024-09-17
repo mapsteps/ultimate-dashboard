@@ -438,11 +438,12 @@ return function ( $referrer = '' ) {
 			<!-- Add this button below the wizard-heatbox -->
 			<div class="heatbox-footer skip-wizard">
 				<div class="heatbox-footer-item">
-					<button id="skip-setup-wizard" class="button button-large button-primary">
+					<a href="#" id="skip-setup-wizard" class="skip-wizard-link">
 						Skip Setup Wizard
-					</button>
+					</a>
 				</div>
 			</div>
+
 		</div>
 
 

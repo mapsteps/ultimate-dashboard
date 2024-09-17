@@ -347,23 +347,21 @@
 }
 
 .heatbox-footer.skip-wizard {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically (if needed) */
-    padding: 20px;           /* Optional padding for spacing */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
 }
 
-#skip-setup-wizard {
-    background-color: #0073aa; /* Customize the background color */
-    color: #fff; /* Customize the text color */
-    border: none; /* Remove border */
-    padding: 10px 20px; /* Customize padding */
-    cursor: pointer; /* Change cursor on hover */
-    font-size: 16px; /* Customize font size */
+.skip-wizard-link {
+	color: #0073aa;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
 }
 
-#skip-setup-wizard:hover {
-    background-color: #006999; /* Customize hover color */
+.skip-wizard-link:hover {
+	text-decoration: underline;
 }
 
 .is-hidden {
