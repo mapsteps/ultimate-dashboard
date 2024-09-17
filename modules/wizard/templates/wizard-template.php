@@ -322,11 +322,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								Custom Login URL
+								Change Login URL
 							</h2>
 
 							<p>
-								Set a custom login URL. You can always manage this later from the Login Redirect page.
+								Change the login URL. You can always manage this later from the Login Redirect page.
 							</p>
 						</header>
 
@@ -339,7 +339,7 @@ return function ( $referrer = '' ) {
 							</div>
 
 							<div class="udb-form-row">
-								<input type="text" name="udb_login_redirect[login_url_slug]" id="udb_login_redirect" class="udb-input" value="<?php echo esc_attr( $login_slug ); ?>" placeholder="Login URL" >
+								<input type="text" name="udb_login_redirect[login_url_slug]" id="udb_login_redirect" class="udb-input" value="<?php echo esc_attr( $login_slug ); ?>" placeholder="login" >
 							</div>  
 
 							<div class="udb-form-row">
