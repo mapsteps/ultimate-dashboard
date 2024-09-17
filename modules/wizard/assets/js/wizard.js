@@ -312,10 +312,15 @@
 				widgets: getSelectedWidgets(),
 			};
 		} else if (target.classList.contains("js-save-general-settings")) {
+			var loginRedirectCheckbox = document.getElementById(
+				"udb_modules__login_redirect"
+			);
+
 			data = {
 				action: "udb_wizard_save_general_settings",
 				nonce: udbWizard.nonces.saveGeneralSettings,
 				settings: getSelectedGeneralSettings(),
+				login_redirect_module: loginRedirectCheckbox.checked,
 			};
 		} else if (target.classList.contains("js-save-custom-login-url")) {
 			var customLoginUrlField = document.querySelector("#udb_login_redirect");

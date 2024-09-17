@@ -66,6 +66,9 @@ class Save_Custom_Login_Url {
 
 		update_option( 'udb_login_redirect', $existing_settings );
 
+		// set setup_wizard_completed to true.
+		update_option( 'udb_setup_wizard_completed', true );
+
 		wp_send_json_success( __( 'Login redirect saved', 'ultimate-dashboard' ) );
 
 	}

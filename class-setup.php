@@ -301,8 +301,9 @@ class Setup {
 			return;
 		}
 
-		$need_setup = false;
-		$referrer   = '';
+		$need_setup                = false;
+		$referrer                  = '';
+		$is_setup_wizard_completed = get_option( 'udb_setup_wizard_completed' );
 
 		// Erident's migration takes the highest priority.
 		if ( get_option( 'udb_migration_from_erident' ) ) {
@@ -318,6 +319,13 @@ class Setup {
 			// redirect to wizard page.
 			add_action( 'current_screen', array( $this, 'redirect_to_wizard_page' ), 20 );
 		}
+
+		if ( $is_setup_wizard_completed ) {
+			$need_setup = false;
+		} else {
+			$need_setup = true;
+		}
+
 		// In the future, we might allow UDB to be installed from other plugins as well.
 
 		if ( ! $need_setup ) {
@@ -348,7 +356,7 @@ class Setup {
 		// Check if the plugin was just activated.
 		if ( get_option( 'udb_plugin_activation' ) ) {
 			// Set the option to prevent redirection in the current session.
-        	update_option( 'udb_setup_wizard_redirected', true );
+			update_option( 'udb_setup_wizard_redirected', true );
 
 			// Redirect to the Wizard page.
 			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_wizard' ) );
@@ -676,7 +684,9 @@ class Setup {
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
 			delete_option( 'udb_plugin_activation' );
-			delete_option( 'udb_setup_wizard_redirected' );			
+			delete_option( 'udb_setup_wizard_redirected' );
+
+			update_option( 'udb_setup_wizard_completed', false );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
