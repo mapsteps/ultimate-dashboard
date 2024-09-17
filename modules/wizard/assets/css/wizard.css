@@ -223,7 +223,7 @@
 
 /* set blue color for completed slides */
 .udb-dots .tns-nav > .completed {
-    background: #096484;
+	background: #096484;
 }
 
 /* Hide the dot button for finished slide */
@@ -345,3 +345,24 @@
 	border: none;
 	color: #0073aa;
 }
+
+.heatbox-footer.skip-wizard {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically (if needed) */
+    padding: 20px;           /* Optional padding for spacing */
+}
+
+#skip-setup-wizard {
+    background-color: #0073aa; /* Customize the background color */
+    color: #fff; /* Customize the text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Customize padding */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Customize font size */
+}
+
+#skip-setup-wizard:hover {
+    background-color: #006999; /* Customize hover color */
+}
+

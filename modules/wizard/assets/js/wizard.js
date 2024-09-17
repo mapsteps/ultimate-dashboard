@@ -5,6 +5,7 @@
 	);
 	var skipButton = document.querySelector(".wizard-heatbox .skip-button");
 	var saveButton = document.querySelector(".wizard-heatbox .save-button");
+	var skipWizardButton = document.getElementById("skip-setup-wizard");
 	var subscribeButton = document.querySelector(
 		".wizard-heatbox .subscribe-button"
 	);
@@ -73,6 +74,7 @@
 		}
 
 		skipButton.addEventListener("click", onSkipButtonClick);
+		skipWizardButton.addEventListener("click", onSkipWizardButtonClick);
 		saveButton.addEventListener("click", onSaveButtonClick);
 		subscribeButton.addEventListener("click", onSubscribeButtonClick);
 		skipDiscount.addEventListener("click", onSkipDiscountClick);
@@ -201,8 +203,8 @@
 	}
 
 	function onSkipButtonClick(e) {
-		// Define the index for the slide with index 4
-		var slideIndexToGo = 4; // Replace with the correct index if needed
+		// Define the index for the slide with index 4 (discount screen)
+		var slideIndexToGo = 4;
 
 		// Check the current slide and handle navigation accordingly
 		switch (currentSlide) {
@@ -248,6 +250,13 @@
 				break;
 		}
 	}
+
+		function onSkipWizardButtonClick(e) {
+			// Define the index for the slide with index 4 (discount screen)
+			var slideIndexToGo = 4; 
+
+			slider.goTo(slideIndexToGo);
+		}
 
 	function onSaveButtonClick(e) {
 		if (doingAjax) return;
