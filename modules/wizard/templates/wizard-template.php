@@ -202,7 +202,8 @@ return function ( $referrer = '' ) {
 								</div>
 							</li>
 
-							<footer class="heatbox-footer"></footer>
+							<div class="udb-discount-notif for-widget-remove-all">
+							</div>
 							
 							<li>
 								<div class="module-text">
@@ -431,7 +432,7 @@ return function ( $referrer = '' ) {
 					</div>
 				</footer>
 
-				<div class="udb-discount-notif is-hidden">
+				<div class="udb-discount-notif for-discount is-hidden">
 					This is an exclusive discount for <?php echo esc_attr( ucwords( $referrer ) ); ?> users.<br> <strong>This discount will not come back!</strong>
 				</div>
 
