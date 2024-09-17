@@ -164,6 +164,7 @@ class Setup {
 			'udb_widgets_page_udb_admin_menu',
 			'udb_widgets_page_udb_admin_bar',
 			'udb_widgets_page_udb_plugin_onboarding',
+			'udb_widgets_page_udb_wizard',
 		);
 
 		$screen = get_current_screen();
