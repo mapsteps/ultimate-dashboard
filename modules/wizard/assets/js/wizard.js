@@ -91,6 +91,20 @@
 		} else if (currentSlide === "finished") {
 			onFinishedSlideSelected();
 		}
+
+		// Logic to check if the step is completed
+    if (e.index > 0) {
+			markStepAsComplete(e.index - 1);
+		}
+
+	}
+
+	function markStepAsComplete(stepIndex) {
+    // Get the corresponding dot by its index
+    var dots = document.querySelectorAll('.udb-dots .tns-nav > button');
+    if (dots[stepIndex]) {
+        dots[stepIndex].classList.add('completed');
+    }
 	}
 
 	function onModulesSlideSelected() {
