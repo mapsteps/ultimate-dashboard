@@ -21,7 +21,9 @@
 		"[data-udb-show-on='skip-discount']"
 	);
 	var discountNotif = document.querySelector(".wizard-heatbox .for-discount");
-
+	var loginRedirectCheckbox = document.getElementById(
+		"udb_modules__login_redirect"
+	);
 	var slideIndexes = [
 		"modules",
 		"widgets",
@@ -88,6 +90,10 @@
 		removeAllWidgetsCheckbox.addEventListener(
 			"change",
 			onRemoveAllWidgetsCheckboxClick
+		);
+		loginRedirectCheckbox.addEventListener(
+			"change",
+			onLoginRedirectCheckboxClick
 		);
 	}
 
@@ -220,14 +226,11 @@
 	function onSkipButtonClick(e) {
 		// Define the index for the slide with index 4 (discount screen)
 		var slideIndexToGo = 4;
-		var loginRedirectCheckbox = document.getElementById(
-			"udb_modules__login_redirect"
-		);
-
 		var dotsWrapper = document.querySelector(
 			".wizard-heatbox .udb-dots .tns-nav"
 		);
 		var dots = dotsWrapper.children;
+
 		// Check the current slide and handle navigation accordingly
 		switch (currentSlide) {
 			case "modules":
@@ -236,12 +239,12 @@
 
 					// hide 4th dot
 					if (dots.length >= 4) {
-						dots[3].classList.add("is-hidden"); // Add 'is-hidden' class to the 4th dot (index 3)
+						dots[3].classList.add("is-hidden");
 					}
 				} else {
 					// show 4th dot
 					if (dots.length >= 4) {
-						dots[3].classList.remove("is-hidden"); // Add 'is-hidden' class to the 4th dot (index 3)
+						dots[3].classList.remove("is-hidden");
 					}
 				}
 
@@ -433,6 +436,25 @@
 				checkbox.checked = isChecked;
 			}
 		});
+	}
+
+	function onLoginRedirectCheckboxClick(e) {
+		var dotsWrapper = document.querySelector(
+			".wizard-heatbox .udb-dots .tns-nav"
+		);
+		var dots = dotsWrapper.children;
+
+		if (loginRedirectCheckbox.checked) {
+			// hide 4th dot
+			if (dots.length >= 4) {
+				dots[3].classList.remove("is-hidden");
+			}
+		} else {
+			// hide 4th dot
+			if (dots.length >= 4) {
+				dots[3].classList.add("is-hidden");
+			}
+		}
 	}
 
 	function onAjaxFail(jqXHR) {
