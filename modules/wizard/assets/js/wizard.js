@@ -71,6 +71,13 @@
 
 		if (dotsWrapper) {
 			dotsWrapper.appendChild(instance.navContainer);
+
+			// Hide the last two dots
+			var dots = instance.navContainer.children;
+			if (dots.length > 2) {
+				dots[dots.length - 1].style.display = "none"; // Hide last dot
+				dots[dots.length - 2].style.display = "none"; // Hide second-to-last dot
+			}
 		}
 
 		skipButton.addEventListener("click", onSkipButtonClick);
@@ -213,19 +220,31 @@
 	function onSkipButtonClick(e) {
 		// Define the index for the slide with index 4 (discount screen)
 		var slideIndexToGo = 4;
-
-		// Check if the checkbox with name udb_modules[login_redirect] is checked
-		var loginRedirectCheckbox = document.querySelector(
-			'.udb-modules-slide input[name="udb_modules[login_redirect]"]'
+		var loginRedirectCheckbox = document.getElementById(
+			"udb_modules__login_redirect"
 		);
 
-		if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
-			loginRedirectUnChecked = true;
-		}
-
+		var dotsWrapper = document.querySelector(
+			".wizard-heatbox .udb-dots .tns-nav"
+		);
+		var dots = dotsWrapper.children;
 		// Check the current slide and handle navigation accordingly
 		switch (currentSlide) {
 			case "modules":
+				if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+					loginRedirectUnChecked = true;
+
+					// hide 4th dot
+					if (dots.length >= 4) {
+						dots[3].classList.add("is-hidden"); // Add 'is-hidden' class to the 4th dot (index 3)
+					}
+				} else {
+					// show 4th dot
+					if (dots.length >= 4) {
+						dots[3].classList.remove("is-hidden"); // Add 'is-hidden' class to the 4th dot (index 3)
+					}
+				}
+
 				// Go to next slide.
 				slider.goTo("next");
 				break;
@@ -236,7 +255,7 @@
 				break;
 
 			case "general_settings":
-				if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
+				if (loginRedirectUnChecked) {
 					// If the checkbox is not checked, go to the slide with index 4
 					slider.goTo(slideIndexToGo);
 					// Change save button text to "Next"
@@ -245,7 +264,7 @@
 					// Otherwise, just go to the next slide
 					slider.goTo("next");
 					// Change save button text to "Complete Setup"
-					saveButton.textContent = "Next";
+					saveButton.textContent = "Complete Setup";
 				}
 				break;
 
