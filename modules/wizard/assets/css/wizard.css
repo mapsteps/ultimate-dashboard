@@ -319,3 +319,24 @@
 	visibility: hidden;
 	opacity: 0;
 }
+
+.wizard-skip-button {
+	font-size: 16px;
+	color: #0073aa;
+	text-decoration: none;
+	outline: none;
+	border: none;
+}
+
+.wizard-skip-button:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.wizard-skip-button:focus,
+.wizard-skip-button:active,
+.wizard-skip-button:visited {
+	outline: none;
+	border: none;
+	color: #0073aa;
+}

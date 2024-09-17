@@ -390,9 +390,9 @@ return function ( $referrer = '' ) {
 
 				<footer class="heatbox-footer">
 					<div class="heatbox-footer-item">
-						<button type="button" class="button button-large udb-button skip-button">
+						<span class="wizard-skip-button skip-button">
 							Skip
-						</button>
+						</span>
 					</div>
 					<div class="heatbox-footer-item">
 						<div class="udb-dots"></div>
