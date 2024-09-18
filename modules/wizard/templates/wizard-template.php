@@ -81,7 +81,7 @@ return function ( $referrer = '' ) {
 							Welcome to Ultimate Dashboard
 						</span>
 						<p class="subtitle">
-							Complete the setup wizard and start using Ultimate Dashboard in less than a minute.
+							Complete the Setup Wizard and start using Ultimate Dashboard in less than a minute.
 						</p>
 					</div>
 
@@ -262,8 +262,7 @@ return function ( $referrer = '' ) {
 							</li>
 
 							<?php endforeach; ?>
-						</ul>
-												
+						</ul>						
 
 					</div>
 
