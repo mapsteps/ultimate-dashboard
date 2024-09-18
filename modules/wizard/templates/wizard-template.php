@@ -81,7 +81,7 @@ return function ( $referrer = '' ) {
 							Welcome to Ultimate Dashboard
 						</span>
 						<p class="subtitle">
-							Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>
+							Complete the setup wizard and start using Ultimate Dashboard in less than a minute.
 						</p>
 					</div>
 
@@ -105,11 +105,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								1-Click Setup
+								Features
 							</h2>
 
 							<p>
-								Choose what features you would like to enable/disable. You can always manage this later from the Modules page.
+								Select the features you'd like to enable. You can change them later in the "Modules" tab.
 							</p>
 						</header>
 
@@ -169,11 +169,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								WordPress Dashboard Widgets
+								Dashboard Widgets
 							</h2>
 
 							<p>
-								Choose which widget you would like to enable/disable. You can always manage this later from the Settings page.
+								Let’s clean up your dashboard. Remove some or all of the default WordPress widgets.
 							</p>
 						</header>
  
@@ -275,7 +275,7 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p>
-								Choose which one you would like to remove. You can always manage this later from the Settings page.
+								Next, let's simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.
 							</p>
 						</header>
  
@@ -320,8 +320,8 @@ return function ( $referrer = '' ) {
 					
 					<div class="udb-wizard-slide udb-custom-login-url-slide">
 						<header>
-							<h2>Change Login URL</h2>
-							<p>Change the login URL. You can always manage this later from the Login Redirect page.</p>
+							<h2>Custom Login URL</h2>
+							<p>Customize the login URL to enhance security and avoid common login page attacks.</p>
 						</header>
 
 						<div class="udb-subscription-form">
@@ -339,10 +339,12 @@ return function ( $referrer = '' ) {
 								<code class="wizard-login-url">/</code>
 							</div>
 
+							<div class="udb-discount-notif"></div>
+
 							<!-- Description -->
 							<div class="udb-form-row">
 								<p class="description">
-									<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
+									<?php printf( __( 'This will replace your login URL (<code>%1$s/wp-login.php</code>) and help secure your site by making the login page less predictable.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
 								</p>
 							</div>
 						</div>
