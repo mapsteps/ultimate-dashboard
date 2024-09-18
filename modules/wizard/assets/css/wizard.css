@@ -367,3 +367,26 @@
 .is-hidden {
 	display: none !important;
 }
+
+.udb-form-row.wizard-login-url {
+	display: flex;
+	align-items: center;
+	gap: 1px;
+	height: 25px;
+}
+
+.udb-form-row code.wizard-login-url {
+	background: #f1f1f1;
+	padding: 5px;
+	border-radius: 3px;
+	white-space: nowrap;
+}
+
+.udb-form-row input.udb-input.wizard-login-url {
+	flex-grow: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: inherit;
+	height: inherit;
+}

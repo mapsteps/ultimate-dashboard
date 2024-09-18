@@ -319,38 +319,35 @@ return function ( $referrer = '' ) {
 					</div>
 					
 					<div class="udb-wizard-slide udb-custom-login-url-slide">
-
 						<header>
-							<h2>
-								Change Login URL
-							</h2>
-
-							<p>
-								Change the login URL. You can always manage this later from the Login Redirect page.
-							</p>
+							<h2>Change Login URL</h2>
+							<p>Change the login URL. You can always manage this later from the Login Redirect page.</p>
 						</header>
 
-						<div class="udb-subscription-form"> 					 
-
-							<div class="udb-form-row">
-								<code>
-									<?php echo esc_url( site_url() ); ?>/
-								</code>
+						<div class="udb-subscription-form">
+							<!-- URL Row -->
+							<div class="udb-form-row wizard-login-url">
+								<code class="wizard-login-url">yourdomain.com/</code>
+								<input 
+									type="text" 
+									name="udb_login_redirect[login_url_slug]" 
+									id="udb_login_redirect" 
+									class="udb-input wizard-login-url"
+									value="<?php echo esc_attr( $login_slug ); ?>" 
+									placeholder="login" 
+								>
+								<code class="wizard-login-url">/</code>
 							</div>
 
-							<div class="udb-form-row">
-								<input type="text" name="udb_login_redirect[login_url_slug]" id="udb_login_redirect" class="udb-input" value="<?php echo esc_attr( $login_slug ); ?>" placeholder="login" >
-							</div>  
-
+							<!-- Description -->
 							<div class="udb-form-row">
 								<p class="description">
 									<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
 								</p>
 							</div>
-
-						</div>						
-  
+						</div>
 					</div>
+
 
 					<div class="udb-wizard-slide udb-subscription-slide">
 
