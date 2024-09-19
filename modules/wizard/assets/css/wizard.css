@@ -383,3 +383,7 @@
 	font-size: inherit;
 	height: inherit;
 }
+
+.wrap.heatbox-wrap.udb-wizard-page .heatbox-margin-bottom {
+	margin-bottom: 40px;
+}
