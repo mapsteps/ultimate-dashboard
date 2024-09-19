@@ -274,7 +274,7 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p>
-								Next, let's simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.
+								Next, let's simplify the WordPress dashboard interface by removing extra elements for a cleaner look.
 							</p>
 						</header>
  
@@ -353,14 +353,13 @@ return function ( $referrer = '' ) {
 					<div class="udb-wizard-slide udb-subscription-slide">
 
 						<header>
-							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								Exclusive <br>Discount 🥳
+								Exclusive Discount 🥳
 							</h2>
 
 							<p>
-								We are offering all <strong><?php echo esc_attr( ucwords( $referrer ) ); ?> users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.
+								Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.
 							</p>
 						</header>
 
@@ -378,7 +377,7 @@ return function ( $referrer = '' ) {
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-									No, I don't want any Discount :/
+									No, I don't want any discount :/
 								</a>
 							</div>
 						</div>
@@ -389,19 +388,19 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								Setup Complete. Enjoy!
+								Setup Complete! 🎉
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
+								We'll send you an email with a <strong>discount code for Ultimate Dashboard PRO</strong> shortly.
 							</p>
 
 							<p>
-								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
+								What's next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
+								<strong>This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
 							</p>
 						</header>
 
@@ -431,7 +430,7 @@ return function ( $referrer = '' ) {
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-					This is an exclusive discount for <?php echo esc_attr( ucwords( $referrer ) ); ?> users.<br> <strong>This discount will not come back!</strong>
+					Don't miss out.<br> <strong>This discount won't come back!</strong>
 				</div>
 
 			</div>
