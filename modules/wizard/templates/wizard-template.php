@@ -274,11 +274,7 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p>
-<<<<<<< HEAD
-								Next, let's simplify the WordPress dashboard interface by removing extra elements for a cleaner look.
-=======
 								<?php _e( 'Next, let\'s simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.', 'ultimate-dashboard' ); ?>
->>>>>>> 02e1058b0a9dccc830575caec2271a741142cfde
 							</p>
 						</header>
  
@@ -359,19 +355,11 @@ return function ( $referrer = '' ) {
 						<header>
 
 							<h2>
-<<<<<<< HEAD
-								Exclusive Discount 🥳
+								<?php _e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.
-=======
-								<?php _e( 'Exclusive <br>Discount 🥳', 'ultimate-dashboard' ); ?>
-							</h2>
-
-							<p>
-								<?php printf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
->>>>>>> 02e1058b0a9dccc830575caec2271a741142cfde
+								<?php _e( 'Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -389,11 +377,7 @@ return function ( $referrer = '' ) {
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-<<<<<<< HEAD
-									No, I don't want any discount :/
-=======
-									<?php _e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
->>>>>>> 02e1058b0a9dccc830575caec2271a741142cfde
+									<?php _e( 'No, I don\'t want any discount :/', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
@@ -462,11 +446,7 @@ return function ( $referrer = '' ) {
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-<<<<<<< HEAD
-					Don't miss out.<br> <strong>This discount won't come back!</strong>
-=======
-					<?php printf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
->>>>>>> 02e1058b0a9dccc830575caec2271a741142cfde
+					<?php __e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
 				</div>
 
 			</div>
