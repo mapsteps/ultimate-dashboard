@@ -391,8 +391,13 @@ return function ( $referrer = '' ) {
 								<?php _e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
 							</h2>
 
+							<p data-udb-show-on="subscribe">
+								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly. ', 'ultimate - dashboard' ); ?>
+							</p>
+
 							<p>
-								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
+								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
+								?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
@@ -426,7 +431,7 @@ return function ( $referrer = '' ) {
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-					<?php __e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
+					<?php _e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
 				</div>
 
 			</div>

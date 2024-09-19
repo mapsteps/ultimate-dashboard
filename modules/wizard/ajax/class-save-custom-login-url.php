@@ -24,7 +24,7 @@ class Save_Custom_Login_Url {
 	 */
 	public function __construct() {
 
-		add_action( 'wp_ajax_udb_wizard_save_custom_login_url', [ $this, 'handler' ] );
+		add_action( 'wp_ajax_udb_onboarding_wizard_save_custom_login_url', [ $this, 'handler' ] );
 
 	}
 
@@ -46,7 +46,7 @@ class Save_Custom_Login_Url {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
-		if ( ! wp_verify_nonce( $nonce, 'udb_wizard_save_custom_login_url_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'udb_onboarding_wizard_save_custom_login_url_nonce' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
 

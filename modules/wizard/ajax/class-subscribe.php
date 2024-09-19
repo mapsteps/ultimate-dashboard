@@ -38,7 +38,7 @@ class Subscribe {
 	 */
 	public function __construct() {
 
-		add_action( 'wp_ajax_udb_wizard_subscribe', [ $this, 'handler' ] );
+		add_action( 'wp_ajax_udb_onboarding_wizard_subscribe', [ $this, 'handler' ] );
 
 	}
 
@@ -60,7 +60,7 @@ class Subscribe {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
-		if ( ! wp_verify_nonce( $nonce, 'udb_wizard_subscribe_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'udb_onboarding_wizard_subscribe_nonce' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
 

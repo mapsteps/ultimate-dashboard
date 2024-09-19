@@ -302,7 +302,7 @@
 
 		// Initialize data object for saving modules by default
 		let data = {
-			action: "udb_wizard_save_modules",
+			action: "udb_onboarding_wizard_save_modules",
 			nonce: udbWizard.nonces.saveModules,
 			modules: getSelectedModules(),
 		};
@@ -310,13 +310,13 @@
 		// Check if the clicked element has specific classes
 		if (target.classList.contains("js-save-widgets")) {
 			data = {
-				action: "udb_wizard_save_widgets",
+				action: "udb_onboarding_wizard_save_widgets",
 				nonce: udbWizard.nonces.saveWidgets,
 				widgets: getSelectedWidgets(),
 			};
 		} else if (target.classList.contains("js-save-general-settings")) {
 			data = {
-				action: "udb_wizard_save_general_settings",
+				action: "udb_onboarding_wizard_save_general_settings",
 				nonce: udbWizard.nonces.saveGeneralSettings,
 				settings: getSelectedGeneralSettings(),
 			};
@@ -324,7 +324,7 @@
 			var customLoginUrlField = document.querySelector("#udb_login_redirect");
 
 			data = {
-				action: "udb_wizard_save_custom_login_url",
+				action: "udb_onboarding_wizard_save_custom_login_url",
 				nonce: udbWizard.nonces.saveCustomLoginUrl,
 				custom_login_url: customLoginUrlField.value,
 			};
@@ -367,7 +367,7 @@
 			url: udbWizard.ajaxUrl,
 			type: "POST",
 			data: {
-				action: "udb_wizard_subscribe",
+				action: "udb_onboarding_wizard_subscribe",
 				nonce: udbWizard.nonces.subscribe,
 				name: nameField.value,
 				email: emailField.value,
@@ -399,7 +399,7 @@
 			url: udbWizard.ajaxUrl,
 			type: "POST",
 			data: {
-				action: "udb_wizard_skip_discount",
+				action: "udb_onboarding_wizard_skip_discount",
 				nonce: udbWizard.nonces.skipDiscount,
 				referrer: page.dataset.udbReferrer,
 			},
