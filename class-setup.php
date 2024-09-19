@@ -297,7 +297,7 @@ class Setup {
 	 */
 	public function load_wizard_module() {
 
-		if ( $this->multisite_supported() ) {
+		if ( $this->multisite_supported() || udb_is_pro_active() ) {
 			return;
 		}
 
