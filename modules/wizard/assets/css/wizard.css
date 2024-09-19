@@ -337,14 +337,16 @@
 	color: #0073aa;
 }
 
-.heatbox-footer.skip-wizard {
+.heatbox-footer.skip-wizard,
+.heatbox-footer.explore-settings {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
 }
 
-.skip-wizard-link {
+.heatbox-footer.skip-wizard a,
+.heatbox-footer.explore-settings a {
 	color: #0073aa;
 	text-decoration: none;
 	font-size: 16px;

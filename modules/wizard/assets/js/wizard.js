@@ -129,12 +129,18 @@
 		});
 
 		const skipWizardElement = document.querySelector(".skip-wizard");
+		const exploreSettingsElement = document.getElementById("explore-settings");
 
 		if (currentSlide === "subscription" || currentSlide === "finished") {
 			skipWizardElement.classList.add("is-hidden");
 		} else {
 			skipWizardElement.classList.remove("is-hidden");
 		}
+
+		if (currentSlide === "finished") {
+			exploreSettingsElement.classList.remove("is-hidden");
+		} 
+		
 	}
 
 	function getDotsBeforeActive() {

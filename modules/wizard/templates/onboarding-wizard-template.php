@@ -194,7 +194,6 @@ return function ( $referrer = '' ) {
 											id="udb_widgets__remove-all"
 											value="1"
 											<?php checked( $remove_all_is_checked, 1 ); ?>
-											<?php echo esc_attr( $disabled_attr ); ?>
 										>
 
 										<div class="indicator"></div>
@@ -221,7 +220,6 @@ return function ( $referrer = '' ) {
 											id="udb_widgets__welcome_panel"
 											value="1"
 											<?php checked( $welcome_panel_is_checked, 1 ); ?>
-											<?php echo esc_attr( $disabled_attr ); ?>
 										>
 
 										<div class="indicator"></div>
@@ -253,7 +251,6 @@ return function ( $referrer = '' ) {
 											id="udb_widgets__<?php echo esc_attr( $slug ); ?>"
 											value="1"
 											<?php checked( $is_checked, 1 ); ?>
-											<?php echo esc_attr( $disabled_attr ); ?>
 										>
 
 										<div class="indicator"></div>
@@ -281,7 +278,6 @@ return function ( $referrer = '' ) {
 						<ul class="udb-modules">
 						<?php foreach ( $general_settings as $setting ) : ?>
 							<?php
-							$disabled_attr = '';
 							$is_checked    = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
 							$title         = isset( $setting['title'] ) ? $setting['title'] : '';
 							$slug          = isset( $setting['name'] ) ? $setting['name'] : '';
@@ -303,7 +299,6 @@ return function ( $referrer = '' ) {
 											id="udb_settings__<?php echo esc_attr( $slug ); ?>"
 											value="1"
 											<?php checked( $is_checked, 1 ); ?>
-											<?php echo esc_attr( $disabled_attr ); ?>
 										>
 
 										<div class="indicator"></div>
@@ -396,7 +391,8 @@ return function ( $referrer = '' ) {
 							</p>
 
 							<p>
-								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
+								<?php
+								_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
 								?>
 							</p>
 
@@ -436,11 +432,20 @@ return function ( $referrer = '' ) {
 
 			</div>
 
-			<!-- Add this button below the wizard-heatbox -->
+			<!-- Skip Wizard Link -->
 			<div class="heatbox-footer skip-wizard">
 				<div class="heatbox-footer-item">
 					<a href="#" id="skip-setup-wizard" class="skip-wizard-link">
 						<?php _e( 'Skip Setup Wizard', 'ultimate-dashboard' ); ?>
+					</a>
+				</div>
+			</div>
+
+			<!-- Explore Settings Link -->
+			<div class="heatbox-footer explore-settings">
+				<div class="heatbox-footer-item">
+					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) ); ?>" id="explore-settings" class="explore-settings-link is-hidden">
+						<?php _e( 'Explore Settings', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>
 			</div>
