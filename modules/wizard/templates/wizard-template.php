@@ -78,10 +78,10 @@ return function ( $referrer = '' ) {
 
 					<div style="width: 80%">
 						<span class="title">
-							Welcome to Ultimate Dashboard
+							<?php _e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 						</span>
 						<p class="subtitle">
-							Complete the Setup Wizard and start using Ultimate Dashboard in less than a minute.
+							<?php _e( 'Complete the Setup Wizard and start using Ultimate Dashboard in less than a minute.', 'ultimate-dashboard' ); ?>							
 						</p>
 					</div>
 
@@ -105,11 +105,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								Features
+								<?php _e( 'Features', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								Select the features you'd like to enable. You can change them later in the "Modules" tab.
+								<?php _e( 'Select the features you\'d like to enable. You can change them later in the "Modules" tab.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -169,11 +169,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								Dashboard Widgets
+								<?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								Let’s clean up your dashboard. Remove some or all of the default WordPress widgets.
+								<?php _e( 'Let\'s clean up your dashboard. Remove some or all of the default WordPress widgets.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
  
@@ -182,7 +182,7 @@ return function ( $referrer = '' ) {
 								<div class="module-text">
 									<h3>
 										<label for="udb_widgets__remove-all">
-											Remove all Dashboard Widgets
+											<?php _e( 'Remove all Dashboard Widgets', 'ultimate-dashboard' ); ?>
 										</label>
 									</h3>
 								</div>
@@ -209,7 +209,7 @@ return function ( $referrer = '' ) {
 								<div class="module-text">
 									<h3>
 										<label for="udb_widgets__welcome_panel">
-											Welcome Panel
+											<?php _e( 'Welcome Panel', 'ultimate-dashboard' ); ?>
 										</label>
 									</h3>
 								</div>
@@ -270,11 +270,11 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								General Settings
+								<?php _e( 'General Settings', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								Next, let's simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.
+								<?php _e( 'Next, let\'s simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
  
@@ -319,8 +319,8 @@ return function ( $referrer = '' ) {
 					
 					<div class="udb-wizard-slide udb-custom-login-url-slide">
 						<header>
-							<h2>Custom Login URL</h2>
-							<p>Customize the login URL to enhance security and avoid common login page attacks.</p>
+							<h2><?php _e( 'Custom Login URL', 'ultimate-dashboard' ); ?></h2>
+							<p><?php _e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?></p>
 						</header>
 
 						<div class="udb-subscription-form">
@@ -356,11 +356,11 @@ return function ( $referrer = '' ) {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/wizard/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								Exclusive <br>Discount 🥳
+								<?php _e( 'Exclusive <br>Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								We are offering all <strong><?php echo esc_attr( ucwords( $referrer ) ); ?> users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.
+								<?php printf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
 							</p>
 						</header>
 
@@ -373,12 +373,12 @@ return function ( $referrer = '' ) {
 							</div>
 							<div class="udb-form-row">
 								<button type="button" class="button button-primary button-large udb-button subscribe-button">
-									Subscribe
+									<?php _e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-									No, I don't want any Discount :/
+									<?php _e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
@@ -389,25 +389,25 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								Setup Complete. Enjoy!
+								<?php _e( 'Setup Complete. Enjoy!', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).
+								<?php _e( 'We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p>
-								What's next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.
+								<?php _e( 'What\'s next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong>Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
+								<strong><?php _e( 'Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
 							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								Grab the Deal
+								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
@@ -417,7 +417,7 @@ return function ( $referrer = '' ) {
 				<footer class="heatbox-footer">
 					<div class="heatbox-footer-item">
 						<span class="wizard-skip-button skip-button">
-							Skip
+							<?php _e( 'Skip', 'ultimate-dashboard' ); ?>
 						</span>
 					</div>
 					<div class="heatbox-footer-item">
@@ -425,13 +425,13 @@ return function ( $referrer = '' ) {
 					</div>
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large button-primary udb-button save-button">
-							Next
+							<?php _e( 'Next', 'ultimate-dashboard' ); ?>
 						</button>
 					</div>
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-					This is an exclusive discount for <?php echo esc_attr( ucwords( $referrer ) ); ?> users.<br> <strong>This discount will not come back!</strong>
+					<?php printf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
 				</div>
 
 			</div>
@@ -440,7 +440,7 @@ return function ( $referrer = '' ) {
 			<div class="heatbox-footer skip-wizard">
 				<div class="heatbox-footer-item">
 					<a href="#" id="skip-setup-wizard" class="skip-wizard-link">
-						Skip Setup Wizard
+						<?php _e( 'Skip Setup Wizard', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>
 			</div>
