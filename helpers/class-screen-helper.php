@@ -201,7 +201,7 @@ class Screen_Helper {
 	public function is_wizard() {
 
 		$current_screen = get_current_screen();
-		return is_null( $current_screen ) ? false : ( 'udb_widgets_page_udb_wizard' === $current_screen->id ? true : false );
+		return is_null( $current_screen ) ? false : ( 'udb_widgets_page_udb_onboarding_wizard' === $current_screen->id ? true : false );
 
 	}
 

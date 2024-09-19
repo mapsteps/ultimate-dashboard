@@ -164,7 +164,7 @@ class Setup {
 			'udb_widgets_page_udb_admin_menu',
 			'udb_widgets_page_udb_admin_bar',
 			'udb_widgets_page_udb_plugin_onboarding',
-			'udb_widgets_page_udb_wizard',
+			'udb_widgets_page_udb_onboarding_wizard',
 		);
 
 		$screen = get_current_screen();
@@ -344,7 +344,7 @@ class Setup {
 	public function redirect_to_wizard_page() {
 
 		// Avoid redirecting when already on the wizard page.
-		if ( isset( $_GET['page'] ) && $_GET['page'] === 'udb_wizard' ) {
+		if ( isset( $_GET['page'] ) && $_GET['page'] === 'udb_onboarding_wizard' ) {
 			return;
 		}
 
@@ -359,7 +359,7 @@ class Setup {
 			update_option( 'udb_setup_wizard_redirected', true );
 
 			// Redirect to the Wizard page.
-			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_wizard' ) );
+			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_onboarding_wizard' ) );
 			exit;
 		}
 

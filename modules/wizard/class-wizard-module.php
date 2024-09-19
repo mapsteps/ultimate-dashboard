@@ -88,7 +88,7 @@ class Wizard_Module extends Base_Module {
 			__( 'Setup Wizard', 'ultimate-dashboard' ),
 			__( 'Setup Wizard', 'ultimate-dashboard' ),
 			apply_filters( 'udb_modules_capability', 'manage_options' ),
-			'udb_wizard',
+			'udb_onboarding_wizard',
 			array( $this, 'submenu_page_content' ),
 			0
 		);
@@ -100,7 +100,7 @@ class Wizard_Module extends Base_Module {
 	 */
 	public function submenu_page_content() {
 
-		$template = require __DIR__ . '/templates/wizard-template.php';
+		$template = require __DIR__ . '/templates/onboarding-wizard-template.php';
 		$template( $this->referrer );
 
 	}
