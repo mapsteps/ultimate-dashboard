@@ -388,35 +388,15 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-<<<<<<< HEAD
-								Setup Complete! 🎉
+								<?php _e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
 							</h2>
 
-							<p data-udb-show-on="subscribe">
-								We'll send you an email with a <strong>discount code for Ultimate Dashboard PRO</strong> shortly.
-							</p>
-
 							<p>
-								What's next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.
+								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong>This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇</strong>
-=======
-								<?php _e( 'Setup Complete. Enjoy!', 'ultimate-dashboard' ); ?>
-							</h2>
-
-							<p data-udb-show-on="subscribe">
-								<?php _e( 'We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).', 'ultimate-dashboard' ); ?>
-							</p>
-
-							<p>
-								<?php _e( 'What\'s next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
-							</p>
-
-							<p data-udb-show-on="skip-discount">
-								<strong><?php _e( 'Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
->>>>>>> 02e1058b0a9dccc830575caec2271a741142cfde
+								<strong><?php _e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
 							</p>
 						</header>
 
