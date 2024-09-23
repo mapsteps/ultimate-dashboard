@@ -81,7 +81,7 @@ return function ( $referrer = '' ) {
 							<?php _e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 						</span>
 						<p class="subtitle">
-							<?php _e( 'Complete the Setup Wizard and start using Ultimate Dashboard in less than a minute.', 'ultimate-dashboard' ); ?>							
+							<?php _e( 'Complete the Setup Wizard and get started with Ultimate Dashboard in less than a minute.', 'ultimate-dashboard' ); ?>
 						</p>
 					</div>
 
