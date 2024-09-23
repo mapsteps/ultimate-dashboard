@@ -204,13 +204,13 @@ class Setting_Module extends Base_Module {
 			'udb-general-section'
 		);
 
-		add_settings_field(
-			'remove-admin-bar-settings',
-			__( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ),
-			array( $this, 'remove_admin_bar_field' ),
-			'udb-general-settings',
-			'udb-general-section'
-		);
+		// add_settings_field(
+		// 	'remove-admin-bar-settings',
+		// 	__( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ),
+		// 	array( $this, 'remove_admin_bar_field' ),
+		// 	'udb-general-settings',
+		// 	'udb-general-section'
+		// );
 
 		add_settings_field(
 			'headline-settings',
