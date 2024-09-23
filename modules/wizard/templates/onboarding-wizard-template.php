@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Setup;
 use Udb\Helpers\Widget_Helper;
+use Udb\Helpers\Admin_Bar_Helper;
 
 return function ( $referrer = '' ) {
 
@@ -278,9 +279,16 @@ return function ( $referrer = '' ) {
 						<ul class="udb-modules">
 						<?php foreach ( $general_settings as $setting ) : ?>
 							<?php
-							$is_checked    = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
-							$title         = isset( $setting['title'] ) ? $setting['title'] : '';
-							$slug          = isset( $setting['name'] ) ? $setting['name'] : '';
+							$is_checked = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
+							$title      = isset( $setting['title'] ) ? $setting['title'] : '';
+							$slug       = isset( $setting['name'] ) ? $setting['name'] : '';
+
+							$settings_helper = new Admin_Bar_Helper();
+
+							// Check if the admin bar should be removed
+							if ( $settings_helper->should_remove_admin_bar() && $setting['name'] === 'remove_admin_bar' ) {
+								$is_checked = 1;
+							}
 							?>
 
 							<li>
