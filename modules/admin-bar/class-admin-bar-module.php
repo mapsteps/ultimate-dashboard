@@ -773,8 +773,6 @@ class Admin_Bar_Module extends Base_Module {
 		// Visibility section.
 		add_settings_section( 'udb-admin-bar-visibility-section', __( 'Remove Admin Bar', 'ultimate-dashboard' ), '', 'udb-admin-bar-visibility-settings' );
 
-		do_action( 'udb_after_admin_bar_visibility_metabox' );
-
 		// Admin Bar Visibility fields.
 		add_settings_field(
 			'hide-admin-bar-settings',
