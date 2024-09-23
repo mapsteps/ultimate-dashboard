@@ -55,7 +55,7 @@ class Admin_Bar_Module extends Base_Module {
 
 		/**
 		 * This was created by looking at wp-toolbar-editor plugin's code.
-		 * These items can be checked in wp-includes/admdin-bar.php file.
+		 * These items can be checked in wp-includes/admin-bar.php file.
 		 */
 		$this->frontend_items = array(
 			array(
@@ -153,6 +153,8 @@ class Admin_Bar_Module extends Base_Module {
 		add_action( 'wp_before_admin_bar_render', array( self::get_instance(), 'get_existing_menu' ), 999999 );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
+
+		add_action( 'admin_init', array( $this, 'admin_bar_visibility_settings' ) );
 
 		$this->setup_ajax();
 
@@ -365,10 +367,8 @@ class Admin_Bar_Module extends Base_Module {
 				if ( ! isset( $existing_menu[ $menu_id ] ) ) {
 					unset( $saved_menu[ $menu_id ] );
 				}
-			} else {
-				if ( ! isset( $existing_menu[ $menu_id ] ) && ! isset( $this->frontend_menu[ $menu_id ] ) ) {
+			} elseif ( ! isset( $existing_menu[ $menu_id ] ) && ! isset( $this->frontend_menu[ $menu_id ] ) ) {
 					unset( $saved_menu[ $menu_id ] );
-				}
 			}
 		}
 
@@ -387,11 +387,9 @@ class Admin_Bar_Module extends Base_Module {
 				foreach ( $existing_menu[ $menu_id ] as $field_key => $field_value ) {
 					if ( ! isset( $menu[ $field_key ] ) ) {
 						$saved_menu[ $menu_id ][ $field_key ] = $field_value;
-					} else {
-						if ( 'output' === $target ) {
-							if ( empty( $menu[ $field_key ] ) && ! empty( $field_value ) ) {
-								$saved_menu[ $menu_id ][ $field_key ] = $field_value;
-							}
+					} elseif ( 'output' === $target ) {
+						if ( empty( $menu[ $field_key ] ) && ! empty( $field_value ) ) {
+							$saved_menu[ $menu_id ][ $field_key ] = $field_value;
 						}
 					}
 				}
@@ -500,16 +498,14 @@ class Admin_Bar_Module extends Base_Module {
 					} else {
 						$uninserted_items[ $menu_id ] = $new_item;
 					}
-				} else {
-					if ( empty( $prev_id ) ) {
+				} elseif ( empty( $prev_id ) ) {
 						$saved_menu = array( $menu_id => $new_item ) + $saved_menu;
-					} else {
-						$pos = array_search( $prev_id, array_keys( $saved_menu ), true );
+				} else {
+					$pos = array_search( $prev_id, array_keys( $saved_menu ), true );
 
-						$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
-							array( $menu_id => $new_item ) +
-							array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
-					}
+					$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
+						array( $menu_id => $new_item ) +
+						array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
 				}
 			}
 
@@ -770,4 +766,32 @@ class Admin_Bar_Module extends Base_Module {
 		return $nested_array;
 	}
 
+	/**
+	 * Add settings.
+	 */
+	public function admin_bar_visibility_settings() {
+		// Visibility section.
+		add_settings_section( 'udb-admin-bar-visibility-section', __( 'Remove Admin Bar', 'ultimate-dashboard' ), '', 'udb-admin-bar-visibility-settings' );
+
+		do_action( 'udb_after_admin_bar_visibility_metabox' );
+
+		// Admin Bar Visibility fields.
+		add_settings_field(
+			'hide-admin-bar-settings',
+			__( 'Hide Admin Bar for:', 'ultimate-dashboard' ),
+			array( $this, 'remove_by_role_field_tab' ),
+			'udb-admin-bar-visibility-settings',
+			'udb-admin-bar-visibility-section'
+		);
+
+	}
+
+	/**
+	 * Remove by role tab field.
+	 */
+	public function remove_by_role_field_tab() {
+
+		return require __DIR__ . '/templates/fields/remove-by-role-tab.php';
+
+	}
 }

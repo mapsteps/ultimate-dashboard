@@ -26,11 +26,25 @@ wp_localize_script(
 		'builderItems' => $this->to_builder_format( $parsed_menu ),
 	)
 );
-?>
+
+	$setting_tab_menus = array(
+		array(
+			'id'     => 'menu-builder-box',
+			'text'   => __( 'Admin Bar Editor', 'ultimate-dashboard' ),
+			'active' => true,
+		),
+		array(
+			'id'   => 'visibility',
+			'text' => __( 'Visibility', 'ultimate-dashboard' ),
+		),
+	);
+
+	$setting_tab_menus = apply_filters( 'udb_setting_tab_menus', $setting_tab_menus );
+	?>
 
 <div class="wrap heatbox-wrap udb-admin-bar udb-menu-builder-editor-page">
 
-	<div class="heatbox-header heatbox-margin-bottom">
+	<div class="heatbox-header heatbox-has-tab-nav heatbox-margin-bottom">
 
 		<div class="heatbox-container heatbox-container-center">
 
@@ -49,6 +63,21 @@ wp_localize_script(
 				</div>
 
 			</div>
+
+			<nav>
+				<ul class="heatbox-tab-nav">
+					<?php foreach ( $setting_tab_menus as $tab_index => $tab ) : ?>
+						<?php
+						if ( ! empty( $tab['is_pro'] ) && ! udb_is_pro_active() ) {
+							continue;
+						}
+						?>
+						<li class="heatbox-tab-nav-item <?php echo esc_attr( $tab['id'] ); ?>-panel">
+							<a href="#<?php echo esc_attr( $tab['id'] ); ?>"><?php echo esc_html( $tab['text'] ); ?></a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</nav>
 
 		</div>
 
@@ -75,7 +104,9 @@ wp_localize_script(
 
 			<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 
-				<div class="heatbox udb-menu-builder-box">
+			<div>
+
+				<div class="heatbox heatbox-admin-panel udb-menu-builder-box udb-menu-builder-box-panel">
 
 					<div class="udb-menu-builder-box--header">
 						<h2 class="udb-menu-builder-box--title">
@@ -113,6 +144,31 @@ wp_localize_script(
 
 					</div>
 				</div>
+
+				<div class="heatbox-admin-panel udb-visibility-panel">
+					<div class="heatbox">
+						<?php do_settings_sections( 'udb-admin-bar-visibility-settings' ); ?>
+					</div>
+
+					<div class="heatbox-footer">
+
+						<?php if ( ! udb_is_pro_active() ) : ?>
+
+							<div class="udb-pro-settings-page-notice udb-pro-admin-bar-notice">
+								<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+								<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
+									<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+								</a>
+							</div>
+
+						<?php endif; ?>
+
+						<?php do_action( 'udb_admin_bar_form_footer' ); ?>
+
+					</div>
+				</div>
+
+			</div>
 
 			</form>
 		</div>
