@@ -18,7 +18,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
 		// Select2.
-		// wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
+		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// Dashicons picker.
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
@@ -28,6 +28,9 @@ return function ( $module ) {
 
 		// Admin menu.
 		wp_enqueue_script( 'udb-admin-bar', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/js/admin-bar.js', array( 'jquery', 'dashicons-picker', 'jquery-ui-sortable' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
+		// Visibility.
+		wp_enqueue_script( 'udb-admin-bar-visibility', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/js/admin-bar-visibility.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		/**
 		 * These codes are not being used currently.
