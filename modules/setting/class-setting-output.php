@@ -13,6 +13,7 @@ use WP_Admin_Bar;
 use Udb\Base\Base_Output;
 use Udb\Helpers\Content_Helper;
 use Udb\Widget\Widget_Output;
+use Udb\Helpers\Admin_Bar_Helper;
 
 /**
  * Class to set up setting output.
@@ -259,9 +260,10 @@ class Setting_Output extends Base_Output {
 	 */
 	public function remove_admin_bar() {
 
-		$settings = get_option( 'udb_settings' );
+		$settings_helper = new Admin_Bar_Helper();
 
-		if ( isset( $settings['remove_admin_bar'] ) ) {
+		// Check if the admin bar should be removed
+		if ( $settings_helper->should_remove_admin_bar() ) {
 			add_filter( 'show_admin_bar', '__return_false' );
 		}
 
