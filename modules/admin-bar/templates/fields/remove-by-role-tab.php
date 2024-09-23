@@ -6,7 +6,9 @@
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
+
 use Udb\Helpers\Admin_Bar_Helper;
+
 $settings           = new Admin_Bar_Helper();
 $admin_bar_settings = $settings->get_admin_bar_settings();
 

@@ -129,3 +129,24 @@ hr {
 	border: 1px solid #ddd;
 }
 
+.js-save-remove-admin-bar.is-loading {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	color: transparent !important;
+	pointer-events: none;
+}
+
+.js-save-remove-admin-bar.is-loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #fff #fff !important;
+	border-radius: 290486px;
+	-webkit-animation: udbLoadingSpinAround 0.5s infinite linear;
+	animation: udbLoadingSpinAround 0.5s infinite linear;
+}

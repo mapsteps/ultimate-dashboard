@@ -3,83 +3,30 @@
  * - jQuery
  */
 (function ($) {
+	let finalSelectedRoles = [];
+	const domElements = {
+		saveRemoveByRoles: document.querySelector(".js-save-remove-admin-bar"),
+	};
 	/**
 	 * Init the script.
 	 * Call the main functions here.
 	 */
 	function init() {
-		setupTabsNavigation();
-		setupAdminBarRemovalRoles();
+		onShowElements();
+		onSetupAdminBarRemovalRoles();
+		setupEventsListeners();
 	}
 
 	/**
-	 * Setup the tabs navigation for settings page.
+	 * Show elements.
 	 */
-	function setupTabsNavigation() {
-		$(".heatbox-tab-nav-item").on("click", function () {
-			$(".heatbox-tab-nav-item").removeClass("active");
-			$(this).addClass("active");
-
-			var link = this.querySelector("a");
-			var hashValue = link.href.substring(link.href.indexOf("#") + 1);
-
-			setRefererValue(hashValue);
-
-			$(".udb-menu-builder--edit-form .heatbox-admin-panel").css(
-				"display",
-				"none"
-			);
-			$(".udb-menu-builder--edit-form .udb-" + hashValue + "-panel").css(
-				"display",
-				"block"
-			);
-		});
-
+	function onShowElements() {
 		window.addEventListener("load", function () {
-			var hashValue = window.location.hash.substr(1);
-
-			if (!hashValue) {
-				hashValue = "menu-builder-box";
-			}
-
-			setRefererValue(hashValue);
-
-			$(".heatbox-tab-nav-item").removeClass("active");
-			$(".heatbox-tab-nav-item." + hashValue + "-panel").addClass("active");
-
-			$(".udb-menu-builder--edit-form .heatbox-admin-panel").css(
-				"display",
-				"none"
-			);
-			$(".udb-menu-builder--edit-form .udb-" + hashValue + "-panel").css(
-				"display",
-				"block"
-			);
+			$(".heatbox-admin-panel").css("display", "block");
 		});
 	}
 
-	/**
-	 * Set referer value for the tabs navigation of settings page.
-	 * This is being used to preserve the active tab after saving the settings page.
-	 *
-	 * @param {string} hashValue The hash value.
-	 */
-	function setRefererValue(hashValue) {
-		var refererField = document.querySelector('[name="_wp_http_referer"]');
-		if (!refererField) return;
-		var url;
-
-		if (refererField.value.includes("#")) {
-			url = refererField.value.split("#");
-			url = url[0];
-
-			refererField.value = url + "#" + hashValue;
-		} else {
-			refererField.value = refererField.value + "#" + hashValue;
-		}
-	}
-
-	function setupAdminBarRemovalRoles() {
+	function onSetupAdminBarRemovalRoles() {
 		$removeAdminBar = $(".admin-bar-settings-box .remove-admin-bar");
 
 		$removeAdminBar.select2();
@@ -116,24 +63,46 @@
 	}
 
 	function setAdminBarRemovalRoles(roleObjects) {
-		adminBarRemovalRoles = [];
+		selectedRoles = [];
 
-		if (!roleObjects || !roleObjects.length) {
-			return;
+		if (roleObjects.length) {
+			roleObjects.forEach(function (role) {
+				selectedRoles.push(role.id);
+			});
 		}
 
-		roleObjects.forEach(function (role) {
-			adminBarRemovalRoles.push(role.id);
-		});
+		finalSelectedRoles = selectedRoles;
 	}
 
-	/**
-	 * Function to execute on form submission.
-	 *
-	 * @param {Event} e The on submit event.
-	 */
-	function submitForm(e) {
+	function setupEventsListeners() {
+		$(document).on("click", ".js-save-remove-admin-bar", onSubmitRoles);
+	}
+
+	function onSubmitRoles(e) {
 		e.preventDefault();
+
+		domElements.saveRemoveByRoles.classList.add("is-loading");
+
+		$.ajax({
+			type: "POST",
+			url: udbAdminBarVisibility.ajaxURL,
+			data: {
+				action: udbAdminBarVisibility.action,
+				roles: finalSelectedRoles,
+				nonce: udbAdminBarVisibility.nonce,
+			},
+		})
+			.done(function (r) {
+				if (!r.success) return;
+				console.log(r);
+			})
+			.fail(function () {
+				domElements.saveRemoveByRoles.classList.remove("is-loading");
+				console.log("Failed to save remove by roles");
+			})
+			.always(function () {
+				domElements.saveRemoveByRoles.classList.remove("is-loading");
+			});
 	}
 
 	init();
