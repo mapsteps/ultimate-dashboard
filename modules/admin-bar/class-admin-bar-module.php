@@ -171,6 +171,9 @@ class Admin_Bar_Module extends Base_Module {
 
 		add_action( 'wp_ajax_udb_admin_bar_get_users', array( $get_users, 'ajax' ) );
 
+		require_once __DIR__ . '/ajax/class-save-remove-by-roles.php';
+		new Ajax\Save_Remove_By_Roles();
+
 	}
 
 	/**

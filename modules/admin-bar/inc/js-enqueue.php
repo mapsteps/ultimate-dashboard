@@ -75,6 +75,16 @@ return function ( $module ) {
 			$admin_bar_data
 		);
 
+		wp_localize_script(
+			'udb-admin-bar-visibility',
+			'udbAdminBarVisibility',
+			array(
+				'nonce'   => wp_create_nonce( 'udb_admin_bar_save_remove_by_roles' ),
+				'action'  => 'udb_admin_bar_save_remove_by_roles',
+				'ajaxURL' => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
 	}
 
 };
