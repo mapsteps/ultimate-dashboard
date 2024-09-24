@@ -58,6 +58,10 @@ class Save_Widgets {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
@@ -65,12 +69,20 @@ class Save_Widgets {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
 
-		foreach ( $_POST['widgets'] as $index => $widget ) {
-			if ( is_string( $widget ) ) {
-				$widget = sanitize_text_field( wp_unslash( $widget ) );
-				array_push( $this->widgets, $widget );
+		// If widgets exists, it must be an array.
+		if ( isset( $_POST['widgets'] ) && ! is_array( $_POST['widgets'] ) ) {
+			wp_send_json_error( __( 'Widgets must be an array', 'ultimate-dashboard' ), 401 );
+		}
+
+		if ( ! empty( $_POST['widgets'] ) ) {
+			foreach ( $_POST['widgets'] as $index => $widget ) {
+				if ( is_string( $widget ) ) {
+					$widget = sanitize_text_field( wp_unslash( $widget ) );
+					array_push( $this->widgets, $widget );
+				}
 			}
 		}
+
 	}
 
 	/**
@@ -78,8 +90,10 @@ class Save_Widgets {
 	 */
 	private function save() {
 
-		// Check if the 'udb_settings' option already exists.
-		// Retrieve the existing settings or an empty array if not present./
+		/**
+		 * Check if the 'udb_settings' option already exists.
+		 * Retrieve the existing settings or an empty array if not present./
+		 */
 		$existing_settings = get_option( 'udb_settings', [] );
 
 		// Initialize an array to hold the selected widgets.

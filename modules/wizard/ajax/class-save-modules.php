@@ -57,6 +57,10 @@ class Save_Modules {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
@@ -65,7 +69,7 @@ class Save_Modules {
 		}
 
 		// At least login_customizer is selected :).
-		if ( ! isset( $_POST['modules'] ) || ! is_array( $_POST['modules'] ) || empty( $_POST['modules'] ) ) {
+		if ( empty( $_POST['modules'] ) || ! is_array( $_POST['modules'] ) ) {
 			wp_send_json_error( __( 'No modules selected', 'ultimate-dashboard' ), 401 );
 		}
 

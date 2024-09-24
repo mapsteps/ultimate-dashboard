@@ -286,7 +286,7 @@ return function ( $referrer = '' ) {
 							$settings_helper = new Admin_Bar_Helper();
 
 							// Check if the admin bar should be removed
-							if ( $settings_helper->should_remove_admin_bar() && $setting['name'] === 'remove_admin_bar' ) {
+							if ( $settings_helper->should_remove_admin_bar() && 'remove_admin_bar' === $setting['name'] ) {
 								$is_checked = 1;
 							}
 							?>
@@ -346,7 +346,10 @@ return function ( $referrer = '' ) {
 							<!-- Description -->
 							<div class="udb-form-row">
 								<p class="description">
-									<?php printf( __( 'This will replace your login URL (<code>%1$s/wp-login.php</code>) and help secure your site by making the login page less predictable.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
+									<?php
+									// translators: Placeholder is the site url.
+									printf( __( 'This will replace your login URL (<code>%1$s/wp-login.php</code>) and help secure your site by making the login page less predictable.', 'ultimate-dashboard' ), esc_url( site_url() ) );
+									?>
 								</p>
 							</div>
 						</div>

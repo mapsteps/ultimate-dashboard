@@ -54,6 +54,10 @@ class Save_Settings {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
@@ -61,12 +65,20 @@ class Save_Settings {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
 
-		foreach ( $_POST['settings'] as $index => $setting ) {
-			if ( is_string( $setting ) ) {
-				$setting = sanitize_text_field( wp_unslash( $setting ) );
-				array_push( $this->settings, $setting );
+		// If settings exists, it must be an array.
+		if ( isset( $_POST['settings'] ) && ! is_array( $_POST['settings'] ) ) {
+			wp_send_json_error( __( 'Settings must be an array', 'ultimate-dashboard' ), 401 );
+		}
+
+		if ( ! empty( $_POST['settings'] ) ) {
+			foreach ( $_POST['settings'] as $index => $setting ) {
+				if ( is_string( $setting ) ) {
+					$setting = sanitize_text_field( wp_unslash( $setting ) );
+					array_push( $this->settings, $setting );
+				}
 			}
 		}
+
 	}
 
 	/**

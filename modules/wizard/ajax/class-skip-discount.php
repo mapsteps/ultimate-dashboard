@@ -43,6 +43,10 @@ class SkipDiscount {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
@@ -59,15 +63,7 @@ class SkipDiscount {
 	 */
 	private function skip_discount() {
 
-		if ( 'erident' === $this->referrer ) {
-			delete_option( 'udb_migration_from_erident' );
-		} elseif ( 'kirki' === $this->referrer ) {
-			delete_option( 'udb_referred_by_kirki' );
-		} elseif ( 'plugin_activation' === $this->referrer ) {
-			delete_option( 'udb_plugin_activation' );
-		}
-
-		// set setup_wizard_completed to true.
+		// Set setup_wizard_completed to true.
 		update_option( 'udb_setup_wizard_completed', true );
 
 		wp_send_json_success( __( 'Discount skipped', 'ultimate-dashboard' ) );

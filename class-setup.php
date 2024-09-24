@@ -481,7 +481,7 @@ class Setup {
 		}
 
 		// Stop here if current user is not an admin.
-		if ( ! current_user_can( 'administrator' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 

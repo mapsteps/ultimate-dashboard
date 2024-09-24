@@ -288,7 +288,12 @@
 		startLoading(domElements.subscribeButton);
 		const name = document.querySelector("#udb-subscription-name").value;
 		const email = document.querySelector("#udb-subscription-email").value;
-		const data = { action: "udb_onboarding_wizard_subscribe", name, email };
+		const data = {
+			action: "udb_onboarding_wizard_subscribe",
+			nonce: udbWizard.nonces.subscribe,
+			name,
+			email,
+		};
 		ajaxPost(data, onSubscribeComplete, domElements.subscribeButton);
 	}
 

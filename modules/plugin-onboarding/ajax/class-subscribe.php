@@ -57,6 +57,10 @@ class Subscribe {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.

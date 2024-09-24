@@ -57,6 +57,10 @@ class Subscribe {
 	 */
 	private function validate() {
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		}
+
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		// Check if nonce is incorrect.
@@ -108,15 +112,10 @@ class Subscribe {
 		);
 
 		if ( ! is_wp_error( $response ) ) {
-			if ( 'erident' === $this->referrer ) {
-				delete_option( 'udb_migration_from_erident' );
-			} elseif ( 'kirki' === $this->referrer ) {
-				delete_option( 'udb_referred_by_kirki' );
-			} elseif ( 'plugin_activation' === $this->referrer ) {
-				delete_option( 'udb_plugin_activation' );
-			}
+			// Set setup_wizard_completed to true.
+			update_option( 'udb_setup_wizard_completed', true );
 
-			wp_send_json_success( __( 'Subscription done', 'ultimate - dashboard' ) );
+			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
 		}
 
 		wp_send_json_error( $response->get_error_message(), 403 );
