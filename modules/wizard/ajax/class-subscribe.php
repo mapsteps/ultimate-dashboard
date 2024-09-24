@@ -86,7 +86,7 @@ class Subscribe {
 
 		// Mailerlite related vars.
 		$mailerlite_api_key  = '17ca6c148dc69064b0f4f409776be3b8';
-		$mailerlite_group_id = '111311793';
+		$mailerlite_group_id = '112818510';
 		$mailerlite_api_url  = "https://api.mailerlite.com/api/v2/groups/$mailerlite_group_id/subscribers";
 
 		$mailerlite_subscriber = [
