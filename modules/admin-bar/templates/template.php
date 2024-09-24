@@ -31,7 +31,7 @@ wp_localize_script(
 
 <div class="wrap heatbox-wrap udb-admin-bar udb-menu-builder-editor-page">
 
-	<div class="heatbox-header heatbox-has-tab-nav heatbox-margin-bottom">
+	<div class="heatbox-header heatbox-margin-bottom">
 
 		<div class="heatbox-container heatbox-container-center">
 
