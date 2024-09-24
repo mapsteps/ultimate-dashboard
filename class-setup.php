@@ -522,7 +522,7 @@ class Setup {
 				</div>
 				<div class="notice-content">
 					<h2>
-						<?php _e( 'Up to 25% Off Ultimate Dashboard PRO - Black Friday Sale!', 'ultimate-dashboard' ); ?>
+						<?php _e( 'Black Friday Sale! - Up to 25% Off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 					</h2>
 					<p>
 						<?php _e( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
