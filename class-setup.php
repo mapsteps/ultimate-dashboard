@@ -486,10 +486,10 @@ class Setup {
 		}
 
 		// Intentional: using manually written string instead of gmdate( 'Y' ).
-		$this_year = '2023';
+		$this_year = '2024';
 		$last_year = $this_year - 1;
-		$start     = strtotime( 'november 20th, ' . $this_year );
-		$end       = strtotime( 'november 27th, ' . $this_year );
+		$start     = strtotime( 'november 22nd, ' . $this_year );
+		$end       = strtotime( 'november 30th, ' . $this_year );
 		$now       = time();
 
 		// Stop here if we are not in the sales period.
