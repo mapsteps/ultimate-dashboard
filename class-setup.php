@@ -489,7 +489,7 @@ class Setup {
 		$this_year = '2024';
 		$last_year = $this_year - 1;
 		$start     = strtotime( 'november 22nd, ' . $this_year );
-		$end       = strtotime( 'november 30th, ' . $this_year );
+		$end       = strtotime( 'december 2nd, ' . $this_year );
 		$now       = time();
 
 		// Stop here if we are not in the sales period.
