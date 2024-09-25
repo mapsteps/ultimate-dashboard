@@ -387,3 +387,82 @@
 .wrap.heatbox-wrap.udb-wizard-page .heatbox-margin-bottom {
 	margin-bottom: 40px;
 }
+
+.udb-divider.for-widget-remove-all {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	margin: 20px 0;
+	font-size: 10px;
+}
+
+.udb-divider.for-widget-remove-all::before,
+.udb-divider.for-widget-remove-all::after {
+	content: "";
+	flex: 1;
+	border-bottom: 1px solid #dbdbdb;
+	margin: 0 5px;
+}
+
+.udb-divider.for-widget-remove-all .divider-text {
+	font-size: 11px;
+	color: #a3a3a3;
+	text-transform: uppercase;
+}
+
+.role-dropdown {
+	/* margin: 10px 0px 10px; */
+}
+
+.dropdown-label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 15px;
+}
+
+/* Full-width select2 dropdown styling */
+.select2-container {
+	/* width: 100% !important; */
+}
+
+.select2-selection {
+	padding: 0px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-left: 1px;
+	min-width: 315px;
+}
+
+.select2-dropdown {
+	width: 100% !important; 
+}
+
+li.select2-selection__choice {
+	margin: 5px;
+}
+
+/* Ensures the select2 dropdown list stays within the container width */
+.select2-container {
+	width: 100% !important;
+}
+
+.select2-dropdown {
+	width: 100% !important; 
+	box-sizing: border-box; 
+}
+
+/* Ensure the width of the actual options matches the container */
+.select2-results__options {
+	width: 100% !important; 
+}
+
+.select2-results__option {
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	padding-right: 10px;
+}
+
+.select2-container--open .select2-dropdown {
+	max-width: 315px !important;
+}
