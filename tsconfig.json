@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"outDir": "Customizer/Controls/**/dist",
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"jsx": "react",
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"resolveJsonModule": true,
+		"strict": true
+	},
+	"exclude": [
+		"node_modules",
+		"dist",
+		"build",
+		"vendor",
+		"modules/plugin-onboarding/assets/js/tiny-slider.js"
+	]
+}

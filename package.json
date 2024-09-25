@@ -4,7 +4,7 @@
   "description": "Development tooling for Ultimate Dashboard",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MapSteps/Ultimate-Dashboard.git"
+    "url": "git+https://github.com/mapsteps/ultimate-dashboard.git"
   },
   "keywords": [
     "ultimate-dashboard"
@@ -12,9 +12,9 @@
   "author": "David Vongries",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/MapSteps/Ultimate-Dashboard/issues"
+    "url": "https://github.com/mapsteps/ultimate-dashboard/issues"
   },
-  "homepage": "https://github.com/MapSteps/Ultimate-Dashboard#readme",
+  "homepage": "https://github.com/mapsteps/ultimate-dashboard#readme",
   "alias": {
     "jquery": {
       "global": "jQuery"
@@ -25,17 +25,23 @@
     "@wordpress/blocks": {
       "global": "wp.blocks"
     },
+    "tiny-slider": {
+      "global": "tns"
+    },
     "udbLoginCustomizer": {
       "global": "udbLoginCustomizer"
     }
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.14",
-    "@types/wordpress__customize-browser": "^5.5.1",
-    "parcel": "^2.6.0"
+    "@types/jquery": "^3.5.30",
+    "@types/wordpress__customize-browser": "^5.5.5",
+    "parcel": "^2.12.0"
   },
-	"scripts": {
-		"watch-login-customizer": "parcel watch ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
-		"build-login-customizer": "parcel build ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js"
-	}
+  "scripts": {
+    "watch-login-customizer": "parcel watch ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
+    "build-login-customizer": "parcel build ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js"
+  },
+  "dependencies": {
+    "tiny-slider": "github:usefulteam/tiny-slider"
+  }
 }
