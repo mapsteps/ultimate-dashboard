@@ -1,5 +1,3 @@
-import { tns } from "tiny-slider";
-
 (function ($) {
 	/**
 	 * Find an HTML element by selector.
@@ -134,7 +132,7 @@ import { tns } from "tiny-slider";
 
 	// Set up the slider
 	function setupSlider() {
-		slider = tns({
+		slider = window.tns({
 			container: ".udb-wizard-slides",
 			items: 1,
 			loop: false,

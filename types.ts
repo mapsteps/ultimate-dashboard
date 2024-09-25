@@ -1,3 +1,5 @@
+import { tns } from "tiny-slider";
+
 export {};
 
 declare global {
@@ -14,5 +16,6 @@ declare global {
 				skipDiscount: string;
 			};
 		};
+		tns: typeof tns;
 	}
 }
