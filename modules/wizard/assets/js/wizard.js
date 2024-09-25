@@ -90,6 +90,7 @@
 	const loginRedirectCheckbox = findInputEl("#udb_modules__login_redirect");
 	const exploreSettingsElement = findHtmlEl("#explore-settings");
 	const dotsWrapper = findHtmlEl(".wizard-heatbox .udb-dots");
+	const roleDropdown = findHtmlEl("#remove_by_roles");
 
 	const udbWizard = window.udbWizard;
 
@@ -104,6 +105,10 @@
 	];
 	let currentSlide = "modules";
 	let doingAjax = false;
+	/**
+	 * @type {string[]} roles - The selected roles.
+	 */
+	let finalSelectedRoles = [];
 
 	/**
 	 * @type {import("tiny-slider").TinySliderInstance} slider - The slider instance.
@@ -127,6 +132,7 @@
 		}
 
 		setupSlider();
+		setupSelect2();
 		setupEventListeners();
 	}
 
@@ -141,6 +147,59 @@
 			navPosition: "bottom",
 			onInit: onSliderInit,
 		});
+	}
+
+	// Select2 initialization
+	function setupSelect2() {
+		$(roleDropdown).select2();
+
+		setAdminBarRemovalRoles($(roleDropdown).select2("data"));
+
+		$(roleDropdown).on("select2:select", function (e) {
+			var roleObjects = $(roleDropdown).select2("data");
+			/**
+			 * @type {string[]} new selection - The new selection.
+			 */
+			var newSelections = [];
+
+			if (e.params.data.id === "all") {
+				$(roleDropdown).val("all");
+				$(roleDropdown).trigger("change");
+			} else {
+				if (roleObjects.length) {
+					roleObjects.forEach(function (role) {
+						if (role.id !== "all") {
+							newSelections.push(role.id);
+						}
+					});
+
+					$(roleDropdown).val(newSelections);
+					$(roleDropdown).trigger("change");
+				}
+			}
+
+			// Use the modified list.
+			setAdminBarRemovalRoles($(roleDropdown).select2("data"));
+		});
+
+		$(roleDropdown).on("select2:unselect", function (e) {
+			setAdminBarRemovalRoles($(roleDropdown).select2("data"));
+		});
+	}
+
+	function setAdminBarRemovalRoles(roleObjects) {
+		/**
+		 * @type {string[]} selectedRoles - The selected roles.
+		 */
+		var selectedRoles = [];
+
+		if (roleObjects.length) {
+			roleObjects.forEach(function (role) {
+				selectedRoles.push(role.id);
+			});
+		}
+
+		finalSelectedRoles = selectedRoles;
 	}
 
 	/**
@@ -189,10 +248,10 @@
 		saveButton?.addEventListener("click", onSaveButtonClick);
 		subscribeButton?.addEventListener("click", onSubscribeButtonClick);
 		skipDiscount?.addEventListener("click", onSkipDiscountClick);
-		removeAllWidgetsCheckbox?.addEventListener(
-			"change",
-			onRemoveAllWidgetsCheckboxClick
-		);
+		// removeAllWidgetsCheckbox?.addEventListener(
+		// 	"change",
+		// 	onRemoveAllWidgetsCheckboxClick
+		// );
 		loginRedirectCheckbox?.addEventListener(
 			"change",
 			onLoginRedirectCheckboxClick
@@ -405,7 +464,7 @@
 		allCheckboxes.forEach(function (checkbox) {
 			// Skip the "Remove all" checkbox itself
 			if (checkbox.id !== "udb_widgets__remove-all") {
-				checkbox.checked = isChecked;
+				// checkbox.checked = isChecked;
 			}
 		});
 	}
@@ -452,6 +511,7 @@
 				action: "udb_onboarding_wizard_save_general_settings",
 				nonce: udbWizard?.nonces.saveGeneralSettings,
 				settings: getGeneralSettings(),
+				selected_roles: finalSelectedRoles,
 			};
 		} else if (target?.classList.contains("js-save-custom-login-url")) {
 			data = {

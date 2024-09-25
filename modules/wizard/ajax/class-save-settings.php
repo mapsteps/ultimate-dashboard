@@ -31,6 +31,13 @@ class Save_Settings {
 	private $settings = [];
 
 	/**
+	 * The selected roles.
+	 *
+	 * @var array
+	 */
+	private $selected_roles = [];
+
+	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -79,6 +86,15 @@ class Save_Settings {
 			}
 		}
 
+		if ( ! empty( $_POST['selected_roles'] ) ) {
+			foreach ( $_POST['selected_roles'] as $index => $role ) {
+				if ( is_string( $role ) ) {
+					$role = sanitize_text_field( wp_unslash( $role ) );
+					array_push( $this->selected_roles, $role );
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -112,6 +128,14 @@ class Save_Settings {
 
 		// Save the updated settings to the 'udb_settings' option.
 		update_option( 'udb_settings', $updated_settings );
+
+		// Prepare the selected roles.
+		$remove_by_roles_settings = array(
+			'remove_by_roles' => $this->selected_roles,
+		);
+
+		// Save the selected roles using update_option.
+		update_option( 'admin_bar_settings', $remove_by_roles_settings );
 
 		wp_send_json_success( __( 'Settings saved', 'ultimate-dashboard' ) );
 
