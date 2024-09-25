@@ -1,47 +1,49 @@
 {
-  "name": "ultimate-dashboard",
-  "version": "3.7.9",
-  "description": "Development tooling for Ultimate Dashboard",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mapsteps/ultimate-dashboard.git"
-  },
-  "keywords": [
-    "ultimate-dashboard"
-  ],
-  "author": "David Vongries",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/mapsteps/ultimate-dashboard/issues"
-  },
-  "homepage": "https://github.com/mapsteps/ultimate-dashboard#readme",
-  "alias": {
-    "jquery": {
-      "global": "jQuery"
-    },
-    "wp": {
-      "global": "wp"
-    },
-    "@wordpress/blocks": {
-      "global": "wp.blocks"
-    },
-    "tiny-slider": {
-      "global": "tns"
-    },
-    "udbLoginCustomizer": {
-      "global": "udbLoginCustomizer"
-    }
-  },
-  "devDependencies": {
-    "@types/jquery": "^3.5.30",
-    "@types/wordpress__customize-browser": "^5.5.5",
-    "parcel": "^2.12.0"
-  },
-  "scripts": {
-    "watch-login-customizer": "parcel watch ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
-    "build-login-customizer": "parcel build ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js"
-  },
-  "dependencies": {
-    "tiny-slider": "github:usefulteam/tiny-slider"
-  }
+	"name": "ultimate-dashboard",
+	"version": "3.7.9",
+	"description": "Development tooling for Ultimate Dashboard",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mapsteps/ultimate-dashboard.git"
+	},
+	"keywords": [
+		"ultimate-dashboard"
+	],
+	"author": "David Vongries",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/mapsteps/ultimate-dashboard/issues"
+	},
+	"homepage": "https://github.com/mapsteps/ultimate-dashboard#readme",
+	"alias": {
+		"jquery": {
+			"global": "jQuery"
+		},
+		"wp": {
+			"global": "wp"
+		},
+		"@wordpress/blocks": {
+			"global": "wp.blocks"
+		},
+		"tiny-slider": {
+			"global": "tns"
+		},
+		"udbLoginCustomizer": {
+			"global": "udbLoginCustomizer"
+		}
+	},
+	"devDependencies": {
+		"@types/jquery": "^3.5.30",
+		"@types/wordpress__customize-browser": "^5.5.5",
+		"parcel": "^2.12.0"
+	},
+	"scripts": {
+		"watch-login-customizer": "parcel watch ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
+		"build-login-customizer": "parcel build ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
+		"watch-plugin-onboarding": "parcel watch ./modules/plugin-onboarding/src/plugin-onboarding.js --dist-dir ./modules/plugin-onboarding/assets/js",
+		"build-plugin-onboarding": "parcel build ./modules/plugin-onboarding/src/plugin-onboarding.js --dist-dir ./modules/plugin-onboarding/assets/js"
+	},
+	"dependencies": {
+		"tiny-slider": "github:usefulteam/tiny-slider"
+	}
 }

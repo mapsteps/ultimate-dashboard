@@ -19,6 +19,6 @@
 		"dist",
 		"build",
 		"vendor",
-		"modules/plugin-onboarding/assets/js/tiny-slider.js"
+		"modules/plugin-onboarding/assets/js"
 	]
 }

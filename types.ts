@@ -4,6 +4,15 @@ export {};
 
 declare global {
 	interface Window {
+		udbPluginOnboarding?: {
+			adminUrl: string;
+			ajaxUrl: string;
+			nonces: {
+				saveModules: string;
+				subscribe: string;
+				skipDiscount: string;
+			};
+		};
 		udbWizard?: {
 			adminUrl: string;
 			ajaxUrl: string;
