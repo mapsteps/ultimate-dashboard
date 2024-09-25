@@ -25,7 +25,7 @@ $roles     = $roles_obj->role_names;
 				<select name="remove_by_roles[]" id="remove_by_roles"
 						class="ultiselect remove-admin-bar use-select2 is-fullwidth" multiple>
 					<option
-						value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'hide-admin-bar' ); ?></option>
+						value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'ultimate-dashboard' ); ?></option>
 
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
 						<?php

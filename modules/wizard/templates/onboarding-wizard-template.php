@@ -196,13 +196,14 @@ return function ( $referrer = '' ) {
 											value="1"
 											<?php checked( $remove_all_is_checked, 1 ); ?>
 										>
-
 										<div class="indicator"></div>
 									</label>
 								</div>
 							</li>
 
-							<div class="udb-discount-notif for-widget-remove-all">
+							<!-- Divider with text -->
+							<div class="udb-divider for-widget-remove-all">
+								<span class="divider-text"><?php _e( 'Or remove individual widget', 'ultimate-dashboard' ); ?></span>
 							</div>
 							
 							<li>
@@ -289,9 +290,38 @@ return function ( $referrer = '' ) {
 							if ( $settings_helper->should_remove_admin_bar() && 'remove_admin_bar' === $setting['name'] ) {
 								$is_checked = 1;
 							}
+
+							// Retrieve the admin bar settings for roles
+							$admin_bar_settings = $settings_helper->get_admin_bar_settings();
+							$selected_roles     = isset( $admin_bar_settings['remove_by_roles'] ) ? $admin_bar_settings['remove_by_roles'] : array();
+
+							// Get all roles
+							$roles = wp_roles()->roles;
 							?>
 
 							<li>
+
+								<!-- Show roles dropdown if remove_admin_bar is selected -->
+								<?php if ( 'remove_admin_bar' === $setting['name'] ) : ?>
+
+								<div class="role-dropdown">
+									<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
+									<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown" multiple>
+										<option value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>>
+											<?php _e( 'All', 'ultimate-dashboard' ); ?>
+										</option>
+										
+										<?php foreach ( $roles as $role_key => $role ) : ?>
+											<option value="<?php echo esc_attr( $role_key ); ?>"
+												<?php selected( in_array( $role_key, $selected_roles ), true ); ?>>
+												<?php echo esc_html( $role['name'] ); ?>
+											</option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+
+								<?php else : ?>
+
 								<div class="module-text">
 									<h3>
 										<label for="udb_settings__<?php echo esc_attr( $slug ); ?>">
@@ -308,15 +338,15 @@ return function ( $referrer = '' ) {
 											value="1"
 											<?php checked( $is_checked, 1 ); ?>
 										>
-
 										<div class="indicator"></div>
 									</label>
 								</div>
+
+								<?php endif; ?>
 							</li>
 
-							<?php endforeach; ?>
-						</ul>
-												
+						<?php endforeach; ?>
+					</ul>												
 
 					</div>
 					
