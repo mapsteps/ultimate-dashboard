@@ -27,13 +27,6 @@ class Subscribe {
 	private $email;
 
 	/**
-	 * The referrer where UDB was installed from.
-	 *
-	 * @var string
-	 */
-	private $referrer;
-
-	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -79,8 +72,6 @@ class Subscribe {
 		if ( empty( $this->email ) ) {
 			wp_send_json_error( __( 'Email field is empty', 'ultimate-dashboard' ), 401 );
 		}
-
-		$this->referrer = isset( $_POST['referrer'] ) ? sanitize_text_field( wp_unslash( $_POST['referrer'] ) ) : '';
 	}
 
 	/**

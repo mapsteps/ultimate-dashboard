@@ -631,8 +631,7 @@ import {
 
 		const data = {
 			action: "udb_onboarding_wizard_skip_discount",
-			nonce: udbOnboardingWizard?.nonces.skipDiscount,
-			referrer: page?.dataset.udbReferrer,
+			nonce: udbOnboardingWizard?.nonces.skipDiscount
 		};
 
 		ajaxPost(data, onSkipDiscountComplete, skipDiscount?.parentElement);

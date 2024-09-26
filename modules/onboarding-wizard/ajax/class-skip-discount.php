@@ -13,13 +13,6 @@ namespace Udb\OnboardingWizard\Ajax;
 class SkipDiscount {
 
 	/**
-	 * The referrer where UDB was installed from.
-	 *
-	 * @var string
-	 */
-	private $referrer;
-
-	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
@@ -53,8 +46,6 @@ class SkipDiscount {
 		if ( ! wp_verify_nonce( $nonce, 'udb_onboarding_wizard_skip_discount_nonce' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
 		}
-
-		$this->referrer = isset( $_POST['referrer'] ) ? sanitize_text_field( wp_unslash( $_POST['referrer'] ) ) : '';
 
 	}
 
