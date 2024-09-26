@@ -80,8 +80,6 @@ class Setup {
 	 */
 	public function setup() {
 
-		$this->set_data();
-
 		/**
 		 * We use 20 as the priority in the free version
 		 * because the PRO version has to run first.
@@ -297,7 +295,7 @@ class Setup {
 	 */
 	public function load_onboarding_wizard_module() {
 
-		if ( $this->multisite_supported() || udb_is_pro_active() ) {
+		if ( is_multisite() || udb_is_pro_active() ) {
 			return;
 		}
 

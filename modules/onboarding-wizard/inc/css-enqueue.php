@@ -16,7 +16,7 @@ return function ( $module ) {
 
 		wp_enqueue_style( 'tiny-slider', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/onboarding-wizard/assets/css/tiny-slider.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Wizard.
+		// Onboarding Wizard.
 		wp_enqueue_style( 'udb-wizard', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/onboarding-wizard/assets/css/onboarding-wizard.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Select2 CSS.
