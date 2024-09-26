@@ -385,7 +385,6 @@ return function ( $referrer = '' ) {
 						</div>
 					</div>
 
-
 					<div class="udb-onboarding-wizard-slide udb-subscription-slide">
 
 						<header>
@@ -492,7 +491,6 @@ return function ( $referrer = '' ) {
 			</div>
 
 		</div>
-
 
 	</div>
 
