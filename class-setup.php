@@ -677,7 +677,7 @@ class Setup {
 			delete_option( 'udb_plugin_activation' );
 			delete_option( 'udb_setup_wizard_redirected' );
 
-			update_option( 'udb_onboarding_wizard_completed', false );
+			delete_option( 'udb_onboarding_wizard_completed' );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
