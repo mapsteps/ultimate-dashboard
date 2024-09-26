@@ -74,7 +74,7 @@ import {
 	 * Setup the slider.
 	 */
 	function setupSlider() {
-		slider = window.tns({
+		slider = tns({
 			container: ".udb-wizard-slides",
 			items: 1,
 			loop: false,
