@@ -20,7 +20,6 @@ class Save_Settings {
 	private $available_settings = [
 		'remove_help_tab',
 		'remove_screen_options',
-		'remove_admin_bar',
 	];
 
 	/**
