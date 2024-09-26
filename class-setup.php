@@ -196,7 +196,14 @@ class Setup {
 	 */
 	public function on_plugin_activation() {
 
-		update_option( 'udb_onboarding_wizard_redirect', true );
+		// Stop if this is activation from Erident's migration to UDB.
+		if ( get_option( 'udb_migration_from_erident' ) ) {
+			// Prevent "Setup Wizard" from being shown for Erident's users.
+			update_option( 'udb_onboarding_wizard_completed', 1 );
+			return;
+		}
+
+		update_option( 'udb_onboarding_wizard_redirect', 1 );
 
 	}
 

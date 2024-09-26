@@ -189,6 +189,7 @@ import {
 					content.style.display = "none";
 				});
 
+				hideSetupSubmenuItem();
 				slider.goTo("next");
 			})
 			.fail(onAjaxFail)
@@ -224,6 +225,7 @@ import {
 					content.style.display = "none";
 				});
 
+				hideSetupSubmenuItem();
 				slider.goTo("next");
 			})
 			.fail(onAjaxFail)
@@ -287,6 +289,26 @@ import {
 		});
 
 		return modules;
+	}
+
+	/**
+	 * Hide the "Setup" submenu item.
+	 */
+	function hideSetupSubmenuItem() {
+		const submenuItems = findHtmlEls(
+			"#menu-posts-udb_widgets .wp-submenu > li > a"
+		);
+		if (!submenuItems.length) return;
+
+		for (let i = 0; i < submenuItems.length; i++) {
+			const link = submenuItems[i];
+			if (!(link instanceof HTMLAnchorElement)) continue;
+
+			if (link.href.includes("page=udb_plugin_onboarding")) {
+				link.parentElement?.remove();
+				break;
+			}
+		}
 	}
 
 	init();
