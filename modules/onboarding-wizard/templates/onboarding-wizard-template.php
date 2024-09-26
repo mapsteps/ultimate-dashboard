@@ -69,7 +69,7 @@ return function ( $referrer = '' ) {
 	$widgets       = $widget_helper->get_default();
 	?>
 
-	<div class="wrap heatbox-wrap udb-onboarding-wizard-page" data-udb-referrer="<?php echo esc_attr( $referrer ); ?>">
+	<div class="wrap heatbox-wrap udb-onboarding-wizard-page">
 
 		<div class="heatbox-header heatbox-margin-bottom">
 
@@ -123,10 +123,6 @@ return function ( $referrer = '' ) {
 								$title         = $module['title'];
 								$disabled_attr = '';
 								$is_checked    = true;
-
-								if ( 'erident' === $referrer ) {
-									$disabled_attr = 'login_customizer' === $slug ? 'disabled' : $disabled_attr;
-								}
 
 								if ( isset( $saved_modules[ $slug ] ) && 'false' === $saved_modules[ $slug ] ) {
 									$is_checked = false;
@@ -231,7 +227,6 @@ return function ( $referrer = '' ) {
 
 						<?php foreach ( $widgets as $id => $widget ) : ?>
 							<?php
-							$disabled_attr = '';
 							$is_checked    = isset( $settings[ $id ] ) ? 1 : 0;
 							$title         = isset( $widget['title_stripped'] ) ? $widget['title_stripped'] : '';
 							$slug          = isset( $widget['id'] ) ? $widget['id'] : '';

@@ -5,7 +5,7 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Onboarding_Wizard\Ajax;
+namespace Udb\OnboardingWizard\Ajax;
 
 /**
  * Class to manage ajax request of migration to UDB.

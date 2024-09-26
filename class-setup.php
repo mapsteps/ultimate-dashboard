@@ -302,15 +302,8 @@ class Setup {
 		$need_setup                = false;
 		$referrer                  = '';
 		$is_setup_wizard_completed = get_option( 'udb_setup_wizard_completed' );
-
-		// Erident's migration takes the highest priority.
-		if ( get_option( 'udb_migration_from_erident' ) ) {
-			$need_setup = true;
-			$referrer   = 'erident';
-		} elseif ( get_option( 'udb_referred_by_kirki' ) ) {
-			$need_setup = true;
-			$referrer   = 'kirki';
-		} elseif ( get_option( 'udb_plugin_activation' ) ) {
+		
+		if ( get_option( 'udb_plugin_activation' ) ) {
 			$need_setup = true;
 			$referrer   = 'plugin_activation';
 
@@ -331,7 +324,7 @@ class Setup {
 		}
 
 		require_once __DIR__ . '/modules/onboarding-wizard/class-onboarding-wizard-module.php';
-		$module = new Onboarding_Wizard\Onboarding_Wizard_Module();
+		$module = new OnboardingWizard\Onboarding_Wizard_Module();
 		$module->setup( $referrer );
 
 	}

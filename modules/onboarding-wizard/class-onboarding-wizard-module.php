@@ -5,7 +5,7 @@
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Onboarding_Wizard;
+namespace Udb\OnboardingWizard;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
