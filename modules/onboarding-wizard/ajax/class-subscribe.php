@@ -106,6 +106,8 @@ class Subscribe {
 			// Set setup_wizard_completed to true.
 			update_option( 'udb_onboarding_wizard_completed', true );
 
+			delete_option( 'udb_plugin_activation' );
+
 			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
 		}
 

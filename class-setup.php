@@ -299,17 +299,9 @@ class Setup {
 			return;
 		}
 
-		$need_setup                = false;
-		$referrer                  = '';
-		$is_setup_wizard_completed = get_option( 'udb_onboarding_wizard_completed' );
-		
-		if ( get_option( 'udb_plugin_activation' ) ) {
-			$need_setup = true;
-			$referrer   = 'plugin_activation';
+		$need_setup = false;
 
-			// redirect to onboarding wizard page.
-			add_action( 'current_screen', array( $this, 'redirect_to_onboarding_wizard_page' ), 20 );
-		}
+		$is_setup_wizard_completed = get_option( 'udb_onboarding_wizard_completed' );
 
 		if ( $is_setup_wizard_completed ) {
 			$need_setup = false;
@@ -317,15 +309,20 @@ class Setup {
 			$need_setup = true;
 		}
 
-		// In the future, we might allow UDB to be installed from other plugins as well.
-
 		if ( ! $need_setup ) {
 			return;
 		}
 
+		if ( get_option( 'udb_plugin_activation' ) ) {
+			$need_setup = true;
+
+			// redirect to onboarding wizard page.
+			add_action( 'current_screen', array( $this, 'redirect_to_onboarding_wizard_page' ), 20 );
+		}
+
 		require_once __DIR__ . '/modules/onboarding-wizard/class-onboarding-wizard-module.php';
 		$module = new OnboardingWizard\Onboarding_Wizard_Module();
-		$module->setup( $referrer );
+		$module->setup();
 
 	}
 
@@ -335,7 +332,7 @@ class Setup {
 	public function redirect_to_onboarding_wizard_page() {
 
 		// Avoid redirecting when already on the onboarding wizard page.
-		if ( isset( $_GET['page'] ) && $_GET['page'] === 'udb_onboarding_wizard' ) {
+		if ( isset( $_GET['page'] ) && 'udb_onboarding_wizard' === $_GET['page'] ) {
 			return;
 		}
 

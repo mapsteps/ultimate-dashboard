@@ -11,7 +11,7 @@ use Udb\Setup;
 use Udb\Helpers\Widget_Helper;
 use Udb\Helpers\Admin_Bar_Helper;
 
-return function ( $referrer = '' ) {
+return function () {
 
 	$udb_core      = new Setup();
 	$saved_modules = $udb_core->saved_modules();

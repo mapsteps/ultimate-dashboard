@@ -24,13 +24,6 @@ class Onboarding_Wizard_Module extends Base_Module {
 	public $url;
 
 	/**
-	 * The referrer where UDB was installed from.
-	 *
-	 * @var string
-	 */
-	public $referrer;
-
-	/**
 	 * Module constructor.
 	 */
 	public function __construct() {
@@ -41,16 +34,11 @@ class Onboarding_Wizard_Module extends Base_Module {
 
 	/**
 	 * Setup dashboard module.
-	 *
-	 * @param string $referrer The referrer where UDB was installed from.
 	 */
-	public function setup( $referrer = '' ) {
-
-		$this->referrer = $referrer;
+	public function setup() {
 
 		/**
 		 * We need to remove them on multisite if current site is not a blueprint.
-		 * But we don't use singleton pattern because we need to use the referrer.
 		 *
 		 * @todo Find a better way to do it.
 		 */
@@ -101,7 +89,7 @@ class Onboarding_Wizard_Module extends Base_Module {
 	public function submenu_page_content() {
 
 		$template = require __DIR__ . '/templates/onboarding-wizard-template.php';
-		$template( $this->referrer );
+		$template();
 
 	}
 
