@@ -199,7 +199,7 @@ return function ( $referrer = '' ) {
 
 							<!-- Divider with text -->
 							<div class="udb-divider for-widget-remove-all">
-								<span class="divider-text"><?php _e( 'Or remove individual widget', 'ultimate-dashboard' ); ?></span>
+								<span class="divider-text"><?php _e( 'Or remove individual widgets', 'ultimate-dashboard' ); ?></span>
 							</div>
 							
 							<li>
