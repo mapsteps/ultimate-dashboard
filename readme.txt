@@ -104,6 +104,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Changelog ==
 = 3.8.3 | September 26, 2024 =
 * New: Onboarding Wizard
+* New: Hide admin bar for specific user roles
 = 3.8.2 | August 14, 2024 =
 * Tested up to WordPress 6.6
 = 3.8.1 | July 24, 2024 =
