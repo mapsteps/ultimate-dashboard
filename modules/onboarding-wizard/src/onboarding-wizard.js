@@ -30,7 +30,7 @@ import {
 	const dotsWrapper = findHtmlEl(".onboarding-wizard-heatbox .udb-dots");
 	const roleDropdown = findHtmlEl("#remove_by_roles");
 
-	const udbWizard = window.udbWizard;
+	const udbOnboardingWizard = window.udbOnboardingWizard;
 
 	// Slider-related variables
 	const slideIndexes = [
@@ -350,7 +350,7 @@ import {
 				slider.goTo("next");
 				break;
 			case "subscription":
-				window.location.href = udbWizard?.adminUrl ?? "";
+				window.location.href = udbOnboardingWizard?.adminUrl ?? "";
 				break;
 		}
 	}
@@ -392,7 +392,7 @@ import {
 		const email = findInputEl("#udb-subscription-email")?.value ?? "";
 		const data = {
 			action: "udb_onboarding_wizard_subscribe",
-			nonce: udbWizard?.nonces.subscribe,
+			nonce: udbOnboardingWizard?.nonces.subscribe,
 			name,
 			email,
 		};
@@ -428,27 +428,27 @@ import {
 		/** @type {Object} data - The data to be sent in the AJAX request. */
 		let data = {
 			action: "udb_onboarding_wizard_save_modules",
-			nonce: udbWizard?.nonces.saveModules,
+			nonce: udbOnboardingWizard?.nonces.saveModules,
 			modules: getSelectedModules(),
 		};
 
 		if (target?.classList.contains("js-save-widgets")) {
 			data = {
 				action: "udb_onboarding_wizard_save_widgets",
-				nonce: udbWizard?.nonces.saveWidgets,
+				nonce: udbOnboardingWizard?.nonces.saveWidgets,
 				widgets: getSelectedWidgets(),
 			};
 		} else if (target?.classList.contains("js-save-general-settings")) {
 			data = {
 				action: "udb_onboarding_wizard_save_general_settings",
-				nonce: udbWizard?.nonces.saveGeneralSettings,
+				nonce: udbOnboardingWizard?.nonces.saveGeneralSettings,
 				settings: getGeneralSettings(),
 				selected_roles: finalSelectedRoles,
 			};
 		} else if (target?.classList.contains("js-save-custom-login-url")) {
 			data = {
 				action: "udb_onboarding_wizard_save_custom_login_url",
-				nonce: udbWizard?.nonces.saveCustomLoginUrl,
+				nonce: udbOnboardingWizard?.nonces.saveCustomLoginUrl,
 				loginUrl: getCustomLoginUrl(),
 			};
 		}
@@ -541,7 +541,7 @@ import {
 	function ajaxPost(data, successCallback, button) {
 		doingAjax = true;
 
-		$.post(udbWizard?.ajaxUrl ?? "", data, function (response) {
+		$.post(udbOnboardingWizard?.ajaxUrl ?? "", data, function (response) {
 			doingAjax = false;
 			stopLoading(button);
 
@@ -630,7 +630,7 @@ import {
 
 		const data = {
 			action: "udb_onboarding_wizard_skip_discount",
-			nonce: udbWizard?.nonces.skipDiscount,
+			nonce: udbOnboardingWizard?.nonces.skipDiscount,
 			referrer: page?.dataset.udbReferrer,
 		};
 

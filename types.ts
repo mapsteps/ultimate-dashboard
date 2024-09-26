@@ -13,7 +13,7 @@ declare global {
 				skipDiscount: string;
 			};
 		};
-		udbWizard?: {
+		udbOnboardingWizard?: {
 			adminUrl: string;
 			ajaxUrl: string;
 			nonces: {
