@@ -179,7 +179,7 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								<?php _e( 'Setup Complete. Enjoy!', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p data-udb-show-on="subscribe"> 
