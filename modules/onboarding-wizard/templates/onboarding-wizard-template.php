@@ -411,7 +411,7 @@ return function ( $referrer = '' ) {
 									<?php _e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
-							<div class="udb-form-row udb-skip-discount">
+							<div class="udb-form-row udb-onboarding-wizard-skip-discount">
 								<a href="">
 									<?php _e( 'No, I don\'t want any discount :/', 'ultimate-dashboard' ); ?>
 								</a>
@@ -483,9 +483,9 @@ return function ( $referrer = '' ) {
 			</div>
 
 			<!-- Explore Settings Link -->
-			<div class="heatbox-footer explore-settings">
+			<div class="heatbox-footer onboarding-wizard-explore-settings">
 				<div class="heatbox-footer-item">
-					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) ); ?>" id="explore-settings" class="explore-settings-link is-hidden">
+					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) ); ?>" id="onboarding-wizard-explore-settings" class="onboarding-wizard-explore-settings-link is-hidden">
 						<?php _e( 'Explore Settings', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>

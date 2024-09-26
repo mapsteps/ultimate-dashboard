@@ -244,7 +244,7 @@
 }
 
 .onboarding-wizard-heatbox .udb-button.is-loading,
-.onboarding-wizard-heatbox .udb-skip-discount.is-loading {
+.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -254,7 +254,7 @@
 }
 
 .onboarding-wizard-heatbox .udb-button.is-loading::after,
-.onboarding-wizard-heatbox .udb-skip-discount.is-loading::after {
+.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading::after {
 	content: "";
 	position: absolute;
 	width: 1em;
@@ -288,25 +288,25 @@
 	border-top: 1px solid #eee;
 }
 
-.udb-skip-discount {
+.udb-onboarding-wizard-skip-discount {
 	text-align: center;
 	margin-bottom: 0;
 }
 
-.udb-skip-discount a {
+.udb-onboarding-wizard-skip-discount a {
 	text-decoration: none;
 }
 
-.onboarding-wizard-heatbox .udb-skip-discount.is-loading {
+.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading {
 	width: 100%;
 }
 
-.onboarding-wizard-heatbox .udb-skip-discount.is-loading::after {
+.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading::after {
 	border: 2px solid #135e96;
 	border-color: transparent transparent #2271b1 #2271b1 !important;
 }
 
-.udb-skip-discount.is-loading a {
+.udb-onboarding-wizard-skip-discount.is-loading a {
 	color: transparent;
 	pointer-events: none;
 	visibility: hidden;
@@ -335,7 +335,7 @@
 }
 
 .heatbox-footer.skip-onboarding-wizard,
-.heatbox-footer.explore-settings {
+.heatbox-footer.onboarding-wizard-explore-settings {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -343,7 +343,7 @@
 }
 
 .heatbox-footer.skip-onboarding-wizard a,
-.heatbox-footer.explore-settings a {
+.heatbox-footer.onboarding-wizard-explore-settings a {
 	color: #0073aa;
 	text-decoration: none;
 	font-size: 16px;

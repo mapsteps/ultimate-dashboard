@@ -1,4 +1,3 @@
-import { tns } from "tiny-slider";
 import {
 	findHtmlEl,
 	findHtmlEls,
@@ -9,19 +8,25 @@ import {
 (function ($) {
 	// Cache DOM elements.
 	const page = findHtmlEl(".udb-onboarding-wizard-page");
-	const buttonsWrapper = findHtmlEl(".onboarding-wizard-heatbox .heatbox-footer");
+	const buttonsWrapper = findHtmlEl(
+		".onboarding-wizard-heatbox .heatbox-footer"
+	);
 	const skipButton = findHtmlEl(".onboarding-wizard-heatbox .skip-button");
 	const saveButton = findHtmlEl(".onboarding-wizard-heatbox .save-button");
 	const skipWizardButton = findHtmlEl("#skip-setup-onboarding-wizard");
-	const subscribeButton = findHtmlEl(".onboarding-wizard-heatbox .subscribe-button");
-	const skipDiscount = findHtmlEl(".udb-skip-discount a");
+	const subscribeButton = findHtmlEl(
+		".onboarding-wizard-heatbox .subscribe-button"
+	);
+	const skipDiscount = findHtmlEl(".udb-onboarding-wizard-skip-discount a");
 	const contentAfterSubscribe = findHtmlEls("[data-udb-show-on='subscribe']");
 	const contentAfterSkipDiscount = findHtmlEls(
 		"[data-udb-show-on='skip-discount']"
 	);
 	const discountNotif = findHtmlEl(".onboarding-wizard-heatbox .for-discount");
 	const loginRedirectCheckbox = findInputEl("#udb_modules__login_redirect");
-	const exploreSettingsElement = findHtmlEl("#explore-settings");
+	const exploreSettingsElement = findHtmlEl(
+		"#onboarding-wizard-explore-settings"
+	);
 	const dotsWrapper = findHtmlEl(".onboarding-wizard-heatbox .udb-dots");
 	const roleDropdown = findHtmlEl("#remove_by_roles");
 
@@ -395,7 +400,9 @@ import {
 	}
 
 	function onLoginRedirectCheckboxClick() {
-		const dotsWrapper = findHtmlEl(".wizard-onboarding-heatbox .udb-dots .tns-nav");
+		const dotsWrapper = findHtmlEl(
+			".wizard-onboarding-heatbox .udb-dots .tns-nav"
+		);
 		if (!dotsWrapper) return;
 
 		const dots = dotsWrapper.children;
