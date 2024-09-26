@@ -1,4 +1,3 @@
-import { tns } from "tiny-slider";
 import {
 	findHtmlEl,
 	findHtmlEls,
@@ -73,7 +72,7 @@ import {
 	 * Setup the slider.
 	 */
 	function setupSlider() {
-		slider = tns({
+		slider = window.tns({
 			container: ".udb-wizard-slides",
 			items: 1,
 			loop: false,
