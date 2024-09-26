@@ -183,21 +183,21 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p data-udb-show-on="subscribe"> 
-								<?php printf( __( 'We will send you an email with a <strong>Discount Code for Ultimate Dashboard PRO</strong> in just a minute (make sure to also check your spam folder).', 'ultimate-dashboard' ) ); ?>
+								<?php printf( __( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ) ); ?>
 							</p>
 
 							<p>
-								<?php _e( 'What\'s next? Explore all the new Features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
+								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<?php _e( 'Last chance to get a Discount Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?>
+								<?php _e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 

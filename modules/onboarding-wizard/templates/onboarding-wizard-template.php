@@ -422,7 +422,7 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly. ', 'ultimate - dashboard' ); ?>
+								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate - dashboard' ); ?>
 							</p>
 
 							<p>
@@ -438,7 +438,7 @@ return function ( $referrer = '' ) {
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab the Deal', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
