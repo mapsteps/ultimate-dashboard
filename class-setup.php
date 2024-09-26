@@ -295,7 +295,7 @@ class Setup {
 	 */
 	public function load_onboarding_wizard_module() {
 
-		if ( $this->multisite_supported() || udb_is_pro_active() ) {
+		if ( is_multisite() || udb_is_pro_active() ) {
 			return;
 		}
 
