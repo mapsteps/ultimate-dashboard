@@ -301,7 +301,7 @@ class Setup {
 
 		$need_setup                = false;
 		$referrer                  = '';
-		$is_setup_wizard_completed = get_option( 'udb_setup_wizard_completed' );
+		$is_setup_wizard_completed = get_option( 'udb_onboarding_wizard_completed' );
 		
 		if ( get_option( 'udb_plugin_activation' ) ) {
 			$need_setup = true;
@@ -677,7 +677,7 @@ class Setup {
 			delete_option( 'udb_plugin_activation' );
 			delete_option( 'udb_setup_wizard_redirected' );
 
-			update_option( 'udb_setup_wizard_completed', false );
+			update_option( 'udb_onboarding_wizard_completed', false );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
