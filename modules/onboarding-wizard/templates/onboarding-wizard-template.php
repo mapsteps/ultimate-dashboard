@@ -227,9 +227,9 @@ return function ( $referrer = '' ) {
 
 						<?php foreach ( $widgets as $id => $widget ) : ?>
 							<?php
-							$is_checked    = isset( $settings[ $id ] ) ? 1 : 0;
-							$title         = isset( $widget['title_stripped'] ) ? $widget['title_stripped'] : '';
-							$slug          = isset( $widget['id'] ) ? $widget['id'] : '';
+							$is_checked = isset( $settings[ $id ] ) ? 1 : 0;
+							$title      = isset( $widget['title_stripped'] ) ? $widget['title_stripped'] : '';
+							$slug       = isset( $widget['id'] ) ? $widget['id'] : '';
 							?>
 
 							<li>
@@ -354,7 +354,7 @@ return function ( $referrer = '' ) {
 						<div class="udb-subscription-form">
 							<!-- URL Row -->
 							<div class="udb-form-row onboarding-wizard-login-url">
-								<code class="onboarding-wizard-login-url">yourdomain.com/</code>
+								<code class="onboarding-wizard-login-url"><?php _e( 'yourdomain.com', 'ultimate-dashboard' ); ?>/</code>
 								<input 
 									type="text" 
 									name="udb_login_redirect[login_url_slug]" 
