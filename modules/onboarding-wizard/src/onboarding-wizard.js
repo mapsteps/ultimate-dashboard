@@ -596,6 +596,8 @@ import {
 	function onSubscribeComplete() {
 		toggleContentVisibility(contentAfterSubscribe);
 		toggleContentVisibility(discountNotif, false);
+		toggleContentVisibility(contentAfterSkipDiscount, false);
+		
 		slider.goTo("next");
 	}
 
