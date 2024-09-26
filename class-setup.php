@@ -80,8 +80,6 @@ class Setup {
 	 */
 	public function setup() {
 
-		$this->set_data();
-
 		/**
 		 * We use 20 as the priority in the free version
 		 * because the PRO version has to run first.
