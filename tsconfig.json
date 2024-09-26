@@ -20,6 +20,6 @@
 		"build",
 		"vendor",
 		"modules/plugin-onboarding/assets/js",
-		"modules/wizard/assets/js"
+		"modules/onboarding-wizard/assets/js"
 	]
 }
