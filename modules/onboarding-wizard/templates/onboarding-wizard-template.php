@@ -69,7 +69,7 @@ return function ( $referrer = '' ) {
 	$widgets       = $widget_helper->get_default();
 	?>
 
-	<div class="wrap heatbox-wrap udb-wizard-page" data-udb-referrer="<?php echo esc_attr( $referrer ); ?>">
+	<div class="wrap heatbox-wrap udb-onboarding-wizard-page" data-udb-referrer="<?php echo esc_attr( $referrer ); ?>">
 
 		<div class="heatbox-header heatbox-margin-bottom">
 
@@ -99,10 +99,10 @@ return function ( $referrer = '' ) {
 		<div class="heatbox-container heatbox-container-center">
 			<h1 style="display: none;"></h1>
 
-			<div class="heatbox wizard-heatbox">
+			<div class="heatbox onboarding-wizard-heatbox">
 
-				<div class="udb-wizard-slides">
-					<div class="udb-wizard-slide udb-modules-slide">
+				<div class="udb-onboarding-wizard-slides">
+					<div class="udb-onboarding-wizard-slide udb-modules-slide">
 
 						<header>
 							<h2>
@@ -166,7 +166,7 @@ return function ( $referrer = '' ) {
 
 					</div>
 
-					<div class="udb-wizard-slide udb-widgets-slide">
+					<div class="udb-onboarding-wizard-slide udb-widgets-slide">
 
 						<header>
 							<h2>
@@ -265,7 +265,7 @@ return function ( $referrer = '' ) {
 
 					</div>
 
-					<div class="udb-wizard-slide udb-general-settings-slide">
+					<div class="udb-onboarding-wizard-slide udb-general-settings-slide">
 
 						<header>
 							<h2>
@@ -350,7 +350,7 @@ return function ( $referrer = '' ) {
 
 					</div>
 					
-					<div class="udb-wizard-slide udb-custom-login-url-slide">
+					<div class="udb-onboarding-wizard-slide udb-custom-login-url-slide">
 						<header>
 							<h2><?php _e( 'Custom Login URL', 'ultimate-dashboard' ); ?></h2>
 							<p><?php _e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?></p>
@@ -358,17 +358,17 @@ return function ( $referrer = '' ) {
 
 						<div class="udb-subscription-form">
 							<!-- URL Row -->
-							<div class="udb-form-row wizard-login-url">
-								<code class="wizard-login-url">yourdomain.com/</code>
+							<div class="udb-form-row onboarding-wizard-login-url">
+								<code class="onboarding-wizard-login-url">yourdomain.com/</code>
 								<input 
 									type="text" 
 									name="udb_login_redirect[login_url_slug]" 
 									id="udb_login_redirect" 
-									class="udb-input wizard-login-url"
+									class="udb-input onboarding-wizard-login-url"
 									value="<?php echo esc_attr( $login_slug ); ?>" 
 									placeholder="login" 
 								>
-								<code class="wizard-login-url">/</code>
+								<code class="onboarding-wizard-login-url">/</code>
 							</div>
 
 							<div class="udb-discount-notif"></div>
@@ -386,7 +386,7 @@ return function ( $referrer = '' ) {
 					</div>
 
 
-					<div class="udb-wizard-slide udb-subscription-slide">
+					<div class="udb-onboarding-wizard-slide udb-subscription-slide">
 
 						<header>
 
@@ -420,7 +420,7 @@ return function ( $referrer = '' ) {
 
 					</div>
 
-					<div class="udb-wizard-slide udb-finished-slide">
+					<div class="udb-onboarding-wizard-slide udb-finished-slide">
 
 						<header>
 							<h2>
@@ -453,7 +453,7 @@ return function ( $referrer = '' ) {
 
 				<footer class="heatbox-footer">
 					<div class="heatbox-footer-item">
-						<span class="wizard-skip-button skip-button">
+						<span class="onboarding-wizard-skip-button skip-button">
 							<?php _e( 'Skip', 'ultimate-dashboard' ); ?>
 						</span>
 					</div>
@@ -474,9 +474,9 @@ return function ( $referrer = '' ) {
 			</div>
 
 			<!-- Skip Wizard Link -->
-			<div class="heatbox-footer skip-wizard">
+			<div class="heatbox-footer skip-onboarding-wizard">
 				<div class="heatbox-footer-item">
-					<a href="#" id="skip-setup-wizard" class="skip-wizard-link">
+					<a href="#" id="skip-setup-onboarding-wizard" class="skip-onboarding-wizard-link">
 						<?php _e( 'Skip Setup Wizard', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>

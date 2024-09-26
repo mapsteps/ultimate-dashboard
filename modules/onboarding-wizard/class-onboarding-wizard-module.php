@@ -1,20 +1,20 @@
 <?php
 /**
- * Wizard module.
+ * Onboarding Wizard module.
  *
  * @package Ultimate_Dashboard
  */
 
-namespace Udb\Wizard;
+namespace Udb\Onboarding_Wizard;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
 
 /**
- * Class to setup wizard module.
+ * Class to setup onboarding wizard module.
  */
-class Wizard_Module extends Base_Module {
+class Onboarding_Wizard_Module extends Base_Module {
 
 	/**
 	 * The current module url.
@@ -35,7 +35,7 @@ class Wizard_Module extends Base_Module {
 	 */
 	public function __construct() {
 
-		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/wizard';
+		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/onboarding-wizard';
 
 	}
 

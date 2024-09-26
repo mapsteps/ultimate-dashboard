@@ -95,7 +95,7 @@ class Setup {
 
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );
-		add_action( 'plugins_loaded', array( $this, 'load_wizard_module' ), 20 );
+		add_action( 'plugins_loaded', array( $this, 'load_onboarding_wizard_module' ), 20 );
 
 		add_action( 'init', array( self::get_instance(), 'check_activation_meta' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
@@ -293,9 +293,9 @@ class Setup {
 	}
 
 	/**
-	 * Load wizard module.
+	 * Load onboarding wizard module.
 	 */
-	public function load_wizard_module() {
+	public function load_onboarding_wizard_module() {
 
 		if ( $this->multisite_supported() || udb_is_pro_active() ) {
 			return;
@@ -316,8 +316,8 @@ class Setup {
 			$need_setup = true;
 			$referrer   = 'plugin_activation';
 
-			// redirect to wizard page.
-			add_action( 'current_screen', array( $this, 'redirect_to_wizard_page' ), 20 );
+			// redirect to onboarding wizard page.
+			add_action( 'current_screen', array( $this, 'redirect_to_onboarding_wizard_page' ), 20 );
 		}
 
 		if ( $is_setup_wizard_completed ) {
@@ -332,18 +332,18 @@ class Setup {
 			return;
 		}
 
-		require_once __DIR__ . '/modules/wizard/class-wizard-module.php';
-		$module = new Wizard\Wizard_Module();
+		require_once __DIR__ . '/modules/onboarding-wizard/class-onboarding-wizard-module.php';
+		$module = new Onboarding_Wizard\Onboarding_Wizard_Module();
 		$module->setup( $referrer );
 
 	}
 
 	/**
-	 * Redirect to the Wizard page after activate the plugin.
+	 * Redirect to the Onboarding Wizard page after activate the plugin.
 	 */
-	public function redirect_to_wizard_page() {
+	public function redirect_to_onboarding_wizard_page() {
 
-		// Avoid redirecting when already on the wizard page.
+		// Avoid redirecting when already on the onboarding wizard page.
 		if ( isset( $_GET['page'] ) && $_GET['page'] === 'udb_onboarding_wizard' ) {
 			return;
 		}
@@ -358,7 +358,7 @@ class Setup {
 			// Set the option to prevent redirection in the current session.
 			update_option( 'udb_setup_wizard_redirected', true );
 
-			// Redirect to the Wizard page.
+			// Redirect to the Onboarding Wizard page.
 			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_onboarding_wizard' ) );
 			exit;
 		}

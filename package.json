@@ -43,8 +43,8 @@
 		"build-login-customizer": "parcel build ./modules/login-customizer/src/js/controls.ts ./modules/login-customizer/src/js/preview.ts --dist-dir ./modules/login-customizer/assets/js",
 		"watch-plugin-onboarding": "parcel watch ./modules/plugin-onboarding/src/plugin-onboarding.js --dist-dir ./modules/plugin-onboarding/assets/js",
 		"build-plugin-onboarding": "parcel build ./modules/plugin-onboarding/src/plugin-onboarding.js --dist-dir ./modules/plugin-onboarding/assets/js",
-		"watch-onboarding-wizard": "parcel watch ./modules/onbarding-wizard/src/wizard.js --dist-dir ./modules/wizard/assets/js",
-		"build-onboarding-wizard": "parcel build ./modules/onbarding-wizard/src/wizard.js --dist-dir ./modules/wizard/assets/js"
+		"watch-onboarding-wizard": "parcel watch ./modules/onboarding-wizard/src/onboarding-wizard.js --dist-dir ./modules/onboarding-wizard/assets/js",
+		"build-onboarding-wizard": "parcel build ./modules/onboarding-wizard/src/onboarding-wizard.js --dist-dir ./modules/onboarding-wizard/assets/js"
 	},
 	"dependencies": {
 		"tiny-slider": "github:usefulteam/tiny-slider"

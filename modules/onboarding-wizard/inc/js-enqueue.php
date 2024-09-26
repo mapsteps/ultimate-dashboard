@@ -17,7 +17,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// Onboarding Wizard JS.
-		wp_enqueue_script( 'udb-onboarding-wizard', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/wizard/assets/js/wizard.js', array( 'tiny-slider', 'select2' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-onboarding-wizard', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/onboarding-wizard/assets/js/onboarding-wizard.js', array( 'tiny-slider', 'select2' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'udb-onboarding-wizard',
