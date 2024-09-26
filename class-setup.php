@@ -196,7 +196,7 @@ class Setup {
 	 */
 	public function on_plugin_activation() {
 
-		update_option( 'udb_plugin_activation', true );
+		update_option( 'udb_onboarding_wizard_redirect', true );
 
 	}
 
@@ -299,24 +299,12 @@ class Setup {
 			return;
 		}
 
-		$need_setup = false;
-
-		$is_setup_wizard_completed = get_option( 'udb_onboarding_wizard_completed' );
-
-		if ( $is_setup_wizard_completed ) {
-			$need_setup = false;
-		} else {
-			$need_setup = true;
-		}
-
-		if ( ! $need_setup ) {
+		if ( get_option( 'udb_onboarding_wizard_completed' ) ) {
 			return;
 		}
 
-		if ( get_option( 'udb_plugin_activation' ) ) {
-			$need_setup = true;
-
-			// redirect to onboarding wizard page.
+		if ( get_option( 'udb_onboarding_wizard_redirect' ) ) {
+			// Redirect to onboarding wizard page.
 			add_action( 'current_screen', array( $this, 'redirect_to_onboarding_wizard_page' ), 20 );
 		}
 
@@ -331,25 +319,28 @@ class Setup {
 	 */
 	public function redirect_to_onboarding_wizard_page() {
 
-		// Avoid redirecting when already on the onboarding wizard page.
-		if ( isset( $_GET['page'] ) && 'udb_onboarding_wizard' === $_GET['page'] ) {
+		$current_screen = get_current_screen();
+
+		if ( is_null( $current_screen ) ) {
 			return;
 		}
 
-		// Check if the redirect option is set.
-		if ( get_option( 'udb_setup_wizard_redirected' ) ) {
+		// Stop if current screen is onboarding wizard page.
+		if ( 'udb_widgets_page_udb_onboarding_wizard' === $current_screen->id ) {
 			return;
 		}
 
-		// Check if the plugin was just activated.
-		if ( get_option( 'udb_plugin_activation' ) ) {
-			// Set the option to prevent redirection in the current session.
-			update_option( 'udb_setup_wizard_redirected', true );
-
-			// Redirect to the Onboarding Wizard page.
-			wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_onboarding_wizard' ) );
-			exit;
+		// Stop if this request is not supposed to be redirected.
+		if ( ! get_option( 'udb_onboarding_wizard_redirect' ) ) {
+			return;
 		}
+
+		// Immediately delete the redirect option because redirect is supposed to happen once.
+		delete_option( 'udb_onboarding_wizard_redirect' );
+
+		// Redirect to the Onboarding Wizard page.
+		wp_safe_redirect( admin_url( 'edit.php?post_type=udb_widgets&page=udb_onboarding_wizard' ) );
+		exit;
 
 	}
 
@@ -671,9 +662,8 @@ class Setup {
 
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
-			delete_option( 'udb_plugin_activation' );
-			delete_option( 'udb_setup_wizard_redirected' );
 
+			delete_option( 'udb_onboarding_wizard_redirect' );
 			delete_option( 'udb_onboarding_wizard_completed' );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {

@@ -54,11 +54,7 @@ class SkipDiscount {
 	 */
 	private function skip_discount() {
 
-		// Set setup_wizard_completed to true.
-		update_option( 'udb_onboarding_wizard_completed', true );
-
-		delete_option( 'udb_plugin_activation' );
-
+		update_option( 'udb_onboarding_wizard_completed', 1 );
 		wp_send_json_success( __( 'Discount skipped', 'ultimate-dashboard' ) );
 
 	}

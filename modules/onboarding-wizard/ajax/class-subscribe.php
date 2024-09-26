@@ -102,16 +102,12 @@ class Subscribe {
 			]
 		);
 
-		if ( ! is_wp_error( $response ) ) {
-			// Set setup_wizard_completed to true.
-			update_option( 'udb_onboarding_wizard_completed', true );
-
-			delete_option( 'udb_plugin_activation' );
-
-			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( $response->get_error_message(), 403 );
 		}
 
-		wp_send_json_error( $response->get_error_message(), 403 );
+		update_option( 'udb_onboarding_wizard_completed', true );
+		wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
 
 	}
 
