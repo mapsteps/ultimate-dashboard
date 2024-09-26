@@ -597,7 +597,8 @@ import {
 		toggleContentVisibility(contentAfterSubscribe);
 		toggleContentVisibility(discountNotif, false);
 		toggleContentVisibility(contentAfterSkipDiscount, false);
-		
+		hideSetupWizardSubmenuItem();
+
 		slider.goTo("next");
 	}
 
@@ -633,7 +634,7 @@ import {
 
 		const data = {
 			action: "udb_onboarding_wizard_skip_discount",
-			nonce: udbOnboardingWizard?.nonces.skipDiscount
+			nonce: udbOnboardingWizard?.nonces.skipDiscount,
 		};
 
 		ajaxPost(data, onSkipDiscountComplete, skipDiscount?.parentElement);
@@ -646,8 +647,29 @@ import {
 		toggleContentVisibility(contentAfterSubscribe, false);
 		toggleContentVisibility(discountNotif, false);
 		toggleContentVisibility(contentAfterSkipDiscount);
+		hideSetupWizardSubmenuItem();
 
 		slider.goTo("next");
+	}
+
+	/**
+	 * Hide the "Setup Wizard" submenu item.
+	 */
+	function hideSetupWizardSubmenuItem() {
+		const submenuItems = findHtmlEls(
+			"#menu-posts-udb_widgets .wp-submenu > li > a"
+		);
+		if (!submenuItems.length) return;
+
+		for (let i = 0; i < submenuItems.length; i++) {
+			const link = submenuItems[i];
+			if (!(link instanceof HTMLAnchorElement)) continue;
+
+			if (link.href.includes("page=udb_onboarding_wizard")) {
+				link.parentElement?.remove();
+				break;
+			}
+		}
 	}
 
 	// Initialize the script
