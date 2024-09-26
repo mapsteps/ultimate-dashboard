@@ -393,8 +393,8 @@ import {
 		const data = {
 			action: "udb_onboarding_wizard_subscribe",
 			nonce: udbOnboardingWizard?.nonces.subscribe,
-			name,
-			email,
+			name: name,
+			email: email,
 		};
 		ajaxPost(data, onSubscribeComplete, subscribeButton);
 	}
@@ -596,6 +596,7 @@ import {
 	function onSubscribeComplete() {
 		toggleContentVisibility(contentAfterSubscribe);
 		toggleContentVisibility(discountNotif, false);
+		slider.goTo("next");
 	}
 
 	/**
