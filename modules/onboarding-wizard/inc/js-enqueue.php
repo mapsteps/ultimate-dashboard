@@ -21,7 +21,7 @@ return function ( $module ) {
 
 		wp_localize_script(
 			'udb-onboarding-wizard',
-			'udbWizard',
+			'udbOnboardingWizard',
 			array(
 				'adminUrl' => admin_url(),
 				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
