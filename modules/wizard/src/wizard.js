@@ -14,7 +14,6 @@ import {
 	const saveButton = findHtmlEl(".wizard-heatbox .save-button");
 	const skipWizardButton = findHtmlEl("#skip-setup-wizard");
 	const subscribeButton = findHtmlEl(".wizard-heatbox .subscribe-button");
-	const removeAllWidgetsCheckbox = findInputEl("#udb_widgets__remove-all");
 	const skipDiscount = findHtmlEl(".udb-skip-discount a");
 	const contentAfterSubscribe = findHtmlEls("[data-udb-show-on='subscribe']");
 	const contentAfterSkipDiscount = findHtmlEls(
@@ -194,11 +193,6 @@ import {
 		saveButton?.addEventListener("click", onSaveButtonClick);
 		subscribeButton?.addEventListener("click", onSubscribeButtonClick);
 		skipDiscount?.addEventListener("click", onSkipDiscountClick);
-
-		// removeAllWidgetsCheckbox?.addEventListener(
-		// 	"change",
-		// 	onRemoveAllWidgetsCheckboxClick
-		// );
 
 		loginRedirectCheckbox?.addEventListener(
 			"change",
@@ -398,25 +392,6 @@ import {
 			email,
 		};
 		ajaxPost(data, onSubscribeComplete, subscribeButton);
-	}
-
-	/**
-	 * Handle the checkbox change event for the remove all widgets checkbox.
-	 */
-	function onRemoveAllWidgetsCheckboxClick() {
-		// Check if the checkbox is checked
-		// const isChecked = removeAllWidgetsCheckbox?.checked ?? false;
-
-		// Select all checkboxes below it
-		const allCheckboxes = findInputEls('.widget-toggle input[type="checkbox"]');
-
-		// Iterate over each checkbox
-		allCheckboxes.forEach(function (checkbox) {
-			// Skip the "Remove all" checkbox itself
-			if (checkbox.id !== "udb_widgets__remove-all") {
-				// checkbox.checked = isChecked;
-			}
-		});
 	}
 
 	function onLoginRedirectCheckboxClick() {
