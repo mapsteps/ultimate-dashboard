@@ -27,7 +27,7 @@
 	}
 
 	function onSetupAdminBarRemovalRoles() {
-		$removeAdminBar = $(".admin-bar-settings-box .remove-admin-bar");
+		$removeAdminBar = $(".admin-bar-visibility-box .remove-admin-bar");
 
 		$removeAdminBar.select2();
 

@@ -15,56 +15,60 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 class Admin_Bar_Helper {
 
 	/**
-	 * Get admin bar settings.
+	 * Get the roles to remove the admin bar for.
 	 *
-	 * @return array The admin bar settings.
+	 * @return string[] The roles to remove the admin bar for.
 	 */
-	public function get_admin_bar_settings() {
+	public function roles_to_remove() {
 
-		$saved_settings  = get_option( 'admin_bar_settings', array() );
-		$remove_by_roles = array();
+		$settings = get_option( 'udb_settings', array() );
+		$roles    = ! empty( $settings['remove_admin_bar'] ) ? $settings['remove_admin_bar'] : [];
+		$roles    = ! is_array( $roles ) ? [ 'all' ] : $roles;
 
-		if ( isset( $saved_settings['remove_by_roles'] ) ) {
-			$remove_by_roles = $saved_settings['remove_by_roles'] ? $saved_settings['remove_by_roles'] : array();
-		}
-
-		return array(
-			'remove_by_roles' => $remove_by_roles,
-		);
+		return $roles;
 
 	}
 
 	/**
-	 * Check if the admin bar should be removed for the current user.
+	 * Check if the admin bar should be removed for the user specified by role.
+	 *
+	 * @param string|string[] $roles The roles to check. If empty, the current user's roles will be used.
 	 *
 	 * @return bool
 	 */
-	public function should_remove_admin_bar() {
-		// Get the admin bar settings
-		$admin_bar_settings = $this->get_admin_bar_settings();
+	public function should_remove_admin_bar( $roles = [] ) {
 
-		// Get the current user's roles
-		$user       = wp_get_current_user();
-		$user_roles = (array) $user->roles;
+		if ( ! empty( $roles ) && is_string( $roles ) ) {
+			$roles = [ $roles ];
+		}
 
-		// Check if there are roles set to remove the admin bar
-		if ( isset( $admin_bar_settings['remove_by_roles'] ) ) {
-			$roles_to_remove = $admin_bar_settings['remove_by_roles'];
+		if ( empty( $roles ) ) {
+			$current_user  = wp_get_current_user();
+			$current_roles = $current_user->roles;
 
-			// Remove admin bar for all users if 'all' is set
-			if ( in_array( 'all', $roles_to_remove ) ) {
+			$roles = ! is_array( $current_roles ) ? [] : $current_roles;
+		}
+
+		if ( empty( $roles ) ) {
+			return false;
+		}
+
+		$roles_to_remove = $this->roles_to_remove();
+
+		if ( ! empty( $roles_to_remove ) ) {
+			// Remove admin bar for all users if 'all' is set.
+			if ( in_array( 'all', $roles_to_remove, true ) ) {
 				return true;
 			}
 
-			// Otherwise, check if the current user has a role that should remove the admin bar
-			foreach ( $user_roles as $role ) {
-				if ( in_array( $role, $roles_to_remove ) ) {
+			// Otherwise, check if `$roles` var contains a role that should remove the admin bar.
+			foreach ( $roles as $role ) {
+				if ( in_array( $role, $roles_to_remove, true ) ) {
 					return true;
 				}
 			}
 		}
 
-		// Return false if no conditions matched
 		return false;
 	}
 

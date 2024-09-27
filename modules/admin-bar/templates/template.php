@@ -62,16 +62,6 @@ wp_localize_script(
 	<div class="heatbox-container heatbox-container-center heatbox-column-container">
 		<div class="heatbox-main">
 
-			<div class="heatbox-admin-panel udb-visibility-panel">
-				<div class="heatbox">
-					<?php do_settings_sections( 'udb-admin-bar-visibility-settings' ); ?>
-				</div> 
-
-				<button type="button" class="button button-primary button-larger js-save-remove-admin-bar">
-					<?php _e( 'Save Changes', 'ultimate-dashboard' ); ?>
-				</button>
-			</div> 
-				
 			<?php if ( ! udb_is_pro_active() ) : ?>
 
 				<div class="udb-pro-upgrade-nag">
@@ -129,36 +119,10 @@ wp_localize_script(
 			</form>
 		</div>
 		<div class="heatbox-sidebar">
-			<div class="heatbox tags-heatbox">
-				<h2>
-					<?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
-					<span class="action-status">📋 Copied</span>
-				</h2>
-
-				<div class="heatbox-content">
-					<p>
-						<?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?>
-						<br><strong><?php esc_html_e( '(Click to copy)', 'ultimate-dashboard' ); ?></strong>
-					</p>
-					<div class="tags-wrapper">
-						<?php
-						$placeholder_tags = [
-							'{site_name}',
-							'{site_url}',
-						];
-
-						$placeholder_tags = apply_filters( 'udb_admin_menu_placeholder_tags', $placeholder_tags );
-						$total_tags       = count( $placeholder_tags );
-
-						foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
-							?>
-							<code><?php echo esc_attr( $placeholder_tag ); ?></code>
-							<?php
-						}
-						?>
-					</div>
-				</div>
-			</div>
+			<?php
+			require_once __DIR__ . '/metaboxes/remove-admin-bar-metabox.php';
+			require_once __DIR__ . '/metaboxes/placeholder-tags-metabox.php';
+			?>
 
 			<?php do_action( 'udb_admin_bar_sidebar' ); ?>
 		</div>

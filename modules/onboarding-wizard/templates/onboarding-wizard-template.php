@@ -271,91 +271,95 @@ return function () {
 								<?php _e( 'Next, let\'s simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
+
+						<?php
+						$admin_bar_helper = new Admin_Bar_Helper();
+						$selected_roles   = $admin_bar_helper->roles_to_remove();
+						?>
  
 						<ul class="udb-modules">
-						<?php foreach ( $general_settings as $setting ) : ?>
-							<?php
-							$is_checked = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
-							$title      = isset( $setting['title'] ) ? $setting['title'] : '';
-							$slug       = isset( $setting['name'] ) ? $setting['name'] : '';
+							<?php foreach ( $general_settings as $setting ) : ?>
+								<?php
+								$is_checked = isset( $settings[ $setting['name'] ] ) ? 1 : 0;
+								$title      = isset( $setting['title'] ) ? $setting['title'] : '';
+								$slug       = isset( $setting['name'] ) ? $setting['name'] : '';
 
-							$settings_helper = new Admin_Bar_Helper();
+								// Check if the admin bar should be removed.
+								if ( 'remove_admin_bar' === $setting['name'] && $admin_bar_helper->should_remove_admin_bar() ) {
+									$is_checked = 1;
+								}
 
-							// Check if the admin bar should be removed
-							if ( $settings_helper->should_remove_admin_bar() && 'remove_admin_bar' === $setting['name'] ) {
-								$is_checked = 1;
-							}
+								// Get all available roles.
+								$roles = wp_roles()->roles;
+								?>
 
-							// Retrieve the admin bar settings for roles
-							$admin_bar_settings = $settings_helper->get_admin_bar_settings();
-							$selected_roles     = isset( $admin_bar_settings['remove_by_roles'] ) ? $admin_bar_settings['remove_by_roles'] : array();
+								<li>
 
-							// Get all roles
-							$roles = wp_roles()->roles;
-							?>
+									<!-- Show roles dropdown if remove_admin_bar is selected -->
+									<?php if ( 'remove_admin_bar' === $setting['name'] ) : ?>
 
-							<li>
+										<div class="role-dropdown">
+											<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
+											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown" multiple>
+												<option value="all" <?php echo esc_attr( in_array( 'all', $selected_roles, true ) ? 'selected' : '' ); ?>>
+													<?php _e( 'All', 'ultimate-dashboard' ); ?>
+												</option>
+												
+												<?php foreach ( $roles as $role_key => $role ) : ?>
+													<option value="<?php echo esc_attr( $role_key ); ?>"
+														<?php selected( in_array( $role_key, $selected_roles, true ), true ); ?>>
+														<?php echo esc_html( $role['name'] ); ?>
+													</option>
+												<?php endforeach; ?>
+											</select>
+										</div>
 
-								<!-- Show roles dropdown if remove_admin_bar is selected -->
-								<?php if ( 'remove_admin_bar' === $setting['name'] ) : ?>
+									<?php else : ?>
 
-								<div class="role-dropdown">
-									<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
-									<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown" multiple>
-										<option value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>>
-											<?php _e( 'All', 'ultimate-dashboard' ); ?>
-										</option>
-										
-										<?php foreach ( $roles as $role_key => $role ) : ?>
-											<option value="<?php echo esc_attr( $role_key ); ?>"
-												<?php selected( in_array( $role_key, $selected_roles ), true ); ?>>
-												<?php echo esc_html( $role['name'] ); ?>
-											</option>
-										<?php endforeach; ?>
-									</select>
-								</div>
+										<div class="module-text">
+											<h3>
+												<label for="udb_settings__<?php echo esc_attr( $slug ); ?>">
+													<?php echo esc_html( $title ); ?>
+												</label>
+											</h3>
+										</div>
 
-								<?php else : ?>
+										<div class="setting-toggle">
+											<label for="udb_settings__<?php echo esc_attr( $slug ); ?>" class="label checkbox-label">
+												<input
+													type="checkbox"
+													name="udb_settings[<?php echo esc_attr( $slug ); ?>]"
+													id="udb_settings__<?php echo esc_attr( $slug ); ?>"
+													value="1"
+													<?php checked( $is_checked, 1 ); ?>
+												>
+												<div class="indicator"></div>
+											</label>
+										</div>
 
-								<div class="module-text">
-									<h3>
-										<label for="udb_settings__<?php echo esc_attr( $slug ); ?>">
-											<?php echo esc_html( $title ); ?>
-										</label>
-									</h3>
-								</div>
-								<div class="setting-toggle">
-									<label for="udb_settings__<?php echo esc_attr( $slug ); ?>" class="label checkbox-label">
-										<input
-											type="checkbox"
-											name="udb_settings[<?php echo esc_attr( $slug ); ?>]"
-											id="udb_settings__<?php echo esc_attr( $slug ); ?>"
-											value="1"
-											<?php checked( $is_checked, 1 ); ?>
-										>
-										<div class="indicator"></div>
-									</label>
-								</div>
+									<?php endif; ?>
+								</li>
 
-								<?php endif; ?>
-							</li>
-
-						<?php endforeach; ?>
-					</ul>												
+							<?php endforeach; ?>
+						</ul>
 
 					</div>
 					
 					<div class="udb-onboarding-wizard-slide udb-custom-login-url-slide">
 						<header>
-							<h2><?php _e( 'Custom Login URL', 'ultimate-dashboard' ); ?></h2>
-							<p><?php _e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?></p>
+							<h2>
+								<?php _e( 'Custom Login URL', 'ultimate-dashboard' ); ?>
+							</h2>
+							<p>
+								<?php _e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?>
+							</p>
 						</header>
 
 						<div class="udb-subscription-form">
 							<!-- URL Row -->
 							<div class="udb-form-row onboarding-wizard-login-url">
 								<code class="onboarding-wizard-login-url"><?php _e( 'yourdomain.com', 'ultimate-dashboard' ); ?>/</code>
-								<input 
+								<input
 									type="text" 
 									name="udb_login_redirect[login_url_slug]" 
 									id="udb_login_redirect" 
@@ -383,7 +387,6 @@ return function () {
 					<div class="udb-onboarding-wizard-slide udb-subscription-slide">
 
 						<header>
-
 							<h2>
 								<?php _e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>

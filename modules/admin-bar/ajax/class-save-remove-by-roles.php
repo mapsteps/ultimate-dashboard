@@ -15,11 +15,11 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 class Save_Remove_By_Roles {
 
 	/**
-	 * The referrer where UDB was installed from.
+	 * The roles to remove the admin bar for.
 	 *
-	 * @var string
+	 * @var string[]
 	 */
-	private $roles;
+	private $roles = [];
 
 	/**
 	 * Class constructor.
@@ -45,36 +45,41 @@ class Save_Remove_By_Roles {
 	 */
 	public function validate() {
 
-		$nonce       = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
-		$this->roles = isset( $_POST['roles'] ) ? $_POST['roles'] : [];
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_bar_save_remove_by_roles' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
+		$roles = isset( $_POST['roles'] ) ? $_POST['roles'] : [];
+
+		if ( ! is_array( $roles ) ) {
+			wp_send_json_error( __( 'Roles should be an array', 'ultimate-dashboard' ) );
+		}
+
+		foreach ( $roles as $role ) {
+			if ( empty( $role ) || ! is_string( $role ) ) {
+				wp_send_json_error( __( 'Roles should be an array of strings', 'ultimate-dashboard' ) );
+				break;
+			}
+
+			$this->roles[] = sanitize_text_field( $role );
+		}
+
 	}
 
 	/**
-	 * Save remove by roles to database.
+	 * Save the data.
 	 */
 	public function save() {
 
-		// Validate and sanitize the roles data from the class property $this->roles
-		if ( isset( $this->roles ) && is_array( $this->roles ) ) {
-			$remove_by_roles = array_map( 'sanitize_text_field', $this->roles );
-		} else {
-			$remove_by_roles = array(); // Default value if not set or invalid
-		}
+		$settings = get_option( 'udb_settings', array() );
 
-		// Prepare the settings array to be saved
-		$new_settings = array(
-			'remove_by_roles' => $remove_by_roles,
-		);
+		$settings['remove_admin_bar'] = $this->roles;
 
-		// Save the settings using update_option
-		update_option( 'admin_bar_settings', $new_settings );
+		update_option( 'udb_settings', $settings );
 
-		wp_send_json_success( __( 'Admin bar settings saved', 'ultimate-dashboard' ) );
+		wp_send_json_success( __( 'Admin bar visibility settings saved', 'ultimate-dashboard' ) );
 
 	}
 

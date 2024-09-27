@@ -204,14 +204,6 @@ class Setting_Module extends Base_Module {
 			'udb-general-section'
 		);
 
-		// add_settings_field(
-		// 	'remove-admin-bar-settings',
-		// 	__( 'Remove Admin Bar from Frontend', 'ultimate-dashboard' ),
-		// 	array( $this, 'remove_admin_bar_field' ),
-		// 	'udb-general-settings',
-		// 	'udb-general-section'
-		// );
-
 		add_settings_field(
 			'headline-settings',
 			__( 'Custom Dashboard Headline', 'ultimate-dashboard' ),
@@ -382,16 +374,6 @@ class Setting_Module extends Base_Module {
 	public function remove_screen_option_tab_field() {
 
 		$field = require __DIR__ . '/templates/fields/remove-screen-option-tab.php';
-		$field();
-
-	}
-
-	/**
-	 * Remove admin bar field.
-	 */
-	public function remove_admin_bar_field() {
-
-		$field = require __DIR__ . '/templates/fields/remove-admin-bar.php';
 		$field();
 
 	}

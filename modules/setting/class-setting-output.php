@@ -260,10 +260,10 @@ class Setting_Output extends Base_Output {
 	 */
 	public function remove_admin_bar() {
 
-		$settings_helper = new Admin_Bar_Helper();
+		$admin_bar_helper = new Admin_Bar_Helper();
 
-		// Check if the admin bar should be removed
-		if ( $settings_helper->should_remove_admin_bar() ) {
+		// Check if the admin bar should be removed.
+		if ( $admin_bar_helper->should_remove_admin_bar() ) {
 			add_filter( 'show_admin_bar', '__return_false' );
 		}
 

@@ -61,12 +61,12 @@ hr {
  * Saved status
  * --------------------------------------------------
  */
-.admin-bar-settings-box .heatbox .saved-status.is-shown,
-.admin-bar-settings-box .saved-status-bar.is-shown {
+.admin-bar-visibility-box .saved-status.is-shown,
+.admin-bar-visibility-box .saved-status-bar.is-shown {
 	opacity: 1;
 }
 
-.admin-bar-settings-box .heatbox .saved-status {
+.admin-bar-visibility-box .saved-status {
 	position: absolute;
 	right: 20px;
 	top: 50%;
@@ -85,7 +85,7 @@ hr {
 	color: #fff;
 }
 
-.admin-bar-settings-box .saved-status-bar {
+.admin-bar-visibility-box .saved-status-bar {
 	position: fixed;
 	left: 0;
 	top: 32px;
@@ -107,46 +107,24 @@ hr {
  * --------------------------------------------------
  */
 
-.admin-bar-settings-box .select2-label .select2-container {
+.admin-bar-visibility-box .select2-label .select2-container {
 	width: 100% !important;
 	display: block;
 }
 
-.admin-bar-settings-box .select2-selection--multiple {
+.admin-bar-visibility-box .select2-selection--multiple {
 	padding: 0;
 }
 
-.udb-visibility-panel .heatbox {
+.admin-bar-visibility-box {
 	background: #fff;
 }
 
-.udb-visibility-panel .heatbox-footer {
+.admin-bar-visibility-box .heatbox-footer {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	padding: 20px 20px;
 	background: #fff;
 	border: 1px solid #ddd;
-}
-
-.js-save-remove-admin-bar.is-loading {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	color: transparent !important;
-	pointer-events: none;
-}
-
-.js-save-remove-admin-bar.is-loading::after {
-	content: "";
-	position: absolute;
-	width: 1em;
-	display: block;
-	height: 1em;
-	border: 2px solid #dbdbdb;
-	border-color: transparent transparent #fff #fff !important;
-	border-radius: 290486px;
-	-webkit-animation: udbLoadingSpinAround 0.5s infinite linear;
-	animation: udbLoadingSpinAround 0.5s infinite linear;
 }
