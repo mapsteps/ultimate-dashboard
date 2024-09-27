@@ -53,8 +53,6 @@ import {
 	 */
 	let slider;
 
-	let loginRedirectUnChecked = false;
-
 	// Initialization
 	function init() {
 		if (
@@ -72,6 +70,10 @@ import {
 		setupSlider();
 		setupSelect2();
 		setupEventListeners();
+	}
+
+	function isLoginRedirectChecked() {
+		return loginRedirectCheckbox?.checked ?? false;
 	}
 
 	/**
@@ -162,6 +164,10 @@ import {
 			dotsWrapper.appendChild(instance.navContainer);
 			hideLastDots(instance);
 		}
+
+		setTimeout(() => {
+			checkLoginRedirectCheckbox();
+		}, 1);
 	}
 
 	/**
@@ -172,6 +178,7 @@ import {
 	function hideLastDots(instance) {
 		if (dotsWrapper && instance.navContainer) {
 			const dots = instance.navContainer.children;
+
 			if (dots.length > 2) {
 				const lastDot = dots[dots.length - 1];
 				const secondLastDot = dots[dots.length - 2];
@@ -359,11 +366,11 @@ import {
 	function handleModulesSkip() {
 		if (dotsWrapper) {
 			const dots = dotsWrapper.children;
-			if (loginRedirectCheckbox && !loginRedirectCheckbox.checked) {
-				loginRedirectUnChecked = true;
-				dots[3]?.classList.add("is-hidden");
-			} else {
+
+			if (isLoginRedirectChecked()) {
 				dots[3]?.classList.remove("is-hidden");
+			} else {
+				dots[3]?.classList.add("is-hidden");
 			}
 		}
 
@@ -377,12 +384,10 @@ import {
 	function onSaveButtonClick() {
 		if (doingAjax) return;
 		startLoading(saveButton);
+
 		let data = getSaveData();
-		ajaxPost(
-			data,
-			() => slider.goTo(loginRedirectUnChecked ? 4 : "next"),
-			saveButton
-		);
+
+		ajaxPost(data, () => gotoNext(), saveButton);
 	}
 
 	function onSubscribeButtonClick() {
@@ -399,24 +404,44 @@ import {
 		ajaxPost(data, onSubscribeComplete, subscribeButton);
 	}
 
+	/**
+	 * Go to next slide.
+	 */
+	function gotoNext() {
+		/**
+		 * @type {number | "next" | "prev" | "first" | "last"} target - The id of the slide to go to. Accepts "next" or an index.
+		 */
+		let target = "next";
+
+		if (slider.getInfo().displayIndex === 3) {
+			target = isLoginRedirectChecked() ? target : 4;
+		}
+
+		slider.goTo(target);
+	}
+
 	function onLoginRedirectCheckboxClick() {
-		const dotsWrapper = findHtmlEl(
+		checkLoginRedirectCheckbox();
+	}
+
+	function checkLoginRedirectCheckbox() {
+		const sliderNav = findHtmlEl(
 			".onboarding-wizard-heatbox .udb-dots .tns-nav"
 		);
-		if (!dotsWrapper) return;
+		if (!sliderNav) return;
 
-		const dots = dotsWrapper.children;
+		const dots = sliderNav.children;
 
-		if (loginRedirectCheckbox?.checked) {
-			// hide 4th dot
-			if (dots.length >= 4) {
-				dots[3].classList.remove("is-hidden");
-			}
+		if (dots.length < 4) {
+			return;
+		}
+
+		if (isLoginRedirectChecked()) {
+			// Show 4th dot.
+			dots[3].classList.remove("is-hidden");
 		} else {
-			// hide 4th dot
-			if (dots.length >= 4) {
-				dots[3].classList.add("is-hidden");
-			}
+			// Hide 4th dot.
+			dots[3].classList.add("is-hidden");
 		}
 	}
 

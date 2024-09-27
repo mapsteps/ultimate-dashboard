@@ -33,7 +33,7 @@
 		}
 	},
 	"devDependencies": {
-		"@types/jquery": "^3.5.30",
+		"@types/jquery": "^3.5.31",
 		"@types/select2": "^4.0.63",
 		"@types/wordpress__customize-browser": "^5.5.5",
 		"parcel": "^2.12.0"
