@@ -32,15 +32,11 @@ class Admin_Bar_Helper {
 	/**
 	 * Check if the admin bar should be removed for the user specified by role.
 	 *
-	 * @param string|string[] $roles The roles to check. If empty, the current user's roles will be used.
+	 * @param string[] $roles The roles to check. If empty, the current user's roles will be used.
 	 *
 	 * @return bool
 	 */
 	public function should_remove_admin_bar( $roles = [] ) {
-
-		if ( ! empty( $roles ) && is_string( $roles ) ) {
-			$roles = [ $roles ];
-		}
 
 		if ( empty( $roles ) ) {
 			$current_user  = wp_get_current_user();

@@ -37,7 +37,7 @@ class Setting_Output extends Base_Output {
 	/**
 	 * Get instance of the class.
 	 *
-	 * @return object
+	 * @return self
 	 */
 	public static function get_instance() {
 
@@ -257,13 +257,15 @@ class Setting_Output extends Base_Output {
 
 	/**
 	 * Remove admin bar from frontend.
+	 *
+	 * @param string[] $roles The roles to remove the admin bar for.
 	 */
-	public function remove_admin_bar() {
+	public function remove_admin_bar( $roles = array() ) {
 
 		$admin_bar_helper = new Admin_Bar_Helper();
 
 		// Check if the admin bar should be removed.
-		if ( $admin_bar_helper->should_remove_admin_bar() ) {
+		if ( $admin_bar_helper->should_remove_admin_bar( $roles ) ) {
 			add_filter( 'show_admin_bar', '__return_false' );
 		}
 
