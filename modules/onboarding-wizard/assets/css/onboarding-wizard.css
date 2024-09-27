@@ -236,7 +236,8 @@
 }
 
 .onboarding-wizard-heatbox .udb-button.is-loading::after,
-.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading::after {
+.onboarding-wizard-heatbox
+	.udb-onboarding-wizard-skip-discount.is-loading::after {
 	content: "";
 	position: absolute;
 	width: 1em;
@@ -283,7 +284,8 @@
 	width: 100%;
 }
 
-.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading::after {
+.onboarding-wizard-heatbox
+	.udb-onboarding-wizard-skip-discount.is-loading::after {
 	border: 2px solid #135e96;
 	border-color: transparent transparent #2271b1 #2271b1 !important;
 }
@@ -325,7 +327,9 @@
 }
 
 .udb-onboarding-wizard-page .heatbox-footer.skip-onboarding-wizard a,
-.udb-onboarding-wizard-page .heatbox-footer.onboarding-wizard-explore-settings a {
+.udb-onboarding-wizard-page
+	.heatbox-footer.onboarding-wizard-explore-settings
+	a {
 	color: #0073aa;
 	text-decoration: none;
 	font-size: 16px;
@@ -354,7 +358,9 @@
 	white-space: nowrap;
 }
 
-.udb-onboarding-wizard-page .udb-form-row input.udb-input.onboarding-wizard-login-url {
+.udb-onboarding-wizard-page
+	.udb-form-row
+	input.udb-input.onboarding-wizard-login-url {
 	flex-grow: 1;
 	padding: 10px;
 	border: 1px solid #ccc;
@@ -363,7 +369,9 @@
 	height: inherit;
 }
 
-.udb-onboarding-wizard-page .wrap.heatbox-wrap.udb-wizard-page .heatbox-margin-bottom {
+.udb-onboarding-wizard-page
+	.wrap.heatbox-wrap.udb-wizard-page
+	.heatbox-margin-bottom {
 	margin-bottom: 40px;
 }
 
@@ -401,10 +409,12 @@
 	border-radius: 4px;
 	margin-left: 1px;
 	min-width: 315px;
+	height: 60px;
+	overflow: auto;
 }
 
 .udb-onboarding-wizard-page .select2-dropdown {
-	width: 100% !important; 
+	width: 100% !important;
 }
 
 .udb-onboarding-wizard-page li.select2-selection__choice {
@@ -417,19 +427,19 @@
 }
 
 .udb-onboarding-wizard-page .select2-dropdown {
-	width: 100% !important; 
-	box-sizing: border-box; 
+	width: 100% !important;
+	box-sizing: border-box;
 }
 
 /* Ensure the width of the actual options matches the container */
 .udb-onboarding-wizard-page .select2-results__options {
-	width: 100% !important; 
+	width: 100% !important;
 }
 
 .udb-onboarding-wizard-page .select2-results__option {
-	white-space: nowrap; 
+	white-space: nowrap;
 	overflow: hidden;
-	text-overflow: ellipsis; 
+	text-overflow: ellipsis;
 	padding-right: 10px;
 }
 
