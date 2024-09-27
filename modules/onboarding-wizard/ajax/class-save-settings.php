@@ -78,8 +78,12 @@ class Save_Settings {
 		}
 
 		if ( ! empty( $_POST['settings'] ) ) {
-			foreach ( $_POST['settings'] as $index => $setting ) {
+			foreach ( $_POST['settings'] as $setting ) {
 				if ( ! is_string( $setting ) ) {
+					continue;
+				}
+
+				if ( ! in_array( $setting, $this->available_settings, true ) ) {
 					continue;
 				}
 
@@ -87,13 +91,16 @@ class Save_Settings {
 			}
 		}
 
+		// 'remove_admin_bar' is not part of the 'settings' AJAX payload.
+		$this->settings[] = 'remove_admin_bar';
+
 		// If selected roles exists, it must be an array.
 		if ( isset( $_POST['selected_roles'] ) && ! is_array( $_POST['selected_roles'] ) ) {
 			wp_send_json_error( __( 'Selected roles must be an array', 'ultimate-dashboard' ), 400 );
 		}
 
 		if ( ! empty( $_POST['selected_roles'] ) ) {
-			foreach ( $_POST['selected_roles'] as $index => $role ) {
+			foreach ( $_POST['selected_roles'] as $role ) {
 				if ( ! is_string( $role ) ) {
 					continue;
 				}
@@ -111,9 +118,7 @@ class Save_Settings {
 
 		$udb_settings = get_option( 'udb_settings', array() );
 
-		// Iterate through the available settings.
 		foreach ( $this->available_settings as $available_setting ) {
-			// If the setting is selected (exists in $this->settings), save it as 'true'.
 			if ( in_array( $available_setting, $this->settings, true ) ) {
 				if ( 'remove_admin_bar' === $available_setting ) {
 					$udb_settings[ $available_setting ] = $this->selected_roles;
