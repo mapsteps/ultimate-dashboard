@@ -449,7 +449,7 @@ import {
 			data = {
 				action: "udb_onboarding_wizard_save_custom_login_url",
 				nonce: udbOnboardingWizard?.nonces.saveCustomLoginUrl,
-				loginUrl: getCustomLoginUrl(),
+				custom_login_url: getCustomLoginUrl(),
 			};
 		}
 

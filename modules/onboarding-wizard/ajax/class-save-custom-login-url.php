@@ -63,12 +63,11 @@ class Save_Custom_Login_Url {
 	 */
 	private function save() {
 
-		// Save data to the 'udb_login_redirect' option.
-		// Retrieve the existing settings or an empty array if not present.
-		$existing_settings                   = get_option( 'udb_login_redirect', [] );
-		$existing_settings['login_url_slug'] = $this->custom_login_url;
+		$settings = get_option( 'udb_login_redirect', array() );
 
-		update_option( 'udb_login_redirect', $existing_settings );
+		$settings['login_url_slug'] = $this->custom_login_url;
+
+		update_option( 'udb_login_redirect', $settings );
 
 		wp_send_json_success( __( 'Login redirect saved', 'ultimate-dashboard' ) );
 

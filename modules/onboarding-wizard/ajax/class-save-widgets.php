@@ -29,7 +29,7 @@ class Save_Widgets {
 	 *
 	 * @var string[]
 	 */
-	private $widgets = [];
+	private $widgets = array();
 
 	/**
 	 * Class constructor.
@@ -85,8 +85,7 @@ class Save_Widgets {
 					continue;
 				}
 
-				$widget = sanitize_text_field( wp_unslash( $widget ) );
-				array_push( $this->widgets, $widget );
+				$this->widgets[] = sanitize_text_field( wp_unslash( $widget ) );
 			}
 		}
 
@@ -97,34 +96,20 @@ class Save_Widgets {
 	 */
 	private function save() {
 
-		/**
-		 * Check if the 'udb_settings' option already exists.
-		 * Retrieve the existing settings or an empty array if not present./
-		 */
-		$existing_settings = get_option( 'udb_settings', array() );
+		$settings = get_option( 'udb_settings', array() );
 
-		// Initialize an array to hold the selected widgets.
-		$udb_settings = array();
-
-		// Iterate through the available widgets.
 		foreach ( $this->available_widgets as $available_widget ) {
-
-			// If the widget is selected (exists in $this->widgets), save it as 'true'.
 			if ( in_array( $available_widget, $this->widgets, true ) ) {
-				$udb_settings[ $available_widget ] = true;
-			} else {
-				// If the widget is not selected, unset it from the existing settings.
-				if ( isset( $existing_settings[ $available_widget ] ) ) {
-					unset( $existing_settings[ $available_widget ] );
-				}
+				$settings[ $available_widget ] = 1;
+				continue;
+			}
+
+			if ( isset( $settings[ $available_widget ] ) ) {
+				unset( $settings[ $available_widget ] );
 			}
 		}
 
-		// Merge the new selected widgets with existing settings.
-		$updated_settings = array_merge( $existing_settings, $udb_settings );
-
-		// Save the updated settings to the 'udb_settings' option.
-		update_option( 'udb_settings', $updated_settings );
+		update_option( 'udb_settings', $settings );
 
 		wp_send_json_success( __( 'Widgets saved', 'ultimate-dashboard' ) );
 
