@@ -114,10 +114,23 @@ class Backwards_Compatibility {
 			return;
 		}
 
-		$udb_settings = get_option( 'udb_settings', array() );
+		$udb_settings       = get_option( 'udb_settings', array() );
+		$admin_bar_settings = get_option( 'admin_bar_settings', array() );
 
 		if ( ! $udb_settings ) {
 			update_option( 'udb_settings', array() );
+		}
+
+		// Check if the previous "remove_admin_bar" setting exists.
+		if ( $udb_settings['remove_admin_bar'] ) {
+
+			// Migrate the setting to the new format.
+			$admin_bar_settings['remove_by_roles'] = [ 'all' ];
+			update_option( 'admin_bar_settings', $admin_bar_settings );
+
+			// Remove the old setting to prevent conflicts.
+			unset( $udb_settings['remove_admin_bar'] );
+			update_option( 'udb_settings', $udb_settings );
 		}
 
 		if ( get_option( 'removeallwidgets' ) ) {
