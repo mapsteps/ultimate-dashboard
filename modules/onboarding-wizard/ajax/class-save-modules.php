@@ -101,12 +101,14 @@ class Save_Modules {
 		update_option( 'udb_modules', $module_statuses );
 
 		// Get the login_redirect value from udb_modules.
-		$login_redirect = isset( $module_statuses['login_redirect'] ) ? $module_statuses['login_redirect'] : null;
+		$login_redirect = isset( $module_statuses['login_redirect'] ) ? $module_statuses['login_redirect'] : false;
+		$login_redirect = 'true' === $login_redirect ? true : $login_redirect;
+		$login_redirect = 'false' === $login_redirect ? false : $login_redirect;
 
 		// Send a JSON response with the login_redirect data.
 		wp_send_json_success( [
 			'message'        => __( 'Modules saved', 'ultimate-dashboard' ),
-			'login_redirect' => $login_redirect,
+			'login_redirect' => boolval( $login_redirect ),
 		] );
 	}
 

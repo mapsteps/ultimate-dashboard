@@ -7,6 +7,8 @@
 
 namespace Udb\OnboardingWizard\Ajax;
 
+use Udb\Helpers\Widget_Helper;
+
 /**
  * Class to manage ajax request of migration to UDB.
  */
@@ -15,22 +17,17 @@ class Save_Widgets {
 	/**
 	 * The available widgets.
 	 *
-	 * @var array
+	 * @var string[]
 	 */
-	private $available_widgets = [
+	private $available_widgets = array(
 		'remove-all',
 		'welcome_panel',
-		'dashboard_activity',
-		'dashboard_right_now',
-		'dashboard_quick_press',
-		'dashboard_site_health',
-		'dashboard_primary',
-	];
+	);
 
 	/**
 	 * The selected widgets.
 	 *
-	 * @var array
+	 * @var string[]
 	 */
 	private $widgets = [];
 
@@ -47,6 +44,14 @@ class Save_Widgets {
 	 * The request handler.
 	 */
 	public function handler() {
+
+		$widgets = ( new Widget_Helper() )->get_default();
+
+		$widget_keys = array_keys( $widgets );
+
+		$this->available_widgets = array_merge( $this->available_widgets, $widget_keys );
+		$this->available_widgets = array_unique( $this->available_widgets );
+		$this->available_widgets = array_values( $this->available_widgets );
 
 		$this->validate();
 		$this->save();
@@ -75,11 +80,13 @@ class Save_Widgets {
 		}
 
 		if ( ! empty( $_POST['widgets'] ) ) {
-			foreach ( $_POST['widgets'] as $index => $widget ) {
-				if ( is_string( $widget ) ) {
-					$widget = sanitize_text_field( wp_unslash( $widget ) );
-					array_push( $this->widgets, $widget );
+			foreach ( $_POST['widgets'] as $widget ) {
+				if ( ! is_string( $widget ) ) {
+					continue;
 				}
+
+				$widget = sanitize_text_field( wp_unslash( $widget ) );
+				array_push( $this->widgets, $widget );
 			}
 		}
 
@@ -94,10 +101,10 @@ class Save_Widgets {
 		 * Check if the 'udb_settings' option already exists.
 		 * Retrieve the existing settings or an empty array if not present./
 		 */
-		$existing_settings = get_option( 'udb_settings', [] );
+		$existing_settings = get_option( 'udb_settings', array() );
 
 		// Initialize an array to hold the selected widgets.
-		$udb_settings = [];
+		$udb_settings = array();
 
 		// Iterate through the available widgets.
 		foreach ( $this->available_widgets as $available_widget ) {

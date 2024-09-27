@@ -401,7 +401,7 @@ import {
 
 	function onLoginRedirectCheckboxClick() {
 		const dotsWrapper = findHtmlEl(
-			".wizard-onboarding-heatbox .udb-dots .tns-nav"
+			".onboarding-wizard-heatbox .udb-dots .tns-nav"
 		);
 		if (!dotsWrapper) return;
 
