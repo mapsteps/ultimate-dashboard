@@ -19,10 +19,11 @@ $roles     = $roles_obj->role_names;
 <div class="heatbox admin-bar-visibility-box">
 
 	<h2>
-		<?php _e( 'Remove Admin Bar', 'ultimate-dashboard' ); ?>
+		<?php _e( 'Visibility', 'ultimate-dashboard' ); ?>
 	</h2>
 
 	<div class="setting-fields heatbox-content">
+		<h3><?php _e( 'Remove Admin Bar for:', 'ultimate-dashboard' ); ?></h3>
 		<div class="field">
 			<label for="remove_by_roles" class="label select2-label">
 				<select name="remove_by_roles[]" id="remove_by_roles" class="ultiselect remove-admin-bar use-select2 is-fullwidth" multiple>

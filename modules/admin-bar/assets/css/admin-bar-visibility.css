@@ -61,6 +61,10 @@ hr {
  * Saved status
  * --------------------------------------------------
  */
+.admin-bar-visibility-box h3 {
+	font-size: 14px;
+}
+
 .admin-bar-visibility-box .saved-status.is-shown,
 .admin-bar-visibility-box .saved-status-bar.is-shown {
 	opacity: 1;
