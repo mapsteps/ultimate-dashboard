@@ -120,8 +120,7 @@ class Backwards_Compatibility {
 			update_option( 'udb_settings', array() );
 		}
 
-		// Check if the previous "remove_admin_bar" setting exists (meaning: enabled).
-		if ( $udb_settings['remove_admin_bar'] ) {
+		if ( isset( $udb_settings['remove_admin_bar'] ) && ! is_array( $udb_settings['remove_admin_bar'] ) ) {
 			/**
 			 * The previous format was just checkbox,
 			 * so we need to convert it to new format which is array (by roles).
