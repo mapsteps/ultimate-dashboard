@@ -154,8 +154,6 @@ class Admin_Bar_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 
-		add_action( 'admin_init', array( $this, 'admin_bar_visibility_settings' ) );
-
 		$this->setup_ajax();
 
 	}
@@ -767,24 +765,6 @@ class Admin_Bar_Module extends Base_Module {
 		}
 
 		return $nested_array;
-	}
-
-	/**
-	 * Add settings.
-	 */
-	public function admin_bar_visibility_settings() {
-		// Visibility section.
-		add_settings_section( 'udb-admin-bar-visibility-section', __( 'Remove Admin Bar', 'ultimate-dashboard' ), '', 'udb-admin-bar-visibility-settings' );
-
-		// Admin Bar Visibility fields.
-		add_settings_field(
-			'hide-admin-bar-settings',
-			__( 'Hide Admin Bar for:', 'ultimate-dashboard' ),
-			array( $this, 'remove_by_role_field_tab' ),
-			'udb-admin-bar-visibility-settings',
-			'udb-admin-bar-visibility-section'
-		);
-
 	}
 
 	/**
