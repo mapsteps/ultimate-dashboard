@@ -23,8 +23,8 @@ return function ( $module ) {
 		// Menu builder.
 		wp_enqueue_style( 'udb-menu-builder', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/css/udb-menu-builder.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Admin bar visibility.
-		wp_enqueue_style( 'udb-admin-bar-visibility', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/css/admin-bar-visibility.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// Admin bar settings.
+		wp_enqueue_style( 'udb-admin-bar-settings', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/css/admin-bar-settings.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 	}
 
 };
