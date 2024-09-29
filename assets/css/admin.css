@@ -4,9 +4,24 @@
 
 /**
  * --------------------------------------------------
- * Select2 multiselect patch
+ * Select2 patch
  * --------------------------------------------------
  */
+.heatbox-admin .select2-results__option {
+	margin-bottom: 0;
+}
+
+.heatbox-admin > .select2-container .select2-search {
+	padding: 6px;
+}
+
+.heatbox-admin > .select2-container .select2-search__field {
+	margin-left: 0;
+	margin-right: 0;
+	min-height: 20px;
+	line-height: normal;
+}
+
 .heatbox .select2-label {
 	display: block;
 }
