@@ -293,14 +293,14 @@ return function () {
 								$roles = wp_roles()->roles;
 								?>
 
-								<li>
+								<li class="<?php echo ( 'remove_admin_bar' === $setting['name'] ? 'has-select2' : '' ); ?>">
 
 									<!-- Show roles dropdown if remove_admin_bar is selected -->
 									<?php if ( 'remove_admin_bar' === $setting['name'] ) : ?>
 
 										<div class="role-dropdown">
 											<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
-											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown" multiple>
+											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown use-select2" multiple>
 												<option value="all" <?php echo esc_attr( in_array( 'all', $selected_roles, true ) ? 'selected' : '' ); ?>>
 													<?php _e( 'All', 'ultimate-dashboard' ); ?>
 												</option>

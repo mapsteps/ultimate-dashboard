@@ -71,11 +71,15 @@
 	padding: 0;
 }
 
-.udb-onboarding-wizard-slide .udb-modules li {
+.udb-onboarding-wizard-slide .udb-modules > li {
+	display: block;
+	margin-bottom: 17px;
+}
+
+.udb-onboarding-wizard-slide .udb-modules > li:not(.has-select2) {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 17px;
 }
 
 .udb-onboarding-wizard-slide .udb-modules .module-image {
@@ -405,45 +409,6 @@
 }
 
 .udb-onboarding-wizard-page .select2-selection {
-	padding: 0px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-left: 1px;
-	min-width: 315px;
 	height: 60px;
-	overflow: auto;
-}
-
-.udb-onboarding-wizard-page .select2-dropdown {
-	width: 100% !important;
-}
-
-.udb-onboarding-wizard-page li.select2-selection__choice {
-	margin: 5px;
-}
-
-/* Ensures the select2 dropdown list stays within the container width */
-.udb-onboarding-wizard-page .select2-container {
-	width: 100% !important;
-}
-
-.udb-onboarding-wizard-page .select2-dropdown {
-	width: 100% !important;
-	box-sizing: border-box;
-}
-
-/* Ensure the width of the actual options matches the container */
-.udb-onboarding-wizard-page .select2-results__options {
-	width: 100% !important;
-}
-
-.udb-onboarding-wizard-page .select2-results__option {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	padding-right: 10px;
-}
-
-.udb-onboarding-wizard-page .select2-container--open .select2-dropdown {
-	max-width: 315px !important;
+	overflow-y: auto;
 }
