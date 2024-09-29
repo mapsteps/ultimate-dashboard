@@ -3,6 +3,76 @@
 }
 
 /**
+ * --------------------------------------------------
+ * Select2 multiselect patch
+ * --------------------------------------------------
+ */
+.heatbox .select2-label {
+	display: block;
+}
+
+.heatbox .use-select2 {
+	position: relative;
+	width: 100%;
+}
+
+.heatbox .select2-selection--multiple {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding-top: 0;
+	padding-bottom: 5px;
+	line-height: 20px;
+}
+
+.heatbox .select2-selection--multiple .select2-selection__rendered {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.heatbox .select2-selection--multiple .select2-selection__choice {
+	display: inline-flex;
+	align-items: center;
+	padding-left: 0;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+.heatbox .select2-selection--multiple .select2-selection__choice__remove {
+	display: inline-flex;
+	align-items: center;
+	position: relative;
+	height: 20px;
+	line-height: 1;
+}
+
+.heatbox .select2-selection--multiple .select2-selection__choice__remove span {
+	position: relative;
+	top: -1px;
+}
+
+.heatbox .select2-selection--multiple .select2-selection__choice__display {
+	display: inline-block;
+	padding-left: 4px;
+	line-height: 1;
+}
+
+.heatbox .select2-selection--multiple .select2-search--inline {
+	display: inline;
+}
+
+.heatbox
+	.select2-selection--multiple
+	.select2-search--inline
+	.select2-search__field {
+	position: relative;
+	display: inline-block;
+	margin-top: 5px;
+	height: 20px;
+	line-height: inherit;
+}
+
+/**
  * Fix custom admin bar menu item icon.
  */
 .udb-admin-bar-output--menu-link .ab-icon {
