@@ -2,30 +2,75 @@
 	font-size: 14px;
 }
 
+.admin-bar-visibility-box .heatbox-footer {
+	padding: 20px 20px;
+	border-top: 1px solid #ddd;
+}
+
 /**
  * --------------------------------------------------
- * Role multiselect
+ * Select2 patch
  * --------------------------------------------------
  */
-
-.admin-bar-visibility-box .select2-label .select2-container {
-	width: 100% !important;
+.heatbox .select2-label {
 	display: block;
 }
 
-.admin-bar-visibility-box .select2-selection--multiple {
-	padding: 0;
+select.use-select2 {
+	position: relative;
+	width: 100%;
 }
 
-.admin-bar-visibility-box {
-	background: #fff;
+.select2-selection.select2-selection--multiple {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding-top: 0;
+	padding-bottom: 5px;
+	line-height: 20px;
 }
 
-.admin-bar-visibility-box .heatbox-footer {
-	display: flex;
-	flex-wrap: wrap;
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.select2-container--default
+	.select2-selection--multiple
+	.select2-selection__choice {
+	display: inline-flex;
 	align-items: center;
-	padding: 20px 20px;
-	background: #fff;
-	border-top: 1px solid #ddd;
+	padding-left: 0;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+.select2-container--default
+	.select2-selection--multiple
+	.select2-selection__choice__remove {
+	display: inline-flex;
+	align-items: center;
+	position: relative;
+	height: 20px;
+	line-height: 1;
+}
+
+.select2-container--default
+	.select2-selection--multiple
+	.select2-selection__choice__display {
+	display: inline-block;
+	padding-left: 3px;
+	line-height: 1;
+}
+
+.select2-selection--multiple .select2-search--inline {
+	display: inline;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+	position: relative;
+	display: inline-block;
+	margin-top: 5px;
+	height: 20px;
+	line-height: inherit;
 }
