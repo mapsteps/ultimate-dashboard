@@ -146,7 +146,7 @@ return function ( $referrer = '' ) {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								<?php _e( 'Exclusive <br>Discount 🥳', 'ultimate-dashboard' ); ?>
+								<?php _e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>

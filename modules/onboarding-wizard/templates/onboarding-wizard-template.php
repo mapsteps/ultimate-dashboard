@@ -410,7 +410,7 @@ return function () {
 							</div>
 							<div class="udb-form-row udb-onboarding-wizard-skip-discount">
 								<a href="">
-									<?php _e( 'No, I don\'t want any discount :/', 'ultimate-dashboard' ); ?>
+									<?php _e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
