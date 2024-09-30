@@ -30,7 +30,6 @@ $roles     = $roles_obj->role_names;
 					<option value="all"<?php echo ( in_array( 'all', $saved_roles, true ) ? ' selected' : '' ); ?>>
 						<?php _e( 'All', 'ultimate-dashboard' ); ?>
 					</option>
-
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
 						<?php
 						$selected_attr = '';

@@ -43,7 +43,7 @@ Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default 
 * Change the WordPress welcome panel content
 * Change the WordPress "Howdy" text
 * Set a custom WordPress dashboard headline
-* Hide the WordPress admin bar from the frontend
+* Remove WordPress admin bar for specific user roles
 * Remove "Help" tab
 * Remove "Screen Options" tab
 * Customize the WordPress footer & version text
@@ -61,6 +61,7 @@ For even more features, check out [Ultimate Dashboard PRO](https://ultimatedashb
 * Create video widgets
 * Create contact form widgets
 * WordPress multisite support
+* Dark Mode
 * Admin Menu Editor
 * Admin Bar Editor
 
@@ -102,7 +103,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.8.3 | September 28, 2024 =
+= 3.8.3 | September 30, 2024 =
 * New: Onboarding Wizard
 * New: Hide admin bar for specific user roles
 = 3.8.2 | August 14, 2024 =
