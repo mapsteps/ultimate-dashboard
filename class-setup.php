@@ -203,6 +203,10 @@ class Setup {
 			return;
 		}
 
+		if ( is_multisite() || udb_is_pro_active() ) {
+			return;
+		}
+
 		update_option( 'udb_onboarding_wizard_redirect', 1 );
 
 	}
@@ -631,6 +635,7 @@ class Setup {
 			delete_blog_option( $site_id, 'udb_compat_old_option' );
 
 			delete_blog_option( $site_id, 'udb_migration_from_erident' );
+			delete_blog_option( $site_id, 'udb_referred_by_kirki' );
 
 			delete_blog_option( $site_id, 'udb_login_customizer_flush_url' );
 			delete_blog_option( $site_id, 'review_notice_dismissed' );
@@ -663,6 +668,7 @@ class Setup {
 			delete_option( 'udb_compat_old_option' );
 
 			delete_option( 'udb_migration_from_erident' );
+			delete_option( 'udb_referred_by_kirki' );
 
 			delete_option( 'udb_login_customizer_flush_url' );
 			delete_option( 'review_notice_dismissed' );
@@ -670,6 +676,7 @@ class Setup {
 			delete_option( 'udb_install_date' );
 			delete_option( 'udb_plugin_activated' );
 
+			// These 2 options won't be available in multisite install.
 			delete_option( 'udb_onboarding_wizard_redirect' );
 			delete_option( 'udb_onboarding_wizard_completed' );
 
