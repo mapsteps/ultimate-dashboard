@@ -203,6 +203,7 @@ class Setup {
 			return;
 		}
 
+		// We bail out early in multisite because this function will still be called in the main site.
 		if ( is_multisite() || udb_is_pro_active() ) {
 			return;
 		}
