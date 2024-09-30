@@ -102,7 +102,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.8.3 | September 28, 2024 =
+= 3.8.3 | September 30, 2024 =
 * New: Onboarding Wizard
 * New: Hide admin bar for specific user roles
 = 3.8.2 | August 14, 2024 =
