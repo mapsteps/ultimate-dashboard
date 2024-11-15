@@ -2,9 +2,9 @@
 Contributors: davidvongries
 Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress Admin, Branda
 Requires at least: 4.6
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 3.8.3
+Stable tag: 3.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.4 | November 15, 2024 =
+* Tested up to WordPress 6.7
+* Fixed: Issue where the custom admin logo won't show after the release of WordPress 6.7
 = 3.8.3 | September 30, 2024 =
 * New: Onboarding Wizard
 * New: Hide admin bar for specific user roles
