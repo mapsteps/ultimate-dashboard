@@ -141,7 +141,8 @@ body.login {
 	padding: 0 12px;
 }
 
-.login h1 a {
+.login h1 a,
+.login .wp-login-logo a {
 	width: 100%;
 	height: 90px;
 	background-repeat: no-repeat;
@@ -150,7 +151,8 @@ body.login {
 }
 
 <?php if ( $logo_image ) : ?>
-	.login h1 a {
+	.login h1 a,
+	.login .wp-login-logo a {
 		background-image: url(<?php echo esc_url( $logo_image ); ?>);
 	}
 <?php endif; ?>

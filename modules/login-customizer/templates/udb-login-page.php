@@ -221,7 +221,11 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 
 	?>
 	<div id="login">
-		<h1><a class="udb-login--logo-link" href="<?php echo esc_url( $login_header_url ); ?>"><?php echo $login_header_text; ?></a></h1>
+		<h1 role="presentation" class="wp-login-logo">
+			<a class="udb-login--logo-link" href="<?php echo esc_url( $login_header_url ); ?>">
+				<?php echo esc_html( $login_header_text ); ?>
+			</a>
+		</h1>
 	<?php
 	/**
 	 * Filters the message to display above the login form.
@@ -1242,6 +1246,8 @@ switch ( $action ) {
 		$rememberme = ! empty( $_POST['rememberme'] );
 
 		$aria_describedby_error = '';
+
+		wp_enqueue_script( 'user-profile' );
 		?>
 
 		<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">

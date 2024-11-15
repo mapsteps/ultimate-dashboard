@@ -3,9 +3,16 @@ declare var wp: any;
 const listenLogoHeightFieldChange = () => {
 	wp.customize("udb_login[logo_height]", function (setting: any) {
 		setting.bind(function (val: string) {
-			document.querySelector(
+			const el = document.querySelector(
 				'[data-listen-value="udb_login[logo_height]"]'
-			).innerHTML = ".login h1 a {background-size: auto " + val + ";}";
+			);
+
+			if (!el) return;
+
+			el.innerHTML =
+				".login h1 a, .login .wp-login-logo a {background-size: auto " +
+				val +
+				";}";
 		});
 	});
 };
