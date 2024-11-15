@@ -105,7 +105,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 == Changelog ==
 = 3.8.4 | November 15, 2024 =
 * Tested up to WordPress 6.7
-* Fixed: Issue where the custom admin logo won't show after the release of WordPress 6.7
+* Fixed: Issue where the custom login-page logo won't show after the release of WordPress 6.7
 = 3.8.3 | September 30, 2024 =
 * New: Onboarding Wizard
 * New: Hide admin bar for specific user roles
