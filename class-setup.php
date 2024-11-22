@@ -546,7 +546,7 @@ class Setup {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
-		update_option( 'udb_bfcm_notice_dismissed_2023', 1 );
+		update_option( 'udb_bfcm_notice_dismissed_2024', 1 );
 		wp_send_json_success( 'Review notice has been dismissed.' );
 
 	}
