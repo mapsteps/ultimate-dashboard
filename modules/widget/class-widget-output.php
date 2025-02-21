@@ -180,10 +180,17 @@ class Widget_Output extends Base_Output {
 
 			} elseif ( 'text' === $widget_type ) { // Text widget output.
 
-				$content       = get_post_meta( $post_id, 'udb_content', true );
-				$contentheight = get_post_meta( $post_id, 'udb_content_height', true ) ? ' data-udb-content-height="' . get_post_meta( $post_id, 'udb_content_height', true ) . '"' : '';
+				$content        = get_post_meta( $post_id, 'udb_content', true );
+				$content_height = get_post_meta( $post_id, 'udb_content_height', true );
+				$content_height = $content_height ? $content_height : '';
 
-				$output = do_shortcode( '<div class="udb-content-wrapper"' . $contentheight . '>' . wpautop( $content ) . '</div>' );
+				$text_wdiget_output = sprintf(
+					'<div class="udb-content-wrapper"%1s>%2s</div>',
+					$content_height ? ' data-udb-content-height="' . esc_attr( $content_height ) . '"' : '',
+					wp_kses_post( wpautop( $content ) )
+				);
+
+				$output = do_shortcode( $text_wdiget_output );
 				$output = $this->convert_placeholder_tags( $output );
 
 			} elseif ( 'icon' === $widget_type ) { // Icon widget output.
@@ -206,7 +213,7 @@ class Widget_Output extends Base_Output {
 
 			$output = apply_filters( 'udb_widget_output', $output, $output_args );
 
-			$output_callback = function() use ( $output ) {
+			$output_callback = function () use ( $output ) {
 				echo $output;
 			};
 
@@ -267,10 +274,9 @@ class Widget_Output extends Base_Output {
 	 * @param string $str The string to replace the tags in.
 	 * @return string The modified string.
 	 */
-	public function convert_placeholder_tags($str)
-	{
+	public function convert_placeholder_tags( $str ) {
 
-		$str = str_replace($this->placeholder_tags, $this->placeholder_values, $str);
+		$str = str_replace( $this->placeholder_tags, $this->placeholder_values, $str );
 		$str = apply_filters( 'udb_widgets_convert_placeholder_tags', $str );
 
 		return $str;
