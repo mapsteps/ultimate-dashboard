@@ -19,13 +19,17 @@ return function ( $post_id ) {
 		return;
 	}
 
-	$is_valid_widget_type_nonce   = isset( $_POST['udb_widget_type_nonce'] ) && wp_verify_nonce( $_POST['udb_widget_type_nonce'], 'udb_widget_type' ) ? true : false;
-	$is_valid_widget_active_nonce = isset( $_POST['udb_widget_active_nonce'] ) && wp_verify_nonce( $_POST['udb_widget_active_nonce'], 'udb_widget_active' ) ? true : false;
+	$widget_type_nonce     = isset( $_POST['udb_widget_type_nonce'] ) ? sanitize_text_field( $_POST['udb_widget_type_nonce'] ) : '';
+	$active_status_nonce   = isset( $_POST['udb_widget_active_nonce'] ) ? sanitize_text_field( $_POST['udb_widget_active_nonce'] ) : '';
+	$widget_position_nonce = isset( $_POST['udb_position_nonce'] ) ? sanitize_text_field( $_POST['udb_position_nonce'] ) : '';
+	$widget_priority_nonce = isset( $_POST['udb_priority_nonce'] ) ? sanitize_text_field( $_POST['udb_priority_nonce'] ) : '';
 
-	$is_valid_position_nonce = isset( $_POST['udb_position_nonce'] ) && wp_verify_nonce( $_POST['udb_position_nonce'], 'udb_position' ) ? true : false;
-	$is_valid_priority_nonce = isset( $_POST['udb_priority_nonce'] ) && wp_verify_nonce( $_POST['udb_priority_nonce'], 'udb_priority' ) ? true : false;
+	$is_valid_widget_type_nonce   = wp_verify_nonce( $widget_type_nonce, 'udb_widget_type' ) ? true : false;
+	$is_valid_active_status_nonce = wp_verify_nonce( $active_status_nonce, 'udb_widget_active' ) ? true : false;
+	$is_valid_position_nonce      = wp_verify_nonce( $widget_position_nonce, 'udb_position' ) ? true : false;
+	$is_valid_priority_nonce      = wp_verify_nonce( $widget_priority_nonce, 'udb_priority' ) ? true : false;
 
-	if ( ! $is_valid_widget_type_nonce || ! $is_valid_widget_active_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
+	if ( ! $is_valid_widget_type_nonce || ! $is_valid_active_status_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
 		return;
 	}
 
@@ -68,7 +72,7 @@ return function ( $post_id ) {
 
 	// Text widget.
 	if ( isset( $_POST['udb_content'] ) ) {
-		update_post_meta( $post_id, 'udb_content', wp_kses_post( $_POST['udb_content'] ) );
+		update_post_meta( $post_id, 'udb_content', sanitize_textarea_field( $_POST['udb_content'] ) );
 	}
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
