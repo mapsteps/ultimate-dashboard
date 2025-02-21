@@ -174,13 +174,19 @@ class Widget_Output extends Base_Output {
 
 			if ( 'html' === $widget_type ) {
 
-				$html   = get_post_meta( $post_id, 'udb_html', true );
-				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
+				$content = get_post_meta( $post_id, 'udb_html', true );
+
+				$output = sprintf(
+					'<div class="udb-html-wrapper">%1s</div>',
+					wp_kses_post( $content )
+				);
+
 				$output = $this->convert_placeholder_tags( $output );
 
 			} elseif ( 'text' === $widget_type ) {
 
-				$content        = get_post_meta( $post_id, 'udb_content', true );
+				$content = get_post_meta( $post_id, 'udb_content', true );
+
 				$content_height = get_post_meta( $post_id, 'udb_content_height', true );
 				$content_height = $content_height ? $content_height : '';
 
