@@ -13,7 +13,6 @@ return function ( $module, $post ) {
 	$menu_parent = get_post_meta( $post->ID, 'udb_menu_parent', true );
 	$menu_order  = get_post_meta( $post->ID, 'udb_menu_order', true );
 	$menu_order  = $menu_order ? absint( $menu_order ) : 10;
-	$menu_icon   = get_post_meta( $post->ID, 'udb_menu_icon', true );
 
 	$admin_menu = $GLOBALS['menu'];
 

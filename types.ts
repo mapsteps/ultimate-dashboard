@@ -1,9 +1,23 @@
 import { tns } from "tiny-slider";
+import type {
+	escapeAttribute,
+	escapeHTML,
+	escapeEditableHTML,
+} from "@wordpress/escape-html";
 
 export {};
 
 declare global {
 	interface Window {
+		wp: {
+			escapeHtml: {
+				escapeAttribute: typeof escapeAttribute;
+				escapeHTML: typeof escapeHTML;
+				escapeEditableHTML: typeof escapeEditableHTML;
+			};
+			data: any;
+		};
+
 		udbPluginOnboarding?: {
 			adminUrl: string;
 			ajaxUrl: string;
@@ -13,6 +27,7 @@ declare global {
 				skipDiscount: string;
 			};
 		};
+
 		udbOnboardingWizard?: {
 			adminUrl: string;
 			ajaxUrl: string;
