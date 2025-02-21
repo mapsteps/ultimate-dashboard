@@ -178,28 +178,37 @@ class Widget_Output extends Base_Output {
 				$output = do_shortcode( '<div class="udb-html-wrapper">' . $html . '</div>' );
 				$output = $this->convert_placeholder_tags( $output );
 
-			} elseif ( 'text' === $widget_type ) { // Text widget output.
+			} elseif ( 'text' === $widget_type ) {
 
 				$content        = get_post_meta( $post_id, 'udb_content', true );
 				$content_height = get_post_meta( $post_id, 'udb_content_height', true );
 				$content_height = $content_height ? $content_height : '';
 
-				$text_wdiget_output = sprintf(
+				$output = sprintf(
 					'<div class="udb-content-wrapper"%1s>%2s</div>',
 					$content_height ? ' data-udb-content-height="' . esc_attr( $content_height ) . '"' : '',
 					wp_kses_post( wpautop( $content ) )
 				);
 
-				$output = do_shortcode( $text_wdiget_output );
+				$output = do_shortcode( $output );
 				$output = $this->convert_placeholder_tags( $output );
 
-			} elseif ( 'icon' === $widget_type ) { // Icon widget output.
+			} elseif ( 'icon' === $widget_type ) {
 
-				$output = '<a href="' . $link . '" target="' . $target . '"><i class="' . $icon . '"></i></a>';
+				$output = sprintf(
+					'<a href="%1s" target="%2s"><i class="%3s"></i></a>',
+					esc_url( $link ),
+					esc_attr( $target ),
+					esc_attr( $icon )
+				);
 
 				if ( $tooltip ) {
 					$tooltip = $this->convert_placeholder_tags( $tooltip );
-					$output .= '<i class="udb-info"></i><div class="udb-tooltip"><span>' . $tooltip . '</span></div>';
+
+					$output .= sprintf(
+						'<i class="udb-info"></i><div class="udb-tooltip"><span>%1s</span></div>',
+						esc_html( $tooltip )
+					);
 				}
 			}
 
