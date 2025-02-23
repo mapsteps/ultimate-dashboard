@@ -66,7 +66,7 @@ return function ( $module, $post_id ) {
 
 	// Menu order.
 	if ( isset( $_POST['udb_menu_order'] ) ) {
-		update_post_meta( $post_id, 'udb_menu_order', sanitize_text_field( wp_unslash( $_POST['udb_menu_order'] ) ) );
+		update_post_meta( $post_id, 'udb_menu_order', absint( wp_unslash( $_POST['udb_menu_order'] ) ) );
 	}
 
 	// Menu icon.
