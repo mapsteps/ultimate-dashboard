@@ -10,6 +10,7 @@ export {};
 
 declare global {
 	interface Window {
+		ajaxurl: string;
 		wp: {
 			escapeHtml: {
 				escapeAttribute: typeof escapeAttribute;

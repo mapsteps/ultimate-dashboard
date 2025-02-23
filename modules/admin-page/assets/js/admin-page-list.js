@@ -1,6 +1,6 @@
 /**
  * Setup admin page list.
- * 
+ *
  * Used global objects:
  * - jQuery
  * - ajaxurl
@@ -16,10 +16,18 @@
 		var checkboxes = document.querySelectorAll('[name="udb_is_active"]');
 		if (!checkboxes.length) return;
 
-		[].slice.call(checkboxes).forEach(function (checkbox) {
-			checkbox.addEventListener('change', function () {
-				ajax.changeActiveStatus(this);
-			});
+		checkboxes.forEach(function (checkbox) {
+			checkbox.addEventListener(
+				"change",
+				/**
+				 * Switch page as active or inactive.
+				 *
+				 * @this {HTMLElement}
+				 */
+				function () {
+					ajax.changeActiveStatus(this);
+				}
+			);
 		});
 	}
 
@@ -29,18 +37,20 @@
 	 * @param {HTMLElement} checkbox The current checkbox.
 	 */
 	ajax.changeActiveStatus = function (checkbox) {
+		if (!(checkbox instanceof HTMLInputElement)) return;
+
 		$.ajax({
-			url: ajaxurl,
-			type: 'post',
-			dataType: 'json',
+			url: window.ajaxurl,
+			type: "post",
+			dataType: "json",
 			data: {
-				action: 'udb_admin_page_change_active_status',
+				action: "udb_admin_page_change_active_status",
 				nonce: checkbox.dataset.nonce,
 				post_id: checkbox.dataset.postId,
-				is_active: (checkbox.checked ? 1 : 0),
-			}
-		})
-	}
+				is_active: checkbox.checked ? 1 : 0,
+			},
+		});
+	};
 
 	init();
 })(jQuery);
