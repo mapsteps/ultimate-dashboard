@@ -1,6 +1,4 @@
-// Let's quickly check if this doesn't contain unnecessary stuff from somewhere else.
-
-(function ($) {
+(function ($, wp) {
 	/**
 	 * Call main functions.
 	 */
@@ -160,9 +158,9 @@
 	function previewIcon(content) {
 		const iconPreview = findHtmlEl(".icon-preview");
 
-		if (iconPreview && window.wp.escapeHtml) {
+		if (iconPreview && wp.escapeHtml) {
 			iconPreview.innerHTML =
-				'<i class="' + window.wp.escapeHtml.escapeAttribute(content) + '"></i>';
+				'<i class="' + wp.escapeHtml.escapeAttribute(content) + '"></i>';
 		}
 	}
 
@@ -227,7 +225,7 @@
 			field.setAttribute("data-content-mode", "js");
 		});
 
-		var fields = findHtmlEls(".udb-codemirror");
+		const fields = findHtmlEls(".udb-codemirror");
 		if (!fields.length) return;
 
 		fields.forEach(function (field) {
@@ -237,8 +235,9 @@
 				contentMode = field.getAttribute("data-content-mode") ?? contentMode;
 			}
 
-			var editorSettings =
-				wp && wp.codeEditor && wp.codeEditor.defaultSettings
+			/** @type {Record<string, unknown>} */
+			const editorSettings =
+				wp.codeEditor && wp.codeEditor.defaultSettings
 					? _.clone(wp.codeEditor.defaultSettings)
 					: {};
 
@@ -248,14 +247,17 @@
 				mode: contentMode,
 			});
 
-			wp.codeEditor.initialize(field, editorSettings);
+			if (field instanceof HTMLTextAreaElement) {
+				wp.codeEditor.initialize(field, editorSettings);
+			}
 		});
 
 		if (wp && wp.data && wp.data.subscribe) {
 			// @see https://github.com/WordPress/gutenberg/issues/13645
 			wp.data.subscribe(function () {
 				fields.forEach(function (field) {
-					const cm = jQuery(field).next(".CodeMirror").get(0).CodeMirror;
+					// @ts-ignore
+					const cm = $(field).next(".CodeMirror")?.get(0)?.CodeMirror;
 					if (cm) cm.save();
 				});
 			});
@@ -360,4 +362,4 @@
 	}
 
 	init();
-})(jQuery);
+})(jQuery, window.wp);
