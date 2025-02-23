@@ -31,7 +31,9 @@ return function ( $module, $post_id ) {
 		return;
 	}
 
-	if ( ! isset( $_POST['udb_nonce'] ) || ! wp_verify_nonce( $_POST['udb_nonce'], 'udb_edit_admin_page' ) ) {
+	$nonce = isset( $_POST['udb_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_nonce'] ) ) : '';
+
+	if ( ! wp_verify_nonce( $nonce, 'udb_edit_admin_page' ) ) {
 		return;
 	}
 
@@ -44,32 +46,32 @@ return function ( $module, $post_id ) {
 
 	// Content type.
 	if ( isset( $_POST['udb_content_type'] ) ) {
-		update_post_meta( $post_id, 'udb_content_type', sanitize_text_field( $_POST['udb_content_type'] ) );
+		update_post_meta( $post_id, 'udb_content_type', sanitize_text_field( wp_unslash( $_POST['udb_content_type'] ) ) );
 	}
 
 	// HTML content.
 	if ( isset( $_POST['udb_html_content'] ) ) {
-		update_post_meta( $post_id, 'udb_html_content', wp_kses_post( $_POST['udb_html_content'] ) );
+		update_post_meta( $post_id, 'udb_html_content', wp_kses_post( wp_unslash( $_POST['udb_html_content'] ) ) );
 	}
 
 	// Menu type.
 	if ( isset( $_POST['udb_menu_type'] ) ) {
-		update_post_meta( $post_id, 'udb_menu_type', sanitize_text_field( $_POST['udb_menu_type'] ) );
+		update_post_meta( $post_id, 'udb_menu_type', sanitize_text_field( wp_unslash( $_POST['udb_menu_type'] ) ) );
 	}
 
 	// Menu parent.
 	if ( isset( $_POST['udb_menu_parent'] ) ) {
-		update_post_meta( $post_id, 'udb_menu_parent', sanitize_text_field( $_POST['udb_menu_parent'] ) );
+		update_post_meta( $post_id, 'udb_menu_parent', sanitize_text_field( wp_unslash( $_POST['udb_menu_parent'] ) ) );
 	}
 
 	// Menu order.
 	if ( isset( $_POST['udb_menu_order'] ) ) {
-		update_post_meta( $post_id, 'udb_menu_order', sanitize_text_field( $_POST['udb_menu_order'] ) );
+		update_post_meta( $post_id, 'udb_menu_order', sanitize_text_field( wp_unslash( $_POST['udb_menu_order'] ) ) );
 	}
 
 	// Menu icon.
 	if ( isset( $_POST['udb_menu_icon'] ) ) {
-		update_post_meta( $post_id, 'udb_menu_icon', sanitize_text_field( $_POST['udb_menu_icon'] ) );
+		update_post_meta( $post_id, 'udb_menu_icon', sanitize_text_field( wp_unslash( $_POST['udb_menu_icon'] ) ) );
 	}
 
 	// Display page title.
@@ -95,6 +97,8 @@ return function ( $module, $post_id ) {
 
 	// Custom css.
 	if ( isset( $_POST['udb_custom_css'] ) ) {
+		// Sanitized in sanitize_css().
+		// phpcs:ignore
 		update_post_meta( $post_id, 'udb_custom_css', $module->content()->sanitize_css( $_POST['udb_custom_css'] ) );
 	}
 

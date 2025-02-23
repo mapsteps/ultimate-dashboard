@@ -55,7 +55,7 @@ class Base_Module {
 	/**
 	 * Content helper.
 	 *
-	 * @return object Instance of content helper.
+	 * @return Content_Helper Instance of content helper.
 	 */
 	public function content() {
 

@@ -124,6 +124,8 @@ class Content_Helper {
 	 */
 	public function sanitize_css( $text ) {
 
+		$text = wp_unslash( $text );
+
 		$sanitized_css = str_ireplace( '\\', 'backslash', $text );
 		$sanitized_css = wp_strip_all_tags( $sanitized_css );
 		$sanitized_css = wp_filter_nohtml_kses( $sanitized_css );
