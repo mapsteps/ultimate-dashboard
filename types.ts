@@ -86,6 +86,12 @@ declare global {
 
 		tns: typeof tns;
 
+		udbAdminBarVisibility?: {
+			action: string;
+			nonce: string;
+			roles: string[];
+		};
+
 		udbAdminMenu?: {
 			nonces: {
 				getMenu: string;

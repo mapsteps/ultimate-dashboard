@@ -1,12 +1,9 @@
-/**
- * Used global objects:
- * - jQuery
- */
 (function ($) {
+	/** @type {string[]} */
 	let finalSelectedRoles = [];
-	const domElements = {
-		saveRemoveByRoles: document.querySelector(".js-save-remove-admin-bar"),
-	};
+
+	const saveRemoveByRoles = document.querySelector(".js-save-remove-admin-bar");
+
 	/**
 	 * Init the script.
 	 * Call the main functions here.
@@ -27,15 +24,17 @@
 	}
 
 	function onSetupAdminBarRemovalRoles() {
-		$removeAdminBar = $(".admin-bar-visibility-box .remove-admin-bar");
+		const $removeAdminBar = $(".admin-bar-visibility-box .remove-admin-bar");
 
 		$removeAdminBar.select2();
 
 		setAdminBarRemovalRoles($removeAdminBar.select2("data"));
 
 		$removeAdminBar.on("select2:select", function (e) {
-			var roleObjects = $removeAdminBar.select2("data");
-			var newSelections = [];
+			const roleObjects = $removeAdminBar.select2("data");
+
+			/** @type {string[]} */
+			const newSelections = [];
 
 			if (e.params.data.id === "all") {
 				$removeAdminBar.val("all");
@@ -62,8 +61,12 @@
 		});
 	}
 
+	/**
+	 * @param {Select2.OptionData[]} roleObjects
+	 */
 	function setAdminBarRemovalRoles(roleObjects) {
-		selectedRoles = [];
+		/** @type {string[]} */
+		const selectedRoles = [];
 
 		if (roleObjects.length) {
 			roleObjects.forEach(function (role) {
@@ -78,18 +81,21 @@
 		$(document).on("click", ".js-save-remove-admin-bar", onSubmitRoles);
 	}
 
+	/**
+	 * @param {JQuery.ClickEvent} e
+	 */
 	function onSubmitRoles(e) {
 		e.preventDefault();
 
-		domElements.saveRemoveByRoles.classList.add("is-loading");
+		saveRemoveByRoles?.classList.add("is-loading");
 
 		$.ajax({
 			type: "POST",
-			url: udbAdminBarVisibility.ajaxURL,
+			url: window.ajaxurl,
 			data: {
-				action: udbAdminBarVisibility.action,
+				action: window.udbAdminBarVisibility?.action,
 				roles: finalSelectedRoles,
-				nonce: udbAdminBarVisibility.nonce,
+				nonce: window.udbAdminBarVisibility?.nonce,
 			},
 		})
 			.done(function (r) {
@@ -97,11 +103,11 @@
 				console.log(r);
 			})
 			.fail(function () {
-				domElements.saveRemoveByRoles.classList.remove("is-loading");
+				saveRemoveByRoles?.classList.remove("is-loading");
 				console.log("Failed to save remove by roles");
 			})
 			.always(function () {
-				domElements.saveRemoveByRoles.classList.remove("is-loading");
+				saveRemoveByRoles?.classList.remove("is-loading");
 			});
 	}
 
