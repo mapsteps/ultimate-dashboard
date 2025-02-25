@@ -1,9 +1,5 @@
 /**
  * Setup admin page list.
- *
- * Used global objects:
- * - jQuery
- * - ajaxurl
  */
 (function ($) {
 	var ajax = {};

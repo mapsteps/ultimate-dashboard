@@ -9,6 +9,10 @@ import type * as WPData from "@wordpress/data";
 export {};
 
 declare global {
+	interface JQuery {
+		dashiconsPicker: () => JQuery;
+	}
+
 	interface Window {
 		ajaxurl: string;
 		wp: {
@@ -84,6 +88,80 @@ declare global {
 				skipDiscount: string;
 			};
 		};
+
 		tns: typeof tns;
+
+		udbAdminMenu: {
+			nonces: {
+				getMenu: string;
+				getUsers: string;
+			};
+			roles: {
+				key: string;
+				name: string;
+			}[];
+			templates: {
+				menuList: string;
+				submenuList: string;
+				menuSeparator: string;
+				userTabMenu: string;
+				userTabContent: string;
+			};
+		};
 	}
+
+	type UdbAdminMenuItem = {
+		is_hidden: number;
+		was_added: number;
+		title_default: string;
+		title: string;
+		url_default: string;
+		url: string;
+		class_default: string;
+		class: string;
+		type: "menu" | "separator";
+		dashicon_default: string;
+		dashicon: string;
+		icon_svg_default: string;
+		icon_svg: string;
+		id_default: string;
+		id: string;
+		icon_type_default: "dashicon" | "icon_svg" | "";
+		icon_type: "dashicon" | "icon_svg" | "";
+		submenu?: UdbAdminMenuSubmenuItem[];
+	};
+
+	type UdbAdminMenuSubmenuItem = {
+		is_hidden: number;
+		was_added: number;
+		title_default: string;
+		title: string;
+		url_default: string;
+		url: string;
+	};
+
+	type UdbAdminMenuUser = {
+		id: number;
+		text: string;
+		disabled?: boolean;
+	};
+
+	type UdbAdminMenuUserListResponse = {
+		success: boolean;
+		message: string;
+		data: UdbAdminMenuUser[];
+	};
+
+	type UdbAdminMenuGetMenuParams = {
+		action: "udb_admin_menu_get_menu";
+		nonce: string;
+		role?: string;
+		user_id?: number;
+	};
+
+	type UdbAdminMenuGetMenuResponse = {
+		success: boolean;
+		message: string;
+		data: UdbAdminMenuItem[];
+	};
 }
