@@ -111,7 +111,7 @@ ob_start();
 												__( 'Paste a base64-encoded SVG using a %1$s, which will be colored to match the color scheme. This should begin with %2$s. Or you can use this tool to generate it: %3$s', 'ultimate-dashboard' ),
 												'<strong>data URI</strong>',
 												'<code>data:image/svg+xml;base64,</code>',
-												'<a href="https://iotools.cloud/tool/svg-to-base64-encode/">https://iotools.cloud/tool/svg-to-base64-encode/</a>'
+												'<a href="https://iotools.cloud/tool/svg-to-base64-encode/" target="_blank">https://iotools.cloud/tool/svg-to-base64-encode/</a>'
 											);
 											?>
 										</p>
