@@ -217,7 +217,10 @@
 					var field = findHtmlEl(".udb-menu-builder--search-user");
 					if (!(field instanceof HTMLSelectElement)) return;
 
-					field.options[0].innerHTML = field.dataset.placeholder ?? "";
+					field.options[0].innerHTML = wp.escapeHtml.escapeEditableHTML(
+						field.dataset.placeholder ?? ""
+					);
+
 					field.disabled = false;
 
 					usersData = r.data.map((data) => {

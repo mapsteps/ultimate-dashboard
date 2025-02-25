@@ -1,4 +1,4 @@
-(function ($, wp) {
+(function ($) {
 	/**
 	 * Call main functions.
 	 */
@@ -362,4 +362,4 @@
 	}
 
 	init();
-})(jQuery, window.wp);
+})(jQuery);
