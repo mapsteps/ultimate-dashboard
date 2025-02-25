@@ -1,4 +1,8 @@
-(function ($) {
+/**
+ * @param {JQuery} $ The jQuery object.
+ * @param {typeof window.udbAdminMenu} udbAdminMenu The UDB Admin Menu object.
+ */
+(function ($, udbAdminMenu) {
 	if (!String.prototype.includes) {
 		/**
 		 * Polyfill for String.prototype.includes.
@@ -202,7 +206,7 @@
 			cache: false,
 			data: {
 				action: "udb_admin_menu_get_users",
-				nonce: window.udbAdminMenu.nonces.getUsers,
+				nonce: udbAdminMenu?.nonces.getUsers,
 			},
 		})
 			.done(
@@ -279,7 +283,7 @@
 	 * @param {Select2.OptionData} data The id and text pair (select2 data format).
 	 */
 	function appendUserTabsMenu(data) {
-		let template = window.udbAdminMenu.templates.userTabMenu;
+		let template = udbAdminMenu?.templates.userTabMenu ?? "";
 
 		template = template.replace(/{user_id}/g, data.id);
 		template = template.replace(/{display_name}/g, data.text);
@@ -301,7 +305,7 @@
 	 * @param {Select2.OptionData} data The id and text pair (select2 data format).
 	 */
 	function appendUserTabsContent(data) {
-		var template = window.udbAdminMenu.templates.userTabContent;
+		var template = udbAdminMenu?.templates.userTabContent ?? "";
 
 		template = template.replace(/{user_id}/g, data.id);
 
@@ -435,7 +439,7 @@
 		const data = {};
 
 		data.action = "udb_admin_menu_get_menu";
-		data.nonce = window.udbAdminMenu.nonces.getMenu;
+		data.nonce = udbAdminMenu?.nonces.getMenu ?? "";
 
 		if (by === "role") {
 			data.role = String(value);
@@ -524,7 +528,7 @@
 		const isHidden = Number(menu.is_hidden) ? true : false;
 
 		if (menu.type === "separator") {
-			template = window.udbAdminMenu.templates.menuSeparator;
+			template = udbAdminMenu?.templates.menuSeparator ?? "";
 			template = template.replace(/{separator}/g, menu.url_default);
 
 			template = template.replace(/{menu_is_hidden}/g, String(menu.is_hidden));
@@ -542,7 +546,7 @@
 			template = template.replace(/{default_menu_id}/g, menu.id_default);
 			template = template.replace(/{default_menu_url}/g, menu.url_default);
 		} else {
-			template = window.udbAdminMenu.templates.menuList;
+			template = udbAdminMenu?.templates.menuList ?? "";
 			template = template.replace(/{menu_title}/g, menu.title);
 			template = template.replace(/{default_menu_title}/g, menu.title_default);
 
@@ -647,7 +651,7 @@
 	function replaceSubmenuPlaceholders(by, value, submenu, menu) {
 		const submenuIsHidden = Number(submenu.is_hidden) ? true : false;
 
-		let template = window.udbAdminMenu.templates.submenuList;
+		let template = udbAdminMenu?.templates.submenuList ?? "";
 
 		if (by === "role") {
 			template = template.replace(/{role}/g, value);
@@ -865,4 +869,4 @@
 	}
 
 	init();
-})(jQuery);
+})(jQuery, window.udbAdminMenu);

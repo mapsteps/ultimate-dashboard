@@ -14,7 +14,8 @@ declare global {
 	}
 
 	interface Window {
-		ajaxurl: string;
+		ajaxurl?: string;
+
 		wp: {
 			escapeHtml: {
 				escapeAttribute: typeof escapeAttribute;
@@ -91,7 +92,7 @@ declare global {
 
 		tns: typeof tns;
 
-		udbAdminMenu: {
+		udbAdminMenu?: {
 			nonces: {
 				getMenu: string;
 				getUsers: string;
