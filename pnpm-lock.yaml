@@ -14,6 +14,9 @@ importers:
       '@wordpress/escape-html':
         specifier: ^3.18.0
         version: 3.18.0
+      dompurify:
+        specifier: ^3.2.4
+        version: 3.2.4
       tiny-slider:
         specifier: github:usefulteam/tiny-slider
         version: https://codeload.github.com/usefulteam/tiny-slider/tar.gz/76516c2a7e4c0695471a23982076a5b4beae6671
@@ -563,6 +566,9 @@ packages:
   '@types/tern@0.23.9':
     resolution: {integrity: sha512-ypzHFE/wBzh+BlH6rrBgS5I/Z7RD21pGhZ2rltb/+ZrVM1awdZwjx7hE5XfuYgHWk9uvV5HLZN3SloevCAp3Bw==}
 
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
   '@types/wordpress__customize-browser@https://codeload.github.com/ultrafastcloud/wordpress__customize-browser/tar.gz/03d9249bb4df6d7a436a90ea4fceb54c02b78b68':
     resolution: {tarball: https://codeload.github.com/ultrafastcloud/wordpress__customize-browser/tar.gz/03d9249bb4df6d7a436a90ea4fceb54c02b78b68}
     version: 5.5.5
@@ -738,6 +744,9 @@ packages:
   domhandler@5.0.3:
     resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
     engines: {node: '>= 4'}
+
+  dompurify@3.2.4:
+    resolution: {integrity: sha512-ysFSFEDVduQpyhzAob/kkuJjf5zWkZD8/A9ywSp1byueyuCfHamrCBa14/Oc2iiB0e51B+NpxSl5gmzn+Ms/mg==}
 
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
@@ -1946,6 +1955,9 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.6
 
+  '@types/trusted-types@2.0.7':
+    optional: true
+
   '@types/wordpress__customize-browser@https://codeload.github.com/ultrafastcloud/wordpress__customize-browser/tar.gz/03d9249bb4df6d7a436a90ea4fceb54c02b78b68':
     dependencies:
       '@types/jquery': 3.5.32
@@ -2173,6 +2185,10 @@ snapshots:
   domhandler@5.0.3:
     dependencies:
       domelementtype: 2.3.0
+
+  dompurify@3.2.4:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
 
   domutils@2.8.0:
     dependencies:

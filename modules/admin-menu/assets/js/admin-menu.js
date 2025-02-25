@@ -826,9 +826,26 @@
 					let iconOutput = "";
 
 					if (this.dataset.name === "dashicon") {
-						iconOutput = '<i class="dashicons ' + this.value + '"></i>';
+						iconOutput =
+							'<i class="dashicons ' +
+							wp.escapeHtml.escapeEditableHTML(this.value) +
+							'"></i>';
 					} else if (this.dataset.name === "icon_svg") {
-						iconOutput = '<img alt="" src="' + this.value + '">';
+						const maybeEncodedSvg = this.value.replace(
+							"data:image/svgxml",
+							"data:image/svg+xml"
+						);
+
+						const isValidSvgDataUrl =
+							/^data:image\/svg\+xml;base64,[a-zA-Z0-9+/=]+$/.test(
+								maybeEncodedSvg
+							);
+
+						iconOutput = isValidSvgDataUrl
+							? '<img src="' +
+								wp.escapeHtml.escapeHTML(maybeEncodedSvg) +
+								'" alt="" />'
+							: "<em>Invalid SVG Data URI</em>";
 					}
 
 					if (iconWrapper) {
@@ -856,7 +873,9 @@
 						".udb-menu-builder--menu-name"
 					);
 
-					if (menuNameEl) menuNameEl.innerHTML = this.value;
+					if (menuNameEl) {
+						menuNameEl.innerHTML = wp.escapeHtml.escapeHTML(this.value);
+					}
 				}
 			);
 		});

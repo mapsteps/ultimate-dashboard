@@ -1,20 +1,12 @@
 import { tns } from "tiny-slider";
-import type {
-	escapeAttribute,
-	escapeHTML,
-	escapeEditableHTML,
-} from "@wordpress/escape-html";
+import type * as WPEscapeHtml from "@wordpress/escape-html";
 import type * as WPData from "@wordpress/data";
 
 export {};
 
 declare global {
 	interface Wp {
-		escapeHtml: {
-			escapeAttribute: typeof escapeAttribute;
-			escapeHTML: typeof escapeHTML;
-			escapeEditableHTML: typeof escapeEditableHTML;
-		};
+		escapeHtml: typeof WPEscapeHtml;
 		data: typeof WPData;
 		codeEditor: {
 			initialize: (
