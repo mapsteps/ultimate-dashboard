@@ -1,43 +1,52 @@
 (function ($) {
 	$(document)
 		.on("udb_dashboard_jquery_init", function () {
-			var nonce = $(".udb-features-page").find("#udb_module_nonce"),
-				checkboxes = $(".udb-features-page").find(
-					'.status-switch input[type="checkbox"]'
-				);
+			var nonce = $(".udb-features-page").find("#udb_module_nonce");
+
+			/** @type {JQuery<HTMLInputElement>} */
+			const checkboxes = $(".udb-features-page").find(
+				'.status-switch input[type="checkbox"]'
+			);
 
 			checkboxes.on("change", function () {
-				var t = $(this),
-					p = t.parents(".heatbox"),
-					statusTag = p.find(".status-code");
+				const $checkbox = $(this);
+				const $heatbox = $checkbox.parents(".heatbox");
+				const $statusTag = $heatbox.find(".status-code");
 
-				var data = {
+				const data = {
 					action: "udb_handle_module_actions",
-					status: t.prop("checked"),
+					status: $checkbox.prop("checked"),
 					nonce: nonce.val(),
-					name: t.attr("name"),
-					value: t.val(),
+					name: $checkbox.attr("name"),
+					value: $checkbox.val(),
 				};
 
 				data.status == true
-					? statusTag.html(
-							'<span class="active">' + statusTag.data("active-text") + "</span>"
-					  )
-					: statusTag.html(
-							'<span class="inactive">' + statusTag.data("inactive-text") + "</span>"
-					  );
+					? $statusTag.html(
+							'<span class="active">' +
+								wp.escapeHtml.escapeAttribute($statusTag.data("active-text")) +
+								"</span>"
+						)
+					: $statusTag.html(
+							'<span class="inactive">' +
+								wp.escapeHtml.escapeAttribute(
+									$statusTag.data("inactive-text")
+								) +
+								"</span>"
+						);
 
 				$.ajax({
 					beforeSend: function () {
-						t.attr("disabled", true);
+						// $checkbox.attr("disabled", true);
+						$checkbox[0].disabled = true;
 					},
 					complete: function () {
-						t.attr("disabled", false);
+						$checkbox[0].disabled = false;
 					},
 					dataType: "json",
 					data: data,
 					method: "POST",
-					url: ajaxurl,
+					url: window.ajaxurl,
 				});
 			});
 		})
