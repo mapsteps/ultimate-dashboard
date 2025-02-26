@@ -1,16 +1,32 @@
 (function ($) {
-	var selectAllButton = document.querySelector(".udb-select-all-modules");
-	var moduleCheckboxes = document.querySelectorAll(".udb-module-checkbox");
-	var checkboxes = [];
-	var isAllChecked = false;
+	const selectAllButton = document.querySelector(".udb-select-all-modules");
+	const moduleCheckboxes = document.querySelectorAll(".udb-module-checkbox");
 
+	/**
+	 * @type {HTMLInputElement[]} checkboxes - The checkboxes.
+	 */
+	const checkboxes = [];
+
+	let isAllChecked = false;
+
+	/**
+	 * Check if the checkbox is checked.
+	 *
+	 * @param {HTMLInputElement} el The checkbox element.
+	 * @returns {boolean} Whether the checkbox is checked.
+	 */
 	function isChecked(el) {
 		return el.checked;
 	}
 
 	function init() {
 		if (!selectAllButton || !moduleCheckboxes.length) return;
-		checkboxes = [].slice.call(moduleCheckboxes);
+
+		for (let i = 0; i < moduleCheckboxes.length; i++) {
+			const checkbox = moduleCheckboxes[i];
+			if (!(checkbox instanceof HTMLInputElement)) continue;
+			checkboxes.push(checkbox);
+		}
 
 		if (checkboxes.every(isChecked)) {
 			isAllChecked = true;
@@ -27,15 +43,20 @@
 		});
 	}
 
+	/**
+	 * Event handler for the select all button click.
+	 *
+	 * @param {Event} e The event object.
+	 */
 	function onSelectAllButtonClick(e) {
 		e.preventDefault();
 
 		if (isAllChecked) {
 			isAllChecked = false;
-			selectAllButton.innerHTML = "Select All";
+			if (selectAllButton) selectAllButton.innerHTML = "Select All";
 		} else {
 			isAllChecked = true;
-			selectAllButton.innerHTML = "Unselect All";
+			if (selectAllButton) selectAllButton.innerHTML = "Unselect All";
 		}
 
 		checkboxes.forEach(function (el) {
@@ -47,13 +68,18 @@
 		});
 	}
 
+	/**
+	 * Event handler for the checkbox change event.
+	 *
+	 * @param {Event} e The event object.
+	 */
 	function onCheckboxChange(e) {
 		if (checkboxes.every(isChecked)) {
 			isAllChecked = true;
-			selectAllButton.innerHTML = "Unselect All";
+			if (selectAllButton) selectAllButton.innerHTML = "Unselect All";
 		} else {
 			isAllChecked = false;
-			selectAllButton.innerHTML = "Select All";
+			if (selectAllButton) selectAllButton.innerHTML = "Select All";
 		}
 	}
 
