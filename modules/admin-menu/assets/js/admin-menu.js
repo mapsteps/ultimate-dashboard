@@ -193,7 +193,7 @@
 	/** @type {JQuery<HTMLElement>|null} */
 	let usersSelect2 = null;
 
-	/** @type {UdbAdminMenuUser[]} */
+	/** @type {UdbSelect2Option[]} */
 	let usersData = [];
 
 	/**
@@ -231,7 +231,7 @@
 					});
 
 					usersData.forEach(function (data, index) {
-						if (savedUsers.indexOf(data.id) >= 0) {
+						if (savedUsers.indexOf(Number(data.id)) >= 0) {
 							usersData[index].disabled = true;
 						}
 					});

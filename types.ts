@@ -108,6 +108,7 @@ declare global {
 			nonces: {
 				getUsers: string;
 			};
+			roles: UdbSelect2Option[];
 			templates: {
 				menuList: string;
 				submenuList: string;
@@ -115,9 +116,9 @@ declare global {
 		};
 
 		udbAdminBarBuilder?: {
-			existingMenu: UdbAdminMenuItem[];
-			parsedMenu: UdbAdminMenuItem[];
-			builderItems: UdbAdminMenuItem[];
+			existingMenu: Record<string, UdbAdminBarMenuItem>;
+			parsedMenu: Record<string, UdbAdminBarMenuItem>;
+			builderItems: Record<string, UdbAdminBarMenuItem>;
 		};
 
 		udbAdminBarVisibility?: {
@@ -157,16 +158,17 @@ declare global {
 		url: string;
 	};
 
-	type UdbAdminMenuUser = {
-		id: number;
+	type UdbSelect2Option = {
+		id: number | string;
 		text: string;
 		disabled?: boolean;
+		selected?: boolean;
 	};
 
 	type UdbAdminMenuUserListResponse = {
 		success: boolean;
 		message: string;
-		data: UdbAdminMenuUser[];
+		data: UdbSelect2Option[];
 	};
 
 	type UdbAdminMenuGetMenuParams = {
@@ -182,5 +184,44 @@ declare global {
 		data: UdbAdminMenuItem[];
 	};
 
-	type UdbAdminBarUser = UdbAdminMenuUser;
+	type UdbAdminBarUser = UdbSelect2Option;
+
+	type UdbAdminBarMenuItemMeta = {
+		class?: string;
+		rel?: string;
+		target?: string;
+		// There's no title attribute inside of this meta type  (maybe deprecated/changed to menu_title).
+		// title?: string;
+		menu_title?: string;
+		onclick?: string;
+		tabindex?: number;
+		"aria-haspopup": boolean | number;
+		html: string;
+	};
+
+	type UdbAdminBarMenuItem = {
+		title: string;
+		title_default: string;
+		id: string;
+		id_default: string;
+		parent: string;
+		parent_default: string;
+		href: string;
+		href_default: string;
+		group: string;
+		group_default: string;
+		meta: UdbAdminBarMenuItemMeta;
+		meta_default: UdbAdminBarMenuItemMeta;
+		was_added: number;
+		is_hidden: number;
+		frontend_only?: number;
+		title_encoded?: string;
+		title_clean?: string;
+		title_default_encoded?: string;
+		title_default_clean?: string;
+		icon?: string;
+		disallowed_roles?: string[];
+		disallowed_users?: number[];
+		submenu?: Record<string, UdbAdminBarMenuItem>;
+	};
 }

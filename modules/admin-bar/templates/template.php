@@ -25,6 +25,12 @@ return function ( $module ) {
 	$parsed_menu = ! $saved_menu ? $existing_menu : $module->parse_menu( $saved_menu, $existing_menu );
 	$parsed_menu = $module->parse_frontend_items( $parsed_menu );
 
+	// error_log( "existingMenu:\n" . print_r( $existing_menu, true ) );
+
+	// error_log( "parsedMenu:\n" . print_r( $parsed_menu, true ) );
+
+	// error_log( "builderItems:\n" . print_r( $module->to_builder_format( $parsed_menu ), true ) );
+
 	wp_localize_script(
 		'udb-admin-bar',
 		'udbAdminBarBuilder',

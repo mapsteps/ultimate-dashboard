@@ -29,7 +29,7 @@
 	}
 
 	/** @type {UdbAdminBarUser[]} */
-	let usersData;
+	// let usersData = [];
 
 	/**
 	 * Init the script.
@@ -37,11 +37,11 @@
 	 */
 	function init() {
 		// loadUsers();
-		buildMenu(udbAdminBarBuilder.builderItems);
+		buildMenu(window.udbAdminBarBuilder?.builderItems);
 
 		document
 			.querySelector(".udb-menu-builder--edit-form")
-			.addEventListener("submit", submitForm);
+			?.addEventListener("submit", submitForm);
 
 		$(document).on("click", ".udb-menu-builder--tab-menu-item", switchTab);
 
@@ -71,62 +71,70 @@
 	 * But leave it here because in the future, if requested, it would be used for
 	 * "hide menu item for specific user(s)" functionality (inside a dropdown).
 	 */
-	function loadUsers() {
-		$.ajax({
-			type: "get",
-			url: window.ajaxurl,
-			cache: false,
-			data: {
-				action: "udb_admin_bar_get_users",
-				nonce: window.udbAdminBar?.nonces.getUsers,
-			},
-		})
-			.done(function (r) {
-				if (!r.success) return;
+	// function loadUsers() {
+	// 	$.ajax({
+	// 		type: "get",
+	// 		url: window.ajaxurl,
+	// 		cache: false,
+	// 		data: {
+	// 			action: "udb_admin_bar_get_users",
+	// 			nonce: window.udbAdminBar?.nonces.getUsers,
+	// 		},
+	// 	})
+	// 		.done(function (r) {
+	// 			if (!r.success) return;
 
-				usersData = r.data;
+	// 			usersData = r.data;
 
-				buildMenu(udbAdminBarBuilder.builderItems);
-			})
-			.fail(function () {
-				console.log("Failed to load users");
-			})
-			.always(function () {
-				//
-			});
-	}
+	// 			buildMenu(window.udbAdminBarBuilder?.builderItems);
+	// 		})
+	// 		.fail(function () {
+	// 			console.log("Failed to load users");
+	// 		})
+	// 		.always(function () {
+	// 			//
+	// 		});
+	// }
 
 	/**
 	 * Switch tabs.
+	 *
+	 * @param {JQuery.ClickEvent} e
+	 * @this {HTMLElement}
 	 */
 	function switchTab(e) {
 		if (e.target.classList.contains("delete-icon")) return;
-		var tabArea = this.parentNode.parentNode;
-		var tabId = this.dataset.udbTabContent;
+		const tabArea = this.parentElement?.parentElement;
+		const tabId = this.dataset.udbTabContent;
 
-		var tabHasIdByDefault = false;
+		let tabHasIdByDefault = false;
 
-		if (tabArea.id) {
-			tabHasIdByDefault = true;
-		} else {
-			tabArea.id =
-				"udb-menu-builder--tab" + Math.random().toString(36).substring(7);
+		if (tabArea) {
+			if (tabArea.id) {
+				tabHasIdByDefault = true;
+			} else {
+				tabArea.id =
+					"udb-menu-builder--tab" + Math.random().toString(36).substring(7);
+			}
 		}
 
-		var menus = document.querySelectorAll(
+		const menus = document.querySelectorAll(
 			"#" +
-				tabArea.id +
+				tabArea?.id +
 				" > .udb-menu-builder--tab-menu > .udb-menu-builder--tab-menu-item"
 		);
-		var contents = document.querySelectorAll(
+
+		const contents = document.querySelectorAll(
 			"#" +
-				tabArea.id +
+				tabArea?.id +
 				" > .udb-menu-builder--tab-content > .udb-menu-builder--tab-content-item"
 		);
 
-		if (!tabHasIdByDefault) tabArea.removeAttribute("id");
+		if (!tabHasIdByDefault) tabArea?.removeAttribute("id");
 
 		menus.forEach(function (menu) {
+			if (!(menu instanceof HTMLElement)) return;
+
 			if (menu.dataset.udbTabContent !== tabId) {
 				menu.classList.remove("is-active");
 			} else {
@@ -146,30 +154,35 @@
 	/**
 	 * Build menu list.
 	 *
-	 * @param {array} menuList List of menu object.
+	 * @param {Record<string, UdbAdminBarMenuItem>|undefined} menuList List of menu object.
 	 */
 	function buildMenu(menuList) {
-		var editArea = document.querySelector("#udb-menu-builder--workspace");
-		if (!editArea) return;
-		var listArea = editArea.querySelector(".udb-menu-builder--menu-list");
-		var builtMenu = "";
+		if (!menuList) return;
 
-		for (var menu in menuList) {
+		const editArea = document.querySelector("#udb-menu-builder--workspace");
+		if (!editArea) return;
+
+		const listArea = editArea.querySelector(".udb-menu-builder--menu-list");
+		let builtMenu = "";
+
+		for (const menu in menuList) {
 			if (menuList.hasOwnProperty(menu)) {
 				builtMenu += replaceMenuPlaceholders(menuList[menu]);
 			}
 		}
 
-		listArea.innerHTML = builtMenu;
+		if (listArea instanceof HTMLElement) {
+			listArea.innerHTML = builtMenu;
+			setupMenuItems(listArea);
+		}
 
-		setupMenuItems(listArea);
-
-		var submenuList = listArea.querySelectorAll(
+		const submenuList = listArea?.querySelectorAll(
 			".udb-menu-builder--submenu-list"
 		);
 
-		if (submenuList.length) {
+		if (submenuList?.length) {
 			submenuList.forEach(function (submenu) {
+				if (!(submenu instanceof HTMLElement)) return;
 				setupMenuItems(submenu, true);
 			});
 		}
@@ -187,33 +200,47 @@
 	 * @param {HTMLElement} area The setup area.
 	 */
 	// function setupSelect2Fields(area) {
-	// 	var select2Fields = area.querySelectorAll('.udb-menu-builder--select2-field');
+	// 	const select2Fields = area.querySelectorAll(
+	// 		".udb-menu-builder--select2-field"
+	// 	);
 
 	// 	select2Fields.forEach(function (selectbox) {
-	// 		if (selectbox.dataset.name !== 'disallowed_roles' && selectbox.dataset.name !== 'disallowed_users') return;
+	// 		if (!(selectbox instanceof HTMLSelectElement)) return;
 
-	// 		var select2Data = [];
-	// 		var disallowedRoles = [];
-	// 		var disallowedUsers = [];
+	// 		if (
+	// 			selectbox.dataset.name !== "disallowed_roles" &&
+	// 			selectbox.dataset.name !== "disallowed_users"
+	// 		)
+	// 			return;
 
-	// 		if ('disallowed_roles' === selectbox.dataset.name) {
-	// 			disallowedRoles = selectbox.dataset.disallowedRoles.split(', ');
+	// 		/** @type {UdbSelect2Option[]} */
+	// 		const select2Data = [];
 
-	// 			udbAdminBar.roles.forEach(function (role) {
-	// 				if (disallowedRoles.indexOf(role.id) > -1) {
+	// 		/** @type string[] */
+	// 		let disallowedRoles = [];
+
+	// 		/** @type number[] */
+	// 		let disallowedUsers = [];
+
+	// 		if ("disallowed_roles" === selectbox.dataset.name) {
+	// 			disallowedRoles = selectbox.dataset.disallowedRoles?.split(", ") ?? [];
+
+	// 			window.udbAdminBar?.roles.forEach(function (role) {
+	// 				if (disallowedRoles.indexOf(String(role.id)) > -1) {
 	// 					role.selected = true;
 	// 				}
 
 	// 				select2Data.push(role);
 	// 			});
-	// 		} else if ('disallowed_users' === selectbox.dataset.name) {
-	// 			disallowedUsers = selectbox.dataset.disallowedUsers.split(', ');
-	// 			disallowedUsers = disallowedUsers.map(function (user) {
+	// 		} else if ("disallowed_users" === selectbox.dataset.name) {
+	// 			disallowedUsers = (
+	// 				selectbox.dataset?.disallowedUsers?.split(", ") ?? []
+	// 			).map(function (user) {
 	// 				return parseInt(user, 10);
 	// 			});
 
 	// 			usersData.forEach(function (userData) {
-	// 				if (disallowedUsers.indexOf(userData.id) > -1) {
+	// 				if (disallowedUsers.indexOf(Number(userData.id)) > -1) {
 	// 					userData.selected = true;
 	// 				}
 
@@ -222,7 +249,7 @@
 	// 		}
 
 	// 		$(selectbox).select2({
-	// 			data: select2Data
+	// 			data: select2Data,
 	// 		});
 	// 	});
 	// }
@@ -230,18 +257,18 @@
 	/**
 	 * Replace menu placeholders.
 	 *
-	 * @param {Object} menu The menu item.
+	 * @param {UdbAdminBarMenuItem} menu The menu item.
 	 */
 	function replaceMenuPlaceholders(menu) {
-		var template;
-		var submenuTemplate;
-		var icon;
+		let submenuTemplate;
+		let icon;
 
-		template = udbAdminBar.templates.menuList;
+		let template = window.udbAdminBar?.templates.menuList ?? "";
+
 		template = template.replace(/{menu_title}/g, menu.title);
 		template = template.replace(
 			/{encoded_default_menu_title}/g,
-			menu.title_default_encoded
+			menu.title_default_encoded ?? ""
 		);
 
 		if (menu.group) {
@@ -273,7 +300,7 @@
 			}
 		}
 
-		var parsedTitle;
+		let parsedTitle = "";
 
 		if (
 			"menu-toggle" === menu.id_default ||
@@ -283,7 +310,7 @@
 			"appearance" === menu.id_default ||
 			"comments" === menu.id_default ||
 			"search" === menu.id_default ||
-			false === menu.title_default
+			!menu.title_default
 		) {
 			template = template.replace(/{menu_title_is_disabled}/g, "disabled");
 
@@ -300,9 +327,13 @@
 			template = template.replace(/{menu_title_is_disabled}/g, "");
 
 			if ("updates" === menu.id_default) {
-				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
+				parsedTitle = menu.meta.menu_title
+					? menu.meta.menu_title
+					: menu.id_default;
 			} else {
-				parsedTitle = menu.title ? menu.title_clean : menu.title_default_clean;
+				parsedTitle = menu.title_clean
+					? menu.title_clean
+					: (menu.title_default_clean ?? "");
 			}
 		}
 
@@ -317,7 +348,7 @@
 		);
 
 		if (
-			false === menu.href_default ||
+			!menu.href_default ||
 			"my-sites" === menu.id_default ||
 			"site-name" === menu.id_default ||
 			"site-name-frontend" === menu.id_default ||
@@ -372,7 +403,7 @@
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, "");
-			template = template.replace(/{menu_icon}/g, menu.icon);
+			template = template.replace(/{menu_icon}/g, menu.icon ?? "");
 
 			if (menu.icon) {
 				icon = '<i class="dashicons ' + menu.icon + '"></i>';
@@ -451,26 +482,20 @@
 	/**
 	 * Build submenu list.
 	 *
-	 * @param {Object} param The submenu parameter containing some arguments.
-	 *
-	 * @param {array} param.menu The menu item which contains the submenu list.
-	 * @param {int} param.depth The submenu depth level.
+	 * @param {{menu: UdbAdminBarMenuItem, depth: number}} param The submenu parameter containing some arguments.
 	 *
 	 * @return {string} template The submenu template.
 	 */
 	function buildSubmenu(param) {
-		var menu = param.menu;
-		var depth = param.depth;
+		let template = "";
 
-		var template = "";
-
-		for (var submenuId in menu.submenu) {
-			if (menu.submenu.hasOwnProperty(submenuId)) {
+		for (const submenuId in param.menu.submenu) {
+			if (param.menu.submenu.hasOwnProperty(submenuId)) {
 				template += replaceSubmenuPlaceholders({
-					menu: menu,
+					menu: param.menu,
 					// Current submenu item.
-					submenu: menu.submenu[submenuId],
-					depth: depth,
+					submenu: param.menu.submenu[submenuId],
+					depth: param.depth,
 				});
 			}
 		}
@@ -481,18 +506,13 @@
 	/**
 	 * Replace submenu placeholders.
 	 *
-	 * @param {Object} param The parameter containing some arguments.
-	 *
-	 * @param {Object} param.menu The menu item which contains the submenu list.
-	 * @param {Object} param.submenu The current submenu item.
-	 * @param {int} param.depth The submenu depth level.
+	 * @param {{menu: UdbAdminBarMenuItem, submenu: UdbAdminBarMenuItem, depth: number}} param The parameter containing some arguments.
 	 */
 	function replaceSubmenuPlaceholders(param) {
-		var menu = param.menu;
-		var submenu = param.submenu;
-		var depth = param.depth;
+		const menu = param.menu;
+		const submenu = param.submenu;
 
-		var template = udbAdminBar.templates.submenuList;
+		let template = window.udbAdminBar?.templates.submenuList ?? "";
 
 		template = template.replace(/{default_menu_id}/g, menu.id_default);
 
@@ -504,15 +524,15 @@
 			submenu.parent_default
 		);
 
-		template = template.replace(/{submenu_level}/g, depth.toString());
+		template = template.replace(/{submenu_level}/g, param.depth.toString());
 		template = template.replace(
 			/{submenu_next_level}/g,
-			(depth + 1).toString()
+			(param.depth + 1).toString()
 		);
 		template = template.replace(/{submenu_title}/g, submenu.title);
 		template = template.replace(
 			/{encoded_default_submenu_title}/g,
-			submenu.title_default_encoded
+			submenu.title_default_encoded ?? ""
 		);
 
 		if (submenu.group || submenu.id_default === "search") {
@@ -542,7 +562,7 @@
 			"comments" === submenu.id_default ||
 			"search" === submenu.id_default ||
 			"user-info" === submenu.id_default ||
-			false === submenu.title_default
+			!submenu.title_default
 		) {
 			template = template.replace(/{submenu_title_is_disabled}/g, "disabled");
 			parsedTitle = submenu.id ? submenu.id : submenu.id_default;
@@ -554,9 +574,11 @@
 			}
 
 			if ("updates" === menu.id_default) {
-				parsedTitle = menu.meta.title ? menu.meta.title : menu.id_default;
-				parsedTitle = submenu.meta.title
-					? submenu.meta.title
+				parsedTitle = menu.meta.menu_title
+					? menu.meta.menu_title
+					: menu.id_default;
+				parsedTitle = submenu.meta.menu_title
+					? submenu.meta.menu_title
 					: submenu.id_default;
 			} else {
 				parsedTitle = submenu.title
@@ -565,7 +587,7 @@
 			}
 		}
 
-		template = template.replace(/{parsed_submenu_title}/g, parsedTitle);
+		template = template.replace(/{parsed_submenu_title}/g, parsedTitle ?? "");
 
 		if ("logout" === submenu.id_default) {
 			template = template.replace(/{submenu_href_is_disabled}/g, "disabled");
@@ -606,7 +628,7 @@
 
 		template = template.replace(
 			/{submenu_tab_is_hidden}/g,
-			3 === depth ? "is-hidden" : ""
+			3 === param.depth ? "is-hidden" : ""
 		);
 		template = template.replace(
 			/{submenu_is_hidden}/g,
@@ -629,7 +651,11 @@
 			/{hidden_icon}/g,
 			submenu.is_hidden ? "hidden" : "visibility"
 		);
-		template = template.replace(/{submenu_was_added}/g, submenu.was_added);
+
+		template = template.replace(
+			/{submenu_was_added}/g,
+			String(submenu.was_added)
+		);
 
 		/**
 		 * These codes are not being used currently.
@@ -643,10 +669,11 @@
 		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
-			submenuTemplate = buildSubmenu({
+			const submenuTemplate = buildSubmenu({
 				menu: submenu,
-				depth: depth + 1,
+				depth: param.depth + 1,
 			});
+
 			template = template.replace(/{submenu_template}/g, submenuTemplate);
 		} else {
 			template = template.replace(/{submenu_template}/g, "");
@@ -657,6 +684,9 @@
 
 	/**
 	 * Setup menu items.
+	 *
+	 * @param {HTMLElement} listArea The list area element.
+	 * @param {boolean} [isSubmenu] Whether the list area is a submenu list.
 	 */
 	function setupMenuItems(listArea, isSubmenu) {
 		setupSortable(listArea);
@@ -669,6 +699,8 @@
 
 	/**
 	 * Sortable setup for both active & available widgets.
+	 *
+	 * @param {HTMLElement} listArea The list area element.
 	 */
 	function setupSortable(listArea) {
 		$(listArea).sortable({
@@ -683,14 +715,18 @@
 
 	/**
 	 * Expand / collapse menu item.
-	 * @param {Event} e The event object.
+	 *
+	 * @param {JQuery.ClickEvent} e The event object.
+	 * @this {HTMLElement}
 	 */
 	function expandCollapseMenuItem(e) {
-		var parent = this.classList.contains("expand-menu")
-			? this.parentNode.parentNode.parentNode
-			: this.parentNode.parentNode;
+		const parent = this.classList.contains("expand-menu")
+			? this.parentElement?.parentElement?.parentElement
+			: this.parentElement?.parentElement;
 
-		var target = parent.querySelector(".udb-menu-builder--expanded-panel");
+		if (!parent) return;
+		const target = parent?.querySelector(".udb-menu-builder--expanded-panel");
+		if (!target) return;
 
 		if (parent.classList.contains("is-expanded")) {
 			$(target)
@@ -710,18 +746,19 @@
 	/**
 	 * show / hide menu item.
 	 *
-	 * @param {Event} listArea The event object.
+	 * @param {JQuery.ClickEvent} e The event object.
+	 * @this {HTMLElement}
 	 */
 	function showHideMenuItem(e) {
-		var parent = this.parentNode.parentNode.parentNode;
-		var isHidden = parent.dataset.hidden === "1" ? true : false;
+		const parent = this.parentElement?.parentElement?.parentElement;
+		const isHidden = parent?.dataset.hidden === "1" ? true : false;
 
 		if (isHidden) {
 			this.classList.add("dashicons-visibility");
 			this.classList.remove("dashicons-hidden");
-			parent.dataset.hidden = 0;
+			if (parent) parent.dataset.hidden = "0";
 		} else {
-			parent.dataset.hidden = 1;
+			if (parent) parent.dataset.hidden = "1";
 			this.classList.remove("dashicons-visibility");
 			this.classList.add("dashicons-hidden");
 		}
@@ -729,50 +766,85 @@
 
 	/**
 	 * Setup item changes.
+	 *
 	 * @param {HTMLElement} listArea The list area element.
 	 */
 	function setupItemChanges(listArea) {
-		var menuItems = listArea.querySelectorAll(".udb-menu-builder--menu-item");
+		const menuItems = listArea.querySelectorAll(".udb-menu-builder--menu-item");
 		if (!menuItems.length) return;
 
 		menuItems.forEach(function (menuItem) {
+			if (!(menuItem instanceof HTMLElement)) return;
 			setupItemChange(menuItem);
 		});
 	}
 
 	/**
 	 * Setup item change.
+	 *
 	 * @param {HTMLElement} menuItem The menu item element.
 	 */
 	function setupItemChange(menuItem) {
-		var iconFields = menuItem.querySelectorAll(".udb-menu-builder--icon-field");
-		iconFields = iconFields.length ? iconFields : [];
+		const iconFields = menuItem.querySelectorAll(
+			".udb-menu-builder--icon-field"
+		);
 
 		iconFields.forEach(function (field) {
-			field.addEventListener("change", function () {
-				var iconWrapper = menuItem.querySelector(
-					".udb-menu-builder--menu-icon"
-				);
-				var iconOutput;
+			field.addEventListener(
+				"change",
+				/** @this {HTMLInputElement | HTMLTextAreaElement} */
+				function () {
+					const iconWrapper = menuItem.querySelector(
+						".udb-menu-builder--menu-icon"
+					);
+					if (!iconWrapper) return;
 
-				if (this.dataset.name === "dashicon") {
-					iconOutput = '<i class="dashicons ' + this.value + '"></i>';
-				} else if (this.dataset.name === "icon_svg") {
-					iconOutput = '<img alt="" src="' + this.value + '">';
+					let iconOutput = "";
+
+					if (this.dataset.name === "dashicon") {
+						iconOutput =
+							'<i class="dashicons ' +
+							wp.escapeHtml.escapeEditableHTML(this.value) +
+							'"></i>';
+					} else if (this.dataset.name === "icon_svg") {
+						const maybeEncodedSvg = this.value.replace(
+							"data:image/svgxml",
+							"data:image/svg+xml"
+						);
+
+						const isValidSvgDataUrl =
+							/^data:image\/svg\+xml;base64,[a-zA-Z0-9+/=]+$/.test(
+								maybeEncodedSvg
+							);
+
+						iconOutput = isValidSvgDataUrl
+							? '<img src="' +
+								wp.escapeHtml.escapeHTML(maybeEncodedSvg) +
+								'" alt="" />'
+							: "<em>Invalid SVG Data URI</em>";
+					}
+
+					iconWrapper.innerHTML = iconOutput;
 				}
-
-				iconWrapper.innerHTML = iconOutput;
-			});
+			);
 		});
 
-		var titleFields = menuItem.querySelectorAll('[data-name="menu_title"]');
-		titleFields = titleFields.length ? titleFields : [];
+		const titleFields = menuItem.querySelectorAll('[data-name="menu_title"]');
 
 		titleFields.forEach(function (field) {
-			field.addEventListener("change", function () {
-				menuItem.querySelector(".udb-menu-builder--menu-name").innerHTML =
-					this.value;
-			});
+			field.addEventListener(
+				"change",
+				/** @this {HTMLInputElement | HTMLTextAreaElement} */
+				function () {
+					const menuNameEl = menuItem.querySelector(
+						".udb-menu-builder--menu-name"
+					);
+
+					if (menuNameEl) {
+						menuNameEl.innerHTML = wp.escapeHtml.escapeHTML(this.value);
+					}
+				}
+			);
 		});
 	}
 
