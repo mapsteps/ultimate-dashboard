@@ -1,35 +1,40 @@
 (function ($) {
-	var colorFields = document.querySelectorAll('.udb-color-field');
+	const colorFields = document.querySelectorAll(".udb-color-field");
 
-	var instantPreviewStyleTags = document.querySelectorAll('.udb-instant-preview');
+	const instantPreviewStyleTags = document.querySelectorAll(
+		".udb-instant-preview"
+	);
 
 	function init() {
-		if (!udbBrandingInstantPreview.isProActive) enableBranding();
+		if (!window.udbBrandingInstantPreview?.isProActive) {
+			enableBranding();
+		}
 
 		colorFields.forEach(function (el) {
-			var opts = {
+			if (!(el instanceof HTMLInputElement)) return;
+
+			$(el).wpColorPicker({
 				defaultColor: el.dataset.default,
 				change: function (event, ui) {
 					onTriggerChange(el, ui.color.toString());
 				},
-				clear: function () { },
+				clear: function () {},
 				hide: true,
-				palettes: true
-			};
-
-			$(el).wpColorPicker(opts);
+				palettes: true,
+			});
 		});
 	}
 
 	function enableBranding() {
 		instantPreviewStyleTags.forEach(function (tag) {
-			tag.type = 'text/css';
+			if (!(tag instanceof HTMLStyleElement)) return;
+			tag.setAttribute("type", "text/css");
 		});
 	}
 
 	/**
 	 * Converting color from hex to rgb format.
-	 * 
+	 *
 	 * @see https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb#answer-5624139
 	 *
 	 * @param {string} hex Color in hex format.
@@ -43,11 +48,13 @@
 
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-		return result ? {
-			r: parseInt(result[1], 16),
-			g: parseInt(result[2], 16),
-			b: parseInt(result[3], 16)
-		} : null;
+		return result
+			? {
+					r: parseInt(result[1], 16),
+					g: parseInt(result[2], 16),
+					b: parseInt(result[3], 16),
+				}
+			: null;
 	}
 
 	/**
@@ -58,27 +65,33 @@
 	 */
 	function onTriggerChange(el, color) {
 		var triggerName = el.dataset.udbTriggerName;
-		var targets = document.querySelectorAll('[data-udb-prop-' + triggerName + ']');
+		var targets = document.querySelectorAll(
+			"[data-udb-prop-" + triggerName + "]"
+		);
 
 		targets.forEach(function (target) {
-			var content = target.innerHTML;
-			// @see https://stackoverflow.com/questions/5034781/js-regex-to-split-by-line#answer-5035058
-			var lines = content.match(/[^\r\n]+/g);
-			var newCssRule = '';
-			var lineIndex = -1;
-			var prop = target.getAttribute('data-udb-prop-' + triggerName);
-			var props = [];
+			let content = target.innerHTML;
 
-			if (prop.includes(',')) {
+			// @see https://stackoverflow.com/questions/5034781/js-regex-to-split-by-line#answer-5035058
+			const lines = content.match(/[^\r\n]+/g);
+			let newCssRule = "";
+			let lineIndex = -1;
+
+			let prop = target.getAttribute("data-udb-prop-" + triggerName) ?? "";
+
+			/** @type {string[]} */
+			let props = [];
+
+			if (prop.includes(",")) {
 				// @see https://stackoverflow.com/questions/661305/how-can-i-trim-the-leading-and-trailing-comma-in-javascript/#answer-661317
 				prop = prop.replace(/(^,)|(,$)/g, "");
 
-				props = prop.split(',');
+				props = prop.split(",");
 
 				props.forEach(function (prop, index) {
 					prop = prop.trim();
 
-					if ('' === prop) {
+					if ("" === prop) {
 						props.splice(index, 1);
 					} else {
 						props[index] = prop;
@@ -94,39 +107,57 @@
 				lines.some(function (line, index) {
 					if (!line.includes(prop)) return false;
 
-					var str = line.split(':');
-					var cssProp = str[0];
-					var format = 'hex';
-					var opacity = 1;
-					var cssValue = color;
-					var rgb;
-					var checkOpacity;
+					const str = line.split(":");
+					const cssProp = str[0];
 
-					if ('box-shadow' === prop) {
-						cssValue = target.dataset.udbBoxShadowValue.replace(/{box_shadow_value}/g, color);
+					let format = "hex";
+					let opacity = "1";
+					let cssValue = color;
+
+					let rgb;
+					let checkOpacity;
+
+					if ("box-shadow" === prop && target instanceof HTMLElement) {
+						cssValue =
+							target.dataset.udbBoxShadowValue?.replace(
+								/{box_shadow_value}/g,
+								color
+							) ?? "";
 					} else {
-						if (str[1].includes('rgb')) {
-							format = 'rgb';
+						if (str[1].includes("rgb")) {
+							format = "rgb";
 
-							if (str[1].includes('rgba')) {
-								format = 'rgba';
-								checkOpacity = str[1].split(')');
-								checkOpacity = checkOpacity[0].split(',');
+							if (str[1].includes("rgba")) {
+								format = "rgba";
+								checkOpacity = str[1].split(")");
+								checkOpacity = checkOpacity[0].split(",");
 								opacity = checkOpacity[3];
 							}
 						}
 
-						if ('rgb' === format || 'rgba' === format) {
+						if ("rgb" === format || "rgba" === format) {
 							rgb = hexToRgb(color);
-							cssValue = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
 
-							if ('rgba' === format) {
-								cssValue = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + opacity + ')';
+							if (rgb) {
+								cssValue = "rgb(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ")";
+
+								if ("rgba" === format) {
+									cssValue =
+										"rgba(" +
+										rgb.r +
+										", " +
+										rgb.g +
+										", " +
+										rgb.b +
+										", " +
+										opacity +
+										")";
+								}
 							}
 						}
 					}
 
-					newCssRule = cssProp + ': ' + cssValue + ';';
+					newCssRule = cssProp + ": " + cssValue + ";";
 					lineIndex = index;
 
 					// Stop the ".some()" loop.
@@ -135,15 +166,13 @@
 
 				if (lineIndex > -1) {
 					lines[lineIndex] = newCssRule;
-					content = lines.join('\n');
+					content = lines.join("\n");
 
 					target.innerHTML = content;
 				}
 			});
-
 		});
 	}
 
 	init();
-
 })(jQuery);

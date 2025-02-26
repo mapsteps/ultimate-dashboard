@@ -56,6 +56,13 @@ declare global {
 
 	interface JQuery {
 		dashiconsPicker: () => JQuery;
+		wpColorPicker(opts: {
+			defaultColor?: string;
+			change?: (event: JQuery.Event, ui: { color: string }) => void;
+			clear?: (event: JQuery.Event) => void;
+			hide?: boolean;
+			palettes?: string[] | boolean;
+		}): this;
 	}
 
 	interface Window {
@@ -125,6 +132,10 @@ declare global {
 			action: string;
 			nonce: string;
 			roles: string[];
+		};
+
+		udbBrandingInstantPreview?: {
+			isProActive: boolean;
 		};
 	}
 
