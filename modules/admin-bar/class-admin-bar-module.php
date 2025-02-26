@@ -490,8 +490,8 @@ class Admin_Bar_Module extends Base_Module {
 
 				if ( isset( $menu['after'] ) && $menu['after'] ) {
 					if ( isset( $saved_menu[ $menu['after'] ] ) ) {
-						$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );
-						$pos += 1;
+						$pos = array_search( $menu['after'], array_keys( $saved_menu ), true );
+						++$pos;
 
 						$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
 							array( $menu_id => $new_item ) +
@@ -537,8 +537,8 @@ class Admin_Bar_Module extends Base_Module {
 				$new_item = $menu;
 
 				if ( isset( $saved_menu[ $menu['after'] ] ) ) {
-					$pos  = array_search( $menu['after'], array_keys( $saved_menu ), true );
-					$pos += 1;
+					$pos = array_search( $menu['after'], array_keys( $saved_menu ), true );
+					++$pos;
 
 					$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
 					array( $menu_id => $new_item ) +
@@ -599,8 +599,8 @@ class Admin_Bar_Module extends Base_Module {
 			// 'disallowed_users' => array(),
 		);
 
-		$pos  = array_search( 'site-name', array_keys( $flat_array ), true );
-		$pos += 1;
+		$pos = array_search( 'site-name', array_keys( $flat_array ), true );
+		++$pos;
 
 		// Then place "site-name-frontend" after "site-name".
 		$flat_array = array_slice( $flat_array, 0, $pos, true ) +

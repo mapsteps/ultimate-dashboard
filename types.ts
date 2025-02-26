@@ -86,12 +86,6 @@ declare global {
 
 		tns: typeof tns;
 
-		udbAdminBarVisibility?: {
-			action: string;
-			nonce: string;
-			roles: string[];
-		};
-
 		udbAdminMenu?: {
 			nonces: {
 				getMenu: string;
@@ -108,6 +102,28 @@ declare global {
 				userTabMenu: string;
 				userTabContent: string;
 			};
+		};
+
+		udbAdminBar?: {
+			nonces: {
+				getUsers: string;
+			};
+			templates: {
+				menuList: string;
+				submenuList: string;
+			};
+		};
+
+		udbAdminBarBuilder?: {
+			existingMenu: UdbAdminMenuItem[];
+			parsedMenu: UdbAdminMenuItem[];
+			builderItems: UdbAdminMenuItem[];
+		};
+
+		udbAdminBarVisibility?: {
+			action: string;
+			nonce: string;
+			roles: string[];
 		};
 	}
 
@@ -165,4 +181,6 @@ declare global {
 		message: string;
 		data: UdbAdminMenuItem[];
 	};
+
+	type UdbAdminBarUser = UdbAdminMenuUser;
 }

@@ -6,11 +6,15 @@
  * - udbAdminBarBuilder
  */
 (function ($) {
-	if (window.NodeList && !NodeList.prototype.forEach) {
-		NodeList.prototype.forEach = Array.prototype.forEach;
-	}
-
 	if (!String.prototype.includes) {
+		/**
+		 * Polyfill for String.prototype.includes.
+		 *
+		 * @param {any} search The search string.
+		 * @param {number} start The start index.
+		 *
+		 * @returns {boolean} Whether the string includes the search string.
+		 */
 		String.prototype.includes = function (search, start) {
 			"use strict";
 
@@ -24,7 +28,8 @@
 		};
 	}
 
-	// var usersData;
+	/** @type {UdbAdminBarUser[]} */
+	let usersData;
 
 	/**
 	 * Init the script.
@@ -66,27 +71,30 @@
 	 * But leave it here because in the future, if requested, it would be used for
 	 * "hide menu item for specific user(s)" functionality (inside a dropdown).
 	 */
-	// function loadUsers() {
-	// 	$.ajax({
-	// 		type: 'get',
-	// 		url: ajaxurl,
-	// 		cache: false,
-	// 		data: {
-	// 			action: 'udb_admin_bar_get_users',
-	// 			nonce: udbAdminBar.nonces.getUsers
-	// 		}
-	// 	}).done(function (r) {
-	// 		if (!r.success) return;
+	function loadUsers() {
+		$.ajax({
+			type: "get",
+			url: window.ajaxurl,
+			cache: false,
+			data: {
+				action: "udb_admin_bar_get_users",
+				nonce: window.udbAdminBar?.nonces.getUsers,
+			},
+		})
+			.done(function (r) {
+				if (!r.success) return;
 
-	// 		usersData = r.data;
+				usersData = r.data;
 
-	// 		buildMenu(udbAdminBarBuilder.builderItems);
-	// 	}).fail(function () {
-	// 		console.log('Failed to load users');
-	// 	}).always(function () {
-	// 		//
-	// 	});
-	// }
+				buildMenu(udbAdminBarBuilder.builderItems);
+			})
+			.fail(function () {
+				console.log("Failed to load users");
+			})
+			.always(function () {
+				//
+			});
+	}
 
 	/**
 	 * Switch tabs.
