@@ -1,36 +1,34 @@
 /**
  * Setup admin page list.
- *
- * Used global objects:
- * - jQuery
- * - ajaxurl
  */
 (function ($) {
-	var ajax = {};
-
 	function init() {
 		setupStatusSwitch();
 	}
 
 	function setupStatusSwitch() {
-		var checkboxes = document.querySelectorAll('[name="udb_is_active"]');
+		const checkboxes = document.querySelectorAll('[name="udb_is_active"]');
 		if (!checkboxes.length) return;
 
-		[].slice.call(checkboxes).forEach(function (checkbox) {
-			checkbox.addEventListener("change", function () {
-				ajax.changeActiveStatus(this);
-			});
+		checkboxes.forEach(function (checkbox) {
+			checkbox.addEventListener(
+				"change",
+				/** @this {HTMLInputElement} */
+				function () {
+					changeActiveStatus(this);
+				}
+			);
 		});
 	}
 
 	/**
 	 * Switch page as active or inactive.
 	 *
-	 * @param {HTMLElement} checkbox The current checkbox.
+	 * @param {HTMLInputElement} checkbox The current checkbox.
 	 */
-	ajax.changeActiveStatus = function (checkbox) {
+	function changeActiveStatus(checkbox) {
 		$.ajax({
-			url: ajaxurl,
+			url: window.ajaxurl,
 			type: "post",
 			dataType: "json",
 			data: {
@@ -40,7 +38,7 @@
 				is_active: checkbox.checked ? 1 : 0,
 			},
 		});
-	};
+	}
 
 	init();
 })(jQuery);

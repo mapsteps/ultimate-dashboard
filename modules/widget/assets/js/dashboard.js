@@ -1,15 +1,13 @@
-(function($) {
+(function ($) {
+	$(".postbox-container .inside").each(function () {
+		if ($(this).children().hasClass("udb-content-wrapper")) {
+			$(this).parent().addClass("udb-content");
 
-	$('.postbox-container .inside').each(function() {
+			const widgetHeight = $(this).children().attr("data-udb-content-height");
 
-		if($(this).children().hasClass('udb-content-wrapper')) {
-			$(this).parent().addClass('udb-content');
-
-			var widgetHeight = $(this).children().attr('data-udb-content-height');
-			$(this).children().height(widgetHeight);
-
+			$(this)
+				.children()
+				.height(widgetHeight ?? 100);
 		}
-
 	});
-
-})( jQuery );
+})(jQuery);

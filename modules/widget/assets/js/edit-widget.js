@@ -7,19 +7,19 @@
 	}
 
 	function setupMetaboxes() {
-		var postboxContainers = document.querySelectorAll(".postbox-container");
+		const postboxContainers = document.querySelectorAll(".postbox-container");
 
 		if (postboxContainers.length) {
-			[].slice.call(postboxContainers).forEach(function (postboxContainer) {
+			postboxContainers.forEach(function (postboxContainer) {
 				postboxContainer.classList.add("heatbox-wrap");
 			});
 		}
 	}
 
 	function setupWidgetType() {
-		var $type = $('[name="udb_widget_type');
-		var $fields = $(".udb-main-metabox .widget-fields");
-		var value = $type.val();
+		const $type = $('[name="udb_widget_type');
+		const $fields = $(".udb-main-metabox .widget-fields");
+		let value = $type.val();
 
 		$fields.find('[data-type="' + value + '"]').addClass("is-active");
 
@@ -32,35 +32,44 @@
 	}
 
 	function setupIconPicker() {
-		var $iconPreview = $(".icon-preview");
-		var $iconSelect = $('[name="udb_icon"]');
+		changePreviewIcon();
+		window.addEventListener("load", changePreviewIcon);
 
-		$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
+		document
+			.querySelector('[name="udb_icon"]')
+			?.addEventListener("change", changePreviewIcon);
+	}
 
-		$iconSelect.on("change", function (e) {
-			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
-		});
+	/**
+	 * Change preview icon.
+	 */
+	function changePreviewIcon() {
+		const el = document.querySelector(".icon-preview");
+		const iconField = document.querySelector('[name="udb_icon"]');
+		if (!el || !(iconField instanceof HTMLInputElement)) return;
 
-		window.addEventListener("load", function () {
-			$iconPreview.html('<i class="' + $iconSelect.val() + '"></i>');
-		});
+		el.innerHTML =
+			'<i class="' + wp.escapeHtml.escapeAttribute(iconField.value) + '"></i>';
 	}
 
 	function setupCodeEditor() {
-		if ($('[name="udb_html"]').length) {
-			var editorSettings = wp.codeEditor.defaultSettings
-				? _.clone(wp.codeEditor.defaultSettings)
-				: {};
-			editorSettings.codemirror = _.extend({}, editorSettings.codemirror, {
-				indentUnit: 4,
-				tabSize: 4,
-				mode: "html",
-			});
-			var editor = wp.codeEditor.initialize(
-				$('[name="udb_html"]'),
-				editorSettings
-			);
-		}
+		const textareas = document.querySelectorAll('[name="udb_html"]');
+
+		/** @type {{codemirror: Record<string, unknown>}} */
+		const editorSettings = wp.codeEditor.defaultSettings
+			? _.clone(wp.codeEditor.defaultSettings)
+			: { codemirror: {} };
+
+		editorSettings.codemirror = _.extend({}, editorSettings.codemirror, {
+			indentUnit: 4,
+			tabSize: 4,
+			mode: "html",
+		});
+
+		textareas.forEach(function (textarea) {
+			if (!(textarea instanceof HTMLTextAreaElement)) return;
+			wp.codeEditor.initialize(textarea, editorSettings);
+		});
 	}
 
 	init();
