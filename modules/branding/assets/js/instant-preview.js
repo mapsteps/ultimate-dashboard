@@ -108,7 +108,7 @@
 					if (!line.includes(prop)) return false;
 
 					const str = line.split(":");
-					const cssProp = str[0];
+					const cssProp = wp.escapeHtml.escapeAttribute(str[0]);
 
 					let format = "hex";
 					let opacity = "1";
@@ -166,9 +166,8 @@
 
 				if (lineIndex > -1) {
 					lines[lineIndex] = newCssRule;
-					content = lines.join("\n");
 
-					target.innerHTML = content;
+					target.innerHTML = lines.join("\n");
 				}
 			});
 		});
