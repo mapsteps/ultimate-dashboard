@@ -10,7 +10,6 @@ namespace Udb\AdminBar;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Vars;
-use Udb\Helpers\Array_Helper;
 use Udb\Base\Base_Module;
 
 /**
@@ -188,7 +187,8 @@ class Admin_Bar_Module extends Base_Module {
 	 */
 	public function submenu_page_content() {
 
-		require __DIR__ . '/templates/template.php';
+		$template = require __DIR__ . '/templates/template.php';
+		$template( $this );
 
 	}
 
