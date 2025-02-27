@@ -5,7 +5,8 @@
  * @return {Object}
  */
 (function ($) {
-	codeMirrors = [];
+	/** @type {CodeMirrorInstance[]} */
+	const codeMirrorInstances = [];
 
 	// Run the module.
 	init();
@@ -26,10 +27,11 @@
 	 * Setup the CSS fields using CodeMirror.
 	 */
 	function setupCssFields() {
-		var customCSSFields = document.querySelectorAll(".udb-custom-css");
+		const customCSSFields = document.querySelectorAll(".udb-custom-css");
 		if (!customCSSFields.length) return;
 
-		var editorSettings = wp.codeEditor.defaultSettings
+		/** @type {Record<string, unknown>} */
+		const editorSettings = wp.codeEditor.defaultSettings
 			? _.clone(wp.codeEditor.defaultSettings)
 			: {};
 
@@ -41,11 +43,11 @@
 
 		[].slice.call(customCSSFields).forEach(function (el) {
 			var codeEditor = wp.codeEditor.initialize(el, editorSettings);
-			codeMirrors.push(codeEditor.codemirror);
+			codeMirrorInstances.push(codeEditor.codemirror);
 		});
 
 		setTimeout(function () {
-			codeMirrors.forEach(function (codeMirror) {
+			codeMirrorInstances.forEach(function (codeMirror) {
 				codeMirror.refresh();
 
 				// Setting up a timeout again to make sure the CodeMirror is refreshed
@@ -60,19 +62,19 @@
 	 * Setup color picker fields.
 	 */
 	function setupColorFields() {
-		var colorFields = document.querySelectorAll(".udb-color-field");
+		const colorFields = document.querySelectorAll(".udb-color-field");
 		if (!colorFields.length) return;
 
-		[].slice.call(colorFields).forEach(function (el) {
-			var opts = {
+		colorFields.forEach(function (el) {
+			if (!(el instanceof HTMLInputElement)) return;
+
+			$(el).wpColorPicker({
 				defaultColor: el.dataset.default,
 				change: function (event, ui) {},
 				clear: function () {},
 				hide: true,
 				palettes: true,
-			};
-
-			$(el).wpColorPicker(opts);
+			});
 		});
 	}
 
@@ -84,8 +86,8 @@
 			$(".heatbox-tab-nav-item").removeClass("active");
 			$(this).addClass("active");
 
-			var link = this.querySelector("a");
-			var hashValue = link.href.substring(link.href.indexOf("#") + 1);
+			const link = this.querySelector("a");
+			const hashValue = link?.href.substring(link.href.indexOf("#") + 1) ?? "";
 
 			setRefererValue(hashValue);
 
@@ -123,9 +125,15 @@
 	 * @param {string} hashValue The hash value.
 	 */
 	function setRefererValue(hashValue) {
-		var refererField = document.querySelector('[name="_wp_http_referer"]');
-		if (!refererField) return;
-		var url;
+		const refererField = document.querySelector('[name="_wp_http_referer"]');
+		if (
+			!(refererField instanceof HTMLInputElement) &&
+			!(refererField instanceof HTMLTextAreaElement)
+		) {
+			return;
+		}
+
+		let url;
 
 		if (refererField.value.includes("#")) {
 			url = refererField.value.split("#");

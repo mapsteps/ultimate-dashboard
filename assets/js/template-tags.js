@@ -49,7 +49,7 @@
 	 */
 	async function handleTagClick(e) {
 		const tag = e.target;
-		if (!tag) return;
+		if (!(tag instanceof HTMLElement)) return;
 
 		const value = tag.innerText;
 		if (!value) return;

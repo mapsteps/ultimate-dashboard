@@ -5,6 +5,12 @@ import type * as WPData from "@wordpress/data";
 export {};
 
 declare global {
+	type CodeMirrorSettings = import("codemirror").EditorConfiguration;
+
+	type CodeMirrorAPI = import("codemirror").Editor;
+
+	type CodeMirrorInstance = import("codemirror").Editor;
+
 	interface Wp {
 		escapeHtml: typeof WPEscapeHtml;
 		data: typeof WPData;
@@ -12,42 +18,16 @@ declare global {
 			initialize: (
 				element: string | HTMLTextAreaElement,
 				settings?: {
-					codemirror?: {
-						mode?: string;
-						lineNumbers?: boolean;
-						lineWrapping?: boolean;
-						styleActiveLine?: boolean;
-						continueComments?: boolean;
-						extraKeys?: Record<string, unknown>;
-						direction?: string;
-						rtlMoveVisually?: boolean;
-						autoCloseBrackets?: boolean;
-						autoCloseTags?: boolean;
-						matchBrackets?: boolean;
-						matchTags?: boolean;
-						continuousScanning?: boolean;
-						lint?: boolean;
-						gutters?: string[];
-						[key: string]: unknown;
-					};
+					codemirror?: CodeMirrorSettings;
 					csslint?: Record<string, unknown>;
 					jshint?: Record<string, unknown>;
 					htmlhint?: Record<string, unknown>;
 				}
 			) => {
-				codemirror: {
-					on: (event: string, callback: () => void) => void;
-					off: (event: string, callback: () => void) => void;
-					getValue: () => string;
-					setValue: (value: string) => void;
-					save: () => void;
-					toTextArea: () => void;
-					refresh: () => void;
-					[key: string]: unknown;
-				};
+				codemirror: CodeMirrorAPI;
 			};
 			defaultSettings: {
-				codemirror: Record<string, unknown>;
+				codemirror: CodeMirrorSettings;
 			};
 		};
 	}
