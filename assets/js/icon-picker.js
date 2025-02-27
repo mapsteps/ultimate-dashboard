@@ -3,28 +3,40 @@
 (function ($) {
 	/**
 	 *
-	 * @returns {void}
+	 * @returns {JQuery<HTMLElement>}
 	 */
 	$.fn.iconPicker = function () {
 		/**
 		 * Icons
 		 *
-		 * @type Array
+		 * @type string[]
 		 */
-		var icons = iconPickerIcons ? iconPickerIcons : [];
+		const icons = window.iconPickerIcons ? window.iconPickerIcons : [];
 
 		return this.each(function () {
-			var eventType =
+			const eventType =
 				this.tagName.toLowerCase() === "button" ? "click" : "focus";
 
 			$(this).on(eventType, function (e) {
+				if (
+					!(this instanceof HTMLInputElement) &&
+					!(this instanceof HTMLTextAreaElement)
+				) {
+					return;
+				}
+
 				createPopup(this);
 			});
 
+			/**
+			 * Create popup.
+			 *
+			 * @param {HTMLInputElement|HTMLTextAreaElement} field
+			 */
 			function createPopup(field) {
-				var boxWidth = field.dataset.width;
+				// const boxWidth = field.dataset.width;
 
-				var popup = $(
+				const popup = $(
 						'<div class="icon-picker-container"> \
 						<div class="icon-picker-control" /> \
 						<ul class="icon-picker-list" /> \
@@ -82,10 +94,12 @@
 					}
 				});
 
-				popup.appendTo(field.parentNode).show();
+				if (field.parentElement) popup.appendTo(field.parentElement).show();
 
 				$("input", control).on("keyup", function (e) {
-					var search = $(this).val();
+					const search = $(this).val() ?? "";
+					if (typeof search !== "string") return;
+
 					if (search === "") {
 						$("li:lt(25)", list).show();
 					} else {
@@ -106,6 +120,8 @@
 
 				$(document).bind("mouseup.icon-picker", function (e) {
 					if (
+						(e.target instanceof HTMLInputElement ||
+							e.target instanceof HTMLTextAreaElement) &&
 						e.target !== field &&
 						!popup.is(e.target) &&
 						popup.has(e.target).length === 0

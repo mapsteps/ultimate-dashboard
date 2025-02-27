@@ -357,7 +357,8 @@
 
 				$(document).on("mouseup.dashicons-picker", function (e) {
 					if (
-						e.target instanceof HTMLElement &&
+						(e.target instanceof HTMLInputElement ||
+							e.target instanceof HTMLTextAreaElement) &&
 						e.target !== field &&
 						!popup.is(e.target) &&
 						popup.has(e.target).length === 0

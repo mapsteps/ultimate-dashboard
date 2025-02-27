@@ -56,6 +56,7 @@ declare global {
 
 	interface JQuery {
 		dashiconsPicker: () => JQuery;
+		iconPicker: () => JQuery;
 		wpColorPicker(opts: {
 			defaultColor?: string;
 			change?: (event: JQuery.Event, ui: { color: string }) => void;
@@ -92,6 +93,8 @@ declare global {
 		};
 
 		tns: typeof tns;
+
+		iconPickerIcons: string[];
 
 		udbAdminMenu?: {
 			nonces: {
