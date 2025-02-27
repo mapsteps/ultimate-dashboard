@@ -7,15 +7,15 @@
 (function ($) {
 	/**
 	 *
-	 * @returns {void}
+	 * @returns {JQuery<HTMLElement>}
 	 */
 	$.fn.dashiconsPicker = function () {
 		/**
 		 * Dashicons, in CSS order
 		 *
-		 * @type Array
+		 * @type string[]
 		 */
-		var icons = [
+		const icons = [
 			"menu",
 			"admin-site",
 			"dashboard",
@@ -260,13 +260,26 @@
 
 		return this.each(function () {
 			$(this).on("focus", function (e) {
+				if (
+					!(this instanceof HTMLInputElement) &&
+					!(this instanceof HTMLTextAreaElement)
+				) {
+					return;
+				}
+
 				createPopup(this);
 			});
 
+			/**
+			 * Create the popup
+			 *
+			 * @param {HTMLInputElement|HTMLTextAreaElement} field
+			 * @returns {void}
+			 */
 			function createPopup(field) {
-				var boxWidth = field.dataset.width;
+				// const boxWidth = field.dataset.width;
 
-				var popup = $(
+				const popup = $(
 						'<div class="dashicon-picker-container"> \
 						<div class="dashicon-picker-control" /> \
 						<ul class="dashicon-picker-list" /> \
@@ -276,7 +289,7 @@
 
 				// if (boxWidth) popup.width(boxWidth);
 
-				for (var i in icons) {
+				for (const i in icons) {
 					list.append(
 						'<li data-icon="' +
 							icons[i] +
@@ -290,15 +303,17 @@
 
 				$("a", list).click(function (e) {
 					e.preventDefault();
-					var title = $(this).attr("title");
-					var prevVal = field.value;
+
+					const title = $(this).attr("title");
+					const prevVal = field.value;
+
 					field.value = "dashicons-" + title;
 					if (field.value !== prevVal) field.dispatchEvent(new Event("change"));
 					field.blur();
 					removePopup();
 				});
 
-				var control = popup.find(".dashicon-picker-control");
+				const control = popup.find(".dashicon-picker-control");
 
 				control.prepend(
 					'<a data-direction="back" href="#"> \
@@ -316,10 +331,12 @@
 					}
 				});
 
-				popup.appendTo(field.parentNode).show();
+				if (field.parentElement) popup.appendTo(field.parentElement).show();
 
 				$("input", control).on("keyup", function (e) {
-					var search = $(this).val();
+					const search = $(this).val() ?? "";
+					if (typeof search !== "string") return;
+
 					if (search === "") {
 						$("li:lt(25)", list).show();
 					} else {
@@ -338,8 +355,9 @@
 					}
 				});
 
-				$(document).bind("mouseup.dashicons-picker", function (e) {
+				$(document).on("mouseup.dashicons-picker", function (e) {
 					if (
+						e.target instanceof HTMLElement &&
 						e.target !== field &&
 						!popup.is(e.target) &&
 						popup.has(e.target).length === 0
