@@ -428,7 +428,6 @@ class Setup {
 		$review_url = 'https://wordpress.org/support/plugin/ultimate-dashboard/reviews/?rate=5#new-post';
 		$link_start = '<a href="' . $review_url . '" target="_blank">';
 		$link_end   = '</a>';
-
 		// translators: %1$s: Emoji, %2$s: Link start tag, %3$s: Link end tag.
 		$notice   = sprintf( __( '%1$s Love using Ultimate Dashboard? - That\'s Awesome! Help us spread the word and leave us a %2$s 5-star review %3$s in the WordPress repository.', 'ultimate-dashboard' ), $emoji, $link_start, $link_end );
 		$btn_text = __( 'Sure! You deserve it!', 'ultimate-dashboard' );
@@ -446,7 +445,9 @@ class Setup {
 	 */
 	public function dismiss_review_notice() {
 
-		if ( isset( $_POST['dismiss'] ) ) {
+		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
+
+		if ( empty( $dismiss ) ) {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
@@ -539,7 +540,9 @@ class Setup {
 	 */
 	public function dismiss_bfcm_notice() {
 
-		if ( isset( $_POST['dismiss'] ) ) {
+		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
+
+		if ( empty( $dismiss ) ) {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
