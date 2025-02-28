@@ -109,7 +109,7 @@ class Admin_Page_Module extends Base_Module {
 			3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
 			4  => __( 'Admin Page updated.', 'ultimate-dashboard' ),
 			// translators: %s: Date and time of the revision.
-			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Admin Page restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( sanitize_text_field( $_GET['revision'] ) ), false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Admin Page restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false,
 			6  => __( 'Admin Page published.', 'ultimate-dashboard' ),
 			7  => __( 'Admin Page saved.', 'ultimate-dashboard' ),
 			8  => __( 'Admin Page submitted.', 'ultimate-dashboard' ),

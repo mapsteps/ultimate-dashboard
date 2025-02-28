@@ -92,11 +92,14 @@ return function () {
 
 					<div class="heatbox">
 
-						<h2><img src="<?php echo esc_url( $feature['img'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>"> <?php echo $feature['title']; ?></h2>
+						<h2>
+							<img src="<?php echo esc_url( $feature['img'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>">
+							<?php echo esc_html( $feature['title'] ); ?>
+						</h2>
 
 							<div class="heatbox-content">
 								<p>
-									<?php echo $feature['text']; ?>
+									<?php echo esc_html( $feature['text'] ); ?>
 								</p>
 							</div>
 
@@ -104,16 +107,16 @@ return function () {
 								<div class="status">
 									<span><?php _e( 'Status: ', 'ultimate-dashboard' ); ?></span>
 									<span class="status-code" data-active-text="<?php _e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php _e( 'Inactive', 'ultimate-dashboard' ); ?>">
-										<?php echo empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
+										<?php echo empty( $saved_modules ) || 'true' === $saved_modules[ $feature['feature'] ] ? '<span class="active">' . __( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . __( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
 									</span>
 								</div>
 								<div class="status-switch">
-									<label for="udb_is_active_<?php echo $feature['feature']; ?>" class="toggle-switch">
+									<label for="udb_is_active_<?php echo esc_attr( $feature['feature'] ); ?>" class="toggle-switch">
 										<input
 											type="checkbox"
 											name="<?php echo esc_attr( $feature['feature'] ); ?>"
-											id="udb_is_active_<?php echo $feature['feature']; ?>"
-											<?php checked( empty( $saved_modules ) || $saved_modules[ $feature['feature'] ] === 'true' ); ?>
+											id="udb_is_active_<?php echo esc_attr( $feature['feature'] ); ?>"
+											<?php checked( empty( $saved_modules ) || 'true' === $saved_modules[ $feature['feature'] ] ); ?>
 										/>
 										<div class="switch-track">
 											<div class="switch-thumb"></div>

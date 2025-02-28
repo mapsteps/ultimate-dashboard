@@ -88,7 +88,7 @@ return function ( $module, $column, $post_id ) {
 			$allowed_roles = __( 'All', 'ultimate-dashboard' );
 			$allowed_roles = apply_filters( 'udb_admin_page_list_roles_column_content', $allowed_roles, $post_id );
 
-			echo ucwords( $allowed_roles );
+			echo esc_html( ucwords( $allowed_roles ) );
 			break;
 
 		case 'icon':

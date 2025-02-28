@@ -45,7 +45,7 @@ class Save_Remove_By_Roles {
 	 */
 	public function validate() {
 
-		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : '';
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_bar_save_remove_by_roles' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );

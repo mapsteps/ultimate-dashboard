@@ -56,7 +56,7 @@ $custom_css = $post->custom_css;
 	<?php
 	if ( ! udb_is_pro_active() ) {
 		if ( 'html' === $post->content_type ) {
-			echo $post->html_content;
+			echo wp_kses_post( $post->html_content );
 		} else {
 			echo apply_filters( 'the_content', $post->post_content );
 		}

@@ -117,14 +117,18 @@ class Feature_Module extends Base_Module {
 	 */
 	public function handle_module_actions() {
 
-		if ( empty( $_POST ) || ! wp_verify_nonce( $_POST['nonce'], 'udb_module_nonce_action' ) ) {
+		if ( empty( $_POST ) || ( ! empty( $_POST['nonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'udb_module_nonce_action' ) ) ) {
 			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
 		}
 
 		$module        = new Setup();
 		$saved_modules = $module->saved_modules();
-		$name          = sanitize_key( $_POST['name'] );
-		$status        = sanitize_key( $_POST['status'] );
+		$name          = isset( $_POST['name'] ) ? sanitize_key( $_POST['name'] ) : null;
+		$status        = isset( $_POST['status'] ) ? sanitize_key( $_POST['status'] ) : null;
+
+		if ( is_null( $name ) || is_null( $status ) ) {
+			wp_send_json_error( __( 'Invalid data', 'ultimate-dashboard' ) );
+		}
 
 		$saved_modules[ $name ] = $status;
 

@@ -23,7 +23,7 @@ class Get_Users {
 	 */
 	public function ajax() {
 
-		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( $_GET['nonce'] ) : '';
+		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_admin_bar_get_users' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
