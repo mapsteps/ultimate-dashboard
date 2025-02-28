@@ -28,7 +28,7 @@ return function ( $column, $post_id ) {
 
 				$column_content = apply_filters( 'udb_widget_list_type_column_content', $column_content, $post_id, $widget_type );
 
-				echo $column_content;
+				echo wp_kses_post( $column_content );
 			}
 			break;
 
