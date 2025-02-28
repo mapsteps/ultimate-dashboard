@@ -445,9 +445,7 @@ class Setup {
 	 */
 	public function dismiss_review_notice() {
 
-		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
-
-		if ( empty( $dismiss ) ) {
+		if ( empty( $_POST['dismiss'] ) ) {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
@@ -540,9 +538,7 @@ class Setup {
 	 */
 	public function dismiss_bfcm_notice() {
 
-		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
-
-		if ( empty( $dismiss ) ) {
+		if ( empty( $_POST['dismiss'] ) ) {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
