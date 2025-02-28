@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
 
-	$nonce     = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+	$nonce     = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 	$post_id   = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
 	$page      = get_post( $post_id );
 	$is_active = isset( $_POST['is_active'] ) ? absint( $_POST['is_active'] ) : 0;

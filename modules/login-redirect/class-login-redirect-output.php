@@ -160,7 +160,7 @@ class Login_Redirect_Output extends Base_Output {
 			return;
 		}
 
-		$uri = rawurldecode( $_SERVER['REQUEST_URI'] );
+		$uri = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
 
 		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' );
 		$has_activate_slug = false !== stripos( $uri, 'wp-activate' );
@@ -173,7 +173,7 @@ class Login_Redirect_Output extends Base_Output {
 		$request_path = isset( $request['path'] ) ? untrailingslashit( $request['path'] ) : '';
 
 		$using_permalink = (bool) $this->permalink_structure;
-		$has_new_slug    = isset( $_GET[ $this->new_login_slug ] ) && $_GET[ $this->new_login_slug ];
+		$has_new_slug    = ! empty( $_GET[ $this->new_login_slug ] );
 		$has_old_slug    = false !== stripos( $uri, 'wp-login.php' );
 
 		$has_register_slug = false !== stripos( $uri, 'wp-register.php' );
@@ -210,7 +210,7 @@ class Login_Redirect_Output extends Base_Output {
 		$login_url = site_url( $this->new_login_slug, $scheme );
 
 		if ( is_multisite() ) {
-			$uri = rawurldecode( $_SERVER['REQUEST_URI'] );
+			$uri = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
 
 			$has_install_slug = false !== stripos( $uri, '/wp-admin/install.php' );
 
@@ -245,15 +245,15 @@ class Login_Redirect_Output extends Base_Output {
 	/**
 	 * Return a string with or without trailing slash based on permalink structure.
 	 *
-	 * @param string $string The string to return.
+	 * @param string $str The string to return.
 	 *
 	 * @return string
 	 */
-	public function maybe_trailingslashit( $string ) {
+	public function maybe_trailingslashit( $str ) {
 
 		$use_trailingslash = '/' === substr( $this->permalink_structure, - 1, 1 );
 
-		return ( $use_trailingslash ? trailingslashit( $string ) : untrailingslashit( $string ) );
+		return ( $use_trailingslash ? trailingslashit( $str ) : untrailingslashit( $str ) );
 
 	}
 
@@ -268,7 +268,8 @@ class Login_Redirect_Output extends Base_Output {
 
 		global $pagenow;
 
-		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
+		$uri          = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
+		$request      = wp_parse_url( rawurldecode( $uri ) );
 		$request_path = isset( $request['path'] ) ? $request['path'] : '';
 
 		if ( is_admin() && ! is_user_logged_in() && ! wp_doing_ajax() && 'admin-post.php' !== $pagenow && '/wp-admin/options.php' !== $request_path ) {
@@ -289,10 +290,11 @@ class Login_Redirect_Output extends Base_Output {
 
 		global $pagenow;
 
-		$request      = wp_parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
+		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
+		$request      = wp_parse_url( rawurldecode( $request_uri ) );
 		$request_path = $request['path'];
 
-		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? $_SERVER['QUERY_STRING'] : '';
+		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ) : '';
 		$add_query_string = $query_string ? '?' . $query_string : '';
 
 		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && $this->permalink_structure ) {
@@ -327,11 +329,7 @@ class Login_Redirect_Output extends Base_Output {
 			$this->wp_template_loader();
 		} elseif ( 'wp-login.php' === $pagenow ) {
 			$redirect_to           = admin_url();
-			$requested_redirect_to = '';
-
-			if ( isset( $_REQUEST['redirect_to'] ) ) {
-				$requested_redirect_to = $_REQUEST['redirect_to'];
-			}
+			$requested_redirect_to = isset( $_REQUEST['redirect_to'] ) ? sanitize_url( wp_unslash( $_REQUEST['redirect_to'] ) ) : '';
 
 			if ( is_user_logged_in() ) {
 				$user = wp_get_current_user();
@@ -542,8 +540,8 @@ class Login_Redirect_Output extends Base_Output {
 				add_query_arg(
 					array(
 						'action'      => 'confirmaction',
-						'request_id'  => $_GET['request_id'],
-						'confirm_key' => $_GET['confirm_key'],
+						'request_id'  => isset( $_GET['request_id'] ) ? sanitize_text_field( wp_unslash( $_GET['request_id'] ) ) : '',
+						'confirm_key' => isset( $_GET['confirm_key'] ) ? sanitize_text_field( wp_unslash( $_GET['confirm_key'] ) ) : '',
 					),
 					$this->new_login_url()
 				)

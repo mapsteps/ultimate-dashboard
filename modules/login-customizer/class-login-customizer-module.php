@@ -168,12 +168,12 @@ class Login_Customizer_Module extends Base_Module {
 		if ( ! is_user_logged_in() ) {
 			wp_safe_redirect( home_url() );
 			exit;
-		} else {
-			// Only allow user with 'manage_options' capability.
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_safe_redirect( home_url() );
-				exit;
-			}
+		}
+
+		// Only allow user with 'manage_options' capability.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_safe_redirect( home_url() );
+			exit;
 		}
 
 		status_header( 200 );
@@ -230,7 +230,7 @@ class Login_Customizer_Module extends Base_Module {
 			admin_url( 'customize.php' )
 		);
 
-		if ( 'post.php' === $pagenow && ( isset( $_GET['post'] ) && intval( $page->ID ) === intval( $_GET['post'] ) ) ) {
+		if ( 'post.php' === $pagenow && ( isset( $_GET['post'] ) && absint( $page->ID ) === absint( $_GET['post'] ) ) ) {
 			wp_safe_redirect( $redirect_url );
 		}
 

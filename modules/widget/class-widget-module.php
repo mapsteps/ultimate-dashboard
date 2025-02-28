@@ -84,8 +84,8 @@ class Widget_Module extends Base_Module {
 			2  => __( 'Custom field updated.', 'ultimate-dashboard' ),
 			3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
 			4  => __( 'Widget updated.', 'ultimate-dashboard' ),
-			// translators: %s: Date and time of the revision
-			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			// translators: %s: Date and time of the revision.
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false,
 			6  => __( 'Widget published.', 'ultimate-dashboard' ),
 			7  => __( 'Widget saved.', 'ultimate-dashboard' ),
 			8  => __( 'Widget submitted.', 'ultimate-dashboard' ),

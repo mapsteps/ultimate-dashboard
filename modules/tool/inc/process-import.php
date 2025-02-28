@@ -12,10 +12,23 @@ use Udb\Helpers\Array_Helper;
 return function () {
 
 	$array_helper = new Array_Helper();
-	$import_file  = $_FILES['udb_import_file'];
-	$file_name    = basename( sanitize_file_name( wp_unslash( $import_file['name'] ) ) );
-	$explodes     = explode( '.', $file_name );
-	$ext          = end( $explodes );
+	$import_file  = isset( $_FILES['udb_import_file'] ) ? $_FILES['udb_import_file'] : null;
+
+	if ( is_null( $import_file ) ) {
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'Please select a file to import', 'ultimate-dashboard' )
+		);
+
+		return;
+
+	}
+
+	$file_name = basename( sanitize_file_name( wp_unslash( $import_file['name'] ) ) );
+	$explodes  = explode( '.', $file_name );
+	$ext       = end( $explodes );
 
 	// wp_check_filetype fails here, so let's check it manually.
 	if ( 'json' !== $ext ) {

@@ -11,6 +11,7 @@ namespace Udb;
  * Image list control.
  */
 class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
+
 	/**
 	 * Control's type.
 	 *
@@ -22,6 +23,7 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 	 * Renders the range control wrapper and calls $this->render_content() for the internals.
 	 */
 	protected function render() {
+
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type . ' udb-customize-control udb-customize-control-' . $this->type;
 
@@ -34,6 +36,7 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 		printf( '<li id="%s" class="%s" data-control-name="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->id ) );
 		$this->render_content();
 		echo '</li>';
+
 	}
 
 	/**
@@ -43,6 +46,7 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 	 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
 	 */
 	public function render_content() {
+
 		$input_id         = '_customize-input-' . $this->id;
 		$description_id   = '_customize-description-' . $this->id;
 		$describedby_attr = ( ! empty( $this->description ) ) ? ' aria-describedby="' . esc_attr( $description_id ) . '" ' : '';
@@ -87,7 +91,9 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 				<label for="<?php echo esc_attr( $input_id ); ?>" class="customize-control-title udb-customize-control-label udb-customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 			<?php endif; ?>
 			<?php if ( ! empty( $this->description ) ) : ?>
-				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo $this->description; ?></span>
+				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description">
+					<?php echo wp_kses_post( $this->description ); ?>
+				</span>
 			<?php endif; ?>
 		</header>
 
@@ -108,4 +114,5 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 
 		<?php
 	}
+
 }

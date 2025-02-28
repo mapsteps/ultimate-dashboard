@@ -11,6 +11,7 @@ namespace Udb;
  * Custom control.
  */
 class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
+
 	/**
 	 * Type.
 	 *
@@ -31,6 +32,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 	 * @since 3.4.0
 	 */
 	public function enqueue() {
+
 		wp_enqueue_style( 'wp-color-picker' );
 
 		// ! patch: deregister old color picker alpha such as Kirki's color picker alpha, it's still using the old version.
@@ -38,12 +40,14 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker-alpha', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
 	}
 
 	/**
 	 * Renders the color picker control wrapper and calls $this->render_content() for the internals.
 	 */
 	protected function render() {
+
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type . ' udb-customize-control udb-customize-control-' . $this->type;
 
@@ -56,6 +60,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 		printf( '<li id="%s" class="%s" data-control-name="%s" data-default-value="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->id ), esc_attr( $this->value() ) );
 		$this->render_content();
 		echo '</li>';
+
 	}
 
 	/**
@@ -65,6 +70,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 	 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
 	 */
 	public function render_content() {
+
 		$input_id         = '_customize-input-' . $this->id;
 		$description_id   = '_customize-description-' . $this->id;
 		$describedby_attr = ( ! empty( $this->description ) ) ? ' aria-describedby="' . esc_attr( $description_id ) . '" ' : '';

@@ -11,6 +11,7 @@ namespace Udb;
  * Custom control.
  */
 class Udb_Customize_Color_Control extends \WP_Customize_Color_Control {
+
 	/**
 	 * Renders the range control wrapper and calls $this->render_content() for the internals.
 	 */
@@ -28,4 +29,5 @@ class Udb_Customize_Color_Control extends \WP_Customize_Color_Control {
 		$this->render_content();
 		echo '</li>';
 	}
+
 }

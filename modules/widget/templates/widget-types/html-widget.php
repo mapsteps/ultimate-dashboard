@@ -22,7 +22,7 @@ return function () {
 				<h2><?php _e( 'HTML', 'ultimate-dashboard' ); ?></h2>
 			</div>
 			<div class="inside">
-				<textarea class="widefat textarea" name="udb_html"><?php echo wp_unslash( $content ); ?></textarea>
+				<textarea class="widefat textarea" name="udb_html"><?php echo wp_kses_post( wp_unslash( $content ) ); ?></textarea>
 			</div>
 		</div>
 

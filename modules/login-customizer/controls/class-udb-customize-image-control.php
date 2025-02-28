@@ -11,10 +11,12 @@ namespace Udb;
  * Custom image control.
  */
 class Udb_Customize_Image_Control extends \WP_Customize_Image_Control {
+
 	/**
 	 * Renders the range control wrapper and calls $this->render_content() for the internals.
 	 */
 	protected function render() {
+
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type . ' udb-customize-control udb-customize-control-' . $this->type;
 
@@ -31,5 +33,7 @@ class Udb_Customize_Image_Control extends \WP_Customize_Image_Control {
 		printf( '<li id="%s" class="%s" data-control-name="%s">', esc_attr( $id ), esc_attr( $class ), esc_attr( $this->id ) );
 		$this->render_content();
 		echo '</li>';
+
 	}
+
 }

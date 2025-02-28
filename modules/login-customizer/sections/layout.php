@@ -530,7 +530,7 @@ $wp_customize->add_control(
 			'section'  => 'udb_login_customizer_layout_section',
 			'settings' => 'udb_login[enable_form_shadow]',
 			'priority' => 15,
-			'label'    => __( "Box Shadow", 'ultimate-dashboard' ),
+			'label'    => __( 'Box Shadow', 'ultimate-dashboard' ),
 		)
 	)
 );

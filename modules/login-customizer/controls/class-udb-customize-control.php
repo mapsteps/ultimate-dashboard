@@ -11,10 +11,12 @@ namespace Udb;
  * Custom control.
  */
 class Udb_Customize_Control extends \WP_Customize_Control {
+
 	/**
 	 * Renders the range control wrapper and calls $this->render_content() for the internals.
 	 */
 	protected function render() {
+
 		$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
 		$class = 'customize-control customize-control-' . $this->type . ' udb-customize-control udb-customize-control-' . $this->type;
 
@@ -27,5 +29,7 @@ class Udb_Customize_Control extends \WP_Customize_Control {
 		printf( '<li id="%s" class="%s">', esc_attr( $id ), esc_attr( $class ) );
 		$this->render_content();
 		echo '</li>';
+
 	}
+
 }

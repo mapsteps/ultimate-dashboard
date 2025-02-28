@@ -119,11 +119,10 @@ class Setting_Output extends Base_Output {
 		$content_helper = new Content_Helper();
 
 		$custom_css = $settings['custom_admin_css'];
-		$custom_css = $content_helper->sanitize_css( $custom_css );
 		?>
 
 		<style>
-			<?php echo $custom_css; ?>
+			<?php echo $content_helper->sanitize_css( $custom_css ); ?>
 		</style>
 
 		<?php
@@ -251,7 +250,7 @@ class Setting_Output extends Base_Output {
 		$content = do_shortcode( $content );
 		$content = wpautop( $content );
 
-		echo $content;
+		echo wp_kses_post( $content );
 
 	}
 

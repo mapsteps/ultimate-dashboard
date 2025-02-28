@@ -62,7 +62,9 @@ class Udb_Customize_Toggle_Switch_Control extends \WP_Customize_Control {
 						<label for="<?php echo esc_attr( $input_id ); ?>" class="customize-control-title udb-customize-control-label udb-customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 					<?php endif; ?>
 					<?php if ( ! empty( $this->description ) ) : ?>
-						<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo $this->description; ?></span>
+						<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description">
+							<?php echo wp_kses_post( $this->description ); ?>
+						</span>
 					<?php endif; ?>
 				</header>
 

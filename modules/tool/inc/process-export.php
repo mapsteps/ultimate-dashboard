@@ -123,7 +123,10 @@ return function () {
 
 	$export_data = apply_filters( 'udb_export', $export_data );
 
-	header( 'Content-disposition: attachment; filename=udb-export-' . date( 'Y-m-d-H.i.s', strtotime( 'now' ) ) . '.json' );
+	$time = strtotime( 'now' );
+	$time = false === $time ? null : $time;
+
+	header( 'Content-disposition: attachment; filename=udb-export-' . gmdate( 'Y-m-d-H.i.s', $time ) . '.json' );
 	header( 'Content-type: application/json' );
 
 	echo wp_json_encode( $export_data );

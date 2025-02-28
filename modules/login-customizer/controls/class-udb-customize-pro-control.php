@@ -79,11 +79,11 @@ class Udb_Customize_Pro_Control extends \WP_Customize_Control {
 		</header>
 
 		<p class="udb-pro-customizer-control-notice">
-			<?php echo $this->description; ?>
+			<?php echo wp_kses_post( $this->description ); ?>
 		</p>
 
 		<a href="<?php echo esc_url( $this->button_url ); ?>" class="button button-primary" target="_blank">
-			<?php echo $this->button_text; ?>
+			<?php echo esc_html( $this->button_text ); ?>
 		</a>
 
 		<?php
