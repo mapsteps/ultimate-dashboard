@@ -104,7 +104,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.8.6 | March 3, 2025 =
-* Fixed an XSS vulnerability in the edit widget and edit admin page  
+* Fixed XSS vulnerabilities in the edit widget and edit admin page screens
 * Implemented additional security enhancements to prevent potential issues
 = 3.8.5 | November 22, 2024 =
 * Fixed: BFCM notice wasn't dismissible
