@@ -4,7 +4,7 @@ Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress
 Requires at least: 4.6
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 3.8.5
+Stable tag: 3.8.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.6 | March 3, 2025 =
+* Fixed an XSS vulnerability in the edit widget and edit admin page  
+* Implemented additional security enhancements to prevent potential issues
 = 3.8.5 | November 22, 2024 =
 * Fixed: BFCM notice wasn't dismissible
 = 3.8.4 | November 15, 2024 =
