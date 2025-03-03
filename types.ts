@@ -5,31 +5,86 @@ import type * as WPData from "@wordpress/data";
 export {};
 
 declare global {
-	type CodeMirrorSettings = import("codemirror").EditorConfiguration;
+	interface WPCodeEditor {
+		defaultSettings: WPCodeEditorSettings;
+		initialize: (
+			textarea: HTMLTextAreaElement,
+			settings?: Partial<WPCodeEditorSettings>
+		) => CodeMirrorEditor;
+	}
 
-	type CodeMirrorAPI = import("codemirror").Editor;
+	interface WPCodeEditorSettings {
+		codemirror: CodeMirrorSettings | {};
+	}
 
-	type CodeMirrorInstance = import("codemirror").Editor;
+	interface CodeMirrorSettings {
+		indentUnit: number;
+		indentWithTabs: boolean;
+		inputStyle: "contenteditable" | "textarea";
+		lineNumbers: boolean;
+		lineWrapping: boolean;
+		styleActiveLine: boolean;
+		continueComments: boolean;
+		extraKeys: {
+			[key: string]: string;
+		};
+		direction: "ltr" | "rtl";
+		gutters: string[];
+		mode: string;
+		lint: boolean;
+		autoCloseBrackets: boolean;
+		autoCloseTags: boolean;
+		matchTags: {
+			bothTags: boolean;
+		};
+		autoRefresh: boolean;
+	}
+
+	// CodeMirror Editor Interface
+	interface CodeMirrorEditor {
+		getValue(): string;
+		setValue(content: string): void;
+		getWrapperElement(): HTMLElement;
+		codemirror: CodeMirror;
+		on(event: string, handler: Function): void;
+		off(event: string, handler: Function): void;
+	}
+
+	// Additional CodeMirror type (simplified for this context)
+	interface CodeMirror {
+		doc: CodeMirrorDoc;
+		display: any;
+		options: CodeMirrorSettings;
+		state: any;
+		refresh(): void;
+		focus(): void;
+		getCursor(start?: boolean): { line: number; ch: number };
+		setCursor(pos: { line: number; ch: number }): void;
+		getLine(n: number): string;
+		getSelection(): string;
+		replaceSelection(replacement: string): void;
+		somethingSelected(): boolean;
+		setOption(option: string, value: any): void;
+		getOption(option: string): any;
+		execCommand(command: string): void;
+		addKeyMap(map: object): void;
+		removeKeyMap(map: object): void;
+	}
+
+	interface CodeMirrorDoc {
+		getValue(): string;
+		setValue(content: string): void;
+		getSelection(): string;
+		replaceSelection(replacement: string): void;
+		lineCount(): number;
+		getCursor(): { line: number; ch: number };
+		setCursor(pos: { line: number; ch: number }): void;
+	}
 
 	interface Wp {
 		escapeHtml: typeof WPEscapeHtml;
 		data: typeof WPData;
-		codeEditor: {
-			initialize: (
-				element: string | HTMLTextAreaElement,
-				settings?: {
-					codemirror?: CodeMirrorSettings;
-					csslint?: Record<string, unknown>;
-					jshint?: Record<string, unknown>;
-					htmlhint?: Record<string, unknown>;
-				}
-			) => {
-				codemirror: CodeMirrorAPI;
-			};
-			defaultSettings: {
-				codemirror: CodeMirrorSettings;
-			};
-		};
+		codeEditor: WPCodeEditor;
 	}
 
 	const wp: Wp;

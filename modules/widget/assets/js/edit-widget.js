@@ -55,7 +55,7 @@
 	function setupCodeEditor() {
 		const textareas = document.querySelectorAll('[name="udb_html"]');
 
-		/** @type {{codemirror: Record<string, unknown>}} */
+		/** @type {WPCodeEditorSettings} */
 		const editorSettings = wp.codeEditor.defaultSettings
 			? _.clone(wp.codeEditor.defaultSettings)
 			: { codemirror: {} };

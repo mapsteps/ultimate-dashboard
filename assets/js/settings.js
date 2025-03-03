@@ -5,7 +5,7 @@
  * @return {Object}
  */
 (function ($) {
-	/** @type {CodeMirrorInstance[]} */
+	/** @type {CodeMirrorEditor[]} */
 	const codeMirrorInstances = [];
 
 	// Run the module.
