@@ -103,7 +103,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
-= 3.8.7 | March 3, 2025 =
+= 3.8.7 | March 12, 2025 =
 * Fixed issue where links weren't not saved in the text widget
 = 3.8.6 | March 3, 2025 =
 * Fixed XSS vulnerabilities in the edit widget and edit admin page screens
