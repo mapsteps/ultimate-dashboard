@@ -72,7 +72,7 @@ return function ( $post_id ) {
 
 	// Text widget.
 	if ( isset( $_POST['udb_content'] ) ) {
-		update_post_meta( $post_id, 'udb_content', sanitize_textarea_field( wp_unslash( $_POST['udb_content'] ) ) );
+		update_post_meta( $post_id, 'udb_content', wp_kses_post( wp_unslash( $_POST['udb_content'] ) ) );
 	}
 
 	if ( isset( $_POST['udb_content_height'] ) ) {
