@@ -104,10 +104,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.8.7 | March 12, 2025 =
-* Fixed issue where links weren't not saved in the text widget
+* Fixed: Issue where links weren't saved in text widgets
 = 3.8.6 | March 3, 2025 =
-* Fixed XSS vulnerabilities in the edit widget and edit admin page screens
-* Implemented additional security enhancements to prevent potential issues
+* Fixed: XSS vulnerabilities in the edit widget and edit admin page screens
+* Tweak: Additional security enhancements
 = 3.8.5 | November 22, 2024 =
 * Fixed: BFCM notice wasn't dismissible
 = 3.8.4 | November 15, 2024 =
