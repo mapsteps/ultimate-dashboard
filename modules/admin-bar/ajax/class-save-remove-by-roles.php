@@ -51,6 +51,12 @@ class Save_Remove_By_Roles {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
+		$capability = apply_filters( 'udb_settings_capability', 'manage_options' );
+
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
+		}
+
 		$roles = isset( $_POST['roles'] ) ? $_POST['roles'] : [];
 
 		if ( ! is_array( $roles ) ) {
