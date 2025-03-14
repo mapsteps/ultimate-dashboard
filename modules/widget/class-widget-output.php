@@ -151,7 +151,7 @@ class Widget_Output extends Base_Output {
 			$title       = do_shortcode( $title );
 			$title       = $this->convert_placeholder_tags( $title );
 			$icon        = get_post_meta( $post_id, 'udb_icon_key', true );
-			$link        = strval( get_post_meta( $post_id, 'udb_link', true ) );
+			$link        = get_post_meta( $post_id, 'udb_link', true );
 			$target      = get_post_meta( $post_id, 'udb_link_target', true );
 			$tooltip     = get_post_meta( $post_id, 'udb_tooltip', true );
 			$position    = get_post_meta( $post_id, 'udb_position_key', true );
@@ -200,6 +200,13 @@ class Widget_Output extends Base_Output {
 				$output = $this->convert_placeholder_tags( $output );
 
 			} elseif ( 'icon' === $widget_type ) {
+
+				$link = is_string( $link ) ? $link : '';
+
+				if ( 0 === strpos( $link, './wp-admin/' ) ) {
+					// Prevent double wp-admin string ('/wp-admin/wp-admin/') when rendering the link.
+					$link = str_replace( './wp-admin/', './', $link );
+				}
 
 				$output = sprintf(
 					'<a href="%1$s" target="%2$s"><i class="%3$s"></i></a>',
