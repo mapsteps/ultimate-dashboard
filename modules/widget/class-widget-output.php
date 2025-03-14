@@ -202,7 +202,7 @@ class Widget_Output extends Base_Output {
 			} elseif ( 'icon' === $widget_type ) {
 
 				$output = sprintf(
-					'<a href="%1s" target="%2s"><i class="%3s"></i></a>',
+					'<a href="%1$s" target="%2$s"><i class="%3$s"></i></a>',
 					esc_url( $link ),
 					esc_attr( $target ),
 					esc_attr( $icon )
