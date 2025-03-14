@@ -22,6 +22,12 @@ return function () {
 		wp_send_json_error( __( 'Page/post not found', 'ultimate-dashboard' ) );
 	}
 
+	$capability = apply_filters( 'udb_settings_capability', 'manage_options' );
+
+	if ( ! current_user_can( $capability ) ) {
+		wp_send_json_error( __( 'You do not have sufficient permissions to access this page.', 'ultimate-dashboard' ) );
+	}
+
 	if ( $is_active ) {
 		update_post_meta( $post_id, 'udb_is_active', 1 );
 		wp_send_json_success(
