@@ -43,8 +43,10 @@ class Save_Custom_Login_Url {
 	 */
 	private function validate() {
 
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'You do not have permission to access this page', 'ultimate-dashboard' ), 401 );
+		$capability = apply_filters( 'udb_modules_capability', 'manage_options' );
+
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ), 401 );
 		}
 
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
