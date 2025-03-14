@@ -121,6 +121,12 @@ class Feature_Module extends Base_Module {
 			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
 		}
 
+		$capability = apply_filters( 'udb_modules_capability', 'manage_options' );
+
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( __( 'You do not have sufficient permissions to access this page.', 'ultimate-dashboard' ) );
+		}
+
 		$module        = new Setup();
 		$saved_modules = $module->saved_modules();
 		$name          = isset( $_POST['name'] ) ? sanitize_key( $_POST['name'] ) : null;
