@@ -92,7 +92,7 @@ class Admin_Menu_Module extends Base_Module {
 	 */
 	public function submenu_page() {
 
-		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Admin Menu Editor', 'ultimate-dashboard' ), __( 'Admin Menu Editor', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_admin_menu', array( $this, 'submenu_page_content' ) ); // are we using this filter everywhere?
+		add_submenu_page( 'edit.php?post_type=udb_widgets', __( 'Admin Menu Editor', 'ultimate-dashboard' ), __( 'Admin Menu Editor', 'ultimate-dashboard' ), apply_filters( 'udb_settings_capability', 'manage_options' ), 'udb_admin_menu', array( $this, 'submenu_page_content' ) );
 
 	}
 
