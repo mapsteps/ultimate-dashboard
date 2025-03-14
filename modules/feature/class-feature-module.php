@@ -124,7 +124,7 @@ class Feature_Module extends Base_Module {
 		$capability = apply_filters( 'udb_modules_capability', 'manage_options' );
 
 		if ( ! current_user_can( $capability ) ) {
-			wp_send_json_error( __( 'You do not have sufficient permissions to access this page.', 'ultimate-dashboard' ) );
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
 		}
 
 		$module        = new Setup();
