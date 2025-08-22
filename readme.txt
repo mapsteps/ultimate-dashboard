@@ -4,7 +4,7 @@ Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress
 Requires at least: 4.6
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 3.8.9
+Stable tag: 3.8.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.10 | August 22, 2025 =
+* Fixed: Fatal error on the UDB Settings page in PHP 8.1+ for some users when the core `wp_welcome_panel()` function was not available (was previously only a warning in PHP 7.4)
 = 3.8.9 | June 05, 2025 =
 * Tweak: Allow shortcode in HTML widget
 * Tested up to WordPress 6.8
