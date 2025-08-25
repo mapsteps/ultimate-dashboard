@@ -38,11 +38,7 @@ return function () {
 		do_action( 'udb_ms_switch_blog' );
 
 		ob_start();
-
-		if ( function_exists( 'wp_welcome_panel' ) ) {
-			do_action( 'welcome_panel' );
-		}
-
+		do_action( 'welcome_panel' );
 		$content = ob_get_clean();
 
 		do_action( 'udb_ms_restore_blog' );
