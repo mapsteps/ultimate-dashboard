@@ -87,43 +87,54 @@ class Subscribe {
 
 	/**
 	 * Save the data.
+	 *
+	 * Use secure proxy endpoint instead of direct Mailerlite API.
+	 * The proxy is hosted on our secure server to keep the API key private.
 	 */
 	private function subscribe() {
 
-		// Mailerlite related vars.
-		$mailerlite_api_key  = '17ca6c148dc69064b0f4f409776be3b8';
-		$mailerlite_group_id = '111311793';
-		$mailerlite_api_url  = "https://api.mailerlite.com/api/v2/groups/$mailerlite_group_id/subscribers";
+		$proxy_url = 'https://api.yourdomain.com/wp-json/mailerlite-proxy/v1/subscribe';
+		$group_id  = '111311793';
 
-		$mailerlite_subscriber = [
-			'email'  => $this->email,
-			'name'   => $this->name,
-			'fields' => [],
+		$subscriber_data = [
+			'email'    => $this->email,
+			'name'     => $this->name,
+			'group_id' => $group_id,
+		];
+
+		$headers = [
+			'Content-Type' => 'application/json',
 		];
 
 		$response = wp_remote_post(
-			$mailerlite_api_url,
+			$proxy_url,
 			[
-				'body'    => wp_json_encode( $mailerlite_subscriber ),
-				'headers' => [
-					'X-MailerLite-ApiKey' => $mailerlite_api_key,
-					'Content-Type'        => 'application/json',
-					'Accept'              => 'application/json',
-				],
+				'body'    => wp_json_encode( $subscriber_data ),
+				'headers' => $headers,
+				'timeout' => 15,
 			]
 		);
 
-		if ( ! is_wp_error( $response ) ) {
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error( $response->get_error_message(), 403 );
+		}
+
+		$response_code = wp_remote_retrieve_response_code( $response );
+		$response_body = wp_remote_retrieve_body( $response );
+
+		if ( $response_code >= 200 && $response_code < 300 ) {
 			if ( 'erident' === $this->referrer ) {
 				delete_option( 'udb_migration_from_erident' );
 			} elseif ( 'kirki' === $this->referrer ) {
 				delete_option( 'udb_referred_by_kirki' );
 			}
 
-			wp_send_json_success( __( 'Subscription done', 'ultimate - dashboard' ) );
+			wp_send_json_success( __( 'Subscription done', 'ultimate-dashboard' ) );
 		}
 
-		wp_send_json_error( $response->get_error_message(), 403 );
+		$error_data = json_decode( $response_body, true );
+		$error_message = isset( $error_data['message'] ) ? $error_data['message'] : __( 'Subscription failed', 'ultimate-dashboard' );
+		wp_send_json_error( $error_message, $response_code );
 
 	}
 
