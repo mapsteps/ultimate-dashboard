@@ -84,7 +84,7 @@ class Subscribe {
 	 */
 	private function subscribe() {
 
-		$proxy_url = 'https://api.yourdomain.com/wp-json/mailerlite-proxy/v1/subscribe';
+		$proxy_url = 'https://ultimatedashboard.io/wp-json/mailerlite-proxy/v1/subscribe';
 		$group_id  = '112818510';
 
 		$subscriber_data = [
