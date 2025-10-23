@@ -52,7 +52,7 @@ ob_start();
 					<div class="udb-menu-builder--fields">
 						<div class="field {menu_title_field_is_hidden}">
 							<label for="menu_title_{default_menu_id}" class="label udb-menu-builder--label">
-								<?php _e( 'Menu Title' ); ?>
+								<?php _e( 'Menu Title', 'ultimate-dashboard' ); ?>
 							</label>
 							<div class="control">
 								<textarea 
@@ -68,7 +68,7 @@ ob_start();
 						</div>
 						<div class="field {menu_href_field_is_hidden}">
 							<label for="menu_href_{default_menu_id}" class="label udb-menu-builder--label">
-								<?php _e( 'Menu URL' ); ?>
+								<?php _e( 'Menu URL', 'ultimate-dashboard' ); ?>
 							</label>
 							<div class="control">
 								<input 
@@ -92,14 +92,14 @@ ob_start();
 						<!--
 						<div class="field">
 							<label for="disallowed_roles_{default_menu_id}" class="label udb-menu-builder--label">
-								<?php _e( 'Hide from specific role(s):' ); ?>
+								<?php _e( 'Hide from specific role(s):', 'ultimate-dashboard' ); ?>
 							</label>
 							<div class="control">
 								<select
 									name="disallowed_roles_{default_menu_id}" 
 									id="disallowed_roles_{default_menu_id}" 
 									class="udb-menu-builder--select-field udb-menu-builder--select2-field udb-menu-builder--roles-select2-field"
-									data-placeholder="<?php _e( 'Select a role' ); ?>"
+									data-placeholder="<?php _e( 'Select a role', 'ultimate-dashboard' ); ?>"
 									data-name="disallowed_roles"
 									data-disallowed-roles="{disallowed_roles}"
 									multiple
@@ -109,14 +109,14 @@ ob_start();
 						</div>
 						<div class="field">
 							<label for="disallowed_users_{default_menu_id}" class="label udb-menu-builder--label">
-								<?php _e( 'Hide from specific user(s):' ); ?>
+								<?php _e( 'Hide from specific user(s):', 'ultimate-dashboard' ); ?>
 							</label>
 							<div class="control">
 								<select
 									name="disallowed_users_{default_menu_id}" 
 									id="disallowed_users_{default_menu_id}" 
 									class="udb-menu-builder--select-field udb-menu-builder--select2-field udb-menu-builder--users-select2-field"
-									data-placeholder="<?php _e( 'Select a user' ); ?>"
+									data-placeholder="<?php _e( 'Select a user', 'ultimate-dashboard' ); ?>"
 									data-name="disallowed_users"
 									data-disallowed-users="{disallowed_users}"
 									multiple

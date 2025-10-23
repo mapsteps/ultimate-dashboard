@@ -71,7 +71,7 @@ return function ( $module, $column, $post_id ) {
 			} else {
 				$editor = $module->content()->get_content_editor( $post_id );
 				$editor = 'block' === $editor || 'default' === $editor ? 'default' : $editor;
-				$suffix = 'default' === $editor ? __( 'Editor', 'utlimate-dashboard' ) : __( 'Builder', 'utlimate-dashboard' );
+				$suffix = 'default' === $editor ? __( 'Editor', 'ultimate-dashboard' ) : __( 'Builder', 'ultimate-dashboard' );
 				$suffix = 'elementor' === $editor ? '' : $suffix;
 				$text   = wp_sprintf(
 				// translators: %1$s: is the text prefix, %2$s: is the editor or builder name, %3$s: is the text suffix.

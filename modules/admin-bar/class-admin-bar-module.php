@@ -71,7 +71,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => false,
 				'after'  => 'site-name',
 				'id'     => 'customize',
-				'title'  => __( 'Customize' ),
+				'title'  => __( 'Customize', 'ultimate-dashboard' ),
 				'href'   => '',
 				'meta'   => array(
 					'class' => 'hide-if-no-customize',
@@ -82,14 +82,14 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => false,
 				'after'  => 'new-content',
 				'id'     => 'edit',
-				'title'  => __( 'Edit' ) . ' {post_type}',
+				'title'  => __( 'Edit', 'ultimate-dashboard' ) . ' {post_type}',
 				'href'   => '',
 			),
 
 			array(
 				'parent' => 'site-name',
 				'id'     => 'dashboard',
-				'title'  => __( 'Dashboard' ),
+				'title'  => __( 'Dashboard', 'ultimate-dashboard' ),
 				'href'   => admin_url(),
 			),
 
@@ -105,7 +105,7 @@ class Admin_Bar_Module extends Base_Module {
 			array(
 				'parent' => 'appearance',
 				'id'     => 'themes',
-				'title'  => __( 'Themes' ),
+				'title'  => __( 'Themes', 'ultimate-dashboard' ),
 				'href'   => admin_url( 'themes.php' ),
 			),
 
@@ -113,7 +113,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => 'appearance',
 				'after'  => 'themes',
 				'id'     => 'widgets',
-				'title'  => __( 'Widgets' ),
+				'title'  => __( 'Widgets', 'ultimate-dashboard' ),
 				'href'   => admin_url( 'widgets.php' ),
 			),
 
@@ -121,7 +121,7 @@ class Admin_Bar_Module extends Base_Module {
 				'parent' => 'appearance',
 				'after'  => 'widgets',
 				'id'     => 'menus',
-				'title'  => __( 'Menus' ),
+				'title'  => __( 'Menus', 'ultimate-dashboard' ),
 				'href'   => admin_url( 'nav-menus.php' ),
 			),
 		);
