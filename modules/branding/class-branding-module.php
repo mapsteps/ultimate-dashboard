@@ -149,11 +149,11 @@ class Branding_Module extends Base_Module {
 	public function add_settings() {
 
 		// Register setting.
-		register_setting( 'udb-branding-group', 'udb_branding' );
+		register_setting( 'udb-branding-group', 'udb_branding', array( 'sanitize_callback' => array( $this, 'sanitize_branding_settings' ) ) );
 
 		// Sections.
 		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-branding-settings' );
-		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode (Experimental)', 'ultimatedashboard' ), '', 'udb-darkmode-settings' );
+		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode (Experimental)', 'ultimate-dashboard' ), '', 'udb-darkmode-settings' );
 		add_settings_section( 'udb-admin-colors-section', __( 'WordPress Admin Colors', 'ultimate-dashboard' ), '', 'udb-admin-colors-settings' );
 		add_settings_section( 'udb-admin-logo-section', __( 'WordPress Admin Logo', 'ultimate-dashboard' ), '', 'udb-admin-logo-settings' );
 		add_settings_section( 'udb-branding-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-branding-misc-settings' );
@@ -163,8 +163,8 @@ class Branding_Module extends Base_Module {
 		add_settings_field( 'udb-branding-layout-field', __( 'Layout', 'ultimate-dashboard' ), array( $this, 'choose_layout_field' ), 'udb-branding-settings', 'udb-branding-section' );
 
 		// Darkmode fields.
-		add_settings_field( 'wp-admin-darkmode', __( 'WP Admin', 'ultimatedashboard' ), array( $this, 'wp_admin_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
-		add_settings_field( 'block-editor-darkmode', __( 'Block Editor', 'ultimatedashboard' ), array( $this, 'block_editor_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
+		add_settings_field( 'wp-admin-darkmode', __( 'WP Admin', 'ultimate-dashboard' ), array( $this, 'wp_admin_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
+		add_settings_field( 'block-editor-darkmode', __( 'Block Editor', 'ultimate-dashboard' ), array( $this, 'block_editor_darkmode_field' ), 'udb-darkmode-settings', 'udb-darkmode-section' );
 
 		// Admin colors fields.
 		add_settings_field( 'udb-accent-color-field', __( 'Accent Color', 'ultimate-dashboard' ), array( $this, 'accent_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
@@ -182,6 +182,35 @@ class Branding_Module extends Base_Module {
 		add_settings_field( 'udb-branding-version-text-field', __( 'Version Text', 'ultimate-dashboard' ), array( $this, 'version_text_field' ), 'udb-branding-misc-settings', 'udb-branding-misc-section' );
 
 		do_action( 'udb_branding_setting_fields' );
+
+	}
+
+	/**
+	 * Sanitize branding settings.
+	 *
+	 * @param mixed $input The input data to sanitize.
+	 * @return array The sanitized settings array.
+	 */
+	public function sanitize_branding_settings( $input ) {
+
+		if ( ! is_array( $input ) ) {
+			return array();
+		}
+
+		$sanitized = array();
+
+		if ( isset( $input['footer_text'] ) ) {
+			$sanitized['footer_text'] = sanitize_text_field( $input['footer_text'] );
+		}
+
+		if ( isset( $input['version_text'] ) ) {
+			$sanitized['version_text'] = sanitize_text_field( $input['version_text'] );
+		}
+
+		// Allow PRO version to add their own sanitization.
+		$sanitized = apply_filters( 'udb_branding_sanitize_settings', $sanitized, $input );
+
+		return $sanitized;
 
 	}
 
