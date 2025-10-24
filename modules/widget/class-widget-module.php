@@ -91,6 +91,7 @@ class Widget_Module extends Base_Module {
 			8  => __( 'Widget submitted.', 'ultimate-dashboard' ),
 			// translators: %1$s: Scheduled date and time
 			9  => sprintf(
+				/* translators: %1$s: Scheduled date and time */
 				__( 'Widget scheduled for: <strong>%1$s</strong>.', 'ultimate-dashboard' ),
 				// translators: Publish box date format, see http://php.net/date for more info.
 				date_i18n( __( 'M j, Y @ G:i', 'ultimate-dashboard' ), strtotime( $post->post_date ) )
