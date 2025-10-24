@@ -425,7 +425,7 @@ return function () {
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate - dashboard' ); ?>
+								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p>

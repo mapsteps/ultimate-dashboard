@@ -81,11 +81,11 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	$login_title = get_bloginfo( 'name', 'display' );
 
 	/* translators: Login screen title. 1: Login screen name, 2: Network or site name. */
-	$login_title = sprintf( __( '%1$s &lsaquo; %2$s &#8212; WordPress' ), $title, $login_title );
+	$login_title = sprintf( __( '%1$s &lsaquo; %2$s &#8212; WordPress', 'ultimate-dashboard' ), $title, $login_title );
 
 	if ( wp_is_recovery_mode() ) {
 		/* translators: %s: Login screen title. */
-		$login_title = sprintf( __( 'Recovery Mode &#8212; %s' ), $login_title );
+		$login_title = sprintf( __( 'Recovery Mode &#8212; %s', 'ultimate-dashboard' ), $login_title );
 	}
 
 	/**
@@ -126,7 +126,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	 */
 	do_action( 'login_head' );
 
-	$login_header_url = __( 'https://wordpress.org/' );
+	$login_header_url = __( 'https://wordpress.org/', 'ultimate-dashboard' );
 
 	/**
 	 * Filters link URL of the header logo above login form.
@@ -152,10 +152,10 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 		array( $login_header_title ),
 		'5.2.0',
 		'login_headertext',
-		__( 'Usage of the title attribute on the login logo is not recommended for accessibility reasons. Use the link text instead.' )
+		__( 'Usage of the title attribute on the login logo is not recommended for accessibility reasons. Use the link text instead.', 'ultimate-dashboard' )
 	);
 
-	$login_header_text = empty( $login_header_title ) ? __( 'Powered by WordPress' ) : $login_header_title;
+	$login_header_text = empty( $login_header_title ) ? __( 'Powered by WordPress', 'ultimate-dashboard' ) : $login_header_title;
 
 	/**
 	 * Filters the link text of the header logo above the login form.
@@ -302,7 +302,7 @@ function login_footer( $input_id = '' ) {
 		<?php
 
 		/* translators: %s: Site title. */
-		printf( _x( '&larr; Back to %s', 'site' ), get_bloginfo( 'title', 'display' ) );
+		printf( _x( '&larr; Back to %s', 'site', 'ultimate-dashboard' ), get_bloginfo( 'title', 'display' ) );
 
 		?>
 		</a></p>
@@ -335,7 +335,7 @@ function login_footer( $input_id = '' ) {
 
 					<label for="language-switcher-locales">
 						<span class="dashicons dashicons-translation" aria-hidden="true"></span>
-						<span class="screen-reader-text"><?php _e( 'Language' ); ?></span>
+						<span class="screen-reader-text"><?php _e( 'Language', 'ultimate-dashboard' ); ?></span>
 					</label>
 
 					<?php
@@ -370,7 +370,7 @@ function login_footer( $input_id = '' ) {
 						<input type="hidden" name="action" value="<?php echo esc_attr( $_GET['action'] ); ?>" />
 					<?php } ?>
 
-						<input type="submit" class="button" value="<?php esc_attr_e( 'Change' ); ?>">
+						<input type="submit" class="button" value="<?php esc_attr_e( 'Change', 'ultimate-dashboard' ); ?>">
 
 					</form>
 				</div>
@@ -436,11 +436,11 @@ if ( ! function_exists( 'retrieve_password' ) ) {
 		$user_data = false;
 
 		if ( empty( $_POST['user_login'] ) || ! is_string( $_POST['user_login'] ) ) {
-			$errors->add( 'empty_username', __( '<strong>ERROR</strong>: Enter a username or email address.' ) );
+			$errors->add( 'empty_username', __( '<strong>ERROR</strong>: Enter a username or email address.', 'ultimate-dashboard' ) );
 		} elseif ( strpos( $_POST['user_login'], '@' ) ) {
 			$user_data = get_user_by( 'email', trim( wp_unslash( $_POST['user_login'] ) ) );
 			if ( empty( $user_data ) ) {
-				$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: There is no account with that username or email address.' ) );
+				$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: There is no account with that username or email address.', 'ultimate-dashboard' ) );
 			}
 		} else {
 			$login     = trim( $_POST['user_login'] );
@@ -463,7 +463,7 @@ if ( ! function_exists( 'retrieve_password' ) ) {
 		}
 
 		if ( ! $user_data ) {
-			$errors->add( 'invalidcombo', __( '<strong>ERROR</strong>: There is no account with that username or email address.' ) );
+			$errors->add( 'invalidcombo', __( '<strong>ERROR</strong>: There is no account with that username or email address.', 'ultimate-dashboard' ) );
 			return $errors;
 		}
 
@@ -486,17 +486,17 @@ if ( ! function_exists( 'retrieve_password' ) ) {
 			$site_name = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		}
 
-		$message = __( 'Someone has requested a password reset for the following account:' ) . "\r\n\r\n";
+		$message = __( 'Someone has requested a password reset for the following account:', 'ultimate-dashboard' ) . "\r\n\r\n";
 		/* translators: %s: Site name. */
-		$message .= sprintf( __( 'Site Name: %s' ), $site_name ) . "\r\n\r\n";
+		$message .= sprintf( __( 'Site Name: %s', 'ultimate-dashboard' ), $site_name ) . "\r\n\r\n";
 		/* translators: %s: User login. */
-		$message .= sprintf( __( 'Username: %s' ), $user_login ) . "\r\n\r\n";
-		$message .= __( 'If this was a mistake, just ignore this email and nothing will happen.' ) . "\r\n\r\n";
-		$message .= __( 'To reset your password, visit the following address:' ) . "\r\n\r\n";
+		$message .= sprintf( __( 'Username: %s', 'ultimate-dashboard' ), $user_login ) . "\r\n\r\n";
+		$message .= __( 'If this was a mistake, just ignore this email and nothing will happen.', 'ultimate-dashboard' ) . "\r\n\r\n";
+		$message .= __( 'To reset your password, visit the following address:', 'ultimate-dashboard' ) . "\r\n\r\n";
 		$message .= '<' . network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' ) . ">\r\n";
 
 		/* translators: Password reset notification email subject. %s: Site title. */
-		$title = sprintf( __( '[%s] Password Reset' ), $site_name );
+		$title = sprintf( __( '[%s] Password Reset', 'ultimate-dashboard' ), $site_name );
 
 		/**
 		 * Filters the subject of the password reset email.
@@ -530,8 +530,8 @@ if ( ! function_exists( 'retrieve_password' ) ) {
 				'retrieve_password_email_failure',
 				sprintf(
 					/* translators: %s: Documentation URL. */
-					__( '<strong>ERROR</strong>: The email could not be sent. Your site may not be correctly configured to send emails. <a href="%s">Get support for resetting your password</a>.' ),
-					esc_url( __( 'https://wordpress.org/support/article/resetting-your-password/' ) )
+					__( '<strong>ERROR</strong>: The email could not be sent. Your site may not be correctly configured to send emails. <a href="%s">Get support for resetting your password</a>.', 'ultimate-dashboard' ),
+					esc_url( __( 'https://wordpress.org/support/article/resetting-your-password/', 'ultimate-dashboard' ) )
 				)
 			);
 			return $errors;
@@ -700,7 +700,7 @@ switch ( $action ) {
 			exit;
 		}
 
-		login_header( __( 'Confirm your administration email' ), '', $errors );
+		login_header( __( 'Confirm your administration email', 'ultimate-dashboard' ), '', $errors );
 
 		/**
 		 * Fires before the admin email confirm form.
@@ -729,22 +729,22 @@ switch ( $action ) {
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 
 			<h1 class="admin-email__heading">
-				<?php _e( 'Administration email verification' ); ?>
+				<?php _e( 'Administration email verification', 'ultimate-dashboard' ); ?>
 			</h1>
 			<p class="admin-email__details">
-				<?php _e( 'Please verify that the <strong>administration email</strong> for this website is still correct.' ); ?>
+				<?php _e( 'Please verify that the <strong>administration email</strong> for this website is still correct.', 'ultimate-dashboard' ); ?>
 				<?php
 
 				/* translators: URL to the WordPress help section about admin email. */
-				$admin_email_help_url = __( 'https://wordpress.org/support/article/settings-general-screen/#email-address' );
+				$admin_email_help_url = __( 'https://wordpress.org/support/article/settings-general-screen/#email-address', 'ultimate-dashboard' );
 
 				/* translators: accessibility text */
-				$accessibility_text = sprintf( '<span class="screen-reader-text"> %s</span>', __( '(opens in a new tab)' ) );
+				$accessibility_text = sprintf( '<span class="screen-reader-text"> %s</span>', __( '(opens in a new tab)', 'ultimate-dashboard' ) );
 
 				printf(
 					'<a href="%s" rel="noopener noreferrer" target="_blank">%s%s</a>',
 					esc_url( $admin_email_help_url ),
-					__( 'Why is this important?' ),
+					__( 'Why is this important?', 'ultimate-dashboard' ),
 					$accessibility_text
 				);
 
@@ -755,14 +755,14 @@ switch ( $action ) {
 
 				printf(
 					/* translators: %s: Admin email address. */
-					__( 'Current administration email: %s' ),
+					__( 'Current administration email: %s', 'ultimate-dashboard' ),
 					'<strong>' . esc_html( $admin_email ) . '</strong>'
 				);
 
 				?>
 			</p>
 			<p class="admin-email__details">
-				<?php _e( 'This email may be different from your personal email address.' ); ?>
+				<?php _e( 'This email may be different from your personal email address.', 'ultimate-dashboard' ); ?>
 			</p>
 
 			<div class="admin-email__actions">
@@ -773,8 +773,8 @@ switch ( $action ) {
 					$change_link = add_query_arg( 'highlight', 'confirm_admin_email', $change_link );
 
 					?>
-					<a class="button button-large" href="<?php echo esc_url( $change_link ); ?>"><?php _e( 'Update' ); ?></a>
-					<input type="submit" name="correct-admin-email" id="correct-admin-email" class="button button-primary button-large" value="<?php esc_attr_e( 'The email is correct' ); ?>" />
+					<a class="button button-large" href="<?php echo esc_url( $change_link ); ?>"><?php _e( 'Update', 'ultimate-dashboard' ); ?></a>
+					<input type="submit" name="correct-admin-email" id="correct-admin-email" class="button button-primary button-large" value="<?php esc_attr_e( 'The email is correct', 'ultimate-dashboard' ); ?>" />
 				</div>
 				<?php if ( $remind_interval > 0 ) : ?>
 					<div class="admin-email__actions-secondary">
@@ -790,7 +790,7 @@ switch ( $action ) {
 						);
 
 						?>
-						<a href="<?php echo esc_url( $remind_me_link ); ?>"><?php _e( 'Remind me later' ); ?></a>
+						<a href="<?php echo esc_url( $remind_me_link ); ?>"><?php _e( 'Remind me later', 'ultimate-dashboard' ); ?></a>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -884,9 +884,9 @@ switch ( $action ) {
 
 		if ( isset( $_GET['error'] ) ) {
 			if ( 'invalidkey' === $_GET['error'] ) {
-				$errors->add( 'invalidkey', __( 'Your password reset link appears to be invalid. Please request a new link below.' ) );
+				$errors->add( 'invalidkey', __( 'Your password reset link appears to be invalid. Please request a new link below.', 'ultimate-dashboard' ) );
 			} elseif ( 'expiredkey' === $_GET['error'] ) {
-				$errors->add( 'expiredkey', __( 'Your password reset link has expired. Please request a new link below.' ) );
+				$errors->add( 'expiredkey', __( 'Your password reset link has expired. Please request a new link below.', 'ultimate-dashboard' ) );
 			}
 		}
 
@@ -911,7 +911,7 @@ switch ( $action ) {
 		 */
 		do_action( 'lost_password', $errors );
 
-		login_header( __( 'Lost Password' ), '<p class="message">' . __( 'Please enter your username or email address. You will receive a link to create a new password via email.' ) . '</p>', $errors );
+		login_header( __( 'Lost Password', 'ultimate-dashboard' ), '<p class="message">' . __( 'Please enter your username or email address. You will receive a link to create a new password via email.', 'ultimate-dashboard' ) . '</p>', $errors );
 
 		$user_login = '';
 
@@ -923,7 +923,7 @@ switch ( $action ) {
 
 		<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
 			<p>
-				<label for="user_login"><?php _e( 'Username or Email Address' ); ?></label>
+				<label for="user_login"><?php _e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
 			</p>
 			<?php

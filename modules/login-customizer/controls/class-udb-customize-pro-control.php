@@ -58,7 +58,7 @@ class Udb_Customize_Pro_Control extends \WP_Customize_Control {
 	 */
 	public function render_content() {
 		if ( empty( $this->description ) ) {
-			$this->description = __( 'This feature is available in Ultimate Dashboard PRO.' );
+			$this->description = __( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' );
 		}
 
 		if ( empty( $this->button_text ) ) {

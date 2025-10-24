@@ -29,7 +29,10 @@ return function () {
 
 
 	<p class="description">
-		<?php printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
+		<?php
+		/* translators: %1$s: Site URL */
+		printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) );
+		?>
 	</p>
 
 	<?php

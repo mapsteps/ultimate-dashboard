@@ -14,7 +14,7 @@ return function () {
 
 	$field_description = __(
 		'Enable dark mode for the block editor (Gutenberg).',
-		'ultimatedashboard'
+		'ultimate-dashboard'
 	);
 	?>
 
@@ -41,7 +41,7 @@ return function () {
 
 		<?php if ( ! udb_is_pro_active() ) : ?>
 
-			<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.' ); ?></p>
+			<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 
 			<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary" target="_blank">
 				<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>

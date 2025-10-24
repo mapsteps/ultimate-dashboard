@@ -150,7 +150,10 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p>
-								<?php printf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
+								<?php
+								/* translators: %1$s: Referrer name */
+								printf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) );
+								?>
 							</p>
 						</header>
 
@@ -221,7 +224,10 @@ return function ( $referrer = '' ) {
 				</footer>
 
 				<div class="udb-discount-notif is-hidden">
-					<?php printf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ); ?>
+					<?php
+					/* translators: %1$s: Referrer name */
+					printf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) );
+					?>
 				</div>
 
 			</div>

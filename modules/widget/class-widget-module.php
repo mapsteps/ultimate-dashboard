@@ -89,6 +89,7 @@ class Widget_Module extends Base_Module {
 			6  => __( 'Widget published.', 'ultimate-dashboard' ),
 			7  => __( 'Widget saved.', 'ultimate-dashboard' ),
 			8  => __( 'Widget submitted.', 'ultimate-dashboard' ),
+			// translators: %1$s: Scheduled date and time
 			9  => sprintf(
 				__( 'Widget scheduled for: <strong>%1$s</strong>.', 'ultimate-dashboard' ),
 				// translators: Publish box date format, see http://php.net/date for more info.

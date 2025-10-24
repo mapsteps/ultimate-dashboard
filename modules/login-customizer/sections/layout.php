@@ -66,7 +66,7 @@ if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
 			'udb_login[pro_layout]',
 			array(
 				'label'       => '',
-				'description' => __( 'More layouts (left & right) available in Ultimate Dashboard PRO.' ),
+				'description' => __( 'More layouts (left & right) available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ),
 				'section'     => 'udb_login_customizer_layout_section',
 				'settings'    => 'udb_login[pro_layout]',
 			)

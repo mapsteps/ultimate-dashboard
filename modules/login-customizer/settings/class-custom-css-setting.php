@@ -112,7 +112,7 @@ class Custom_Css_Setting extends WP_Customize_Setting {
 		$validity = new WP_Error();
 
 		if ( preg_match( '#</?\w+#', $css ) ) {
-			$validity->add( 'illegal_markup', __( 'Markup is not allowed in CSS.' ) );
+			$validity->add( 'illegal_markup', __( 'Markup is not allowed in CSS.', 'ultimate-dashboard' ) );
 		}
 
 		if ( ! $validity->has_errors() ) {

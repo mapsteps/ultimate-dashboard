@@ -14,7 +14,7 @@ return function () {
 
 	$field_description = __(
 		'Enable dark mode for the WordPress admin area.',
-		'ultimatedashboard'
+		'ultimate-dashboard'
 	);
 	?>
 

@@ -234,7 +234,7 @@ $wp_customize->add_control(
 		array(
 			'settings' => 'udb_login[enable_bg_overlay_color]',
 			'section'  => 'udb_login_customizer_bg_section',
-			'label'    => __( 'Background Overlay', 'ultimatedashboard' ),
+			'label'    => __( 'Background Overlay', 'ultimate-dashboard' ),
 		)
 	)
 );
@@ -265,7 +265,7 @@ $wp_customize->add_control(
 		array(
 			'settings' => 'udb_login[bg_overlay_color]',
 			'section'  => 'udb_login_customizer_bg_section',
-			'label'    => __( 'Overlay Color', 'ultimatedashboard' ),
+			'label'    => __( 'Overlay Color', 'ultimate-dashboard' ),
 			'alpha'    => true,
 		)
 	)

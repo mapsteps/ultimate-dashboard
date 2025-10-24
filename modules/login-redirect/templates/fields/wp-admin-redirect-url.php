@@ -28,7 +28,10 @@ return function () {
 	</div>
 
 	<p class="description">
-		<?php printf( __( 'Redirect non-logged-in users that try to access <code>%1$s/wp-admin/</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ); ?>
+		<?php
+		/* translators: %1$s: Site URL */
+		printf( __( 'Redirect non-logged-in users that try to access <code>%1$s/wp-admin/</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) );
+		?>
 	</p>
 
 	<?php

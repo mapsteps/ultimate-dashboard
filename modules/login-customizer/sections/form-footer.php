@@ -79,7 +79,7 @@ $wp_customize->add_control(
 		array(
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[remove_register_lost_pw_link]',
-			'label'    => __( 'Remove "Register | Lost your password?" link', 'ultimatedashboard' ),
+			'label'    => __( 'Remove "Register | Lost your password?" link', 'ultimate-dashboard' ),
 		)
 	)
 );
@@ -102,7 +102,7 @@ $wp_customize->add_control(
 		array(
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[remove_back_to_site_link]',
-			'label'    => __( 'Remove "Back to website" link', 'ultimatedashboard' ),
+			'label'    => __( 'Remove "Back to website" link', 'ultimate-dashboard' ),
 		)
 	)
 );
@@ -126,7 +126,7 @@ $wp_customize->add_control(
 		array(
 			'section'  => 'udb_login_customizer_form_footer_section',
 			'settings' => 'udb_login[remove_lang_switcher]',
-			'label'    => __( 'Remove language switcher', 'ultimatedashboard' ),
+			'label'    => __( 'Remove language switcher', 'ultimate-dashboard' ),
 		)
 	)
 );
