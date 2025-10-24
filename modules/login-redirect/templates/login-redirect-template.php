@@ -23,7 +23,7 @@ return function () {
 							<?php echo esc_html( get_admin_page_title() ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
 						</span>
-						<p class="subtitle"><?php _e( 'White label & rebrand your WordPress installation.', 'ultimate-dashboard' ); ?></p>
+						<p class="subtitle"><?php esc_html_e( 'White label & rebrand your WordPress installation.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>

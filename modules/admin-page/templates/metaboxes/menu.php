@@ -19,19 +19,19 @@ return function ( $module, $post ) {
 	?>
 
 	<div class="udb-metabox-field">
-		<label class="label" for="udb_menu_type"><?php _e( 'Menu Type', 'ultimate-dashboard' ); ?></label>
+		<label class="label" for="udb_menu_type"><?php esc_html_e( 'Menu Type', 'ultimate-dashboard' ); ?></label>
 		<select name="udb_menu_type" id="udb_menu_type" class="is-full">
 			<option value="parent" <?php selected( $menu_type, 'parent' ); ?>>
-				<?php _e( 'Top-level Menu', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Top-level Menu', 'ultimate-dashboard' ); ?>
 			</option>
 			<option value="submenu" <?php selected( $menu_type, 'submenu' ); ?>>
-				<?php _e( 'Submenu', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Submenu', 'ultimate-dashboard' ); ?>
 			</option>
 		</select>
 	</div>
 
 	<div class="udb-metabox-field" data-show-if-field="udb_menu_type" data-show-if-value="submenu">
-		<label class="label" for="udb_menu_parent"><?php _e( 'Parent Menu', 'ultimate-dashboard' ); ?></label>
+		<label class="label" for="udb_menu_parent"><?php esc_html_e( 'Parent Menu', 'ultimate-dashboard' ); ?></label>
 		<select name="udb_menu_parent" id="udb_menu_parent" class="is-full">
 			<?php foreach ( $admin_menu as $menu ) : ?>
 				<?php if ( ! empty( $menu[0] ) ) : ?>
@@ -44,7 +44,7 @@ return function ( $module, $post ) {
 	</div>
 
 	<div class="udb-metabox-field">
-		<label class="label" for="udb_menu_order"><?php _e( 'Menu Order', 'ultimate-dashboard' ); ?></label>
+		<label class="label" for="udb_menu_order"><?php esc_html_e( 'Menu Order', 'ultimate-dashboard' ); ?></label>
 		<input type="number" name="udb_menu_order" id="udb_menu_order" class="is-full" value="<?php echo esc_attr( $menu_order ); ?>" min="0" step="1">
 	</div>
 

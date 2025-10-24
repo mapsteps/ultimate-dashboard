@@ -15,8 +15,8 @@ return function ( $post ) {
 	?>
 
 	<select name="udb_content_type" id="udb_content_type">
-		<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php _e( 'Default Editor', 'ultimate-dashboard' ); ?></option>
-		<option value="html" <?php selected( $content_type, 'html' ); ?>><?php _e( 'HTML Editor', 'ultimate-dashboard' ); ?></option>
+		<option value="builder" <?php selected( $content_type, 'builder' ); ?>><?php esc_html_e( 'Default Editor', 'ultimate-dashboard' ); ?></option>
+		<option value="html" <?php selected( $content_type, 'html' ); ?>><?php esc_html_e( 'HTML Editor', 'ultimate-dashboard' ); ?></option>
 	</select>
 
 	<?php

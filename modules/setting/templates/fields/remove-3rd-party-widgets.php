@@ -15,7 +15,7 @@ return function () {
 	$widgets       = $widget_helper->get_3rd_party();
 
 	if ( empty( $widgets ) ) {
-		_e( 'No 3rd Party Widgets available.', 'ultimate-dashboard' );
+		esc_html_e( 'No 3rd Party Widgets available.', 'ultimate-dashboard' );
 	}
 	?>
 
@@ -44,10 +44,10 @@ return function () {
 
 	<div class="udb-pro-settings-page-notice">
 
-		<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+		<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 
 		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
-			<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 		</a>
 
 	</div>

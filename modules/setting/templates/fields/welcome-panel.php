@@ -17,7 +17,7 @@ return function () {
 	$total_tags       = count( $placeholder_tags );
 	?>
 
-	<p><?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?></p>
+	<p><?php esc_html_e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?></p>
 
 	<p>
 		<?php

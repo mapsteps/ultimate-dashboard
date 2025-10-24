@@ -35,10 +35,10 @@ return function ( $site_type = 'blueprint' ) {
 
 	<div class="udb-login-redirect--wrapper udb-login-redirect--<?php echo esc_attr( $site_type ); ?>-wrapper">
 
-		<select class="udb-login-redirect--role-selector" data-placeholder="<?php _e( 'Select a Role', 'ultimate-dashboard' ); ?>" data-width="200px" data-udb-site-type="<?php echo esc_attr( $site_type ); ?>" data-udb-field-prefix="<?php echo esc_attr( $field_prefix ); ?>">
+		<select class="udb-login-redirect--role-selector" data-placeholder="<?php esc_attr_e( 'Select a Role', 'ultimate-dashboard' ); ?>" data-width="200px" data-udb-site-type="<?php echo esc_attr( $site_type ); ?>" data-udb-field-prefix="<?php echo esc_attr( $field_prefix ); ?>">
 
 			<option value="" readonly>
-				<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Select a User', 'ultimate-dashboard' ); ?>
 			</option>
 
 			<?php
@@ -48,7 +48,7 @@ return function ( $site_type = 'blueprint' ) {
 				?>
 
 				<option value="super_admin"  data-udb-default-slug="<?php echo esc_attr( $super_admin_value ); ?>" <?php disabled( $super_admin_is_disabled, true ); ?>>
-					<?php _e( 'Super Admin', 'ultimate-dashboard' ); ?>
+					<?php esc_html_e( 'Super Admin', 'ultimate-dashboard' ); ?>
 				</option>
 
 				<?php

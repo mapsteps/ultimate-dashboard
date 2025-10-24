@@ -19,16 +19,16 @@ $roles     = $roles_obj->role_names;
 <div class="heatbox admin-bar-visibility-box">
 
 	<h2>
-		<?php _e( 'Visibility', 'ultimate-dashboard' ); ?>
+		<?php esc_html_e( 'Visibility', 'ultimate-dashboard' ); ?>
 	</h2>
 
 	<div class="heatbox-content">
-		<h3><?php _e( 'Remove Admin Bar for:', 'ultimate-dashboard' ); ?></h3>
+		<h3><?php esc_html_e( 'Remove Admin Bar for:', 'ultimate-dashboard' ); ?></h3>
 		<div class="field">
 			<label for="remove_by_roles" class="label select2-label">
 				<select name="remove_by_roles[]" id="remove_by_roles" class="ultiselect remove-admin-bar use-select2 is-fullwidth" multiple>
 					<option value="all"<?php echo ( in_array( 'all', $saved_roles, true ) ? ' selected' : '' ); ?>>
-						<?php _e( 'All', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
 					</option>
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
 						<?php
@@ -50,7 +50,7 @@ $roles     = $roles_obj->role_names;
 	<div class="heatbox-footer">
 		<div class="field">
 			<button type="button" class="button button-primary button-larger js-save-remove-admin-bar">
-				<?php _e( 'Save Changes', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Save Changes', 'ultimate-dashboard' ); ?>
 			</button>
 		</div>
 	</div>

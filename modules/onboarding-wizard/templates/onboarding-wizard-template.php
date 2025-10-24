@@ -79,10 +79,10 @@ return function () {
 
 					<div style="width: 80%">
 						<span class="title">
-							<?php _e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 						</span>
 						<p class="subtitle">
-							<?php _e( 'Complete the Setup Wizard and get started with Ultimate Dashboard in less than a minute.', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Complete the Setup Wizard and get started with Ultimate Dashboard in less than a minute.', 'ultimate-dashboard' ); ?>
 						</p>
 					</div>
 
@@ -106,11 +106,11 @@ return function () {
 
 						<header>
 							<h2>
-								<?php _e( 'Features', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Features', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Select the features you\'d like to enable. You can change them later in the "Modules" tab.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Select the features you\'d like to enable. You can change them later in the "Modules" tab.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -166,11 +166,11 @@ return function () {
 
 						<header>
 							<h2>
-								<?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Let\'s clean up your dashboard. Remove some or all of the default WordPress widgets.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Let\'s clean up your dashboard. Remove some or all of the default WordPress widgets.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
  
@@ -179,7 +179,7 @@ return function () {
 								<div class="module-text">
 									<h3>
 										<label for="udb_widgets__remove-all">
-											<?php _e( 'Remove all Dashboard Widgets', 'ultimate-dashboard' ); ?>
+											<?php esc_html_e( 'Remove all Dashboard Widgets', 'ultimate-dashboard' ); ?>
 										</label>
 									</h3>
 								</div>
@@ -199,14 +199,14 @@ return function () {
 
 							<!-- Divider with text -->
 							<div class="udb-divider for-widget-remove-all">
-								<span class="divider-text"><?php _e( 'Or remove individual widgets', 'ultimate-dashboard' ); ?></span>
+								<span class="divider-text"><?php esc_html_e( 'Or remove individual widgets', 'ultimate-dashboard' ); ?></span>
 							</div>
 							
 							<li>
 								<div class="module-text">
 									<h3>
 										<label for="udb_widgets__welcome_panel">
-											<?php _e( 'Welcome Panel', 'ultimate-dashboard' ); ?>
+											<?php esc_html_e( 'Welcome Panel', 'ultimate-dashboard' ); ?>
 										</label>
 									</h3>
 								</div>
@@ -264,11 +264,11 @@ return function () {
 
 						<header>
 							<h2>
-								<?php _e( 'General Settings', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'General Settings', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Next, let\'s simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Next, let\'s simplify the WordPress Dashboard interface by removing extra elements for a cleaner look.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -302,7 +302,7 @@ return function () {
 											<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
 											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown use-select2" multiple>
 												<option value="all" <?php echo esc_attr( in_array( 'all', $selected_roles, true ) ? 'selected' : '' ); ?>>
-													<?php _e( 'All', 'ultimate-dashboard' ); ?>
+													<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
 												</option>
 												
 												<?php foreach ( $roles as $role_key => $role ) : ?>
@@ -348,17 +348,17 @@ return function () {
 					<div class="udb-onboarding-wizard-slide udb-custom-login-url-slide">
 						<header>
 							<h2>
-								<?php _e( 'Custom Login URL', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Custom Login URL', 'ultimate-dashboard' ); ?>
 							</h2>
 							<p>
-								<?php _e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Customize the login URL to enhance security and avoid common login page attacks.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
 						<div class="udb-subscription-form">
 							<!-- URL Row -->
 							<div class="udb-form-row onboarding-wizard-login-url">
-								<code class="onboarding-wizard-login-url"><?php _e( 'yourdomain.com', 'ultimate-dashboard' ); ?>/</code>
+								<code class="onboarding-wizard-login-url"><?php esc_html_e( 'yourdomain.com', 'ultimate-dashboard' ); ?>/</code>
 								<input
 									type="text" 
 									name="udb_login_redirect[login_url_slug]" 
@@ -388,11 +388,11 @@ return function () {
 
 						<header>
 							<h2>
-								<?php _e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -405,12 +405,12 @@ return function () {
 							</div>
 							<div class="udb-form-row">
 								<button type="button" class="button button-primary button-large udb-button subscribe-button">
-									<?php _e( 'Subscribe', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
 							<div class="udb-form-row udb-onboarding-wizard-skip-discount">
 								<a href="">
-									<?php _e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
@@ -421,27 +421,27 @@ return function () {
 
 						<header>
 							<h2>
-								<?php _e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								<?php _e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p>
 								<?php
-								_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
+								esc_html_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
 								?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong><?php _e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
+								<strong><?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
 							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
@@ -451,7 +451,7 @@ return function () {
 				<footer class="heatbox-footer">
 					<div class="heatbox-footer-item">
 						<span class="onboarding-wizard-skip-button skip-button">
-							<?php _e( 'Skip', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Skip', 'ultimate-dashboard' ); ?>
 						</span>
 					</div>
 					<div class="heatbox-footer-item">
@@ -459,13 +459,13 @@ return function () {
 					</div>
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large button-primary udb-button save-button">
-							<?php _e( 'Next', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Next', 'ultimate-dashboard' ); ?>
 						</button>
 					</div>
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-					<?php _e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
+					<?php esc_html_e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
 				</div>
 
 			</div>
@@ -474,7 +474,7 @@ return function () {
 			<div class="heatbox-footer skip-onboarding-wizard">
 				<div class="heatbox-footer-item">
 					<a href="#" id="skip-setup-onboarding-wizard" class="skip-onboarding-wizard-link">
-						<?php _e( 'Skip Setup Wizard', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Skip Setup Wizard', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>
 			</div>
@@ -483,7 +483,7 @@ return function () {
 			<div class="heatbox-footer onboarding-wizard-explore-settings">
 				<div class="heatbox-footer-item">
 					<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=udb_widgets&page=udb_settings' ) ); ?>" id="onboarding-wizard-explore-settings" class="onboarding-wizard-explore-settings-link is-hidden">
-						<?php _e( 'Explore Settings', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Explore Settings', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>
 			</div>

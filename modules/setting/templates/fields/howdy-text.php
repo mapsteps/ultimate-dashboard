@@ -13,7 +13,7 @@ return function () {
 	$headline = isset( $settings['howdy_text'] ) ? $settings['howdy_text'] : '';
 	?>
 
-	<input type="text" name="udb_settings[howdy_text]" class="all-options" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php _e( 'Howdy', 'ultimate-dashboard' ); ?>" />
+	<input type="text" name="udb_settings[howdy_text]" class="all-options" value="<?php echo esc_attr( $headline ); ?>" placeholder="<?php esc_attr_e( 'Howdy', 'ultimate-dashboard' ); ?>" />
 
 	<?php
 

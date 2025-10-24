@@ -30,7 +30,7 @@ ob_start();
 		<div class="udb-menu-builder--fields udb-menu-builder--submenu-fields">
 			<div class="field">
 				<label for="submenu_title_{role}_{default_menu_id}_{submenu_id}" class="label udb-menu-builder--label">
-					<?php _e( 'Submenu Title', 'ultimate-dashboard' ); ?>
+					<?php esc_html_e( 'Submenu Title', 'ultimate-dashboard' ); ?>
 				</label>
 				<div class="control">
 					<input 
@@ -46,7 +46,7 @@ ob_start();
 			</div>
 			<div class="field">
 				<label for="submenu_url_{role}_{default_menu_id}_{submenu_id}" class="label udb-menu-builder--label">
-					<?php _e( 'Submenu URL', 'ultimate-dashboard' ); ?>
+					<?php esc_html_e( 'Submenu URL', 'ultimate-dashboard' ); ?>
 				</label>
 				<div class="control">
 					<input 

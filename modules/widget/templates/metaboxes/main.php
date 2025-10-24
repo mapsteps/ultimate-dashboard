@@ -24,7 +24,7 @@ return function () {
 	<div class="udb-main-metabox">
 		<div class="postbox">
 			<div class="postbox-header">
-				<h2><?php _e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
+				<h2><?php esc_html_e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
 			</div>
 			<?php wp_nonce_field( 'udb_widget_type', 'udb_widget_type_nonce' ); ?>
 			<div class="inside">

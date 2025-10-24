@@ -42,7 +42,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<?php echo esc_html( get_admin_page_title() ); ?>
 						<span class="version"><?php echo ULTIMATE_DASHBOARD_PLUGIN_VERSION; ?></span>
 					</span>
-					<p class="subtitle"><?php _e( 'Fully customize the WordPress admin menu.', 'ultimate-dashboard' ); ?></p>
+					<p class="subtitle"><?php esc_html_e( 'Fully customize the WordPress admin menu.', 'ultimate-dashboard' ); ?></p>
 				</div>
 
 				<div>
@@ -65,9 +65,9 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 			<?php if ( ! udb_is_pro_active() ) : ?>
 
 				<div class="udb-pro-upgrade-nag">
-					<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+					<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 					<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-						<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 					</a>
 				</div>
 
@@ -79,24 +79,24 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 					<div class="udb-menu-builder-box--header">
 						<h2 class="udb-menu-builder-box--title">
-							<?php _e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
 						</h2>
 						<div class="udb-menu-builder-box--search-box is-hidden">
-							<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-menu-builder--search-user" data-loading-msg="<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php _e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
+							<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-menu-builder--search-user" data-loading-msg="<?php esc_attr_e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php esc_attr_e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
 								<option value="">
-									<?php _e( 'Loading Users...', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Loading Users...', 'ultimate-dashboard' ); ?>
 								</option>
 							</select>
 						</div>
 						<ul class="udb-menu-builder-box--header-tabs">
 							<li class="udb-menu-builder-box--header-tab is-active" data-header-tab="roles">
 								<a href="#roles-menu">
-									<?php _e( 'Roles', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Roles', 'ultimate-dashboard' ); ?>
 								</a>
 							</li>
 							<li class="udb-menu-builder-box--header-tab" data-header-tab="users">
 								<a href="#users-menu">
-									<?php _e( 'Users', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Users', 'ultimate-dashboard' ); ?>
 								</a>
 							</li>
 						</ul>
@@ -154,7 +154,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 						<div class="udb-menu-builder--tab-content udb-menu-builder--edit-area">
 							<div id="udb-menu-builder--user-empty-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--user-workspace <?php echo ( empty( $saved_user_data ) ? ' is-active' : '' ); ?>">
-								<?php _e( 'No user selected.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'No user selected.', 'ultimate-dashboard' ); ?>
 							</div>
 
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
@@ -184,9 +184,9 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<?php if ( ! udb_is_pro_active() ) : ?>
 
 							<div class="udb-pro-settings-page-notice udb-pro-admin-menu-notice">
-								<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+								<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 								<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-									<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 
@@ -203,13 +203,13 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 		<div class="heatbox-sidebar">
 			<div class="heatbox tags-heatbox">
 				<h2>
-					<?php _e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
+					<?php esc_html_e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
 					<span class="action-status">📋 Copied</span>
 				</h2>
 
 				<div class="heatbox-content">
 					<p>
-						<?php _e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Use the placeholder tags below to display certain information dynamically.', 'ultimate-dashboard' ); ?>
 						<br><strong><?php esc_html_e( '(Click to copy)', 'ultimate-dashboard' ); ?></strong>
 					</p>
 					<div class="tags-wrapper">

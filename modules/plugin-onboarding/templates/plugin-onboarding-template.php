@@ -53,10 +53,10 @@ return function ( $referrer = '' ) {
 
 					<div style="width: 80%">
 						<span class="title">
-							<?php _e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 						</span>
 						<p class="subtitle">
-							<?php _e( 'Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>', 'ultimate-dashboard' ); ?>							
+							<?php esc_html_e( 'Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>', 'ultimate-dashboard' ); ?>							
 						</p>
 					</div>
 
@@ -82,11 +82,11 @@ return function ( $referrer = '' ) {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_reviewed_docs_re_9lmr.svg" alt="Ultimate Dashboard Features" class="udb-illustration module-illustration">
 
 							<h2>
-								<?php _e( '1 Click Setup', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( '1 Click Setup', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
-								<?php _e( 'Choose what features you would like to enable/disable. You can always manage this later from the Modules page.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Choose what features you would like to enable/disable. You can always manage this later from the Modules page.', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
@@ -146,7 +146,7 @@ return function ( $referrer = '' ) {
 							<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/modules/plugin-onboarding/assets/images/undraw_discount_d-4-bd.svg" alt="Ultimate Dashboard Features" class="udb-illustration subscription-illustration">
 
 							<h2>
-								<?php _e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Exclusive Discount 🥳', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p>
@@ -166,12 +166,12 @@ return function ( $referrer = '' ) {
 							</div>
 							<div class="udb-form-row">
 								<button type="button" class="button button-primary button-large udb-button subscribe-button">
-									<?php _e( 'Subscribe', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'Subscribe', 'ultimate-dashboard' ); ?>
 								</button>
 							</div>
 							<div class="udb-form-row udb-skip-discount">
 								<a href="">
-									<?php _e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
@@ -182,7 +182,7 @@ return function ( $referrer = '' ) {
 
 						<header>
 							<h2>
-								<?php _e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Setup Complete! 🎉', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<p data-udb-show-on="subscribe"> 
@@ -190,17 +190,17 @@ return function ( $referrer = '' ) {
 							</p>
 
 							<p>
-								<?php _e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<?php _e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?>
 							</p>
 						</header>
 
 						<div class="finish-button-wrapper">
 							<a target="_blank" href="https://ultimatedashboard.io/special-discount/" class="button button-primary finish-button">
-								<?php _e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Grab your Discount', 'ultimate-dashboard' ); ?>
 							</a>
 						</div>
 
@@ -210,7 +210,7 @@ return function ( $referrer = '' ) {
 				<footer class="heatbox-footer">
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large udb-button skip-button">
-							<?php _e( 'Skip', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Skip', 'ultimate-dashboard' ); ?>
 						</button>
 					</div>
 					<div class="heatbox-footer-item">
@@ -218,7 +218,7 @@ return function ( $referrer = '' ) {
 					</div>
 					<div class="heatbox-footer-item">
 						<button type="button" class="button button-large button-primary udb-button save-button">
-							<?php _e( 'Done', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Done', 'ultimate-dashboard' ); ?>
 						</button>
 					</div>
 				</footer>

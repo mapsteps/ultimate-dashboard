@@ -26,11 +26,11 @@ wp_localize_script(
 ?>
 
 <div class="udb-metabox-field" data-show-if-field="udb_menu_type" data-show-if-value="parent">
-	<label class="label" for="udb_menu_icon"><?php _e( 'Menu Icon', 'ultimate-dashboard' ); ?></label>
+	<label class="label" for="udb_menu_icon"><?php esc_html_e( 'Menu Icon', 'ultimate-dashboard' ); ?></label>
 	<div class="icon-preview"></div>
 </div>
 
 <div class="udb-metabox-field" data-show-if-field="udb_menu_type" data-show-if-value="parent">
-	<label class="label" for="udb_menu_icon"><?php _e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
+	<label class="label" for="udb_menu_icon"><?php esc_html_e( 'Select Icon', 'ultimate-dashboard' ); ?></label>
 	<input type="text" class="icon-picker is-full" name="udb_menu_icon" id="udb_menu_icon" value="<?php echo esc_attr( $menu_icon ); ?>" placeholder="dashicons dashicons-admin-generic" />
 </div>

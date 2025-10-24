@@ -23,19 +23,19 @@ return function ( $post ) {
 		<li>
 			<label>
 				<input type="radio" name="udb_metabox_priority" value="default" <?php checked( $saved_meta, 'default' ); ?> />
-				<?php _e( 'Default', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Default', 'ultimate-dashboard' ); ?>
 			</label>
 		</li>
 		<li>
 			<label>
 				<input type="radio" name="udb_metabox_priority" value="low" <?php checked( $saved_meta, 'low' ); ?> />
-				<?php _e( 'Low', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Low', 'ultimate-dashboard' ); ?>
 			</label>
 		</li>
 		<li>
 			<label>
 				<input type="radio" name="udb_metabox_priority" value="high" <?php checked( $saved_meta, 'high' ); ?> />
-				<?php _e( 'High', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'High', 'ultimate-dashboard' ); ?>
 			</label>
 		</li>
 	</ul>

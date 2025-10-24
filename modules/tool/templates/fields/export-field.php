@@ -11,48 +11,48 @@ return function () {
 
 	?>
 
-	<p><?php _e( 'Select the settings you would like to export and use the button below to generate & export a .json file.', 'ultimate-dashboard' ); ?></p>
+	<p><?php esc_html_e( 'Select the settings you would like to export and use the button below to generate & export a .json file.', 'ultimate-dashboard' ); ?></p>
 	<br>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="modules_manager" checked />
-			<?php _e( 'Module Manager', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Module Manager', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="settings" checked />
-			<?php _e( 'Settings', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Settings', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="widgets" checked />
-			<?php _e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Dashboard Widgets', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="branding" checked />
-			<?php _e( 'White Label Settings', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'White Label Settings', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="login_customizer" checked />
-			<?php _e( 'Login Customizer Settings', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Login Customizer Settings', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="login_redirect" checked />
-			<?php _e( 'Login Redirect Settings', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Login Redirect Settings', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 	<p>
 		<label>
 			<input type="checkbox" name="udb_export_modules[]" class="udb-module-checkbox" value="admin_pages" checked />
-			<?php _e( 'Admin Pages', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'Admin Pages', 'ultimate-dashboard' ); ?>
 		</label>
 	</p>
 

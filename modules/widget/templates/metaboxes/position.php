@@ -23,13 +23,13 @@ return function ( $post ) {
 		<li>
 			<label>
 				<input type="radio" name="udb_metabox_position" value="normal" <?php checked( $saved_meta, 'normal' ); ?> />
-				<?php _e( 'Left column', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Left column', 'ultimate-dashboard' ); ?>
 			</label>
 		</li>
 		<li>
 			<label>
 				<input type="radio" name="udb_metabox_position" value="side" <?php checked( $saved_meta, 'side' ); ?> />
-				<?php _e( 'Right column', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Right column', 'ultimate-dashboard' ); ?>
 			</label>
 		</li>
 	</ul>

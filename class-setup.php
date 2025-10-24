@@ -511,20 +511,20 @@ class Setup {
 				</div>
 				<div class="notice-content">
 					<h2>
-						<?php _e( 'Black Friday Sale! - Up to 25% Off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Black Friday Sale! - Up to 25% Off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 					</h2>
 					<p>
-						<?php _e( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
+						<?php esc_html_e( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
 					</p>
 					<p>
-						<?php _e( 'But hurry up, the deal will expire soon!', 'ultimate-dashboard' ); ?><br>
-						<em><?php _e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
+						<?php esc_html_e( 'But hurry up, the deal will expire soon!', 'ultimate-dashboard' ); ?><br>
+						<em><?php esc_html_e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
 					</p>
 					<p>
 						<a target="_blank" href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
-							<?php _e( 'Learn more', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Learn more', 'ultimate-dashboard' ); ?>
 						</a>
-						<small><?php _e( '*Only Administrators will see this message.', 'ultimate-dashboard' ); ?></small>
+						<small><?php esc_html_e( '*Only Administrators will see this message.', 'ultimate-dashboard' ); ?></small>
 					</p>
 				</div>
 			</div>

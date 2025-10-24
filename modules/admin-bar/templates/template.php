@@ -56,7 +56,7 @@ return function ( $module ) {
 							<?php echo esc_html( get_admin_page_title() ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
 						</span>
-						<p class="subtitle"><?php _e( 'Fully customize the WordPress admin bar.', 'ultimate-dashboard' ); ?></p>
+						<p class="subtitle"><?php esc_html_e( 'Fully customize the WordPress admin bar.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>
@@ -79,9 +79,9 @@ return function ( $module ) {
 				<?php if ( ! udb_is_pro_active() ) : ?>
 
 					<div class="udb-pro-upgrade-nag">
-						<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+						<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 						<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-							<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+							<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 						</a>
 					</div>
 
@@ -95,7 +95,7 @@ return function ( $module ) {
 
 						<div class="udb-menu-builder-box--header">
 							<h2 class="udb-menu-builder-box--title">
-								<?php _e( 'Admin Bar Editor', 'ultimate-dashboard' ); ?>
+								<?php esc_html_e( 'Admin Bar Editor', 'ultimate-dashboard' ); ?>
 							</h2>
 
 							<?php do_action( 'udb_admin_bar_header' ); ?>
@@ -117,9 +117,9 @@ return function ( $module ) {
 							<?php if ( ! udb_is_pro_active() ) : ?>
 
 								<div class="udb-pro-settings-page-notice udb-pro-admin-bar-notice">
-									<p><?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+									<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
 									<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-										<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+										<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 									</a>
 								</div>
 

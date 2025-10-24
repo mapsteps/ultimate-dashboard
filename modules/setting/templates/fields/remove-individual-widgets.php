@@ -19,7 +19,7 @@ return function () {
 
 		<div class="setting-field">
 			<label for="udb_settings[welcome_panel]" class="label checkbox-label">
-				<?php _e( 'Welcome Panel', 'ultimate-dashboard' ); ?> (<code>welcome_panel</code>)
+				<?php esc_html_e( 'Welcome Panel', 'ultimate-dashboard' ); ?> (<code>welcome_panel</code>)
 				<input type="checkbox" name="udb_settings[welcome_panel]" id="udb_settings[welcome_panel]" value="1" <?php checked( $is_checked, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>

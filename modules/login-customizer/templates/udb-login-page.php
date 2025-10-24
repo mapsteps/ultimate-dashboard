@@ -203,9 +203,9 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	<?php if ( ! udb_is_pro_active() ) : ?>
 
 		<div class="udb-pro-login-customizer-notice">
-			<?php _e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
+			<?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
 			<a href="https://ultimatedashboard.io/docs/login-customizer/?utm_source=plugin&utm_medium=login_customizer_bar&utm_campaign=udb" class="button button-primary udb-login-customizer-pro-button" target="_blank">
-				<?php _e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 			</a>
 		</div>
 
@@ -335,7 +335,7 @@ function login_footer( $input_id = '' ) {
 
 					<label for="language-switcher-locales">
 						<span class="dashicons dashicons-translation" aria-hidden="true"></span>
-						<span class="screen-reader-text"><?php _e( 'Language', 'ultimate-dashboard' ); ?></span>
+						<span class="screen-reader-text"><?php esc_html_e( 'Language', 'ultimate-dashboard' ); ?></span>
 					</label>
 
 					<?php
@@ -729,10 +729,10 @@ switch ( $action ) {
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 
 			<h1 class="admin-email__heading">
-				<?php _e( 'Administration email verification', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Administration email verification', 'ultimate-dashboard' ); ?>
 			</h1>
 			<p class="admin-email__details">
-				<?php _e( 'Please verify that the <strong>administration email</strong> for this website is still correct.', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Please verify that the <strong>administration email</strong> for this website is still correct.', 'ultimate-dashboard' ); ?>
 				<?php
 
 				/* translators: URL to the WordPress help section about admin email. */
@@ -762,7 +762,7 @@ switch ( $action ) {
 				?>
 			</p>
 			<p class="admin-email__details">
-				<?php _e( 'This email may be different from your personal email address.', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'This email may be different from your personal email address.', 'ultimate-dashboard' ); ?>
 			</p>
 
 			<div class="admin-email__actions">
@@ -773,7 +773,7 @@ switch ( $action ) {
 					$change_link = add_query_arg( 'highlight', 'confirm_admin_email', $change_link );
 
 					?>
-					<a class="button button-large" href="<?php echo esc_url( $change_link ); ?>"><?php _e( 'Update', 'ultimate-dashboard' ); ?></a>
+					<a class="button button-large" href="<?php echo esc_url( $change_link ); ?>"><?php esc_html_e( 'Update', 'ultimate-dashboard' ); ?></a>
 					<input type="submit" name="correct-admin-email" id="correct-admin-email" class="button button-primary button-large" value="<?php esc_attr_e( 'The email is correct', 'ultimate-dashboard' ); ?>" />
 				</div>
 				<?php if ( $remind_interval > 0 ) : ?>
@@ -790,7 +790,7 @@ switch ( $action ) {
 						);
 
 						?>
-						<a href="<?php echo esc_url( $remind_me_link ); ?>"><?php _e( 'Remind me later', 'ultimate-dashboard' ); ?></a>
+						<a href="<?php echo esc_url( $remind_me_link ); ?>"><?php esc_html_e( 'Remind me later', 'ultimate-dashboard' ); ?></a>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -923,7 +923,7 @@ switch ( $action ) {
 
 		<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
 			<p>
-				<label for="user_login"><?php _e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
+				<label for="user_login"><?php esc_html_e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
 			</p>
 			<?php
@@ -943,7 +943,7 @@ switch ( $action ) {
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Log in', 'ultimate-dashboard' ); ?></a>
 			<?php
 
 			if ( get_option( 'users_can_register' ) ) {
@@ -1034,7 +1034,7 @@ switch ( $action ) {
 
 			<div class="user-pass1-wrap">
 				<p>
-					<label for="pass1"><?php _e( 'New password', 'ultimate-dashboard' ); ?></label>
+					<label for="pass1"><?php esc_html_e( 'New password', 'ultimate-dashboard' ); ?></label>
 				</p>
 
 				<div class="wp-pwd">
@@ -1043,16 +1043,16 @@ switch ( $action ) {
 					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Hide password', 'ultimate-dashboard' ); ?>">
 						<span class="dashicons dashicons-hidden" aria-hidden="true"></span>
 					</button>
-					<div id="pass-strength-result" class="hide-if-no-js" aria-live="polite"><?php _e( 'Strength indicator', 'ultimate-dashboard' ); ?></div>
+					<div id="pass-strength-result" class="hide-if-no-js" aria-live="polite"><?php esc_html_e( 'Strength indicator', 'ultimate-dashboard' ); ?></div>
 				</div>
 				<div class="pw-weak">
 					<input type="checkbox" name="pw_weak" id="pw-weak" class="pw-checkbox" />
-					<label for="pw-weak"><?php _e( 'Confirm use of weak password', 'ultimate-dashboard' ); ?></label>
+					<label for="pw-weak"><?php esc_html_e( 'Confirm use of weak password', 'ultimate-dashboard' ); ?></label>
 				</div>
 			</div>
 
 			<p class="user-pass2-wrap">
-				<label for="pass2"><?php _e( 'Confirm new password', 'ultimate-dashboard' ); ?></label>
+				<label for="pass2"><?php esc_html_e( 'Confirm new password', 'ultimate-dashboard' ); ?></label>
 				<input type="password" name="pass2" id="pass2" class="input" size="20" value="" autocomplete="off" />
 			</p>
 
@@ -1078,7 +1078,7 @@ switch ( $action ) {
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Log in', 'ultimate-dashboard' ); ?></a>
 			<?php
 
 			if ( get_option( 'users_can_register' ) ) {
@@ -1155,11 +1155,11 @@ switch ( $action ) {
 		?>
 		<form name="registerform" id="registerform" action="<?php echo esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) ); ?>" method="post" novalidate="novalidate">
 			<p>
-				<label for="user_login"><?php _e( 'Username', 'ultimate-dashboard' ); ?></label>
+				<label for="user_login"><?php esc_html_e( 'Username', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr( wp_unslash( $user_login ) ); ?>" size="20" autocapitalize="off" />
 			</p>
 			<p>
-				<label for="user_email"><?php _e( 'Email', 'ultimate-dashboard' ); ?></label>
+				<label for="user_email"><?php esc_html_e( 'Email', 'ultimate-dashboard' ); ?></label>
 				<input type="email" name="user_email" id="user_email" class="input" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" size="25" />
 			</p>
 			<?php
@@ -1173,7 +1173,7 @@ switch ( $action ) {
 
 			?>
 			<p id="reg_passmail">
-				<?php _e( 'Registration confirmation will be emailed to you.', 'ultimate-dashboard' ); ?>
+				<?php esc_html_e( 'Registration confirmation will be emailed to you.', 'ultimate-dashboard' ); ?>
 			</p>
 			<br class="clear" />
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
@@ -1183,9 +1183,9 @@ switch ( $action ) {
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Log in', 'ultimate-dashboard' ); ?></a>
 				<?php echo esc_html( $login_link_separator ); ?>
-			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
+			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
 		</p>
 		<?php
 
@@ -1252,12 +1252,12 @@ switch ( $action ) {
 
 		<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 			<p>
-				<label	 for="user_login"><?php _e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
+				<label	 for="user_login"><?php esc_html_e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
 			</p>
 
 			<div class="user-pass-wrap">
-				<label for="user_pass"><?php _e( 'Password', 'ultimate-dashboard' ); ?></label>
+				<label for="user_pass"><?php esc_html_e( 'Password', 'ultimate-dashboard' ); ?></label>
 				<div class="wp-pwd">
 					<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input password-input" value="" size="20" />
 					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Show password', 'ultimate-dashboard' ); ?>">
@@ -1321,7 +1321,7 @@ switch ( $action ) {
 					}
 
 					?>
-					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
+					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
 					<?php
 				}
 

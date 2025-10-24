@@ -14,7 +14,7 @@ return function () {
 	?>
 
 	<label for="udb_settings[remove-all]" class="label checkbox-label">
-		<?php _e( 'All', 'ultimate-dashboard' ); ?>
+		<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
 		<input type="checkbox" name="udb_settings[remove-all]" id="udb_settings[remove-all]" value="1" <?php checked( $is_checked, 1 ); ?>>
 		<div class="indicator"></div>
 	</label>
