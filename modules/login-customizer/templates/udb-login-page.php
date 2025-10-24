@@ -107,7 +107,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	<!--<![endif]-->
 	<head>
 	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-	<title><?php echo $login_title; ?></title>
+	<title><?php echo esc_html( $login_title ); ?></title>
 	<?php
 
 	wp_enqueue_style( 'login' );
@@ -237,7 +237,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	$message = apply_filters( 'login_message', $message );
 
 	if ( ! empty( $message ) ) {
-		echo $message . "\n";
+		echo wp_kses_post( $message ) . "\n";
 	}
 
 	// In case a plugin uses $error rather than the $wp_errors object.
@@ -269,7 +269,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 			 *
 			 * @param string $errors Login error message.
 			 */
-			echo '<div id="login_error">' . apply_filters( 'login_errors', $errors ) . "</div>\n";
+			echo '<div id="login_error">' . wp_kses_post( apply_filters( 'login_errors', $errors ) ) . "</div>\n";
 		}
 
 		if ( ! empty( $messages ) ) {
@@ -280,7 +280,7 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 			 *
 			 * @param string $messages Login messages.
 			 */
-			echo '<p class="message">' . apply_filters( 'login_messages', $messages ) . "</p>\n";
+			echo '<p class="message">' . wp_kses_post( apply_filters( 'login_messages', $messages ) ) . "</p>\n";
 		}
 	}
 } // End of login_header()
@@ -302,7 +302,7 @@ function login_footer( $input_id = '' ) {
 		<?php
 
 		/* translators: %s: Site title. */
-		printf( _x( '&larr; Back to %s', 'site', 'ultimate-dashboard' ), get_bloginfo( 'title', 'display' ) );
+		echo wp_kses_post( sprintf( _x( '&larr; Back to %s', 'site', 'ultimate-dashboard' ), get_bloginfo( 'title', 'display' ) ) );
 
 		?>
 		</a></p>
@@ -741,26 +741,30 @@ switch ( $action ) {
 				/* translators: accessibility text */
 				$accessibility_text = sprintf( '<span class="screen-reader-text"> %s</span>', __( '(opens in a new tab)', 'ultimate-dashboard' ) );
 
-				printf(
+				echo wp_kses_post(
+				sprintf(
 					'<a href="%s" rel="noopener noreferrer" target="_blank">%s%s</a>',
 					esc_url( $admin_email_help_url ),
 					__( 'Why is this important?', 'ultimate-dashboard' ),
 					$accessibility_text
-				);
+				)
+			);
 
 				?>
 			</p>
 			<p class="admin-email__details">
-				<?php
+			<?php
 
-				printf(
+			echo wp_kses_post(
+				sprintf(
 					/* translators: %s: Admin email address. */
 					__( 'Current administration email: %s', 'ultimate-dashboard' ),
 					'<strong>' . esc_html( $admin_email ) . '</strong>'
-				);
+				)
+			);
 
-				?>
-			</p>
+			?>
+		</p>
 			<p class="admin-email__details">
 				<?php esc_html_e( 'This email may be different from your personal email address.', 'ultimate-dashboard' ); ?>
 			</p>
@@ -952,7 +956,7 @@ switch ( $action ) {
 				echo esc_html( $login_link_separator );
 
 				/** This filter is documented in wp-includes/general-template.php */
-				echo apply_filters( 'register', $registration_url );
+				echo wp_kses_post( apply_filters( 'register', $registration_url ) );
 			}
 
 			?>
@@ -1056,7 +1060,7 @@ switch ( $action ) {
 				<input type="password" name="pass2" id="pass2" class="input" size="20" value="" autocomplete="off" />
 			</p>
 
-			<p class="description indicator-hint"><?php echo wp_get_password_hint(); ?></p>
+			<p class="description indicator-hint"><?php echo esc_html( wp_get_password_hint() ); ?></p>
 			<br class="clear" />
 
 			<?php
@@ -1087,7 +1091,7 @@ switch ( $action ) {
 				echo esc_html( $login_link_separator );
 
 				/** This filter is documented in wp-includes/general-template.php */
-				echo apply_filters( 'register', $registration_url );
+				echo wp_kses_post( apply_filters( 'register', $registration_url ) );
 			}
 
 			?>
@@ -1252,14 +1256,14 @@ switch ( $action ) {
 
 		<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 			<p>
-				<label	 for="user_login"><?php esc_html_e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
-				<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
-			</p>
+			<label	 for="user_login"><?php esc_html_e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
+			<input type="text" name="log" id="user_login"<?php echo wp_kses_post( $aria_describedby_error ); ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
+		</p>
 
-			<div class="user-pass-wrap">
-				<label for="user_pass"><?php esc_html_e( 'Password', 'ultimate-dashboard' ); ?></label>
-				<div class="wp-pwd">
-					<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input password-input" value="" size="20" />
+		<div class="user-pass-wrap">
+			<label for="user_pass"><?php esc_html_e( 'Password', 'ultimate-dashboard' ); ?></label>
+			<div class="wp-pwd">
+				<input type="password" name="pwd" id="user_pass"<?php echo wp_kses_post( $aria_describedby_error ); ?> class="input password-input" value="" size="20" />
 					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Show password', 'ultimate-dashboard' ); ?>">
 						<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
 					</button>
@@ -1314,10 +1318,10 @@ switch ( $action ) {
 					if ( get_option( 'users_can_register' ) ) {
 						$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register', 'ultimate-dashboard' ) );
 
-						/** This filter is documented in wp-includes/general-template.php */
-						echo apply_filters( 'register', $registration_url );
+				/** This filter is documented in wp-includes/general-template.php */
+				echo wp_kses_post( apply_filters( 'register', $registration_url ) );
 
-						echo esc_html( $login_link_separator );
+				echo esc_html( $login_link_separator );
 					}
 
 					?>

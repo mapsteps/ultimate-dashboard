@@ -375,11 +375,11 @@ return function () {
 							<!-- Description -->
 							<div class="udb-form-row">
 								<p class="description">
-									<?php
-									// translators: Placeholder is the site url.
-									printf( __( 'This will replace your login URL (<code>%1$s/wp-login.php</code>) and help secure your site by making the login page less predictable.', 'ultimate-dashboard' ), esc_url( site_url() ) );
-									?>
-								</p>
+								<?php
+								// translators: Placeholder is the site url.
+								echo wp_kses_post( sprintf( __( 'This will replace your login URL (<code>%1$s/wp-login.php</code>) and help secure your site by making the login page less predictable.', 'ultimate-dashboard' ), esc_url( site_url() ) ) );
+								?>
+							</p>
 							</div>
 						</div>
 					</div>

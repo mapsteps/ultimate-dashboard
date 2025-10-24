@@ -435,7 +435,7 @@ class Setup {
 		$notice  .= "<a href=\"$review_url\" style=\"margin-top: 15px;\" target='_blank' class=\"button-primary\">$btn_text</a>";
 
 		echo '<div class="notice udb-notice udb-review-notice notice-success is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_review_notice">';
-		echo '<p>' . $notice . '</p>';
+		echo '<p>' . wp_kses_post( $notice ) . '</p>';
 		echo '</div>';
 
 	}

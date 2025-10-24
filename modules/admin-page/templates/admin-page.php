@@ -41,7 +41,7 @@ $custom_css = $post->custom_css;
 
 	<?php
 	if ( $custom_css ) {
-		echo $content_helper->sanitize_css( $custom_css );
+		echo wp_strip_all_tags( $content_helper->sanitize_css( $custom_css ) );
 	}
 	?>
 </style>
@@ -58,7 +58,7 @@ $custom_css = $post->custom_css;
 		if ( 'html' === $post->content_type ) {
 			echo wp_kses_post( $post->html_content );
 		} else {
-			echo apply_filters( 'the_content', $post->post_content );
+			echo wp_kses_post( apply_filters( 'the_content', $post->post_content ) );
 		}
 	}
 

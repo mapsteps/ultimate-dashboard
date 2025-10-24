@@ -237,7 +237,7 @@ class Widget_Output extends Base_Output {
 			$output = apply_filters( 'udb_widget_output', $output, $output_args );
 
 			$output_callback = function () use ( $output ) {
-				echo $output;
+				echo wp_kses_post( $output );
 			};
 
 			// Add metabox.

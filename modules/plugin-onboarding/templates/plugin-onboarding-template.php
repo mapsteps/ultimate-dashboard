@@ -150,11 +150,11 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p>
-								<?php
-								/* translators: %1$s: Referrer name */
-								printf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) );
-								?>
-							</p>
+							<?php
+							/* translators: %1$s: Referrer name */
+							echo wp_kses_post( sprintf( __( 'We are offering all <strong>%1$s users an exclusive Discount</strong> on Ultimate Dashboard PRO. Subscribe to our Newsletter & get your discount.', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ) );
+							?>
+						</p>
 						</header>
 
 						<div class="udb-subscription-form">
@@ -186,7 +186,7 @@ return function ( $referrer = '' ) {
 							</h2>
 
 							<p data-udb-show-on="subscribe"> 
-								<?php printf( __( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ) ); ?>
+								<?php echo wp_kses_post( __( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ) ); ?>
 							</p>
 
 							<p>
@@ -224,16 +224,15 @@ return function ( $referrer = '' ) {
 				</footer>
 
 				<div class="udb-discount-notif is-hidden">
-					<?php
-					/* translators: %1$s: Referrer name */
-					printf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) );
-					?>
-				</div>
+				<?php
+				/* translators: %1$s: Referrer name */
+				echo wp_kses_post( sprintf( __( 'This is an exclusive discount for %1$s users.<br> <strong>This discount will not come back!</strong>', 'ultimate-dashboard' ), esc_attr( ucwords( $referrer ) ) ) );
+				?>
+			</div>
 
 			</div>
 
 		</div>
-
 
 	</div>
 

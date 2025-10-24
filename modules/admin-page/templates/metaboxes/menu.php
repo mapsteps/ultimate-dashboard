@@ -36,7 +36,7 @@ return function ( $module, $post ) {
 			<?php foreach ( $admin_menu as $menu ) : ?>
 				<?php if ( ! empty( $menu[0] ) ) : ?>
 					<option value="<?php echo esc_attr( $menu[2] ); ?>" <?php selected( $menu_parent, $menu[2] ); ?>>
-						<?php echo $module->content()->strip_tags_content( $menu[0] ); ?>
+						<?php echo esc_html( $module->content()->strip_tags_content( $menu[0] ) ); ?>
 					</option>
 				<?php endif; ?>
 			<?php endforeach; ?>

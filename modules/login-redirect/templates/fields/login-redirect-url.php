@@ -95,7 +95,7 @@ return function ( $site_type = 'blueprint' ) {
 										<?php echo esc_html( $field_prefix ); ?>
 									</code>
 								</div>
-								<input type="text" name="udb_login_redirect[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo $readonly_attr; ?>>
+								<input type="text" name="udb_login_redirect[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo wp_kses_post( $readonly_attr ); ?>>
 								<div class="udb-url-prefix-field">
 									<?php if ( 'super_admin' === $role_key ) : ?>
 										<?php if ( $multisite_supported && is_super_admin() ) : ?>

@@ -81,7 +81,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 				<label for="<?php echo esc_attr( $input_id ); ?>-visual-helper" class="customize-control-title udb-customize-control-label udb-customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 			<?php endif; ?>
 			<?php if ( ! empty( $this->description ) ) : ?>
-				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo $this->description; ?></span>
+				<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description udb-customize-control-description"><?php echo wp_kses_post( $this->description ); ?></span>
 			<?php endif; ?>
 			<input
 				type="hidden"
@@ -90,7 +90,7 @@ class Udb_Customize_Color_Picker_Control extends \WP_Customize_Control {
 					value="<?php echo esc_attr( $this->value() ); ?>"
 				<?php endif; ?>
 				<?php $this->link(); ?>
-				<?php echo $describedby_attr; ?>
+				<?php echo wp_kses_post( $describedby_attr ); ?>
 			>
 		</header>
 		<div class="udb-customize-control-content">

@@ -122,7 +122,7 @@ class Setting_Output extends Base_Output {
 		?>
 
 		<style>
-			<?php echo $content_helper->sanitize_css( $custom_css ); ?>
+			<?php echo wp_strip_all_tags( $content_helper->sanitize_css( $custom_css ) ); ?>
 		</style>
 
 		<?php

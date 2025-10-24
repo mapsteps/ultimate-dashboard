@@ -31,7 +31,7 @@ return function () {
 	<p class="description">
 		<?php
 		/* translators: %1$s: Site URL */
-		printf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) );
+		echo wp_kses_post( sprintf( __( 'Change the login URL and prevent users from accessing <code>%1$s/wp-login.php</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ) );
 		?>
 	</p>
 

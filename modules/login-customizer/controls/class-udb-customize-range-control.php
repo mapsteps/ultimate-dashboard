@@ -104,7 +104,7 @@ class Udb_Customize_Range_Control extends \WP_Customize_Control {
 						value="<?php echo esc_attr( $this->value() ); ?>"
 					<?php endif; ?>
 					<?php $this->link(); ?>
-					<?php echo $describedby_attr; ?>
+					<?php echo wp_kses_post( $describedby_attr ); ?>
 				>
 			</div>
 		</div>
