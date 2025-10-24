@@ -938,16 +938,16 @@ switch ( $action ) {
 			?>
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Get New Password' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Get New Password', 'ultimate-dashboard' ); ?>" />
 			</p>
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
 			<?php
 
 			if ( get_option( 'users_can_register' ) ) {
-				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
+				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register', 'ultimate-dashboard' ) );
 
 				echo esc_html( $login_link_separator );
 
@@ -1002,7 +1002,7 @@ switch ( $action ) {
 		$errors = new WP_Error();
 
 		if ( isset( $_POST['pass1'] ) && $_POST['pass1'] != $_POST['pass2'] ) {
-			$errors->add( 'password_reset_mismatch', __( 'The passwords do not match.' ) );
+			$errors->add( 'password_reset_mismatch', __( 'The passwords do not match.', 'ultimate-dashboard' ) );
 		}
 
 		/**
@@ -1018,7 +1018,7 @@ switch ( $action ) {
 		if ( ( ! $errors->has_errors() ) && ! empty( $_POST['pass1'] ) ) {
 			reset_password( $user, $_POST['pass1'] );
 			setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
-			login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
+			login_header( __( 'Password Reset', 'ultimate-dashboard' ), '<p class="message reset-pass">' . __( 'Your password has been reset.', 'ultimate-dashboard' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in', 'ultimate-dashboard' ) . '</a></p>' );
 			login_footer();
 			exit;
 		}
@@ -1026,7 +1026,7 @@ switch ( $action ) {
 		wp_enqueue_script( 'utils' );
 		wp_enqueue_script( 'user-profile' );
 
-		login_header( __( 'Reset Password' ), '<p class="message reset-pass">' . __( 'Enter your new password below.' ) . '</p>', $errors );
+		login_header( __( 'Reset Password', 'ultimate-dashboard' ), '<p class="message reset-pass">' . __( 'Enter your new password below.', 'ultimate-dashboard' ) . '</p>', $errors );
 
 		?>
 		<form name="resetpassform" id="resetpassform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=resetpass', 'login_post' ) ); ?>" method="post" autocomplete="off">
@@ -1034,25 +1034,25 @@ switch ( $action ) {
 
 			<div class="user-pass1-wrap">
 				<p>
-					<label for="pass1"><?php _e( 'New password' ); ?></label>
+					<label for="pass1"><?php _e( 'New password', 'ultimate-dashboard' ); ?></label>
 				</p>
 
 				<div class="wp-pwd">
 					<input type="password" data-reveal="1" data-pw="<?php echo esc_attr( wp_generate_password( 16 ) ); ?>" name="pass1" id="pass1" class="input password-input" size="24" value="" autocomplete="off" aria-describedby="pass-strength-result" />
 
-					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Hide password' ); ?>">
+					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Hide password', 'ultimate-dashboard' ); ?>">
 						<span class="dashicons dashicons-hidden" aria-hidden="true"></span>
 					</button>
-					<div id="pass-strength-result" class="hide-if-no-js" aria-live="polite"><?php _e( 'Strength indicator' ); ?></div>
+					<div id="pass-strength-result" class="hide-if-no-js" aria-live="polite"><?php _e( 'Strength indicator', 'ultimate-dashboard' ); ?></div>
 				</div>
 				<div class="pw-weak">
 					<input type="checkbox" name="pw_weak" id="pw-weak" class="pw-checkbox" />
-					<label for="pw-weak"><?php _e( 'Confirm use of weak password' ); ?></label>
+					<label for="pw-weak"><?php _e( 'Confirm use of weak password', 'ultimate-dashboard' ); ?></label>
 				</div>
 			</div>
 
 			<p class="user-pass2-wrap">
-				<label for="pass2"><?php _e( 'Confirm new password' ); ?></label>
+				<label for="pass2"><?php _e( 'Confirm new password', 'ultimate-dashboard' ); ?></label>
 				<input type="password" name="pass2" id="pass2" class="input" size="20" value="" autocomplete="off" />
 			</p>
 
@@ -1073,16 +1073,16 @@ switch ( $action ) {
 			?>
 			<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>" />
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Reset Password' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Reset Password', 'ultimate-dashboard' ); ?>" />
 			</p>
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
 			<?php
 
 			if ( get_option( 'users_can_register' ) ) {
-				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
+				$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register', 'ultimate-dashboard' ) );
 
 				echo esc_html( $login_link_separator );
 
@@ -1150,16 +1150,16 @@ switch ( $action ) {
 		 */
 		$redirect_to = apply_filters( 'registration_redirect', $registration_redirect, $errors );
 
-		login_header( __( 'Registration Form' ), '<p class="message register">' . __( 'Register For This Site' ) . '</p>', $errors );
+		login_header( __( 'Registration Form', 'ultimate-dashboard' ), '<p class="message register">' . __( 'Register For This Site', 'ultimate-dashboard' ) . '</p>', $errors );
 
 		?>
 		<form name="registerform" id="registerform" action="<?php echo esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) ); ?>" method="post" novalidate="novalidate">
 			<p>
-				<label for="user_login"><?php _e( 'Username' ); ?></label>
+				<label for="user_login"><?php _e( 'Username', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr( wp_unslash( $user_login ) ); ?>" size="20" autocapitalize="off" />
 			</p>
 			<p>
-				<label for="user_email"><?php _e( 'Email' ); ?></label>
+				<label for="user_email"><?php _e( 'Email', 'ultimate-dashboard' ); ?></label>
 				<input type="email" name="user_email" id="user_email" class="input" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" size="25" />
 			</p>
 			<?php
@@ -1173,19 +1173,19 @@ switch ( $action ) {
 
 			?>
 			<p id="reg_passmail">
-				<?php _e( 'Registration confirmation will be emailed to you.' ); ?>
+				<?php _e( 'Registration confirmation will be emailed to you.', 'ultimate-dashboard' ); ?>
 			</p>
 			<br class="clear" />
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Register' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Register', 'ultimate-dashboard' ); ?>" />
 			</p>
 		</form>
 
 		<p id="nav">
-			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in', 'ultimate-dashboard' ); ?></a>
 				<?php echo esc_html( $login_link_separator ); ?>
-			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
 		</p>
 		<?php
 
@@ -1194,11 +1194,11 @@ switch ( $action ) {
 
 	case 'confirmaction':
 		if ( ! isset( $_GET['request_id'] ) ) {
-			wp_die( __( 'Missing request ID.' ) );
+			wp_die( __( 'Missing request ID.', 'ultimate-dashboard' ) );
 		}
 
 		if ( ! isset( $_GET['confirm_key'] ) ) {
-			wp_die( __( 'Missing confirm key.' ) );
+			wp_die( __( 'Missing confirm key.', 'ultimate-dashboard' ) );
 		}
 
 		$request_id = (int) $_GET['request_id'];
@@ -1226,7 +1226,7 @@ switch ( $action ) {
 
 		$message = _wp_privacy_account_request_confirmed_message( $request_id );
 
-		login_header( __( 'User action confirmed.' ), $message );
+		login_header( __( 'User action confirmed.', 'ultimate-dashboard' ), $message );
 		login_footer();
 		exit;
 
@@ -1239,7 +1239,7 @@ switch ( $action ) {
 			wp_enqueue_script( 'customize-base' );
 		}
 
-		login_header( __( 'Log In' ), '', $errors );
+		login_header( __( 'Log In', 'ultimate-dashboard' ), '', $errors );
 
 		$user_login = '';
 
@@ -1252,15 +1252,15 @@ switch ( $action ) {
 
 		<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 			<p>
-				<label	 for="user_login"><?php _e( 'Username or Email Address' ); ?></label>
+				<label	 for="user_login"><?php _e( 'Username or Email Address', 'ultimate-dashboard' ); ?></label>
 				<input type="text" name="log" id="user_login"<?php echo $aria_describedby_error; ?> class="input" value="<?php echo esc_attr( $user_login ); ?>" size="20" autocapitalize="off" />
 			</p>
 
 			<div class="user-pass-wrap">
-				<label for="user_pass"><?php _e( 'Password' ); ?></label>
+				<label for="user_pass"><?php _e( 'Password', 'ultimate-dashboard' ); ?></label>
 				<div class="wp-pwd">
 					<input type="password" name="pwd" id="user_pass"<?php echo $aria_describedby_error; ?> class="input password-input" value="" size="20" />
-					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Show password' ); ?>">
+					<button type="button" class="button button-secondary wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="<?php esc_attr_e( 'Show password', 'ultimate-dashboard' ); ?>">
 						<span class="dashicons dashicons-visibility" aria-hidden="true"></span>
 					</button>
 				</div>
@@ -1277,9 +1277,9 @@ switch ( $action ) {
 			// This is to prevent error in login customizer.
 			$redirect_to = '';
 			?>
-			<p class="forgetmenot"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <label for="rememberme"><?php esc_html_e( 'Remember Me' ); ?></label></p>
+			<p class="forgetmenot"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <label for="rememberme"><?php esc_html_e( 'Remember Me', 'ultimate-dashboard' ); ?></label></p>
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Log In' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Log In', 'ultimate-dashboard' ); ?>" />
 				<?php
 
 				if ( $interim_login ) {
@@ -1312,7 +1312,7 @@ switch ( $action ) {
 
 				if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ), true ) ) {
 					if ( get_option( 'users_can_register' ) ) {
-						$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
+						$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register', 'ultimate-dashboard' ) );
 
 						/** This filter is documented in wp-includes/general-template.php */
 						echo apply_filters( 'register', $registration_url );
@@ -1321,7 +1321,7 @@ switch ( $action ) {
 					}
 
 					?>
-					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'ultimate-dashboard' ); ?></a>
 					<?php
 				}
 
