@@ -41,7 +41,7 @@ $custom_css = $post->custom_css;
 
 	<?php
 	if ( $custom_css ) {
-		echo wp_strip_all_tags( $content_helper->sanitize_css( $custom_css ) );
+		echo $content_helper->sanitize_css( $custom_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	?>
 </style>

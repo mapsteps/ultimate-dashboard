@@ -140,7 +140,7 @@ class Login_Customizer_Output extends Base_Output {
 
 		$content_helper = new Content_Helper();
 
-		echo wp_strip_all_tags( $content_helper->sanitize_css( $css ) );
+		echo $content_helper->sanitize_css( $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo '</style>';
 

@@ -1198,11 +1198,11 @@ switch ( $action ) {
 
 	case 'confirmaction':
 		if ( ! isset( $_GET['request_id'] ) ) {
-			wp_die( __( 'Missing request ID.', 'ultimate-dashboard' ) );
+			wp_die( esc_html( __( 'Missing request ID.', 'ultimate-dashboard' ) ) );
 		}
 
 		if ( ! isset( $_GET['confirm_key'] ) ) {
-			wp_die( __( 'Missing confirm key.', 'ultimate-dashboard' ) );
+			wp_die( esc_html( __( 'Missing confirm key.', 'ultimate-dashboard' ) ) );
 		}
 
 		$request_id = (int) $_GET['request_id'];
@@ -1210,7 +1210,7 @@ switch ( $action ) {
 		$result     = wp_validate_user_request_key( $request_id, $key );
 
 		if ( is_wp_error( $result ) ) {
-			wp_die( $result );
+			wp_die( esc_html( $result ) );
 		}
 
 		/**
