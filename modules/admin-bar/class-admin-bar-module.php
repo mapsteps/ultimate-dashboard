@@ -52,10 +52,20 @@ class Admin_Bar_Module extends Base_Module {
 
 		$this->url = ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar';
 
-		/**
-		 * This was created by looking at wp-toolbar-editor plugin's code.
-		 * These items can be checked in wp-includes/admin-bar.php file.
-		 */
+	}
+
+	/**
+	 * Initialize frontend items.
+	 * Called after init hook to ensure translations are available.
+	 *
+	 * This was created by looking at wp-toolbar-editor plugin's code.
+	 * These items can be checked in wp-includes/admin-bar.php file.
+	 */
+	public function init_frontend_items() {
+		if ( ! empty( $this->frontend_items ) ) {
+			return; // Already initialized.
+		}
+
 		$this->frontend_items = array(
 			array(
 				'parent' => 'top-secondary',
@@ -127,7 +137,6 @@ class Admin_Bar_Module extends Base_Module {
 		);
 
 		$this->frontend_menu = $this->frontend_items_to_array();
-
 	}
 
 	/**
@@ -262,12 +271,13 @@ class Admin_Bar_Module extends Base_Module {
 	}
 
 	/**
-	 * Turn frontend items array to expected UDB array.
-	 * Like what we have in nodes_to_array above.
+	 * Convert frontend items to array in expected format.
 	 *
 	 * @return array Array in expected format.
 	 */
 	public function frontend_items_to_array() {
+		$this->init_frontend_items(); // Ensure items are initialized.
+
 		$udb_array = array();
 
 		foreach ( $this->frontend_items as $item_data ) {
@@ -473,6 +483,8 @@ class Admin_Bar_Module extends Base_Module {
 	 * @return array
 	 */
 	public function parse_frontend_items( $saved_menu ) {
+		$this->init_frontend_items(); // Ensure items are initialized.
+
 		$non_udb_items_id = $this->get_non_udb_items_id_fontend_only( $saved_menu );
 
 		$prev_id = '';
