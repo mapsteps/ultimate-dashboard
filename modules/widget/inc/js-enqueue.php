@@ -23,7 +23,7 @@ return function ( $module ) {
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
 		// Edit widget.
-		wp_enqueue_script( 'udb-edit-widget', $module->url . '/assets/js/edit-widget.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-edit-widget', $module->url . '/assets/js/edit-widget.js', array( 'jquery', 'wp-escape-html' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		do_action( 'udb_edit_widget_scripts' );
 

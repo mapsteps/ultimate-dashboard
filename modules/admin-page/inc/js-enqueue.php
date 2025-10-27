@@ -28,7 +28,7 @@ return function ( $module ) {
 		);
 
 		// Edit admin page.
-		wp_enqueue_script( 'udb-edit-admin-page', $module->url . '/assets/js/edit-admin-page.js', array( 'select2' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-edit-admin-page', $module->url . '/assets/js/edit-admin-page.js', array( 'select2', 'wp-escape-html' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
