@@ -200,11 +200,11 @@ class Branding_Module extends Base_Module {
 		$sanitized = array();
 
 		if ( isset( $input['footer_text'] ) ) {
-			$sanitized['footer_text'] = sanitize_text_field( $input['footer_text'] );
+			$sanitized['footer_text'] = wp_kses_post( $input['footer_text'] );
 		}
 
 		if ( isset( $input['version_text'] ) ) {
-			$sanitized['version_text'] = sanitize_text_field( $input['version_text'] );
+			$sanitized['version_text'] = wp_kses_post( $input['version_text'] );
 		}
 
 		// Allow PRO version or other extensions to add their own sanitization.
