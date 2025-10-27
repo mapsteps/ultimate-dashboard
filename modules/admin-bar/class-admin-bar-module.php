@@ -62,8 +62,10 @@ class Admin_Bar_Module extends Base_Module {
 	 * These items can be checked in wp-includes/admin-bar.php file.
 	 */
 	public function init_frontend_items() {
+
 		if ( ! empty( $this->frontend_items ) ) {
-			return; // Already initialized.
+			// Already initialized.
+			return;
 		}
 
 		$this->frontend_items = array(
@@ -137,6 +139,7 @@ class Admin_Bar_Module extends Base_Module {
 		);
 
 		$this->frontend_menu = $this->frontend_items_to_array();
+
 	}
 
 	/**
