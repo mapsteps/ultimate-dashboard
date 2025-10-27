@@ -2,7 +2,7 @@
 	const colorFields = document.querySelectorAll(".udb-color-field");
 
 	const instantPreviewStyleTags = document.querySelectorAll(
-		".udb-instant-preview"
+		".udb-instant-preview",
 	);
 
 	function init() {
@@ -66,7 +66,7 @@
 	function onTriggerChange(el, color) {
 		var triggerName = el.dataset.udbTriggerName;
 		var targets = document.querySelectorAll(
-			"[data-udb-prop-" + triggerName + "]"
+			"[data-udb-prop-" + triggerName + "]",
 		);
 
 		targets.forEach(function (target) {
@@ -121,7 +121,7 @@
 						cssValue =
 							target.dataset.udbBoxShadowValue?.replace(
 								/{box_shadow_value}/g,
-								color
+								color,
 							) ?? "";
 					} else {
 						if (str[1].includes("rgb")) {
