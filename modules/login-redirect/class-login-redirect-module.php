@@ -114,7 +114,7 @@ class Login_Redirect_Module extends Base_Module {
 	public function add_settings() {
 
 		// Register setting.
-		register_setting( 'udb-login-redirect-group', 'udb_login_redirect' );
+		register_setting( 'udb-login-redirect-group', 'udb_login_redirect', array( 'sanitize_callback' => array( $this, 'sanitize_login_redirect_settings' ) ) );
 
 		$login_redirect_title = '<span class="udb-login-redirect--title-text">' . __( 'Redirect After Login', 'ultimate-dashboard' ) . '</span>';
 		$login_redirect_title = apply_filters( 'udb_login_redirect_title', $login_redirect_title );
@@ -129,6 +129,44 @@ class Login_Redirect_Module extends Base_Module {
 
 		// Login redirect fields.
 		add_settings_field( 'login-redirect-url', __( 'Select Role(s)', 'ultimate-dashboard' ), array( $this, 'login_redirect_url_field' ), 'udb-login-redirect-settings', 'udb-login-redirect-section' );
+
+	}
+
+	/**
+	 * Sanitize login redirect settings.
+	 *
+	 * @param mixed $input The input data to sanitize.
+	 * @return array The sanitized settings array.
+	 */
+	public function sanitize_login_redirect_settings( $input ) {
+
+		if ( ! is_array( $input ) ) {
+			return array();
+		}
+
+		$sanitized = array();
+
+		if ( isset( $input['login_url_slug'] ) ) {
+			$sanitized['login_url_slug'] = sanitize_text_field( $input['login_url_slug'] );
+		}
+
+		if ( isset( $input['wp_admin_redirect_slug'] ) ) {
+			$sanitized['wp_admin_redirect_slug'] = sanitize_text_field( $input['wp_admin_redirect_slug'] );
+		}
+
+		if ( isset( $input['login_redirect_slugs'] ) && is_array( $input['login_redirect_slugs'] ) ) {
+			$sanitized['login_redirect_slugs'] = array();
+
+			foreach ( $input['login_redirect_slugs'] as $role_key => $redirect_slug ) {
+				$sanitized_role_key = sanitize_key( $role_key );
+				$sanitized['login_redirect_slugs'][ $sanitized_role_key ] = sanitize_text_field( $redirect_slug );
+			}
+		}
+
+		// Allow PRO version or other extensions to add their own sanitization.
+		$sanitized = apply_filters( 'udb_login_redirect_sanitize_settings', $sanitized, $input );
+
+		return $sanitized;
 
 	}
 

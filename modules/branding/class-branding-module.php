@@ -207,7 +207,7 @@ class Branding_Module extends Base_Module {
 			$sanitized['version_text'] = sanitize_text_field( $input['version_text'] );
 		}
 
-		// Allow PRO version to add their own sanitization.
+		// Allow PRO version or other extensions to add their own sanitization.
 		$sanitized = apply_filters( 'udb_branding_sanitize_settings', $sanitized, $input );
 
 		return $sanitized;
