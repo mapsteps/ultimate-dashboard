@@ -4,7 +4,7 @@ Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress
 Requires at least: 4.6
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 3.8.9
+Stable tag: 3.8.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.10 | October 27, 2025 =
+* Fixed: Removed a MailerLite API key that was mistakenly included in the plugin package
+* Fixed: PHP notice in WordPress 6.7 related to early translation loading — text domains are now loaded at the proper hook
+* Improved: Added additional data sanitization and proper output escaping throughout the plugin
 = 3.8.9 | June 05, 2025 =
 * Tweak: Allow shortcode in HTML widget
 * Tested up to WordPress 6.8
