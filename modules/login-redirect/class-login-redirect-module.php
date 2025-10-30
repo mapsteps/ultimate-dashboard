@@ -144,7 +144,18 @@ class Login_Redirect_Module extends Base_Module {
 			return array();
 		}
 
-		$sanitized = array();
+		// This is the ideal, but will break compatibility with the pro version.
+		// $sanitized = array();
+
+		/**
+		 * The sanitized data.
+		 *
+		 * ! This is needed for backwards compatibility with the pro version,
+		 * because the pro version doesn't have the filter before version 3.10.5
+		 *
+		 * @var array
+		 */
+		$sanitized = $input;
 
 		if ( isset( $input['login_url_slug'] ) ) {
 			$sanitized['login_url_slug'] = sanitize_text_field( $input['login_url_slug'] );

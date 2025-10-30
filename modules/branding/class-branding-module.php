@@ -197,7 +197,18 @@ class Branding_Module extends Base_Module {
 			return array();
 		}
 
-		$sanitized = array();
+		// This is the ideal, but will break compatibility with the pro version.
+		// $sanitized = array();
+
+		/**
+		 * The sanitized data.
+		 *
+		 * ! This is needed for backwards compatibility with the pro version,
+		 * because the pro version doesn't have the filter before version 3.10.5
+		 *
+		 * @var array
+		 */
+		$sanitized = $input;
 
 		if ( isset( $input['footer_text'] ) ) {
 			$sanitized['footer_text'] = wp_kses_post( $input['footer_text'] );
