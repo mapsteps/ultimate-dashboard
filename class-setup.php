@@ -482,10 +482,10 @@ class Setup {
 		}
 
 		// Intentional: using manually written string instead of gmdate( 'Y' ).
-		$this_year = '2024';
+		$this_year = '2025';
 		$last_year = $this_year - 1;
-		$start     = strtotime( 'november 22nd, ' . $this_year );
-		$end       = strtotime( 'december 2nd, ' . $this_year );
+		$start     = strtotime( 'november 24th, ' . $this_year );
+		$end       = strtotime( 'december 1st, ' . $this_year );
 		$now       = time();
 
 		// Stop here if we are not in the sales period.
@@ -549,7 +549,7 @@ class Setup {
 			wp_send_json_error( 'Invalid Request' );
 		}
 
-		update_option( 'udb_bfcm_notice_dismissed_2024', 1 );
+		update_option( 'udb_bfcm_notice_dismissed_2025', 1 );
 		wp_send_json_success( 'Review notice has been dismissed.' );
 
 	}
