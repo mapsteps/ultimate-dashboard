@@ -521,7 +521,7 @@ class Setup {
 						<?php esc_html_e( 'Black Friday Sale! - Up to 25% Off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 					</h2>
 					<p>
-						<?php esc_html_e( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ); ?>
+						<?php echo wp_kses_post( __( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ) ); ?>
 					</p>
 					<p>
 						<?php esc_html_e( 'But hurry up, the deal will expire soon!', 'ultimate-dashboard' ); ?><br>
