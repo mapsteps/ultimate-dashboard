@@ -392,7 +392,7 @@ return function () {
 							</h2>
 
 							<p>
-								<?php esc_html_e( 'Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?>
+								<?php echo wp_kses_post( __( 'Unlock all features! Subscribe to our newsletter and claim your <strong>exclusive discount</strong> on Ultimate Dashboard PRO.', 'ultimate-dashboard' ) ); ?>
 							</p>
 						</header>
 
@@ -410,7 +410,7 @@ return function () {
 							</div>
 							<div class="udb-form-row udb-onboarding-wizard-skip-discount">
 								<a href="">
-									<?php esc_html_e( 'No, I don\'t want any Discount :/', 'ultimate-dashboard' ); ?>
+									<?php esc_html_e( 'No, I don\'t want any Discount :(', 'ultimate-dashboard' ); ?>
 								</a>
 							</div>
 						</div>
@@ -465,7 +465,7 @@ return function () {
 				</footer>
 
 				<div class="udb-discount-notif for-discount is-hidden">
-					<?php esc_html_e( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ); ?>
+					<?php echo wp_kses_post( __( 'Don\'t miss out.<br> <strong>This discount won\'t come back!</strong>', 'ultimate-dashboard' ) ); ?>
 				</div>
 
 			</div>
