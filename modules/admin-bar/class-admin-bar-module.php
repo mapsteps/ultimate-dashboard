@@ -138,6 +138,8 @@ class Admin_Bar_Module extends Base_Module {
 			),
 		);
 
+		$this->frontend_items = apply_filters( 'udb_admin_bar_frontend_items', $this->frontend_items );
+
 		$this->frontend_menu = $this->frontend_items_to_array();
 
 	}
