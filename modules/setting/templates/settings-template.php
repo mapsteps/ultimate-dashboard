@@ -104,6 +104,8 @@ return function () {
 							<div class="heatbox">
 								<?php do_settings_sections( 'udb-page-builder-dashboard-settings' ); ?>
 							</div>
+
+							<?php do_action( 'udb_after_page_builder_dashboard_metabox' ); ?>
 						</div>
 					<?php endif; ?>
 
