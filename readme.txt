@@ -2,9 +2,9 @@
 Contributors: davidvongries
 Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress Admin, Branda
 Requires at least: 4.6
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 3.8.12
+Stable tag: 3.8.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,6 +103,8 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+= 3.8.13 | February 25, 2025 =
+* Minor tweaks
 = 3.8.12 | November 08, 2025 =
 * Update BFCM deal details
 = 3.8.11 | October 30, 2025 =
