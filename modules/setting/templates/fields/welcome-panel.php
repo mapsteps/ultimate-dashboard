@@ -30,9 +30,10 @@ return function () {
 	</p>
 
 	<?php
-	$settings  = get_option( 'udb_settings' );
-	$editor_id = 'udb_settings--welcome_panel_content';
-	$content   = isset( $settings['welcome_panel_content'] ) ? $settings['welcome_panel_content'] : '';
+	$settings   = get_option( 'udb_settings' );
+	$editor_id  = 'udb_settings--welcome_panel_content';
+	$content    = isset( $settings['welcome_panel_content'] ) ? $settings['welcome_panel_content'] : '';
+	$is_default = false;
 
 	if ( empty( $content ) ) {
 		do_action( 'udb_ms_switch_blog' );
@@ -42,6 +43,8 @@ return function () {
 		$content = ob_get_clean();
 
 		do_action( 'udb_ms_restore_blog' );
+
+		$is_default = true;
 	}
 
 	$content = trim( $content );
@@ -69,6 +72,14 @@ return function () {
 		),
 	);
 
+	if ( $is_default ) {
+		$args['tinymce']['setup'] = 'function(editor){editor.on("input keyup paste change",function(){var f=document.getElementById("udb-welcome-panel-is-default");if(f){f.value="0";}});}';
+	}
+
 	wp_editor( $content, $editor_id, $args );
+
+	if ( $is_default ) {
+		echo '<input type="hidden" id="udb-welcome-panel-is-default" name="udb_settings[welcome_panel_is_default]" value="1">';
+	}
 
 };

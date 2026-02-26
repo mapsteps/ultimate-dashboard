@@ -250,6 +250,7 @@ class Setting_Output extends Base_Output {
 		$content = do_shortcode( $content );
 		$content = wpautop( $content );
 
+		echo '<style>.welcome-panel-column{grid-template-columns:1fr;}</style>';
 		echo wp_kses_post( $content );
 
 	}

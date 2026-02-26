@@ -291,6 +291,11 @@ class Setting_Module extends Base_Module {
 			$output['custom_css'] = $content_helper->sanitize_css( $output['custom_css'] );
 		}
 
+		if ( ! empty( $output['welcome_panel_is_default'] ) ) {
+			unset( $output['welcome_panel_content'] );
+			unset( $output['welcome_panel_is_default'] );
+		}
+
 		return $output;
 
 	}
