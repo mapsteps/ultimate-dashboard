@@ -44,7 +44,12 @@ class Get_Users {
 	 */
 	public function load_users() {
 
-		$users = get_users();
+		$users = get_users(
+			array(
+				'fields'      => array( 'ID', 'display_name' ),
+				'count_total' => false,
+			)
+		);
 
 		$select2_data = array();
 
