@@ -132,9 +132,10 @@ class Content_Helper {
 		$sanitized_css = strtr(
 			$sanitized_css,
 			array(
-				' & gt;' => ' > ',
-				"\'"     => "'",
-				'\"'     => '"',
+				'&gt;'  => '>',
+				'&amp;' => '&',
+				"\'"    => "'",
+				'\"'    => '"',
 			)
 		);
 

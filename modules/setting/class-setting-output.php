@@ -101,7 +101,7 @@ class Setting_Output extends Base_Output {
 		$custom_css = $settings['custom_css'];
 		$custom_css = $content_helper->sanitize_css( $custom_css );
 
-		wp_add_inline_style( 'udb-dashboard', esc_html( $custom_css ) );
+		wp_add_inline_style( 'udb-dashboard', $custom_css );
 
 	}
 
