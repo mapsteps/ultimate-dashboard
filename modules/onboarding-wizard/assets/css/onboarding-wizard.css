@@ -411,4 +411,5 @@
 .udb-onboarding-wizard-page .select2-selection {
 	height: 60px;
 	overflow-y: auto;
+	border: 1px solid #ddd !important;
 }

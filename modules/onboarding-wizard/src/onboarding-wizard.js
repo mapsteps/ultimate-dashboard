@@ -96,7 +96,10 @@ import {
 	 */
 	function setupSelect2() {
 		if (!roleDropdown) return;
-		$(roleDropdown).select2();
+		$(roleDropdown).select2({
+			placeholder: "Select Role",
+			allowClear: true,
+		});
 
 		setAdminBarRemovalRoles($(roleDropdown).select2("data"));
 

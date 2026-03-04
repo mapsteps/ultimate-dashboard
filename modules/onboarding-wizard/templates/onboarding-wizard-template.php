@@ -300,7 +300,7 @@ return function () {
 
 										<div class="role-dropdown">
 											<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
-											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown use-select2" multiple>
+											<select name="remove_by_roles[]" id="remove_by_roles" class="full-width-dropdown use-select2" multiple data-placeholder="<?php esc_attr_e( 'Select Role', 'ultimate-dashboard' ); ?>">
 												<option value="all" <?php echo esc_attr( in_array( 'all', $selected_roles, true ) ? 'selected' : '' ); ?>>
 													<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
 												</option>
