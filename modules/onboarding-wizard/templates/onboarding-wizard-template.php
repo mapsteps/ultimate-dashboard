@@ -433,7 +433,7 @@ return function () {
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<?php echo wp_kses_post( __( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ) ); ?>
+								<strong><?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
 							</p>
 						</header>
 
