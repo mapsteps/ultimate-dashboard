@@ -26,7 +26,7 @@ $roles     = $roles_obj->role_names;
 		<h3><?php esc_html_e( 'Remove Admin Bar for:', 'ultimate-dashboard' ); ?></h3>
 		<div class="field">
 			<label for="remove_by_roles" class="label select2-label">
-				<select name="remove_by_roles[]" id="remove_by_roles" class="ultiselect remove-admin-bar use-select2 is-fullwidth" multiple>
+				<select name="remove_by_roles[]" id="remove_by_roles" class="multiselect remove-admin-bar use-select2 is-fullwidth" multiple>
 					<option value="all"<?php echo ( in_array( 'all', $saved_roles, true ) ? ' selected' : '' ); ?>>
 						<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
 					</option>

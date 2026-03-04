@@ -50,7 +50,6 @@
 	display: block;
 }
 
-
 #udb-menu-metabox .icon-preview i {
 	width: 80px;
 	height: 80px;
@@ -61,6 +60,6 @@
 }
 
 /* User role access metabox */
-.select2-container {
+.udb-metabox-field > .select2-container {
 	width: 100% !important;
 }

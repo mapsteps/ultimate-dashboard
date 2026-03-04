@@ -4,25 +4,29 @@
 
 /**
  * --------------------------------------------------
- * Select2 patch
+ * Select2 patch for heatbox and UDB metabox inside post editing screen.
  * --------------------------------------------------
  */
-.heatbox-admin .select2-results__option {
+.heatbox-admin .select2-results__option,
+.udb-metabox-field .select2-results__option {
 	margin-bottom: 0;
 }
 
-.heatbox-admin > .select2-container .select2-search {
+.heatbox-admin > .select2-container .select2-search,
+.udb-metabox-field > .select2-container .select2-search {
 	padding: 6px;
 }
 
-.heatbox-admin > .select2-container .select2-search__field {
+.heatbox-admin > .select2-container .select2-search__field,
+.udb-metabox-field > .select2-container .select2-search__field {
 	margin-left: 0;
 	margin-right: 0;
 	min-height: 20px;
 	line-height: normal;
 }
 
-.heatbox .select2-label {
+.heatbox .select2-label,
+.udb-metabox-field .select2-label {
 	display: block;
 }
 
@@ -31,7 +35,8 @@
 	width: 100%;
 }
 
-.heatbox .select2-selection--multiple {
+.heatbox .select2-selection--multiple,
+.udb-metabox-field .select2-selection--multiple {
 	position: relative;
 	display: block;
 	width: 100%;
@@ -40,43 +45,61 @@
 	line-height: 20px;
 }
 
-.heatbox .select2-selection--multiple .select2-selection__rendered {
+.heatbox .select2-selection--multiple .select2-selection__rendered,
+.udb-metabox-field .select2-selection--multiple .select2-selection__rendered {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-.heatbox .select2-selection--multiple .select2-selection__choice {
+.heatbox .select2-selection--multiple .select2-selection__choice,
+.udb-metabox-field .select2-selection--multiple .select2-selection__choice {
 	display: inline-flex;
 	align-items: center;
 	padding-left: 0;
+	padding-right: 5px;
 	margin-top: 5px;
 	margin-bottom: 0;
 }
 
-.heatbox .select2-selection--multiple .select2-selection__choice__remove {
+.heatbox .select2-selection--multiple .select2-selection__choice__remove,
+.udb-metabox-field
+	.select2-selection--multiple
+	.select2-selection__choice__remove {
 	display: inline-flex;
 	align-items: center;
 	position: relative;
+	margin-right: 5px;
 	height: 20px;
-	line-height: 1;
 }
 
-.heatbox .select2-selection--multiple .select2-selection__choice__remove span {
+.heatbox .select2-selection--multiple .select2-selection__choice__remove span,
+.udb-metabox-field
+	.select2-selection--multiple
+	.select2-selection__choice__remove
+	span {
 	position: relative;
 	top: -1px;
 }
 
-.heatbox .select2-selection--multiple .select2-selection__choice__display {
+.heatbox .select2-selection--multiple .select2-selection__choice__display,
+.udb-metabox-field
+	.select2-selection--multiple
+	.select2-selection__choice__display {
 	display: inline-block;
 	padding-left: 4px;
 	line-height: 1;
 }
 
-.heatbox .select2-selection--multiple .select2-search--inline {
+.heatbox .select2-selection--multiple .select2-search--inline,
+.udb-metabox-field .select2-selection--multiple .select2-search--inline {
 	display: inline;
 }
 
 .heatbox
+	.select2-selection--multiple
+	.select2-search--inline
+	.select2-search__field,
+.udb-metabox-field
 	.select2-selection--multiple
 	.select2-search--inline
 	.select2-search__field {
@@ -84,6 +107,7 @@
 	display: inline-block;
 	margin-top: 5px;
 	height: 20px;
+	min-height: 20px;
 	line-height: inherit;
 }
 
