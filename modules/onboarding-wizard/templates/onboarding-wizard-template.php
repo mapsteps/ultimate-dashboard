@@ -425,17 +425,15 @@ return function () {
 							</h2>
 
 							<p data-udb-show-on="subscribe">
-								<?php esc_html_e( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ); ?>
+								<?php echo wp_kses_post( __( 'We\'ll send you an email with a <strong> discount code for Ultimate Dashboard PRO </strong> shortly.', 'ultimate-dashboard' ) ); ?>
 							</p>
 
 							<p>
-								<?php
-								esc_html_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' );
-								?>
+								<?php echo wp_kses_post( __( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ) ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<strong><?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
+								<?php echo wp_kses_post( __( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ) ); ?>
 							</p>
 						</header>
 

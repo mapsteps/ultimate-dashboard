@@ -190,7 +190,7 @@ return function ( $referrer = '' ) {
 							</p>
 
 							<p>
-								<?php esc_html_e( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ); ?>
+								<?php echo wp_kses_post( __( 'What\'s next? Explore all features from the <strong>"Ultimate Dash..."</strong> admin menu.', 'ultimate-dashboard' ) ); ?>
 							</p>
 
 							<p data-udb-show-on="skip-discount">
