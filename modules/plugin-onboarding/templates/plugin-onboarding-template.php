@@ -56,7 +56,7 @@ return function ( $referrer = '' ) {
 							<?php esc_html_e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 						</span>
 						<p class="subtitle">
-							<?php esc_html_e( 'Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>', 'ultimate-dashboard' ); ?>							
+							<?php echo wp_kses_post( __( 'Complete the 1-Click Setup & get an <strong style="font-weight: 700; color: tomato;">exclusive Discount</strong> on <strong>Ultimate Dashboard PRO!</strong>', 'ultimate-dashboard' ) ); ?>							
 						</p>
 					</div>
 
@@ -194,7 +194,7 @@ return function ( $referrer = '' ) {
 							</p>
 
 							<p data-udb-show-on="skip-discount">
-								<?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?>
+								<strong><?php esc_html_e( 'This is your last chance to get an exclusive discount on Ultimate Dashboard PRO at the link below! 👇👇👇', 'ultimate-dashboard' ); ?></strong>
 							</p>
 						</header>
 
