@@ -616,6 +616,11 @@
 	padding: 20px;
 }
 
+/* Footer */
+.heatbox-footer .button .dashicons {
+	line-height: 1;
+}
+
 /* Misc */
 .heatbox .row-disabled {
 	background-color: #f5f5f5;
