@@ -400,6 +400,14 @@ class Setup {
 
 		wp_enqueue_script( 'udb-notice-dismissal', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/notice-dismissal.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		wp_localize_script(
+			'udb-notice-dismissal',
+			'udbNoticeDismissal',
+			array(
+				'nonce' => wp_create_nonce( 'udb_dismiss_notice' ),
+			)
+		);
+
 	}
 
 	/**
@@ -452,12 +460,18 @@ class Setup {
 	 */
 	public function dismiss_review_notice() {
 
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'udb_dismiss_notice' ) ) {
+			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
+		}
+
 		if ( empty( $_POST['dismiss'] ) ) {
-			wp_send_json_error( 'Invalid Request' );
+			wp_send_json_error( __( 'Invalid request', 'ultimate-dashboard' ) );
 		}
 
 		update_option( 'review_notice_dismissed', 1 );
-		wp_send_json_success( 'Review notice has been dismissed.' );
+		wp_send_json_success( __( 'Review notice has been dismissed.', 'ultimate-dashboard' ) );
 
 	}
 
@@ -545,12 +559,18 @@ class Setup {
 	 */
 	public function dismiss_bfcm_notice() {
 
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+
+		if ( ! wp_verify_nonce( $nonce, 'udb_dismiss_notice' ) ) {
+			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
+		}
+
 		if ( empty( $_POST['dismiss'] ) ) {
-			wp_send_json_error( 'Invalid Request' );
+			wp_send_json_error( __( 'Invalid request', 'ultimate-dashboard' ) );
 		}
 
 		update_option( 'udb_bfcm_notice_dismissed_2025', 1 );
-		wp_send_json_success( 'Review notice has been dismissed.' );
+		wp_send_json_success( __( 'BFCM notice has been dismissed.', 'ultimate-dashboard' ) );
 
 	}
 

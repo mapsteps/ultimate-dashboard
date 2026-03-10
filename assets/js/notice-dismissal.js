@@ -24,6 +24,7 @@
 			type: "post",
 			data: {
 				action: this.parentElement?.dataset.ajaxAction,
+				nonce: window.udbNoticeDismissal?.nonce || "",
 				dismiss: 1,
 			},
 		}).always(function (r) {
