@@ -180,4 +180,76 @@ class Widget_Helper {
 		return $widgets;
 	}
 
+	/**
+	 * Get allowed HTML tags for widgets.
+	 *
+	 * Includes support for forms, labels, inputs, and custom styles.
+	 *
+	 * @return array The allowed HTML tags.
+	 */
+	public static function get_allowed_tags() {
+
+		$allowed_tags           = wp_kses_allowed_html( 'post' );
+		$allowed_tags['form']   = array(
+			'id'     => true,
+			'class'  => true,
+			'method' => true,
+			'action' => true,
+			'style'  => true,
+		);
+		$allowed_tags['input']  = array(
+			'id'       => true,
+			'type'     => true,
+			'name'     => true,
+			'value'    => true,
+			'class'    => true,
+			'required' => true,
+			'style'    => true,
+		);
+		$allowed_tags['label']  = array(
+			'for'   => true,
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		);
+		$allowed_tags['br']     = array();
+		$allowed_tags['button'] = array(
+			'id'    => true,
+			'class' => true,
+			'type'  => true,
+			'style' => true,
+		);
+		$allowed_tags['textarea'] = array(
+			'id'       => true,
+			'name'     => true,
+			'class'    => true,
+			'rows'     => true,
+			'cols'     => true,
+			'required' => true,
+			'style'    => true,
+		);
+		$allowed_tags['select'] = array(
+			'id'       => true,
+			'name'     => true,
+			'class'    => true,
+			'required' => true,
+			'style'    => true,
+		);
+		$allowed_tags['option'] = array(
+			'value'    => true,
+			'selected' => true,
+		);
+
+		// Add style attribute to various tags.
+		$tags_with_style = array( 'div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'img', 'i', 'blockquote', 'code', 'pre' );
+		foreach ( $tags_with_style as $tag ) {
+			if ( isset( $allowed_tags[ $tag ] ) ) {
+				$allowed_tags[ $tag ]['style'] = true;
+			}
+		}
+
+		return $allowed_tags;
+
+	}
+
 }

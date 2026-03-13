@@ -81,7 +81,7 @@ return function ( $post_id ) {
 
 	// HTML widget.
 	if ( isset( $_POST['udb_html'] ) ) {
-		update_post_meta( $post_id, 'udb_html', wp_kses_post( wp_unslash( $_POST['udb_html'] ) ) );
+		update_post_meta( $post_id, 'udb_html', wp_kses( wp_unslash( $_POST['udb_html'] ), \Udb\Helpers\Widget_Helper::get_allowed_tags() ) );
 	}
 
 	// User defined widget.
