@@ -183,64 +183,96 @@ class Widget_Helper {
 	/**
 	 * Get allowed HTML tags for widgets.
 	 *
-	 * Includes support for forms, labels, inputs, and custom styles.
+	 * Extends WordPress post context with form elements and style attributes.
 	 *
 	 * @return array The allowed HTML tags.
 	 */
-	public static function get_allowed_tags() {
+	public function get_allowed_tags() {
 
-		$allowed_tags           = wp_kses_allowed_html( 'post' );
-		$allowed_tags['form']   = array(
-			'id'     => true,
-			'class'  => true,
-			'method' => true,
-			'action' => true,
-			'style'  => true,
+		$allowed_tags = wp_kses_allowed_html( 'post' );
+
+		// Form tag (removed in WP 5.0.1, we need it for HTML widgets).
+		$allowed_tags['form'] = array(
+			'id'             => true,
+			'class'          => true,
+			'action'         => true,
+			'accept'         => true,
+			'accept-charset' => true,
+			'enctype'        => true,
+			'method'         => true,
+			'name'           => true,
+			'target'         => true,
+			'style'          => true,
 		);
-		$allowed_tags['input']  = array(
-			'id'       => true,
-			'type'     => true,
-			'name'     => true,
-			'value'    => true,
-			'class'    => true,
-			'required' => true,
-			'style'    => true,
+
+		// Input tag (not in post context).
+		$allowed_tags['input'] = array(
+			'id'          => true,
+			'type'        => true,
+			'name'        => true,
+			'value'       => true,
+			'class'       => true,
+			'placeholder' => true,
+			'required'    => true,
+			'disabled'    => true,
+			'readonly'    => true,
+			'maxlength'   => true,
+			'min'         => true,
+			'max'         => true,
+			'step'        => true,
+			'checked'     => true,
+			'style'       => true,
 		);
-		$allowed_tags['label']  = array(
-			'for'   => true,
-			'id'    => true,
-			'class' => true,
-			'style' => true,
-		);
-		$allowed_tags['br']     = array();
-		$allowed_tags['button'] = array(
-			'id'    => true,
-			'class' => true,
-			'type'  => true,
-			'style' => true,
-		);
-		$allowed_tags['textarea'] = array(
-			'id'       => true,
-			'name'     => true,
-			'class'    => true,
-			'rows'     => true,
-			'cols'     => true,
-			'required' => true,
-			'style'    => true,
-		);
+
+		// Select tag (not in post context).
 		$allowed_tags['select'] = array(
 			'id'       => true,
 			'name'     => true,
 			'class'    => true,
 			'required' => true,
+			'disabled' => true,
+			'multiple' => true,
 			'style'    => true,
 		);
+
+		// Option tag (not in post context).
 		$allowed_tags['option'] = array(
 			'value'    => true,
 			'selected' => true,
+			'disabled' => true,
 		);
 
-		// Add style attribute to various tags.
+		// Extend existing tags with additional attributes (merge, not replace).
+		$extend_attrs = array(
+			'label'    => array(
+				'id'    => true,
+				'class' => true,
+				'style' => true,
+			),
+			'button'   => array(
+				'id'    => true,
+				'class' => true,
+				'style' => true,
+			),
+			'textarea' => array(
+				'id'          => true,
+				'class'       => true,
+				'placeholder' => true,
+				'required'    => true,
+				'maxlength'   => true,
+				'style'       => true,
+			),
+		);
+
+		foreach ( $extend_attrs as $tag => $attrs ) {
+			if ( isset( $allowed_tags[ $tag ] ) ) {
+				$allowed_tags[ $tag ] = array_merge( $allowed_tags[ $tag ], $attrs );
+			} else {
+				$allowed_tags[ $tag ] = $attrs;
+			}
+		}
+
+		// Add style attribute to common tags.
 		$tags_with_style = array( 'div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'a', 'img', 'i', 'blockquote', 'code', 'pre' );
 		foreach ( $tags_with_style as $tag ) {
 			if ( isset( $allowed_tags[ $tag ] ) ) {
@@ -248,7 +280,7 @@ class Widget_Helper {
 			}
 		}
 
-		return $allowed_tags;
+		return apply_filters( 'udb_html_widget_allowed_tags', $allowed_tags );
 
 	}
 

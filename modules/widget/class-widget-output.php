@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use WP_Query;
 use Udb\Base\Base_Output;
+use Udb\Helpers\Widget_Helper;
 
 /**
  * Class to setup widgets output.
@@ -237,7 +238,8 @@ class Widget_Output extends Base_Output {
 			$output = apply_filters( 'udb_widget_output', $output, $output_args );
 
 			$output_callback = function () use ( $output ) {
-				echo wp_kses( $output, \Udb\Helpers\Widget_Helper::get_allowed_tags() );
+				$widget_helper = new Widget_Helper();
+				echo wp_kses( $output, $widget_helper->get_allowed_tags() );
 			};
 
 			// Add metabox.

@@ -77,8 +77,8 @@ $headline_color = isset( $settings['headline_color'] ) ? $settings['headline_col
  */
 [style*="text-align: center"] ul,
 [style*="text-align: center"] ol,
-[style*="text-align:centre"] ul,
-[style*="text-align:centre"] ol {
+[style*="text-align:center"] ul,
+[style*="text-align:center"] ol {
 	display: inline-block;
 	text-align: left;
 }
