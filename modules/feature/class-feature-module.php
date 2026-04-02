@@ -117,10 +117,8 @@ class Feature_Module extends Base_Module {
 	 */
 	public function handle_module_actions() {
 
-		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-
-		if ( ! wp_verify_nonce( $nonce, 'udb_module_nonce_action' ) ) {
-			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
+		if ( empty( $_POST ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'udb_module_nonce_action' ) ) {
+			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
 		}
 
 		$capability = apply_filters( 'udb_modules_capability', 'manage_options' );

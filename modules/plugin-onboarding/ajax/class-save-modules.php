@@ -63,11 +63,8 @@ class Save_Modules {
 			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ), 401 );
 		}
 
-		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-
-		// Check if nonce is incorrect.
-		if ( ! wp_verify_nonce( $nonce, 'udb_plugin_onboarding_save_modules_nonce' ) ) {
-			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ), 401 );
+		if ( empty( $_POST ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'udb_plugin_onboarding_save_modules_nonce' ) ) {
+			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ), 401 );
 		}
 
 		// At least login_customizer is selected :).

@@ -49,14 +49,13 @@ class Get_Menu {
 	 */
 	public function ajax() {
 
-		$nonce         = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+		if ( empty( $_POST ) || ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'udb_admin_menu_get_menu' ) ) {
+			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
+		}
+
 		$this->role    = isset( $_POST['role'] ) ? sanitize_text_field( wp_unslash( $_POST['role'] ) ) : '';
 		$this->by      = isset( $_POST['by'] ) ? sanitize_text_field( wp_unslash( $_POST['by'] ) ) : '';
 		$this->user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;
-
-		if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_menu' ) ) {
-			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
-		}
 
 		if ( ! $this->role && ! $this->user_id ) {
 			wp_send_json_error( __( 'User role or id must be specified', 'ultimate-dashboard' ) );

@@ -19,10 +19,8 @@ class Get_Users {
 	 */
 	public function ajax() {
 
-		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : '';
-
-		if ( ! wp_verify_nonce( $nonce, 'udb_admin_menu_get_users' ) ) {
-			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
+		if ( empty( $_GET ) || ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'udb_admin_menu_get_users' ) ) {
+			wp_send_json_error( __( 'Invalid nonce', 'ultimate-dashboard' ) );
 		}
 
 		$capability = apply_filters( 'udb_settings_capability', 'manage_options' );
