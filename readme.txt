@@ -104,7 +104,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 
 == Changelog ==
 = 3.8.16 | April 06, 2026 =
-* Fixed: Minor security issue
+* Minor tweaks & fixes
 = 3.8.15 | March 10, 2026 =
 * Fixed: Minor security issue
 * Fixed: Several UI inconsistencies
