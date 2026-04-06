@@ -466,6 +466,10 @@ class Setup {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
+		}
+
 		if ( empty( $_POST['dismiss'] ) ) {
 			wp_send_json_error( __( 'Invalid request', 'ultimate-dashboard' ) );
 		}
@@ -563,6 +567,10 @@ class Setup {
 
 		if ( ! wp_verify_nonce( $nonce, 'udb_dismiss_notice' ) ) {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
 		}
 
 		if ( empty( $_POST['dismiss'] ) ) {

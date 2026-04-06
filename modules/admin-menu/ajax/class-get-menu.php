@@ -58,6 +58,12 @@ class Get_Menu {
 			wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 		}
 
+		$capability = apply_filters( 'udb_settings_capability', 'manage_options' );
+
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
+		}
+
 		if ( ! $this->role && ! $this->user_id ) {
 			wp_send_json_error( __( 'User role or id must be specified', 'ultimate-dashboard' ) );
 		}
