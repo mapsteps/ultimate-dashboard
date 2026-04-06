@@ -1,6 +1,6 @@
 {
 	"name": "ultimate-dashboard",
-	"version": "3.7.9",
+	"version": "3.8.15",
 	"description": "Development tooling for Ultimate Dashboard",
 	"repository": {
 		"type": "git",
@@ -31,26 +31,22 @@
 		"tiny-slider": {
 			"global": "tns"
 		},
-		"dompurify": {
-			"global": "DOMPurify"
-		},
 		"udbLoginCustomizer": {
 			"global": "udbLoginCustomizer"
 		}
 	},
 	"devDependencies": {
-		"@types/codemirror": "^5.60.15",
-		"@types/jquery": "^3.5.32",
-		"@types/jqueryui": "^1.12.23",
-		"@types/lodash": "^4.17.15",
+		"@types/codemirror": "^5.60.17",
+		"@types/jquery": "^3.5.34",
+		"@types/jqueryui": "^1.12.24",
+		"@types/lodash": "^4.17.24",
 		"@types/select2": "^4.0.63",
-		"parcel": "^2.13.3",
-		"wordpress__customize-browser": "github:ultrafastcloud/wordpress__customize-browser"
+		"parcel": "^2.16.4",
+		"wordpress__customize-browser": "git+https://github.com/ultrafastcloud/wordpress__customize-browser.git"
 	},
 	"dependencies": {
-		"@wordpress/data": "^10.18.0",
-		"@wordpress/escape-html": "^3.18.0",
-		"dompurify": "^3.3.2",
+		"@wordpress/data": "^10.43.0",
+		"@wordpress/escape-html": "^3.43.0",
 		"tiny-slider": "github:usefulteam/tiny-slider"
 	},
 	"scripts": {
@@ -63,7 +59,11 @@
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
-			"@swc/core"
+			"@parcel/watcher",
+			"@swc/core",
+			"lmdb",
+			"msgpackr-extract",
+			"tiny-slider"
 		]
 	}
 }
