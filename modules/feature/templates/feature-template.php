@@ -99,7 +99,7 @@ return function () {
 
 							<div class="heatbox-content">
 								<p>
-									<?php echo esc_html( $feature['text'] ); ?>
+									<?php echo wp_kses_post( $feature['text'] ); ?>
 								</p>
 							</div>
 
