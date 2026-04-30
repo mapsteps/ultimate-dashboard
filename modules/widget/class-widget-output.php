@@ -263,7 +263,9 @@ class Widget_Output extends Base_Output {
 			remove_action( 'welcome_panel', 'wp_welcome_panel' );
 
 			foreach ( $default_widgets as $id => $widget ) {
-				remove_meta_box( $id, 'dashboard', $widget['context'] );
+				if ( false !== $widget ) {
+					remove_meta_box( $id, 'dashboard', $widget['context'] );
+				}
 			}
 		} else {
 
@@ -272,7 +274,9 @@ class Widget_Output extends Base_Output {
 			}
 
 			foreach ( $saved_widgets as $id => $widget ) {
-				remove_meta_box( $id, 'dashboard', $widget['context'] );
+				if ( false !== $widget ) {
+					remove_meta_box( $id, 'dashboard', $widget['context'] );
+				}
 			}
 		}
 

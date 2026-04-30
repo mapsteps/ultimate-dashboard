@@ -77,9 +77,10 @@ class Widget_Helper {
 						$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
 						$widget['context']        = $context;
 
+						$flat_widgets[ $id ] = $widget;
+
 					}
 
-					$flat_widgets[ $id ] = $widget;
 				}
 			}
 		}
