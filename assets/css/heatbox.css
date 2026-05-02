@@ -191,6 +191,7 @@
 }
 
 .heatbox h2 {
+	position: relative;
 	border-bottom: 1px solid #ddd;
 	margin: 0;
 	padding: 20px;
@@ -306,8 +307,7 @@
 	margin-top: 10px;
 }
 
-.heatbox .setting-fields {
-}
+
 
 .heatbox .setting-fields .setting-field {
 	margin-bottom: 7px;
@@ -634,6 +634,73 @@
 	opacity: 0.7;
 }
 
+/* Status indicator */
+.heatbox-status-indicator {
+	display: inline-flex;
+	align-items: center;
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 14px;
+	line-height: 1;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.heatbox-status-indicator.is-loading {
+	opacity: 1;
+	visibility: visible;
+}
+
+.heatbox-status-indicator.is-loading::after {
+	content: "";
+	display: block;
+	width: 1em;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #888 #888 !important;
+	border-radius: 290486px;
+	-webkit-animation: heatboxLoadingSpinner 0.5s infinite linear;
+	animation: heatboxLoadingSpinner 0.5s infinite linear;
+}
+
+.heatbox-status-indicator.is-done {
+	opacity: 1;
+	visibility: visible;
+	-webkit-animation: heatboxFadeOut 1.5s ease-in-out forwards;
+	animation: heatboxFadeOut 1.5s ease-in-out forwards;
+}
+
+@-webkit-keyframes heatboxFadeOut {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes heatboxFadeOut {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
 /* RTL */
 .rtl .heatbox-header .logo-container img {
 	float: left;
@@ -647,4 +714,9 @@
 .rtl .heatbox .label .indicator {
 	left: auto;
 	right: -30px;
+}
+
+.rtl .heatbox-status-indicator {
+	right: auto;
+	left: 20px;
 }

@@ -73,3 +73,11 @@
 .feature-status .status-code .inactive {
 	color: #aaa;
 }
+
+.feature-save-error {
+	padding: 10px 20px;
+	font-size: 13px;
+	color: #8a1f1f;
+	background-color: #fcf0f0;
+	border-top: 1px solid #f0d4d4;
+}
