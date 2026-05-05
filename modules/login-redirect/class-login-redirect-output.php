@@ -292,7 +292,7 @@ class Login_Redirect_Output extends Base_Output {
 
 		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
 		$request      = wp_parse_url( rawurldecode( $request_uri ) );
-		$request_path = $request['path'];
+		$request_path = isset( $request['path'] ) ? $request['path'] : '';
 
 		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ) : '';
 		$add_query_string = $query_string ? '?' . $query_string : '';
