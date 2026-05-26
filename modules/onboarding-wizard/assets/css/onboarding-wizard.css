@@ -304,7 +304,7 @@
 
 .onboarding-wizard-skip-button {
 	font-size: 16px;
-	color: #0073aa;
+	color: var(--wp-admin-theme-color, #3858e9);
 	text-decoration: none;
 	outline: none;
 	border: none;
@@ -320,7 +320,7 @@
 .onboarding-wizard-skip-button:visited {
 	outline: none;
 	border: none;
-	color: #0073aa;
+	color: var(--wp-admin-theme-color, #3858e9);
 }
 
 .udb-onboarding-wizard-page .heatbox-footer.skip-onboarding-wizard,
@@ -335,7 +335,7 @@
 .udb-onboarding-wizard-page
 	.heatbox-footer.onboarding-wizard-explore-settings
 	a {
-	color: #0073aa;
+	color: var(--wp-admin-theme-color, #3858e9);
 	text-decoration: none;
 	font-size: 16px;
 	cursor: pointer;

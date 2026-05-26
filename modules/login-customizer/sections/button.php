@@ -153,7 +153,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => ( $has_accent_color ? $accent_color : '#007cba' ),
+		'default'           => ( $has_accent_color ? $accent_color : '#3858e9' ),
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)
@@ -176,7 +176,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => ( $has_accent_color ? $accent_color : '#007cba' ),
+		'default'           => ( $has_accent_color ? $accent_color : '#3858e9' ),
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)

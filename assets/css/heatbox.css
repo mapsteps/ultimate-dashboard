@@ -37,7 +37,7 @@
 }
 
 .heatbox-tab-nav li.active a {
-	color: #0073aa;
+	color: var(--wp-admin-theme-color, #3858e9);
 }
 
 /* Divider */
@@ -117,7 +117,7 @@
 }
 
 .heatbox-header .tab-navigation li.active a {
-	color: #0073aa;
+	color: var(--wp-admin-theme-color, #3858e9);
 }
 
 /* Title */
@@ -365,12 +365,12 @@
 }
 
 .heatbox .label input:checked ~ .indicator {
-	background-color: #007cba;
+	background-color: var(--wp-admin-theme-color, #3858e9);
 }
 
 .heatbox .label:hover input:not([disabled]):checked ~ .indicator,
 .heatbox .label input:checked:focus ~ .indicator {
-	background-color: #00669b;
+	background-color: var(--wp-admin-theme-color-darker-10, #2c448f);
 }
 
 .heatbox .label input:disabled ~ .indicator {

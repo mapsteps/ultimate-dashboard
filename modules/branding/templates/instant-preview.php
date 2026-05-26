@@ -11,7 +11,7 @@ use Udb\Helpers\Color_Helper;
 
 $colors = array(
 	'menu_item_color'        => udb_is_pro_active() ? '#ffffff' : '#f0f0f1',
-	'accent_color'           => udb_is_pro_active() ? '#0073AA' : '#2271b1',
+	'accent_color'           => '#3858e9',
 	'admin_bar_bg_color'     => udb_is_pro_active() ? '#232931' : '#1d2327',
 	'admin_menu_bg_color'    => udb_is_pro_active() ? '#2E3640' : '#1d2327',
 	'admin_submenu_bg_color' => udb_is_pro_active() ? '#38404B' : '#2c3338',

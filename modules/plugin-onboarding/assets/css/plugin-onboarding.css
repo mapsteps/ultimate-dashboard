@@ -309,8 +309,8 @@
 }
 
 .onboarding-heatbox .udb-skip-discount.is-loading::after {
-	border: 2px solid #135e96;
-	border-color: transparent transparent #2271b1 #2271b1 !important;
+	border: 2px solid var(--wp-admin-theme-color-darker-10, #2c448f);
+	border-color: transparent transparent var(--wp-admin-theme-color, #3858e9) var(--wp-admin-theme-color, #3858e9) !important;
 }
 
 .udb-skip-discount.is-loading a {
