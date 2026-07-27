@@ -46,15 +46,19 @@ class Content_Helper {
 			'bmp'          => 'image/bmp',
 			'tif|tiff'     => 'image/tiff',
 			'ico'          => 'image/x-icon',
+			'webp'         => 'image/webp',
+			'avif'         => 'image/avif',
 		);
 
-		// Allowed svg mime type in version 1.2.2.
-		$allowed_mime   = get_allowed_mime_types();
-		$svg_mime_check = isset( $allowed_mime['svg'] );
+		// Merge image mime types allowed on the site (e.g. svg, webp, avif).
+		$allowed_mime = get_allowed_mime_types();
 
-		if ( $svg_mime_check ) {
-			$allow_mime = array( 'svg' => 'image/svg+xml' );
-			$mimes      = array_merge( $mimes, $allow_mime );
+		if ( is_array( $allowed_mime ) ) {
+			foreach ( $allowed_mime as $ext => $mime ) {
+				if ( 0 === strpos( $mime, 'image/' ) ) {
+					$mimes[ $ext ] = $mime;
+				}
+			}
 		}
 
 		// Return an array with file extension and mime_type.
