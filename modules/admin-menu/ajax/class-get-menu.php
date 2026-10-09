@@ -687,6 +687,87 @@ class Get_Menu {
 	}
 
 	/**
+	 * Normalize a submenu URL for comparison.
+	 *
+	 * Some plugins register submenu items whose URL is rebuilt on every request
+	 * (e.g. Elementor's Theme Builder appends return_to=<current url> and a
+	 * #fragment). Compare without volatile params and URL-encoding differences.
+	 *
+	 * @param string $url The URL to normalize.
+	 * @return string The normalized URL.
+	 */
+	public function normalize_submenu_url( $url ) {
+
+		if ( empty( $url ) || ! is_string( $url ) ) {
+			return '';
+		}
+
+		$url = str_replace( '&amp;', '&', $url );
+
+		$admin_url = admin_url();
+
+		if ( 0 === strpos( $url, $admin_url ) ) {
+			$url = substr( $url, strlen( $admin_url ) );
+		}
+
+		$fragment = '';
+		$hash_pos = strpos( $url, '#' );
+
+		if ( false !== $hash_pos ) {
+			$fragment = substr( $url, $hash_pos );
+			$url      = substr( $url, 0, $hash_pos );
+		}
+
+		$qpos = strpos( $url, '?' );
+
+		if ( false !== $qpos ) {
+			$base  = substr( $url, 0, $qpos );
+			$query = substr( $url, $qpos + 1 );
+
+			$params = array();
+			parse_str( $query, $params );
+
+			foreach ( array( 'return_to', 'return', '_wpnonce', 'ver' ) as $volatile_key ) {
+				unset( $params[ $volatile_key ] );
+			}
+
+			$url = $base . ( $params ? '?' . http_build_query( $params ) : '' );
+		}
+
+		return $url . $fragment;
+
+	}
+
+	/**
+	 * Find a submenu item index by its url using normalized comparison.
+	 *
+	 * @param array  $submenu_items The submenu items.
+	 * @param string $url The url to find.
+	 * @return int|false The matched index or false.
+	 */
+	public function find_submenu_index_by_url( $submenu_items, $url ) {
+
+		$normalized_url = $this->normalize_submenu_url( $url );
+
+		if ( '' === $normalized_url ) {
+			return false;
+		}
+
+		foreach ( $submenu_items as $submenu_item_index => $submenu_item ) {
+			if ( ! is_array( $submenu_item ) || ! isset( $submenu_item['url'] ) ) {
+				continue;
+			}
+
+			if ( $this->normalize_submenu_url( $submenu_item['url'] ) === $normalized_url ) {
+				return $submenu_item_index;
+			}
+		}
+
+		return false;
+
+	}
+
+	/**
 	 * Parse response with custom menu.
 	 *
 	 * @param array $formatted_default_menu The well formatted default menu (with their submenu) array.
@@ -767,6 +848,10 @@ class Get_Menu {
 							$default_submenu_index = $array_helper->find_assoc_array_index_by_value( $formatted_default_submenu, 'url', $custom_submenu_item['url_default'] );
 
 							if ( false === $default_submenu_index ) {
+								$default_submenu_index = $this->find_submenu_index_by_url( $formatted_default_submenu, $custom_submenu_item['url_default'] );
+							}
+
+							if ( false === $default_submenu_index ) {
 								// If $default_submenu_index is false and the url_default is using & sign instead of &amp; code.
 								if ( false !== stripos( $custom_submenu_item['url_default'], '&' ) && false === stripos( $custom_submenu_item['url_default'], '&amp;' ) ) {
 									/**
@@ -831,6 +916,14 @@ class Get_Menu {
 									}
 
 									if ( $looped_formatted_submenu_item['url'] === $submenu_url_default ) {
+										$matched_default_submenu = $looped_formatted_submenu_item;
+
+										$matched_submenu_item_index_under_its_parent = $looped_formatted_submenu_item_index;
+
+										break;
+									}
+
+									if ( '' !== $submenu_url_default && $this->normalize_submenu_url( $looped_formatted_submenu_item['url'] ) === $this->normalize_submenu_url( $submenu_url_default ) ) {
 										$matched_default_submenu = $looped_formatted_submenu_item;
 
 										$matched_submenu_item_index_under_its_parent = $looped_formatted_submenu_item_index;
