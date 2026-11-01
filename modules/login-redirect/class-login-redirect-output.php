@@ -262,10 +262,6 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function protect_wp_admin() {
 
-		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_POST['post_password'] ) ) {
-			return;
-		}
-
 		global $pagenow;
 
 		$uri          = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
@@ -284,7 +280,12 @@ class Login_Redirect_Output extends Base_Output {
 	 */
 	public function protect_wp_login() {
 
-		if ( isset( $_GET['action'] ) && 'postpass' === $_GET['action'] && isset( $_POST['post_password'] ) ) {
+		/**
+		 * Let wp-login.php handle the password protected post form (action=postpass).
+		 * Check $_REQUEST (not $_GET) because that's what wp-login.php uses to determine the action,
+		 * and a POST "action" field would override the one in the query string.
+		 */
+		if ( isset( $_REQUEST['action'] ) && 'postpass' === $_REQUEST['action'] && isset( $_POST['post_password'] ) ) {
 			return;
 		}
 
