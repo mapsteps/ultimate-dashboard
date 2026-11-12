@@ -291,6 +291,16 @@ class Setting_Module extends Base_Module {
 			$output['custom_css'] = $content_helper->sanitize_css( $output['custom_css'] );
 		}
 
+		foreach ( array( 'dashboard_headline', 'howdy_text' ) as $text_field ) {
+			if ( isset( $output[ $text_field ] ) ) {
+				$output[ $text_field ] = sanitize_text_field( $output[ $text_field ] );
+			}
+		}
+
+		if ( isset( $output['welcome_panel_content'] ) ) {
+			$output['welcome_panel_content'] = wp_kses_post( $output['welcome_panel_content'] );
+		}
+
 		if ( ! empty( $output['welcome_panel_is_default'] ) ) {
 			unset( $output['welcome_panel_content'] );
 			unset( $output['welcome_panel_is_default'] );

@@ -23,7 +23,7 @@ return function () {
 		<?php
 		foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
 			?>
-			<code><?php echo esc_attr( $placeholder_tag ); ?></code><?php echo ( $total_tags - 1 === $tag_index ? '' : ',' ); ?>
+			<code><?php echo esc_html( $placeholder_tag ); ?></code><?php echo ( $total_tags - 1 === $tag_index ? '' : ',' ); ?>
 			<?php
 		}
 		?>
@@ -57,7 +57,7 @@ return function () {
 	global $compress_css;
 
 	$wp_styles = wp_styles();
-	$dir       = $wp_styles->text_direction === 'ltr' ? '' : '-rtl';
+	$dir       = 'ltr' === $wp_styles->text_direction ? '' : '-rtl';
 	$ver       = $wp_styles->default_version;
 	$min       = ! defined( 'SCRIPT_DEBUG' ) && $compress_css ? '.min' : '';
 

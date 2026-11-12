@@ -15,8 +15,8 @@ return function () {
 	?>
 
 	<textarea id="udb-custom-admin-css"
-			  class="widefat textarea udb-custom-css"
-			  name="udb_settings[custom_admin_css]"><?php echo esc_textarea( $custom_css ); ?></textarea>
+				class="widefat textarea udb-custom-css"
+				name="udb_settings[custom_admin_css]"><?php echo esc_textarea( $custom_css ); ?></textarea>
 
 	<?php
 };
