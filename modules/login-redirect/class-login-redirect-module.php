@@ -10,6 +10,7 @@ namespace Udb\LoginRedirect;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
+use Udb\Helpers\Login_Url_Helper;
 
 /**
  * Class to setup login url module.
@@ -154,12 +155,31 @@ class Login_Redirect_Module extends Base_Module {
 		 */
 		$sanitized = $input;
 
-		if ( isset( $input['login_url_slug'] ) ) {
-			$sanitized['login_url_slug'] = sanitize_text_field( $input['login_url_slug'] );
-		}
+		$saved      = get_option( 'udb_login_redirect', array() );
+		$saved      = is_array( $saved ) ? $saved : array();
+		$url_helper = new Login_Url_Helper();
 
-		if ( isset( $input['wp_admin_redirect_slug'] ) ) {
-			$sanitized['wp_admin_redirect_slug'] = sanitize_text_field( $input['wp_admin_redirect_slug'] );
+		// A login URL or wp-admin redirect on one of WordPress' own paths (or an existing page) breaks the site: keep the previous value.
+		$slug_checks = array(
+			'login_url_slug'         => 'validate_login_slug',
+			'wp_admin_redirect_slug' => 'validate_redirect_slug',
+		);
+
+		foreach ( $slug_checks as $key => $check ) {
+			if ( ! isset( $input[ $key ] ) ) {
+				continue;
+			}
+
+			$slug   = sanitize_text_field( $input[ $key ] );
+			$result = $url_helper->$check( $slug );
+
+			if ( is_wp_error( $result ) ) {
+				add_settings_error( 'udb_login_redirect', $result->get_error_code(), $result->get_error_message() );
+
+				$slug = isset( $saved[ $key ] ) ? $saved[ $key ] : '';
+			}
+
+			$sanitized[ $key ] = $slug;
 		}
 
 		if ( isset( $input['login_redirect_slugs'] ) && is_array( $input['login_redirect_slugs'] ) ) {

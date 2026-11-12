@@ -42,6 +42,8 @@ return function () {
 
 				<h1 style="display: none;"></h1>
 
+				<?php settings_errors( 'udb_login_redirect' ); ?>
+
 				<?php settings_fields( 'udb-login-redirect-group' ); ?>
 
 				<div class="heatbox">

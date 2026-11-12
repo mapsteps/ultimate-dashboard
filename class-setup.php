@@ -311,9 +311,9 @@ class Setup {
 			return;
 		}
 
-		require_once __DIR__ . '/modules/plugin-onboarding/class-plugin-onboarding-module.php';
-		$module = new PluginOnboarding\Plugin_Onboarding_Module();
-		$module->setup( $referrer );
+		require_once __DIR__ . '/modules/onboarding/class-onboarding-module.php';
+		$module = new Onboarding\Onboarding_Module();
+		$module->setup( 'migration', $referrer );
 
 	}
 
@@ -335,9 +335,9 @@ class Setup {
 			add_action( 'current_screen', array( $this, 'redirect_to_onboarding_wizard_page' ), 20 );
 		}
 
-		require_once __DIR__ . '/modules/onboarding-wizard/class-onboarding-wizard-module.php';
-		$module = new OnboardingWizard\Onboarding_Wizard_Module();
-		$module->setup();
+		require_once __DIR__ . '/modules/onboarding/class-onboarding-module.php';
+		$module = new Onboarding\Onboarding_Module();
+		$module->setup( 'wizard' );
 
 	}
 

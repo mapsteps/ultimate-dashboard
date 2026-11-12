@@ -18,5 +18,3 @@ tsconfig.json
 types.ts
 vendor
 modules/login-customizer/src
-modules/onboarding-wizard/src
-modules/plugin-onboarding/src

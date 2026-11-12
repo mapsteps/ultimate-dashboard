@@ -35,6 +35,7 @@ require __DIR__ . '/helpers/class-content-helper.php';
 require __DIR__ . '/helpers/class-user-helper.php';
 require __DIR__ . '/helpers/class-array-helper.php';
 require __DIR__ . '/helpers/class-admin-bar-helper.php';
+require __DIR__ . '/helpers/class-login-url-helper.php';
 
 // Base module.
 require __DIR__ . '/modules/base/class-base-module.php';

@@ -76,7 +76,7 @@
 	margin-bottom: 17px;
 }
 
-.udb-onboarding-wizard-slide .udb-modules > li:not(.has-select2) {
+.udb-onboarding-wizard-slide .udb-modules > li:not(.has-select2):not(.udb-divider) {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -200,9 +200,9 @@
 	background: #096484;
 }
 
-/* Hide the dot button for finished slide */
-.udb-onboarding-wizard-page .udb-dots .tns-nav [data-nav="2"] {
-	/* display: none; */
+/* Steps that aren't part of the current run (login URL when Login Redirect is off, discount, finish). */
+.udb-onboarding-wizard-page .udb-dots .tns-nav > .is-hidden {
+	display: none;
 }
 
 .udb-onboarding-wizard-slide .udb-subscription-form {
@@ -303,10 +303,11 @@
 }
 
 .onboarding-wizard-skip-button {
+	padding: 0;
 	font-size: 16px;
 	color: var(--wp-admin-theme-color, #3858e9);
 	text-decoration: none;
-	outline: none;
+	background: none;
 	border: none;
 }
 
@@ -315,11 +316,7 @@
 	cursor: pointer;
 }
 
-.onboarding-wizard-skip-button:focus,
-.onboarding-wizard-skip-button:active,
-.onboarding-wizard-skip-button:visited {
-	outline: none;
-	border: none;
+.onboarding-wizard-skip-button:active {
 	color: var(--wp-admin-theme-color, #3858e9);
 }
 
