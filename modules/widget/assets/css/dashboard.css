@@ -70,7 +70,7 @@
 	z-index: 2;
 	width: 20px;
 	height: 20px;
-	color: #1d2327; /* like the title; the "Headline Color" setting changes both */
+	color: #787c82; /* a softer gray than the title; the "Headline Color" setting colors it like the title */
 	cursor: help;
 }
 
