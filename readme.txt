@@ -1,10 +1,10 @@
 === Ultimate Dashboard – Custom WordPress Dashboard ===
 Contributors: davidvongries
 Tags: custom dashboard, dashboard widgets, custom login, white label, login url
-Requires at least: 4.6
+Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.8.18
+Stable tag: 3.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,18 +118,20 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 
 == Changelog ==
 
-= x.x | Not released yet =
-* New: Refreshed design on every Ultimate Dashboard screen, also on phones
+= 3.9 | November 13, 2026 =
+* New: Refreshed design on every Ultimate Dashboard screen, incl. the widget & admin page lists and edit screens, also on phones
+* New: Icon picker for icon widgets, admin pages & the menu editors
 * New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
 * Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
 * Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
 * Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
-* Tweak: Requires PHP 7.4
+* Tweak: Requires PHP 7.4 & WordPress 5.0
 * Fixed: Several security issues
 * Fixed: Login Customizer preview not loading
 * Fixed: Export & import (data saved twice, import running twice)
 * Fixed: Welcome panel changes made in the Text tab were lost
 * Fixed: "Hide admin bar" roles were reset when saving the settings
+* Fixed: Lists and images in admin pages made with the default editor
 = 3.8.18 | October 10, 2026 =
 * Tested up to WordPress 7.1
 * Tweak: Added webp & avif support
