@@ -70,19 +70,14 @@
 	z-index: 2;
 	width: 20px;
 	height: 20px;
-	color: #a7aaad;
+	color: #1d2327; /* like the title; the "Headline Color" setting changes both */
 	cursor: help;
-	transition: color 0.2s ease-in-out;
 }
 
 .udb-info::before {
 	content: "\f223"; /* dashicons-editor-help */
 	font: normal 20px/1 dashicons;
 	-webkit-font-smoothing: antialiased;
-}
-
-.udb-info:hover {
-	color: #50575e;
 }
 
 .udb-tooltip {

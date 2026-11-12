@@ -35,7 +35,8 @@ $headline_color = isset( $settings['headline_color'] ) ? $settings['headline_col
 
 <?php if ( $headline_color && '#23282d' !== $headline_color ) : ?>
 
-	[id*="ms-udb"] .hndle {
+	[id*="ms-udb"] .hndle,
+	[id*="ms-udb"] .udb-info {
 		color: <?php echo esc_attr( $headline_color ); ?>;
 	}
 
