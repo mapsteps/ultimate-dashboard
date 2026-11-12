@@ -10,6 +10,8 @@
  * @package Ultimate_Dashboard
  */
 
+// phpcs:disable WordPress.WP.AlternativeFunctions, WordPress.WP.GlobalVariablesOverride, WordPress.Security.EscapeOutput.OutputNotEscaped -- Command line tool.
+
 if ( 'cli' !== PHP_SAPI ) {
 	exit( 1 );
 }

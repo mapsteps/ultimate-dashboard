@@ -89,7 +89,7 @@ class Setup {
 		 * So in order to make them executed, the PRO version has to run first.
 		 */
 
-		register_activation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'on_plugin_activation' ), 20 );
+		register_activation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'on_plugin_activation' ) );
 
 		add_action( 'plugins_loaded', array( $this, 'load_modules' ), 20 );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_onboarding_module' ), 20 );
@@ -105,7 +105,7 @@ class Setup {
 		add_action( 'wp_ajax_udb_dismiss_review_notice', array( $this, 'dismiss_review_notice' ) );
 		add_action( 'wp_ajax_udb_dismiss_bfcm_notice', array( $this, 'dismiss_bfcm_notice' ) );
 
-		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ), 20 );
+		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ) );
 
 		$content_helper = new Content_Helper();
 		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
@@ -166,7 +166,7 @@ class Setup {
 
 		$screen = get_current_screen();
 
-		if ( ! in_array( $screen->id, $screens, true ) ) {
+		if ( ! $screen || ! in_array( $screen->id, $screens, true ) ) {
 			return $classes;
 		}
 
@@ -226,7 +226,7 @@ class Setup {
 
 		$modules['Udb\\Widget\\Widget_Module'] = __DIR__ . '/modules/widget/class-widget-module.php';
 
-		if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION >= '3.1' ) {
+		if ( ! defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) || version_compare( ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION, '3.1', '>=' ) ) {
 			$modules['Udb\\Feature\\Feature_Module'] = __DIR__ . '/modules/feature/class-feature-module.php';
 		}
 
@@ -380,7 +380,8 @@ class Setup {
 
 		global $submenu;
 
-		$submenu['edit.php?post_type=udb_widgets'][] = array( 'Upgrade to PRO', 'manage_options', 'https://ultimatedashboard.io/pro/' );
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Adds an external link to the menu, which add_submenu_page() can't do.
+		$submenu['edit.php?post_type=udb_widgets'][] = array( __( 'Upgrade to PRO', 'ultimate-dashboard' ), 'manage_options', 'https://ultimatedashboard.io/pro/' );
 
 	}
 
@@ -713,7 +714,7 @@ class Setup {
 			delete_option( 'udb_onboarding_wizard_completed' );
 
 			if ( $restore_removal_option && defined( 'ULTIMATE_DASHBOARD_PRO_PLUGIN_VERSION' ) ) {
-				update_option( $site_id, 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
+				update_option( 'udb_settings', array( 'remove-on-uninstall' => 1 ) );
 			}
 		}
 

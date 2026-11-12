@@ -90,7 +90,7 @@ class Backwards_Compatibility {
 	public function meta_compatibility() {
 
 		// Don't run checking on heartbeat request.
-		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) {
+		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Only compared, nothing is processed.
 			return;
 		}
 
