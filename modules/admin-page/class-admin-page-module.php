@@ -274,7 +274,7 @@ class Admin_Page_Module extends Base_Module {
 
 		if ( $this->screen()->is_admin_page_list() ) {
 			$header_title = get_post_type_object( 'udb_admin_page' )->labels->name;
-		} elseif ( ( $this->screen()->is_new_admin_page() || $this->screen()->is_edit_admin_page() ) && $screen && ! $screen->is_block_editor() ) {
+		} elseif ( ( $this->screen()->is_new_admin_page() || $this->screen()->is_edit_admin_page() ) && $screen && ! ( method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) ) {
 			// WordPress' own screen title: Add Admin Page, or Edit Admin Page.
 			$header_title = $title;
 		} else {

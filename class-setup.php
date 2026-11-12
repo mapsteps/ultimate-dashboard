@@ -180,7 +180,8 @@ class Setup {
 		$screen = get_current_screen();
 
 		// WordPress' own edit screens (new and edit), with our header above them. Not the block editor (PRO's admin pages).
-		$edit_screens = $screen && ! $screen->is_block_editor() ? array( 'udb_widgets', 'udb_admin_page' ) : array();
+		$is_block_editor = $screen && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor(); // WordPress 5.0+.
+		$edit_screens    = $screen && ! $is_block_editor ? array( 'udb_widgets', 'udb_admin_page' ) : array();
 
 		if ( ! $screen || ! in_array( $screen->id, array_merge( $screens, $list_screens, $edit_screens ), true ) ) {
 			return $classes;
