@@ -118,6 +118,18 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 
 == Changelog ==
 
+= x.x | Not released yet =
+* New: Refreshed design on every Ultimate Dashboard screen, also on phones
+* New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
+* Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
+* Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
+* Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
+* Tweak: Requires PHP 7.4
+* Fixed: Several security issues
+* Fixed: Login Customizer preview not loading
+* Fixed: Export & import (data saved twice, import running twice)
+* Fixed: Welcome panel changes made in the Text tab were lost
+* Fixed: "Hide admin bar" roles were reset when saving the settings
 = 3.8.18 | October 10, 2026 =
 * Tested up to WordPress 7.1
 * Tweak: Added webp & avif support
