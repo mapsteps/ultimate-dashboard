@@ -570,7 +570,6 @@
 
 		if (!isSubmenu) {
 			setupItemChanges(listArea);
-			$(listArea).find(".dashicons-picker").dashiconsPicker();
 		}
 	}
 
@@ -678,10 +677,10 @@
 
 					let iconOutput = "";
 
-					if (this.dataset.name === "dashicon") {
+					if (this.dataset.name === "dashicon" || this.dataset.name === "menu_icon") {
 						iconOutput =
 							'<i class="dashicons ' +
-							wp.escapeHtml.escapeEditableHTML(this.value) +
+							wp.escapeHtml.escapeEditableHTML(this.value || this.dataset.default || "") +
 							'"></i>';
 					} else if (this.dataset.name === "icon_svg") {
 						const maybeEncodedSvg = this.value.replace(

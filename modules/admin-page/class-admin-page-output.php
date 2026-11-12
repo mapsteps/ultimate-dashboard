@@ -224,11 +224,10 @@ class Admin_Page_Output extends Base_Output {
 		$menu_order  = $post->menu_order;
 		$icon_class  = $post->icon_class;
 
-		if ( false !== stripos( $icon_class, 'dashicons ' ) ) {
-			$menu_icon = str_ireplace( 'dashicons ', '', $icon_class );
-		} else {
-			$menu_icon = 'font-awesome';
-		}
+		$is_font_awesome = false === stripos( $icon_class, 'dashicons ' );
+
+		// Font Awesome icons are added with CSS (add_menu_icon()). "none" keeps WordPress from printing an image for them.
+		$menu_icon = $is_font_awesome ? 'none' : str_ireplace( 'dashicons ', '', $icon_class );
 
 		$screen_id = 'udb_page_' . $menu_slug;
 
@@ -245,7 +244,7 @@ class Admin_Page_Output extends Base_Output {
 				$menu_order
 			);
 
-			if ( 'font-awesome' === $menu_icon ) {
+			if ( $is_font_awesome ) {
 				add_action(
 					'admin_head',
 					function () use ( $menu_slug, $icon_class ) {

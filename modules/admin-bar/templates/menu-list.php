@@ -127,11 +127,13 @@ ob_start();
 						-->
 
 						<div class="field {menu_icon_field_is_hidden}">
-							<label for="menu_icon_{default_menu_id}" class="label udb-menu-builder--label">
+							<label for="menu_icon_button_{default_menu_id}" class="label udb-menu-builder--label">
 								<?php esc_html_e( 'Menu Icon', 'ultimate-dashboard' ); ?>
 							</label>
-							<div class="control">
-								<input type="text" class="udb-menu-builder--text-field udb-menu-builder--icon-field dashicons-picker" data-width="100%" name="menu_icon_{default_menu_id}" id="menu_icon_{default_menu_id}" value="{menu_icon}" placeholder="<?php esc_attr_e( 'Choose an icon', 'ultimate-dashboard' ); ?>" data-name="menu_icon" {menu_icon_is_disabled} />
+							<div class="udb-icon-field" data-icon-set="dashicons" data-value="name" data-sync>
+								<button type="button" class="icon-picker" id="menu_icon_button_{default_menu_id}" aria-label="<?php esc_attr_e( 'Change icon', 'ultimate-dashboard' ); ?>" {menu_icon_is_disabled}><i aria-hidden="true"></i></button>
+								<input type="hidden" class="udb-menu-builder--icon-field" name="menu_icon_{default_menu_id}" id="menu_icon_{default_menu_id}" value="{menu_icon}" data-name="menu_icon" {menu_icon_is_disabled}>
+								<button type="button" class="button-link icon-picker-clear"><?php esc_html_e( 'Remove icon', 'ultimate-dashboard' ); ?></button>
 							</div>
 						</div>
 

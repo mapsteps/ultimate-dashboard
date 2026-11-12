@@ -20,7 +20,8 @@ return function ( $module ) {
 		// Select2.
 		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
 
-		// Dashicons picker.
+		// Icon picker. The old Dashicons picker stays loaded: PRO's scripts depend on it.
+		wp_enqueue_script( 'icon-picker' );
 		wp_enqueue_script( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/dashicons-picker.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// Template tags.

@@ -11,6 +11,12 @@
  * Picking an icon sets the hidden input (and fires "change" on it) and the button's icon.
  * The icon lists are loaded when a picker is opened the first time.
  *
+ * Options on .udb-icon-field (used by the admin menu & admin bar editors):
+ * - data-icon-set="dashicons": only offer Dashicons.
+ * - data-value="name": store the short name ("dashicons-menu") instead of the classes.
+ * - data-sync: the button's icon is set from the input (value, or its data-default), also for
+ *   fields added later by a script. A .icon-picker-clear button inside empties the input.
+ *
  * Used global object: udbIconPicker { urls, labels }.
  */
 (function () {
@@ -65,6 +71,59 @@
 	}
 
 	/**
+	 * The value to store for an icon.
+	 *
+	 * @param {HTMLElement|null} field The .udb-icon-field.
+	 * @param {string} icon The icon classes, e.g. "dashicons dashicons-menu".
+	 * @returns {string}
+	 */
+	function toValue(field, icon) {
+		return field && "name" === field.dataset.value ? icon.split(" ").pop() : icon;
+	}
+
+	/**
+	 * The icon classes for a stored value.
+	 *
+	 * @param {HTMLElement|null} field The .udb-icon-field.
+	 * @param {string} value The stored value.
+	 * @returns {string}
+	 */
+	function toClasses(field, value) {
+		if (!value || !field || "name" !== field.dataset.value) return value;
+
+		return value.split("-")[0] + " " + value;
+	}
+
+	/**
+	 * Show the input's icon on the button (and the clear button only when there's something to clear).
+	 *
+	 * @param {HTMLElement} field The .udb-icon-field.
+	 */
+	function sync(field) {
+		const input = field.querySelector('input[type="hidden"]');
+		const preview = field.querySelector(".icon-picker i");
+		const clear = field.querySelector(".icon-picker-clear");
+
+		if (!input) return;
+
+		const value = input.value || input.dataset.default || "";
+
+		if (preview) preview.className = toClasses(field, value);
+		field.classList.toggle("is-empty", !value);
+		if (clear) clear.hidden = !input.value || input.disabled;
+	}
+
+	/**
+	 * Sync the fields inside an element (and the element itself).
+	 *
+	 * @param {Element} root The element.
+	 */
+	function syncWithin(root) {
+		if (root.matches(".udb-icon-field[data-sync]")) sync(root);
+		root.querySelectorAll(".udb-icon-field[data-sync]").forEach(sync);
+	}
+
+	/**
 	 * Close every open picker.
 	 */
 	function close() {
@@ -106,6 +165,7 @@
 	function open(button) {
 		close();
 
+		const field = button.closest(".udb-icon-field");
 		const input = button.parentNode.querySelector('input[type="hidden"]');
 		const popup = element("div", "icon-picker-container");
 		const control = element("div", "icon-picker-control");
@@ -131,11 +191,17 @@
 			function () {
 				if (!popup.isConnected) return;
 
-				const current = input ? input.value : "";
+				const current = input ? input.value || input.dataset.default || "" : "";
+				const set = field ? field.dataset.iconSet : "";
 
 				icons.forEach(function (icon) {
+					if (set && 0 !== icon.indexOf(set + " ")) return;
+
 					const item = element("li", "");
-					const choice = element("button", "icon-picker-item" + (icon === current ? " is-current" : ""));
+					const choice = element(
+						"button",
+						"icon-picker-item" + (toValue(field, icon) === current ? " is-current" : "")
+					);
 					const name = icon.split(" ").pop();
 
 					item.dataset.search = searchWords(icon);
@@ -195,9 +261,11 @@
 			if (preview) preview.className = icon;
 
 			if (input) {
-				input.value = icon;
+				input.value = toValue(field, icon);
 				input.dispatchEvent(new Event("change", { bubbles: true }));
 			}
+
+			if (field && field.hasAttribute("data-sync")) sync(field);
 
 			close();
 			button.focus();
@@ -205,6 +273,21 @@
 	}
 
 	document.addEventListener("click", function (e) {
+		const clear = e.target.closest(".icon-picker-clear");
+
+		if (clear) {
+			const field = clear.closest(".udb-icon-field");
+			const input = field && field.querySelector('input[type="hidden"]');
+
+			if (input) {
+				input.value = "";
+				input.dispatchEvent(new Event("change", { bubbles: true }));
+				sync(field);
+			}
+
+			return;
+		}
+
 		const button = e.target.closest(".icon-picker");
 
 		if (!button) return;
@@ -217,4 +300,15 @@
 			open(button);
 		}
 	});
+
+	// Fields with data-sync, also the ones the menu editors add later.
+	syncWithin(document.body);
+
+	new MutationObserver(function (mutations) {
+		mutations.forEach(function (mutation) {
+			mutation.addedNodes.forEach(function (node) {
+				if (1 === node.nodeType) syncWithin(node);
+			});
+		});
+	}).observe(document.body, { childList: true, subtree: true });
 })();

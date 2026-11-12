@@ -34,6 +34,37 @@
 	font-size: 20px;
 }
 
+.udb-icon-field .icon-picker:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+.udb-icon-field .icon-picker:disabled:hover {
+	border-color: transparent;
+}
+
+/* No icon yet: an empty dashed box */
+.udb-icon-field.is-empty .icon-picker {
+	background: transparent;
+	border: 1px dashed var(--heatbox-border, #c3c4c7);
+}
+
+/* Fields with a "Use default" / "Remove icon" link next to the button */
+.udb-icon-field[data-sync] {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.udb-icon-field[data-sync] .icon-picker-container {
+	top: 100%;
+	left: 0;
+}
+
+.udb-icon-field .icon-picker-clear[hidden] {
+	display: none;
+}
+
 /* The picker */
 .icon-picker-container {
 	position: absolute;

@@ -351,7 +351,6 @@
 .udb-menu-builder--menu-actions .dashicons:hover,
 .udb-menu-builder--menu-actions .dashicons:focus-visible {
 	color: var(--heatbox-text);
-	background: var(--heatbox-surface-muted); /* one step darker than the open-row tint */
 	outline: none;
 }
 
@@ -405,6 +404,11 @@
 
 .udb-menu-builder--fields .field {
 	margin-bottom: 16px;
+}
+
+/* Admin menu submenu items have no tabs, so their fields sit straight in the panel */
+.udb-menu-builder--expanded-panel > .udb-menu-builder--fields {
+	padding: 20px var(--heatbox-box-padding);
 }
 
 .udb-menu-builder--fields .field:last-child,

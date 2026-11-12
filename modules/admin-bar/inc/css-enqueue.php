@@ -15,6 +15,7 @@ return function ( $module ) {
 		wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/select2.min.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Dashicons picker.
+		wp_enqueue_style( 'icon-picker' );
 		wp_enqueue_style( 'dashicons-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/dashicons-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Heatbox.
