@@ -29,25 +29,14 @@ return function () {
 		?>
 	</p>
 
+	<p class="description">
+		<?php esc_html_e( 'Leave empty to show WordPress\' default welcome panel.', 'ultimate-dashboard' ); ?>
+	</p>
+
 	<?php
-	$settings   = get_option( 'udb_settings' );
-	$editor_id  = 'udb_settings--welcome_panel_content';
-	$content    = isset( $settings['welcome_panel_content'] ) ? $settings['welcome_panel_content'] : '';
-	$is_default = false;
-
-	if ( empty( $content ) ) {
-		do_action( 'udb_ms_switch_blog' );
-
-		ob_start();
-		do_action( 'welcome_panel' );
-		$content = ob_get_clean();
-
-		do_action( 'udb_ms_restore_blog' );
-
-		$is_default = true;
-	}
-
-	$content = trim( $content );
+	$settings  = get_option( 'udb_settings' );
+	$editor_id = 'udb_settings--welcome_panel_content';
+	$content   = isset( $settings['welcome_panel_content'] ) ? trim( $settings['welcome_panel_content'] ) : '';
 
 	/**
 	 * Based on Keypress UI code.
@@ -80,39 +69,15 @@ return function () {
 		),
 	);
 
-	if ( $is_default ) {
-		$args['tinymce']['setup'] = 'function(editor){editor.on("input keyup paste ExecCommand",function(){var f=document.getElementById("udb-welcome-panel-is-default");if(f){f.value="0";}});}';
-	}
-
 	wp_editor( $content, $editor_id, $args );
+	?>
 
-	if ( $is_default ) {
-		/*
-		 * The editor shows WordPress' default welcome panel until it's edited.
-		 * The flag tells the save routine to keep using the default.
-		 * Any edit clears it: in the Visual tab (TinyMCE setup above) and in the Text tab (below).
-		 */
-		echo '<input type="hidden" id="udb-welcome-panel-is-default" name="udb_settings[welcome_panel_is_default]" value="1">';
-		?>
-		<script>
-		( function () {
-			var flag = document.getElementById( 'udb-welcome-panel-is-default' );
-			var textarea = document.getElementById( <?php echo wp_json_encode( $editor_id ); ?> );
-			var toolbar = document.getElementById( <?php echo wp_json_encode( 'qt_' . $editor_id . '_toolbar' ); ?> );
-			var markEdited = function () { flag.value = '0'; };
+	<p>
+		<button type="button" class="button udb-welcome-panel-reset" data-editor="<?php echo esc_attr( $editor_id ); ?>">
+			<?php esc_html_e( 'Reset to WordPress default', 'ultimate-dashboard' ); ?>
+		</button>
+	</p>
 
-			if ( textarea ) {
-				textarea.addEventListener( 'input', markEdited );
-				textarea.addEventListener( 'change', markEdited );
-			}
-
-			// Text tab buttons (b, i, link …) change the text without an input event.
-			if ( toolbar ) {
-				toolbar.addEventListener( 'click', markEdited );
-			}
-		}() );
-		</script>
-		<?php
-	}
+	<?php
 
 };

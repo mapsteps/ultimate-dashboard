@@ -15,6 +15,25 @@ use Udb\Widget\Widget_Output;
  * Class to setup widget helper.
  */
 class Widget_Helper {
+
+	/**
+	 * The IDs of WordPress' own dashboard widgets.
+	 *
+	 * @var string[]
+	 */
+	const DEFAULT_WIDGETS = array(
+		'dashboard_primary',
+		'dashboard_quick_press',
+		'dashboard_right_now',
+		'dashboard_activity',
+		'dashboard_incoming_links',
+		'dashboard_plugins',
+		'dashboard_secondary',
+		'dashboard_recent_drafts',
+		'dashboard_recent_comments',
+		'dashboard_php_nag',
+		'dashboard_site_health',
+	);
 	/**
 	 * Get all dashboard widgets array.
 	 *
@@ -102,19 +121,7 @@ class Widget_Helper {
 
 		$widgets = $this->get_all();
 
-		$default_widgets = array(
-			'dashboard_primary'         => array(),
-			'dashboard_quick_press'     => array(),
-			'dashboard_right_now'       => array(),
-			'dashboard_activity'        => array(),
-			'dashboard_incoming_links'  => array(),
-			'dashboard_plugins'         => array(),
-			'dashboard_secondary'       => array(),
-			'dashboard_recent_drafts'   => array(),
-			'dashboard_recent_comments' => array(),
-			'dashboard_php_nag'         => array(),
-			'dashboard_site_health'     => array(),
-		);
+		$default_widgets = array_fill_keys( self::DEFAULT_WIDGETS, array() );
 
 		$widgets = array_intersect_key( $widgets, $default_widgets );
 
@@ -154,19 +161,7 @@ class Widget_Helper {
 
 		$widgets = $this->get_all();
 
-		$default_widgets = array(
-			'dashboard_primary'         => array(),
-			'dashboard_quick_press'     => array(),
-			'dashboard_right_now'       => array(),
-			'dashboard_activity'        => array(),
-			'dashboard_incoming_links'  => array(),
-			'dashboard_plugins'         => array(),
-			'dashboard_secondary'       => array(),
-			'dashboard_recent_drafts'   => array(),
-			'dashboard_recent_comments' => array(),
-			'dashboard_php_nag'         => array(),
-			'dashboard_site_health'     => array(),
-		);
+		$default_widgets = array_fill_keys( self::DEFAULT_WIDGETS, array() );
 
 		$udb_widgets = array();
 

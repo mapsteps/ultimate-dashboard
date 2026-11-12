@@ -21,6 +21,46 @@
 		setupCssFields();
 		setupColorFields();
 		setupTabsNavigation();
+		setupRemoveAllWidgets();
+		setupWelcomePanelReset();
+	}
+
+	/**
+	 * "Remove All Widgets" makes the individual widget boxes irrelevant: grey them out while it's checked.
+	 * The boxes keep their values, so unchecking "Remove All" brings the previous choice back.
+	 */
+	function setupRemoveAllWidgets() {
+		const removeAll = document.querySelector('[name="udb_settings[remove-all]"]');
+		const individualRow = document
+			.querySelector('[name="udb_settings[welcome_panel]"]')
+			?.closest("tr");
+
+		if (!(removeAll instanceof HTMLInputElement) || !individualRow) return;
+
+		function update() {
+			individualRow.classList.toggle("row-disabled", removeAll.checked);
+			individualRow.toggleAttribute("inert", removeAll.checked);
+		}
+
+		removeAll.addEventListener("change", update);
+		update();
+	}
+
+	/**
+	 * "Reset to WordPress default" empties the welcome panel editor (Visual and Text tab).
+	 */
+	function setupWelcomePanelReset() {
+		const button = document.querySelector(".udb-welcome-panel-reset");
+		if (!(button instanceof HTMLElement)) return;
+
+		button.addEventListener("click", function () {
+			const editorId = button.dataset.editor || "";
+			const editor = window.tinymce ? window.tinymce.get(editorId) : null;
+			const textarea = document.getElementById(editorId);
+
+			if (editor) editor.setContent("");
+			if (textarea instanceof HTMLTextAreaElement) textarea.value = "";
+		});
 	}
 
 	/**
@@ -45,17 +85,15 @@
 			var codeEditor = wp.codeEditor.initialize(el, editorSettings);
 			codeMirrorInstances.push(codeEditor.codemirror);
 		});
+	}
 
-		setTimeout(function () {
-			codeMirrorInstances.forEach(function (codeMirror) {
-				codeMirror.refresh();
-
-				// Setting up a timeout again to make sure the CodeMirror is refreshed
-				setTimeout(function () {
-					codeMirror.refresh();
-				}, 1000);
-			});
-		}, 2000); // Yes, 2seconds, you're right. It's necessary.
+	/**
+	 * CodeMirror can't measure itself inside a hidden tab: refresh it when its tab is shown.
+	 */
+	function refreshCssFields() {
+		codeMirrorInstances.forEach(function (codeMirror) {
+			codeMirror.refresh();
+		});
 	}
 
 	/**
@@ -83,39 +121,30 @@
 	 */
 	function setupTabsNavigation() {
 		$(".heatbox-tab-nav-item").on("click", function () {
-			$(".heatbox-tab-nav-item").removeClass("active");
-			$(this).addClass("active");
-
 			const link = this.querySelector("a");
-			const hashValue = link?.href.substring(link.href.indexOf("#") + 1) ?? "";
-
-			setRefererValue(hashValue);
-
-			$(".udb-settings-form .heatbox-admin-panel").css("display", "none");
-			$(".udb-settings-form .udb-" + hashValue + "-panel").css(
-				"display",
-				"block"
-			);
+			showPanel(link?.href.substring(link.href.indexOf("#") + 1) ?? "");
 		});
 
 		window.addEventListener("load", function () {
-			var hashValue = window.location.hash.substr(1);
-
-			if (!hashValue) {
-				hashValue = "widgets";
-			}
-
-			setRefererValue(hashValue);
-
-			$(".heatbox-tab-nav-item").removeClass("active");
-			$(".heatbox-tab-nav-item." + hashValue + "-panel").addClass("active");
-
-			$(".udb-settings-form .heatbox-admin-panel").css("display", "none");
-			$(".udb-settings-form .udb-" + hashValue + "-panel").css(
-				"display",
-				"block"
-			);
+			showPanel(window.location.hash.substr(1) || "widgets");
 		});
+	}
+
+	/**
+	 * Show a tab's panel.
+	 *
+	 * @param {string} hashValue The tab (widgets, general, custom-css …).
+	 */
+	function showPanel(hashValue) {
+		setRefererValue(hashValue);
+
+		$(".heatbox-tab-nav-item").removeClass("active");
+		$(".heatbox-tab-nav-item." + hashValue + "-panel").addClass("active");
+
+		$(".udb-settings-form .heatbox-admin-panel").css("display", "none");
+		$(".udb-settings-form .udb-" + hashValue + "-panel").css("display", "block");
+
+		refreshCssFields();
 	}
 
 	/**

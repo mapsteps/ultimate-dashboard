@@ -19,6 +19,10 @@ return function () {
 		<div class="indicator"></div>
 	</label>
 
+	<p class="description">
+		<?php esc_html_e( 'Deletes all Ultimate Dashboard settings, dashboard widgets and admin pages when you delete the plugin. Deactivating it keeps everything.', 'ultimate-dashboard' ); ?>
+	</p>
+
 	<?php
 
 };

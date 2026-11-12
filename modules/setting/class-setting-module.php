@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
 use Udb\Helpers\Content_Helper;
+use Udb\Helpers\Widget_Helper;
 
 /**
  * Class to setup setting module.
@@ -279,34 +280,118 @@ class Setting_Module extends Base_Module {
 	 */
 	public function sanitize_input( $input ) {
 
-		$output = $input;
+		if ( ! is_array( $input ) ) {
+			return array();
+		}
 
 		$content_helper = new Content_Helper();
 
-		if ( isset( $output['custom_admin_css'] ) ) {
-			$output['custom_admin_css'] = $content_helper->sanitize_css( $output['custom_admin_css'] );
-		}
+		/*
+		 * Every setting free knows, by type. Keys that aren't listed (PRO's, PRO's 3rd party widget boxes)
+		 * are left exactly as they are: free can't know their format.
+		 */
+		$schema = array(
+			'flag'  => array_merge(
+				array( 'remove-all', 'welcome_panel', 'remove_help_tab', 'remove_screen_options', 'remove_font_awesome', 'remove-on-uninstall' ),
+				Widget_Helper::DEFAULT_WIDGETS
+			),
+			'color' => array( 'icon_color', 'headline_color' ),
+			'text'  => array( 'dashboard_headline', 'howdy_text' ),
+			'html'  => array( 'welcome_panel_content' ),
+			'css'   => array( 'custom_css', 'custom_admin_css' ),
+			'roles' => array( 'remove_admin_bar' ),
+		);
 
-		if ( isset( $output['custom_css'] ) ) {
-			$output['custom_css'] = $content_helper->sanitize_css( $output['custom_css'] );
-		}
+		// Saved elsewhere (admin bar editor, setup wizard), not on the settings page: saving the settings page keeps them.
+		$managed_elsewhere = array( 'remove_admin_bar' );
 
-		foreach ( array( 'dashboard_headline', 'howdy_text' ) as $text_field ) {
-			if ( isset( $output[ $text_field ] ) ) {
-				$output[ $text_field ] = sanitize_text_field( $output[ $text_field ] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Only tells where the save comes from; options.php checked the nonce.
+		$from_settings_page = isset( $_POST['option_page'] ) && 'udb-settings-group' === $_POST['option_page'];
+
+		if ( $from_settings_page ) {
+			$saved = get_option( 'udb_settings', array() );
+			$saved = is_array( $saved ) ? $saved : array();
+
+			foreach ( $managed_elsewhere as $key ) {
+				if ( ! isset( $input[ $key ] ) && isset( $saved[ $key ] ) ) {
+					$input[ $key ] = $saved[ $key ];
+				}
 			}
 		}
 
-		if ( isset( $output['welcome_panel_content'] ) ) {
-			$output['welcome_panel_content'] = wp_kses_post( $output['welcome_panel_content'] );
-		}
+		$output = $input;
 
-		if ( ! empty( $output['welcome_panel_is_default'] ) ) {
-			unset( $output['welcome_panel_content'] );
-			unset( $output['welcome_panel_is_default'] );
+		foreach ( $schema as $type => $keys ) {
+			foreach ( $keys as $key ) {
+				if ( ! isset( $input[ $key ] ) ) {
+					continue;
+				}
+
+				$value = $this->sanitize_value( $type, $input[ $key ], $content_helper );
+
+				if ( null === $value ) {
+					unset( $output[ $key ] );
+				} else {
+					$output[ $key ] = $value;
+				}
+			}
 		}
 
 		return $output;
+
+	}
+
+	/**
+	 * Sanitize one setting by its type.
+	 *
+	 * @param string         $type           flag, color, text, html, css or roles.
+	 * @param mixed          $value          The value.
+	 * @param Content_Helper $content_helper The content helper.
+	 *
+	 * @return mixed The value to save, or null to remove the setting.
+	 */
+	private function sanitize_value( $type, $value, $content_helper ) {
+
+		switch ( $type ) {
+			case 'flag':
+				return empty( $value ) ? null : 1;
+
+			case 'color':
+				$value = trim( (string) $value );
+
+				if ( sanitize_hex_color( $value ) ) {
+					return sanitize_hex_color( $value );
+				}
+
+				return preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/', $value ) ? $value : null;
+
+			case 'text':
+				$value = sanitize_text_field( (string) $value );
+				return '' === $value ? null : $value;
+
+			case 'html':
+				$value = trim( wp_kses_post( (string) $value ) );
+				return '' === $value ? null : $value;
+
+			case 'css':
+				return $content_helper->sanitize_css( (string) $value );
+
+			case 'roles':
+				// Old versions saved a single checkbox value, which means "all".
+				if ( ! is_array( $value ) ) {
+					return empty( $value ) ? null : array( 'all' );
+				}
+
+				$roles = array_values( array_intersect( array_map( 'strval', $value ), array_merge( array( 'all' ), array_keys( wp_roles()->roles ) ) ) );
+
+				if ( in_array( 'all', $roles, true ) ) {
+					$roles = array( 'all' );
+				}
+
+				return $roles ? $roles : null;
+		}
+
+		return $value;
 
 	}
 
