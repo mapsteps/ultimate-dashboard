@@ -1,16 +1,16 @@
-# Cache
-.parcel-cache/
-
-# DS_Store
+# OS specific files
 .DS_Store
+Thumbs.db
 
-# phpcs & editor's setting related
+# Editor settings
 .idea
 .vscode/
-phpcs.xml
-.editorconfig
 
-# ignore build tools
+# Build tools
+.parcel-cache/
 node_modules/
 package-lock.json
 manifest.json
+
+# Composer
+/vendor/
