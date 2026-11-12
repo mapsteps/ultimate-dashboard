@@ -84,7 +84,7 @@
 
 /* WordPress' own editor (admin pages): in a box like the others */
 .udb-post-edit #postdivrich {
-	margin-bottom: var(--heatbox-gap);
+	margin-bottom: 0; /* The space below comes from #post-body-content, like with the HTML content type */
 	padding: 20px;
 	background: var(--heatbox-surface);
 	border: 1px solid var(--heatbox-box-border);
