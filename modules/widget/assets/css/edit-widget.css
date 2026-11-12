@@ -71,6 +71,34 @@
 	border-radius: 4px;
 }
 
+/* Publish box: laid out like WordPress' own (no padding around it), "Active" with its toggle above the save button */
+#udb-active-status-metabox .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.udb-publish-active {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 12px;
+}
+
+/* Position box: column and priority */
+.udb-position-group label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+.udb-position-group + .udb-position-group {
+	margin-top: 12px;
+}
+
+.udb-position-label {
+	margin: 0 0 6px;
+	font-weight: 600;
+}
+
 /* Placeholder Tags box (a normal WordPress box): clickable tags */
 #udb-tags-metabox .tags-wrapper {
 	display: flex;

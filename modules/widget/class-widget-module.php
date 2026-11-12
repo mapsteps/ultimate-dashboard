@@ -205,7 +205,9 @@ class Widget_Module extends Base_Module {
 	public function register_meta_boxes() {
 
 		add_meta_box( 'udb-main-metabox', __( 'Ultimate Dashboard', 'ultimate-dashboard' ), array( $this, 'main_metabox' ), 'udb_widgets', 'normal', 'high' );
-		add_meta_box( 'udb-active-status-metabox', __( 'Active', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_widgets', 'side', 'high' );
+		// Our Publish box (Active toggle, save, trash) instead of WordPress'.
+		remove_meta_box( 'submitdiv', 'udb_widgets', 'side' );
+		add_meta_box( 'udb-active-status-metabox', __( 'Publish', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_widgets', 'side', 'high' );
 
 		if ( ! udb_is_pro_active() ) {
 			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_widgets', 'side' );
@@ -213,7 +215,6 @@ class Widget_Module extends Base_Module {
 
 		add_meta_box( 'udb-tags-metabox', __( 'Placeholder Tags', 'ultimate-dashboard' ), array( $this, 'placeholder_tags_metabox' ), 'udb_widgets', 'side' );
 		add_meta_box( 'udb-position-metabox', __( 'Position', 'ultimate-dashboard' ), array( $this, 'position_metabox' ), 'udb_widgets', 'side' );
-		add_meta_box( 'udb-priority-metabox', __( 'Priority', 'ultimate-dashboard' ), array( $this, 'priority_metabox' ), 'udb_widgets', 'side' );
 
 	}
 
@@ -267,18 +268,6 @@ class Widget_Module extends Base_Module {
 	public function position_metabox( $post ) {
 
 		$metabox = require __DIR__ . '/templates/metaboxes/position.php';
-		$metabox( $post );
-
-	}
-
-	/**
-	 * Priority metabox.
-	 *
-	 * @param WP_Post $post The WP_Post object.
-	 */
-	public function priority_metabox( $post ) {
-
-		$metabox = require __DIR__ . '/templates/metaboxes/priority.php';
 		$metabox( $post );
 
 	}

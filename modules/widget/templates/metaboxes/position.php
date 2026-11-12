@@ -1,6 +1,6 @@
 <?php
 /**
- * Position metabox.
+ * Position metabox: the dashboard column and the priority within it.
  *
  * @package Ultimate_Dashboard
  */
@@ -9,29 +9,48 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $post ) {
 
-	$saved_meta = get_post_meta( $post->ID, 'udb_position_key', true );
+	$position = get_post_meta( $post->ID, 'udb_position_key', true );
+	$position = $position ? $position : 'normal';
+	$priority = get_post_meta( $post->ID, 'udb_priority_key', true );
+	$priority = $priority ? $priority : 'default';
 
-	if ( ! $saved_meta ) {
-		$saved_meta = 'normal';
-	}
+	$groups = array(
+		array(
+			'name'    => 'udb_metabox_position',
+			'label'   => __( 'Column', 'ultimate-dashboard' ),
+			'value'   => $position,
+			'options' => array(
+				'normal' => __( 'Left column', 'ultimate-dashboard' ),
+				'side'   => __( 'Right column', 'ultimate-dashboard' ),
+			),
+		),
+		array(
+			'name'    => 'udb_metabox_priority',
+			'label'   => __( 'Priority', 'ultimate-dashboard' ),
+			'value'   => $priority,
+			'options' => array(
+				'default' => __( 'Default', 'ultimate-dashboard' ),
+				'low'     => __( 'Low', 'ultimate-dashboard' ),
+				'high'    => __( 'High', 'ultimate-dashboard' ),
+			),
+		),
+	);
 
-	?>
+	foreach ( $groups as $group ) :
+		$label_id = $group['name'] . '_label';
+		?>
 
-	<ul>
-		<li>
-			<label>
-				<input type="radio" name="udb_metabox_position" value="normal" <?php checked( $saved_meta, 'normal' ); ?> />
-				<?php esc_html_e( 'Left column', 'ultimate-dashboard' ); ?>
-			</label>
-		</li>
-		<li>
-			<label>
-				<input type="radio" name="udb_metabox_position" value="side" <?php checked( $saved_meta, 'side' ); ?> />
-				<?php esc_html_e( 'Right column', 'ultimate-dashboard' ); ?>
-			</label>
-		</li>
-	</ul>
+		<div class="udb-position-group" role="radiogroup" aria-labelledby="<?php echo esc_attr( $label_id ); ?>">
+			<p class="udb-position-label" id="<?php echo esc_attr( $label_id ); ?>"><?php echo esc_html( $group['label'] ); ?></p>
+			<?php foreach ( $group['options'] as $value => $text ) : ?>
+				<label>
+					<input type="radio" name="<?php echo esc_attr( $group['name'] ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $group['value'], $value ); ?>>
+					<?php echo esc_html( $text ); ?>
+				</label>
+			<?php endforeach; ?>
+		</div>
 
-	<?php
+		<?php
+	endforeach;
 
 };
