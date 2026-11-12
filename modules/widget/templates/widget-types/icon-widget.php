@@ -12,18 +12,10 @@ return function () {
 	global $post;
 
 	$icon        = get_post_meta( $post->ID, 'udb_icon_key', true );
+	$icon        = $icon ? $icon : 'dashicons dashicons-menu';
 	$tooltip     = get_post_meta( $post->ID, 'udb_tooltip', true );
 	$link        = get_post_meta( $post->ID, 'udb_link', true );
 	$link_target = get_post_meta( $post->ID, 'udb_link_target', true );
-
-	$dashicons   = json_decode( file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/json/dashicons.json' ), true );
-	$fontawesome = json_decode( file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/json/fontawesome5.json' ), true );
-
-	wp_localize_script(
-		'udb-edit-widget',
-		'iconPickerIcons',
-		array_merge( $dashicons ? $dashicons : array(), $fontawesome ? $fontawesome : array() )
-	);
 	?>
 
 	<div data-type="icon">
@@ -34,13 +26,12 @@ return function () {
 			<div class="inside">
 
 				<div class="udb-metabox-field">
-					<label class="udb-field-label" for="udb_icon"><?php esc_html_e( 'Icon', 'ultimate-dashboard' ); ?></label>
+					<label class="udb-field-label" for="udb_icon_button"><?php esc_html_e( 'Icon', 'ultimate-dashboard' ); ?></label>
 					<div class="udb-icon-field">
-						<div class="icon-preview" aria-hidden="true"></div>
-						<?php // The icon picker opens below the field, inside this wrapper. ?>
-						<div class="udb-icon-input">
-							<input type="text" class="icon-picker" data-width="100%" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $icon ? $icon : 'dashicons dashicons-menu' ); ?>" placeholder="dashicons dashicons-menu" />
-						</div>
+						<button type="button" class="icon-picker" id="udb_icon_button" aria-label="<?php esc_attr_e( 'Change icon', 'ultimate-dashboard' ); ?>">
+							<i class="<?php echo esc_attr( $icon ); ?>" aria-hidden="true"></i>
+						</button>
+						<input type="hidden" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $icon ); ?>">
 					</div>
 				</div>
 

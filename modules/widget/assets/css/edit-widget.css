@@ -36,35 +36,6 @@
 	font-weight: 600;
 }
 
-/* Icon: preview in a light accent box (like the widget list), the picker field next to it */
-.udb-icon-field {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-
-.udb-icon-input {
-	flex: 1;
-}
-
-#udb-main-metabox .icon-preview {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-	width: 40px;
-	height: 40px;
-	color: var(--heatbox-accent);
-	background: var(--heatbox-accent-soft);
-	border-radius: var(--heatbox-radius-control);
-}
-
-#udb-main-metabox .icon-preview i {
-	width: auto;
-	height: auto;
-	font-size: 20px;
-}
-
 #udb-main-metabox input.small-text {
 	width: 100px;
 }

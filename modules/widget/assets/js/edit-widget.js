@@ -2,7 +2,6 @@
 	function init() {
 		setupMetaboxes();
 		setupWidgetType();
-		setupIconPicker();
 		setupCodeEditor();
 	}
 
@@ -29,27 +28,6 @@
 			$fields.find("[data-type]").removeClass("is-active");
 			$fields.find('[data-type="' + value + '"]').addClass("is-active");
 		});
-	}
-
-	function setupIconPicker() {
-		changePreviewIcon();
-		window.addEventListener("load", changePreviewIcon);
-
-		document
-			.querySelector('[name="udb_icon"]')
-			?.addEventListener("change", changePreviewIcon);
-	}
-
-	/**
-	 * Change preview icon.
-	 */
-	function changePreviewIcon() {
-		const el = document.querySelector(".icon-preview");
-		const iconField = document.querySelector('[name="udb_icon"]');
-		if (!el || !(iconField instanceof HTMLInputElement)) return;
-
-		el.innerHTML =
-			'<i class="' + wp.escapeHtml.escapeAttribute(iconField.value) + '"></i>';
 	}
 
 	function setupCodeEditor() {

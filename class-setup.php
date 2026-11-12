@@ -106,6 +106,7 @@ class Setup {
 		add_action( 'init', array( $this, 'register_action_links' ) );
 		add_action( 'admin_menu', array( $this, 'pro_submenu' ), 20 );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_icon_picker' ), 5 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 20 );
 		add_action( 'admin_notices', array( self::get_instance(), 'review_notice' ) );
@@ -388,6 +389,43 @@ class Setup {
 
 		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Adds an external link to the menu, which add_submenu_page() can't do.
 		$submenu['edit.php?post_type=udb_widgets'][] = array( __( 'Upgrade to PRO', 'ultimate-dashboard' ), 'manage_options', 'https://ultimatedashboard.io/pro/' );
+
+	}
+
+	/**
+	 * Register the icon picker (widget & admin page screens enqueue it).
+	 *
+	 * The icon lists are loaded by the picker when it's opened; Font Awesome only if it's loaded.
+	 */
+	public function register_icon_picker() {
+
+		$urls = array( ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/json/dashicons.json' );
+
+		if ( apply_filters( 'udb_font_awesome', true ) ) {
+			$urls[] = ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/json/fontawesome5.json';
+		}
+
+		wp_register_style( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/icon-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		wp_register_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/icon-picker.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+
+		wp_localize_script(
+			'icon-picker',
+			'udbIconPicker',
+			array(
+				'urls'   => array_map(
+					function ( $url ) {
+						return add_query_arg( 'ver', ULTIMATE_DASHBOARD_PLUGIN_VERSION, $url );
+					},
+					$urls
+				),
+				'labels' => array(
+					'search'  => __( 'Search icons', 'ultimate-dashboard' ),
+					'loading' => __( 'Loading icons…', 'ultimate-dashboard' ),
+					'none'    => __( 'No icons found.', 'ultimate-dashboard' ),
+					'error'   => __( 'The icons could not be loaded.', 'ultimate-dashboard' ),
+				),
+			)
+		);
 
 	}
 

@@ -5,7 +5,6 @@
 	function init() {
 		setupMetaboxes();
 		setupChainingFields();
-		setupIconPicker();
 		setupWidgetRoles();
 		setupCodeMirror();
 		setupContentType();
@@ -130,37 +129,6 @@
 			child.style.display = "block";
 		} else {
 			child.style.display = "none";
-		}
-	}
-
-	/**
-	 * Setup icon picker (Dashicons & FontAwesome)
-	 */
-	function setupIconPicker() {
-		const $iconSelect = $('[name="udb_menu_icon"]');
-
-		previewIcon(String($iconSelect.val()));
-
-		$iconSelect.on("change", function (e) {
-			previewIcon(String($iconSelect.val()));
-		});
-
-		window.addEventListener("load", function () {
-			previewIcon(String($iconSelect.val()));
-		});
-	}
-
-	/**
-	 * Preview menu icon inside of the icon selector metabox.
-	 *
-	 * @param {string} content The icon output.
-	 */
-	function previewIcon(content) {
-		const iconPreview = findHtmlEl(".icon-preview");
-
-		if (iconPreview && wp.escapeHtml) {
-			iconPreview.innerHTML =
-				'<i class="' + wp.escapeHtml.escapeAttribute(content) + '"></i>';
 		}
 	}
 
