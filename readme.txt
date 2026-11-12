@@ -1,93 +1,107 @@
-=== Ultimate Dashboard - Custom WordPress Dashboard ===
+=== Ultimate Dashboard – Custom WordPress Dashboard ===
 Contributors: davidvongries
-Tags: Custom Dashboard, Admin Menu Editor, Custom Login Screen, Custom WordPress Admin, Branda
+Tags: custom dashboard, dashboard widgets, custom login, white label, login url
 Requires at least: 4.6
 Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 3.8.18
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Replace the default dashboard widgets with your own, customize the login screen, change the login URL & clean up the WordPress admin area.
 
 == Description ==
-=== The #1 Plugin to Customize the WordPress Dashboard! ===
 
-[Ultimate Dashboard](https://ultimatedashboard.io/) allows you to create a **custom WordPress dashboard** for you and your clients.
+**[Ultimate Dashboard](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb)** is the #1 plugin to **customize the WordPress dashboard**. Replace the default dashboard widgets with your own, point your clients to the places that matter and give the WordPress admin area a more meaningful use.
 
-Replace the default WordPress dashboard widgets with your own and give the WordPress dashboard a more meaningful use.
+Lightweight, modular and built for agencies & freelancers who hand over websites to clients. A short setup wizard helps you get started, and you can turn off every part you don't need.
 
-Ultimate Dashboard is a clean & lightweight plugin that was made to optimize the user experience for clients inside the WordPress admin area.
+== Why choose Ultimate Dashboard? ==
 
-Customize the WordPress Dashboard today!
+= ❌ Remove dashboard widgets =
+Remove all or individual default WordPress dashboard widgets with a single click, and hide the welcome panel or replace it with your own content.
 
-== ❌ Remove dashboard widgets ==
-Remove all or individual default WordPress widgets with just a click.
+= ➕ Create your own widgets =
+Create **icon**, **text** & **HTML widgets** to build a custom **client dashboard** that sends your clients to the key areas of their website – or anywhere else.
 
-== ➕ Create your own widgets ==
-Create **icon, text** & **HTML widgets** to create a customized **client dashboard** and send your customer to the key areas of their website - or anywhere else!
+= 🎨 Login Customizer =
+Customize the **WordPress login screen** with your own logo, background, colors & layout, with a live preview in the WordPress Customizer.
 
-== 🎨 Login Customizer ==
-White label the WordPress login area. Completely **customize the WordPress login screen** & apply your own branding with the power & live-preview capabilities of the WordPress customizer.
+= ↔️ Login Redirect =
+**Change the WordPress login URL**, **hide /wp-admin/** from logged-out visitors and **redirect users after login** based on their user role.
 
-== ↔️ Login Redirect ==
-The Login Redirect featur allows you to **change the WordPress login URL**, **hide the /wp-admin/ URL for non logged-in users** and **redirect users after login** on a per-role basis.
+= 📋 Custom admin pages =
+Create **top-level** & **submenu pages** with the WordPress editor or HTML and add them anywhere in the WordPress admin menu.
 
-== 🖌️ Add Custom CSS ==
-* Add custom CSS to only the **WordPress dashboard**
-* Add custom CSS to the entire **WordPress admin area**
-* Add custom CSS to the **WordPress login screen** with a live preview inside the WordPress customizer
+= 🖌️ Custom CSS =
+Add custom CSS to the **WordPress dashboard**, the entire **admin area** or the **login screen**.
 
-== 📋 Create Custom Admin Pages ==
-Create **custom Top-Level** & **Sub-Menu pages** using HTML, CSS or the default WordPress WISIWYG Editor and add them anywhere to the WordPress admin menu.
+= ✨ More features =
+* Set a custom dashboard headline & widget colors
+* Change the "Howdy" text
+* Change the admin footer & version text
+* Hide the admin bar on the frontend for specific user roles
+* Remove the "Help" & "Screen Options" tabs
+* Export & import widgets and settings
+* Turn modules on or off on the *Modules* screen
+* Optionally remove all plugin data when you uninstall it
 
-== ✨ More Features ==
-* Change the WordPress welcome panel content
-* Change the WordPress "Howdy" text
-* Set a custom WordPress dashboard headline
-* Remove WordPress admin bar for specific user roles
-* Remove "Help" tab
-* Remove "Screen Options" tab
-* Customize the WordPress footer & version text
-* Export/import dashboard widgets & settings
+---------
 
+=== 🏆 Ultimate Dashboard PRO ===
 
-For even more features, check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb).
+Take it further with **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb)**:
 
-== 🏆 Ultimate Dashboard PRO ==
-* Remove 3rd party widgets
+* Admin Menu Editor
+* Admin Bar Editor
+* Remove 3rd party dashboard widgets
 * Restrict dashboard widgets & admin pages to specific users or user roles
 * Fully white label & rebrand WordPress
 * Advanced Login Customizer features
-* Create Custom Admin Pages with Elementor, Beaver Builder & Brizy
-* Create video widgets
-* Create contact form widgets
+* Create admin pages with Elementor, Beaver Builder & Brizy
+* Video & contact form widgets
 * WordPress multisite support
-* Dark Mode
-* Admin Menu Editor
-* Admin Bar Editor
+* Dark mode
 
 [youtube https://youtu.be/w0oEQF3C6v0]
 
-Learn more about [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb)
+Get **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb)** today!
+
+---------
 
 === What's next? ===
 
-If you like Ultimate Dashboard, make sure to check out our other products:
+If you like Ultimate Dashboard make sure to check out our other products:
 
 * **[Page Builder Framework](https://wp-pagebuilderframework.com/?utm_source=udb&utm_medium=repository&utm_campaign=wpbf)** - A fast & minimalistic WordPress theme designed for the new WordPress era.
 * **[Better Admin Bar](https://betteradminbar.com/?utm_source=udb&utm_medium=repository&utm_campaign=bab)** - The plugin to make your clients enjoy WordPress. It replaces the default admin bar to provide the best possible user experience when editing & navigating a website.
+* **[WP Video Popup](https://wp-video-popup.com/?utm_source=udb&utm_medium=repository&utm_campaign=wp_video_popup)** - Add a YouTube, Vimeo or Rumble video popup to WordPress. Lightweight, privacy-friendly lightbox that works with any page builder.
+
+== External services ==
+
+The setup wizard offers an optional newsletter sign-up. Only if you enter your name and email address and click subscribe, they are sent to ultimatedashboard.io, which adds you to our newsletter at MailerLite. Nothing is sent otherwise. ultimatedashboard.io: [Privacy](https://ultimatedashboard.io/privacy-policy/). MailerLite: [Terms](https://www.mailerlite.com/legal/terms-of-service), [Privacy](https://www.mailerlite.com/legal/privacy-policy).
 
 == Installation ==
-1. Download the ultimate-dashboard.zip file to your computer.
-1. Unzip the file.
-1. Upload the `ultimate-dashboard` folder to your `/wp-content/plugins/` directory.
-1. Activate the plugin through the *Plugins* menu in WordPress.
-
-To access the settings page navigate to *Settings > Ultimate Dashboard* through your WordPress menu.
-To create new Dashboard Widgets, navigate to *Dashboard > Dashboard Widgets* through wour WordPress menu.
+1. In your WordPress admin, go to *Plugins → Add New Plugin* and search for "Ultimate Dashboard".
+2. Click *Install Now*, then *Activate*.
+3. The setup wizard opens. Follow it, or skip it and go to *Ultimate Dashboard* in the admin menu.
 
 == Frequently Asked Questions ==
-= Does this plugin work on my WordPress multisite installation? =
-For multisite support & more check out [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=wordpress&utm_medium=description&utm_campaign=udb)
+
+= Where do I create dashboard widgets? =
+Go to *Ultimate Dashboard → Add Dashboard Widget*. All your widgets are listed under *Ultimate Dashboard → All Widgets*.
+
+= I changed the login URL and forgot it. How do I log in? =
+Rename the `ultimate-dashboard` folder in `/wp-content/plugins/` via FTP or your host's file manager. This turns the plugin off and the default `/wp-login.php` works again. Rename it back once you're logged in and check the URL under *Ultimate Dashboard → Login Redirect*.
+
+= Can I turn off the parts I don't use? =
+Yes. Go to *Ultimate Dashboard → Modules* and switch off any module, for example the Login Customizer or Admin Pages.
+
+= Is my data deleted when I deactivate the plugin? =
+No. Your widgets and settings are only removed if you turn on *Remove Data on Uninstall* under *Ultimate Dashboard → Settings* and then delete the plugin.
+
+= Does it work on WordPress multisite? =
+Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb).
 
 == Screenshots ==
 1. Icon Widget Dashboard
@@ -103,15 +117,16 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 11. Modules Screen
 
 == Changelog ==
+
 = 3.8.18 | October 10, 2026 =
 * Tested up to WordPress 7.1
 * Tweak: Added webp & avif support
 * Fixed: Incompatibility with Admin Menu Editor & Elementor Page Builder
-= 3.8.17 | June 06, 2026 =
+= 3.8.17 | June 6, 2026 =
 * Tweak: WordPress 7.0 compatibility
 * Fixed: Minor security issue
 * Fixed: Improved module activation/deactivation
-= 3.8.16 | April 06, 2026 =
+= 3.8.16 | April 6, 2026 =
 * Minor tweaks & fixes
 = 3.8.15 | March 10, 2026 =
 * Fixed: Minor security issue
@@ -124,7 +139,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: Broken output in Custom CSS fields as certain characters are converted
 = 3.8.13 | February 25, 2026 =
 * Minor tweaks
-= 3.8.12 | November 08, 2025 =
+= 3.8.12 | November 8, 2025 =
 * Update BFCM deal details
 = 3.8.11 | October 30, 2025 =
 * Fixed: Backwards compatibility with Ultimate Dashboard PRO
@@ -132,7 +147,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: Removed a MailerLite API key that was mistakenly included in the plugin package
 * Fixed: PHP notice in WordPress 6.7 related to early translation loading — text domains are now loaded at the proper hook
 * Improved: Added additional data sanitization and proper output escaping throughout the plugin
-= 3.8.9 | June 05, 2025 =
+= 3.8.9 | June 5, 2025 =
 * Tweak: Allow shortcode in HTML widget
 * Tested up to WordPress 6.8
 = 3.8.8 | March 15, 2025 =
@@ -164,7 +179,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: Performance issues related to the Admin Menu Editor
 = 3.7.14 | May 10, 2024 =
 * Tested up to WordPress 6.5
-= 3.7.13 | January 09, 2024 =
+= 3.7.13 | January 9, 2024 =
 * Fixed: "Add New" text in the WordPress admin menu for adding new widgets & admin pages
 = 3.7.12 | December 30, 2023 =
 * Fixed: Minor security issue
@@ -174,7 +189,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: Bug where BFCM notice was not dismissible
 = 3.7.9 | November 22, 2023 =
 * Update BFCM deal details
-= 3.7.8 | November 07, 2023 =
+= 3.7.8 | November 7, 2023 =
 * Minor security tweaks
 = 3.7.7 | August 27, 2023 =
 * Tested up to WordPress 6.3
@@ -184,13 +199,13 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Tweak: Improve export/import functionality
 * Tweak: Allow source tag in HTML widget
 * Fixed: Fatal error with Google SiteKit
-= 3.7.4 | February 07, 2023 =
+= 3.7.4 | February 7, 2023 =
 * Tweak: Updated logo
 = 3.7.3 | January 30, 2023 =
 * Tweak: Wording
-= 3.7.2 | December 05, 2022 =
+= 3.7.2 | December 5, 2022 =
 * Fixed: Issue with password protected pages & login redirect feature
-= 3.7.1.5 | October 04, 2022 =
+= 3.7.1.5 | October 4, 2022 =
 * Minor tweaks & improvements
 = 3.7.1.4 | July 20, 2022 =
 * Tweak: Wording
@@ -210,7 +225,7 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 = 3.6.2 | May 10, 2022 =
 * Fixed: Some menu items didn't appear in the Admin Menu Editor (for instance Yoast SEO)
 * Fixed: Admin Menu Editor & Admin Bar Editor are not responsive
-= 3.6.1 | May 04, 2022 =
+= 3.6.1 | May 4, 2022 =
 * Tweak: Changed plugin header information, updated images & footer links
 * Fixed: Some sub-menu items won't loade in the Admin Menu Editor, for instance in the WooCommerce Analytics section. If you still don't see certain menu or sub-menu items appear, please try resetting the Admin Menu Editor for all or specific user roles.
 = 3.6 | April 25, 2022 =
@@ -222,10 +237,10 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: PHP Warning: Undefined array key "path" (https://wordpress.org/support/topic/php-message-php-warning-undefined-array-key-path/)
 * Fixed: Build Admin Menu Editor only when a specific role is clicked instead of loading them all at once (in a row). This was causing performance issues & was interpreted as a security issue by some installs.
 * Fixed: Reliability & accuracy of the Admin Menu Editor has been improved
-= 3.5.3 | March 02, 2022 =
+= 3.5.3 | March 2, 2022 =
 * New: Added support for WordPress' new language switcher on login screen
 * Updated description
-= 3.5.2 | February 03, 2022 =
+= 3.5.2 | February 3, 2022 =
 * Tested up to 5.9
 * Tweak: Updated texts
 * Fixed: Fatal error in WordPress' tools section
@@ -271,9 +286,9 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Fixed: Export/import issue with user roles (dashboard widgets & admin pages)
 * Fixed: Export/import functionality for "Modules" were missing
 * Fixed: All widgets were active/inactive after import, even though if they were active/inactive on the original website
-= 3.2.1 | March 04, 2021 =
+= 3.2.1 | March 4, 2021 =
 * Fixed: Module switcher no longer working
-= 3.2 | March 04, 2021 =
+= 3.2 | March 4, 2021 =
 * New: Improved & cleaned up admin & settings page design
 * New: Admin Menu Editor - Change the admin menu for specific user roles (PRO)
 * New: Admin Menu Editor - Add custom menu items to the WordPress admin menu (PRO)
@@ -286,11 +301,11 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 * Tweak: Improved "Modules" feature
 * Tweak: Improved "Login Customizer" CSS output
 * Fixed: Admin email verification screen styling
-= 3.1.2 | December 09, 2020 =
+= 3.1.2 | December 9, 2020 =
 * Fixed: Wrong plugin dir for PRO plugin updater
-= 3.1.1 | December 09, 2020 =
+= 3.1.1 | December 9, 2020 =
 * Fixed: Broken plugin updater in PRO add-on
-= 3.1 | December 09, 2020 =
+= 3.1 | December 9, 2020 =
 * WordPress 5.6 compatibility
 * New: Modules screen to turn on/off features
 * Tweak: Updated & improved settings page UI
@@ -351,41 +366,41 @@ For multisite support & more check out [Ultimate Dashboard PRO](https://ultimate
 = 2.2 | August 1, 2018 =
 * Tweak: Updated Settings Page UI
 * Tweak: Updated Links & Descriptions under Widgets -> PRO
-= 2.1.1 | 05/31/2018 =
+= 2.1.1 | May 31, 2018 =
 * Fixed: Number of Dashboard Widgets is limited by the "Reading" settings under Appearance -> Reading
-= 2.1 | 03/18/2018 =
+= 2.1 | March 18, 2018 =
 * Maintenance release
 * Added: Action Link
 * Tweak: save deactivated dashboard widgets in a single array
 * Fixed: wrong hook used to remove dashboard widgets
-= 2.0.1 | 11-17-2017 =
+= 2.0.1 | November 17, 2017 =
 * Minor Tweaks & Improvements
-= 2.0 | 11-14-2017 =
+= 2.0 | November 14, 2017 =
 * Rewritten the plugin from ground up
 * Ultimate Dashboard now has its own, top-level menu in the WordPress Dashboard
 * Tweak: metabox styling
 * Tweak: embedded font-awesome instead of loading it from an external source
 * Tweak: removed roboto as default font
 * Tweak: minor security tweaks
-= 1.3.1 | 10-28-2016 =
+= 1.3.1 | October 28, 2016 =
 * Updated: Plugin Header & options page sidebar
-= 1.3 | 10-06-2016 =
+= 1.3 | October 6, 2016 =
 * Added: filter/search functionality for dashboard icons (Dashicons & Font-Awesome)
-= 1.2.1 | 08-21-2016 =
+= 1.2.1 | August 21, 2016 =
 * Fixed: The Plugin Generated xxx Characters of Unexpected Output During Activation message
-= 1.2 | 08-21-2016 =
+= 1.2 | August 21, 2016 =
 * Removed: Ultimate Dashboard PRO notification
 * Added: Sidebar to Ultimate Dashboard options page
 * Added: Custom Post Type columns (icon, link target)
 * Tweak: Default plugin language is now english
 * Added: German translation
-= 1.1 | 07-20-2016 =
+= 1.1 | July 20, 2016 =
 * Removed the limit of 5 dashboard widgets
-= 1.0.3 | 07-07-2016 =
+= 1.0.3 | July 7, 2016 =
 * Added: all WordPress Dashicons
 * Tweak: new font for Dashboard Widgets (Roboto)
 * Tweak: Added an accordion to sort icon groups
-= 1.0.2 | 07-05-2016 =
+= 1.0.2 | July 5, 2016 =
 * Moved the Ultimate Dashboard CPT from the main menu to Dashboard > Dashboard Widgets
 * Added better descriptions while creating a Dashboard Widget for absolute and relative urls
 = 1.0.1 =
