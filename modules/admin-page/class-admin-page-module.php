@@ -109,7 +109,7 @@ class Admin_Page_Module extends Base_Module {
 			3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
 			4  => __( 'Admin Page updated.', 'ultimate-dashboard' ),
 			// translators: %s: Date and time of the revision.
-			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Admin Page restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Admin Page restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false, // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Same as WP core's messages, only displayed.
 			6  => __( 'Admin Page published.', 'ultimate-dashboard' ),
 			7  => __( 'Admin Page saved.', 'ultimate-dashboard' ),
 			8  => __( 'Admin Page submitted.', 'ultimate-dashboard' ),
@@ -214,7 +214,7 @@ class Admin_Page_Module extends Base_Module {
 		global $parent_file;
 
 		if (
-			in_array(
+			$current_screen && in_array(
 				$current_screen->base,
 				array(
 					'post',
@@ -224,7 +224,7 @@ class Admin_Page_Module extends Base_Module {
 			) && 'udb_admin_page' === $current_screen->post_type
 		) {
 
-			$parent_file  = 'edit.php?post_type=udb_widgets';
+			$parent_file  = 'edit.php?post_type=udb_widgets'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Highlights the Ultimate Dashboard menu.
 			$submenu_file = 'edit.php?post_type=udb_admin_page';
 
 		}

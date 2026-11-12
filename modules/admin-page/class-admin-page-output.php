@@ -113,7 +113,7 @@ class Admin_Page_Output extends Base_Output {
 				'post_type'      => 'udb_admin_page',
 				'post_status'    => 'publish',
 				'posts_per_page' => -1,
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Only a few admin pages.
 					array(
 						'key'   => 'udb_is_active',
 						'value' => 1,
@@ -335,6 +335,7 @@ class Admin_Page_Output extends Base_Output {
 		}
 
 		wp_safe_redirect( home_url() );
+		exit;
 	}
 
 }

@@ -5,8 +5,6 @@
  * @package Ultimate_Dashboard
  */
 
-// are we sanitizing everything correctly? Not sure if all of those are actually text fields.
-
 use Udb\AdminPage\Admin_Page_Module;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
