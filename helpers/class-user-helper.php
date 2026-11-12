@@ -30,6 +30,11 @@ class User_Helper {
 
 		$role = get_role( $role_key );
 
+		// Unknown role: keep the current user as is.
+		if ( ! $role ) {
+			return;
+		}
+
 		if ( $change_user_id ) {
 			$current_user->ID = PHP_INT_MAX;
 		}

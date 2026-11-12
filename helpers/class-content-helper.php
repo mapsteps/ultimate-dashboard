@@ -150,11 +150,19 @@ class Content_Helper {
 	/**
 	 * Allow iframes & attributes in HTML widget.
 	 *
-	 * @param array $tags The allowed tags & attributes.
+	 * Only for the "post" context, which is what widgets and admin pages use.
+	 * Other contexts (comments, user & term descriptions, "strip" …) stay untouched.
 	 *
-	 * @return array $tags The midified $tags.
+	 * @param array  $tags    The allowed tags & attributes.
+	 * @param string $context The kses context.
+	 *
+	 * @return array $tags The modified $tags.
 	 */
-	public function allow_iframes_in_html( $tags ) {
+	public function allow_iframes_in_html( $tags, $context = 'post' ) {
+
+		if ( 'post' !== $context ) {
+			return $tags;
+		}
 
 		$tags['iframe'] = array(
 			'align'               => true,

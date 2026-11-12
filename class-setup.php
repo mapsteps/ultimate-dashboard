@@ -108,7 +108,7 @@ class Setup {
 		register_deactivation_hook( ULTIMATE_DASHBOARD_PLUGIN_FILE, array( $this, 'deactivation' ) );
 
 		$content_helper = new Content_Helper();
-		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ) );
+		add_filter( 'wp_kses_allowed_html', array( $content_helper, 'allow_iframes_in_html' ), 10, 2 );
 
 	}
 
