@@ -9,7 +9,7 @@
 }
 
 /* Publish box: laid out like WordPress' own (no padding around it), "Active" with its toggle above the save button */
-#udb-active-status-metabox .inside {
+#poststuff #udb-active-status-metabox .inside {
 	margin: 0;
 	padding: 0;
 }
@@ -25,7 +25,7 @@
 #udb-pro-link-metabox .heatbox-features {
 	grid-template-columns: 1fr;
 	gap: 10px;
-	margin: 12px 0 16px;
+	margin: 0 0 20px;
 }
 
 /* Code editors (HTML, custom CSS/JS): bordered like the fields */
@@ -125,7 +125,7 @@
 	cursor: default;
 }
 
-.udb-post-edit .postbox .inside {
+.udb-post-edit #poststuff .postbox .inside {
 	margin: 0;
 	padding: 20px;
 }
@@ -160,8 +160,13 @@
 	box-shadow: none;
 }
 
-.udb-post-edit #udb-main-metabox > .inside {
+.udb-post-edit #poststuff #udb-main-metabox > .inside {
 	padding: 0;
+}
+
+/* Text editor: its tabs (Visual / Code) right at the top of the box */
+.udb-post-edit .postbox .inside .wp-editor-tools {
+	padding-top: 0;
 }
 
 /* Fields like heatbox's */
