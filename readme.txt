@@ -58,7 +58,7 @@ Take it further with **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?ut
 * Restrict dashboard widgets & admin pages to specific users or user roles
 * Fully white label & rebrand WordPress
 * Advanced Login Customizer features
-* Create admin pages with Elementor, Beaver Builder & Brizy
+* Create admin pages & a custom dashboard with the Block Editor, Elementor, Divi, Bricks, Breakdance, Beaver Builder, Oxygen & Brizy
 * Video & contact form widgets
 * WordPress multisite support
 * Dark mode

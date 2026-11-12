@@ -14,11 +14,10 @@ return function () {
 		esc_html__( 'Contact Form Widgets', 'ultimate-dashboard' ),
 		esc_html__( 'Restrict Widgets to specific Users or User Roles', 'ultimate-dashboard' ),
 		sprintf(
-			/* translators: %1$s, %2$s, %3$s: page builder names */
-			esc_html__( 'Create a Custom Dashboard with %1$s, %2$s or %3$s', 'ultimate-dashboard' ),
-			'<strong>Elementor</strong>',
-			'<strong>Beaver Builder</strong>',
-			'<strong>Brizy</strong>'
+			/* translators: %1$s: "Block Editor", %2$s: list of page builders */
+			esc_html__( 'Create a Custom Dashboard with the %1$s or your page builder: %2$s', 'ultimate-dashboard' ),
+			'<strong>' . esc_html__( 'Block Editor', 'ultimate-dashboard' ) . '</strong>',
+			'<strong>Elementor, Divi, Bricks, Breakdance, Beaver Builder, Oxygen & Brizy</strong>'
 		),
 	);
 	?>
