@@ -140,7 +140,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 									<button type="button">
 										<?php echo esc_html( $user_data['display_name'] ); ?>
 									</button>
-									<i class="dashicons dashicons-no-alt delete-icon udb-menu-builder--remove-tab"></i>
+									<button type="button" class="dashicons dashicons-no-alt delete-icon udb-menu-builder--remove-tab" aria-label="<?php esc_attr_e( 'Remove user', 'ultimate-dashboard' ); ?>"></button>
 								</li>
 
 							<?php endforeach; ?>

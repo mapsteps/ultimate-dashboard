@@ -134,23 +134,33 @@
 }
 
 .udb-menu-builder--user-menu .udb-menu-builder--tab-menu-item {
-	margin-right: 12px;
+	gap: 4px;
 }
 
-.udb-menu-builder--user-menu .delete-icon {
-	position: absolute;
-	right: -18px;
-	width: 16px;
-	height: 16px;
-	font-size: 16px;
-	background-color: var(--heatbox-surface-muted);
-	border-radius: 50%;
-	transition: none;
+/* A picked user's remove button: a small, quiet "x" next to the name, red on hover */
+.udb-menu-builder--tab-menu-item button.delete-icon,
+.udb-menu-builder--tab-menu-item i.delete-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	margin: 0;
+	padding: 0;
+	font: normal 16px/1 dashicons; /* The tab's own "font: inherit" would drop the icon font */
+	color: var(--heatbox-text-muted);
+	background: transparent;
+	border: 0;
+	border-radius: var(--heatbox-radius-small);
+	cursor: pointer;
+	transition: color var(--heatbox-transition), background-color var(--heatbox-transition);
 }
 
-.udb-menu-builder--user-menu .delete-icon:hover {
-	color: #fff;
-	background-color: var(--heatbox-error);
+.udb-menu-builder--tab-menu-item .delete-icon:hover,
+.udb-menu-builder--tab-menu-item .delete-icon:focus-visible {
+	color: var(--heatbox-error);
+	background: var(--heatbox-error-soft);
+	outline: none;
 }
 
 .udb-menu-builder--tab-content-item {
@@ -603,46 +613,51 @@
    Admin Menu Editor: Roles / Users switch.
    ========================================================================== */
 
+/* A segmented switch: the picked side is a white chip with the accent color on a light gray track, as tall as the fields */
 .udb-menu-builder-box--header-tabs {
 	display: flex;
-	flex-wrap: wrap;
+	gap: 2px;
 	margin: 0;
-	overflow: hidden;
+	padding: 3px;
 	font-size: 13px;
 	font-weight: 500;
 	list-style: none;
-	border: 1px solid var(--heatbox-border);
+	background: var(--heatbox-surface-muted);
 	border-radius: var(--heatbox-radius-control);
 }
 
-.udb-menu-builder-box--header-tabs li:first-child {
-	border-right: 1px solid var(--heatbox-border);
-}
-
 .udb-menu-builder-box--header-tab {
-	display: inline-block;
+	display: block;
 	margin: 0;
 	padding: 0;
 }
 
 .udb-menu-builder-box--header-tab a {
-	display: inline-block;
-	height: 32px;
-	padding: 0 15px;
-	line-height: 32px;
+	display: block;
+	height: calc(var(--heatbox-control-height) - 6px);
+	padding: 0 16px;
+	line-height: calc(var(--heatbox-control-height) - 6px);
 	color: var(--heatbox-text-muted);
 	text-decoration: none;
-	background-color: var(--heatbox-surface);
+	background: transparent;
+	border-radius: calc(var(--heatbox-radius-control) - 2px);
 	box-shadow: none;
+	transition: color var(--heatbox-transition), background-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
 }
 
 .udb-menu-builder-box--header-tab a:hover {
 	color: var(--heatbox-text);
 }
 
+.udb-menu-builder-box--header-tab a:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--heatbox-accent);
+}
+
 .udb-menu-builder-box--header-tab.is-active a {
-	color: var(--heatbox-text);
-	background-color: var(--heatbox-surface-muted);
+	color: var(--heatbox-accent);
+	background: var(--heatbox-surface);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
 }
 
 .udb-menu-builder--inline-buttons {
