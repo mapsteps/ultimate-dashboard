@@ -28,11 +28,20 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	font-size: 18px;
+	font-size: 19px;
 }
 
-.udb-modules img {
+/* Module icon: our own line icons (template), in the admin color scheme's accent */
+.udb-module-icon {
+	flex-shrink: 0;
 	width: 24px;
+	height: 24px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.75;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	color: var(--heatbox-accent);
 }
 
 /* Status row: Active/Inactive badge on the left, the on/off toggle on the right */
@@ -42,7 +51,7 @@
 	justify-content: space-between;
 	gap: 10px;
 	padding: 15px var(--heatbox-box-padding);
-	font-size: 14px;
+	font-size: 15px;
 	background: var(--heatbox-surface-hover);
 	border-top: 1px solid var(--heatbox-box-border);
 	border-radius: 0 0 calc(var(--heatbox-radius) - 1px) calc(var(--heatbox-radius) - 1px);
