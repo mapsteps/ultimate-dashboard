@@ -63,7 +63,7 @@ class Admin_Page_Module extends Base_Module {
 		add_filter( 'manage_udb_admin_page_posts_columns', array( $this, 'set_columns' ) );
 		add_action( 'manage_udb_admin_page_posts_custom_column', array( $this, 'column_content' ), 10, 2 );
 		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
-		add_filter( 'bulk_actions-edit-udb_admin_page', '__return_empty_array' ); // No bulk editing (and so no checkboxes): a handful of pages.
+		add_filter( 'bulk_actions-edit-udb_admin_page', array( $this, 'bulk_actions' ) );
 		add_action( 'in_admin_header', array( $this, 'list_header' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
 
@@ -136,6 +136,7 @@ class Admin_Page_Module extends Base_Module {
 	public function set_columns( $columns ) {
 
 		return array(
+			'cb'          => '<input type="checkbox" />',
 			'title'       => __( 'Page Name', 'ultimate-dashboard' ),
 			'icon'        => __( 'Menu Icon', 'ultimate-dashboard' ),
 			'type'        => __( 'Content Type', 'ultimate-dashboard' ),
@@ -246,6 +247,19 @@ class Admin_Page_Module extends Base_Module {
 	public function disable_months_dropdown( $disable, $post_type ) {
 
 		return 'udb_admin_page' === $post_type ? true : $disable;
+
+	}
+
+	/**
+	 * Bulk actions on the admin page list: only trash, restore and delete (no bulk editing).
+	 *
+	 * @param array $actions The bulk actions.
+	 *
+	 * @return array
+	 */
+	public function bulk_actions( $actions ) {
+
+		return array_intersect_key( $actions, array_flip( array( 'trash', 'untrash', 'delete' ) ) );
 
 	}
 
