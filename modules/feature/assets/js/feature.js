@@ -1,247 +1,80 @@
-(function ($) {
-	$(document)
-		.on("udb_dashboard_jquery_init", function () {
-			var nonce = $(".udb-features-page").find("#udb_module_nonce");
+/**
+ * Modules page: each toggle turns its module on or off right away.
+ *
+ * Every save sends the state of all toggles, and a new save cancels the one still running,
+ * so quick clicks on several toggles can't overwrite each other. If a save fails,
+ * all toggles go back to the last saved state.
+ */
+(function () {
+	"use strict";
 
-			/** @type {JQuery<HTMLInputElement>} */
-			const checkboxes = $(".udb-features-page").find(
-				'.status-switch input[type="checkbox"]',
-			);
+	const config = window.udbModules;
+	const toggles = Array.from(document.querySelectorAll('.udb-modules input[type="checkbox"]'));
 
-			/**
-			 * Tracks pending module changes that haven't been saved yet.
-			 * @type {Object<string, string>}
-			 */
-			var pendingChanges = {};
+	if (!config || !toggles.length) return;
 
-			/**
-			 * The currently in-flight XHR (jQuery jqXHR), or null.
-			 * @type {JQuery.jqXHR|null}
-			 */
-			var currentXhr = null;
+	let saved = toggles.map((toggle) => toggle.checked);
+	let controller = null;
 
-			/**
-			 * Set of module names that are currently in a "loading" state.
-			 * @type {Object<string, boolean>}
-			 */
-			var loadingModules = {};
+	toggles.forEach(function (toggle) {
+		toggle.addEventListener("change", function () {
+			showError(toggle, "");
+			save(toggle);
+		});
+	});
 
-			checkboxes.on("change", function () {
-				const $checkbox = $(this);
-				const $heatbox = $checkbox.parents(".heatbox");
-				const $statusTag = $heatbox.find(".status-code");
-				const moduleName = $checkbox.attr("name") || "";
+	/**
+	 * Save all toggles.
+	 *
+	 * @param {HTMLInputElement} changed The toggle the user changed (shows the error).
+	 */
+	function save(changed) {
+		if (controller) controller.abort();
 
-				// Update the status text immediately.
-				$checkbox.prop("checked")
-					? $statusTag.html(
-							'<span class="active">' +
-								wp.escapeHtml.escapeAttribute($statusTag.data("active-text")) +
-								"</span>",
-						)
-					: $statusTag.html(
-							'<span class="inactive">' +
-								wp.escapeHtml.escapeAttribute(
-									$statusTag.data("inactive-text"),
-								) +
-								"</span>",
-						);
+		controller = new AbortController();
 
-				// Clear any previous error on this box.
-				$heatbox.find(".feature-save-error").remove();
+		const state = toggles.map((toggle) => toggle.checked);
+		const data = new FormData();
 
-				// Track this change.
-				pendingChanges[moduleName] = $checkbox.prop("checked")
-					? "true"
-					: "false";
+		data.append("action", "udb_handle_module_actions");
+		data.append("nonce", config.nonce);
 
-				// Show loading indicator for this heatbox.
-				showLoading($heatbox);
-				loadingModules[moduleName] = true;
+		toggles.forEach(function (toggle, index) {
+			data.append("modules[" + toggle.name + "]", state[index] ? "true" : "false");
+		});
 
-				// Abort the previous in-flight request.
-				if (currentXhr) {
-					currentXhr.abort();
-					currentXhr = null;
+		fetch(config.ajaxUrl, { method: "POST", body: data, signal: controller.signal })
+			.then((response) => response.json())
+			.then(function (response) {
+				if (!response.success) {
+					throw { message: "string" === typeof response.data ? response.data : "" };
 				}
 
-				// Fire a new request with all pending changes.
-				sendBatchSave();
+				saved = state;
+			})
+			.catch(function (error) {
+				if ("AbortError" === error.name) return;
+
+				toggles.forEach(function (toggle, index) {
+					toggle.checked = saved[index];
+				});
+
+				// Only the server's own message; anything else (network, invalid response) gets the generic one.
+				showError(changed, error instanceof Error ? config.strings.error : error.message || config.strings.error);
 			});
+	}
 
-			/**
-			 * Show the loading spinner in a heatbox's h2.
-			 *
-			 * @param {JQuery} $heatbox The heatbox element.
-			 */
-			function showLoading($heatbox) {
-				var $indicator = $heatbox.find(".heatbox-status-indicator");
+	/**
+	 * Show (or clear) the error message in a toggle's box.
+	 *
+	 * @param {HTMLInputElement} toggle The toggle.
+	 * @param {string} message The message; empty to clear it.
+	 */
+	function showError(toggle, message) {
+		const notice = toggle.closest(".heatbox").querySelector(".heatbox-notice");
 
-				// Create the indicator element if it doesn't exist.
-				if (!$indicator.length) {
-					$indicator = $('<span class="heatbox-status-indicator"></span>');
-					$heatbox.find("h2").append($indicator);
-				}
-
-				// Reset classes and force reflow for animation restart.
-				$indicator.removeClass("is-done").addClass("is-loading").text("");
-			}
-
-			/**
-			 * Show the success indicator (🚀) in a heatbox's h2.
-			 *
-			 * @param {JQuery} $heatbox The heatbox element.
-			 */
-			function showDone($heatbox) {
-				var $indicator = $heatbox.find(".heatbox-status-indicator");
-				if (!$indicator.length) return;
-
-				$indicator.removeClass("is-loading").text("🚀");
-
-				// Force reflow to restart the CSS animation.
-				void $indicator[0].offsetWidth;
-
-				$indicator.addClass("is-done");
-
-				// Clean up after animation completes.
-				setTimeout(function () {
-					$indicator.removeClass("is-done").text("");
-				}, 1600);
-			}
-
-			/**
-			 * Hide the loading indicator on a heatbox.
-			 *
-			 * @param {JQuery} $heatbox The heatbox element.
-			 */
-			function hideLoading($heatbox) {
-				var $indicator = $heatbox.find(".heatbox-status-indicator");
-				if (!$indicator.length) return;
-
-				$indicator.removeClass("is-loading is-done").text("");
-			}
-
-			/**
-			 * Show an error message in a heatbox.
-			 *
-			 * @param {JQuery} $heatbox The heatbox element.
-			 * @param {string} message  The error message.
-			 */
-			function showError($heatbox, message) {
-				// Remove any existing error first.
-				$heatbox.find(".feature-save-error").remove();
-
-				var $error = $('<div class="feature-save-error"></div>').text(message);
-
-				// Insert before the feature-status bar.
-				$heatbox.find(".feature-status").before($error);
-			}
-
-			/**
-			 * Revert a checkbox to its opposite state.
-			 *
-			 * @param {string} moduleName The module name (checkbox name attribute).
-			 */
-			function revertCheckbox(moduleName) {
-				var $checkbox = checkboxes.filter('[name="' + moduleName + '"]');
-				if (!$checkbox.length) return;
-
-				var $heatbox = $checkbox.parents(".heatbox");
-				var $statusTag = $heatbox.find(".status-code");
-
-				// Toggle back to the opposite of what we attempted.
-				var wasChecked = $checkbox.prop("checked");
-				$checkbox.prop("checked", !wasChecked);
-
-				!wasChecked
-					? $statusTag.html(
-							'<span class="active">' +
-								wp.escapeHtml.escapeAttribute($statusTag.data("active-text")) +
-								"</span>",
-						)
-					: $statusTag.html(
-							'<span class="inactive">' +
-								wp.escapeHtml.escapeAttribute(
-									$statusTag.data("inactive-text"),
-								) +
-								"</span>",
-						);
-			}
-
-			/**
-			 * Send all pending changes in a single AJAX request.
-			 */
-			function sendBatchSave() {
-				// Snapshot the changes we're about to send.
-				var changesToSend = $.extend({}, pendingChanges);
-
-				var data = {
-					action: "udb_handle_module_actions",
-					nonce: nonce.val(),
-					modules: changesToSend,
-				};
-
-				currentXhr = $.ajax({
-					dataType: "json",
-					data: data,
-					method: "POST",
-					url: window.ajaxurl,
-					success: function (response) {
-						currentXhr = null;
-
-						if (response.success) {
-							// Remove the sent changes from pending.
-							$.each(changesToSend, function (name) {
-								delete pendingChanges[String(name)];
-							});
-
-							// Show success on each saved module's heatbox.
-							$.each(changesToSend, function (name) {
-								var moduleName = String(name);
-								var $cb = checkboxes.filter('[name="' + moduleName + '"]');
-
-								if ($cb.length) {
-									var $hb = $cb.parents(".heatbox");
-									delete loadingModules[moduleName];
-									showDone($hb);
-								}
-							});
-						} else {
-							handleSaveError(changesToSend, response.data || "Save failed.");
-						}
-					},
-					error: function (jqXHR, textStatus) {
-						currentXhr = null;
-
-						// Don't treat an intentional abort as an error.
-						if (textStatus === "abort") return;
-
-						handleSaveError(changesToSend, "An error occurred while saving.");
-					},
-				});
-			}
-
-			/**
-			 * Handle a save error: revert checkboxes and show error messages.
-			 *
-			 * @param {Object<string, string>} failedChanges The changes that failed.
-			 * @param {string}                  message       The error message.
-			 */
-			function handleSaveError(failedChanges, message) {
-				$.each(failedChanges, function (name) {
-					var moduleName = String(name);
-					var $cb = checkboxes.filter('[name="' + moduleName + '"]');
-
-					if ($cb.length) {
-						var $hb = $cb.parents(".heatbox");
-						delete loadingModules[moduleName];
-						delete pendingChanges[moduleName];
-						hideLoading($hb);
-						revertCheckbox(moduleName);
-						showError($hb, message);
-					}
-				});
-			}
-		})
-		.trigger("udb_dashboard_jquery_init");
-})(jQuery);
+		notice.textContent = message;
+		notice.hidden = !message;
+		notice.classList.toggle("is-shown", !!message);
+	}
+})();

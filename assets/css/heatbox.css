@@ -147,12 +147,24 @@ body {
 	margin-bottom: var(--heatbox-gap);
 }
 
+/* Three per row, e.g. a grid of modules: .heatbox-columns.is-three (two per row on medium screens) */
+.heatbox-columns.is-three {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .heatbox-columns > .heatbox {
 	margin-bottom: 0;
 }
 
+@media screen and (max-width: 1100px) {
+	.heatbox-columns.is-three {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
 @media screen and (max-width: 782px) {
-	.heatbox-columns {
+	.heatbox-columns,
+	.heatbox-columns.is-three {
 		grid-template-columns: 1fr;
 	}
 }

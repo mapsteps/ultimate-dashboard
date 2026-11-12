@@ -15,7 +15,7 @@ return function ( $module ) {
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		// Features.
-		wp_enqueue_style( 'udb-features', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/css/features.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		wp_enqueue_style( 'udb-features', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/feature/assets/css/features.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 	}
 

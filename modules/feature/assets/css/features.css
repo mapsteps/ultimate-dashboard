@@ -1,83 +1,19 @@
-/* Features */
-.udb-features-container {
-	display: flex;
-	flex-wrap: wrap;
-}
+/**
+ * Modules page: heatbox boxes in three columns (.heatbox-columns.is-three).
+ * Only the box title is our own: icon and name on the left, the on/off toggle on the right.
+ */
 
-.udb-features-container .heatbox {
-	display: flex;
-	flex-direction: column;
-	flex: 0 32%;
-	margin-right: 2%;
-}
-
-.udb-features-container .heatbox:nth-child(3n) {
-	margin-right: 0;
-}
-
-@media screen and (max-width: 768px) {
-	.udb-features-container .heatbox {
-		flex: 0 100%;
-		margin-right: 0;
-	}
-}
-
-.udb-features-container .heatbox h2 {
+.udb-modules h2 {
 	display: flex;
 	align-items: center;
+	gap: 10px;
 }
 
-.udb-features-container .heatbox h2 img {
+.udb-modules img {
 	width: 32px;
-	margin-right: 10px;
-	opacity: 0.75;
 }
 
-.heatbox-content {
-	flex: 1 0 auto;
-	min-height: 130px;
-}
-
-.heatbox-content p {
-	font-size: 14.5px;
-}
-
-.feature-status {
-	display: flex;
-	align-items: center;
-	padding: 15px 20px;
-	border-top: 1px solid #eee;
-	background: #f9f9f9;
-}
-
-.feature-status > * {
-	width: 50%;
-}
-
-.feature-status .status-switch {
-	text-align: right;
-}
-
-.feature-status .status {
-	font-size: 14.5px;
-}
-
-.feature-status .status .status-code {
-	font-weight: 700;
-}
-
-.feature-status .status-code .active {
-	color: #008000;
-}
-
-.feature-status .status-code .inactive {
-	color: #aaa;
-}
-
-.feature-save-error {
-	padding: 10px 20px;
-	font-size: 13px;
-	color: #8a1f1f;
-	background-color: #fcf0f0;
-	border-top: 1px solid #f0d4d4;
+.udb-modules .toggle-switch {
+	flex-shrink: 0;
+	margin-inline-start: auto;
 }

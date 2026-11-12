@@ -1,6 +1,6 @@
 <?php
 /**
- * Branding page template.
+ * Modules page template.
  *
  * @package Ultimate_Dashboard
  */
@@ -80,62 +80,38 @@ return function () {
 
 		</div>
 
-		<form method="post" action="options.php">
+		<div class="heatbox-container heatbox-container-center">
 
-			<div class="heatbox-container heatbox-container-center">
+			<hr class="wp-header-end">
 
-				<hr class="wp-header-end">
+			<div class="heatbox-columns is-three udb-modules">
 
-				<div class="udb-features-container">
-
-				<?php foreach ( $features as $feature ) { ?>
+				<?php
+				foreach ( $features as $feature ) :
+					$is_on = empty( $saved_modules ) || 'true' === $saved_modules[ $feature['feature'] ];
+					?>
 
 					<div class="heatbox">
-
 						<h2>
-							<img src="<?php echo esc_url( $feature['img'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>">
+							<img src="<?php echo esc_url( $feature['img'] ); ?>" alt="">
 							<?php echo esc_html( $feature['title'] ); ?>
+							<label class="toggle-switch">
+								<input type="checkbox" name="<?php echo esc_attr( $feature['feature'] ); ?>" <?php checked( $is_on ); ?>>
+								<span class="switch-track"><span class="switch-thumb"></span></span>
+								<span class="screen-reader-text"><?php echo esc_html( $feature['title'] ); ?></span>
+							</label>
 						</h2>
-
-							<div class="heatbox-content">
-								<p>
-									<?php echo wp_kses_post( $feature['text'] ); ?>
-								</p>
-							</div>
-
-							<div class="feature-status">
-								<div class="status">
-									<span><?php esc_html_e( 'Status: ', 'ultimate-dashboard' ); ?></span>
-									<span class="status-code" data-active-text="<?php esc_attr_e( 'Active', 'ultimate-dashboard' ); ?>" data-inactive-text="<?php esc_attr_e( 'Inactive', 'ultimate-dashboard' ); ?>">
-									<?php echo empty( $saved_modules ) || 'true' === $saved_modules[ $feature['feature'] ] ? '<span class="active">' . esc_html__( 'Active', 'ultimate-dashboard' ) . '</span>' : '<span class="inactive">' . esc_html__( 'Inactive', 'ultimate-dashboard' ) . '</span>'; ?>
-								</span>
-								</div>
-								<div class="status-switch">
-									<label for="udb_is_active_<?php echo esc_attr( $feature['feature'] ); ?>" class="toggle-switch">
-										<input
-											type="checkbox"
-											name="<?php echo esc_attr( $feature['feature'] ); ?>"
-											id="udb_is_active_<?php echo esc_attr( $feature['feature'] ); ?>"
-											<?php checked( empty( $saved_modules ) || 'true' === $saved_modules[ $feature['feature'] ] ); ?>
-										/>
-										<div class="switch-track">
-											<div class="switch-thumb"></div>
-										</div>
-									</label>
-								</div>
-							</div>
-
+						<div class="heatbox-content">
+							<p class="heatbox-notice is-error" role="alert" hidden></p>
+							<p><?php echo wp_kses_post( $feature['text'] ); ?></p>
+						</div>
 					</div>
 
-				<?php } ?>
-
-				</div>
-
-				<input type="hidden" name="udb_module_nonce" id="udb_module_nonce" value="<?php echo esc_attr( wp_create_nonce( 'udb_module_nonce_action' ) ); ?>" />
+				<?php endforeach; ?>
 
 			</div>
 
-		</form>
+		</div>
 
 	</div>
 
