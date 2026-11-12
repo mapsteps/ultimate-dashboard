@@ -19,7 +19,7 @@ return function () {
 
 		<div class="postbox">
 			<div class="postbox-header">
-				<h2><?php esc_html_e( 'HTML', 'ultimate-dashboard' ); ?></h2>
+				<h2><?php esc_html_e( 'HTML Widget', 'ultimate-dashboard' ); ?></h2>
 			</div>
 			<div class="inside">
 				<textarea class="widefat textarea" name="udb_html"><?php echo esc_textarea( wp_unslash( $content ) ); ?></textarea>

@@ -30,15 +30,43 @@
 	margin-bottom: 5px;
 }
 
-/* Icon preview */
+/* A field's name above it */
+.udb-metabox-field .udb-field-label {
+	display: block;
+	font-weight: 600;
+}
+
+/* Icon: preview in a light accent box (like the widget list), the picker field next to it */
+.udb-icon-field {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.udb-icon-input {
+	flex: 1;
+}
+
+#udb-main-metabox .icon-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	color: var(--heatbox-accent);
+	background: var(--heatbox-accent-soft);
+	border-radius: var(--heatbox-radius-control);
+}
+
 #udb-main-metabox .icon-preview i {
-	height: 120px;
-	width: 120px;
-	font-size: 36px;
-	line-height: 120px;
-	border-radius: 2px;
-	text-align: center;
-	background: #eee;
+	width: auto;
+	height: auto;
+	font-size: 20px;
+}
+
+#udb-main-metabox input.small-text {
+	width: 100px;
 }
 
 /* Input fields */
@@ -66,23 +94,17 @@
 	display: none;
 }
 
-/* CodeMirror fix */
-#udb-main-metabox .CodeMirror-wrap {
-	border: 1px solid #ddd;
+/* HTML widget's code editor: bordered like the fields */
+#udb-main-metabox .CodeMirror {
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
 }
 
-#udb-main-metabox .CodeMirror-sizer {
-	margin-left: 46px !important;
-}
-
-#udb-main-metabox .CodeMirror-linenumbers {
-	width: 29px !important;
-}
-
-/* PRO metabox */
-.udb-pro-metabox-content li {
-	list-style: disc;
-	margin-left: 15px;
+/* PRO box in the sidebar: heatbox's feature list, one column */
+#udb-pro-link-metabox .heatbox-features {
+	grid-template-columns: 1fr;
+	gap: 10px;
+	margin: 12px 0 16px;
 }
 
 /* User role & user access metabox */

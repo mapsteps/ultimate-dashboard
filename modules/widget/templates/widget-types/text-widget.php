@@ -23,25 +23,23 @@ return function () {
 	?>
 
 	<div data-type="text">
-
 		<div class="postbox">
 			<div class="postbox-header">
-				<h2><?php esc_html_e( 'Content', 'ultimate-dashboard' ); ?></h2>
+				<h2><?php esc_html_e( 'Text Widget', 'ultimate-dashboard' ); ?></h2>
 			</div>
 			<div class="inside">
-				<?php wp_editor( $content, $editor, $args ); ?>
+
+				<div class="udb-metabox-field">
+					<?php wp_editor( $content, $editor, $args ); ?>
+				</div>
+
+				<div class="udb-metabox-field">
+					<label class="udb-field-label" for="udb_content_height"><?php esc_html_e( 'Fixed Height', 'ultimate-dashboard' ); ?></label>
+					<input type="text" class="small-text" id="udb_content_height" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
+				</div>
+
 			</div>
 		</div>
-
-		<div class="postbox">
-			<div class="postbox-header">
-				<h2><?php esc_html_e( 'Fixed Height', 'ultimate-dashboard' ); ?></h2>
-			</div>
-			<div class="inside">
-				<input type="text" name="udb_content_height" placeholder="200px" value="<?php echo esc_attr( $content_height ? $content_height : '' ); ?>">
-			</div>
-		</div>
-
 	</div>
 
 	<?php
