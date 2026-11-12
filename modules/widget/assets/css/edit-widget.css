@@ -30,6 +30,12 @@
 	margin-bottom: 5px;
 }
 
+/* No extra space at the bottom of a box (e.g. after the icon widget's "Open link in a new tab.") */
+.udb-metabox-field > :last-child,
+.udb-metabox-field p label {
+	margin-bottom: 0;
+}
+
 /* Icon widget: a larger icon button with the tooltip next to it, same height */
 .udb-icon-row {
 	display: flex;
