@@ -151,11 +151,13 @@ class Branding_Module extends Base_Module {
 		// Register setting.
 		register_setting( 'udb-branding-group', 'udb_branding', array( 'sanitize_callback' => array( $this, 'sanitize_branding_settings' ) ) );
 
-		// Sections.
-		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ), '', 'udb-branding-settings' );
-		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode (Experimental)', 'ultimate-dashboard' ), '', 'udb-darkmode-settings' );
-		add_settings_section( 'udb-admin-colors-section', __( 'WordPress Admin Colors', 'ultimate-dashboard' ), '', 'udb-admin-colors-settings' );
-		add_settings_section( 'udb-admin-logo-section', __( 'WordPress Admin Logo', 'ultimate-dashboard' ), '', 'udb-admin-logo-settings' );
+		// Sections. Without PRO, these four are previews of PRO features: a PRO badge in the title.
+		$pro_badge = udb_is_pro_active() ? '' : ' <span class="heatbox-badge">PRO</span>';
+
+		add_settings_section( 'udb-branding-section', __( 'WordPress Admin Branding', 'ultimate-dashboard' ) . $pro_badge, '', 'udb-branding-settings' );
+		add_settings_section( 'udb-darkmode-section', __( 'Dark Mode (Experimental)', 'ultimate-dashboard' ) . $pro_badge, '', 'udb-darkmode-settings' );
+		add_settings_section( 'udb-admin-colors-section', __( 'WordPress Admin Colors', 'ultimate-dashboard' ) . $pro_badge, '', 'udb-admin-colors-settings' );
+		add_settings_section( 'udb-admin-logo-section', __( 'WordPress Admin Logo', 'ultimate-dashboard' ) . $pro_badge, '', 'udb-admin-logo-settings' );
 		add_settings_section( 'udb-branding-misc-section', __( 'Misc', 'ultimate-dashboard' ), '', 'udb-branding-misc-settings' );
 
 		// Branding fields.

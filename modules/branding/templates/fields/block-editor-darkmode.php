@@ -35,22 +35,6 @@ return function () {
 		<?php echo esc_html( $field_description ); ?>
 	</p>
 
-	<br>
-
-	<div class="udb-pro-settings-page-notice">
-
-		<?php if ( ! udb_is_pro_active() ) : ?>
-
-			<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-
-			<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary" target="_blank">
-				<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-			</a>
-
-		<?php endif; ?>
-
-	</div>
-
 	<?php
 
 };
