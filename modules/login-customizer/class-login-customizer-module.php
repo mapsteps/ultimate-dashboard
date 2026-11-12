@@ -59,9 +59,7 @@ class Login_Customizer_Module extends Base_Module {
 
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 
-		// Create custom page (custom rewrite, not a real page).
-		add_action( 'init', array( $this, 'rewrite_tags' ) );
-		add_action( 'init', array( $this, 'rewrite_rules' ) );
+		// The login page for the Customizer preview (not a real page, see is_login_customizer_request()).
 		add_action( 'wp', array( $this, 'set_custom_page' ) );
 
 		// Setup customizer.
@@ -109,43 +107,9 @@ class Login_Customizer_Module extends Base_Module {
 	}
 
 	/**
-	 * Register rewrite tags.
-	 *
-	 * @return void
-	 */
-	public function rewrite_tags() {
-
-		add_rewrite_tag( '%udb-login-customizer%', '([^&]+)' );
-
-	}
-
-	/**
-	 * Register rewrite rules.
-	 *
-	 * @return void
-	 */
-	public function rewrite_rules() {
-
-		// Rewrite rule for "udb-login-customizer" page.
-		add_rewrite_rule(
-			'^udb-login-customizer/?',
-			'index.php?pagename=udb-login-customizer',
-			'top'
-		);
-
-		// Flush the rewrite rules if it hasn't been flushed.
-		if ( ! get_option( 'udb_login_customizer_flush_url' ) ) {
-			flush_rewrite_rules( false );
-			update_option( 'udb_login_customizer_flush_url', 1 );
-		}
-
-	}
-
-	/**
 	 * Whether the current request is the login customizer page (home_url( 'udb-login-customizer' )).
 	 *
-	 * Checks the request path too, so the page also works when the rewrite rule is missing
-	 * (rules flushed while the plugin was inactive) or with plain permalinks.
+	 * Recognized by its path, so no rewrite rule (and no rules flush) is needed; works with plain permalinks too.
 	 *
 	 * @return bool
 	 */
