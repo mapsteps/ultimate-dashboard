@@ -695,6 +695,17 @@ body {
 	display: flex;
 	width: 100%;
 	max-width: 480px;
+	border-radius: var(--heatbox-radius-control);
+	transition: box-shadow var(--heatbox-transition);
+}
+
+/* Focus: the ring goes around the whole field, prefix included */
+.heatbox-input-group:focus-within {
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+.heatbox-input-group:focus-within .heatbox-input-prefix {
+	border-color: var(--heatbox-accent);
 }
 
 .heatbox-input-prefix {
@@ -714,6 +725,7 @@ body {
 	border-inline-end: none;
 	border-start-start-radius: var(--heatbox-radius-control);
 	border-end-start-radius: var(--heatbox-radius-control);
+	transition: border-color var(--heatbox-transition);
 }
 
 .heatbox .heatbox-input-group input {
@@ -722,6 +734,10 @@ body {
 	margin: 0;
 	border-start-start-radius: 0;
 	border-end-start-radius: 0;
+}
+
+.heatbox .heatbox-input-group input:focus {
+	box-shadow: none;
 }
 
 /* WordPress' code editor (wp.codeEditor / CodeMirror), styled like the fields */
