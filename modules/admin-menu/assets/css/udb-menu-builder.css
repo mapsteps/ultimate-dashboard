@@ -210,7 +210,7 @@
 
 .udb-menu-builder--menu-item.ui-sortable-placeholder {
 	visibility: visible !important; /* jQuery UI hides it inline */
-	background: var(--heatbox-accent-soft);
+	background: var(--heatbox-surface-hover);
 }
 
 /* A row */
