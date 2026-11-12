@@ -1,72 +1,45 @@
 /**
  * Onboarding (Setup Wizard & the short "Setup" for users coming from other plugins).
  *
- * The steps come from the page: each slide has data-udb-step (modules, widgets, settings, login_url, subscription, finished).
- * Every step is saved through the one "udb_onboarding" AJAX action.
+ * Each step is a <section data-udb-step> (modules, widgets, settings, login_url, subscription, finished);
+ * one is shown at a time. Every step is saved through the one "udb_onboarding" AJAX action.
  */
 (function ($) {
 	"use strict";
 
 	const config = window.udbOnboarding;
-	const page = document.querySelector(".udb-onboarding-wizard-page");
+	const page = document.querySelector(".udb-onboarding");
 
-	if (!config || !page || typeof window.tns !== "function") return;
+	if (!config || !page) return;
 
-	const box = page.querySelector(".onboarding-wizard-heatbox");
-	const slides = Array.from(page.querySelectorAll(".udb-onboarding-wizard-slide"));
-	const steps = slides.map((slide) => slide.dataset.udbStep);
-	const footer = box.querySelector(".heatbox-footer");
-	const saveButton = box.querySelector(".save-button");
-	const skipButton = box.querySelector(".skip-button");
-	const subscribeButton = box.querySelector(".subscribe-button");
-	const skipDiscountLink = box.querySelector(".udb-onboarding-wizard-skip-discount a");
-	const discountNotif = box.querySelector(".udb-discount-notif");
-	const skipWizard = page.querySelector(".skip-onboarding-wizard");
-	const exploreSettings = page.querySelector("#onboarding-wizard-explore-settings");
+	const sections = Array.from(page.querySelectorAll(".udb-onboarding-step"));
+	const steps = sections.map((section) => section.dataset.udbStep);
+	const footer = page.querySelector(".udb-onboarding-footer");
+	const progress = page.querySelector(".udb-onboarding-progress");
+	const nextButton = page.querySelector(".udb-onboarding-next");
+	const subscribeButton = page.querySelector(".udb-onboarding-subscribe");
+	const skipAll = page.querySelector(".udb-onboarding-skip-all");
 	const loginRedirectToggle = page.querySelector("#udb_modules__login_redirect");
 	const roleSelect = page.querySelector("#remove_by_roles");
 
-	// Steps without a dot of their own.
-	const stepsWithoutDot = ["subscription", "finished"];
+	// The steps with settings; they get the footer and count as "Step x of y".
+	const settingSteps = ["modules", "widgets", "settings", "login_url"];
 
 	let current = 0;
 	let busy = false;
 
-	const slider = window.tns({
-		container: ".udb-onboarding-wizard-slides",
-		items: 1,
-		loop: false,
-		autoHeight: true,
-		controls: false,
-		navPosition: "bottom",
-		onInit: function (info) {
-			const dotsWrapper = box.querySelector(".udb-dots");
-
-			if (dotsWrapper && info.navContainer) {
-				dotsWrapper.appendChild(info.navContainer);
-			}
-
-			updateUi();
-		},
-	});
-
-	slider.events.on("indexChanged", function (info) {
-		current = info.index;
-		updateUi();
-	});
-
 	setupRoleSelect();
 	updateUi();
 
-	saveButton?.addEventListener("click", onSave);
-	skipButton?.addEventListener("click", goNext);
-	subscribeButton?.addEventListener("click", onSubscribe);
-	skipDiscountLink?.addEventListener("click", onSkipDiscount);
+	nextButton.addEventListener("click", onNext);
+	subscribeButton.addEventListener("click", onSubscribe);
+	page.querySelector(".udb-onboarding-skip").addEventListener("click", goNext);
+	page.querySelector(".udb-onboarding-skip-discount").addEventListener("click", onSkipDiscount);
 	loginRedirectToggle?.addEventListener("change", updateUi);
 
-	page.querySelector("#skip-setup-onboarding-wizard")?.addEventListener("click", function (e) {
+	skipAll?.querySelector("a").addEventListener("click", function (e) {
 		e.preventDefault();
-		slider.goTo(steps.indexOf("subscription"));
+		goTo(steps.indexOf("subscription"));
 	});
 
 	/**
@@ -80,6 +53,17 @@
 	}
 
 	/**
+	 * Show a step and move the focus to its title.
+	 *
+	 * @param {number} index The step's index.
+	 */
+	function goTo(index) {
+		current = index;
+		updateUi();
+		sections[index].querySelector("h2").focus();
+	}
+
+	/**
 	 * Go to the next active step.
 	 */
 	function goNext() {
@@ -89,30 +73,28 @@
 			next++;
 		}
 
-		slider.goTo(next);
+		goTo(next);
 	}
 
 	/**
-	 * Show/hide the parts that depend on the current step.
+	 * Show the current step and the parts that depend on it.
 	 */
 	function updateUi() {
-		const step = steps[current];
-		const atEnd = stepsWithoutDot.includes(step);
+		const isSettingStep = settingSteps.includes(steps[current]);
+		const counted = steps.filter((step) => settingSteps.includes(step) && isActive(step));
 
-		footer?.classList.toggle("is-hidden", atEnd);
-		discountNotif?.classList.toggle("is-hidden", "subscription" !== step);
-		skipWizard?.classList.toggle("is-hidden", atEnd);
-
-		if ("finished" === step) {
-			exploreSettings?.classList.remove("is-hidden");
-		}
-
-		const dots = box.querySelectorAll(".udb-dots .tns-nav > button");
-
-		dots.forEach(function (dot, index) {
-			dot.classList.toggle("is-hidden", stepsWithoutDot.includes(steps[index]) || !isActive(steps[index]));
-			dot.classList.toggle("completed", index < current);
+		sections.forEach(function (section, index) {
+			section.hidden = index !== current;
 		});
+
+		footer.hidden = !isSettingStep;
+
+		if (skipAll) skipAll.hidden = !isSettingStep;
+
+		progress.hidden = counted.length < 2;
+		progress.textContent = config.strings.progress
+			.replace("%1$s", counted.indexOf(steps[current]) + 1)
+			.replace("%2$s", counted.length);
 	}
 
 	/**
@@ -130,7 +112,7 @@
 	/**
 	 * Save the current step, then go on.
 	 */
-	function onSave() {
+	function onNext() {
 		const step = steps[current];
 		const data = { step: step };
 
@@ -142,13 +124,10 @@
 			data.settings = checkedValues("settings");
 			data.roles = roleSelect ? $(roleSelect).val() || [] : [];
 		} else if ("login_url" === step) {
-			data.login_url = page.querySelector("#udb_login_redirect")?.value || "";
-		} else {
-			goNext();
-			return;
+			data.login_url = page.querySelector("#udb_login_redirect").value;
 		}
 
-		send(data, saveButton, goNext);
+		send(data, nextButton, goNext);
 	}
 
 	/**
@@ -158,8 +137,8 @@
 		send(
 			{
 				step: "subscribe",
-				name: page.querySelector("#udb-subscription-name")?.value || "",
-				email: page.querySelector("#udb-subscription-email")?.value || "",
+				name: page.querySelector("#udb-subscription-name").value,
+				email: page.querySelector("#udb-subscription-email").value,
 				referrer: config.referrer,
 			},
 			subscribeButton,
@@ -177,7 +156,7 @@
 	function onSkipDiscount(e) {
 		e.preventDefault();
 
-		send({ step: "skip_discount", referrer: config.referrer }, skipDiscountLink?.parentElement, function () {
+		send({ step: "skip_discount", referrer: config.referrer }, null, function () {
 			finish("skip-discount");
 		});
 	}
@@ -189,7 +168,7 @@
 	 */
 	function finish(how) {
 		page.querySelectorAll("[data-udb-show-on]").forEach(function (el) {
-			el.classList.toggle("is-hidden", el.dataset.udbShowOn !== how);
+			el.hidden = el.dataset.udbShowOn !== how;
 		});
 
 		// The page is done: remove its menu item.
@@ -199,14 +178,14 @@
 			}
 		});
 
-		slider.goTo(steps.indexOf("finished"));
+		goTo(steps.indexOf("finished"));
 	}
 
 	/**
 	 * Send a step to the server.
 	 *
 	 * @param {Object} data The data.
-	 * @param {Element|null|undefined} button The button that shows the loading state.
+	 * @param {Element|null} button The button that shows the loading state.
 	 * @param {Function} onSuccess Called when it worked.
 	 */
 	function send(data, button, onSuccess) {
@@ -243,7 +222,7 @@
 
 		const $select = $(roleSelect);
 
-		$select.select2({ placeholder: config.strings.selectRole, allowClear: true });
+		$select.select2({ placeholder: config.strings.selectRole, allowClear: true, width: "100%" });
 
 		$select.on("select2:select", function (e) {
 			const values = $select.val() || [];

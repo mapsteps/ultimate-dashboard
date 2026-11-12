@@ -1,413 +1,103 @@
-/* Animation */
-@-webkit-keyframes udbLoadingSpinAround {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(359deg);
-	}
+/**
+ * Onboarding: the Setup Wizard and the short "Setup" for users coming from other plugins.
+ *
+ * The page is heatbox (header, box, buttons, toggles, fields). This file only adds the wizard's own parts.
+ */
+
+/* ==========================================================================
+   Layout.
+   ========================================================================== */
+
+.udb-onboarding-container {
+	max-width: 640px;
 }
 
-@keyframes udbLoadingSpinAround {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(359deg);
-	}
+.udb-onboarding h3 {
+	margin: 20px 0 10px;
 }
 
-/* Onboarding Wizard */
-.udb-onboarding-wizard-page .notice {
-	display: none !important;
-}
-
-.onboarding-wizard-heatbox {
-	max-width: 400px;
-	margin: 0 auto;
-	padding: 35px 40px;
-	border-radius: 10px;
-}
-
-.onboarding-wizard-heatbox h2 {
-	margin-bottom: 20px;
-	padding: 0;
-	border-bottom-width: 0;
-}
-
-.udb-onboarding-wizard-slides {
-	position: relative;
-}
-
-.udb-onboarding-wizard-slide header {
-	margin-bottom: 40px;
-	text-align: center;
-}
-
-.udb-onboarding-wizard-slide .udb-illustration {
-	margin-bottom: 30px;
-	max-width: 70%;
-}
-
-.udb-onboarding-wizard-slide .subscription-illustration {
-	max-width: 50%;
-}
-
-.udb-onboarding-wizard-slide header h2 {
-	margin-top: 0;
-	font-size: 22px;
-}
-
-.udb-onboarding-wizard-slide header p {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 75%;
-	font-size: 16px;
-}
-
-.udb-onboarding-wizard-slide .udb-modules {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.udb-onboarding-wizard-slide .udb-modules > li {
+.udb-onboarding-illustration {
 	display: block;
-	margin-bottom: 17px;
+	width: 200px;
+	max-width: 100%;
+	margin: 0 auto 20px;
 }
 
-.udb-onboarding-wizard-slide .udb-modules > li:not(.has-select2):not(.udb-divider) {
+/* ==========================================================================
+   Toggle rows: label on the left, toggle on the right, the whole row clickable.
+   ========================================================================== */
+
+.udb-onboarding-row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-image {
-	width: 10%;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-image img {
-	max-width: 40px;
-	height: auto;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-text {
-	display: block;
-	width: 85%;
-	text-align: left;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-text h3 {
-	margin-bottom: 5px;
-	font-size: 16px;
-	line-height: 1;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-text p {
-	margin-bottom: 0;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .module-toggle {
-	width: 20%;
-	text-align: right;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .checkbox-label {
-	height: 25px;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .checkbox-label input {
-	visibility: hidden;
-}
-
-/* Override WordPress style */
-.udb-onboarding-wizard-slide .udb-modules .checkbox-label input:checked:before {
-	content: "";
-	opacity: 0;
-	visibility: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .checkbox-label .indicator {
-	width: 25px;
-	height: 25px;
-	border-radius: 50%;
-}
-
-.udb-onboarding-wizard-slide .udb-modules .checkbox-label .indicator::after {
-	top: 7px;
-	left: 10px;
-}
-
-.heatbox .label input:disabled ~ .indicator {
-	opacity: 0.9;
-}
-
-.onboarding-wizard-heatbox .heatbox-footer {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 20px;
-	padding-top: 35px;
-	width: 100%;
-	border-top: 1px solid #eee;
-}
-
-.onboarding-wizard-heatbox .heatbox-footer-item {
-	width: 33%;
-}
-
-.onboarding-wizard-heatbox .heatbox-footer-item:nth-child(2) {
-	text-align: center;
-}
-
-.onboarding-wizard-heatbox .heatbox-footer-item:last-child {
-	text-align: right;
-}
-
-.onboarding-wizard-heatbox *.is-hidden {
-	display: none;
-}
-
-.onboarding-wizard-heatbox *.is-invisible {
-	opacity: 0;
-	visibility: hidden;
-	z-index: -1;
-	pointer-events: none;
-}
-
-.udb-onboarding-wizard-page .udb-dots .tns-nav [aria-controls] {
+	gap: 20px;
+	padding: 10px 0;
+	border-top: 1px solid var(--heatbox-box-border);
 	cursor: pointer;
 }
 
-.udb-onboarding-wizard-page .udb-dots .tns-nav > [aria-controls] {
-	width: 9px;
-	height: 9px;
-	padding: 0;
-	margin: 0 5px;
-	border-radius: 50%;
-	background: #ddd;
-	border: 0;
+.udb-onboarding-row .toggle-switch {
+	flex-shrink: 0;
 }
 
-.udb-onboarding-wizard-page .udb-dots .tns-nav > .tns-nav-active {
-	background: #096484;
-}
+/* ==========================================================================
+   Fields: label above the field.
+   ========================================================================== */
 
-/* set blue color for completed slides */
-.udb-onboarding-wizard-page .udb-dots .tns-nav > .completed {
-	background: #096484;
-}
-
-/* Steps that aren't part of the current run (login URL when Login Redirect is off, discount, finish). */
-.udb-onboarding-wizard-page .udb-dots .tns-nav > .is-hidden {
-	display: none;
-}
-
-.udb-onboarding-wizard-slide .udb-subscription-form {
-	margin-left: auto;
-	margin-right: auto;
-	width: 80%;
-}
-
-.udb-onboarding-wizard-slide .udb-form-row {
-	margin-bottom: 20px;
-}
-
-.udb-onboarding-wizard-slide .udb-form-row .udb-input {
-	padding-left: 10px;
-	padding-right: 10px;
-	width: 100%;
-	height: 45px;
-	font-size: 16px;
-	border: 2px solid #ddd;
-}
-
-.udb-onboarding-wizard-slide .udb-subscription-form .subscribe-button {
-	width: 100%;
-	height: 45px;
-	font-size: 16px;
-}
-
-.onboarding-wizard-heatbox .udb-button.is-loading,
-.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	color: transparent !important;
-	pointer-events: none;
-}
-
-.onboarding-wizard-heatbox .udb-button.is-loading::after,
-.onboarding-wizard-heatbox
-	.udb-onboarding-wizard-skip-discount.is-loading::after {
-	content: "";
-	position: absolute;
-	width: 1em;
-	display: block;
-	height: 1em;
-	border: 2px solid #dbdbdb;
-	border-color: transparent transparent #fff #fff !important;
-	border-radius: 290486px;
-	-webkit-animation: udbLoadingSpinAround 0.5s infinite linear;
-	animation: udbLoadingSpinAround 0.5s infinite linear;
-}
-
-.onboarding-wizard-heatbox .finish-button-wrapper {
-	margin-left: auto;
-	margin-right: auto;
-	width: 70%;
-}
-
-.onboarding-wizard-heatbox .finish-button {
-	width: 100%;
-	height: 45px;
-	line-height: 43px;
-	text-align: center;
-	font-size: 16px;
-}
-
-.udb-onboarding-wizard-page .udb-discount-notif {
-	margin-top: 25px;
-	padding-top: 25px;
-	text-align: center;
-	border-top: 1px solid #eee;
-}
-
-.udb-onboarding-wizard-skip-discount {
-	text-align: center;
-	margin-bottom: 0;
-}
-
-.udb-onboarding-wizard-skip-discount a {
-	text-decoration: none;
-}
-
-.onboarding-wizard-heatbox .udb-onboarding-wizard-skip-discount.is-loading {
-	width: 100%;
-}
-
-.onboarding-wizard-heatbox
-	.udb-onboarding-wizard-skip-discount.is-loading::after {
-	border: 2px solid #135e96;
-	border-color: transparent transparent #2271b1 #2271b1 !important;
-}
-
-.udb-onboarding-wizard-skip-discount.is-loading a {
-	color: transparent;
-	pointer-events: none;
-	visibility: hidden;
-	opacity: 0;
-}
-
-.onboarding-wizard-skip-button {
-	padding: 0;
-	font-size: 16px;
-	color: var(--wp-admin-theme-color, #3858e9);
-	text-decoration: none;
-	background: none;
-	border: none;
-}
-
-.onboarding-wizard-skip-button:hover {
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.onboarding-wizard-skip-button:active {
-	color: var(--wp-admin-theme-color, #3858e9);
-}
-
-.udb-onboarding-wizard-page .heatbox-footer.skip-onboarding-wizard,
-.udb-onboarding-wizard-page .heatbox-footer.onboarding-wizard-explore-settings {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 20px;
-}
-
-.udb-onboarding-wizard-page .heatbox-footer.skip-onboarding-wizard a,
-.udb-onboarding-wizard-page
-	.heatbox-footer.onboarding-wizard-explore-settings
-	a {
-	color: var(--wp-admin-theme-color, #3858e9);
-	text-decoration: none;
-	font-size: 16px;
-	cursor: pointer;
-}
-
-.skip-onboarding-wizard-link:hover {
-	text-decoration: underline;
-}
-
-.is-hidden {
-	display: none !important;
-}
-
-.udb-onboarding-wizard-page .udb-form-row.onboarding-wizard-login-url {
-	display: flex;
-	align-items: center;
-	gap: 2px;
-	height: 25px;
-}
-
-.udb-onboarding-wizard-page .udb-form-row code.onboarding-wizard-login-url {
-	background: #f1f1f1;
-	padding: 6px;
-	border-radius: 3px;
-	white-space: nowrap;
-}
-
-.udb-onboarding-wizard-page
-	.udb-form-row
-	input.udb-input.onboarding-wizard-login-url {
-	flex-grow: 1;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-size: inherit;
-	height: inherit;
-}
-
-.udb-onboarding-wizard-page
-	.wrap.heatbox-wrap.udb-wizard-page
-	.heatbox-margin-bottom {
-	margin-bottom: 40px;
-}
-
-.udb-onboarding-wizard-page .udb-divider.for-widget-remove-all {
-	display: flex;
-	align-items: center;
-	text-align: center;
+.udb-onboarding-field {
 	margin: 20px 0;
-	font-size: 10px;
 }
 
-.udb-onboarding-wizard-page .udb-divider.for-widget-remove-all::before,
-.udb-onboarding-wizard-page .udb-divider.for-widget-remove-all::after {
-	content: "";
-	flex: 1;
-	border-bottom: 1px solid #dbdbdb;
-	margin: 0 5px;
-}
-
-.udb-onboarding-wizard-page .udb-divider.for-widget-remove-all .divider-text {
-	font-size: 11px;
-	color: #a3a3a3;
-	text-transform: uppercase;
-}
-
-.udb-onboarding-wizard-page .dropdown-label {
+.udb-onboarding-field label {
 	display: block;
-	margin-bottom: 8px;
-	font-size: 15px;
+	margin-bottom: 5px;
+	font-weight: 600;
 }
 
-.udb-onboarding-wizard-page .select2-selection {
-	height: 60px;
-	overflow-y: auto;
-	overflow-x: hidden;
-	border: 1px solid #ddd !important;
+.udb-onboarding-field .description {
+	margin: 10px 0 0;
+}
+
+/* Login URL: the site address in front of the field */
+.udb-onboarding-url {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 5px 10px;
+	color: var(--heatbox-text-muted);
+}
+
+.udb-onboarding-url input {
+	flex: 1;
+	min-width: 160px;
+}
+
+/* ==========================================================================
+   Buttons.
+   ========================================================================== */
+
+.udb-onboarding-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 20px;
+}
+
+/* Skip, step count and Next below the steps */
+.udb-onboarding-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 15px var(--heatbox-box-padding);
+	border-top: 1px solid var(--heatbox-box-border);
+}
+
+.udb-onboarding-progress {
+	color: var(--heatbox-text-muted);
+}
+
+.udb-onboarding-skip-all {
+	text-align: center;
 }

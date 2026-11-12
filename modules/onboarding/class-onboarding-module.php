@@ -124,12 +124,9 @@ class Onboarding_Module extends Base_Module {
 		}
 
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-		wp_enqueue_style( 'tiny-slider', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/tiny-slider.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
-		wp_enqueue_style( 'udb-onboarding', $this->url . '/assets/css/onboarding.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		wp_enqueue_style( 'udb-onboarding', $this->url . '/assets/css/onboarding.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		$script_deps = array( 'jquery', 'tiny-slider' );
-
-		wp_enqueue_script( 'tiny-slider', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/tiny-slider.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		$script_deps = array( 'jquery' );
 
 		if ( 'wizard' === $this->variant ) {
 			// The role picker on the settings step.
@@ -154,6 +151,8 @@ class Onboarding_Module extends Base_Module {
 				'strings'  => array(
 					'error'      => __( 'Something went wrong. Please try again.', 'ultimate-dashboard' ),
 					'selectRole' => __( 'Select Role', 'ultimate-dashboard' ),
+					/* translators: %1$s: The current step, %2$s: The number of steps. */
+					'progress'   => __( 'Step %1$s of %2$s', 'ultimate-dashboard' ),
 				),
 			)
 		);
