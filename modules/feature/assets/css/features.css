@@ -34,3 +34,11 @@
 	border-top: 1px solid var(--heatbox-box-border);
 	border-radius: 0 0 calc(var(--heatbox-radius) - 1px) calc(var(--heatbox-radius) - 1px);
 }
+
+/* Same size as the "Status:" text and on its baseline (heatbox's badge is sized for box titles) */
+.udb-module-status .heatbox-badge {
+	margin-inline-start: 4px;
+	padding: 3px 10px;
+	font-size: 13px;
+	vertical-align: baseline;
+}
