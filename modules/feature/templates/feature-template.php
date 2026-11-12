@@ -125,13 +125,13 @@ return function () {
 								</div>
 							</div>
 
-						<input type="hidden" name="udb_module_nonce" id="udb_module_nonce" value="<?php echo esc_attr( wp_create_nonce( 'udb_module_nonce_action' ) ); ?>" />
-
 					</div>
 
 				<?php } ?>
 
 				</div>
+
+				<input type="hidden" name="udb_module_nonce" id="udb_module_nonce" value="<?php echo esc_attr( wp_create_nonce( 'udb_module_nonce_action' ) ); ?>" />
 
 			</div>
 

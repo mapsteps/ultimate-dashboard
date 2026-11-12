@@ -66,11 +66,6 @@ class Feature_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'wp_ajax_udb_handle_module_actions', array( self::get_instance(), 'handle_module_actions' ) );
 
-		// The module output.
-		require_once __DIR__ . '/class-feature-output.php';
-		$output = new Feature_Output();
-		$output->setup();
-
 	}
 
 	/**
@@ -132,26 +127,31 @@ class Feature_Module extends Base_Module {
 		$module        = new Setup();
 		$saved_modules = $module->saved_modules();
 
-		// Batch mode: multiple modules in one request.
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per-key below.
 		if ( isset( $_POST['modules'] ) && is_array( $_POST['modules'] ) ) {
-
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per-key below.
-			foreach ( $_POST['modules'] as $mod_name => $mod_status ) {
-				$saved_modules[ sanitize_key( $mod_name ) ] = sanitize_key( $mod_status );
-			}
+			// Batch mode: multiple modules in one request.
+			$changes = map_deep( wp_unslash( $_POST['modules'] ), 'sanitize_key' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by map_deep().
 		} else {
-
 			// Legacy single-module mode (backwards compatible).
-			$name   = isset( $_POST['name'] ) ? sanitize_key( $_POST['name'] ) : null;
-			$status = isset( $_POST['status'] ) ? sanitize_key( $_POST['status'] ) : null;
+			$name   = isset( $_POST['name'] ) ? sanitize_key( wp_unslash( $_POST['name'] ) ) : '';
+			$status = isset( $_POST['status'] ) ? sanitize_key( wp_unslash( $_POST['status'] ) ) : '';
 
-			if ( is_null( $name ) || is_null( $status ) ) {
-				wp_send_json_error( __( 'Invalid data', 'ultimate-dashboard' ) );
+			$changes = $name ? array( $name => $status ) : array();
+		}
+
+		$changed = false;
+
+		// Only known modules, only "true" or "false".
+		foreach ( $changes as $name => $status ) {
+			if ( ! array_key_exists( $name, $saved_modules ) || ! in_array( $status, array( 'true', 'false' ), true ) ) {
+				continue;
 			}
 
 			$saved_modules[ $name ] = $status;
+			$changed                = true;
+		}
 
+		if ( ! $changed ) {
+			wp_send_json_error( __( 'Invalid data', 'ultimate-dashboard' ) );
 		}
 
 		update_option( 'udb_modules', $saved_modules );
