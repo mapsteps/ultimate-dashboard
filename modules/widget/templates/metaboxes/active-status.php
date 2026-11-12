@@ -20,8 +20,6 @@ return function ( $post ) {
 
 	?>
 
-	<?php wp_nonce_field( 'udb_widget_active', 'udb_widget_active_nonce' ); ?>
-
 	<label for="udb_is_active" class="toggle-switch">
 		<input type="checkbox" name="udb_is_active" id="udb_is_active" value="1" <?php checked( $is_active, 1 ); ?>>
 		<div class="switch-track">

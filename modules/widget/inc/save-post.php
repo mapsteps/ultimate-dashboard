@@ -19,17 +19,10 @@ return function ( $post_id ) {
 		return;
 	}
 
-	$widget_type_nonce     = isset( $_POST['udb_widget_type_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_widget_type_nonce'] ) ) : '';
-	$active_status_nonce   = isset( $_POST['udb_widget_active_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_widget_active_nonce'] ) ) : '';
-	$widget_position_nonce = isset( $_POST['udb_position_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_position_nonce'] ) ) : '';
-	$widget_priority_nonce = isset( $_POST['udb_priority_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_priority_nonce'] ) ) : '';
+	// One check for the whole widget form (the nonce sits in the main widget box).
+	$nonce = isset( $_POST['udb_widget_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_widget_nonce'] ) ) : '';
 
-	$is_valid_widget_type_nonce   = wp_verify_nonce( $widget_type_nonce, 'udb_widget_type' ) ? true : false;
-	$is_valid_active_status_nonce = wp_verify_nonce( $active_status_nonce, 'udb_widget_active' ) ? true : false;
-	$is_valid_position_nonce      = wp_verify_nonce( $widget_position_nonce, 'udb_position' ) ? true : false;
-	$is_valid_priority_nonce      = wp_verify_nonce( $widget_priority_nonce, 'udb_priority' ) ? true : false;
-
-	if ( ! $is_valid_widget_type_nonce || ! $is_valid_active_status_nonce || ! $is_valid_position_nonce || ! $is_valid_priority_nonce ) {
+	if ( ! wp_verify_nonce( $nonce, 'udb_save_widget' ) || ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
 	}
 

@@ -26,7 +26,7 @@ return function () {
 			<div class="postbox-header">
 				<h2><?php esc_html_e( 'Widget Type', 'ultimate-dashboard' ); ?></h2>
 			</div>
-			<?php wp_nonce_field( 'udb_widget_type', 'udb_widget_type_nonce' ); ?>
+			<?php wp_nonce_field( 'udb_save_widget', 'udb_widget_nonce' ); ?>
 			<div class="inside">
 				<select name="udb_widget_type">
 					<?php foreach ( $widget_types as $value => $text ) { ?>

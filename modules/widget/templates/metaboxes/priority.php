@@ -9,8 +9,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function ( $post ) {
 
-	wp_nonce_field( 'udb_priority', 'udb_priority_nonce' );
-
 	$saved_meta = get_post_meta( $post->ID, 'udb_priority_key', true );
 
 	if ( ! $saved_meta ) {

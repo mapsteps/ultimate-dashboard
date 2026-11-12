@@ -27,7 +27,7 @@ return function () {
 	</li>
 	</ul>
 
-	<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/docs-category/widgets/?utm_source=plugin&utm_medium=edit_widget_page&utm_campaign=udb" target="_blank" class="button button-primary button-large">
+	<a style="width: 100%; text-align: center;" href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=edit_widget_page&utm_campaign=udb" target="_blank" class="button button-primary button-large">
 		<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
 	</a>
 
