@@ -3,6 +3,11 @@
  * Our own parts: the icon in the box title and the status row at the bottom.
  */
 
+/* A bit more air between the cards than heatbox's default gap */
+.udb-modules {
+	gap: 24px;
+}
+
 /* The status row stays at the bottom when a box in the row has more text */
 .udb-modules .heatbox {
 	display: flex;
@@ -13,6 +18,12 @@
 	flex-grow: 1;
 }
 
+/* WordPress sets paragraphs to 13px */
+.udb-modules p {
+	font-size: 14px;
+	line-height: 1.6;
+}
+
 .udb-modules h2 {
 	display: flex;
 	align-items: center;
@@ -20,7 +31,7 @@
 }
 
 .udb-modules img {
-	width: 32px;
+	width: 24px;
 }
 
 /* Status row: Active/Inactive badge on the left, the on/off toggle on the right */
@@ -30,6 +41,7 @@
 	justify-content: space-between;
 	gap: 10px;
 	padding: 15px var(--heatbox-box-padding);
+	font-size: 14px;
 	background: var(--heatbox-surface-hover);
 	border-top: 1px solid var(--heatbox-box-border);
 	border-radius: 0 0 calc(var(--heatbox-radius) - 1px) calc(var(--heatbox-radius) - 1px);
@@ -39,6 +51,6 @@
 .udb-module-status .heatbox-badge {
 	margin-inline-start: 4px;
 	padding: 3px 10px;
-	font-size: 13px;
+	font-size: 14px;
 	vertical-align: baseline;
 }
