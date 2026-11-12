@@ -197,9 +197,6 @@ class Branding_Module extends Base_Module {
 			return array();
 		}
 
-		// This is the ideal, but will break compatibility with the pro version.
-		// $sanitized = array();
-
 		/**
 		 * The sanitized data.
 		 *

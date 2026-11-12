@@ -74,7 +74,7 @@ class Branding_Output extends Base_Output {
 		$branding = get_option( 'udb_branding' );
 
 		if ( ! empty( $branding['footer_text'] ) ) {
-			$footer_text = $branding['footer_text'];
+			$footer_text = wp_kses_post( $branding['footer_text'] );
 		}
 
 		return $footer_text;
@@ -93,7 +93,7 @@ class Branding_Output extends Base_Output {
 		$branding = get_option( 'udb_branding' );
 
 		if ( ! empty( $branding['version_text'] ) ) {
-			$version_text = $branding['version_text'];
+			$version_text = wp_kses_post( $branding['version_text'] );
 		}
 
 		return $version_text;

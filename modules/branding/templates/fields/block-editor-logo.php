@@ -21,7 +21,7 @@ return function () {
 
 		<p class="description is-disabled">
 			<?php esc_html_e( 'Replace the logo on the top-left inside the WordPress block editor.', 'ultimate-dashboard' ); ?><br>
-			<?php esc_html_e( '<strong>Recommended image size:</strong> 512px x 512px.', 'ultimate-dashboard' ); ?>
+			<?php echo wp_kses( __( '<strong>Recommended image size:</strong> 512px x 512px.', 'ultimate-dashboard' ), array( 'strong' => array() ) ); ?>
 		</p>
 
 	</div>
