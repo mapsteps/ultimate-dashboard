@@ -408,12 +408,17 @@ class Get_Menu {
 			if ( 'menu' === $menu_type ) {
 				$formatted_menu['id'] = $menu_item[5];
 
-				if ( false !== stripos( $menu_item[6], 'dashicons-' ) ) {
+				$menu_icon = isset( $menu_item[6] ) ? (string) $menu_item[6] : '';
+
+				// WordPress' "no icon" values ('none', 'div', empty) aren't image URLs: show no icon.
+				if ( in_array( $menu_icon, array( '', 'none', 'div' ), true ) ) {
 					$formatted_menu['icon_type'] = 'dashicon';
-					$formatted_menu['dashicon']  = $menu_item[6];
+				} elseif ( false !== stripos( $menu_icon, 'dashicons-' ) ) {
+					$formatted_menu['icon_type'] = 'dashicon';
+					$formatted_menu['dashicon']  = $menu_icon;
 				} else {
 					$formatted_menu['icon_type'] = 'icon_svg';
-					$formatted_menu['icon_svg']  = $menu_item[6];
+					$formatted_menu['icon_svg']  = $menu_icon;
 				}
 			}
 

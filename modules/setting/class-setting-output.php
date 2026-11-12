@@ -81,7 +81,8 @@ class Setting_Output extends Base_Output {
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
-		add_action( 'admin_init', array( self::get_instance(), 'remove_font_awesome' ) );
+		// On init, not admin_init: admin pages load Font Awesome for their menu icons on admin_menu, which runs before admin_init.
+		add_action( 'init', array( self::get_instance(), 'remove_font_awesome' ) );
 
 	}
 

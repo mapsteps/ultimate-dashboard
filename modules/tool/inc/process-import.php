@@ -86,8 +86,19 @@ return function () {
 
 	}
 
-	$imports = file_get_contents( $tmp_file );
-	$imports = (array) json_decode( $imports, true );
+	$imports = json_decode( (string) file_get_contents( $tmp_file ), true );
+
+	if ( ! is_array( $imports ) ) {
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-import' ),
+			__( 'This file is not a valid Ultimate Dashboard export', 'ultimate-dashboard' )
+		);
+
+		return;
+
+	}
 
 	// Retrieve settings & widgets.
 	$modules_manager_settings  = isset( $imports['modules_manager_settings'] ) ? $imports['modules_manager_settings'] : array();
