@@ -95,15 +95,21 @@ return function () {
 						<h2>
 							<img src="<?php echo esc_url( $feature['img'] ); ?>" alt="">
 							<?php echo esc_html( $feature['title'] ); ?>
+						</h2>
+						<div class="heatbox-content">
+							<p class="heatbox-notice is-error" role="alert" hidden></p>
+							<p><?php echo wp_kses_post( $feature['text'] ); ?></p>
+						</div>
+						<div class="udb-module-status">
+							<span>
+								<?php esc_html_e( 'Status:', 'ultimate-dashboard' ); ?>
+								<span class="heatbox-badge <?php echo $is_on ? 'is-success' : 'is-neutral'; ?>"><?php $is_on ? esc_html_e( 'Active', 'ultimate-dashboard' ) : esc_html_e( 'Inactive', 'ultimate-dashboard' ); ?></span>
+							</span>
 							<label class="toggle-switch">
 								<input type="checkbox" name="<?php echo esc_attr( $feature['feature'] ); ?>" <?php checked( $is_on ); ?>>
 								<span class="switch-track"><span class="switch-thumb"></span></span>
 								<span class="screen-reader-text"><?php echo esc_html( $feature['title'] ); ?></span>
 							</label>
-						</h2>
-						<div class="heatbox-content">
-							<p class="heatbox-notice is-error" role="alert" hidden></p>
-							<p><?php echo wp_kses_post( $feature['text'] ); ?></p>
 						</div>
 					</div>
 

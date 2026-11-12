@@ -20,7 +20,9 @@ return function ( $module ) {
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'udb_module_nonce_action' ),
 				'strings' => array(
-					'error' => __( 'An error occurred while saving.', 'ultimate-dashboard' ),
+					'error'    => __( 'An error occurred while saving.', 'ultimate-dashboard' ),
+					'active'   => __( 'Active', 'ultimate-dashboard' ),
+					'inactive' => __( 'Inactive', 'ultimate-dashboard' ),
 				),
 			)
 		);

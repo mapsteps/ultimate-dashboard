@@ -1,7 +1,17 @@
 /**
  * Modules page: heatbox boxes in three columns (.heatbox-columns.is-three).
- * Only the box title is our own: icon and name on the left, the on/off toggle on the right.
+ * Our own parts: the icon in the box title and the status row at the bottom.
  */
+
+/* The status row stays at the bottom when a box in the row has more text */
+.udb-modules .heatbox {
+	display: flex;
+	flex-direction: column;
+}
+
+.udb-modules .heatbox-content {
+	flex-grow: 1;
+}
 
 .udb-modules h2 {
 	display: flex;
@@ -13,7 +23,14 @@
 	width: 32px;
 }
 
-.udb-modules .toggle-switch {
-	flex-shrink: 0;
-	margin-inline-start: auto;
+/* Status row: Active/Inactive badge on the left, the on/off toggle on the right */
+.udb-module-status {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 15px var(--heatbox-box-padding);
+	background: var(--heatbox-surface-hover);
+	border-top: 1px solid var(--heatbox-box-border);
+	border-radius: 0 0 calc(var(--heatbox-radius) - 1px) calc(var(--heatbox-radius) - 1px);
 }

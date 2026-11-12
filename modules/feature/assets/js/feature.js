@@ -19,6 +19,7 @@
 	toggles.forEach(function (toggle) {
 		toggle.addEventListener("change", function () {
 			showError(toggle, "");
+			showStatus(toggle);
 			save(toggle);
 		});
 	});
@@ -57,11 +58,25 @@
 
 				toggles.forEach(function (toggle, index) {
 					toggle.checked = saved[index];
+					showStatus(toggle);
 				});
 
 				// Only the server's own message; anything else (network, invalid response) gets the generic one.
 				showError(changed, error instanceof Error ? config.strings.error : error.message || config.strings.error);
 			});
+	}
+
+	/**
+	 * Show a toggle's state in its box's Active/Inactive badge.
+	 *
+	 * @param {HTMLInputElement} toggle The toggle.
+	 */
+	function showStatus(toggle) {
+		const badge = toggle.closest(".heatbox").querySelector(".heatbox-badge");
+
+		badge.textContent = toggle.checked ? config.strings.active : config.strings.inactive;
+		badge.classList.toggle("is-success", toggle.checked);
+		badge.classList.toggle("is-neutral", !toggle.checked);
 	}
 
 	/**
