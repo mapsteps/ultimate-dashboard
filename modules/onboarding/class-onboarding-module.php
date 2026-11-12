@@ -97,7 +97,8 @@ class Onboarding_Module extends Base_Module {
 			apply_filters( 'udb_modules_capability', 'manage_options' ),
 			$this->page_slug(),
 			array( $this, 'submenu_page_content' ),
-			'migration' === $this->variant ? null : 0
+			// Right after "All Widgets": the first item is where the top-level menu link goes, so it stays "All Widgets".
+			'migration' === $this->variant ? null : 1
 		);
 
 	}
