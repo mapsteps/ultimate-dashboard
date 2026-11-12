@@ -171,13 +171,23 @@ class Setup {
 			'udb_widgets_page_udb_onboarding_wizard',
 		);
 
+		// WordPress' own list screens, with our header above them.
+		$list_screens = array(
+			'edit-udb_widgets',
+			'edit-udb_admin_page',
+		);
+
 		$screen = get_current_screen();
 
-		if ( ! $screen || ! in_array( $screen->id, $screens, true ) ) {
+		if ( ! $screen || ! in_array( $screen->id, array_merge( $screens, $list_screens ), true ) ) {
 			return $classes;
 		}
 
 		$classes .= ' heatbox-admin has-header';
+
+		if ( in_array( $screen->id, $list_screens, true ) ) {
+			$classes .= ' udb-post-list';
+		}
 
 		return $classes;
 

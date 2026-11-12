@@ -42,6 +42,7 @@ class Widget_Module extends Base_Module {
 		add_filter( 'manage_udb_widgets_posts_columns', array( $this, 'set_columns' ) );
 		add_action( 'manage_udb_widgets_posts_custom_column', array( $this, 'column_content' ), 10, 2 );
 		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
+		add_action( 'in_admin_header', array( $this, 'list_header' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
@@ -146,6 +147,20 @@ class Widget_Module extends Base_Module {
 	public function disable_months_dropdown( $disable, $post_type ) {
 
 		return 'udb_widgets' === $post_type ? true : $disable;
+
+	}
+
+	/**
+	 * Heatbox header above the widget list.
+	 */
+	public function list_header() {
+
+		if ( ! $this->screen()->is_widget_list() ) {
+			return;
+		}
+
+		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-list-header.php';
+		$header( get_post_type_object( 'udb_widgets' )->labels->name, __( 'Add your own widgets to the WordPress dashboard.', 'ultimate-dashboard' ) );
 
 	}
 

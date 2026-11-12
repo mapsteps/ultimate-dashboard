@@ -63,6 +63,7 @@ class Admin_Page_Module extends Base_Module {
 		add_filter( 'manage_udb_admin_page_posts_columns', array( $this, 'set_columns' ) );
 		add_action( 'manage_udb_admin_page_posts_custom_column', array( $this, 'column_content' ), 10, 2 );
 		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
+		add_action( 'in_admin_header', array( $this, 'list_header' ) );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
 
 		add_filter( 'template_include', array( $this, 'include_template' ), 1 );
@@ -245,6 +246,20 @@ class Admin_Page_Module extends Base_Module {
 	public function disable_months_dropdown( $disable, $post_type ) {
 
 		return 'udb_admin_page' === $post_type ? true : $disable;
+
+	}
+
+	/**
+	 * Heatbox header above the admin page list.
+	 */
+	public function list_header() {
+
+		if ( ! $this->screen()->is_admin_page_list() ) {
+			return;
+		}
+
+		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-list-header.php';
+		$header( get_post_type_object( 'udb_admin_page' )->labels->name, __( 'Create custom admin pages for your users.', 'ultimate-dashboard' ) );
 
 	}
 

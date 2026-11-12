@@ -27,3 +27,211 @@
 	display: block;
 	margin-top: 5px;
 }
+
+/**
+ * Heatbox look around WordPress' list (body.udb-post-list): our header on top,
+ * the list in the same 1200px column, the table as a rounded box.
+ */
+
+/* Same column as the header */
+.udb-post-list #screen-meta-links,
+.udb-post-list.has-header .wrap {
+	box-sizing: border-box;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: var(--heatbox-gap);
+}
+
+.udb-post-list #screen-meta-links {
+	float: none;
+	display: flex;
+	justify-content: flex-end;
+}
+
+/* Screen Options, when open: a box in the same column */
+.udb-post-list #screen-meta {
+	max-width: min(calc(1200px - 2 * var(--heatbox-gap)), calc(100% - 2 * var(--heatbox-gap)));
+	margin: var(--heatbox-gap) auto 0;
+	border-color: var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius);
+}
+
+.udb-post-list.has-header .wrap {
+	margin-top: var(--heatbox-gap);
+	margin-bottom: var(--heatbox-section-gap);
+}
+
+/* The title is in the header */
+.udb-post-list .wrap > .wp-heading-inline {
+	display: none;
+}
+
+/* "Add …": the main action, as a large primary button */
+.udb-post-list .wrap .page-title-action {
+	position: static;
+	display: inline-flex;
+	align-items: center;
+	min-height: var(--heatbox-control-height);
+	margin: 0;
+	padding: 0 18px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--heatbox-text-on-accent);
+	background: var(--heatbox-accent);
+	border: 1px solid var(--heatbox-accent);
+	border-radius: var(--heatbox-radius-control);
+	transition: background-color var(--heatbox-transition), border-color var(--heatbox-transition);
+}
+
+.udb-post-list .wrap .page-title-action:hover {
+	color: var(--heatbox-text-on-accent);
+	background: var(--heatbox-accent-darker);
+	border-color: var(--heatbox-accent-darker);
+}
+
+.udb-post-list .wrap .page-title-action:focus {
+	color: var(--heatbox-text-on-accent);
+	outline: none;
+	box-shadow: 0 0 0 2px var(--heatbox-surface), 0 0 0 4px var(--heatbox-accent);
+}
+
+/* All / Published / Trash and the search, in one row */
+.udb-post-list .wrap .subsubsub {
+	margin: 24px 0 0;
+	font-size: 14px;
+	line-height: var(--heatbox-control-height);
+}
+
+.udb-post-list .wrap .subsubsub a .count {
+	color: var(--heatbox-text-muted);
+}
+
+.udb-post-list .wrap .subsubsub a.current {
+	color: var(--heatbox-text);
+	font-weight: 600;
+}
+
+.udb-post-list .wrap .search-box {
+	display: flex;
+	gap: 8px;
+	margin-top: 24px;
+}
+
+.udb-post-list .wrap .tablenav {
+	height: auto;
+	margin: 16px 0;
+	padding: 0;
+}
+
+.udb-post-list .wrap .tablenav .actions {
+	display: flex;
+	gap: 8px;
+	padding: 0;
+}
+
+.udb-post-list .wrap .tablenav .tablenav-pages {
+	margin: 0;
+	line-height: var(--heatbox-control-height);
+}
+
+/* Fields & buttons like heatbox's */
+.udb-post-list .wrap input[type="search"],
+.udb-post-list .wrap select {
+	min-height: var(--heatbox-control-height);
+	margin: 0;
+	padding: 0 12px;
+	font-size: 14px;
+	color: var(--heatbox-text);
+	background-color: var(--heatbox-surface);
+	border: 1px solid var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+	transition: border-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
+}
+
+.udb-post-list .wrap select {
+	padding-inline-end: 32px;
+}
+
+.udb-post-list .wrap input[type="search"]:hover,
+.udb-post-list .wrap select:hover {
+	border-color: var(--heatbox-control-border);
+}
+
+.udb-post-list .wrap input[type="search"]:focus,
+.udb-post-list .wrap select:focus {
+	border-color: var(--heatbox-accent);
+	outline: none;
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+.udb-post-list .wrap .tablenav .button,
+.udb-post-list .wrap .search-box .button {
+	min-height: var(--heatbox-control-height);
+	margin: 0;
+	padding: 0 18px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: calc(var(--heatbox-control-height) - 2px);
+	border-radius: var(--heatbox-radius-control);
+}
+
+.udb-post-list .wrap .tablenav .pagination-links .button {
+	min-width: var(--heatbox-control-height);
+	padding: 0;
+}
+
+/* The table as a box */
+.udb-post-list .wp-list-table {
+	border: 1px solid var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius);
+	box-shadow: var(--heatbox-shadow);
+	overflow: hidden;
+}
+
+.udb-post-list .wp-list-table thead th,
+.udb-post-list .wp-list-table thead td {
+	padding-top: 14px;
+	padding-bottom: 14px;
+	font-weight: 600;
+	color: var(--heatbox-text);
+	border-bottom: 1px solid var(--heatbox-box-border);
+}
+
+.udb-post-list .wp-list-table thead th a {
+	color: var(--heatbox-text);
+}
+
+/* No second header row at the bottom */
+.udb-post-list .wp-list-table tfoot {
+	display: none;
+}
+
+/* Rows split by a line, not striped */
+.udb-post-list .wp-list-table.striped > tbody > :nth-child(odd) {
+	background: var(--heatbox-surface);
+}
+
+.udb-post-list .wp-list-table tbody > tr + tr > * {
+	border-top: 1px solid var(--heatbox-box-border);
+}
+
+.udb-post-list .wp-list-table tbody > tr:hover {
+	background: var(--heatbox-surface-hover);
+}
+
+.udb-post-list .wp-list-table tbody td,
+.udb-post-list .wp-list-table tbody th {
+	padding-top: 16px;
+	padding-bottom: 16px;
+	vertical-align: middle;
+}
+
+.udb-post-list .wp-list-table tbody .check-column {
+	padding-top: 16px;
+}
+
+.udb-post-list .wp-list-table .row-title {
+	font-size: 14px;
+	font-weight: 600;
+}
