@@ -162,7 +162,7 @@
  */
 .udb-bfcm-notice {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 16px;
 	padding: 16px 40px 16px 16px; /* room for the dismiss button */
 }
