@@ -70,26 +70,18 @@ return function ( $module ) {
 		<div class="heatbox-container heatbox-container-center heatbox-column-container">
 			<div class="heatbox-main">
 
-				<?php if ( ! udb_is_pro_active() ) : ?>
-
-					<div class="udb-pro-upgrade-nag">
-						<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-							<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-						</a>
-					</div>
-
-				<?php endif; ?>
-
 				<?php do_action( 'udb_admin_bar_before_form' ); ?>
 
 				<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 	
-					<div class="heatbox heatbox-admin-panel udb-menu-builder-box udb-menu-builder-box-panel">
+					<div class="heatbox udb-menu-builder-box udb-menu-builder-box-panel<?php echo udb_is_pro_active() ? '' : ' is-locked'; ?>">
 
 						<div class="udb-menu-builder-box--header">
 							<h2 class="udb-menu-builder-box--title">
 								<?php esc_html_e( 'Admin Bar Editor', 'ultimate-dashboard' ); ?>
+								<?php if ( ! udb_is_pro_active() ) : ?>
+									<span class="heatbox-badge">PRO</span>
+								<?php endif; ?>
 							</h2>
 
 							<?php do_action( 'udb_admin_bar_header' ); ?>
@@ -106,23 +98,24 @@ return function ( $module ) {
 							</div>
 						</div>
 
-						<div class="heatbox-footer">
-
-							<?php if ( ! udb_is_pro_active() ) : ?>
-
-								<div class="udb-pro-settings-page-notice udb-pro-admin-bar-notice">
-									<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-									<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-										<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-									</a>
-								</div>
-
-							<?php endif; ?>
-
-							<?php do_action( 'udb_admin_bar_form_footer' ); ?>
-
-						</div>
+						<?php if ( udb_is_pro_active() ) : ?>
+							<div class="heatbox-footer">
+								<?php do_action( 'udb_admin_bar_form_footer' ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
+
+					<?php if ( ! udb_is_pro_active() ) : ?>
+						<div class="heatbox-cta-container is-attached">
+							<div class="heatbox-cta primary">
+								<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+								<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_bar_link&utm_campaign=udb" class="button button-primary" target="_blank">
+									<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+									<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+								</a>
+							</div>
+						</div>
+					<?php endif; ?>
 
 				</form>
 			</div>
