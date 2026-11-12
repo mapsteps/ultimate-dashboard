@@ -154,21 +154,29 @@ class Tool_Module extends Base_Module {
 	/**
 	 * Process the import.
 	 *
-	 * Runs as the sanitize callback of the "udb_import" setting. WordPress calls that callback twice
-	 * when the option doesn't exist yet (update_option() + add_option()), so only run it once per request.
+	 * Runs as the sanitize callback of the "udb_import" setting. It returns false, which equals the value
+	 * of an option that doesn't exist, so WordPress stores nothing (no empty "udb_import" option) and
+	 * doesn't call the callback a second time through add_option(). The static flag is a safety net.
+	 *
+	 * @return false
 	 */
 	public function process_import() {
 
 		static $done = false;
 
 		if ( $done ) {
-			return;
+			return false;
 		}
 
 		$done = true;
 
+		// Older versions left an empty "udb_import" option behind on every import.
+		delete_option( 'udb_import' );
+
 		$process = require __DIR__ . '/inc/process-import.php';
 		$process();
+
+		return false;
 
 	}
 

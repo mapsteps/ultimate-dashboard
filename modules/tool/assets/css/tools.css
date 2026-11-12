@@ -2,6 +2,11 @@
  * Tools page: heatbox boxes (.heatbox-columns), heatbox checkboxes and file field.
  */
 
+/* Each box only as tall as its content (heatbox's columns are equal height) */
+.udb-tools-page .heatbox-columns {
+	align-items: start;
+}
+
 /* Below the checkbox list; holds what the "udb_export_fields" hook adds (the script moves PRO's checkboxes into the list) */
 .udb-export-more {
 	margin-bottom: 20px;
