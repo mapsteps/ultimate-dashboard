@@ -4,8 +4,10 @@
  * Plugin URI: https://ultimatedashboard.io/
  * Description: Create a custom Dashboard and give the WordPress admin area a more meaningful use.
  * Version: 3.8.18
+ * Requires at least: 4.6
+ * Requires PHP: 5.6
  * Author: David Vongries
- * Author URI: https://davidvongries.com/
+ * Author URI: https://mapsteps.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: ultimate-dashboard
