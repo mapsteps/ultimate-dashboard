@@ -42,6 +42,7 @@ class Widget_Module extends Base_Module {
 		add_filter( 'manage_udb_widgets_posts_columns', array( $this, 'set_columns' ) );
 		add_action( 'manage_udb_widgets_posts_custom_column', array( $this, 'column_content' ), 10, 2 );
 		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
+		add_filter( 'bulk_actions-edit-udb_widgets', '__return_empty_array' ); // No bulk editing (and so no checkboxes): a handful of widgets.
 		add_action( 'in_admin_header', array( $this, 'list_header' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
@@ -112,7 +113,6 @@ class Widget_Module extends Base_Module {
 	public function set_columns( $columns ) {
 
 		$columns = array(
-			'cb'        => '<input type="checkbox" />',
 			'title'     => __( 'Widget Title', 'ultimate-dashboard' ),
 			'type'      => __( 'Widget Type', 'ultimate-dashboard' ),
 			'roles'     => __( 'User Roles', 'ultimate-dashboard' ),
