@@ -38,13 +38,6 @@ class Get_Menu {
 	public $user_id = 0;
 
 	/**
-	 * The saved recent menu.
-	 *
-	 * @var array
-	 */
-	public $recent_menus = array();
-
-	/**
 	 * Get menu & submenu.
 	 */
 	public function ajax() {
@@ -69,9 +62,18 @@ class Get_Menu {
 		}
 
 		if ( $this->user_id ) {
-			$this->by   = 'user_id';
-			$user       = get_userdata( $this->user_id );
-			$this->role = $user->roles[0];
+			$this->by = 'user_id';
+			$user     = get_userdata( $this->user_id );
+
+			if ( ! $user ) {
+				wp_send_json_error( __( 'This user no longer exists.', 'ultimate-dashboard' ) );
+			}
+
+			if ( empty( $user->roles ) ) {
+				wp_send_json_error( __( 'This user has no role, so there is no admin menu to edit.', 'ultimate-dashboard' ) );
+			}
+
+			$this->role = reset( $user->roles );
 		}
 
 		/**
@@ -117,8 +119,8 @@ class Get_Menu {
 		if ( ( is_null( $menu ) || is_null( $submenu ) ) && file_exists( $wp_menu_file ) ) {
 			global $menu_order, $default_menu_order, $_wp_last_object_menu, $_wp_submenu_nopriv;
 
-			$menu_order         = array();
-			$default_menu_order = array();
+			$menu_order         = array(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Rebuilding the WP admin menu on purpose.
+			$default_menu_order = array(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Rebuilding the WP admin menu on purpose.
 
 			require $wp_menu_file;
 		}
@@ -133,21 +135,8 @@ class Get_Menu {
 		 */
 		add_filter( 'wp_doing_ajax', '__return_true' );
 
-		$this->recent_menus = get_option( 'udb_recent_admin_menu', array() );
-
-		$submenu = $this->fix_submenu_customizer_link( $submenu );
-
-		/**
-		 * The call of these 2 functions are necessary
-		 * because some plugins are conditionally register their admin menu
-		 * and they check for DOING_AJAX constant directly instead of
-		 * checking for wp_doing_ajax() function.
-		 */
-		$this->compare_default_menu_with_recent_menu();
-		$this->compare_default_submenu_with_recent_menu();
-
-		// This needs to be called here (after the 2 compares above).
-		$submenu = $this->fix_woo_products_submenu( $submenu );
+		$submenu = $this->fix_submenu_customizer_link( $submenu ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Rebuilding the WP admin menu on purpose.
+		$submenu = $this->fix_woo_products_submenu( $submenu ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Rebuilding the WP admin menu on purpose.
 
 		$this->check_menu_items_capability();
 
@@ -197,8 +186,7 @@ class Get_Menu {
 	 * WooCommerce registers those submenu items in `admin_menu` hook and then remove it in `admin_head` hook.
 	 * They only needs the actual page and don't want the submenu items.
 	 *
-	 * The `udb_recent_admin_menu` is done in the `admin_menu` hook before UDB's admin menu output is implemented.
-	 * So we can't use `admin_head` to save the recent menu.
+	 * The builder's menu is built in an ajax request, where `admin_head` never runs.
 	 * That's why this specific support for WooCommerce is here.
 	 *
 	 * @param array $submenu The submenu array.
@@ -326,116 +314,11 @@ class Get_Menu {
 									unset( $menu[ $menu_order ] );
 								}
 							}
-						} // End of foreach $show_ui_capabilities.
-					} // End of count( $explode_partial ) === 1.
-				} // End of isset( $explode_full[1] ).
-			} // End of stripos.
-		} // End of $menu foreach.
-	}
-
-	/**
-	 * Compare default global $menu with saved udb_recent_menu.
-	 * If some menu exists in recent menu but not in default menu,
-	 * then add it to the default menu.
-	 *
-	 * The `udb_recent_menu` was set in `save_recent_menu` method
-	 * in the class-admin-menu-module.php in the free version.
-	 *
-	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
-	 */
-	public function compare_default_menu_with_recent_menu() {
-
-		global $menu;
-
-		$recent_menus = $this->recent_menus;
-		$role         = $this->role;
-
-		if ( empty( $recent_menus ) || ! isset( $recent_menus[ $role ] ) || empty( $recent_menus[ $role ] ) ) {
-			return;
-		}
-
-		if ( ! isset( $recent_menus[ $role ]['menu'] ) || empty( $recent_menus[ $role ]['menu'] ) ) {
-			return;
-		}
-
-		$recent_menu = $recent_menus[ $role ]['menu'];
-
-		$array_helper = new Array_Helper();
-
-		foreach ( $recent_menu as $menu_index => $menu_item ) {
-			$menu_type = empty( $menu_item[0] ) && empty( $menu_item[3] ) ? 'separator' : 'menu';
-
-			$menu_search_key = 'separator' === $menu_type ? 2 : 5; // 2 = slug, 5 = index.
-			$value_to_search = $menu_item[ $menu_search_key ];
-
-			$matched_menu_index = $array_helper->find_assoc_array_index_by_value( $menu, $menu_search_key, $value_to_search );
-			$matched_menu_item  = false !== $matched_menu_index ? $menu[ $matched_menu_index ] : null;
-
-			if ( ! $matched_menu_item ) {
-				$new_menu_index = $this->generate_unique_index( $menu, $menu_index );
-
-				$menu[ $new_menu_index ] = $menu_item;
-
-			}
-		}
-
-		ksort( $menu, SORT_NUMERIC );
-
-	}
-
-	/**
-	 * Compare default global $submenu with saved udb_recent_menu.
-	 * If some submenu exists in recent menu but not in default submenu,
-	 * then add it to the default submenu.
-	 *
-	 * The `udb_recent_menu` was set in `save_recent_menu` method
-	 * in the class-admin-menu-module.php in the free version.
-	 *
-	 * @see wp-content/plugins/ultimate-dashboard/modules/admin-menu/class-admin-menu-module.php
-	 */
-	public function compare_default_submenu_with_recent_menu() {
-
-		global $submenu;
-
-		$recent_menus = $this->recent_menus;
-		$role         = $this->role;
-
-		if ( empty( $recent_menus ) || ! isset( $recent_menus[ $role ] ) || empty( $recent_menus[ $role ] ) ) {
-			return;
-		}
-
-		if ( ! isset( $recent_menus[ $role ]['submenu'] ) || empty( $recent_menus[ $role ]['submenu'] ) ) {
-			return;
-		}
-
-		$recent_submenu = $recent_menus[ $role ]['submenu'];
-
-		$array_helper = new Array_Helper();
-
-		foreach ( $recent_submenu as $submenu_key => $submenu_group ) {
-			if ( ! isset( $submenu[ $submenu_key ] ) ) {
-				$submenu[ $submenu_key ] = $submenu_group;
-			} else {
-				$submenu_search_key = 2; // 2 = slug.
-
-				foreach ( $submenu_group as $submenu_index => $submenu_item ) {
-					$value_to_search = $submenu_item[ $submenu_search_key ];
-
-					$matched_submenu_index = $array_helper->find_assoc_array_index_by_value( $submenu[ $submenu_key ], $submenu_search_key, $value_to_search );
-					$matched_submenu_item  = false !== $matched_submenu_index ? $submenu[ $submenu_key ][ $matched_submenu_index ] : null;
-
-					if ( ! $matched_submenu_item ) {
-						$new_submenu_index = $this->generate_unique_index( $submenu[ $submenu_key ], $submenu_index );
-
-						$submenu[ $submenu_key ][ $new_submenu_index ] = $submenu_item;
-
+						}
 					}
 				}
-
-				ksort( $submenu[ $submenu_key ], SORT_NUMERIC );
 			}
 		}
-
 	}
 
 	/**

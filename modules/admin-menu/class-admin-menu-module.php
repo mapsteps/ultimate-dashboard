@@ -64,9 +64,6 @@ class Admin_Menu_Module extends Base_Module {
 		add_action( 'admin_enqueue_scripts', array( self::get_instance(), 'admin_scripts' ) );
 		add_action( 'udb_ajax_get_admin_menu', array( self::get_instance(), 'get_admin_menu' ), 15, 2 );
 
-		// Save the recent menu and the priority should be lower than our output.
-		add_action( 'admin_menu', array( $this, 'save_recent_menu' ), 9000 );
-
 		$this->setup_ajax();
 
 	}
@@ -154,71 +151,6 @@ class Admin_Menu_Module extends Base_Module {
 
 		// And then send the response.
 		wp_send_json_success( $response );
-
-	}
-
-	/**
-	 * Save recent / up to date global $menu and $submenu to database.
-	 *
-	 * Some plugins have some condition that makes their admin menu not being added inside ajax request.
-	 * To make sure that we have the recent menu & submenu,
-	 * we save the global $menu and $submenu everytime a user visit a page in admin area.
-	 *
-	 * This function is hooked into `admin_menu` action but the priority should be lower than our output.
-	 */
-	public function save_recent_menu() {
-
-		/**
-		 * Prevent this function from being executed by do_action( 'admin_menu' )
-		 * when it's inside ajax request.
-		 */
-		if ( wp_doing_ajax() ) {
-			return;
-		}
-
-		/**
-		 * Stop if current request is ajax request `udb_admin_menu_get_menu`.
-		 * When doing `udb_admin_menu_get_menu`, wp_doing_ajax() is temporarily set to `true`,
-		 * that's why the checking above alone is not enough.
-		 *
-		 * This is to prevent the wrong result of saving the global $menu and $submenu
-		 * during the ajax request when getting menu for our admin menu editor (the builder).
-		 */
-		if ( isset( $_POST['action'] ) && 'udb_admin_menu_get_menu' === $_POST['action'] ) {
-			return;
-		}
-
-		/**
-		 * We can't simply use the Screen_Helper class and check for is_admin_menu here.
-		 * Because we also need to check if get_current_screen() is null.
-		 */
-		$current_screen = get_current_screen();
-
-		if ( is_null( $current_screen ) ) {
-			return;
-		}
-
-		if ( 'edit-udb_widgets_page_udb_admin_menu' !== $current_screen->id ) {
-			return;
-		}
-
-		global $menu, $submenu;
-
-		$roles = wp_get_current_user()->roles;
-		$role  = $roles[0];
-
-		$recent_menu = get_option( 'udb_recent_admin_menu', array() );
-
-		if ( ! isset( $recent_menu[ $role ] ) ) {
-			$recent_menu[ $role ] = array();
-		}
-
-		$recent_menu[ $role ] = array(
-			'menu'    => $menu,
-			'submenu' => $submenu,
-		);
-
-		update_option( 'udb_recent_admin_menu', $recent_menu, false );
 
 	}
 

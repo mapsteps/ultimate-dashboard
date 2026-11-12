@@ -27,7 +27,7 @@ defined( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION' ) || die( "Can't access directly" )
  * However, we still won't be able to get the menu reliably if:
  * - it is executed earlier than UDB, and they do similar stuff like Yoast SEO
  * - or, the check for DOING_AJAX constant directly instead checking for wp_doing_ajax() (like what Loco Translate does)
- * That's why we still need to save the recent menu later (see class-admin-menu-module.php).
+ * Menu items from such plugins can be missing in the editor.
  */
 function udb_admin_menu_not_doing_ajax() {
 
@@ -37,7 +37,7 @@ function udb_admin_menu_not_doing_ajax() {
 	}
 
 	// Stop if current ajax request is not our specific ajax request.
-	if ( ! isset( $_POST['action'] ) || 'udb_admin_menu_get_menu' !== $_POST['action'] ) {
+	if ( ! isset( $_POST['action'] ) || 'udb_admin_menu_get_menu' !== $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Only routes the request; the handler checks the nonce.
 		return;
 	}
 

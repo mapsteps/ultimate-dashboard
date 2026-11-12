@@ -7,8 +7,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$wp_roles   = wp_roles();
-$role_names = $wp_roles->role_names;
+$role_names = wp_roles()->role_names;
 
 $saved_menu      = get_option( 'udb_admin_menu', array() );
 $saved_user_data = array();
@@ -17,6 +16,11 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 	if ( false !== stripos( $identifier, 'user_id_' ) ) {
 		$user_id   = absint( str_ireplace( 'user_id_', '', $identifier ) );
 		$user_data = get_userdata( $user_id );
+
+		// The user was deleted after their menu was saved.
+		if ( ! $user_data ) {
+			continue;
+		}
 
 		array_push(
 			$saved_user_data,
@@ -106,9 +110,9 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<ul class="udb-menu-builder--tab-menu udb-menu-builder--role-menu">
 							<?php foreach ( $role_names as $role_key => $role_name ) : ?>
 
-								<li class="udb-menu-builder--tab-menu-item<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--<?php echo esc_html( $role_key ); ?>-edit-area" data-role="<?php echo esc_attr( $role_key ); ?>">
+								<li class="udb-menu-builder--tab-menu-item<?php echo ( 'administrator' === $role_key ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--<?php echo esc_attr( $role_key ); ?>-edit-area" data-role="<?php echo esc_attr( $role_key ); ?>">
 									<button type="button">
-										<?php echo esc_html( ucwords( $role_name ) ); ?>
+										<?php echo esc_html( ucwords( translate_user_role( $role_name ) ) ); ?>
 									</button>
 								</li>
 
@@ -140,7 +144,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						<ul class="udb-menu-builder--tab-menu udb-menu-builder--user-menu">
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-								<li class="udb-menu-builder--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+								<li class="udb-menu-builder--tab-menu-item <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-udb-tab-content="udb-menu-builder--user-<?php echo absint( $user_data['ID'] ); ?>-edit-area" data-user-id="<?php echo absint( $user_data['ID'] ); ?>">
 									<button type="button">
 										<?php echo esc_html( $user_data['display_name'] ); ?>
 									</button>
@@ -159,7 +163,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 
 							<?php foreach ( $saved_user_data as $index => $user_data ) : ?>
 
-								<div id="udb-menu-builder--user-<?php echo esc_html( $user_data['ID'] ); ?>-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo esc_html( $user_data['ID'] ); ?>">
+								<div id="udb-menu-builder--user-<?php echo absint( $user_data['ID'] ); ?>-edit-area" class="udb-menu-builder--tab-content-item udb-menu-builder--workspace udb-menu-builder--user-workspace <?php echo ( 0 === $index ? ' is-active' : '' ); ?>" data-user-id="<?php echo absint( $user_data['ID'] ); ?>">
 									<ul class="udb-menu-builder--menu-list udb-menu-builder-sortable">
 										<!-- to be re-written via js -->
 										<li class="loading"></li>

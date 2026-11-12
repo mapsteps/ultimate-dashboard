@@ -27,7 +27,7 @@ return function ( $module ) {
 		wp_enqueue_script( 'udb-admin', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/template-tags.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		// Admin menu.
-		wp_enqueue_script( 'udb-admin-menu', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/js/admin-menu.js', array( 'jquery', 'dashicons-picker', 'jquery-ui-sortable' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-admin-menu', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-menu/assets/js/admin-menu.js', array( 'jquery', 'dashicons-picker', 'jquery-ui-sortable', 'wp-escape-html' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		$wp_roles   = wp_roles();
 		$role_names = $wp_roles->role_names;
@@ -38,18 +38,19 @@ return function ( $module ) {
 				$roles,
 				array(
 					'key'  => $role_key,
-					'name' => $role_name,
+					'name' => translate_user_role( $role_name ),
 				)
 			);
 		}
 
 		$admin_menu_data = array(
-			'nonces'    => array(
+			'nonces'        => array(
 				'getMenu'  => wp_create_nonce( 'udb_admin_menu_get_menu' ),
 				'getUsers' => wp_create_nonce( 'udb_admin_menu_get_users' ),
 			),
-			'roles'     => $roles,
-			'templates' => array(
+			'roles'         => $roles,
+			'loadErrorText' => __( 'The menu could not be loaded. Please reload the page and try again.', 'ultimate-dashboard' ),
+			'templates'     => array(
 				'menuList'       => require __DIR__ . '/../templates/menu-list.php',
 				'submenuList'    => require __DIR__ . '/../templates/submenu-list.php',
 				'menuSeparator'  => require __DIR__ . '/../templates/menu-separator.php',

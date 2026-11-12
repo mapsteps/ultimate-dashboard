@@ -249,9 +249,31 @@
 			.fail(function () {
 				console.log("Failed to load users");
 			})
-			.always(function () {
-				//
+			.fail(function () {
+				showLoadError(by, value, "");
 			});
+	}
+
+	/**
+	 * Replace the loading spinner with an error message.
+	 *
+	 * @param {"role"|"user_id"} by The identifier, could be "role" or "user_id".
+	 * @param {string|number} value The specified role or user id.
+	 * @param {string} message The error message from the server, if any.
+	 */
+	function showLoadError(by, value, message) {
+		const identifier = by === "role" ? value : "user-" + value;
+		const listArea = findHtmlEl(
+			"#udb-menu-builder--" + identifier + "-edit-area .udb-menu-builder--menu-list"
+		);
+		if (!listArea) return;
+
+		const item = document.createElement("li");
+		item.className = "udb-menu-builder--load-error";
+		item.setAttribute("role", "alert");
+		item.textContent = message || (udbAdminMenu?.loadErrorText ?? "");
+
+		listArea.replaceChildren(item);
 	}
 
 	/**
@@ -289,7 +311,10 @@
 		let template = udbAdminMenu?.templates.userTabMenu ?? "";
 
 		template = template.replace(/{user_id}/g, data.id);
-		template = template.replace(/{display_name}/g, data.text);
+		template = template.replace(
+			/{display_name}/g,
+			wp.escapeHtml.escapeHTML(String(data.text))
+		);
 
 		userTabsMenu
 			?.querySelectorAll(".udb-menu-builder--tab-menu-item")
@@ -459,7 +484,10 @@
 			.done(
 				/** @param {UdbAdminMenuGetMenuResponse} r */
 				function (r) {
-					if (!r || !r.success) return;
+					if (!r || !r.success) {
+						showLoadError(by, value, r && typeof r.data === "string" ? r.data : "");
+						return;
+					}
 
 					if (
 						by === "role" &&
@@ -472,9 +500,31 @@
 					buildMenu(by, String(value), r.data);
 				}
 			)
-			.always(function () {
-				//
+			.fail(function () {
+				showLoadError(by, value, "");
 			});
+	}
+
+	/**
+	 * Replace the loading spinner with an error message.
+	 *
+	 * @param {"role"|"user_id"} by The identifier, could be "role" or "user_id".
+	 * @param {string|number} value The specified role or user id.
+	 * @param {string} message The error message from the server, if any.
+	 */
+	function showLoadError(by, value, message) {
+		const identifier = by === "role" ? value : "user-" + value;
+		const listArea = findHtmlEl(
+			"#udb-menu-builder--" + identifier + "-edit-area .udb-menu-builder--menu-list"
+		);
+		if (!listArea) return;
+
+		const item = document.createElement("li");
+		item.className = "udb-menu-builder--load-error";
+		item.setAttribute("role", "alert");
+		item.textContent = message || (udbAdminMenu?.loadErrorText ?? "");
+
+		listArea.replaceChildren(item);
 	}
 
 	/**
