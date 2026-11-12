@@ -42,25 +42,31 @@ return function () {
 
 			<?php settings_errors(); ?>
 
-			<div class="udb-tools-container">
+			<div class="heatbox-columns">
 
 				<div class="heatbox">
-					<form method="post" action="options.php">
-					<?php
-					settings_fields( 'udb-export-group' );
-					do_settings_sections( 'ultimate-dashboard-export' );
-					submit_button( __( 'Export File', 'ultimate-dashboard' ) );
-					?>
+					<h2><?php esc_html_e( 'Export', 'ultimate-dashboard' ); ?></h2>
+					<form class="heatbox-content" method="post" action="options.php">
+						<?php
+						settings_fields( 'udb-export-group' );
+						Udb\Tool\Tool_Module::get_instance()->render_export_field();
+						?>
+						<p>
+							<button type="submit" class="button button-primary"><?php esc_html_e( 'Export File', 'ultimate-dashboard' ); ?></button>
+						</p>
 					</form>
 				</div>
 
 				<div class="heatbox">
-					<form method="post" action="options.php" enctype="multipart/form-data">
-					<?php
-					settings_fields( 'udb-import-group' );
-					do_settings_sections( 'ultimate-dashboard-import' );
-					submit_button( __( 'Import File', 'ultimate-dashboard' ) );
-					?>
+					<h2><?php esc_html_e( 'Import', 'ultimate-dashboard' ); ?></h2>
+					<form class="heatbox-content" method="post" action="options.php" enctype="multipart/form-data">
+						<?php
+						settings_fields( 'udb-import-group' );
+						Udb\Tool\Tool_Module::get_instance()->render_import_field();
+						?>
+						<p>
+							<button type="submit" class="button button-primary"><?php esc_html_e( 'Import File', 'ultimate-dashboard' ); ?></button>
+						</p>
 					</form>
 				</div>
 
@@ -71,4 +77,5 @@ return function () {
 	</div>
 
 	<?php
+
 };

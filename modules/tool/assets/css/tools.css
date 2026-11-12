@@ -1,33 +1,8 @@
-/* Tools */
-.udb-tools-container {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-start;
-}
+/**
+ * Tools page: heatbox boxes (.heatbox-columns), heatbox checkboxes and file field.
+ */
 
-.udb-tools-container .heatbox {
-	display: flex;
-	flex-direction: column;
-	flex: 0 49%;
-	margin-right: 2%;
-}
-
-.udb-tools-container .heatbox:nth-child(even) {
-	margin-right: 0;
-}
-
-@media screen and (max-width:768px) {
-	.udb-tools-container .heatbox {
-		flex: 0 100%;
-		margin-right: 0;
-	}
-}
-
-.udb-tools-container th {
-	display: none;
-}
-
-.udb-tools-container p.submit {
-	margin: 0;
-	padding: 20px;
+/* Below the checkbox list; holds what the "udb_export_fields" hook adds (the script moves PRO's checkboxes into the list) */
+.udb-export-more {
+	margin-bottom: 20px;
 }

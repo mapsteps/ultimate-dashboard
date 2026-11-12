@@ -111,26 +111,18 @@ class Tool_Module extends Base_Module {
 	 */
 	public function add_settings() {
 
-		// Settings groups.
+		// The forms post to options.php; the sanitize callbacks do the work.
 		register_setting( 'udb-export-group', 'udb_export', array( 'sanitize_callback' => array( $this, 'process_export' ) ) );
 		register_setting( 'udb-import-group', 'udb_import', array( 'sanitize_callback' => array( $this, 'process_import' ) ) );
-
-		// Settings sections.
-		add_settings_section( 'udb-export-section', __( 'Export', 'ultimate-dashboard' ), '', 'ultimate-dashboard-export' );
-		add_settings_section( 'udb-import-section', __( 'Import', 'ultimate-dashboard' ), '', 'ultimate-dashboard-import' );
-
-		// Settings fields.
-		add_settings_field( 'udb-export-field', '', array( $this, 'render_export_field' ), 'ultimate-dashboard-export', 'udb-export-section', array( 'class' => 'is-gapless has-small-text' ) );
-		add_settings_field( 'udb-import-field', '', array( $this, 'render_import_field' ), 'ultimate-dashboard-import', 'udb-import-section', array( 'class' => 'is-gapless has-small-text' ) );
 
 	}
 
 	/**
 	 * Render export field.
 	 *
-	 * @param array $args The setting's arguments.
+	 * @param array $args Unused (kept for backwards compatibility).
 	 */
-	public function render_export_field( $args ) {
+	public function render_export_field( $args = array() ) {
 
 		$field = require __DIR__ . '/templates/fields/export-field.php';
 		$field();
@@ -140,9 +132,9 @@ class Tool_Module extends Base_Module {
 	/**
 	 * Render import field.
 	 *
-	 * @param array $args The setting's arguments.
+	 * @param array $args Unused (kept for backwards compatibility).
 	 */
-	public function render_import_field( $args ) {
+	public function render_import_field( $args = array() ) {
 
 		$field = require __DIR__ . '/templates/fields/import-field.php';
 		$field();
