@@ -1314,6 +1314,8 @@
 				var content = val
 					? ".wp-core-ui .button.button-large {height: " +
 					  val +
+					  "; min-height: " +
+					  val +
 					  "; line-height: " +
 					  val +
 					  ";}"

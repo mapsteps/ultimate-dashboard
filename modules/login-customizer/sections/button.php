@@ -20,7 +20,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '35px',
+		'default'           => '40px', // WordPress' own login button height.
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'esc_attr',
 	)

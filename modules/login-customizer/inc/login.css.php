@@ -76,7 +76,7 @@ $fields_height_number = str_ireplace( $fields_height_unit, '', $fields_height );
 $hide_pw_top          = ( $fields_height_number / 2 ) - 20;
 $hide_pw_top          = $hide_pw_top . $fields_height_unit;
 
-$button_height             = isset( $login['button_height'] ) ? $login['button_height'] : '35px';
+$button_height             = isset( $login['button_height'] ) ? $login['button_height'] : '40px';
 $button_horizontal_padding = isset( $login['button_horizontal_padding'] ) ? $login['button_horizontal_padding'] : '15px';
 $button_text_color         = isset( $login['button_text_color'] ) ? $login['button_text_color'] : '';
 $button_text_color_hover   = isset( $login['button_text_color_hover'] ) ? $login['button_text_color_hover'] : '';
@@ -286,9 +286,11 @@ body.login {
 	}
 <?php endif; ?>
 
-.wp-core-ui .button {
+/* The Log In button (like the live preview). min-height: WordPress sets 40px on buttons. */
+.wp-core-ui .button.button-large {
 	padding: 0 <?php echo esc_attr( $button_horizontal_padding ); ?>;
 	height: <?php echo esc_attr( $button_height ); ?>;
+	min-height: <?php echo esc_attr( $button_height ); ?>;
 	line-height: <?php echo esc_attr( $button_height ); ?>;
 }
 
