@@ -26,7 +26,7 @@
 
 #dashboard-widgets .udb-widget-icon:not(.closed) .hndle {
 	justify-content: center;
-	padding: 32px 48px 4px;
+	padding: 56px 48px 8px;
 	font-size: 20px;
 	font-weight: 400;
 }
@@ -34,7 +34,7 @@
 .udb-widget-icon .inside {
 	position: static; /* the tooltip is placed in the whole tile */
 	margin: 0;
-	padding: 16px 24px 32px;
+	padding: 28px 24px 64px;
 }
 
 .udb-widget-icon .inside > a {
@@ -52,7 +52,7 @@
 	display: block;
 	width: auto;
 	height: auto;
-	font-size: 64px;
+	font-size: 80px;
 	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
