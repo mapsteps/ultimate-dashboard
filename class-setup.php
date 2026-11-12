@@ -570,36 +570,34 @@ class Setup {
 			return;
 		}
 
+		$this->bfcm_notice_markup();
+
+	}
+
+	/**
+	 * The Black Friday notice itself (bfcm_notice() decides when it shows).
+	 */
+	public function bfcm_notice_markup() {
+
 		$bfcm_url = 'https://ultimatedashboard.io/pricing/?utm_source=repository&utm_medium=bfcm_banner&utm_campaign=udb';
 		?>
 
 		<div class="notice udb-notice udb-bfcm-notice notice-info is-dismissible is-permanent-dismissible" data-ajax-action="udb_dismiss_bfcm_notice">
-			<div class="notice-body">
-				<div class="notice-icon">
-					<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="Ultimate Dashboard Logo">
-				</div>
-				<div class="notice-content">
-					<h2>
-						<?php esc_html_e( 'Black Friday Sale! - Up to 25% Off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-					</h2>
-					<p>
-						<?php echo wp_kses_post( __( 'Save big & upgrade to <strong>Ultimate Dashboard PRO</strong>, today!', 'ultimate-dashboard' ) ); ?>
-					</p>
-					<p>
-						<?php esc_html_e( 'But hurry up, the deal will expire soon!', 'ultimate-dashboard' ); ?><br>
-						<em><?php esc_html_e( 'All prices are reduced. No coupon code required.', 'ultimate-dashboard' ); ?></em>
-					</p>
-					<p>
-						<a target="_blank" href="<?php echo esc_url( $bfcm_url ); ?>" class="button button-primary">
-							<?php esc_html_e( 'Learn more', 'ultimate-dashboard' ); ?>
-						</a>
-						<small><?php esc_html_e( '*Only Administrators will see this message.', 'ultimate-dashboard' ); ?></small>
-					</p>
-				</div>
+			<img class="udb-bfcm-notice-logo" src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="">
+			<div>
+				<h2><?php esc_html_e( 'Black Friday: up to 25% off Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?></h2>
+				<p><?php esc_html_e( 'All prices are reduced, no coupon code needed. The deal ends soon.', 'ultimate-dashboard' ); ?></p>
+				<p>
+					<a href="<?php echo esc_url( $bfcm_url ); ?>" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Get the Deal', 'ultimate-dashboard' ); ?>
+						<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+					</a>
+				</p>
 			</div>
 		</div>
 
 		<?php
+
 	}
 
 	/**
