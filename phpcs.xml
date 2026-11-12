@@ -8,8 +8,6 @@
 	<exclude-pattern>*/wp-includes/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<!-- Copy of WordPress' wp-login.php for the Customizer preview, kept close to core. -->
-	<exclude-pattern>*/modules/login-customizer/templates/udb-login-page.php</exclude-pattern>
 
 	<!-- Only check PHP files. -->
 	<arg name="extensions" value="php"/>
