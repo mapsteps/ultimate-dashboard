@@ -61,6 +61,21 @@
 			});
 		}
 
+		// The boxes stay where they are: a press on a box's header never reaches WordPress' drag & drop.
+		document.addEventListener(
+			"mousedown",
+			function (e) {
+				if (
+					document.body.classList.contains("udb-post-edit") &&
+					e.target instanceof Element &&
+					e.target.closest(".postbox-header")
+				) {
+					e.stopPropagation();
+				}
+			},
+			true
+		);
+
 		const postboxes = findHtmlEls(".postbox");
 
 		if (postboxes.length) {

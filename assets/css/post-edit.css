@@ -2,6 +2,12 @@
  * Widget & admin page edit screens (WordPress' own edit screen, only these parts are ours).
  */
 
+/* No extra space at the bottom of a box (e.g. after a field's description or a checkbox line) */
+.udb-metabox-field > :last-child,
+.udb-metabox-field p label {
+	margin-bottom: 0;
+}
+
 /* A field's name above it */
 .udb-metabox-field .udb-field-label {
 	display: block;
@@ -74,6 +80,21 @@
 
 .udb-post-edit #poststuff {
 	padding-top: 0;
+}
+
+/* WordPress' own editor (admin pages): in a box like the others */
+.udb-post-edit #postdivrich {
+	margin-bottom: var(--heatbox-gap);
+	padding: 20px;
+	background: var(--heatbox-surface);
+	border: 1px solid var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius);
+	box-shadow: var(--heatbox-shadow);
+}
+
+.udb-post-edit #wp-content-editor-tools {
+	padding-top: 0;
+	background: var(--heatbox-surface); /* Not see-through when it sticks to the top while scrolling */
 }
 
 /* Title field: large, rounded */
