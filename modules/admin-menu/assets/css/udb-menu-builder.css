@@ -129,23 +129,24 @@
 	display: block;
 }
 
-.udb-menu-builder--tab-content .loading {
+/* Spinner in the list until the items are loaded */
+.udb-menu-builder--menu-list > .loading {
 	position: relative;
-	display: flex;
-	justify-content: center;
-	height: 40px;
+	height: 120px;
+	margin: 0;
 	color: transparent;
 	list-style: none;
 	pointer-events: none;
 }
 
-.udb-menu-builder--tab-content .loading::after,
-.udb-menu-builder--workspace .loading::after {
+.udb-menu-builder--menu-list > .loading::after {
 	content: "";
 	position: absolute;
-	top: 12px;
-	width: 16px;
-	height: 16px;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	margin: -12px 0 0 -12px;
 	border: 2px solid transparent;
 	border-bottom-color: var(--heatbox-accent);
 	border-left-color: var(--heatbox-accent);
