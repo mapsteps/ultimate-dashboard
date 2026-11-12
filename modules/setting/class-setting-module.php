@@ -307,6 +307,20 @@ class Setting_Module extends Base_Module {
 					$input[ $key ] = $saved[ $key ];
 				}
 			}
+
+			/*
+			 * Without PRO, the page doesn't show PRO's fields, so their keys are missing from the form:
+			 * keep every saved key free doesn't know, or saving would wipe PRO's settings.
+			 */
+			if ( ! udb_is_pro_active() ) {
+				$free_keys = array_merge( ...array_values( $schema ) );
+
+				foreach ( $saved as $key => $value ) {
+					if ( ! isset( $input[ $key ] ) && ! in_array( $key, $free_keys, true ) ) {
+						$input[ $key ] = $value;
+					}
+				}
+			}
 		}
 
 		$output = $input;

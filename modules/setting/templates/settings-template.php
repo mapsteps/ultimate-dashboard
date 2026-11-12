@@ -83,6 +83,8 @@ return function ( $module ) {
 
 			<hr class="wp-header-end">
 
+			<?php settings_errors(); ?>
+
 			<form method="post" action="options.php" class="udb-settings-form">
 
 				<?php settings_fields( 'udb-settings-group' ); ?>

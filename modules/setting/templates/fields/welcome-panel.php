@@ -72,7 +72,7 @@ return function () {
 	wp_editor( $content, $editor_id, $args );
 	?>
 
-	<p>
+	<p class="heatbox-margin-top">
 		<button type="button" class="button udb-welcome-panel-reset" data-editor="<?php echo esc_attr( $editor_id ); ?>">
 			<?php esc_html_e( 'Reset to WordPress default', 'ultimate-dashboard' ); ?>
 		</button>
