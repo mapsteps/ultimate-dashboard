@@ -212,8 +212,8 @@ class Widget_Output extends Base_Output {
 
 				$output = sprintf(
 					'<a href="%1$s" target="%2$s"><i class="%3$s"></i></a>',
-					// We don't use esc_url() here since $link can be a relative path.
-					esc_attr( $link ),
+					// Not esc_url(): it would break relative paths (./post-new.php). Still drop unsafe protocols like javascript:.
+					esc_attr( wp_kses_bad_protocol( $link, wp_allowed_protocols() ) ),
 					esc_attr( $target ),
 					esc_attr( $icon )
 				);
