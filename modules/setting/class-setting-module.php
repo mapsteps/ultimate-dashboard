@@ -211,12 +211,10 @@ class Setting_Module extends Base_Module {
 			'udb-general-section'
 		);
 
-		$remove_fa_description = '<p class="description">' . __( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ) . '</p>';
-
 		// Misc fields.
 		add_settings_field(
 			'remove_font_awesome',
-			__( 'Remove Font Awesome', 'ultimate-dashboard' ) . $remove_fa_description,
+			__( 'Remove Font Awesome', 'ultimate-dashboard' ),
 			array( $this, 'remove_fontawesome_field' ),
 			'udb-misc-settings',
 			'udb-misc-section'

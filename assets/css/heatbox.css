@@ -686,6 +686,27 @@ body {
 	color: var(--heatbox-control-disabled);
 }
 
+/* WordPress' code editor (wp.codeEditor / CodeMirror), styled like the fields */
+.heatbox .CodeMirror {
+	border: 1px solid var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	transition: border-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
+}
+
+.heatbox .CodeMirror:hover {
+	border-color: var(--heatbox-control-border);
+}
+
+.heatbox .CodeMirror.CodeMirror-focused {
+	border-color: var(--heatbox-accent);
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+.heatbox .CodeMirror-gutters {
+	border-start-start-radius: var(--heatbox-radius-control);
+	border-end-start-radius: var(--heatbox-radius-control);
+}
+
 /**
  * Checkboxes & radio buttons.
  *

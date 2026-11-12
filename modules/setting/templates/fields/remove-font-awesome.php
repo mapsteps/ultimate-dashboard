@@ -19,6 +19,10 @@ return function () {
 		<div class="indicator"></div>
 	</label>
 
+	<p class="description">
+		<?php esc_html_e( 'Use only if your icons are not displayed correctly.', 'ultimate-dashboard' ); ?>
+	</p>
+
 	<?php
 
 };
