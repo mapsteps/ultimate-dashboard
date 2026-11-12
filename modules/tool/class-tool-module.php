@@ -161,8 +161,19 @@ class Tool_Module extends Base_Module {
 
 	/**
 	 * Process the import.
+	 *
+	 * Runs as the sanitize callback of the "udb_import" setting. WordPress calls that callback twice
+	 * when the option doesn't exist yet (update_option() + add_option()), so only run it once per request.
 	 */
 	public function process_import() {
+
+		static $done = false;
+
+		if ( $done ) {
+			return;
+		}
+
+		$done = true;
 
 		$process = require __DIR__ . '/inc/process-import.php';
 		$process();

@@ -12,7 +12,36 @@ use Udb\Helpers\Array_Helper;
 return function () {
 
 	$array_helper = new Array_Helper();
-	$import_file  = isset( $_FILES['udb_import_file'] ) ? $_FILES['udb_import_file'] : null;
+
+	// Runs inside options.php, which already checked the nonce and capability (settings_fields).
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- See above; only name and tmp_name are used, checked below.
+	$import_file = isset( $_FILES['udb_import_file'] ) ? $_FILES['udb_import_file'] : null;
+
+	/**
+	 * Build the post data for wp_insert_post() / wp_update_post() from an imported post.
+	 * Only content fields are taken from the file; the post type is always ours.
+	 *
+	 * @param array  $data      The imported post.
+	 * @param string $post_type The post type.
+	 *
+	 * @return array
+	 */
+	$prepare_post = function ( $data, $post_type ) {
+
+		$post = array( 'post_type' => $post_type );
+
+		foreach ( array( 'post_title', 'post_name', 'post_content', 'post_excerpt', 'menu_order' ) as $field ) {
+			if ( isset( $data[ $field ] ) && is_scalar( $data[ $field ] ) ) {
+				$post[ $field ] = $data[ $field ];
+			}
+		}
+
+		$status              = isset( $data['post_status'] ) ? $data['post_status'] : 'publish';
+		$post['post_status'] = in_array( $status, array( 'publish', 'draft', 'pending', 'private' ), true ) ? $status : 'publish';
+
+		return $post;
+
+	};
 
 	if ( is_null( $import_file ) ) {
 
@@ -57,7 +86,7 @@ return function () {
 
 	}
 
-	$imports = file_get_contents( $tmp_file, true );
+	$imports = file_get_contents( $tmp_file );
 	$imports = (array) json_decode( $imports, true );
 
 	// Retrieve settings & widgets.
@@ -128,15 +157,13 @@ return function () {
 
 		foreach ( $widgets as $widget ) {
 
-			// For backwards compatibility: before version 3, post_type was unset in the export.
-			if ( ! isset( $widget['post_type'] ) ) {
-				$widget['post_type'] = 'udb_widgets';
+			if ( ! is_array( $widget ) || empty( $widget['post_name'] ) ) {
+				continue;
 			}
 
-			$post = get_page_by_path( $widget['post_name'], OBJECT, 'udb_widgets' );
-			$meta = $widget['meta'];
-
-			unset( $widget['meta'] );
+			$post   = get_page_by_path( $widget['post_name'], OBJECT, 'udb_widgets' );
+			$meta   = isset( $widget['meta'] ) && is_array( $widget['meta'] ) ? $widget['meta'] : array();
+			$widget = $prepare_post( $widget, 'udb_widgets' );
 
 			if ( $post ) {
 
@@ -147,10 +174,12 @@ return function () {
 
 			} else {
 
-				unset( $widget['ID'] );
-
 				$post_id = wp_insert_post( $widget );
 
+			}
+
+			if ( ! $post_id || is_wp_error( $post_id ) ) {
+				continue;
 			}
 
 			foreach ( $meta as $meta_key => $meta_value ) {
@@ -174,10 +203,13 @@ return function () {
 	if ( $admin_pages ) {
 
 		foreach ( $admin_pages as $admin_page ) {
-			$post = get_page_by_path( $admin_page['post_name'], OBJECT, 'udb_admin_page' );
-			$meta = $admin_page['meta'];
+			if ( ! is_array( $admin_page ) || empty( $admin_page['post_name'] ) ) {
+				continue;
+			}
 
-			unset( $admin_page['meta'] );
+			$post       = get_page_by_path( $admin_page['post_name'], OBJECT, 'udb_admin_page' );
+			$meta       = isset( $admin_page['meta'] ) && is_array( $admin_page['meta'] ) ? $admin_page['meta'] : array();
+			$admin_page = $prepare_post( $admin_page, 'udb_admin_page' );
 
 			// if post exists.
 			if ( $post ) {
@@ -186,9 +218,11 @@ return function () {
 
 				wp_update_post( $admin_page );
 			} else {
-				unset( $admin_page['ID'] );
-
 				$post_id = wp_insert_post( $admin_page );
+			}
+
+			if ( ! $post_id || is_wp_error( $post_id ) ) {
+				continue;
 			}
 
 			foreach ( $meta as $meta_key => $meta_value ) {

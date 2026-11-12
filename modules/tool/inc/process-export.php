@@ -13,7 +13,9 @@ return function () {
 
 	$array_helper = new Array_Helper();
 
-	$selected_modules = isset( $_POST['udb_export_modules'] ) && is_array( $_POST['udb_export_modules'] ) ? $_POST['udb_export_modules'] : array();
+	// Runs inside options.php, which already checked the nonce and capability (settings_fields).
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- See above; sanitized by map_deep().
+	$selected_modules = isset( $_POST['udb_export_modules'] ) && is_array( $_POST['udb_export_modules'] ) ? map_deep( wp_unslash( $_POST['udb_export_modules'] ), 'sanitize_key' ) : array();
 
 	$export_data = array();
 
@@ -48,14 +50,21 @@ return function () {
 
 				$widget->meta = array();
 
-				foreach ( $meta as $meta_key => $meta_value ) {
+				foreach ( array_keys( $meta ) as $meta_key ) {
+					/*
+					 * Read the values by key: get_post_meta( $id ) without a key returns them still serialized,
+					 * which made arrays (roles, users, form logs) end up double-serialized after an import.
+					 */
+					$meta_values = get_post_meta( $widget->ID, $meta_key, false );
 
-					// Check for serialized data (when $meta_value is array).
-					if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
-						$meta_value = $array_helper->clean_unserialize( $meta_value, 3 );
+					foreach ( $meta_values as $index => $meta_value ) {
+						// Backwards compatibility: values saved double-serialized by older versions.
+						if ( false !== stripos( $meta_key, '_roles' ) || false !== stripos( $meta_key, '_users' ) ) {
+							$meta_values[ $index ] = $array_helper->clean_unserialize( $meta_value, 3 );
+						}
 					}
 
-					$widget->meta[ $meta_key ] = count( $meta_value ) > 1 ? $meta_value : $meta_value[0];
+					$widget->meta[ $meta_key ] = count( $meta_values ) > 1 ? $meta_values : $meta_values[0];
 
 				}
 			}
