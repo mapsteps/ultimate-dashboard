@@ -32,6 +32,8 @@ return function () {
 		/* translators: %1$s: Site URL */
 		echo wp_kses_post( sprintf( __( 'Redirect non-logged-in users that try to access <code>%1$s/wp-admin/</code>.', 'ultimate-dashboard' ), esc_url( site_url() ) ) );
 		?>
+		<br>
+		<?php esc_html_e( 'Left empty while a new login URL is set, they get a "not found" page, so wp-admin doesn\'t reveal your login URL.', 'ultimate-dashboard' ); ?>
 	</p>
 
 	<?php

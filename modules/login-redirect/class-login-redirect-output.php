@@ -123,6 +123,11 @@ class Login_Redirect_Output extends Base_Output {
 		$this->wp_admin_redirect_slug = isset( $settings['wp_admin_redirect_slug'] ) ? $settings['wp_admin_redirect_slug'] : '';
 		$this->wp_admin_redirect_slug = apply_filters( 'udb_wp_admin_redirect_slug', $this->wp_admin_redirect_slug );
 
+		// With a new login URL, wp-admin must not send logged-out visitors there: default to a "not found" page.
+		if ( ! $this->wp_admin_redirect_slug && $this->new_login_slug ) {
+			$this->wp_admin_redirect_slug = '404';
+		}
+
 		$this->permalink_structure = get_option( 'permalink_structure' );
 
 		// Protect wp-admin if the slug is set in the setting.
@@ -601,6 +606,17 @@ class Login_Redirect_Output extends Base_Output {
 		$roles    = property_exists( $user, 'roles' ) ? $user->roles : array();
 
 		if ( empty( $roles ) ) {
+			return $redirect_to;
+		}
+
+		/*
+		 * A specific destination was asked for (a link to an admin screen, an expired session while editing):
+		 * go there. The role redirect is for normal logins without one, or to the admin start page.
+		 */
+		$requested = untrailingslashit( (string) $requested_redirect_to );
+		$generic   = array( '', untrailingslashit( admin_url() ), 'wp-admin', untrailingslashit( site_url( 'wp-admin' ) ) );
+
+		if ( ! in_array( $requested, $generic, true ) ) {
 			return $redirect_to;
 		}
 
