@@ -62,6 +62,7 @@ class Admin_Page_Module extends Base_Module {
 		add_filter( 'post_updated_messages', array( $this, 'update_messages' ) );
 		add_filter( 'manage_udb_admin_page_posts_columns', array( $this, 'set_columns' ) );
 		add_action( 'manage_udb_admin_page_posts_custom_column', array( $this, 'column_content' ), 10, 2 );
+		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
 		add_action( 'do_meta_boxes', array( $this, 'remove_metaboxes' ) );
 
 		add_filter( 'template_include', array( $this, 'include_template' ), 1 );
@@ -230,6 +231,20 @@ class Admin_Page_Module extends Base_Module {
 		}
 
 		return $submenu_file;
+
+	}
+
+	/**
+	 * No month filter on the admin page list: it doesn't help for a handful of pages.
+	 *
+	 * @param bool   $disable   Whether to disable the dropdown.
+	 * @param string $post_type The post type.
+	 *
+	 * @return bool
+	 */
+	public function disable_months_dropdown( $disable, $post_type ) {
+
+		return 'udb_admin_page' === $post_type ? true : $disable;
 
 	}
 

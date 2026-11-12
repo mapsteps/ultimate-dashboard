@@ -41,8 +41,8 @@ return function ( $module ) {
 		// Heatbox.
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		// Widget list.
-		wp_enqueue_style( 'udb-widget-list', $module->url . '/assets/css/widget-list.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+		// List styles (shared with the admin page list).
+		wp_enqueue_style( 'udb-post-list', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/post-list.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
 		do_action( 'udb_widget_list_styles' );
 

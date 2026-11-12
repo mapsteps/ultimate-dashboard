@@ -1,8 +1,9 @@
 /**
- * Widget list: the icon of icon widgets in the "Widget Type" column, in a light accent box.
+ * Dashboard Widgets & Admin Pages lists (WordPress' own list table, only these parts are ours).
  */
 
-.udb-widget-type-icon {
+/* An icon (icon widget, admin page menu icon) in a light accent box */
+.udb-list-icon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -15,8 +16,14 @@
 	border-radius: var(--heatbox-radius-control);
 }
 
-.udb-widget-type-icon i {
+.udb-list-icon i {
 	width: auto;
 	height: auto;
 	font-size: 16px;
+}
+
+/* Save error under the "Active" toggle */
+.status-switch .heatbox-notice {
+	display: block;
+	margin-top: 5px;
 }

@@ -26,13 +26,14 @@ return function ( $module, $column, $post_id ) {
 			$is_active = get_post_meta( $post_id, 'udb_is_active', true );
 			?>
 
-			<div class="heatbox-wrap status-switch">
+			<div class="heatbox-wrap status-switch" data-error="<?php esc_attr_e( 'An error occurred while saving.', 'ultimate-dashboard' ); ?>">
 				<label for="udb_is_active_<?php echo esc_attr( $post_id ); ?>" class="toggle-switch">
 					<input
 						type="checkbox"
 						name="udb_is_active"
 						id="udb_is_active_<?php echo esc_attr( $post_id ); ?>"
 						value="1"
+						data-action="udb_admin_page_change_active_status"
 						data-nonce="<?php echo esc_attr( wp_create_nonce( 'udb_admin_page_' . $post_id . '_change_active_status' ) ); ?>"
 						data-post-id="<?php echo esc_attr( $post_id ); ?>"
 						<?php checked( $is_active, 1 ); ?>
@@ -40,6 +41,10 @@ return function ( $module, $column, $post_id ) {
 					<div class="switch-track">
 						<div class="switch-thumb"></div>
 					</div>
+					<span class="screen-reader-text"><?php echo esc_html( get_the_title( $post_id ) ); ?></span>
+				</label>
+				<span class="heatbox-notice is-error" role="alert" hidden></span>
+			</div>
 				</label>
 			</div>
 
@@ -95,7 +100,7 @@ return function ( $module, $column, $post_id ) {
 			$icon_class = get_post_meta( $post_id, 'udb_menu_icon', true );
 			$icon_class = $icon_class ? $icon_class : 'dashicons dashicons-no is-empty';
 
-			echo ( 'submenu' === $menu_type ? esc_html__( 'None', 'ultimate-dashboard' ) : wp_kses_post( '<i class="' . esc_attr( $icon_class ) . '"></i>' ) );
+			echo ( 'submenu' === $menu_type ? esc_html__( 'None', 'ultimate-dashboard' ) : wp_kses_post( '<span class="udb-list-icon"><i class="' . esc_attr( $icon_class ) . '"></i></span>' ) );
 			break;
 
 	}

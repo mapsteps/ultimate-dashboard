@@ -33,7 +33,7 @@ return function ( $module ) {
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
 		// Admin page list.
-		wp_enqueue_script( 'udb-admin-page-list', $module->url . '/assets/js/admin-page-list.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-admin-page-list', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/post-list.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 	}
 

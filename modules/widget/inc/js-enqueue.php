@@ -30,7 +30,7 @@ return function ( $module ) {
 	} elseif ( $module->screen()->is_widget_list() ) {
 
 		// Widget list.
-		wp_enqueue_script( 'udb-widget-list', $module->url . '/assets/js/widget-list.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-widget-list', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/post-list.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		do_action( 'udb_widget_list_scripts' );
 
