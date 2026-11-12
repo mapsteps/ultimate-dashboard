@@ -1,45 +1,16 @@
+/**
+ * Placeholder tags: click a tag to copy it.
+ *
+ * In a heatbox tags box (admin menu & admin bar editors) the "Copied" status in the box title shows;
+ * in the widget screen's sidebar box (a normal WordPress box) the tag itself says "Copied!" for a moment.
+ */
 (function () {
 	init();
 
 	function init() {
-		patchWpMetabox();
-
-		const metabox = document.querySelector(".tags-heatbox");
-		if (!metabox) return;
-
-		const tags = metabox.querySelectorAll("code");
-		if (!tags.length) return;
-
-		tags.forEach((tag) => {
+		document.querySelectorAll(".tags-heatbox code, #udb-tags-metabox code").forEach(function (tag) {
 			tag.addEventListener("click", handleTagClick);
 		});
-	}
-
-	function patchWpMetabox() {
-		const metaboxById = document.querySelector("#udb-tags-metabox");
-
-		if (metaboxById) {
-			const styleTag = document.createElement("style");
-			styleTag.innerHTML = `
-				.tags-heatbox, .tags-heatbox * {
-					box-sizing: border-box;
-				}
-
-				#udb-tags-metabox h2 .action-status {
-					right: 0;
-				}
-			`;
-			document.head.appendChild(styleTag);
-
-			metaboxById.classList.add("heatbox");
-			metaboxById.classList.add("tags-heatbox");
-
-			const metaboxContent = metaboxById.querySelector(".inside");
-
-			if (metaboxContent) {
-				metaboxContent.classList.add("heatbox-content");
-			}
-		}
 	}
 
 	/**
@@ -48,23 +19,33 @@
 	 * @param {Event} e The event object.
 	 */
 	async function handleTagClick(e) {
-		const tag = e.target;
-		if (!(tag instanceof HTMLElement)) return;
+		const tag = e.currentTarget;
+		const value = tag.dataset.tag || tag.innerText;
 
-		const value = tag.innerText;
-		if (!value) return;
+		if (!value || tag.classList.contains("is-copied")) return;
 
-		// Copy value to clipboard.
 		await copyToClipboard(value);
 
-		const notice = document.querySelector(".tags-heatbox .action-status");
-		if (!notice) return;
+		const notice = tag.closest(".tags-heatbox")?.querySelector(".action-status");
 
-		notice.classList.add("is-shown");
+		if (notice) {
+			notice.classList.add("is-shown");
+
+			setTimeout(() => {
+				notice.classList.remove("is-shown");
+			}, 1500);
+
+			return;
+		}
+
+		tag.dataset.tag = value;
+		tag.textContent = tag.closest("[data-copied-text]")?.dataset.copiedText || "Copied!";
+		tag.classList.add("is-copied");
 
 		setTimeout(() => {
-			notice.classList.remove("is-shown");
-		}, 1500);
+			tag.textContent = value;
+			tag.classList.remove("is-copied");
+		}, 1200);
 	}
 
 	/**

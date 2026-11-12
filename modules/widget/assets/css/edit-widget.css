@@ -100,6 +100,23 @@
 	border-radius: 4px;
 }
 
+/* Placeholder Tags box (a normal WordPress box): clickable tags */
+#udb-tags-metabox .tags-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+#udb-tags-metabox code {
+	margin: 0;
+	cursor: pointer;
+}
+
+#udb-tags-metabox code:hover,
+#udb-tags-metabox code.is-copied {
+	color: var(--heatbox-accent);
+}
+
 /* PRO box in the sidebar: heatbox's feature list, one column */
 #udb-pro-link-metabox .heatbox-features {
 	grid-template-columns: 1fr;

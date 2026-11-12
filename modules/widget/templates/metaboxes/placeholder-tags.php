@@ -21,7 +21,7 @@ return function () {
 		<br><strong><?php esc_html_e( '(Click to copy)', 'ultimate-dashboard' ); ?></strong>
 	</p>
 
-	<div class="tags-wrapper">
+	<div class="tags-wrapper" data-copied-text="<?php esc_attr_e( 'Copied!', 'ultimate-dashboard' ); ?>">
 		<?php
 		foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
 			?>
