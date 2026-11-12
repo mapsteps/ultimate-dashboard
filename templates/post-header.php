@@ -1,6 +1,6 @@
 <?php
 /**
- * Heatbox header above WordPress' own list screens (All Widgets, Admin Pages).
+ * Heatbox header above WordPress' own screens (widget and admin page lists, widget edit screen).
  *
  * Printed on `in_admin_header`, so it sits above the Screen Options tab and the notices.
  *

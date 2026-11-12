@@ -13,6 +13,17 @@
 				postboxContainer.classList.add("heatbox-wrap");
 			});
 		}
+
+		// The boxes stay where they are: a press on a box's header never reaches WordPress' drag & drop.
+		document.addEventListener(
+			"mousedown",
+			function (e) {
+				if (e.target instanceof Element && e.target.closest(".postbox-header")) {
+					e.stopPropagation();
+				}
+			},
+			true
+		);
 	}
 
 	function setupWidgetType() {

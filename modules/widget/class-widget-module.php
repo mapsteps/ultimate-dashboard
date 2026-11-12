@@ -165,16 +165,23 @@ class Widget_Module extends Base_Module {
 	}
 
 	/**
-	 * Heatbox header above the widget list.
+	 * Heatbox header above the widget list and the widget edit screen.
 	 */
 	public function list_header() {
 
-		if ( ! $this->screen()->is_widget_list() ) {
+		global $title;
+
+		if ( $this->screen()->is_widget_list() ) {
+			$header_title = get_post_type_object( 'udb_widgets' )->labels->name;
+		} elseif ( $this->screen()->is_new_widget() || $this->screen()->is_edit_widget() ) {
+			// WordPress' own screen title: Add Dashboard Widget, or Edit Dashboard Widget.
+			$header_title = $title;
+		} else {
 			return;
 		}
 
-		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-list-header.php';
-		$header( get_post_type_object( 'udb_widgets' )->labels->name, __( 'Add your own widgets to the WordPress dashboard.', 'ultimate-dashboard' ) );
+		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-header.php';
+		$header( $header_title, __( 'Add your own widgets to the WordPress dashboard.', 'ultimate-dashboard' ) );
 
 	}
 

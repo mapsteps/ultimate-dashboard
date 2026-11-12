@@ -177,9 +177,14 @@ class Setup {
 			'edit-udb_admin_page',
 		);
 
+		// WordPress' own edit screens (new and edit), with our header above them.
+		$edit_screens = array(
+			'udb_widgets',
+		);
+
 		$screen = get_current_screen();
 
-		if ( ! $screen || ! in_array( $screen->id, array_merge( $screens, $list_screens ), true ) ) {
+		if ( ! $screen || ! in_array( $screen->id, array_merge( $screens, $list_screens, $edit_screens ), true ) ) {
 			return $classes;
 		}
 
@@ -187,6 +192,10 @@ class Setup {
 
 		if ( in_array( $screen->id, $list_screens, true ) ) {
 			$classes .= ' udb-post-list';
+		}
+
+		if ( in_array( $screen->id, $edit_screens, true ) ) {
+			$classes .= ' udb-post-edit';
 		}
 
 		return $classes;

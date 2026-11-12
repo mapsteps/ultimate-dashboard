@@ -33,3 +33,243 @@
 	border: 1px solid #8c8f94;
 	border-radius: 4px;
 }
+
+/**
+ * Heatbox look around WordPress' edit screen (body.udb-post-edit): our header on top,
+ * the screen in the same 1200px column, rounded boxes without move/collapse arrows.
+ */
+
+/* Same column as the header */
+.udb-post-edit #screen-meta-links,
+.udb-post-edit.has-header .wrap {
+	box-sizing: border-box;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: var(--heatbox-gap);
+}
+
+.udb-post-edit #screen-meta-links {
+	float: none;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.udb-post-edit #screen-meta {
+	max-width: min(calc(1200px - 2 * var(--heatbox-gap)), calc(100% - 2 * var(--heatbox-gap)));
+	margin: var(--heatbox-gap) auto 0;
+	border-color: var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius);
+}
+
+.udb-post-edit.has-header .wrap {
+	margin-top: var(--heatbox-gap);
+	margin-bottom: var(--heatbox-section-gap);
+}
+
+/* The title is in the header; "Add Dashboard Widget" is in the menu */
+.udb-post-edit .wrap > .wp-heading-inline,
+.udb-post-edit .wrap > .page-title-action {
+	display: none;
+}
+
+.udb-post-edit #poststuff {
+	padding-top: 0;
+}
+
+/* Title field: large, rounded */
+.udb-post-edit #titlediv #title {
+	height: 52px;
+	padding: 0 16px;
+	font-size: 20px;
+	color: var(--heatbox-text);
+	background: var(--heatbox-surface);
+	border: 1px solid var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+	transition: border-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
+}
+
+.udb-post-edit #titlediv #title:hover {
+	border-color: var(--heatbox-control-border);
+}
+
+.udb-post-edit #titlediv #title:focus {
+	border-color: var(--heatbox-accent);
+	outline: none;
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+.udb-post-edit #titlediv #title-prompt-text {
+	padding: 14px 17px;
+	font-size: 20px;
+}
+
+/* Boxes */
+.udb-post-edit .postbox {
+	margin-bottom: var(--heatbox-gap);
+	border: 1px solid var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius);
+	box-shadow: var(--heatbox-shadow);
+}
+
+.udb-post-edit .postbox .postbox-header {
+	border-bottom-color: var(--heatbox-box-border);
+}
+
+.udb-post-edit #poststuff .postbox .postbox-header h2,
+.udb-post-edit #poststuff .postbox .hndle {
+	padding: 14px 20px;
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--heatbox-text);
+	cursor: default;
+}
+
+.udb-post-edit .postbox .inside {
+	margin: 0;
+	padding: 20px;
+}
+
+.udb-post-edit .postbox .inside > p:first-child,
+.udb-post-edit .postbox .inside > input[type="hidden"] + p {
+	margin-top: 0;
+}
+
+.udb-post-edit .postbox .inside > :last-child {
+	margin-bottom: 0;
+}
+
+/* No move or collapse arrows: the boxes stay where they are, and open */
+.udb-post-edit .postbox .handle-actions {
+	display: none;
+}
+
+.udb-post-edit .postbox.closed .inside {
+	display: block;
+}
+
+.udb-post-edit .meta-box-sortables.empty-container,
+.udb-post-edit .sortable-placeholder {
+	display: none;
+}
+
+/* The main box only holds the boxes per widget type */
+.udb-post-edit #udb-main-metabox {
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.udb-post-edit #udb-main-metabox > .inside {
+	padding: 0;
+}
+
+/* Fields like heatbox's */
+.udb-post-edit .postbox .inside input[type="text"],
+.udb-post-edit .postbox .inside input[type="url"],
+.udb-post-edit .postbox .inside input[type="email"],
+.udb-post-edit .postbox .inside input[type="number"],
+.udb-post-edit .postbox .inside input[type="password"],
+.udb-post-edit .postbox .inside select,
+.udb-post-edit .postbox .inside textarea:not(.wp-editor-area, .select2-search__field) {
+	min-height: var(--heatbox-control-height);
+	padding: 0 12px;
+	font-size: 14px;
+	color: var(--heatbox-text);
+	background-color: var(--heatbox-surface);
+	border: 1px solid var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+	transition: border-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
+}
+
+.udb-post-edit .postbox .inside textarea:not(.wp-editor-area, .select2-search__field) {
+	padding: 10px 12px;
+}
+
+.udb-post-edit .postbox .inside select {
+	padding-inline-end: 32px;
+}
+
+.udb-post-edit .postbox .inside input[type="text"]:hover,
+.udb-post-edit .postbox .inside input[type="url"]:hover,
+.udb-post-edit .postbox .inside input[type="email"]:hover,
+.udb-post-edit .postbox .inside input[type="number"]:hover,
+.udb-post-edit .postbox .inside input[type="password"]:hover,
+.udb-post-edit .postbox .inside select:hover,
+.udb-post-edit .postbox .inside textarea:not(.wp-editor-area, .select2-search__field):hover {
+	border-color: var(--heatbox-control-border);
+}
+
+.udb-post-edit .postbox .inside input[type="text"]:focus,
+.udb-post-edit .postbox .inside input[type="url"]:focus,
+.udb-post-edit .postbox .inside input[type="email"]:focus,
+.udb-post-edit .postbox .inside input[type="number"]:focus,
+.udb-post-edit .postbox .inside input[type="password"]:focus,
+.udb-post-edit .postbox .inside select:focus,
+.udb-post-edit .postbox .inside textarea:not(.wp-editor-area, .select2-search__field):focus {
+	border-color: var(--heatbox-accent);
+	outline: none;
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+/* Buttons next to a field (e.g. PRO's file picker): as tall as the field */
+.udb-post-edit .postbox .inside .button:not(.button-small, .icon-picker) {
+	min-height: var(--heatbox-control-height);
+	line-height: calc(var(--heatbox-control-height) - 2px);
+	vertical-align: top;
+}
+
+/* Multi-selects (e.g. PRO's roles & users): rounded like the fields */
+.udb-post-edit .select2-container--default .select2-selection--multiple {
+	min-height: var(--heatbox-control-height);
+	padding: 4px 6px;
+	border-color: var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	transition: border-color var(--heatbox-transition), box-shadow var(--heatbox-transition);
+}
+
+.udb-post-edit .select2-container--default .select2-selection--multiple:hover {
+	border-color: var(--heatbox-control-border);
+}
+
+.udb-post-edit .select2-container--default.select2-container--focus .select2-selection--multiple {
+	border-color: var(--heatbox-accent);
+	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
+}
+
+.udb-post-edit .select2-container--default .select2-selection--multiple .select2-selection__choice {
+	margin: 4px 6px 4px 0;
+	padding: 2px 8px 2px 24px;
+	background: var(--heatbox-surface-muted);
+	border-color: var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius-small);
+}
+
+.udb-post-edit .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	height: 100%;
+	border-right-color: var(--heatbox-box-border);
+}
+
+/* Text editor: rounded like the fields */
+.udb-post-edit .postbox .wp-editor-container {
+	border-color: var(--heatbox-border);
+	border-radius: var(--heatbox-radius-small);
+	overflow: hidden;
+}
+
+/* Publish box: the footer with the buttons like heatbox's box footer */
+.udb-post-edit #udb-active-status-metabox .udb-publish-active {
+	padding: 16px 20px;
+}
+
+.udb-post-edit #udb-active-status-metabox #major-publishing-actions {
+	padding: 14px 20px;
+	background: var(--heatbox-surface-muted);
+	border-top-color: var(--heatbox-box-border);
+	border-radius: 0 0 var(--heatbox-radius) var(--heatbox-radius);
+}
+
+.udb-post-edit #udb-active-status-metabox #delete-action {
+	line-height: var(--heatbox-control-height);
+}

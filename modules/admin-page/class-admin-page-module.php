@@ -272,7 +272,7 @@ class Admin_Page_Module extends Base_Module {
 			return;
 		}
 
-		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-list-header.php';
+		$header = require ULTIMATE_DASHBOARD_PLUGIN_DIR . '/templates/post-header.php';
 		$header( get_post_type_object( 'udb_admin_page' )->labels->name, __( 'Create custom admin pages for your users.', 'ultimate-dashboard' ) );
 
 	}
