@@ -64,10 +64,6 @@ class Login_Customizer_Module extends Base_Module {
 		add_action( 'init', array( $this, 'rewrite_rules' ) );
 		add_action( 'wp', array( $this, 'set_custom_page' ) );
 
-		// Setup redirect.
-		add_action( 'init', array( $this, 'redirect_frontend_page' ) );
-		add_action( 'admin_init', array( $this, 'redirect_edit_page' ) );
-
 		// Setup customizer.
 		add_action( 'customize_register', array( $this, 'register_panels' ) );
 		add_action( 'customize_register', array( $this, 'register_sections' ) );
@@ -146,21 +142,35 @@ class Login_Customizer_Module extends Base_Module {
 	}
 
 	/**
-	 * Set page manually by modifying 404 page.
+	 * Whether the current request is the login customizer page (home_url( 'udb-login-customizer' )).
+	 *
+	 * Checks the request path too, so the page also works when the rewrite rule is missing
+	 * (rules flushed while the plugin was inactive) or with plain permalinks.
+	 *
+	 * @return bool
+	 */
+	public function is_login_customizer_request() {
+
+		if ( 'udb-login-customizer' === get_query_var( 'pagename' ) ) {
+			return true;
+		}
+
+		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+		$request_path = trim( (string) wp_parse_url( $request_uri, PHP_URL_PATH ), '/' );
+		$page_path    = trim( (string) wp_parse_url( home_url( 'udb-login-customizer' ), PHP_URL_PATH ), '/' );
+
+		return $page_path === $request_path;
+
+	}
+
+	/**
+	 * Show the login customizer page.
 	 *
 	 * @return void
 	 */
 	public function set_custom_page() {
 
-		// Only modify 404 page.
-		if ( ! is_404() ) {
-			return;
-		}
-
-		$pagename = sanitize_text_field( get_query_var( 'pagename' ) );
-
-		// Only set for intended page.
-		if ( 'udb-login-customizer' !== $pagename ) {
+		if ( ! $this->is_login_customizer_request() ) {
 			return;
 		}
 
@@ -179,60 +189,6 @@ class Login_Customizer_Module extends Base_Module {
 		status_header( 200 );
 		load_template( __DIR__ . '/templates/udb-login-page.php', true );
 		exit;
-
-	}
-
-	/**
-	 * Redirect "Login Customizer" frontend page to WordPress customizer page.
-	 */
-	public function redirect_frontend_page() {
-
-		if ( ! isset( $_GET['page'] ) || 'udb-login-page' !== $_GET['page'] ) {
-			return;
-		}
-
-		// Pull the Login Customizer page from options.
-		$page = get_page_by_path( 'udb-login-page' );
-
-		// Generate the redirect url.
-		$redirect_url = add_query_arg(
-			array(
-				'autofocus[panel]' => 'udb_login_customizer_panel',
-				'url'              => rawurlencode( get_permalink( $page ) ),
-			),
-			admin_url( 'customize.php' )
-		);
-
-		wp_safe_redirect( $redirect_url );
-
-	}
-
-	/**
-	 * Redirect "Login Customizer" edit page to WordPress customizer page.
-	 */
-	public function redirect_edit_page() {
-
-		global $pagenow;
-
-		// Pull the Login Customizer page from options.
-		$page = get_page_by_path( 'udb-login-page' );
-
-		if ( ! $page ) {
-			return;
-		}
-
-		// Generate the redirect url.
-		$redirect_url = add_query_arg(
-			array(
-				'autofocus[panel]' => 'udb_login_customizer_panel',
-				'url'              => rawurlencode( get_permalink( $page ) ),
-			),
-			admin_url( 'customize.php' )
-		);
-
-		if ( 'post.php' === $pagenow && ( isset( $_GET['post'] ) && absint( $page->ID ) === absint( $_GET['post'] ) ) ) {
-			wp_safe_redirect( $redirect_url );
-		}
 
 	}
 

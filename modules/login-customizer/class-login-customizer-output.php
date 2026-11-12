@@ -86,7 +86,7 @@ class Login_Customizer_Output extends Base_Output {
 	public function login_headertext( $text ) {
 
 		$login = get_option( 'udb_login', array() );
-		$text  = isset( $login['logo_title'] ) && ! empty( $login['logo_title'] ) ? $login['logo_title'] : $text;
+		$text  = isset( $login['logo_title'] ) && ! empty( $login['logo_title'] ) ? esc_html( $login['logo_title'] ) : $text;
 
 		return $text;
 

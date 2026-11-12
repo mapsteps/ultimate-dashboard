@@ -11,19 +11,18 @@
 // Redirect if viewed from outside of the WordPress Customizer.
 if ( ! is_customize_preview() ) {
 
-	$login_customizer_page = get_page_by_path( 'udb-login-customizer' );
-
 	// Generate the redirect url.
 	$login_customizer_redirect_url = add_query_arg(
 		array(
 			'autofocus[panel]' => 'udb_login_customizer_panel',
-			'return'           => admin_url( 'index.php' ),
-			'url'              => rawurlencode( get_permalink( $login_customizer_page ) ),
+			'return'           => rawurlencode( admin_url( 'index.php' ) ),
+			'url'              => rawurlencode( home_url( 'udb-login-customizer' ) ),
 		),
 		admin_url( 'customize.php' )
 	);
 
 	wp_safe_redirect( $login_customizer_redirect_url );
+	exit;
 
 }
 
