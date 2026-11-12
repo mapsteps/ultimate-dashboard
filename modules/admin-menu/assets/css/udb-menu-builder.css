@@ -174,8 +174,15 @@
 	border-radius: var(--heatbox-radius-control);
 }
 
-.udb-menu-builder--menu-list:empty {
-	display: none;
+/* A submenu without items: a short text instead of an empty bordered box */
+.udb-menu-builder--submenu-list:not(:has(> li)) {
+	border: 0;
+}
+
+.udb-menu-builder--submenu-list:not(:has(> li))::before {
+	content: attr(data-empty-text);
+	display: block;
+	color: var(--heatbox-text-muted);
 }
 
 .udb-menu-builder--menu-item {
@@ -213,6 +220,11 @@
 	gap: 12px;
 	min-height: 40px;
 	padding: 10px 12px;
+}
+
+/* The open row gets a light gray tint, so it's clear which one is open when they're nested */
+.udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel {
+	background: var(--heatbox-surface-hover);
 }
 
 /* Drag handle: two short lines */

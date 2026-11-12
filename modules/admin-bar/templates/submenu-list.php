@@ -126,7 +126,7 @@ ob_start();
 					</div><!-- .udb-menu-builder--fields -->
 				</div><!-- #udb-menu-builder--settings-tab -->
 				<div id="udb-menu-builder--submenu-tab--{default_submenu_id}" class="udb-menu-builder--tab-content-item udb-menu-builder--edit-area {submenu_tab_is_hidden}">
-					<ul class="udb-menu-builder--menu-list udb-menu-builder--submenu-list" data-menu-type="submenu" data-submenu-level="{submenu_next_level}">
+					<ul class="udb-menu-builder--menu-list udb-menu-builder--submenu-list" data-menu-type="submenu" data-submenu-level="{submenu_next_level}" data-empty-text="<?php esc_attr_e( 'No submenu items.', 'ultimate-dashboard' ); ?>">
 						{submenu_template}
 					</ul>
 

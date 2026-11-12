@@ -139,7 +139,7 @@ ob_start();
 					</div><!-- .udb-menu-builder--fields -->
 				</div><!-- #udb-menu-builder--settings-tab -->
 				<div id="udb-menu-builder--submenu-tab--{default_menu_id}" class="udb-menu-builder--tab-content-item udb-menu-builder--edit-area">
-					<ul class="udb-menu-builder--menu-list udb-menu-builder--submenu-list" data-menu-type="submenu" data-submenu-level="1">
+					<ul class="udb-menu-builder--menu-list udb-menu-builder--submenu-list" data-menu-type="submenu" data-submenu-level="1" data-empty-text="<?php esc_attr_e( 'No submenu items.', 'ultimate-dashboard' ); ?>">
 						{submenu_template}
 					</ul>
 
