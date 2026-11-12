@@ -221,10 +221,16 @@
 	gap: 12px;
 	min-height: 40px;
 	padding: 10px 12px;
+	transition: background-color 0.2s;
 }
 
-/* The open row gets a light gray tint, so it's clear which one is open when they're nested */
-.udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel {
+/*
+ * The open row gets a light gray tint, so it's clear which one is open when they're nested.
+ * The scripts (free's and PRO's) only add .is-expanded once the slide has finished.
+ * The panel gets an inline "display: block" as soon as it starts, so the tint starts with the click.
+ */
+.udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel,
+.udb-menu-builder--menu-item:has(> .udb-menu-builder--expanded-panel[style*="display: block"]) > .udb-menu-builder--control-panel {
 	background: var(--heatbox-surface-hover);
 }
 
