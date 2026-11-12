@@ -30,12 +30,6 @@
 	margin-bottom: 5px;
 }
 
-/* A field's name above it */
-.udb-metabox-field .udb-field-label {
-	display: block;
-	font-weight: 600;
-}
-
 /* Icon widget: a larger icon button with the tooltip next to it, same height */
 .udb-icon-row {
 	display: flex;
@@ -96,25 +90,6 @@
 	display: none;
 }
 
-/* HTML widget's code editor: bordered like the fields */
-#udb-main-metabox .CodeMirror {
-	border: 1px solid #8c8f94;
-	border-radius: 4px;
-}
-
-/* Publish box: laid out like WordPress' own (no padding around it), "Active" with its toggle above the save button */
-#udb-active-status-metabox .inside {
-	margin: 0;
-	padding: 0;
-}
-
-.udb-publish-active {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 10px 12px;
-}
-
 /* Position box: column and priority */
 .udb-position-group label {
 	display: block;
@@ -147,12 +122,6 @@
 	color: var(--heatbox-accent);
 }
 
-/* PRO box in the sidebar: heatbox's feature list, one column */
-#udb-pro-link-metabox .heatbox-features {
-	grid-template-columns: 1fr;
-	gap: 10px;
-	margin: 12px 0 16px;
-}
 
 /* User role & user access metabox */
 .select2-container {

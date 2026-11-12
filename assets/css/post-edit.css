@@ -1,0 +1,35 @@
+/**
+ * Widget & admin page edit screens (WordPress' own edit screen, only these parts are ours).
+ */
+
+/* A field's name above it */
+.udb-metabox-field .udb-field-label {
+	display: block;
+	font-weight: 600;
+}
+
+/* Publish box: laid out like WordPress' own (no padding around it), "Active" with its toggle above the save button */
+#udb-active-status-metabox .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.udb-publish-active {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 12px;
+}
+
+/* PRO box in the sidebar: heatbox's feature list, one column */
+#udb-pro-link-metabox .heatbox-features {
+	grid-template-columns: 1fr;
+	gap: 10px;
+	margin: 12px 0 16px;
+}
+
+/* Code editors (HTML, custom CSS/JS): bordered like the fields */
+.postbox .CodeMirror {
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+}

@@ -25,6 +25,9 @@ return function ( $module ) {
 		// Heatbox.
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
+		// Edit screen styles (shared with admin pages).
+		wp_enqueue_style( 'udb-post-edit', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/post-edit.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
+
 		// Edit widget.
 		wp_enqueue_style( 'udb-edit-widget', $module->url . '/assets/css/edit-widget.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 

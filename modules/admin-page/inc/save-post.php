@@ -31,7 +31,7 @@ return function ( $module, $post_id ) {
 
 	$nonce = isset( $_POST['udb_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['udb_nonce'] ) ) : '';
 
-	if ( ! wp_verify_nonce( $nonce, 'udb_edit_admin_page' ) ) {
+	if ( ! wp_verify_nonce( $nonce, 'udb_edit_admin_page' ) || ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
 	}
 

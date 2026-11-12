@@ -273,7 +273,14 @@ class Admin_Page_Module extends Base_Module {
 	 */
 	public function register_meta_boxes() {
 
-		add_meta_box( 'udb-active-status-metabox', __( 'Active', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_admin_page', 'side', 'high' );
+		// Classic editor: our Publish box (Active toggle, save, trash) instead of WordPress'. Block editor (PRO): Active only.
+		$is_block_editor = function_exists( 'use_block_editor_for_post_type' ) && use_block_editor_for_post_type( 'udb_admin_page' );
+
+		if ( ! $is_block_editor ) {
+			remove_meta_box( 'submitdiv', 'udb_admin_page', 'side' );
+		}
+
+		add_meta_box( 'udb-active-status-metabox', $is_block_editor ? __( 'Active', 'ultimate-dashboard' ) : __( 'Publish', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_admin_page', 'side', 'high' );
 		add_meta_box( 'udb-content-type-metabox', __( 'Content Type', 'ultimate-dashboard' ), array( $this, 'content_type_metabox' ), 'udb_admin_page', 'side', 'high' );
 
 		if ( ! udb_is_pro_active() ) {

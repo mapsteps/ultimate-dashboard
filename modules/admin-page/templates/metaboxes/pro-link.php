@@ -8,26 +8,35 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
+
+	$features = array(
+		sprintf(
+			/* translators: %1$s, %2$s, %3$s: page builder names */
+			esc_html__( 'Use %1$s, %2$s or %3$s to create custom Admin Pages', 'ultimate-dashboard' ),
+			'<strong>Elementor</strong>',
+			'<strong>Beaver Builder</strong>',
+			'<strong>Brizy</strong>'
+		),
+		esc_html__( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ),
+	);
 	?>
 
-	<ul class="udb-pro-metabox-content">
-		<li>
-			<?php
-			printf(
-				/* translators: %1$s, %2$s, %3$s: page builder names */
-				esc_html__( 'Use %1$s, %2$s or %3$s to create custom Admin Pages', 'ultimate-dashboard' ),
-				'<strong>Elementor</strong>',
-				'<strong>Beaver Builder</strong>',
-				'<strong>Brizy</strong>'
-			);
-			?>
-		</li>
-		<li><?php esc_html_e( 'Restrict Admin Pages to specific Users or User Roles', 'ultimate-dashboard' ); ?></li>
+	<ul class="heatbox-features">
+		<?php foreach ( $features as $feature ) : ?>
+			<li>
+				<span class="dashicons dashicons-yes" aria-hidden="true"></span>
+				<div><?php echo wp_kses( $feature, array( 'strong' => array() ) ); ?></div>
+			</li>
+		<?php endforeach; ?>
 	</ul>
 
-	<a href="https://ultimatedashboard.io/docs/admin-pages/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-large">
-		<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-	</a>
+	<p>
+		<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=edit_admin_page&utm_campaign=udb" target="_blank" class="button button-primary button-full">
+			<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+			<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+		</a>
+	</p>
 
 	<?php
+
 };

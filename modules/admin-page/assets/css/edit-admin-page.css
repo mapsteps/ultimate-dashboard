@@ -1,22 +1,3 @@
-/* CodeMirror fix */
-.CodeMirror-wrap {
-	border: 1px solid #ddd;
-}
-
-.CodeMirror-sizer {
-	margin-left: 46px !important;
-}
-
-.CodeMirror-linenumbers {
-	width: 29px !important;
-}
-
-/* PRO metabox */
-.udb-pro-metabox-content li {
-	list-style: disc;
-	margin-left: 15px;
-}
-
 /* Metabox fields */
 .udb-metabox-field {
 	margin-bottom: 15px;
@@ -29,6 +10,18 @@
 .udb-metabox-field label {
 	display: inline-block;
 	margin-bottom: 5px;
+}
+
+/* Field names (Menu Attributes) and the Advanced box's headings (Custom CSS, PRO's Custom JS) */
+.udb-metabox-field label.label,
+#udb-advanced-metabox h4 {
+	display: block;
+	margin: 0 0 5px;
+	font-weight: 600;
+}
+
+#udb-advanced-metabox h4 ~ h4 {
+	margin-top: 20px;
 }
 
 /* Content type metabox */
