@@ -33,17 +33,19 @@
 
 /* Module icon: our own line icons (template), in the admin color scheme's accent */
 .udb-module-icon {
+	box-sizing: border-box;
 	flex-shrink: 0;
-	width: 24px;
-	height: 24px;
+	width: 38px;
+	height: 38px;
+	padding: 8px; /* 22px icon in a light accent box */
 	fill: none;
 	stroke: currentColor;
 	stroke-width: 1.75;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	color: var(--heatbox-accent);
-	position: relative;
-	top: 1px; /* centers the icon on the capital letters, not the line box */
+	background: var(--heatbox-accent-soft);
+	border-radius: var(--heatbox-radius-control);
 }
 
 /* Status row: Active/Inactive badge on the left, the on/off toggle on the right */
