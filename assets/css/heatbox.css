@@ -990,6 +990,7 @@ body {
 .heatbox-wrap input[type="file"] {
 	box-sizing: border-box;
 	width: 100%;
+	max-width: 360px;
 	min-height: var(--heatbox-control-height);
 	padding: 3px;
 	font-size: 13px;
