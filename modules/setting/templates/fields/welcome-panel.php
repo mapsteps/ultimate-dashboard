@@ -68,18 +68,51 @@ return function () {
 		'tinymce'       => array(
 			'body_class'    => 'wp-core-ui welcome-panel',
 			'content_style' => '.welcome-panel-content .hide-if-customize {display: none;} .welcome-panel {border: none;}',
-			'content_css'   => "/wp-includes/css/dashicons{$dir}{$min}.css?ver={$ver},/wp-includes/css/buttons{$dir}{$min}.css?ver={$ver},/wp-admin/css/common{$dir}{$min}.css?ver={$ver},/wp-admin/css/dashboard{$dir}{$min}.css?ver={$ver}",
+			'content_css'   => implode(
+				',',
+				array(
+					includes_url( "css/dashicons{$dir}{$min}.css?ver={$ver}" ),
+					includes_url( "css/buttons{$dir}{$min}.css?ver={$ver}" ),
+					admin_url( "css/common{$dir}{$min}.css?ver={$ver}" ),
+					admin_url( "css/dashboard{$dir}{$min}.css?ver={$ver}" ),
+				)
+			),
 		),
 	);
 
 	if ( $is_default ) {
-		$args['tinymce']['setup'] = 'function(editor){editor.on("input keyup paste change",function(){var f=document.getElementById("udb-welcome-panel-is-default");if(f){f.value="0";}});}';
+		$args['tinymce']['setup'] = 'function(editor){editor.on("input keyup paste ExecCommand",function(){var f=document.getElementById("udb-welcome-panel-is-default");if(f){f.value="0";}});}';
 	}
 
 	wp_editor( $content, $editor_id, $args );
 
 	if ( $is_default ) {
+		/*
+		 * The editor shows WordPress' default welcome panel until it's edited.
+		 * The flag tells the save routine to keep using the default.
+		 * Any edit clears it: in the Visual tab (TinyMCE setup above) and in the Text tab (below).
+		 */
 		echo '<input type="hidden" id="udb-welcome-panel-is-default" name="udb_settings[welcome_panel_is_default]" value="1">';
+		?>
+		<script>
+		( function () {
+			var flag = document.getElementById( 'udb-welcome-panel-is-default' );
+			var textarea = document.getElementById( <?php echo wp_json_encode( $editor_id ); ?> );
+			var toolbar = document.getElementById( <?php echo wp_json_encode( 'qt_' . $editor_id . '_toolbar' ); ?> );
+			var markEdited = function () { flag.value = '0'; };
+
+			if ( textarea ) {
+				textarea.addEventListener( 'input', markEdited );
+				textarea.addEventListener( 'change', markEdited );
+			}
+
+			// Text tab buttons (b, i, link …) change the text without an input event.
+			if ( toolbar ) {
+				toolbar.addEventListener( 'click', markEdited );
+			}
+		}() );
+		</script>
+		<?php
 	}
 
 };
