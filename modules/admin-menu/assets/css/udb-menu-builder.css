@@ -215,10 +215,6 @@
 	padding: 10px 12px;
 }
 
-.udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel {
-	background: var(--heatbox-accent-soft);
-}
-
 /* Drag handle: two short lines */
 .udb-menu-builder--menu-drag {
 	flex: none;
