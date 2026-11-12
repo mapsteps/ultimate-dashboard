@@ -40,11 +40,6 @@
 	margin-top: 10px !important;
 }
 
-/* Specific settings page styles */
-.udb-no-label th {
-	display: none;
-}
-
 /* Heatbox */
 .heatbox {
 	position: relative;

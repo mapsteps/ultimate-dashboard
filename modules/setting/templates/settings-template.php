@@ -7,7 +7,12 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-return function () {
+/**
+ * Output the settings page.
+ *
+ * @param Udb\Setting\Setting_Module $module The settings module (renders the welcome panel field).
+ */
+return function ( $module ) {
 
 	$setting_tab_menus = array(
 		array(
@@ -84,16 +89,35 @@ return function () {
 
 				<div>
 					<div class="heatbox-admin-panel udb-widgets-panel">
-						<div class="heatbox is-grouped">
+						<div class="heatbox">
 							<?php do_settings_sections( 'udb-widget-settings' ); ?>
 						</div>
+
+						<div class="heatbox<?php echo udb_is_pro_active() ? '' : ' is-locked'; ?>">
+							<?php do_settings_sections( 'udb-3rd-party-widget-settings' ); ?>
+						</div>
+
+						<?php if ( ! udb_is_pro_active() ) : ?>
+							<div class="heatbox-cta-container is-attached">
+								<div class="heatbox-cta primary">
+									<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+									<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=remove_3rd_party_widgets_link&utm_campaign=udb" class="button button-primary" target="_blank">
+										<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+										<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+									</a>
+								</div>
+							</div>
+						<?php endif; ?>
 
 						<div class="heatbox">
 							<?php do_settings_sections( 'udb-widget-styling-settings' ); ?>
 						</div>
 
 						<div class="heatbox">
-							<?php do_settings_sections( 'udb-welcome-panel-settings' ); ?>
+							<h2><?php esc_html_e( 'Welcome Panel', 'ultimate-dashboard' ); ?></h2>
+							<div class="heatbox-content">
+								<?php $module->welcome_panel_field(); ?>
+							</div>
 						</div>
 					</div>
 

@@ -74,7 +74,7 @@ class Setting_Module extends Base_Module {
 	public function submenu_page_content() {
 
 		$template = require __DIR__ . '/templates/settings-template.php';
-		$template();
+		$template( $this );
 
 	}
 
@@ -114,13 +114,12 @@ class Setting_Module extends Base_Module {
 
 		// Widget sections.
 		add_settings_section( 'udb-widgets-section', __( 'WordPress Dashboard Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
-		add_settings_section( 'udb-3rd-party-widgets-section', __( '3rd Party Widgets', 'ultimate-dashboard' ), '', 'udb-widget-settings' );
+		// Own box: locked with a PRO badge in free (PRO swaps in the real field).
+		$third_party_title = __( '3rd Party Widgets', 'ultimate-dashboard' ) . ( udb_is_pro_active() ? '' : ' <span class="heatbox-badge">PRO</span>' );
+		add_settings_section( 'udb-3rd-party-widgets-section', $third_party_title, '', 'udb-3rd-party-widget-settings' );
 
 		// Widget styling section.
 		add_settings_section( 'udb-styling-section', __( 'Dashboard Widget Styling', 'ultimate-dashboard' ), '', 'udb-widget-styling-settings' );
-
-		// Welcome panel section.
-		add_settings_section( 'udb-welcome-panel-section', __( 'Welcome Panel', 'ultimate-dashboard' ), '', 'udb-welcome-panel-settings' );
 
 		// We use this hook to place the Page Builder Dashboard feature here.
 		do_action( 'udb_after_widget_metabox' );
@@ -158,7 +157,7 @@ class Setting_Module extends Base_Module {
 			'remove-3rd-party-widgets',
 			__( 'Remove 3rd Party Widgets', 'ultimate-dashboard' ),
 			array( $this, 'remove_3rd_party_widgets_field' ),
-			'udb-widget-settings',
+			'udb-3rd-party-widget-settings',
 			'udb-3rd-party-widgets-section'
 		);
 
@@ -177,16 +176,6 @@ class Setting_Module extends Base_Module {
 			array( $this, 'headline_color_field' ),
 			'udb-widget-styling-settings',
 			'udb-styling-section'
-		);
-
-		// Welcome panel fields.
-		add_settings_field(
-			'udb-welcome-panel-field',
-			'',
-			array( $this, 'welcome_panel_field' ),
-			'udb-welcome-panel-settings',
-			'udb-welcome-panel-section',
-			array( 'class' => 'udb-no-label' )
 		);
 
 		// General fields.
