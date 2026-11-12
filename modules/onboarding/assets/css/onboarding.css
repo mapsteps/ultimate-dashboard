@@ -9,7 +9,7 @@
    ========================================================================== */
 
 .udb-onboarding-container {
-	max-width: 640px;
+	max-width: 560px;
 }
 
 .udb-onboarding h3 {
@@ -39,6 +39,12 @@
 
 .udb-onboarding-row .toggle-switch {
 	flex-shrink: 0;
+}
+
+/* Roles: two columns, so sites with many roles don't get a long list */
+.udb-onboarding-roles {
+	columns: 2;
+	column-gap: 20px;
 }
 
 /* ==========================================================================

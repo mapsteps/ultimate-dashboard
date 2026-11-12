@@ -126,33 +126,20 @@ class Onboarding_Module extends Base_Module {
 		wp_enqueue_style( 'heatbox', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/heatbox.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 		wp_enqueue_style( 'udb-onboarding', $this->url . '/assets/css/onboarding.css', array( 'heatbox' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 
-		$script_deps = array( 'jquery' );
-
-		if ( 'wizard' === $this->variant ) {
-			// The role picker on the settings step.
-			wp_enqueue_style( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/select2.min.css', array(), '4.1.0-rc.0' );
-			wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
-
-			$script_deps[] = 'select2';
-		}
-
-		wp_enqueue_script( 'udb-onboarding', $this->url . '/assets/js/onboarding.js', $script_deps, ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'udb-onboarding', $this->url . '/assets/js/onboarding.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'udb-onboarding',
 			'udbOnboarding',
 			array(
 				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-				'adminUrl' => admin_url(),
 				'nonce'    => wp_create_nonce( 'udb_onboarding' ),
-				'variant'  => $this->variant,
 				'referrer' => $this->referrer,
 				'pageSlug' => $this->page_slug(),
 				'strings'  => array(
-					'error'      => __( 'Something went wrong. Please try again.', 'ultimate-dashboard' ),
-					'selectRole' => __( 'Select Role', 'ultimate-dashboard' ),
+					'error'    => __( 'Something went wrong. Please try again.', 'ultimate-dashboard' ),
 					/* translators: %1$s: The current step, %2$s: The number of steps. */
-					'progress'   => __( 'Step %1$s of %2$s', 'ultimate-dashboard' ),
+					'progress' => __( 'Step %1$s of %2$s', 'ultimate-dashboard' ),
 				),
 			)
 		);

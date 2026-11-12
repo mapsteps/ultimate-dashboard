@@ -165,14 +165,26 @@ return function ( $variant, $referrer = '' ) {
 								?>
 							</div>
 
-							<div class="udb-onboarding-field">
-								<label for="remove_by_roles"><?php esc_html_e( 'Hide Admin Bar on the Frontend for:', 'ultimate-dashboard' ); ?></label>
-								<select id="remove_by_roles" multiple data-placeholder="<?php esc_attr_e( 'Select Role', 'ultimate-dashboard' ); ?>">
-									<option value="all" <?php selected( in_array( 'all', $selected_roles, true ) ); ?>><?php esc_html_e( 'All', 'ultimate-dashboard' ); ?></option>
-									<?php foreach ( wp_roles()->roles as $role_key => $role ) : ?>
-										<option value="<?php echo esc_attr( $role_key ); ?>" <?php selected( in_array( $role_key, $selected_roles, true ) ); ?>><?php echo esc_html( translate_user_role( $role['name'] ) ); ?></option>
-									<?php endforeach; ?>
-								</select>
+							<h3 id="udb-onboarding-roles"><?php esc_html_e( 'Hide Admin Bar on the Frontend for:', 'ultimate-dashboard' ); ?></h3>
+
+							<div class="setting-fields udb-onboarding-roles" role="group" aria-labelledby="udb-onboarding-roles">
+								<?php
+								$roles = array( 'all' => __( 'All', 'ultimate-dashboard' ) );
+
+								foreach ( wp_roles()->roles as $role_key => $role ) {
+									$roles[ $role_key ] = translate_user_role( $role['name'] );
+								}
+
+								foreach ( $roles as $role_key => $role_name ) :
+									?>
+									<div class="setting-field">
+										<label class="label checkbox-label">
+											<?php echo esc_html( $role_name ); ?>
+											<input type="checkbox" value="<?php echo esc_attr( $role_key ); ?>" data-udb-group="roles" <?php checked( in_array( $role_key, $selected_roles, true ) ); ?>>
+											<div class="indicator"></div>
+										</label>
+									</div>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</section>

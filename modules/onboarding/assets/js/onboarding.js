@@ -20,7 +20,7 @@
 	const subscribeButton = page.querySelector(".udb-onboarding-subscribe");
 	const skipAll = page.querySelector(".udb-onboarding-skip-all");
 	const loginRedirectToggle = page.querySelector("#udb_modules__login_redirect");
-	const roleSelect = page.querySelector("#remove_by_roles");
+	const roleBoxes = page.querySelectorAll('input[data-udb-group="roles"]');
 
 	// The steps with settings; they get the footer and count as "Step x of y".
 	const settingSteps = ["modules", "widgets", "settings", "login_url"];
@@ -28,7 +28,6 @@
 	let current = 0;
 	let busy = false;
 
-	setupRoleSelect();
 	updateUi();
 
 	nextButton.addEventListener("click", onNext);
@@ -36,6 +35,10 @@
 	page.querySelector(".udb-onboarding-skip").addEventListener("click", goNext);
 	page.querySelector(".udb-onboarding-skip-discount").addEventListener("click", onSkipDiscount);
 	loginRedirectToggle?.addEventListener("change", updateUi);
+
+	roleBoxes.forEach(function (box) {
+		box.addEventListener("change", onRoleChange);
+	});
 
 	skipAll?.querySelector("a").addEventListener("click", function (e) {
 		e.preventDefault();
@@ -122,7 +125,7 @@
 			data.widgets = checkedValues("widgets");
 		} else if ("settings" === step) {
 			data.settings = checkedValues("settings");
-			data.roles = roleSelect ? $(roleSelect).val() || [] : [];
+			data.roles = checkedValues("roles");
 		} else if ("login_url" === step) {
 			data.login_url = page.querySelector("#udb_login_redirect").value;
 		}
@@ -215,20 +218,17 @@
 	}
 
 	/**
-	 * The "Hide Admin Bar for" role picker: "All" or individual roles, not both.
+	 * The "Hide Admin Bar for" roles: "All" or individual roles, not both.
+	 *
+	 * @param {Event} e The change event.
 	 */
-	function setupRoleSelect() {
-		if (!roleSelect || !$.fn.select2) return;
+	function onRoleChange(e) {
+		if (!e.target.checked) return;
 
-		const $select = $(roleSelect);
-
-		$select.select2({ placeholder: config.strings.selectRole, allowClear: true, width: "100%" });
-
-		$select.on("select2:select", function (e) {
-			const values = $select.val() || [];
-			const next = "all" === e.params.data.id ? ["all"] : values.filter((value) => "all" !== value);
-
-			$select.val(next).trigger("change");
+		roleBoxes.forEach(function (box) {
+			if (box !== e.target && ("all" === e.target.value || "all" === box.value)) {
+				box.checked = false;
+			}
 		});
 	}
 })(jQuery);
