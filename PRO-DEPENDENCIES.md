@@ -37,3 +37,5 @@ Checks the free code against the full list in `bin/pro-deps.json` (about 200 ite
 - Multisite branding removes PRO's own dark mode styles from `admin_head`, but they're registered on `admin_enqueue_scripts` (priority 100), so the removal does nothing.
 - PRO hooks `udb_branding_login_styles`, which neither plugin fires.
 - Multisite login redirect points at `modules/login-url` in free, which doesn't exist.
+- Widget output checks `property_exists( $array_helper, 'clean_unserialize' )`, which is always false for a method (should be `method_exists`), so it never cleans double-serialized roles/users.
+- Widget and admin page role/user fields call plain `unserialize()` (5 spots); use free's `clean_unserialize()`, which no longer unserializes objects.
