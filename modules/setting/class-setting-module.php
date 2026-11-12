@@ -249,14 +249,6 @@ class Setting_Module extends Base_Module {
 			'udb-custom-css-section'
 		);
 
-		add_settings_field(
-			'custom-login-css',
-			__( 'Custom Login CSS', 'ultimate-dashboard' ),
-			array( $this, 'custom_login_css_field' ),
-			'udb-custom-css-settings',
-			'udb-custom-css-section'
-		);
-
 	}
 
 	/**
@@ -522,14 +514,15 @@ class Setting_Module extends Base_Module {
 	public function custom_login_css_field() {
 		?>
 
-		<p class="description" style="margin: 0;">
+		<p>
 			<?php esc_html_e( 'To add custom CSS to the WordPress login screen, please click the button below to launch the WordPress customizer.', 'ultimate-dashboard' ); ?>
 		</p>
-		<br>
-		<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>"
-			class="button button-primary button-larger">
-			<?php esc_html_e( 'Add Custom Login CSS', 'ultimate-dashboard' ); ?>
-		</a>
+
+		<p>
+			<a href="<?php echo esc_url( admin_url( 'customize.php?autofocus%5Bsection%5D=udb_login_customizer_custom_css_js_section' ) ); ?>" class="button button-primary">
+				<?php esc_html_e( 'Add Custom Login CSS', 'ultimate-dashboard' ); ?>
+			</a>
+		</p>
 
 		<?php
 

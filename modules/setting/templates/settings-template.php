@@ -151,6 +151,13 @@ return function ( $module ) {
 						<div class="heatbox">
 							<?php do_settings_sections( 'udb-custom-css-settings' ); ?>
 						</div>
+
+						<div class="heatbox">
+							<h2><?php esc_html_e( 'Custom Login CSS', 'ultimate-dashboard' ); ?></h2>
+							<div class="heatbox-content">
+								<?php $module->custom_login_css_field(); ?>
+							</div>
+						</div>
 					</div>
 
 					<?php do_action( 'udb_after_custom_panel' ); ?>
