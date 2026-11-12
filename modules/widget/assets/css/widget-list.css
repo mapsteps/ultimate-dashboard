@@ -1,0 +1,22 @@
+/**
+ * Widget list: the icon of icon widgets in the "Widget Type" column, in a light accent box.
+ */
+
+.udb-widget-type-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	margin-inline-end: 10px;
+	vertical-align: middle;
+	color: var(--heatbox-accent);
+	background: var(--heatbox-accent-soft);
+	border-radius: var(--heatbox-radius-control);
+}
+
+.udb-widget-type-icon i {
+	width: auto;
+	height: auto;
+	font-size: 16px;
+}

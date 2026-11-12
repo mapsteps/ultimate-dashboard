@@ -23,7 +23,7 @@ return function ( $column, $post_id ) {
 				} elseif ( 'text' === $widget_type ) {
 					$column_content = __( 'Text', 'ultimate-dashboard' );
 				} elseif ( 'icon' === $widget_type ) {
-					$column_content = '<i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i>';
+					$column_content = '<span class="udb-widget-type-icon"><i class="' . esc_attr( get_post_meta( $post_id, 'udb_icon_key', true ) ) . '"></i></span>' . __( 'Icon', 'ultimate-dashboard' );
 				}
 
 				$column_content = apply_filters( 'udb_widget_list_type_column_content', $column_content, $post_id, $widget_type );
