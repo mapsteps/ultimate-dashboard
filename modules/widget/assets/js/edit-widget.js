@@ -17,7 +17,7 @@
 	}
 
 	function setupWidgetType() {
-		const $type = $('[name="udb_widget_type');
+		const $type = $('[name="udb_widget_type"]');
 		const $fields = $(".udb-main-metabox .widget-fields");
 		let value = $type.val();
 

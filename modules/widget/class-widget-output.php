@@ -137,8 +137,8 @@ class Widget_Output extends Base_Output {
 		$args = array(
 			'post_type'      => 'udb_widgets',
 			'posts_per_page' => 100,
-			'meta_key'       => 'udb_is_active',
-			'meta_value'     => 1,
+			'meta_key'       => 'udb_is_active', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Only a few widgets.
+			'meta_value'     => 1, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		);
 
 		$loop = new WP_Query( $args );
@@ -164,6 +164,8 @@ class Widget_Output extends Base_Output {
 			if ( ! $widget_type ) {
 
 				do_action( 'udb_compat_widget_type', $post_id );
+
+				$widget_type = get_post_meta( $post_id, 'udb_widget_type', true );
 
 			}
 

@@ -85,11 +85,10 @@ class Widget_Module extends Base_Module {
 			3  => __( 'Custom field deleted.', 'ultimate-dashboard' ),
 			4  => __( 'Widget updated.', 'ultimate-dashboard' ),
 			// translators: %s: Date and time of the revision.
-			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Widget restored to revision from %s', 'ultimate-dashboard' ), wp_post_revision_title( absint( $_GET['revision'] ), false ) ) : false, // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Same as WP core's messages, only displayed.
 			6  => __( 'Widget published.', 'ultimate-dashboard' ),
 			7  => __( 'Widget saved.', 'ultimate-dashboard' ),
 			8  => __( 'Widget submitted.', 'ultimate-dashboard' ),
-			// translators: %1$s: Scheduled date and time
 			9  => sprintf(
 				/* translators: %1$s: Scheduled date and time */
 				__( 'Widget scheduled for: <strong>%1$s</strong>.', 'ultimate-dashboard' ),

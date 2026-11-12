@@ -18,7 +18,7 @@ return function () {
 		wp_send_json_error( __( 'Invalid token', 'ultimate-dashboard' ) );
 	}
 
-	if ( ! $page ) {
+	if ( ! $page || 'udb_widgets' !== $page->post_type ) {
 		wp_send_json_error( __( 'Page/post not found', 'ultimate-dashboard' ) );
 	}
 

@@ -25,7 +25,7 @@ return function () {
 		<?php
 		foreach ( $placeholder_tags as $tag_index => $placeholder_tag ) {
 			?>
-			<code><?php echo esc_attr( $placeholder_tag ); ?></code>
+			<code><?php echo esc_html( $placeholder_tag ); ?></code>
 			<?php
 		}
 		?>

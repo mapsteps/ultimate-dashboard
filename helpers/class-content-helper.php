@@ -153,6 +153,10 @@ class Content_Helper {
 	 * Only for the "post" context, which is what widgets and admin pages use.
 	 * Other contexts (comments, user & term descriptions, "strip" …) stay untouched.
 	 *
+	 * And only when saved by someone who can manage Ultimate Dashboard,
+	 * or when content is displayed in wp-admin (widgets & admin pages are shown to all roles).
+	 * So authors & contributors saving their own posts get WordPress' default rules.
+	 *
 	 * @param array  $tags    The allowed tags & attributes.
 	 * @param string $context The kses context.
 	 *
@@ -161,6 +165,13 @@ class Content_Helper {
 	public function allow_iframes_in_html( $tags, $context = 'post' ) {
 
 		if ( 'post' !== $context ) {
+			return $tags;
+		}
+
+		$can_manage = current_user_can( apply_filters( 'udb_settings_capability', 'manage_options' ) );
+		$is_display = is_admin() && isset( $_SERVER['REQUEST_METHOD'] ) && 'GET' === $_SERVER['REQUEST_METHOD'];
+
+		if ( ! $can_manage && ! $is_display ) {
 			return $tags;
 		}
 
