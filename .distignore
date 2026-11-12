@@ -4,17 +4,10 @@
 .editorconfig
 .git
 .gitignore
-.parcel-cache
 bin
 composer.json
 composer.lock
-node_modules
-package.json
 phpcs.xml
-pnpm-lock.yaml
 PRO-DEPENDENCIES.md
 README.md
-tsconfig.json
-types.ts
 vendor
-modules/login-customizer/src

@@ -6,11 +6,5 @@ Thumbs.db
 .idea
 .vscode/
 
-# Build tools
-.parcel-cache/
-node_modules/
-package-lock.json
-manifest.json
-
 # Composer
 /vendor/
