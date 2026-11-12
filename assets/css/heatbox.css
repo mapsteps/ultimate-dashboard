@@ -383,7 +383,13 @@ body {
 	border-radius: 999px;
 }
 
-/* Status badges: <span class="heatbox-badge is-success">Active</span> (also is-error, is-warning, is-neutral) */
+/* Status badges: <span class="heatbox-badge is-success">Active</span> (also is-info, is-error, is-warning, is-neutral) */
+/* is-info: soft accent color, e.g. "Active" in the admin color scheme */
+.heatbox-badge.is-info {
+	color: var(--heatbox-accent);
+	background: var(--heatbox-accent-soft);
+}
+
 .heatbox-badge.is-success {
 	color: var(--heatbox-success);
 	background: var(--heatbox-success-soft);
