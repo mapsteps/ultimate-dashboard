@@ -11,28 +11,6 @@ return function () {
 
 	$is_pro = udb_is_pro_active();
 	$locked = $is_pro ? '' : ' is-locked';
-
-	/**
-	 * Without PRO: the upsell strip attached below a PRO box.
-	 *
-	 * @param string $text The text.
-	 */
-	$cta = function ( $text ) use ( $is_pro ) {
-		if ( $is_pro ) {
-			return;
-		}
-		?>
-		<div class="heatbox-cta-container is-attached">
-			<div class="heatbox-cta primary">
-				<p><?php echo esc_html( $text ); ?></p>
-				<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary" target="_blank">
-					<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-					<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
-				</a>
-			</div>
-		</div>
-		<?php
-	};
 	?>
 
 	<div class="wrap heatbox-wrap udb-branding-page">
@@ -71,19 +49,25 @@ return function () {
 
 				<?php settings_fields( 'udb-branding-group' ); ?>
 
+				<?php if ( ! $is_pro ) : ?>
+					<div class="heatbox-cta primary heatbox-margin-bottom">
+						<p><?php esc_html_e( 'The settings marked PRO are available in Ultimate Dashboard PRO. Try the admin colors: they preview live.', 'ultimate-dashboard' ); ?></p>
+						<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=white_label_link&utm_campaign=udb" class="button button-primary" target="_blank">
+							<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+							<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+						</a>
+					</div>
+				<?php endif; ?>
+
 				<div class="heatbox<?php echo esc_attr( $locked ); ?>">
 					<?php do_settings_sections( 'udb-branding-settings' ); ?>
 				</div>
-
-				<?php $cta( __( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ) ); ?>
 
 				<?php do_action( 'udb_after_branding_layout_metabox' ); ?>
 
 				<div class="heatbox<?php echo esc_attr( $locked ); ?>">
 					<?php do_settings_sections( 'udb-darkmode-settings' ); ?>
 				</div>
-
-				<?php $cta( __( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ) ); ?>
 
 				<?php do_action( 'udb_after_darkmode_metabox' ); ?>
 
@@ -102,8 +86,6 @@ return function () {
 					?>
 				</div>
 
-				<?php $cta( __( 'Try it: the colors preview live. Saving them is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ) ); ?>
-
 				<?php do_action( 'udb_after_admin_colors_metabox' ); ?>
 
 				<div class="heatbox<?php echo esc_attr( $locked ); ?>">
@@ -119,8 +101,6 @@ return function () {
 					}
 					?>
 				</div>
-
-				<?php $cta( __( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ) ); ?>
 
 				<?php do_action( 'udb_after_admin_logo_metabox' ); ?>
 
