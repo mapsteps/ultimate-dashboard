@@ -53,16 +53,14 @@
 	justify-content: space-between;
 	gap: 10px;
 	padding: 15px var(--heatbox-box-padding);
-	font-size: 15px;
 	background: var(--heatbox-surface-hover);
 	border-top: 1px solid var(--heatbox-box-border);
 	border-radius: 0 0 calc(var(--heatbox-radius) - 1px) calc(var(--heatbox-radius) - 1px);
 }
 
-/* Same size as the "Status:" text and on its baseline (heatbox's badge is sized for box titles) */
+/* Larger than heatbox's badge, which is sized for box titles */
 .udb-module-status .heatbox-badge {
-	margin-inline-start: 4px;
+	margin: 0;
 	padding: 3px 10px;
 	font-size: 14px;
-	vertical-align: baseline;
 }
