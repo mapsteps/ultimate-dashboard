@@ -74,7 +74,7 @@ return function ( $module ) {
 
 				<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 	
-					<div class="heatbox udb-menu-builder-box udb-menu-builder-box-panel<?php echo udb_is_pro_active() ? '' : ' is-locked'; ?>">
+					<div class="heatbox udb-menu-builder-box udb-menu-builder-box-panel">
 
 						<div class="udb-menu-builder-box--header">
 							<h2 class="udb-menu-builder-box--title">
