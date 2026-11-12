@@ -331,6 +331,16 @@ class Setting_Module extends Base_Module {
 			}
 		}
 
+		/*
+		 * The welcome panel editor starts with WordPress' default panel. Left unchanged, nothing is saved,
+		 * so the dashboard keeps showing WordPress' own (current) panel.
+		 */
+		if ( ! empty( $input['welcome_panel_is_default'] ) ) {
+			unset( $output['welcome_panel_content'] );
+		}
+
+		unset( $output['welcome_panel_is_default'] );
+
 		return $output;
 
 	}

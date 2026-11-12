@@ -47,19 +47,56 @@
 	}
 
 	/**
-	 * "Reset to WordPress default" empties the welcome panel editor (Visual and Text tab).
+	 * The welcome panel editor starts with WordPress' default panel.
+	 *
+	 * The hidden "is default" field tells the save whether it's still WordPress' panel (then nothing is saved,
+	 * so the dashboard keeps showing WordPress' own, current panel) or edited content.
+	 * "Reset to WordPress default" puts WordPress' panel back in the editor.
 	 */
 	function setupWelcomePanelReset() {
 		const button = document.querySelector(".udb-welcome-panel-reset");
+		const isDefault = document.getElementById("udb-welcome-panel-is-default");
+		const defaultContent = document.getElementById("udb-welcome-panel-default");
 		if (!(button instanceof HTMLElement)) return;
+		if (!(isDefault instanceof HTMLInputElement)) return;
+		if (!(defaultContent instanceof HTMLTextAreaElement)) return;
+
+		const editorId = button.dataset.editor || "";
+		const textarea = document.getElementById(editorId);
+		const getEditor = () => (window.tinymce ? window.tinymce.get(editorId) : null);
+
+		// Edits in the Text tab.
+		if (textarea instanceof HTMLTextAreaElement) {
+			textarea.addEventListener("input", function () {
+				isDefault.value = "0";
+			});
+		}
+
+		// Edits in the Visual tab. Capture phase: runs before TinyMCE's own submit handler clears "dirty".
+		if (textarea instanceof HTMLTextAreaElement && textarea.form) {
+			textarea.form.addEventListener(
+				"submit",
+				function () {
+					const editor = getEditor();
+					if (editor && editor.isDirty()) isDefault.value = "0";
+				},
+				true
+			);
+		}
 
 		button.addEventListener("click", function () {
-			const editorId = button.dataset.editor || "";
-			const editor = window.tinymce ? window.tinymce.get(editorId) : null;
-			const textarea = document.getElementById(editorId);
+			const editor = getEditor();
 
-			if (editor) editor.setContent("");
-			if (textarea instanceof HTMLTextAreaElement) textarea.value = "";
+			if (editor) {
+				editor.setContent(defaultContent.value);
+				editor.setDirty(false);
+			}
+
+			if (textarea instanceof HTMLTextAreaElement) {
+				textarea.value = editor ? editor.getContent() : defaultContent.value;
+			}
+
+			isDefault.value = "1";
 		});
 	}
 
