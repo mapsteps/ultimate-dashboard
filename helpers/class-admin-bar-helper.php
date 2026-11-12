@@ -30,6 +30,26 @@ class Admin_Bar_Helper {
 	}
 
 	/**
+	 * Keep only existing roles (or "all") from a list of roles to remove the admin bar for.
+	 *
+	 * @param mixed $roles The submitted roles.
+	 *
+	 * @return string[] The valid roles; just "all" if "all" is among them.
+	 */
+	public function sanitize_roles( $roles ) {
+
+		if ( ! is_array( $roles ) ) {
+			return array();
+		}
+
+		$roles = array_filter( $roles, 'is_string' );
+		$roles = array_values( array_intersect( $roles, array_merge( array( 'all' ), array_keys( wp_roles()->roles ) ) ) );
+
+		return in_array( 'all', $roles, true ) ? array( 'all' ) : $roles;
+
+	}
+
+	/**
 	 * Check if the admin bar should be removed for the user specified by role.
 	 *
 	 * @param string[] $roles The roles to check. If empty, the current user's roles will be used.

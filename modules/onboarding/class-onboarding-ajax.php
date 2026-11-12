@@ -9,6 +9,7 @@ namespace Udb\Onboarding;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Admin_Bar_Helper;
 use Udb\Helpers\Widget_Helper;
 use Udb\Helpers\Login_Url_Helper;
 
@@ -161,11 +162,7 @@ class Onboarding_Ajax {
 		}
 
 		// Only existing roles, or "all".
-		$roles = array_values( array_intersect( self::posted_list( 'roles' ), array_merge( array( 'all' ), array_keys( wp_roles()->roles ) ) ) );
-
-		if ( in_array( 'all', $roles, true ) ) {
-			$roles = array( 'all' );
-		}
+		$roles = ( new Admin_Bar_Helper() )->sanitize_roles( self::posted_list( 'roles' ) );
 
 		if ( $roles ) {
 			$settings['remove_admin_bar'] = $roles;

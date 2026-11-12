@@ -28,15 +28,11 @@
 		};
 	}
 
-	/** @type {UdbAdminBarUser[]} */
-	// let usersData = [];
-
 	/**
 	 * Init the script.
 	 * Call the main functions here.
 	 */
 	function init() {
-		// loadUsers();
 		buildMenu(window.udbAdminBarBuilder?.builderItems);
 
 		document
@@ -63,38 +59,6 @@
 			showHideMenuItem
 		);
 	}
-
-	/**
-	 * Load users as select2 data.
-	 *
-	 * This function is not used currently.
-	 * But leave it here because in the future, if requested, it would be used for
-	 * "hide menu item for specific user(s)" functionality (inside a dropdown).
-	 */
-	// function loadUsers() {
-	// 	$.ajax({
-	// 		type: "get",
-	// 		url: window.ajaxurl,
-	// 		cache: false,
-	// 		data: {
-	// 			action: "udb_admin_bar_get_users",
-	// 			nonce: window.udbAdminBar?.nonces.getUsers,
-	// 		},
-	// 	})
-	// 		.done(function (r) {
-	// 			if (!r.success) return;
-
-	// 			usersData = r.data;
-
-	// 			buildMenu(window.udbAdminBarBuilder?.builderItems);
-	// 		})
-	// 		.fail(function () {
-	// 			console.log("Failed to load users");
-	// 		})
-	// 		.always(function () {
-	// 			//
-	// 		});
-	// }
 
 	/**
 	 * Switch tabs.
@@ -187,72 +151,7 @@
 			});
 		}
 
-		// setupSelect2Fields(listArea);
 	}
-
-	/**
-	 * Setup select2 fields.
-	 *
-	 * This function is not used currently.
-	 * But leave it here because in the future, if requested, it would be used for
-	 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-	 *
-	 * @param {HTMLElement} area The setup area.
-	 */
-	// function setupSelect2Fields(area) {
-	// 	const select2Fields = area.querySelectorAll(
-	// 		".udb-menu-builder--select2-field"
-	// 	);
-
-	// 	select2Fields.forEach(function (selectbox) {
-	// 		if (!(selectbox instanceof HTMLSelectElement)) return;
-
-	// 		if (
-	// 			selectbox.dataset.name !== "disallowed_roles" &&
-	// 			selectbox.dataset.name !== "disallowed_users"
-	// 		)
-	// 			return;
-
-	// 		/** @type {UdbSelect2Option[]} */
-	// 		const select2Data = [];
-
-	// 		/** @type string[] */
-	// 		let disallowedRoles = [];
-
-	// 		/** @type number[] */
-	// 		let disallowedUsers = [];
-
-	// 		if ("disallowed_roles" === selectbox.dataset.name) {
-	// 			disallowedRoles = selectbox.dataset.disallowedRoles?.split(", ") ?? [];
-
-	// 			window.udbAdminBar?.roles.forEach(function (role) {
-	// 				if (disallowedRoles.indexOf(String(role.id)) > -1) {
-	// 					role.selected = true;
-	// 				}
-
-	// 				select2Data.push(role);
-	// 			});
-	// 		} else if ("disallowed_users" === selectbox.dataset.name) {
-	// 			disallowedUsers = (
-	// 				selectbox.dataset?.disallowedUsers?.split(", ") ?? []
-	// 			).map(function (user) {
-	// 				return parseInt(user, 10);
-	// 			});
-
-	// 			usersData.forEach(function (userData) {
-	// 				if (disallowedUsers.indexOf(Number(userData.id)) > -1) {
-	// 					userData.selected = true;
-	// 				}
-
-	// 				select2Data.push(userData);
-	// 			});
-	// 		}
-
-	// 		$(selectbox).select2({
-	// 			data: select2Data,
-	// 		});
-	// 	});
-	// }
 
 	/**
 	 * Replace menu placeholders.
@@ -389,17 +288,6 @@
 			/{hidden_icon}/g,
 			menu.is_hidden ? "hidden" : "visibility"
 		);
-
-		/**
-		 * These codes are not being used currently.
-		 * But leave it here because in the future, if requested, it would be used for
-		 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-		 */
-		// var disallowedRoles = menu.disallowed_roles.join(', ');
-		// var disallowedUsers = menu.disallowed_users.join(', ');
-
-		// template = template.replace(/{disallowed_roles}/g, disallowedRoles);
-		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (menu.was_added) {
 			template = template.replace(/{menu_icon_field_is_hidden}/g, "");
@@ -656,17 +544,6 @@
 			/{submenu_was_added}/g,
 			String(submenu.was_added)
 		);
-
-		/**
-		 * These codes are not being used currently.
-		 * But leave it here because in the future, if requested, it would be used for
-		 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-		 */
-		// var disallowedRoles = submenu.disallowed_roles.join(', ');
-		// var disallowedUsers = submenu.disallowed_users.join(', ');
-
-		// template = template.replace(/{disallowed_roles}/g, disallowedRoles);
-		// template = template.replace(/{disallowed_users}/g, disallowedUsers);
 
 		if (submenu.submenu && Object.keys(submenu.submenu).length) {
 			const submenuTemplate = buildSubmenu({

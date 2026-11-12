@@ -10,6 +10,7 @@ namespace Udb\Setting;
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Module;
+use Udb\Helpers\Admin_Bar_Helper;
 use Udb\Helpers\Content_Helper;
 use Udb\Helpers\Widget_Helper;
 
@@ -382,11 +383,7 @@ class Setting_Module extends Base_Module {
 					return empty( $value ) ? null : array( 'all' );
 				}
 
-				$roles = array_values( array_intersect( array_map( 'strval', $value ), array_merge( array( 'all' ), array_keys( wp_roles()->roles ) ) ) );
-
-				if ( in_array( 'all', $roles, true ) ) {
-					$roles = array( 'all' );
-				}
+				$roles = ( new Admin_Bar_Helper() )->sanitize_roles( $value );
 
 				return $roles ? $roles : null;
 		}

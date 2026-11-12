@@ -160,7 +160,7 @@ return function ( $variant, $referrer = '' ) {
 								?>
 								<li class="has-select2">
 									<div class="role-dropdown">
-										<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar for:', 'ultimate-dashboard' ); ?></label></h3>
+										<h3><label for="remove_by_roles" class="dropdown-label"><?php esc_html_e( 'Hide Admin Bar on the Frontend for:', 'ultimate-dashboard' ); ?></label></h3>
 										<select id="remove_by_roles" class="full-width-dropdown" multiple data-placeholder="<?php esc_attr_e( 'Select Role', 'ultimate-dashboard' ); ?>">
 											<option value="all" <?php selected( in_array( 'all', $selected_roles, true ) ); ?>><?php esc_html_e( 'All', 'ultimate-dashboard' ); ?></option>
 											<?php foreach ( wp_roles()->roles as $role_key => $role ) : ?>

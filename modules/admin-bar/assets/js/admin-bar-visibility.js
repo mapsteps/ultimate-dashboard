@@ -87,7 +87,10 @@
 	function onSubmitRoles(e) {
 		e.preventDefault();
 
+		const $box = $(".admin-bar-visibility-box");
+
 		saveRemoveByRoles?.classList.add("is-loading");
+		$box.find(".udb-admin-bar-visibility-error").remove();
 
 		$.ajax({
 			type: "POST",
@@ -99,16 +102,61 @@
 			},
 		})
 			.done(function (r) {
-				if (!r.success) return;
-				console.log(r);
+				if (!r.success) {
+					showError($box, r.data);
+					return;
+				}
+
+				showDone($box);
 			})
 			.fail(function () {
-				saveRemoveByRoles?.classList.remove("is-loading");
-				console.log("Failed to save remove by roles");
+				showError($box, "");
 			})
 			.always(function () {
 				saveRemoveByRoles?.classList.remove("is-loading");
 			});
+	}
+
+	/**
+	 * Show the success indicator (🚀) in the box's h2, like the modules page.
+	 *
+	 * @param {JQuery} $box The visibility box.
+	 */
+	function showDone($box) {
+		let $indicator = $box.find(".heatbox-status-indicator");
+
+		if (!$indicator.length) {
+			$indicator = $('<span class="heatbox-status-indicator"></span>');
+			$box.find("h2").first().append($indicator);
+		}
+
+		$indicator.removeClass("is-done").text("🚀");
+
+		// Force reflow to restart the CSS animation.
+		void $indicator[0].offsetWidth;
+
+		$indicator.addClass("is-done");
+
+		setTimeout(function () {
+			$indicator.removeClass("is-done").text("");
+		}, 1600);
+	}
+
+	/**
+	 * Show an error below the save button.
+	 *
+	 * @param {JQuery} $box The visibility box.
+	 * @param {string} message The error message from the server, if any.
+	 */
+	function showError($box, message) {
+		const text =
+			typeof message === "string" && message
+				? message
+				: window.udbAdminBarVisibility?.errorText ?? "";
+
+		$('<p class="udb-admin-bar-visibility-error" role="alert"></p>')
+			.text(text)
+			.appendTo($box.find(".heatbox-footer").first());
 	}
 
 	init();

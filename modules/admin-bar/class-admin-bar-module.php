@@ -235,6 +235,11 @@ class Admin_Bar_Module extends Base_Module {
 	 */
 	public function get_existing_menu() {
 
+		// Only the editor page needs it.
+		if ( ! $this->screen()->is_admin_bar() ) {
+			return;
+		}
+
 		global $wp_admin_bar;
 
 		Vars::set( 'existing_admin_bar_menu', $wp_admin_bar->get_nodes() );
@@ -266,13 +271,6 @@ class Admin_Bar_Module extends Base_Module {
 				'meta_default'   => $node->meta,
 				'was_added'      => 0,
 				'is_hidden'      => 0,
-				/**
-				 * These properties are not being used currently.
-				 * But leave it here because in the future, if requested, it would be used for
-				 * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
-				 */
-				// 'disallowed_roles' => array(),
-				// 'disallowed_users' => array(),
 			);
 		}
 
@@ -308,13 +306,6 @@ class Admin_Bar_Module extends Base_Module {
 				'was_added'      => 0,
 				'is_hidden'      => 0,
 				'frontend_only'  => 1,
-				/**
-				 * These properties are not being used currently.
-				 * But leave it here because in the future, if requested, it would be used for
-				 * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
-				 */
-				// 'disallowed_roles' => array(),
-				// 'disallowed_users' => array(),
 			);
 
 			if ( isset( $item_data['after'] ) ) {
@@ -358,13 +349,6 @@ class Admin_Bar_Module extends Base_Module {
 					'meta_default'   => $menu['meta'],
 					'was_added'      => 0,
 					'is_hidden'      => 0,
-					/**
-					 * These properties are not being used currently.
-					 * But leave it here because in the future, if requested, it would be used for
-					 * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
-					 */
-					// 'disallowed_roles' => array(),
-					// 'disallowed_users' => array(),
 				);
 
 				if ( empty( $prev_id ) ) {
@@ -611,13 +595,6 @@ class Admin_Bar_Module extends Base_Module {
 			'was_added'      => 0,
 			'is_hidden'      => 0,
 			'frontend_only'  => 1,
-			/**
-			 * These properties are not being used currently.
-			 * But leave it here because in the future, if requested, it would be used for
-			 * "hide menu item for specific role(s) & user(s)" functionality (inside dropdowns).
-			 */
-			// 'disallowed_roles' => array(),
-			// 'disallowed_users' => array(),
 		);
 
 		$pos = array_search( 'site-name', array_keys( $flat_array ), true );
@@ -786,14 +763,5 @@ class Admin_Bar_Module extends Base_Module {
 		}
 
 		return $nested_array;
-	}
-
-	/**
-	 * Remove by role tab field.
-	 */
-	public function remove_by_role_field_tab() {
-
-		return require __DIR__ . '/templates/fields/remove-by-role-tab.php';
-
 	}
 }

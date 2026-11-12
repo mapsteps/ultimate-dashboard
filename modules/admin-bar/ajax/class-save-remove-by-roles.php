@@ -9,6 +9,8 @@ namespace Udb\AdminBar\Ajax;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+use Udb\Helpers\Admin_Bar_Helper;
+
 /**
  * Class to save remove by roles.
  */
@@ -57,20 +59,15 @@ class Save_Remove_By_Roles {
 			wp_send_json_error( __( 'You do not have permission to perform this action', 'ultimate-dashboard' ) );
 		}
 
-		$roles = isset( $_POST['roles'] ) ? $_POST['roles'] : [];
+		// Nothing selected sends no "roles" at all. Only existing roles (or "all") are kept.
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Checked against the existing roles.
+		$roles = isset( $_POST['roles'] ) ? wp_unslash( $_POST['roles'] ) : array();
 
 		if ( ! is_array( $roles ) ) {
 			wp_send_json_error( __( 'Roles should be an array', 'ultimate-dashboard' ) );
 		}
 
-		foreach ( $roles as $role ) {
-			if ( empty( $role ) || ! is_string( $role ) ) {
-				wp_send_json_error( __( 'Roles should be an array of strings', 'ultimate-dashboard' ) );
-				break;
-			}
-
-			$this->roles[] = sanitize_text_field( $role );
-		}
+		$this->roles = ( new Admin_Bar_Helper() )->sanitize_roles( $roles );
 
 	}
 

@@ -133,7 +133,8 @@ foreach ( $deps['ajax_actions'] as $action ) {
 }
 
 foreach ( $deps['nonces'] as $nonce ) {
-	if ( ! preg_match( '/wp_create_nonce\(\s*[\'"]' . $nonce . '[\'"]/', $all ) ) {
+	// Created or checked by free (a nonce PRO creates itself only needs free's check).
+	if ( ! preg_match( '/(wp_create_nonce\(\s*|wp_verify_nonce\(\s*\$\w+,\s*|check_ajax_referer\(\s*)[\'"]' . $nonce . '[\'"]/', $all ) ) {
 		$failures[] = "Nonce missing: $nonce";
 	}
 }

@@ -32,35 +32,7 @@ return function ( $module ) {
 		// Visibility.
 		wp_enqueue_script( 'udb-admin-bar-visibility', ULTIMATE_DASHBOARD_PLUGIN_URL . '/modules/admin-bar/assets/js/admin-bar-visibility.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
-		/**
-		 * These codes are not being used currently.
-		 * But leave it here because in the future, if requested, it would be used for
-		 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-		 */
-		// $wp_roles   = wp_roles();
-		// $role_names = $wp_roles->role_names;
-		// $roles      = array();
-
-		// foreach ( $role_names as $role_key => $role_name ) {
-		// array_push(
-		// $roles,
-		// array(
-		// 'id'   => $role_key,
-		// 'text' => $role_name,
-		// )
-		// );
-		// }
-
 		$admin_bar_data = array(
-			/**
-			 * These codes are not being used currently.
-			 * But leave it here because in the future, if requested, it would be used for
-			 * "hide menu item for specific role(s) / user(s)" functionality (inside dropdowns).
-			 */
-			// 'nonces'    => array(
-			// 'getUsers' => wp_create_nonce( 'udb_admin_bar_get_users' ),
-			// ),
-			// 'roles'     => $roles,
 			'templates' => array(
 				'menuList'    => require __DIR__ . '/../templates/menu-list.php',
 				'submenuList' => require __DIR__ . '/../templates/submenu-list.php',
@@ -79,9 +51,10 @@ return function ( $module ) {
 			'udb-admin-bar-visibility',
 			'udbAdminBarVisibility',
 			array(
-				'nonce'   => wp_create_nonce( 'udb_admin_bar_save_remove_by_roles' ),
-				'action'  => 'udb_admin_bar_save_remove_by_roles',
-				'ajaxURL' => admin_url( 'admin-ajax.php' ),
+				'nonce'     => wp_create_nonce( 'udb_admin_bar_save_remove_by_roles' ),
+				'action'    => 'udb_admin_bar_save_remove_by_roles',
+				'ajaxURL'   => admin_url( 'admin-ajax.php' ),
+				'errorText' => __( 'Saving failed. Please reload the page and try again.', 'ultimate-dashboard' ),
 			)
 		);
 

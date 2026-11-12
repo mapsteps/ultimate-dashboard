@@ -12,8 +12,6 @@ use Udb\Helpers\Admin_Bar_Helper;
 $admin_bar_helper = new Admin_Bar_Helper();
 $saved_roles      = $admin_bar_helper->roles_to_remove();
 
-$roles_obj = new \WP_Roles();
-$roles     = $roles_obj->role_names;
 ?>
 
 <div class="heatbox admin-bar-visibility-box">
@@ -23,24 +21,14 @@ $roles     = $roles_obj->role_names;
 	</h2>
 
 	<div class="heatbox-content">
-		<h3><?php esc_html_e( 'Remove Admin Bar for:', 'ultimate-dashboard' ); ?></h3>
+		<h3><label for="remove_by_roles"><?php esc_html_e( 'Hide the admin bar on the frontend for:', 'ultimate-dashboard' ); ?></label></h3>
+		<p class="description"><?php esc_html_e( 'It stays visible inside the WordPress admin area.', 'ultimate-dashboard' ); ?></p>
 		<div class="field">
-			<label for="remove_by_roles" class="label select2-label">
+			<label class="label select2-label">
 				<select name="remove_by_roles[]" id="remove_by_roles" class="multiselect remove-admin-bar use-select2 is-fullwidth" multiple>
-					<option value="all"<?php echo ( in_array( 'all', $saved_roles, true ) ? ' selected' : '' ); ?>>
-						<?php esc_html_e( 'All', 'ultimate-dashboard' ); ?>
-					</option>
-					<?php foreach ( $roles as $role_key => $role_name ) : ?>
-						<?php
-						$selected_attr = '';
-
-						if ( in_array( $role_key, $saved_roles, true ) ) {
-							$selected_attr = ' selected';
-						}
-						?>
-						<option value="<?php echo esc_attr( $role_key ); ?>"<?php echo esc_attr( $selected_attr ); ?>>
-							<?php echo esc_attr( $role_name ); ?>
-						</option>
+					<option value="all" <?php selected( in_array( 'all', $saved_roles, true ) ); ?>><?php esc_html_e( 'All', 'ultimate-dashboard' ); ?></option>
+					<?php foreach ( wp_roles()->roles as $role_key => $role_data ) : ?>
+						<option value="<?php echo esc_attr( $role_key ); ?>" <?php selected( in_array( $role_key, $saved_roles, true ) ); ?>><?php echo esc_html( translate_user_role( $role_data['name'] ) ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</label>
@@ -54,5 +42,5 @@ $roles     = $roles_obj->role_names;
 			</button>
 		</div>
 	</div>
-	 
+
 </div>
