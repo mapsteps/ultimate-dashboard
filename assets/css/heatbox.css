@@ -686,6 +686,44 @@ body {
 	color: var(--heatbox-control-disabled);
 }
 
+/**
+ * Field with a prefix, e.g. the site address in front of a slug:
+ * <div class="heatbox-input-group"><span class="heatbox-input-prefix">https://example.com/</span><input type="text"></div>
+ * A long prefix is cut off with "…" (the full text shows on hover via title="").
+ */
+.heatbox-input-group {
+	display: flex;
+	width: 100%;
+	max-width: 480px;
+}
+
+.heatbox-input-prefix {
+	display: block;
+	flex-shrink: 1;
+	min-width: 0;
+	max-width: 60%;
+	padding: 0 12px;
+	overflow: hidden;
+	font-size: 13px;
+	line-height: calc(var(--heatbox-control-height) - 2px);
+	color: var(--heatbox-text-muted);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background: var(--heatbox-surface-muted);
+	border: 1px solid var(--heatbox-border);
+	border-inline-end: none;
+	border-start-start-radius: var(--heatbox-radius-control);
+	border-end-start-radius: var(--heatbox-radius-control);
+}
+
+.heatbox .heatbox-input-group input {
+	flex: 1;
+	min-width: 0;
+	margin: 0;
+	border-start-start-radius: 0;
+	border-end-start-radius: 0;
+}
+
 /* WordPress' code editor (wp.codeEditor / CodeMirror), styled like the fields */
 .heatbox .CodeMirror {
 	border: 1px solid var(--heatbox-border);

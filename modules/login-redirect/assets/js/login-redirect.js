@@ -1,164 +1,99 @@
 /**
- * This module is intended to handle the loading redirect settings page.
+ * Login Redirect page: "Redirect After Login" rows.
  *
- * Global object used:
- * - udbLoginRedirect
- *
- * @param {Object} $ jQuery object.
- * @return {Object}
+ * Picking a role in the dropdown adds a row with its URL field; the role is then disabled in the
+ * dropdown until its row is removed. PRO's multisite page has two of these (blueprint and subsites).
  */
-(function ($) {
-	const roleSelectors = document.querySelectorAll(
-		".udb-login-redirect--role-selector"
-	);
+(function () {
+	"use strict";
 
-	// Run the module.
-	init();
+	document.querySelectorAll(".udb-login-redirect--role-selector").forEach(function (select) {
+		const wrapper = select.closest(".udb-login-redirect--wrapper");
+		const repeater = wrapper.querySelector(".udb-login-redirect--repeater");
 
-	/**
-	 * Initialize the module, call the main functions.
-	 *
-	 * This function is the only function that should be called on top level scope.
-	 * Other functions are called / hooked from this function.
-	 */
-	function init() {
-		setupRoleSelector();
-	}
+		select.addEventListener("change", function () {
+			const option = select.selectedOptions[0];
 
-	/**
-	 * Setup the role selector that functioning like a repeater.
-	 */
-	function setupRoleSelector() {
-		if (!roleSelectors.length) return;
+			if (!select.value || !option) return;
 
-		roleSelectors.forEach(function (roleSelector) {
-			if (!(roleSelector instanceof HTMLSelectElement)) return;
-			const $roleSelector = $(roleSelector);
+			const row = createRow(select, select.value, option.textContent.trim());
 
-			$roleSelector.select2({
-				placeholder: roleSelector.dataset.placeholder,
-			});
-
-			$roleSelector.on("select2:select", onRoleSelected);
+			repeater.append(row);
+			option.disabled = true;
+			select.value = "";
+			row.querySelector("input").focus();
 		});
 
-		$(document).on(
-			"click",
-			".udb-login-redirect--remove-field",
-			onDeleteButtonClick
-		);
+		wrapper.addEventListener("click", function (e) {
+			const button = e.target.closest(".udb-login-redirect--remove-field");
+
+			if (!button) return;
+
+			const row = button.closest(".udb-login-redirect--repeater-item");
+			const option = select.querySelector('option[value="' + CSS.escape(row.dataset.udbRoleKey) + '"]');
+
+			if (option) option.disabled = false;
+
+			row.remove();
+			select.focus();
+		});
+	});
+
+	/**
+	 * Build a row like the one the PHP template prints.
+	 *
+	 * @param {HTMLSelectElement} select The role dropdown (holds the site type and URL prefix).
+	 * @param {string} roleKey The role key.
+	 * @param {string} roleName The role name.
+	 * @returns {HTMLElement}
+	 */
+	function createRow(select, roleKey, roleName) {
+		const siteType = select.dataset.udbSiteType || "blueprint";
+		const namePrefix = "subsites" === siteType ? "subsites_" : "";
+		const fieldId = "udb-login-redirect--" + siteType + "-" + roleKey;
+
+		const row = element("div", "udb-login-redirect--repeater-item");
+		row.dataset.udbRoleKey = roleKey;
+		row.dataset.udbRoleName = roleName;
+
+		const label = element("label", "udb-login-redirect--field-label", roleName);
+		label.htmlFor = fieldId;
+
+		const group = element("div", "heatbox-input-group");
+		const prefix = element("span", "heatbox-input-prefix", select.dataset.udbFieldPrefix);
+		prefix.title = select.dataset.udbFieldPrefix;
+
+		const input = element("input");
+		input.type = "text";
+		input.id = fieldId;
+		input.name = "udb_login_redirect[" + namePrefix + "login_redirect_slugs][" + roleKey + "]";
+		input.placeholder = "wp-admin/";
+
+		const button = element("button", "button-link udb-login-redirect--remove-field");
+		button.type = "button";
+		button.append(element("span", "dashicons dashicons-no-alt"), element("span", "screen-reader-text", (select.dataset.udbRemoveLabel || "%s").replace("%s", roleName)));
+		button.firstChild.setAttribute("aria-hidden", "true");
+
+		group.append(prefix, input);
+		row.append(label, group, button);
+
+		return row;
 	}
 
 	/**
-	 * Event handler to run when a role (inside select2) is selected.
+	 * Create an element.
 	 *
-	 * @param {Select2.Event<HTMLSelectElement, Select2.DataParams>} e The event object.
-	 * @this {HTMLElement}
+	 * @param {string} tag The tag name.
+	 * @param {string} [className] The class name.
+	 * @param {string} [text] The text content.
+	 * @returns {HTMLElement}
 	 */
-	function onRoleSelected(e) {
-		const data = e.params.data;
-		const defaultValue = data.element.dataset.udbDefaultSlug;
+	function element(tag, className, text) {
+		const el = document.createElement(tag);
 
-		data.element.disabled = true;
-		data.element.selected = false;
+		if (className) el.className = className;
+		if (text) el.textContent = text;
 
-		$(this).trigger("change");
-
-		const siteType =
-			"subsites" === data.element.parentElement?.dataset.udbSiteType
-				? "subsites_"
-				: "";
-
-		const markup =
-			'\
-		<div class="udb-login-redirect--repeater-item" data-udb-role-key="' +
-			data.id +
-			'" data-udb-role-name="' +
-			data.text.trim() +
-			'">\
-			<label class="udb-login-redirect--field-label">\
-				' +
-			data.text.trim() +
-			'\
-			</label>\
-			<div class="udb-login-redirect--field-control">\
-				<div class="udb-url-prefix-suffix-field">\
-					<div class="udb-url-prefix-field">\
-						<code>\
-							' +
-			this.dataset.udbFieldPrefix +
-			'\
-						</code>\
-					</div>\
-					<input type="text" name="udb_login_redirect[' +
-			siteType +
-			"login_redirect_slugs][" +
-			data.id +
-			']" value="' +
-			defaultValue +
-			'" placeholder="wp-admin/">\
-					<div class="udb-url-suffix-field">\
-						<button type="button" class="udb-login-redirect--remove-field">\
-							<span class="udb-login-redirect--close-icon"></span>\
-						</button>\
-					</div>\
-				</div>\
-			</div>\
-		</div>\
-		';
-
-		$(this).parent().find(".udb-login-redirect--repeater").append(markup);
+		return el;
 	}
-
-	/**
-	 * Event handler to run when a delete buttotn is clicked.
-	 *
-	 * It will then un-select the connected select2 item
-	 * which will remove the field.
-	 *
-	 * @param {JQuery.ClickEvent} e The event object.
-	 * @this {HTMLElement}
-	 */
-	function onDeleteButtonClick(e) {
-		const wrapper = getClosest(this, 6);
-		const roleKey = getClosest(this, 4)?.dataset.udbRoleKey;
-		const element = wrapper?.querySelector(
-			'.udb-login-redirect--role-selector option[value="' + roleKey + '"]'
-		);
-		if (element instanceof HTMLOptionElement) element.disabled = false;
-
-		const repeaterItem = wrapper?.querySelector(
-			'.udb-login-redirect--repeater-item[data-udb-role-key="' + roleKey + '"]'
-		);
-
-		repeaterItem?.parentElement?.removeChild(repeaterItem);
-
-		$(this).trigger("change");
-	}
-
-	/**
-	 * Get parent element of an element with depth level.
-	 *
-	 * @param {HTMLElement} el The element to get the parent node from.
-	 * @param {number} depth The depth level.
-	 *
-	 * @returns {HTMLElement|null} The parent node.
-	 */
-	function getClosest(el, depth) {
-		if (!depth) {
-			return el.parentElement;
-		}
-
-		/** @type {HTMLElement|null} */
-		let parentEl = el;
-		let i = 1;
-
-		for (; i <= depth; i++) {
-			parentEl = parentEl?.parentElement ?? null;
-		}
-
-		return parentEl;
-	}
-
-	return {};
-})(jQuery);
+})();

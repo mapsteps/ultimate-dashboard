@@ -13,18 +13,9 @@ return function () {
 	$slug     = isset( $settings['wp_admin_redirect_slug'] ) ? trim( $settings['wp_admin_redirect_slug'], '/' ) : '';
 	?>
 
-	<div class="udb-url-prefix-suffix-field">
-		<div class="udb-url-prefix-field">
-			<code>
-				<?php echo esc_url( site_url() ); ?>/
-			</code>
-		</div>
-
-		<input type="text" name="udb_login_redirect[wp_admin_redirect_slug]" class="all-options" value="<?php echo esc_attr( $slug ); ?>" placeholder="404" />
-
-		<div class="udb-url-suffix-field">
-			<code>/</code>
-		</div>
+	<div class="heatbox-input-group">
+		<span class="heatbox-input-prefix" title="<?php echo esc_attr( trailingslashit( site_url() ) ); ?>"><?php echo esc_html( trailingslashit( site_url() ) ); ?></span>
+		<input type="text" name="udb_login_redirect[wp_admin_redirect_slug]" value="<?php echo esc_attr( $slug ); ?>" placeholder="404">
 	</div>
 
 	<p class="description">

@@ -11,9 +11,7 @@ return function ( $module ) {
 
 	if ( $module->screen()->is_login_redirect() ) {
 
-		// Select2.
-		wp_enqueue_script( 'select2', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), '4.1.0-rc.0', true );
-
+		// jQuery: PRO's script on this page loads after this one and uses it.
 		wp_enqueue_script( 'udb-login-redirect', $module->url . '/assets/js/login-redirect.js', array( 'jquery' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
 		$inline_script = '

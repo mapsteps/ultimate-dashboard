@@ -1,105 +1,33 @@
-/* Prefix-suffix field */
-.udb-url-prefix-suffix-field {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
-}
+/**
+ * Login Redirect page. The URL fields are heatbox's .heatbox-input-group.
+ */
 
-.udb-url-prefix-field code,
-.udb-url-suffix-field code {
-	display: inline-flex;
-	align-items: center;
-	padding: 0 7px;
-	height: 30px;
-	border-radius: 3px;
-}
-
-/* Repeater */
-.udb-login-redirect--repeater {
-	margin-top: 20px;
-}
-
+/* "Redirect After Login": one row per role (name, URL field, remove button), the role dropdown below */
 .udb-login-redirect--repeater-item {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 140px minmax(0, 1fr) auto;
 	align-items: center;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	width: 100%;
-	border-bottom: 1px solid #dedede;
+	gap: 10px;
+	margin-bottom: 10px;
 }
 
-.udb-login-redirect--repeater .udb-login-redirect--repeater-item:last-child {
-	border-bottom-width: 0;
+@media screen and (max-width: 782px) {
+	.udb-login-redirect--repeater-item {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.udb-login-redirect--field-label {
+		grid-column: 1 / -1;
+	}
 }
 
-.udb-login-redirect--field-label {
-	width: 20%;
-}
-
-.udb-login-redirect--field-control {
-	position: relative;
-	width: 80%;
-}
-
-.udb-login-redirect--field-control input {
-	width: 380px;
-}
-
-.udb-login-redirect--remove-field {
+.heatbox .udb-login-redirect--remove-field {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	margin-left: 10px;
-	padding: 0;
-	width: 25px;
-	height: 25px;
-	background-color: #eee;
-	border-radius: 50%;
-	border-width: 0;
-	transition: background-color .2s;
-	opacity: 0.7;
-	cursor: pointer;
+	color: var(--heatbox-text-muted);
+	text-decoration: none;
 }
 
-.udb-login-redirect--remove-field:hover {
-	background-color: red;
-	opacity: 1;
-}
-
-/* Close icon: https://codepen.io/ndeniche/pen/ljbDL */
-.udb-login-redirect--close-icon {
-	position: relative;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  overflow: hidden;
-}
-
-.udb-login-redirect--remove-field:hover .udb-login-redirect--close-icon::before,
-.udb-login-redirect--remove-field:hover .udb-login-redirect--close-icon::after {
-  background-color: #fff;
-	border-radius: 5px;
-}
-
-.udb-login-redirect--close-icon::before,
-.udb-login-redirect--close-icon::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  margin-top: -1px;
-  background-color: #333;
-}
-
-.udb-login-redirect--close-icon::before {
-  transform: rotate(45deg);
-}
-
-.udb-login-redirect--close-icon::after {
-  transform: rotate(-45deg);
+.heatbox .udb-login-redirect--remove-field:hover,
+.heatbox .udb-login-redirect--remove-field:focus {
+	color: var(--heatbox-error);
 }

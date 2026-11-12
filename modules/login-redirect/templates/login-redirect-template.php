@@ -23,7 +23,7 @@ return function () {
 							<?php echo esc_html( get_admin_page_title() ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
 						</h1>
-						<p class="subtitle"><?php esc_html_e( 'White label & rebrand your WordPress installation.', 'ultimate-dashboard' ); ?></p>
+						<p class="subtitle"><?php esc_html_e( 'Change the login URL & redirect users after login.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>
@@ -42,7 +42,7 @@ return function () {
 
 				<hr class="wp-header-end">
 
-				<?php settings_errors( 'udb_login_redirect' ); ?>
+				<?php settings_errors(); ?>
 
 				<?php settings_fields( 'udb-login-redirect-group' ); ?>
 

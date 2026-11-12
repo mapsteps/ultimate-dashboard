@@ -201,8 +201,8 @@ return function ( $variant, $referrer = '' ) {
 
 							<div class="udb-onboarding-field">
 								<label for="udb_login_redirect"><?php esc_html_e( 'New Login URL', 'ultimate-dashboard' ); ?></label>
-								<div class="udb-onboarding-url">
-									<span><?php echo esc_html( trailingslashit( site_url() ) ); ?></span>
+								<div class="heatbox-input-group">
+									<span class="heatbox-input-prefix" title="<?php echo esc_attr( trailingslashit( site_url() ) ); ?>"><?php echo esc_html( trailingslashit( site_url() ) ); ?></span>
 									<input type="text" id="udb_login_redirect" value="<?php echo esc_attr( $login_slug ); ?>" placeholder="login">
 								</div>
 								<p class="description">

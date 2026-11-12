@@ -13,20 +13,10 @@ return function () {
 	$slug     = isset( $settings['login_url_slug'] ) ? trim( $settings['login_url_slug'], '/' ) : '';
 	?>
 
-	<div class="udb-url-prefix-suffix-field">
-		<div class="udb-url-prefix-field">
-			<code>
-				<?php echo esc_url( site_url() ); ?>/
-			</code>
-		</div>
-
-		<input type="text" name="udb_login_redirect[login_url_slug]" class="all-options" value="<?php echo esc_attr( $slug ); ?>" placeholder="login" />
-
-		<div class="udb-url-suffix-field">
-			<code>/</code>
-		</div>
+	<div class="heatbox-input-group">
+		<span class="heatbox-input-prefix" title="<?php echo esc_attr( trailingslashit( site_url() ) ); ?>"><?php echo esc_html( trailingslashit( site_url() ) ); ?></span>
+		<input type="text" name="udb_login_redirect[login_url_slug]" value="<?php echo esc_attr( $slug ); ?>" placeholder="login">
 	</div>
-
 
 	<p class="description">
 		<?php
