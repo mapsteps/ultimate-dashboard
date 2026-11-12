@@ -5,7 +5,7 @@
  * Description: Create a custom Dashboard and give the WordPress admin area a more meaningful use.
  * Version: 3.8.18
  * Requires at least: 4.6
- * Requires PHP: 5.6
+ * Requires PHP: 7.4
  * Author: David Vongries
  * Author URI: https://mapsteps.com
  * License: GPL v2 or later

@@ -18,6 +18,14 @@ use Udb\Helpers\Content_Helper;
 class Setup {
 
 	/**
+	 * Year of the Black Friday sale notice (November 24 – December 1).
+	 * Set by hand each year on purpose, so an old release never shows a sale that isn't running.
+	 *
+	 * @var string
+	 */
+	const BFCM_YEAR = '2026';
+
+	/**
 	 * The class instanace
 	 *
 	 * @var object
@@ -500,8 +508,7 @@ class Setup {
 			return;
 		}
 
-		// Intentional: using manually written string instead of gmdate( 'Y' ).
-		$this_year = '2025';
+		$this_year = self::BFCM_YEAR;
 		$last_year = $this_year - 1;
 		$start     = strtotime( 'november 24th, ' . $this_year );
 		$end       = strtotime( 'december 1st, ' . $this_year );
@@ -578,7 +585,7 @@ class Setup {
 			wp_send_json_error( __( 'Invalid request', 'ultimate-dashboard' ) );
 		}
 
-		update_option( 'udb_bfcm_notice_dismissed_2025', 1 );
+		update_option( 'udb_bfcm_notice_dismissed_' . self::BFCM_YEAR, 1 );
 		wp_send_json_success( __( 'BFCM notice has been dismissed.', 'ultimate-dashboard' ) );
 
 	}

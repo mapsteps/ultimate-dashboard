@@ -86,7 +86,7 @@ class Array_Helper {
 			if ( is_serialized( $value ) ) {
 				// The values are arrays of roles or user IDs, never objects.
 				// phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize -- Needed for old double-serialized values.
-				$value = version_compare( PHP_VERSION, '7.0', '>=' ) ? unserialize( $value, array( 'allowed_classes' => false ) ) : unserialize( $value );
+				$value = unserialize( $value, array( 'allowed_classes' => false ) );
 
 				if ( ! is_serialized( $value ) ) {
 					break;
