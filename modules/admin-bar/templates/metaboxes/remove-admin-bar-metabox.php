@@ -40,6 +40,7 @@ $saved_roles      = $admin_bar_helper->roles_to_remove();
 			<button type="button" class="button button-primary button-larger js-save-remove-admin-bar">
 				<?php esc_html_e( 'Save Changes', 'ultimate-dashboard' ); ?>
 			</button>
+			<span class="heatbox-notice" role="status"></span>
 		</div>
 	</div>
 

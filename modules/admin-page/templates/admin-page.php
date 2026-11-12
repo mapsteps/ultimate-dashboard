@@ -54,7 +54,8 @@ $custom_css = $post->custom_css;
 	<?php if ( ! $remove_page_title ) : ?>
 		<h1><?php echo esc_html( $post->post_title ); ?></h1>
 	<?php else : ?>
-		<h1 style="display: none;"></h1>
+		<h1 class="screen-reader-text"><?php echo esc_html( $post->post_title ); ?></h1>
+		<hr class="wp-header-end">
 	<?php endif; ?>
 
 	<?php

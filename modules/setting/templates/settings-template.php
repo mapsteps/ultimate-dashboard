@@ -42,15 +42,15 @@ return function () {
 				<div class="logo-container">
 
 					<div>
-						<span class="title">
+						<h1 class="title">
 							<?php esc_html_e( 'Ultimate Dashboard', 'ultimate-dashboard' ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
-						</span>
+						</h1>
 						<p class="subtitle"><?php esc_html_e( 'The #1 plugin to customize your WordPress dashboard.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="">
 					</div>
 
 				</div>
@@ -76,7 +76,7 @@ return function () {
 
 		<div class="heatbox-container heatbox-container-center">
 
-			<h1 style="display: none;"></h1>
+			<hr class="wp-header-end">
 
 			<form method="post" action="options.php" class="udb-settings-form">
 
@@ -144,42 +144,42 @@ return function () {
 
 		<?php if ( ! udb_is_pro_active() ) { ?>
 
-		<div class="heatbox-container heatbox-container-wide heatbox-container-center featured-products">
+		<div class="heatbox-container heatbox-container-wide heatbox-container-center heatbox-products">
 
 			<h2><?php esc_html_e( 'Check out our other free WordPress products!', 'ultimate-dashboard' ); ?></h2>
 
 			<ul class="products">
 				<li class="heatbox">
 					<a href="https://wordpress.org/plugins/better-admin-bar/" target="_blank">
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/swift-control.jpg">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/swift-control.jpg" alt="<?php esc_attr_e( 'Better Admin Bar', 'ultimate-dashboard' ); ?>">
 					</a>
 					<div class="heatbox-content">
 						<h3><?php esc_html_e( 'Better Admin Bar', 'ultimate-dashboard' ); ?></h3>
 						<p class="subheadline"><?php esc_html_e( 'Replace the boring WordPress Admin Bar with this!', 'ultimate-dashboard' ); ?></p>
 						<p><?php esc_html_e( 'Better Admin Bar is the plugin that make your clients love WordPress. It drastically improves the user experience when working with WordPress and allows you to replace the boring WordPress admin bar with your own navigation panel.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/plugins/better-admin-bar/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<a href="https://wordpress.org/plugins/better-admin-bar/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span></a>
 					</div>
 				</li>
 				<li class="heatbox">
 					<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank">
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/page-builder-framework.jpg">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/page-builder-framework.jpg" alt="<?php esc_attr_e( 'Page Builder Framework', 'ultimate-dashboard' ); ?>">
 					</a>
 					<div class="heatbox-content">
 						<h3><?php esc_html_e( 'Page Builder Framework', 'ultimate-dashboard' ); ?></h3>
 						<p class="subheadline"><?php esc_html_e( 'The only Theme you\'ll ever need.', 'ultimate-dashboard' ); ?></p>
 						<p class="description"><?php esc_html_e( 'With its minimalistic design the Page Builder Framework theme is the perfect foundation for your next project. Build blazing fast websites with a theme that is easy to use, lightweight & highly customizable.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<a href="https://wordpress.org/themes/page-builder-framework/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span></a>
 					</div>
 				</li>
 				<li class="heatbox">
 					<a href="https://wordpress.org/plugins/responsive-youtube-vimeo-popup/" target="_blank">
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/wp-video-popup.jpg">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/wp-video-popup.jpg" alt="<?php esc_attr_e( 'WP Video Popup', 'ultimate-dashboard' ); ?>">
 					</a>
 					<div class="heatbox-content">
 						<h3><?php esc_html_e( 'WP Video Popup', 'ultimate-dashboard' ); ?></h3>
 						<p class="subheadline"><?php esc_html_e( 'The #1 Video Popup Plugin for WordPress.', 'ultimate-dashboard' ); ?></p>
 						<p><?php esc_html_e( 'Add beautiful responsive YouTube & Vimeo video lightbox popups to any post, page or custom post type of website without sacrificing performance.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/plugins/responsive-youtube-vimeo-popup/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<a href="https://wordpress.org/plugins/responsive-youtube-vimeo-popup/" target="_blank" class="button"><?php esc_html_e( 'View Features', 'ultimate-dashboard' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span></a>
 					</div>
 				</li>
 			</ul>

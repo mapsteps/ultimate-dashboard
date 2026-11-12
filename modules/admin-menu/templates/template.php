@@ -42,15 +42,15 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 			<div class="logo-container">
 
 				<div>
-					<span class="title">
+					<h1 class="title">
 						<?php echo esc_html( get_admin_page_title() ); ?>
 						<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
-					</span>
+					</h1>
 					<p class="subtitle"><?php esc_html_e( 'Fully customize the WordPress admin menu.', 'ultimate-dashboard' ); ?></p>
 				</div>
 
 				<div>
-					<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
+					<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="">
 				</div>
 
 			</div>
@@ -60,7 +60,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 	</div>
 
 	<div class="heatbox-container heatbox-container-center">
-		<h1 style="display: none;"></h1>
+		<hr class="wp-header-end">
 	</div>
 
 	<div class="heatbox-container heatbox-container-center heatbox-column-container">

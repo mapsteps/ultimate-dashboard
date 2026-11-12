@@ -269,7 +269,7 @@
 		if (!listArea) return;
 
 		const item = document.createElement("li");
-		item.className = "udb-menu-builder--load-error";
+		item.className = "udb-menu-builder--load-error heatbox-notice is-shown is-error";
 		item.setAttribute("role", "alert");
 		item.textContent = message || (udbAdminMenu?.loadErrorText ?? "");
 
@@ -520,7 +520,7 @@
 		if (!listArea) return;
 
 		const item = document.createElement("li");
-		item.className = "udb-menu-builder--load-error";
+		item.className = "udb-menu-builder--load-error heatbox-notice is-shown is-error";
 		item.setAttribute("role", "alert");
 		item.textContent = message || (udbAdminMenu?.loadErrorText ?? "");
 

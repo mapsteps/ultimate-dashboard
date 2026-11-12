@@ -68,7 +68,7 @@ return function ( $variant, $referrer = '' ) {
 			<div class="heatbox-container heatbox-container-center">
 				<div class="logo-container">
 					<div style="width: 80%">
-						<span class="title"><?php esc_html_e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?></span>
+						<h1 class="title"><?php esc_html_e( 'Welcome to Ultimate Dashboard', 'ultimate-dashboard' ); ?></h1>
 						<p class="subtitle">
 							<?php
 							if ( $is_wizard ) {
@@ -87,7 +87,7 @@ return function ( $variant, $referrer = '' ) {
 		</div>
 
 		<div class="heatbox-container heatbox-container-center">
-			<h1 style="display: none;"></h1>
+			<hr class="wp-header-end">
 
 			<div class="heatbox onboarding-wizard-heatbox">
 

@@ -90,7 +90,7 @@
 		const $box = $(".admin-bar-visibility-box");
 
 		saveRemoveByRoles?.classList.add("is-loading");
-		$box.find(".udb-admin-bar-visibility-error").remove();
+		$box.find(".heatbox-notice").removeClass("is-shown is-error").text("");
 
 		$.ajax({
 			type: "POST",
@@ -143,7 +143,7 @@
 	}
 
 	/**
-	 * Show an error below the save button.
+	 * Show an error next to the save button (heatbox notice).
 	 *
 	 * @param {JQuery} $box The visibility box.
 	 * @param {string} message The error message from the server, if any.
@@ -154,9 +154,7 @@
 				? message
 				: window.udbAdminBarVisibility?.errorText ?? "";
 
-		$('<p class="udb-admin-bar-visibility-error" role="alert"></p>')
-			.text(text)
-			.appendTo($box.find(".heatbox-footer").first());
+		$box.find(".heatbox-notice").text(text).addClass("is-shown is-error");
 	}
 
 	init();

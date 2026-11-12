@@ -234,6 +234,33 @@ body {
 	width: 156px;
 }
 
+/* The logo keeps its size; the title wraps instead. */
+.heatbox-header .logo-container > div:last-child {
+	flex-shrink: 0;
+}
+
+@media screen and (max-width: 782px) {
+	.heatbox-header .logo-container {
+		gap: 16px;
+	}
+
+	.heatbox-header .logo-container img {
+		width: 56px;
+	}
+
+	.heatbox-header .logo-container .heatbox-logo-wide img {
+		width: 112px;
+	}
+
+	.heatbox-wrap .heatbox-header .title {
+		font-size: 26px;
+	}
+
+	.heatbox-wrap .heatbox-header .subtitle {
+		font-size: 16px;
+	}
+}
+
 /* Tabs: .heatbox-tab-nav (preferred) and legacy .tab-navigation */
 .heatbox-tab-nav,
 .heatbox-header .tab-navigation {

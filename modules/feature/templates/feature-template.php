@@ -63,15 +63,15 @@ return function () {
 				<div class="logo-container">
 
 					<div>
-						<span class="title">
+						<h1 class="title">
 							<?php echo esc_html( get_admin_page_title() ); ?>
 							<span class="version"><?php echo esc_html( ULTIMATE_DASHBOARD_PLUGIN_VERSION ); ?></span>
-						</span>
+						</h1>
 						<p class="subtitle"><?php esc_html_e( 'Enable/disable Ultimate Dashboard features.', 'ultimate-dashboard' ); ?></p>
 					</div>
 
 					<div>
-						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png">
+						<img src="<?php echo esc_url( ULTIMATE_DASHBOARD_PLUGIN_URL ); ?>/assets/img/logo.png" alt="">
 					</div>
 
 				</div>
@@ -84,7 +84,7 @@ return function () {
 
 			<div class="heatbox-container heatbox-container-center">
 
-				<h1 style="display: none;"></h1>
+				<hr class="wp-header-end">
 
 				<div class="udb-features-container">
 
