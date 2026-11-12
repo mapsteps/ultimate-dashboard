@@ -21,7 +21,7 @@ ob_start();
 		<div class="udb-menu-builder--menu-name">{separator}</div>
 		<span class="udb-menu-builder--menu-actions">
 			{trash_icon}
-			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
+			<button type="button" class="dashicons dashicons-{hidden_icon} hide-menu" title="<?php esc_attr_e( 'Show/hide', 'ultimate-dashboard' ); ?>" aria-label="<?php esc_attr_e( 'Show/hide', 'ultimate-dashboard' ); ?>"></button>
 		</span>
 	</div><!-- .udb-menu-builder--control-panel -->
 </li>

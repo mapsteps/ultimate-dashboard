@@ -66,17 +66,6 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 	<div class="heatbox-container heatbox-container-center heatbox-column-container">
 
 		<div class="heatbox-main">
-			<?php if ( ! udb_is_pro_active() ) : ?>
-
-				<div class="udb-pro-upgrade-nag">
-					<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-					<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-						<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-					</a>
-				</div>
-
-			<?php endif; ?>
-
 			<form action="options.php" method="post" class="udb-menu-builder--edit-form">
 
 				<div class="heatbox udb-menu-builder-box">
@@ -84,6 +73,9 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 					<div class="udb-menu-builder-box--header">
 						<h2 class="udb-menu-builder-box--title">
 							<?php esc_html_e( 'Admin Menu Editor', 'ultimate-dashboard' ); ?>
+							<?php if ( ! udb_is_pro_active() ) : ?>
+								<span class="heatbox-badge">PRO</span>
+							<?php endif; ?>
 						</h2>
 						<div class="udb-menu-builder-box--search-box is-hidden">
 							<select name="udb_admin_menu_user_selector" id="udb_admin_menu_user_selector" class="udb-menu-builder--search-user" data-loading-msg="<?php esc_attr_e( 'Loading Users...', 'ultimate-dashboard' ); ?>" data-placeholder="<?php esc_attr_e( 'Select a User', 'ultimate-dashboard' ); ?>" disabled>
@@ -183,23 +175,24 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 						</div><!-- .udb-menu-builder--tab-content -->
 					</div><!-- .udb-menu-builder--user-tabs -->
 
-					<div class="heatbox-footer">
-
-						<?php if ( ! udb_is_pro_active() ) : ?>
-
-							<div class="udb-pro-settings-page-notice udb-pro-admin-menu-notice">
-								<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
-								<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-large button-primary" target="_blank">
-									<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
-								</a>
-							</div>
-
-						<?php endif; ?>
-
-						<?php do_action( 'udb_admin_menu_form_footer' ); ?>
-
-					</div>
+					<?php if ( udb_is_pro_active() ) : ?>
+						<div class="heatbox-footer">
+							<?php do_action( 'udb_admin_menu_form_footer' ); ?>
+						</div>
+					<?php endif; ?>
 				</div>
+
+				<?php if ( ! udb_is_pro_active() ) : ?>
+					<div class="heatbox-cta-container is-attached">
+						<div class="heatbox-cta primary">
+							<p><?php esc_html_e( 'This feature is available in Ultimate Dashboard PRO.', 'ultimate-dashboard' ); ?></p>
+							<a href="https://ultimatedashboard.io/pro/?utm_source=plugin&utm_medium=admin_menu_link&utm_campaign=udb" class="button button-primary" target="_blank">
+								<?php esc_html_e( 'Get Ultimate Dashboard PRO', 'ultimate-dashboard' ); ?>
+								<span class="screen-reader-text"><?php esc_html_e( '(opens in a new tab)', 'ultimate-dashboard' ); ?></span>
+							</a>
+						</div>
+					</div>
+				<?php endif; ?>
 
 			</form>
 		</div>

@@ -23,8 +23,8 @@ ob_start();
 		</div>
 		<div class="udb-menu-builder--menu-actions">
 			{trash_icon}
-			<span class="dashicons dashicons-{hidden_icon} hide-menu"></span>
-			<span class="dashicons dashicons-arrow-down-alt2 expand-menu"></span>
+			<button type="button" class="dashicons dashicons-{hidden_icon} hide-menu" title="<?php esc_attr_e( 'Show/hide', 'ultimate-dashboard' ); ?>" aria-label="<?php esc_attr_e( 'Show/hide', 'ultimate-dashboard' ); ?>"></button>
+			<button type="button" class="button expand-menu"><?php esc_html_e( 'Edit', 'ultimate-dashboard' ); ?></button>
 		</div>
 	</div><!-- .udb-menu-builder--control-panel -->
 

@@ -43,13 +43,41 @@
 	border-bottom: 0;
 }
 
-/* Free: the box is locked (heatbox), but its title stays clear */
-.udb-menu-builder-box.is-locked > .udb-menu-builder-box--header {
-	opacity: 1;
+/* Admin Menu Editor, Users: the user picker gets its own line under the title and the Roles/Users switch */
+.udb-menu-builder-box--search-box {
+	flex-basis: 100%;
+	order: 3;
 }
 
-.udb-menu-builder-box--header .udb-menu-builder--search-user {
-	width: 250px;
+.udb-menu-builder-box--search-box .udb-menu-builder--search-user,
+.udb-menu-builder-box--search-box .select2-container {
+	width: 100% !important; /* select2 sets an inline width */
+}
+
+/* The user picker (select2) looks like heatbox's fields */
+.udb-menu-builder-box--search-box .select2-selection--single {
+	height: var(--heatbox-control-height);
+	border-color: var(--heatbox-border);
+	border-radius: var(--heatbox-radius-control);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.udb-menu-builder-box--search-box .select2-selection--single .select2-selection__rendered {
+	padding: 0 32px 0 12px;
+	font-size: 14px;
+	line-height: 38px;
+}
+
+.udb-menu-builder-box--search-box .select2-selection--single .select2-selection__arrow {
+	top: 1px;
+	right: 6px;
+	height: 38px;
+}
+
+.udb-menu-builder-box--search-box .select2-container--focus .select2-selection--single,
+.udb-menu-builder-box--search-box .select2-container--open .select2-selection--single {
+	border-color: var(--heatbox-accent);
+	box-shadow: 0 0 0 1px var(--heatbox-accent);
 }
 
 /* ==========================================================================
@@ -323,7 +351,7 @@
 .udb-menu-builder--menu-actions .dashicons:hover,
 .udb-menu-builder--menu-actions .dashicons:focus-visible {
 	color: var(--heatbox-text);
-	background: var(--heatbox-surface-hover);
+	background: var(--heatbox-surface-muted); /* one step darker than the open-row tint */
 	outline: none;
 }
 
@@ -336,14 +364,16 @@
 	display: none;
 }
 
-/* Admin Menu Editor rows still use an arrow to open: it points up when open */
-.udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel span.expand-menu::before {
-	content: "\f343";
-}
-
 .udb-menu-builder--menu-actions .button.expand-menu {
+	min-width: 56px;
 	min-height: 32px;
 	line-height: 30px;
+	text-align: center;
+}
+
+/* Separators have no "Edit" button: keep their show/hide button in line with the other rows */
+.udb-menu-builder--separator-item .udb-menu-builder--menu-actions {
+	padding-right: 62px; /* Edit button (56px) + gap (6px) */
 }
 
 .udb-menu-builder--menu-item.is-expanded > .udb-menu-builder--control-panel .button.expand-menu {
