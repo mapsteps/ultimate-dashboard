@@ -183,12 +183,14 @@ body {
 	}
 }
 
-/* Spacing utilities */
-.heatbox-margin-top {
+/* Spacing utilities (the second selector wins over ".heatbox p" inside a box) */
+.heatbox-margin-top,
+.heatbox .heatbox-margin-top {
 	margin-top: var(--heatbox-gap);
 }
 
-.heatbox-margin-bottom {
+.heatbox-margin-bottom,
+.heatbox .heatbox-margin-bottom {
 	margin-bottom: var(--heatbox-gap);
 }
 
