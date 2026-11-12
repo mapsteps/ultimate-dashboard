@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 <div class="heatbox tags-heatbox">
 	<h2>
 		<?php esc_html_e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
-		<span class="action-status">📋 Copied</span>
+		<span class="action-status"><?php esc_html_e( 'Copied!', 'ultimate-dashboard' ); ?></span>
 	</h2>
 
 	<div class="heatbox-content">

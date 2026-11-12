@@ -96,6 +96,11 @@
 	border-bottom: 1px solid var(--heatbox-box-border);
 }
 
+/* No tabs yet (Users, before a user is picked): no empty bar with a second line under the header */
+.udb-menu-builder--tab-menu:not(:has(> li)) {
+	display: none;
+}
+
 .udb-menu-builder--tab-menu-item {
 	position: relative;
 	display: flex;

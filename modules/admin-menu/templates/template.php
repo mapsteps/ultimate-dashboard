@@ -201,7 +201,7 @@ foreach ( $saved_menu as $identifier => $menu_item ) {
 			<div class="heatbox tags-heatbox">
 				<h2>
 					<?php esc_html_e( 'Placeholder Tags', 'ultimate-dashboard' ); ?>
-					<span class="action-status">📋 Copied</span>
+					<span class="action-status"><?php esc_html_e( 'Copied!', 'ultimate-dashboard' ); ?></span>
 				</h2>
 
 				<div class="heatbox-content">
