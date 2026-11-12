@@ -49,7 +49,9 @@ return function ( $module, $post_id ) {
 
 	// HTML content.
 	if ( isset( $_POST['udb_html_content'] ) ) {
-		update_post_meta( $post_id, 'udb_html_content', wp_kses_post( wp_unslash( $_POST['udb_html_content'] ) ) );
+		// Same tags as HTML widgets, so forms keep their fields.
+		$allowed_tags = ( new \Udb\Helpers\Widget_Helper() )->get_allowed_tags();
+		update_post_meta( $post_id, 'udb_html_content', wp_kses( wp_unslash( $_POST['udb_html_content'] ), $allowed_tags ) );
 	}
 
 	// Menu type.

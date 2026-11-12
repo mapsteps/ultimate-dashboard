@@ -126,12 +126,6 @@ class Admin_Page_Output extends Base_Output {
 			)
 		);
 
-		if ( ! empty( $posts ) && 'parent' === $menu_type && apply_filters( 'udb_font_awesome', true ) ) {
-			// Font Awesome.
-			wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
-			wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
-		}
-
 		foreach ( $posts as &$post ) {
 			$post_id = $post->ID;
 
@@ -153,7 +147,45 @@ class Admin_Page_Output extends Base_Output {
 			$post->remove_admin_notices = get_post_meta( $post_id, 'udb_remove_admin_notices', true );
 		}
 
+		unset( $post );
+
+		if ( 'parent' === $menu_type ) {
+			$this->maybe_enqueue_font_awesome( $posts );
+		}
+
 		return $posts;
+	}
+
+	/**
+	 * Load Font Awesome only where it's needed: when a top-level admin page uses a Font Awesome menu icon
+	 * (the menu is on every screen), or on an admin page itself (its content may use Font Awesome icons).
+	 *
+	 * @param WP_Post[] $parent_pages The active top-level admin pages.
+	 */
+	private function maybe_enqueue_font_awesome( $parent_pages ) {
+
+		if ( ! apply_filters( 'udb_font_awesome', true ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only reads which admin page is open.
+		$current_page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		$needed       = 0 === strpos( $current_page, 'udb_page_' );
+
+		foreach ( $parent_pages as $page ) {
+			if ( $page->icon_class && false === stripos( $page->icon_class, 'dashicons' ) ) {
+				$needed = true;
+				break;
+			}
+		}
+
+		if ( ! $needed ) {
+			return;
+		}
+
+		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
+		wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
+
 	}
 
 	/**

@@ -12,8 +12,12 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Helpers\Content_Helper;
+use Udb\Helpers\Widget_Helper;
 
 $content_helper = new Content_Helper();
+
+// Same tags as HTML widgets: posts' default list drops forms, inputs and selects (shortcode forms would break).
+$allowed_tags = ( new Widget_Helper() )->get_allowed_tags();
 
 do_action( 'udb_ms_switch_blog' );
 
@@ -56,9 +60,9 @@ $custom_css = $post->custom_css;
 	<?php
 	if ( ! udb_is_pro_active() ) {
 		if ( 'html' === $post->content_type ) {
-			echo wp_kses_post( $post->html_content );
+			echo wp_kses( $post->html_content, $allowed_tags );
 		} else {
-			echo wp_kses_post( apply_filters( 'the_content', $post->post_content ) );
+			echo wp_kses( apply_filters( 'the_content', $post->post_content ), $allowed_tags );
 		}
 	}
 
