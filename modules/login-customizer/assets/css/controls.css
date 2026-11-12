@@ -210,6 +210,17 @@ input::-moz-focus-outer {
 	transition: box-shadow 0.15s;
 }
 
+/* "Available in PRO!" under the PRO layouts (free only), in the admin color scheme's accent */
+.udb-customize-control-template-pro {
+	display: block;
+	padding: 6px;
+	font-weight: 600;
+	text-align: center;
+	color: #fff;
+	background: var(--wp-admin-theme-color, #3858e9);
+	border-radius: 0 0 2px 2px;
+}
+
 /**
  * UDB Image Control
  */

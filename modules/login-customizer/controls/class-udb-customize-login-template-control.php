@@ -108,6 +108,9 @@ class Udb_Customize_Login_Template_Control extends \WP_Customize_Control {
 				?>
 				<li class="udb-customize-control-template <?php echo esc_attr( $class ); ?>">
 					<img src="<?php echo esc_url( $template['thumbnail'] ); ?>" alt="Layout" data-template-name="<?php echo esc_attr( $template_name ); ?>" data-bg-image="<?php echo esc_url( $template['bg_image'] ); ?>">
+					<?php if ( 'default' !== $template_name && ! udb_is_pro_active() ) : ?>
+						<span class="udb-customize-control-template-pro"><?php esc_html_e( 'Available in PRO!', 'ultimate-dashboard' ); ?></span>
+					<?php endif; ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>
