@@ -144,9 +144,6 @@ class Login_Redirect_Module extends Base_Module {
 			return array();
 		}
 
-		// This is the ideal, but will break compatibility with the pro version.
-		// $sanitized = array();
-
 		/**
 		 * The sanitized data.
 		 *
@@ -169,8 +166,7 @@ class Login_Redirect_Module extends Base_Module {
 			$sanitized['login_redirect_slugs'] = array();
 
 			foreach ( $input['login_redirect_slugs'] as $role_key => $redirect_slug ) {
-				$sanitized_role_key = sanitize_key( $role_key );
-				$sanitized['login_redirect_slugs'][ $sanitized_role_key ] = sanitize_text_field( $redirect_slug );
+				$sanitized['login_redirect_slugs'][ sanitize_key( $role_key ) ] = sanitize_text_field( $redirect_slug );
 			}
 		}
 

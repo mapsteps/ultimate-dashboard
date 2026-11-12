@@ -9,6 +9,9 @@ namespace Udb\LoginRedirect;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+// phpcs:disable WordPress.Security.NonceVerification -- Routes login page requests by their URL; wp-login.php does its own checks.
+// phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited -- Sets $pagenow so WordPress treats the new URL as the login page.
+
 use Udb\Base\Base_Output;
 use WP_User;
 use WP_Error;
@@ -304,23 +307,21 @@ class Login_Redirect_Output extends Base_Output {
 			);
 			exit;
 		} elseif ( $this->is_old_login_page ) {
-			$referer  = wp_get_referer();
+			$referer  = (string) wp_get_referer();
 			$referers = wp_parse_url( $referer );
 
 			$referer_contains_activate_url = false !== stripos( $referer, 'wp-activate.php' );
 
-			if ( $referer_contains_activate_url && ! empty( $referers['query'] ) ) {
+			// Site activation links only exist on multisite (wpmu_activate_signup() isn't loaded on single sites).
+			if ( is_multisite() && $referer_contains_activate_url && ! empty( $referers['query'] ) ) {
 				parse_str( $referers['query'], $referer_queries );
 
-				$signup_key           = $referer_queries['key'];
-				$wpmu_activate_signup = wpmu_activate_signup( $signup_key );
+				$signup_key = isset( $referer_queries['key'] ) ? sanitize_text_field( $referer_queries['key'] ) : '';
 
-				if ( file_exists( WPINC . '/ms-functions.php' ) ) {
-					@require_once WPINC . '/ms-functions.php';
-				}
+				if ( $signup_key && function_exists( 'wpmu_activate_signup' ) ) {
+					$wpmu_activate_signup = wpmu_activate_signup( $signup_key );
 
-				if ( ! empty( $signup_key ) && is_wp_error( $wpmu_activate_signup ) ) {
-					if ( 'already_active' === $wpmu_activate_signup->get_error_code() || 'blog_taken' === $wpmu_activate_signup->get_error_code() ) {
+					if ( is_wp_error( $wpmu_activate_signup ) && in_array( $wpmu_activate_signup->get_error_code(), array( 'already_active', 'blog_taken' ), true ) ) {
 						wp_safe_redirect( $this->new_login_url() . $add_query_string );
 						exit;
 					}
@@ -329,22 +330,18 @@ class Login_Redirect_Output extends Base_Output {
 
 			$this->wp_template_loader();
 		} elseif ( 'wp-login.php' === $pagenow ) {
-			$redirect_to           = admin_url();
-			$requested_redirect_to = isset( $_REQUEST['redirect_to'] ) ? sanitize_url( wp_unslash( $_REQUEST['redirect_to'] ) ) : '';
+			$redirect_to = admin_url();
 
-			if ( is_user_logged_in() ) {
-				$user = wp_get_current_user();
-
-				if ( ! isset( $_REQUEST['action'] ) ) {
-					wp_safe_redirect( $redirect_to );
-					exit;
-				}
+			if ( is_user_logged_in() && ! isset( $_REQUEST['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only routing, wp-login.php does its own checks.
+				wp_safe_redirect( $redirect_to );
+				exit;
 			}
 
 			// Prevent warnings in wp-login.php file by providing these globals.
-			global $user_login, $error, $iterim_login, $action;
+			global $user_login, $error, $interim_login, $action;
 
-			@require_once ABSPATH . 'wp-login.php';
+			// Load the real login page at the new URL. Silenced like other "hide login" plugins: wp-login.php expects to be loaded directly.
+			@require_once ABSPATH . 'wp-login.php'; // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
 			exit;
 		}
 
