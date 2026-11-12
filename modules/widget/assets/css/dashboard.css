@@ -1,99 +1,133 @@
-/* Dashboard Widget */
-[id*='ms-udb'] {
+/**
+ * Dashboard widgets made with Ultimate Dashboard (#ms-udb{ID}).
+ *
+ * Icon widgets (.udb-widget-icon) are tiles: centered title and a large icon. All other widget types
+ * (text, HTML, PRO's video & form) keep WordPress' own widget look.
+ * Icon & headline colors from the settings are printed after this file (widget-styles.css.php).
+ */
+
+/* ==========================================================================
+   Icon widgets.
+   ========================================================================== */
+
+.udb-widget-icon {
 	text-align: center;
 }
 
-[id*='ms-udb'] .fa,
-[id*='ms-udb'] .fas,
-[id*='ms-udb'] .fab,
-[id*='ms-udb'] .far,
-[id*='ms-udb'] .dashicons {
-	font-size: 68px;
+/* No move/collapse buttons on an open tile (it can still be dragged by its title).
+   A collapsed tile looks like a normal collapsed widget, buttons included, so it can be opened again. */
+.udb-widget-icon:not(.closed) .handle-actions {
+	display: none;
+}
+
+.udb-widget-icon:not(.closed) .postbox-header {
+	border-bottom: 0;
+}
+
+#dashboard-widgets .udb-widget-icon:not(.closed) .hndle {
+	justify-content: center;
+	padding: 32px 48px 4px;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.udb-widget-icon .inside {
+	position: static; /* the tooltip is placed in the whole tile */
+	margin: 0;
+	padding: 16px 24px 32px;
+}
+
+.udb-widget-icon .inside > a {
+	display: inline-block;
+	color: #555; /* the icon's default color; the "Icon/Text Color" setting colors the icon itself */
+	text-decoration: none;
+	box-shadow: none;
+}
+
+[id*='ms-udb'] .inside > a > .fa,
+[id*='ms-udb'] .inside > a > .fas,
+[id*='ms-udb'] .inside > a > .fab,
+[id*='ms-udb'] .inside > a > .far,
+[id*='ms-udb'] .inside > a > .dashicons {
+	display: block;
 	width: auto;
 	height: auto;
-	display: block;
-	padding: 0 0 40px 0;
-	box-shadow: none;
-	color: #555;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-	-moz-transform-style: preserve-3d;
-	-webkit-transform: translateZ(0);
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-	-ms-backface-visibility: hidden;
+	font-size: 64px;
+	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-[id*='ms-udb'] .fa:hover,
-[id*='ms-udb'] .fas:hover,
-[id*='ms-udb'] .fab:hover,
-[id*='ms-udb'] .far:hover,
-[id*='ms-udb'] .dashicons:hover {
-	color: #555;
+[id*='ms-udb'] .inside > a:hover > *,
+[id*='ms-udb'] .inside > a:focus > * {
 	opacity: 0.8;
-	-webkit-transform: scale(1.08);
-	-moz-transform: scale(1.08);
-	-ms-transform: scale(1.08);
-	-o-transform: scale(1.08);
-	transform: scale(1.08);
+	transform: scale(1.06);
 }
 
-[id*='ms-udb'] a {
-	text-decoration: none;
+/* Tooltip: a "?" in the top-right corner of the tile; hovering it shows the text in a small dark bubble */
+.udb-info {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+	width: 20px;
+	height: 20px;
+	color: #a7aaad;
+	cursor: help;
+	transition: color 0.2s ease-in-out;
 }
 
-[id*='ms-udb'] a:focus {
-	box-shadow: none;
+.udb-info::before {
+	content: "\f223"; /* dashicons-editor-help */
+	font: normal 20px/1 dashicons;
+	-webkit-font-smoothing: antialiased;
 }
 
-[id*='ms-udb'] .handlediv, /* Backwards compatibility (<5.5) */
-[id*='ms-udb'] .handle-actions {
-	display: none !important;
+.udb-info:hover {
+	color: #50575e;
 }
 
-[id*='ms-udb'] .ui-draggable-handle,
-[id*='ms-udb'] .ui-sortable-handle {
-	touch-action: auto;
-}
-
-[id*='ms-udb'] .hndle {
-	font-weight: 400;
-	border-bottom: 0; /* Backwards compatibility (<5.5) */
-	font-size: 22px !important;
-	padding: 40px 30px !important;
-	justify-content: center; /* 5.5 compatibility */
-}
-
-[id*='ms-udb'] .postbox-header {
-	border-bottom: 0; /* 5.5 compatibility */
-}
-
-[id*='ms-udb'].postbox.closed .postbox-header {
-	border-bottom: 1px solid #ccd0d4; /* 5.5 compatibility */
-}
-
-[id*='ms-udb'] .inside {
-	position: static;
-	margin-top: 0;
-	border-bottom: 0;
-	padding: 0 30px 30px 30px;
-}
-
-/* Text Widget */
-[id*='ms-udb'].udb-content .hndle {
+.udb-tooltip {
+	position: absolute;
+	top: 40px;
+	right: 6px;
+	z-index: 3;
+	width: max-content;
+	max-width: min(260px, calc(100% - 12px));
+	padding: 8px 10px;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #fff;
 	text-align: left;
-	justify-content: space-between; /* 5.5 compatibility */
+	background: #1e1e1e;
+	border-radius: 4px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-4px);
+	transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out, visibility 0.15s;
+	pointer-events: none;
 }
 
-[id*='ms-udb'].udb-content.closed .hndle {
-	text-align: center;
-	justify-content: center; /* 5.5 compatibility */
+/* The little arrow pointing up at the "?" */
+.udb-tooltip::before {
+	content: "";
+	position: absolute;
+	top: -5px;
+	right: 9px;
+	border: 5px solid transparent;
+	border-top: 0;
+	border-bottom-color: #1e1e1e;
 }
+
+.udb-info:hover + .udb-tooltip {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+/* ==========================================================================
+   Text widgets (content).
+   ========================================================================== */
 
 .udb-content-wrapper {
-	min-height: 108px;
 	text-align: left;
 	overflow-y: auto;
 }
@@ -119,75 +153,4 @@
 .udb-content-wrapper ol li {
 	list-style-position: inside;
 	margin-bottom: 3px;
-}
-
-/* Tooltip */
-.udb-info {
-	padding: 15px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-	cursor: pointer;
-	font-size: 16px !important;
-	color: #aaa;
-	z-index: 999;
-}
-
-.udb-info:before {
-	font-family: "Font Awesome 5 Free";
-	font-style: normal;
-	content: "\f059";
-	font-weight: 900;
-}
-
-.udb-info:hover {
-	color: #555;
-}
-
-.udb-info:hover + .udb-tooltip {
-	opacity: 1;
-	visibility: visible;
-}
-
-.udb-tooltip {
-	border-radius: 2px;
-	position: absolute;
-	top: 80px;
-	left: 13%;
-	right: 13%;
-	z-index: 999;
-	opacity: 0;
-	visibility: hidden;
-	line-height: normal;
-	color: #fff;
-	text-align: left;
-	background: #555;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.udb-tooltip span {
-	display: block;
-	padding: 8px;
-	text-align: center;
-}
-
-.udb-tooltip:after {
-	position: absolute;
-	top: -22px;
-	font-family: "Font Awesome 5 Free";
-	content: "\f0d8";
-	left: 50%;
-	width: 40px;
-	margin-left: -20px;
-	text-align: center;
-	font-size: 35px !important;
-	color: #555;
-	font-weight: 900;
 }

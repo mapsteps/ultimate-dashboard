@@ -243,8 +243,16 @@ class Widget_Output extends Base_Output {
 				echo wp_kses( $output, $widget_helper->get_allowed_tags() );
 			};
 
-			// Add metabox.
+			// Add metabox, with its widget type as a class (icon widgets are styled as tiles).
 			add_meta_box( 'ms-udb' . $post_id, $title, $output_callback, 'dashboard', $position, $priority );
+
+			add_filter(
+				'postbox_classes_dashboard_ms-udb' . $post_id,
+				function ( $classes ) use ( $widget_type ) {
+					$classes[] = 'udb-widget-' . sanitize_html_class( $widget_type );
+					return $classes;
+				}
+			);
 
 		endwhile;
 
