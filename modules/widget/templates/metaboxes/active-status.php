@@ -35,7 +35,6 @@ return function ( $post ) {
 				<?php endif; ?>
 			</div>
 			<div id="publishing-action">
-				<span class="spinner"></span>
 				<?php if ( 'publish' === $post->post_status ) : ?>
 					<?php // Like WordPress' own box: "save" keeps the status (and says "updated"), "publish" publishes. ?>
 					<input type="submit" name="save" id="publish" class="button button-primary button-large" value="<?php esc_attr_e( 'Update', 'ultimate-dashboard' ); ?>">

@@ -36,6 +36,37 @@
 	font-weight: 600;
 }
 
+/* Icon widget: a larger icon button with the tooltip next to it, same height */
+.udb-icon-row {
+	display: flex;
+	gap: 16px;
+}
+
+.udb-icon-row-tooltip {
+	flex: 1;
+	min-width: 0;
+}
+
+.udb-icon-row .icon-picker {
+	width: 72px;
+	height: 72px;
+}
+
+.udb-icon-row .icon-picker i {
+	font-size: 32px;
+}
+
+#udb-main-metabox .udb-icon-row textarea {
+	display: block;
+	height: 72px;
+	resize: vertical;
+}
+
+/* The picker opens at its full width here, not the icon column's */
+.udb-icon-row .icon-picker-container {
+	max-width: none;
+}
+
 #udb-main-metabox input.small-text {
 	width: 100px;
 }

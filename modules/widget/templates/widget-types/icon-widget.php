@@ -25,19 +25,20 @@ return function () {
 			</div>
 			<div class="inside">
 
-				<div class="udb-metabox-field">
-					<label class="udb-field-label" for="udb_icon_button"><?php esc_html_e( 'Icon', 'ultimate-dashboard' ); ?></label>
-					<div class="udb-icon-field">
-						<button type="button" class="icon-picker" id="udb_icon_button" aria-label="<?php esc_attr_e( 'Change icon', 'ultimate-dashboard' ); ?>">
-							<i class="<?php echo esc_attr( $icon ); ?>" aria-hidden="true"></i>
-						</button>
-						<input type="hidden" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $icon ); ?>">
+				<div class="udb-metabox-field udb-icon-row">
+					<div>
+						<label class="udb-field-label" for="udb_icon_button"><?php esc_html_e( 'Icon', 'ultimate-dashboard' ); ?></label>
+						<div class="udb-icon-field">
+							<button type="button" class="icon-picker" id="udb_icon_button" aria-label="<?php esc_attr_e( 'Change icon', 'ultimate-dashboard' ); ?>">
+								<i class="<?php echo esc_attr( $icon ); ?>" aria-hidden="true"></i>
+							</button>
+							<input type="hidden" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $icon ); ?>">
+						</div>
 					</div>
-				</div>
-
-				<div class="udb-metabox-field">
-					<label class="udb-field-label" for="udb-tooltip"><?php esc_html_e( 'Tooltip', 'ultimate-dashboard' ); ?></label>
-					<textarea class="widefat" rows="3" id="udb-tooltip" name="udb_tooltip"><?php echo esc_textarea( $tooltip ? $tooltip : '' ); ?></textarea>
+					<div class="udb-icon-row-tooltip">
+						<label class="udb-field-label" for="udb-tooltip"><?php esc_html_e( 'Tooltip', 'ultimate-dashboard' ); ?></label>
+						<textarea class="widefat" id="udb-tooltip" name="udb_tooltip"><?php echo esc_textarea( $tooltip ? $tooltip : '' ); ?></textarea>
+					</div>
 				</div>
 
 				<div class="udb-metabox-field">
