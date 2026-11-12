@@ -75,7 +75,7 @@
 		const badge = toggle.closest(".heatbox").querySelector(".heatbox-badge");
 
 		badge.textContent = toggle.checked ? config.strings.active : config.strings.inactive;
-		badge.classList.toggle("is-success", toggle.checked);
+		badge.classList.toggle("is-info", toggle.checked);
 		badge.classList.toggle("is-neutral", !toggle.checked);
 	}
 

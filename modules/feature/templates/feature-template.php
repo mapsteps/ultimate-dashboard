@@ -104,7 +104,7 @@ return function () {
 							<p><?php echo wp_kses_post( $feature['text'] ); ?></p>
 						</div>
 						<div class="udb-module-status">
-							<span class="heatbox-badge <?php echo $is_on ? 'is-success' : 'is-neutral'; ?>"><?php $is_on ? esc_html_e( 'Active', 'ultimate-dashboard' ) : esc_html_e( 'Inactive', 'ultimate-dashboard' ); ?></span>
+							<span class="heatbox-badge <?php echo $is_on ? 'is-info' : 'is-neutral'; ?>"><?php $is_on ? esc_html_e( 'Active', 'ultimate-dashboard' ) : esc_html_e( 'Inactive', 'ultimate-dashboard' ); ?></span>
 							<label class="toggle-switch">
 								<input type="checkbox" name="<?php echo esc_attr( $feature['feature'] ); ?>" <?php checked( $is_on ); ?>>
 								<span class="switch-track"><span class="switch-thumb"></span></span>
