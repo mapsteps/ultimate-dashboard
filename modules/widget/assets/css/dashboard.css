@@ -93,8 +93,8 @@
 	top: 10px;
 	right: 10px;
 	z-index: 2;
-	width: 24px;
-	height: 24px;
+	width: 22px;
+	height: 22px;
 	color: #3c434a; /* like the icon: the "Icon/Text Color" setting colors it */
 	background-color: rgba(60, 67, 74, 0.1); /* browsers without color-mix() */
 	background-color: color-mix(in srgb, currentColor 10%, transparent);
@@ -112,16 +112,16 @@
 .udb-info::before {
 	content: "";
 	display: block;
-	width: 14px;
-	height: 14px;
-	margin: 5px;
+	width: 10px;
+	height: 10px;
+	margin: 6px;
 	background-color: currentColor;
-	-webkit-mask: var(--udb-info-mask) center / 14px 14px no-repeat;
-	mask: var(--udb-info-mask) center / 14px 14px no-repeat;
+	-webkit-mask: var(--udb-info-mask) center / 10px 10px no-repeat;
+	mask: var(--udb-info-mask) center / 10px 10px no-repeat;
 }
 
 .udb-widget-icon {
-	--udb-info-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%226%206%2012%2012%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%2F%3E%3Cpath%20d%3D%22M12%2017h.01%22%2F%3E%3C%2Fsvg%3E");
+	--udb-info-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%226%206%2012%2012%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%2F%3E%3Cpath%20d%3D%22M12%2017h.01%22%2F%3E%3C%2Fsvg%3E");
 }
 
 .udb-tooltip {
@@ -134,9 +134,9 @@
 	padding: 8px 10px;
 	font-size: 13px;
 	line-height: 1.5;
-	color: #fff;
+	color: var(--udb-tooltip-text, #fff);
 	text-align: left;
-	background: #1e1e1e;
+	background: var(--udb-tooltip-bg, #1d2327); /* the headline color (WordPress' by default), see widget-styles.css.php */
 	border-radius: 4px;
 	opacity: 0;
 	visibility: hidden;
@@ -153,7 +153,7 @@
 	right: 9px;
 	border: 5px solid transparent;
 	border-top: 0;
-	border-bottom-color: #1e1e1e;
+	border-bottom-color: var(--udb-tooltip-bg, #1d2327);
 }
 
 .udb-info:hover + .udb-tooltip {

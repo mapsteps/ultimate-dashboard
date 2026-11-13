@@ -33,10 +33,26 @@ $headline_color = in_array( $headline_color, array( '#1d2327', '#23282d' ), true
 
 <?php endif; ?>
 
-<?php if ( $headline_color ) : ?>
+<?php
+if ( $headline_color ) :
+
+	// The tooltip bubble has the headline color: dark text on a light color, white text otherwise.
+	if ( preg_match( '/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/', $headline_color, $rgb ) ) {
+		$rgb = array( (int) $rgb[1], (int) $rgb[2], (int) $rgb[3] );
+	} else {
+		$rgb = ( new Udb\Helpers\Color_Helper() )->hex_to_rgb( $headline_color );
+	}
+
+	$is_light = ( 0.299 * $rgb[0] + 0.587 * $rgb[1] + 0.114 * $rgb[2] ) / 255 > 0.6;
+	?>
 
 	[id*="ms-udb"] .hndle {
 		color: <?php echo esc_attr( $headline_color ); ?>;
+	}
+
+	[id*="ms-udb"] {
+		--udb-tooltip-bg: <?php echo esc_attr( $headline_color ); ?>;
+		--udb-tooltip-text: <?php echo $is_light ? '#1d2327' : '#fff'; ?>;
 	}
 
 <?php endif; ?>
