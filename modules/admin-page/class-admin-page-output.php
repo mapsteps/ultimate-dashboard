@@ -313,7 +313,18 @@ class Admin_Page_Output extends Base_Output {
 	 * Prevent admin pages from being accessed from frontend.
 	 */
 	public function restrict_frontend() {
-		if ( is_user_logged_in() || ! is_singular( 'udb_admin_page' ) ) {
+		if ( ! is_singular( 'udb_admin_page' ) ) {
+			return;
+		}
+
+		/**
+		 * Filters whether the current visitor may see an admin page on the frontend.
+		 * Default: logged-in users only (PRO also allows its signed iframe links).
+		 *
+		 * @param bool         $allowed Whether the visitor may see the page.
+		 * @param WP_Post|null $post The admin page.
+		 */
+		if ( apply_filters( 'udb_admin_page_frontend_allowed', is_user_logged_in(), get_queried_object() ) ) {
 			return;
 		}
 

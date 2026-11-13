@@ -167,6 +167,7 @@
 		"udb_admin_menu_sidebar",
 		"udb_admin_page_advanced_fields",
 		"udb_admin_page_content_output",
+		"udb_admin_page_frontend_allowed",
 		"udb_admin_page_list_roles_column_content",
 		"udb_admin_page_post_type_args",
 		"udb_admin_page_prepare_output",

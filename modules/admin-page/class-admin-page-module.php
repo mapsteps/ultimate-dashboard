@@ -70,6 +70,12 @@ class Admin_Page_Module extends Base_Module {
 
 		add_filter( 'template_include', array( $this, 'include_template' ), 1 );
 
+		// Admin pages are public (page builders need it), but they're not content for search engines.
+		add_filter( 'wp_sitemaps_post_types', array( $this, 'exclude_from_sitemaps' ) );
+		add_filter( 'wpseo_sitemap_exclude_post_type', array( $this, 'exclude_from_yoast_sitemap' ), 10, 2 );
+		add_filter( 'wp_robots', array( $this, 'noindex' ) );
+		add_action( 'wp_head', array( $this, 'noindex_meta' ), 1 );
+
 		add_action( 'admin_menu', array( $this, 'submenu_page' ) );
 		add_filter( 'submenu_file', array( $this, 'highlight_submenu' ), 10, 2 );
 
@@ -192,6 +198,68 @@ class Admin_Page_Module extends Base_Module {
 		}
 
 		return __DIR__ . '/templates/edit-page.php';
+
+	}
+
+	/**
+	 * Leave admin pages out of WordPress' sitemaps.
+	 *
+	 * @param array $post_types The post types in the sitemaps.
+	 *
+	 * @return array The post types.
+	 */
+	public function exclude_from_sitemaps( $post_types ) {
+
+		if ( is_array( $post_types ) ) {
+			unset( $post_types['udb_admin_page'] );
+		}
+
+		return $post_types;
+
+	}
+
+	/**
+	 * Leave admin pages out of Yoast SEO's sitemaps.
+	 *
+	 * @param bool   $excluded Whether the post type is excluded.
+	 * @param string $post_type The post type.
+	 *
+	 * @return bool Whether the post type is excluded.
+	 */
+	public function exclude_from_yoast_sitemap( $excluded, $post_type ) {
+
+		return 'udb_admin_page' === $post_type ? true : $excluded;
+
+	}
+
+	/**
+	 * Tell search engines not to index admin pages (WordPress 5.7+).
+	 *
+	 * @param array $robots The robots directives.
+	 *
+	 * @return array The robots directives.
+	 */
+	public function noindex( $robots ) {
+
+		if ( is_array( $robots ) && is_singular( 'udb_admin_page' ) ) {
+			$robots['noindex']  = true;
+			$robots['nofollow'] = true;
+		}
+
+		return $robots;
+
+	}
+
+	/**
+	 * Tell search engines not to index admin pages on WordPress before 5.7 (no "wp_robots" there).
+	 */
+	public function noindex_meta() {
+
+		if ( function_exists( 'wp_robots' ) || ! is_singular( 'udb_admin_page' ) ) {
+			return;
+		}
+
+		echo '<meta name="robots" content="noindex, nofollow">' . "\n";
 
 	}
 
