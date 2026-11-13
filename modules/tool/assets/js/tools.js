@@ -37,16 +37,22 @@
 	updateButton();
 
 	/**
-	 * Checkboxes added through the "udb_export_fields" hook (PRO 3.11: <p><label><input> Text</label></p>)
-	 * get heatbox's checkbox markup and join the list, so all of them look and line up the same.
+	 * Checkboxes added through the "udb_export_fields" hook join the list, so all of them look and line up the same.
+	 * Newer PRO prints heatbox's markup (.setting-field), PRO 3.11 plain <p><label><input> Text</label></p>, which gets heatbox's markup here.
 	 */
 	function adoptAddedCheckboxes() {
 		const list = document.querySelector(".udb-tools-page .setting-fields");
 
+		if (!list) return;
+
+		document.querySelectorAll(".udb-export-more .setting-field").forEach(function (field) {
+			list.append(field);
+		});
+
 		document.querySelectorAll(".udb-export-more label").forEach(function (label) {
 			const input = label.querySelector('input[type="checkbox"]');
 
-			if (!list || !input || label.classList.contains("checkbox-label")) return;
+			if (!input || label.classList.contains("checkbox-label")) return;
 
 			const wrapper = label.parentElement;
 			const field = document.createElement("div");
