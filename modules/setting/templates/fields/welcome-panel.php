@@ -32,7 +32,7 @@ return function () {
 	<p class="description">
 		<?php esc_html_e( 'Edit WordPress\' default welcome panel or replace it with your own content. As long as you leave it unchanged, WordPress\' own panel is shown.', 'ultimate-dashboard' ); ?>
 		<br>
-		<?php esc_html_e( 'Like WordPress\' own panel, it\'s only shown to users who can change the site\'s appearance (Administrators by default), and each user can dismiss it.', 'ultimate-dashboard' ); ?>
+		<?php esc_html_e( 'The welcome panel is only shown to users who can change the site\'s appearance (Administrators by default), and each user can dismiss it.', 'ultimate-dashboard' ); ?>
 	</p>
 
 	<?php
