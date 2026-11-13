@@ -213,6 +213,7 @@
 		"udb_login_redirect_title",
 		"udb_login_slug",
 		"udb_login_styles",
+		"udb_login_styles_before_custom_css",
 		"udb_meta_compatibility",
 		"udb_modules",
 		"udb_modules_capability",

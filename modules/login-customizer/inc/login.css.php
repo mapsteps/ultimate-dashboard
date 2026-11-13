@@ -45,11 +45,15 @@ $form_bg_custom_position = isset( $login['form_bg_custom_position'] ) ? $login['
 $form_width              = isset( $login['form_width'] ) ? $login['form_width'] : '';
 $form_top_padding        = isset( $login['form_top_padding'] ) ? $login['form_top_padding'] : '';
 $form_bottom_padding     = isset( $login['form_bottom_padding'] ) ? $login['form_bottom_padding'] : '';
-$form_horizontal_padding = isset( $login['form_horizontal_padding'] ) ? $login['form_horizontal_padding'] : ''; // Not in use?
+$form_horizontal_padding = isset( $login['form_horizontal_padding'] ) ? $login['form_horizontal_padding'] : '';
 $form_border_width       = isset( $login['form_border_width'] ) ? $login['form_border_width'] : '2px';
 $form_border_style       = isset( $login['form_border_style'] ) ? $login['form_border_style'] : 'solid';
 $form_border_color       = isset( $login['form_border_color'] ) ? $login['form_border_color'] : '#dddddd';
 $form_border_radius      = isset( $login['form_border_radius'] ) ? $login['form_border_radius'] : '4px';
+
+// The left & right layouts come with PRO. Without PRO, the login page always has the default layout.
+$form_position  = isset( $login['form_position'] ) ? $login['form_position'] : 'default';
+$default_layout = ! udb_is_pro_active() || ! in_array( $form_position, array( 'left', 'right' ), true );
 
 $enable_form_shadow = isset( $login['enable_form_shadow'] ) ? $login['enable_form_shadow'] : 0;
 $form_shadow_blur   = isset( $login['form_shadow_blur'] ) ? $login['form_shadow_blur'] : '10px';
@@ -274,6 +278,14 @@ body.login {
 		padding-bottom: <?php echo esc_attr( $form_bottom_padding ); ?>;
 	<?php endif; ?>
 }
+
+<?php if ( $default_layout && $form_horizontal_padding ) : ?>
+	.login form,
+	#loginform {
+		padding-left: <?php echo esc_attr( $form_horizontal_padding ); ?>;
+		padding-right: <?php echo esc_attr( $form_horizontal_padding ); ?>;
+	}
+<?php endif; ?>
 
 .login input[type=text],
 .login input[type=password] {

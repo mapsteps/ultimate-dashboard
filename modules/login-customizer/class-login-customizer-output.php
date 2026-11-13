@@ -131,6 +131,15 @@ class Login_Customizer_Output extends Base_Output {
 
 		$css = ob_get_clean();
 
+		/**
+		 * Filters the login styles before the user's custom CSS is added, so the custom CSS still wins.
+		 *
+		 * @since 3.9
+		 *
+		 * @param string $css The login styles built so far.
+		 */
+		$css = apply_filters( 'udb_login_styles_before_custom_css', $css );
+
 		$login      = get_option( 'udb_login', array() );
 		$custom_css = isset( $login['custom_css'] ) ? $login['custom_css'] : '';
 
