@@ -19,11 +19,14 @@ $colors = array(
 
 $colors = apply_filters( 'udb_branding_colors', $colors );
 
-$menu_item_color        = $colors['menu_item_color'];
-$accent_color           = $colors['accent_color'];
-$admin_bar_bg_color     = $colors['admin_bar_bg_color'];
-$admin_menu_bg_color    = $colors['admin_menu_bg_color'];
-$admin_submenu_bg_color = $colors['admin_submenu_bg_color'];
+// Only valid colors are printed into the CSS.
+$css_helper = new \Udb\Helpers\Content_Helper();
+
+$menu_item_color        = $css_helper->sanitize_color( $colors['menu_item_color'] );
+$accent_color           = $css_helper->sanitize_color( $colors['accent_color'] );
+$admin_bar_bg_color     = $css_helper->sanitize_color( $colors['admin_bar_bg_color'] );
+$admin_menu_bg_color    = $css_helper->sanitize_color( $colors['admin_menu_bg_color'] );
+$admin_submenu_bg_color = $css_helper->sanitize_color( $colors['admin_submenu_bg_color'] );
 
 $color_helper = new Color_Helper();
 ?>

@@ -15,6 +15,11 @@ $headline_color = isset( $settings['headline_color'] ) ? strtolower( $settings['
 // #555555 & #23282d were the defaults before 3.9: saved untouched, they mean "default" too.
 $icon_color     = in_array( $icon_color, array( '#3c434a', '#555555' ), true ) ? '' : $icon_color;
 $headline_color = in_array( $headline_color, array( '#1d2327', '#23282d' ), true ) ? '' : $headline_color;
+
+// Only valid colors are printed into the CSS.
+$css_helper     = new \Udb\Helpers\Content_Helper();
+$icon_color     = $css_helper->sanitize_color( $icon_color );
+$headline_color = $css_helper->sanitize_color( $headline_color );
 ?>
 
 <?php if ( $icon_color ) : ?>

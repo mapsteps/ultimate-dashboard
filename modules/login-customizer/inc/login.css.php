@@ -71,8 +71,10 @@ $fields_border_color_focus = ! $fields_border_color_focus && $has_accent_color ?
 $labels_color     = isset( $login['labels_color'] ) ? $login['labels_color'] : '';
 $labels_font_size = isset( $login['labels_font_size'] ) ? $login['labels_font_size'] : '';
 
-$fields_height_unit   = preg_replace( '/\d+/', '', $fields_height );
-$fields_height_number = str_ireplace( $fields_height_unit, '', $fields_height );
+$fields_height        = ( new \Udb\Helpers\Content_Helper() )->sanitize_css_size( $fields_height );
+$fields_height        = $fields_height ? $fields_height : '50px';
+$fields_height_unit   = preg_replace( '/[\d.]+/', '', $fields_height );
+$fields_height_number = (float) str_ireplace( $fields_height_unit, '', $fields_height );
 $hide_pw_top          = ( $fields_height_number / 2 ) - 20;
 $hide_pw_top          = $hide_pw_top . $fields_height_unit;
 
@@ -93,6 +95,56 @@ $footer_link_color_hover = ! $footer_link_color_hover && $has_accent_color ? $ac
 $remove_register_lost_pw_link = isset( $login['remove_register_lost_pw_link'] ) ? absint( $login['remove_register_lost_pw_link'] ) : 0;
 $remove_back_to_site_link     = isset( $login['remove_back_to_site_link'] ) ? absint( $login['remove_back_to_site_link'] ) : 0;
 $remove_lang_switcher         = isset( $login['remove_lang_switcher'] ) ? absint( $login['remove_lang_switcher'] ) : 0;
+
+// Check the values before they're printed into the CSS, so a saved value can't break out of its rule.
+$css_helper = new \Udb\Helpers\Content_Helper();
+
+$bg_color                  = $css_helper->sanitize_color( $bg_color );
+$bg_overlay_color          = $css_helper->sanitize_color( $bg_overlay_color );
+$form_bg_color             = $css_helper->sanitize_color( $form_bg_color );
+$form_border_color         = $css_helper->sanitize_color( $form_border_color );
+$form_shadow_color         = $css_helper->sanitize_color( $form_shadow_color );
+$fields_text_color         = $css_helper->sanitize_color( $fields_text_color );
+$fields_text_color_focus   = $css_helper->sanitize_color( $fields_text_color_focus );
+$fields_bg_color           = $css_helper->sanitize_color( $fields_bg_color );
+$fields_bg_color_focus     = $css_helper->sanitize_color( $fields_bg_color_focus );
+$fields_border_color       = $css_helper->sanitize_color( $fields_border_color );
+$fields_border_color_focus = $css_helper->sanitize_color( $fields_border_color_focus );
+$labels_color              = $css_helper->sanitize_color( $labels_color );
+$button_text_color         = $css_helper->sanitize_color( $button_text_color );
+$button_text_color_hover   = $css_helper->sanitize_color( $button_text_color_hover );
+$button_bg_color           = $css_helper->sanitize_color( $button_bg_color );
+$button_bg_color_hover     = $css_helper->sanitize_color( $button_bg_color_hover );
+$footer_link_color         = $css_helper->sanitize_color( $footer_link_color );
+$footer_link_color_hover   = $css_helper->sanitize_color( $footer_link_color_hover );
+
+$logo_height               = $css_helper->sanitize_css_value( $logo_height );
+$bg_position               = $css_helper->sanitize_css_value( $bg_position );
+$bg_size                   = $css_helper->sanitize_css_value( $bg_size );
+$bg_repeat                 = $css_helper->sanitize_css_value( $bg_repeat );
+$bg_custom_size            = $css_helper->sanitize_css_value( $bg_custom_size );
+$bg_custom_position        = $css_helper->sanitize_css_value( $bg_custom_position );
+$form_bg_position          = $css_helper->sanitize_css_value( $form_bg_position );
+$form_bg_size              = $css_helper->sanitize_css_value( $form_bg_size );
+$form_bg_repeat            = $css_helper->sanitize_css_value( $form_bg_repeat );
+$form_bg_custom_size       = $css_helper->sanitize_css_value( $form_bg_custom_size );
+$form_bg_custom_position   = $css_helper->sanitize_css_value( $form_bg_custom_position );
+$form_width                = $css_helper->sanitize_css_value( $form_width );
+$form_top_padding          = $css_helper->sanitize_css_value( $form_top_padding );
+$form_bottom_padding       = $css_helper->sanitize_css_value( $form_bottom_padding );
+$form_horizontal_padding   = $css_helper->sanitize_css_value( $form_horizontal_padding );
+$form_border_width         = $css_helper->sanitize_css_value( $form_border_width );
+$form_border_style         = $css_helper->sanitize_css_value( $form_border_style );
+$form_border_radius        = $css_helper->sanitize_css_value( $form_border_radius );
+$form_shadow_blur          = $css_helper->sanitize_css_value( $form_shadow_blur );
+$fields_horizontal_padding = $css_helper->sanitize_css_value( $fields_horizontal_padding );
+$fields_border_width       = $css_helper->sanitize_css_value( $fields_border_width );
+$fields_border_radius      = $css_helper->sanitize_css_value( $fields_border_radius );
+$fields_font_size          = $css_helper->sanitize_css_value( $fields_font_size );
+$labels_font_size          = $css_helper->sanitize_css_value( $labels_font_size );
+$button_height             = $css_helper->sanitize_css_value( $button_height );
+$button_horizontal_padding = $css_helper->sanitize_css_value( $button_horizontal_padding );
+$button_border_radius      = $css_helper->sanitize_css_value( $button_border_radius );
 ?>
 
 body.login {
@@ -101,7 +153,7 @@ body.login {
 	<?php endif; ?>
 
 	<?php if ( $bg_image ) : ?>
-		background-image: url(<?php echo esc_attr( $bg_image ); ?>);
+		background-image: url(<?php echo esc_url( $bg_image ); ?>);
 
 		<?php if ( 'custom' === $bg_position ) : ?>
 			<?php if ( ! empty( $bg_custom_position ) ) : ?>
@@ -193,7 +245,7 @@ body.login {
 	<?php endif; ?>
 
 	<?php if ( $form_bg_image ) : ?>
-		background-image: url(<?php echo esc_attr( $form_bg_image ); ?>);
+		background-image: url(<?php echo esc_url( $form_bg_image ); ?>);
 
 		<?php if ( 'custom' === $form_bg_position ) : ?>
 			<?php if ( ! empty( $form_bg_custom_position ) ) : ?>

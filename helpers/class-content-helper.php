@@ -148,6 +148,80 @@ class Content_Helper {
 	}
 
 	/**
+	 * Sanitize a color before printing it into CSS.
+	 *
+	 * Accepts hex (#rgb, #rgba, #rrggbb, #rrggbbaa), rgb() / rgba() and plain color keywords.
+	 * Anything else returns an empty string, so a saved value can't break out of its CSS rule.
+	 *
+	 * @param mixed $color The color.
+	 * @return string The color, or an empty string if it's not a valid color.
+	 */
+	public function sanitize_color( $color ) {
+
+		if ( ! is_string( $color ) ) {
+			return '';
+		}
+
+		$color = trim( $color );
+
+		if ( preg_match( '/^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i', $color ) ) {
+			return $color;
+		}
+
+		if ( preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(\d*\.?\d+%?)\s*)?\)$/i', $color ) ) {
+			return $color;
+		}
+
+		if ( preg_match( '/^[a-z]+$/i', $color ) ) {
+			return $color;
+		}
+
+		return '';
+
+	}
+
+	/**
+	 * Sanitize a plain CSS value (size, position, keyword) before printing it into CSS.
+	 *
+	 * Keeps letters, numbers, spaces and the characters used in sizes and positions (". % # , ( ) -").
+	 * Removes everything that could end a CSS rule or start a new one (; { } : / quotes, < >).
+	 *
+	 * @param mixed $value The value.
+	 * @return string The sanitized value.
+	 */
+	public function sanitize_css_value( $value ) {
+
+		if ( ! is_scalar( $value ) ) {
+			return '';
+		}
+
+		return trim( preg_replace( '/[^a-zA-Z0-9.%#,()\s\-]/', '', (string) $value ) );
+
+	}
+
+	/**
+	 * Sanitize a CSS size (a number with an optional unit), e.g. for the customizer's range controls.
+	 *
+	 * @param mixed $value The value, e.g. "40%" or "320px".
+	 * @return string The size, or an empty string if it's not a valid size.
+	 */
+	public function sanitize_css_size( $value ) {
+
+		if ( ! is_scalar( $value ) ) {
+			return '';
+		}
+
+		$value = trim( (string) $value );
+
+		if ( preg_match( '/^\d*\.?\d+(px|%|em|rem|vw|vh)?$/i', $value ) ) {
+			return $value;
+		}
+
+		return '';
+
+	}
+
+	/**
 	 * Allow iframes & attributes in HTML widget.
 	 *
 	 * Only for the "post" context, which is what widgets and admin pages use.
