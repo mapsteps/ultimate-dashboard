@@ -69,7 +69,8 @@
 /* "Add …": the main action, as a large primary button */
 .udb-post-list .wrap .page-title-action {
 	position: static;
-	display: inline-flex;
+	display: flex; /* On its own line, above All / Published */
+	width: fit-content;
 	align-items: center;
 	min-height: var(--heatbox-control-height);
 	margin: 0;

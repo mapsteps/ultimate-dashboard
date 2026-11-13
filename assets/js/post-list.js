@@ -7,6 +7,15 @@
 (function () {
 	"use strict";
 
+	// Notices right under our header, above the "Add …" button: WordPress puts them after .wp-header-end,
+	// which comes after the button. This runs before WordPress moves them (on page ready).
+	const headerEnd = document.querySelector(".wrap > .wp-header-end");
+	const addButton = document.querySelector(".wrap > .page-title-action");
+
+	if (headerEnd && addButton) {
+		addButton.before(headerEnd);
+	}
+
 	document.querySelectorAll('input[name="udb_is_active"][data-action]').forEach(function (toggle) {
 		toggle.addEventListener("change", function () {
 			save(toggle);
