@@ -71,19 +71,16 @@
 	display: none;
 }
 
-/* WordPress' "Add …" next to the title is hidden; ours (udb-add-new) starts the row above the table, before "Bulk actions" */
+/* WordPress' "Add …" (next to the hidden title): the main action, as a large primary button on its own line */
 .udb-post-list .wrap > .page-title-action {
-	display: none;
-}
-
-/* "Add …": the main action, as a large primary button */
-.udb-post-list .wrap .udb-add-new {
-	order: -2;
+	position: static;
+	top: auto;
 	box-sizing: border-box;
-	display: inline-flex;
+	display: flex;
+	width: fit-content;
 	align-items: center;
 	min-height: var(--heatbox-control-height);
-	margin: 0;
+	margin: 0 0 24px;
 	text-decoration: none;
 	padding: 0 18px;
 	font-size: 14px;
@@ -95,13 +92,13 @@
 	transition: background-color var(--heatbox-transition), border-color var(--heatbox-transition);
 }
 
-.udb-post-list .wrap .udb-add-new:hover {
+.udb-post-list .wrap > .page-title-action:hover {
 	color: var(--heatbox-text-on-accent);
 	background: var(--heatbox-accent-darker);
 	border-color: var(--heatbox-accent-darker);
 }
 
-.udb-post-list .wrap .udb-add-new:focus {
+.udb-post-list .wrap > .page-title-action:focus {
 	color: var(--heatbox-text-on-accent);
 	outline: none;
 	box-shadow: 0 0 0 2px var(--heatbox-surface), 0 0 0 4px var(--heatbox-accent);
@@ -134,7 +131,7 @@
 	padding: 0;
 }
 
-/* Row above the table: "Add …" and bulk actions on the left, item count on the right */
+/* Row above the table: bulk actions on the left, item count on the right */
 .udb-post-list .wrap .tablenav.top {
 	display: flex;
 	flex-wrap: wrap;
@@ -144,10 +141,6 @@
 
 .udb-post-list .wrap .tablenav.top > * {
 	float: none;
-}
-
-.udb-post-list .wrap .tablenav.top .bulkactions {
-	order: -1;
 }
 
 .udb-post-list .wrap .tablenav.top .tablenav-pages {
