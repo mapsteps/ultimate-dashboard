@@ -265,7 +265,7 @@ class Admin_Page_Module extends Base_Module {
 	}
 
 	/**
-	 * "Add …" button at the right end of the row above the list (instead of next to the title).
+	 * "Add …" button at the start of the row above the list, before "Bulk actions" (instead of next to the title).
 	 *
 	 * @param string $which Which row: "top" or "bottom".
 	 */

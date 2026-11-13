@@ -66,14 +66,14 @@
 	display: none;
 }
 
-/* WordPress' "Add …" next to the title is hidden; ours (udb-add-new) sits at the right end of the row above the table */
+/* WordPress' "Add …" next to the title is hidden; ours (udb-add-new) starts the row above the table, before "Bulk actions" */
 .udb-post-list .wrap > .page-title-action {
 	display: none;
 }
 
 /* "Add …": the main action, as a large primary button */
 .udb-post-list .wrap .udb-add-new {
-	order: 2;
+	order: -2;
 	display: inline-flex;
 	align-items: center;
 	min-height: var(--heatbox-control-height);
@@ -129,7 +129,7 @@
 	padding: 0;
 }
 
-/* Row above the table: bulk actions on the left, item count and "Add …" on the right */
+/* Row above the table: "Add …" and bulk actions on the left, item count on the right */
 .udb-post-list .wrap .tablenav.top {
 	display: flex;
 	flex-wrap: wrap;
@@ -141,12 +141,11 @@
 	float: none;
 }
 
-.udb-post-list .wrap .tablenav.top .tablenav-pages {
-	order: 1;
-	margin-left: auto;
+.udb-post-list .wrap .tablenav.top .bulkactions {
+	order: -1;
 }
 
-.udb-post-list .wrap .tablenav.top:has(.no-pages) .udb-add-new {
+.udb-post-list .wrap .tablenav.top .tablenav-pages {
 	margin-left: auto;
 }
 
