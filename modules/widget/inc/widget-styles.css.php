@@ -21,6 +21,7 @@ $headline_color = in_array( $headline_color, array( '#1d2327', '#23282d' ), true
 
 	[id*='ms-udb'] .udb-icon,
 	[id*='ms-udb'] .dashicons,
+	[id*='ms-udb'] .udb-info,
 	.udb-content-wrapper {
 		color: <?php echo esc_attr( $icon_color ); ?>;
 	}

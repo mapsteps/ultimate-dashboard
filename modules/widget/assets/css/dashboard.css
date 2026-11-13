@@ -93,16 +93,35 @@
 	top: 10px;
 	right: 10px;
 	z-index: 2;
-	width: 20px;
-	height: 20px;
-	color: #787c82; /* its own soft gray, not changed by the color settings */
+	width: 24px;
+	height: 24px;
+	color: #3c434a; /* like the icon: the "Icon/Text Color" setting colors it */
+	background-color: rgba(60, 67, 74, 0.1); /* browsers without color-mix() */
+	background-color: color-mix(in srgb, currentColor 10%, transparent);
+	border-radius: 50%;
 	cursor: help;
+	transition: background-color 0.2s ease-in-out;
 }
 
+.udb-info:hover {
+	background-color: rgba(60, 67, 74, 0.16);
+	background-color: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+/* A Lucide-style "?" (circle-question-mark without the circle, cropped to the "?"), drawn in the current color */
 .udb-info::before {
-	content: "\f223"; /* dashicons-editor-help */
-	font: normal 20px/1 dashicons;
-	-webkit-font-smoothing: antialiased;
+	content: "";
+	display: block;
+	width: 14px;
+	height: 14px;
+	margin: 5px;
+	background-color: currentColor;
+	-webkit-mask: var(--udb-info-mask) center / 14px 14px no-repeat;
+	mask: var(--udb-info-mask) center / 14px 14px no-repeat;
+}
+
+.udb-widget-icon {
+	--udb-info-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%226%206%2012%2012%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9.09%209a3%203%200%200%201%205.83%201c0%202-3%203-3%203%22%2F%3E%3Cpath%20d%3D%22M12%2017h.01%22%2F%3E%3C%2Fsvg%3E");
 }
 
 .udb-tooltip {
