@@ -175,8 +175,8 @@ class Branding_Module extends Base_Module {
 		add_settings_field( 'udb-admin-menu-bg-color-field', __( 'Admin Menu Bg Color', 'ultimate-dashboard' ), array( $this, 'admin_menu_bg_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 		add_settings_field( 'udb-admin-submenu-bg-color-field', __( 'Admin Submenu Bg Color', 'ultimate-dashboard' ), array( $this, 'admin_submenu_bg_color_field' ), 'udb-admin-colors-settings', 'udb-admin-colors-section' );
 
-		add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Admin Bar Logo', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
-		add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Admin Bar Logo URL', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_url_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
+		add_settings_field( 'udb-branding-admin-bar-logo-image-field', __( 'Logo Image', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
+		add_settings_field( 'udb-branding-admin-bar-logo-url-field', __( 'Logo Link', 'ultimate-dashboard' ), array( $this, 'admin_bar_logo_url_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
 		add_settings_field( 'udb-branding-block-editor-logo-image-field', __( 'Block-Editor Logo', 'ultimate-dashboard' ), array( $this, 'block_editor_logo_field' ), 'udb-admin-logo-settings', 'udb-admin-logo-section' );
 
 		// Misc fields.
