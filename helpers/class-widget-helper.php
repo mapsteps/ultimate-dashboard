@@ -93,7 +93,16 @@ class Widget_Helper {
 
 					if ( false !== $widget ) {
 
-						$widget['title_stripped'] = wp_strip_all_tags( $widget['title'] );
+						$title = is_string( $widget['title'] ) ? $widget['title'] : '';
+
+						/*
+						 * Some titles also hold text that only shows without JavaScript (WP 7.1's "Quick Draft"
+						 * holds "Your Recent Drafts" in a .hide-if-js element): leave that out of the plain name.
+						 */
+						$title_stripped = preg_replace( '#<(\w+)[^>]*\bclass=["\'][^"\']*\bhide-if-js\b[^"\']*["\'][^>]*>.*?</\1>#is', '', $title );
+						$title_stripped = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $title_stripped ) ) );
+
+						$widget['title_stripped'] = '' !== $title_stripped ? $title_stripped : wp_strip_all_tags( $title );
 						$widget['context']        = $context;
 
 						$flat_widgets[ $id ] = $widget;

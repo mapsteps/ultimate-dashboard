@@ -182,7 +182,8 @@ class Admin_Page_Output extends Base_Output {
 	 */
 	public function add_menu( $post, $from_multisite = false ) {
 
-		$menu_title  = $post->post_title;
+		// Plain text: HTML in a title (allowed for admins) would leak into the whole admin menu.
+		$menu_title  = wp_strip_all_tags( $post->post_title );
 		$menu_slug   = $post->post_name;
 		$menu_type   = $post->menu_type;
 		$menu_parent = $post->menu_parent;

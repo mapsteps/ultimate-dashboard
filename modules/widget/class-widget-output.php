@@ -206,6 +206,9 @@ class Widget_Output extends Base_Output {
 
 				$link = is_string( $link ) ? $link : '';
 
+				// Placeholder tags like {site_url} (listed in the widget's Placeholder Tags box). The protocol check below runs on the result.
+				$link = $this->convert_placeholder_tags( $link );
+
 				if ( 0 === strpos( $link, './wp-admin/' ) ) {
 					// Prevent double wp-admin string ('/wp-admin/wp-admin/') when rendering the link.
 					$link = str_replace( './wp-admin/', './', $link );

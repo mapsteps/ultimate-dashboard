@@ -179,6 +179,10 @@ class Tool_Module extends Base_Module {
 		$process = require __DIR__ . '/inc/process-export.php';
 		$process();
 
+		// Only reached when there was nothing to export: go back to the tools page with the notice.
+		set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+		wp_safe_redirect( add_query_arg( 'settings-updated', 'true', $this->tools_url() ) );
 		exit;
 
 	}

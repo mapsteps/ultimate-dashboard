@@ -132,6 +132,20 @@ return function () {
 
 	$export_data = apply_filters( 'udb_export', $export_data );
 
+	// Nothing ticked, or only empty parts (PRO's included): no file, Tool_Module::process_export() goes back with this notice.
+	if ( ! is_array( $export_data ) || ! array_filter( $export_data ) ) {
+
+		add_settings_error(
+			'udb_export',
+			esc_attr( 'udb-export' ),
+			__( 'Nothing to export', 'ultimate-dashboard' ),
+			'warning'
+		);
+
+		return;
+
+	}
+
 	$time = strtotime( 'now' );
 	$time = false === $time ? null : $time;
 
