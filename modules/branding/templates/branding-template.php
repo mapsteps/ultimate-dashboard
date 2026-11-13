@@ -96,7 +96,12 @@ return function () {
 						?>
 
 						<div class="heatbox-overlay">
-							<p class="heatbox-overlay-note"><?php esc_html_e( 'Enable "WordPress Admin Branding" above to use these settings.', 'ultimate-dashboard' ); ?></p>
+							<p class="heatbox-overlay-note">
+								<?php
+								/* translators: %s: name of the "WordPress Admin Branding" box */
+								echo wp_kses( sprintf( __( 'Enable %s above to use these settings.', 'ultimate-dashboard' ), '<strong>' . esc_html__( 'WordPress Admin Branding', 'ultimate-dashboard' ) . '</strong>' ), array( 'strong' => array() ) );
+								?>
+							</p>
 						</div>
 
 						<?php
@@ -116,7 +121,12 @@ return function () {
 						?>
 
 						<div class="heatbox-overlay">
-							<p class="heatbox-overlay-note"><?php esc_html_e( 'Enable "WordPress Admin Branding" above to use these settings.', 'ultimate-dashboard' ); ?></p>
+							<p class="heatbox-overlay-note">
+								<?php
+								/* translators: %s: name of the "WordPress Admin Branding" box */
+								echo wp_kses( sprintf( __( 'Enable %s above to use these settings.', 'ultimate-dashboard' ), '<strong>' . esc_html__( 'WordPress Admin Branding', 'ultimate-dashboard' ) . '</strong>' ), array( 'strong' => array() ) );
+								?>
+							</p>
 						</div>
 
 						<?php
