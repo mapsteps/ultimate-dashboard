@@ -24,7 +24,7 @@
 	display: none;
 }
 
-/* White Label off: the box stays white, its contents fade, and a note says why (clicks are blocked). */
+/* White Label off: the box stays white, its settings fade, and a note says why (clicks are blocked). */
 .heatbox .heatbox-overlay {
 	position: absolute;
 	top: 0;
@@ -34,6 +34,12 @@
 	width: 100%;
 	height: 100%;
 	z-index: 100;
+}
+
+/* The box's title stays clear, above the faded layer (only while it's shown, so it never covers a color picker) */
+.heatbox:has(> .heatbox-overlay:not(.is-hidden)) > h2 {
+	position: relative;
+	z-index: 101;
 }
 
 .heatbox .heatbox-overlay-note {
