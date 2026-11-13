@@ -107,7 +107,7 @@
 	box-shadow: 0 0 0 2px var(--heatbox-surface), 0 0 0 4px var(--heatbox-accent);
 }
 
-/* All / Published / Trash and the search, in one row */
+/* All / Published / Trash */
 .udb-post-list .wrap .subsubsub {
 	margin: 0;
 	font-size: 14px;
@@ -123,10 +123,9 @@
 	font-weight: 600;
 }
 
+/* No search: these lists stay short */
 .udb-post-list .wrap .search-box {
-	display: flex;
-	gap: 8px;
-	margin-top: 0;
+	display: none;
 }
 
 .udb-post-list .wrap .tablenav {
@@ -171,7 +170,6 @@
 }
 
 /* Fields & buttons like heatbox's */
-.udb-post-list .wrap input[type="search"],
 .udb-post-list .wrap select {
 	min-height: var(--heatbox-control-height);
 	margin: 0;
@@ -189,20 +187,17 @@
 	padding-inline-end: 32px;
 }
 
-.udb-post-list .wrap input[type="search"]:hover,
 .udb-post-list .wrap select:hover {
 	border-color: var(--heatbox-control-border);
 }
 
-.udb-post-list .wrap input[type="search"]:focus,
 .udb-post-list .wrap select:focus {
 	border-color: var(--heatbox-accent);
 	outline: none;
 	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
 }
 
-.udb-post-list .wrap .tablenav .button,
-.udb-post-list .wrap .search-box .button {
+.udb-post-list .wrap .tablenav .button {
 	min-height: var(--heatbox-control-height);
 	margin: 0;
 	padding: 0 18px;
