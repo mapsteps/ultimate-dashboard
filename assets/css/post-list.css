@@ -22,6 +22,11 @@
 	font-size: 16px;
 }
 
+.udb-list-icon svg {
+	width: 16px;
+	height: 16px;
+}
+
 /* Save error under the "Active" toggle */
 .status-switch .heatbox-notice {
 	display: block;

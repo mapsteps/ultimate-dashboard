@@ -140,9 +140,12 @@ return function ( $module ) {
 							<?php do_settings_sections( 'udb-general-settings' ); ?>
 						</div>
 
-						<div class="heatbox">
-							<?php do_settings_sections( 'udb-misc-settings' ); ?>
-						</div>
+						<?php // "Remove Data on Uninstall" is the only Misc field: no empty box when it's hidden (PRO multisite). ?>
+						<?php if ( apply_filters( 'udb_show_data_removal_field', true ) ) : ?>
+							<div class="heatbox">
+								<?php do_settings_sections( 'udb-misc-settings' ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
 
 					<?php do_action( 'udb_after_general_panel' ); ?>

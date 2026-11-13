@@ -6,6 +6,7 @@
  */
 
 use Udb\AdminPage\Admin_Page_Module;
+use Udb\Helpers\Icon_Helper;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
@@ -97,10 +98,16 @@ return function ( $module, $column, $post_id ) {
 			break;
 
 		case 'icon':
-			$icon_class = get_post_meta( $post_id, 'udb_menu_icon', true );
-			$icon_class = $icon_class ? $icon_class : 'dashicons dashicons-no is-empty';
+			if ( 'submenu' === $menu_type ) {
+				echo esc_html__( 'None', 'ultimate-dashboard' );
+				break;
+			}
 
-			echo ( 'submenu' === $menu_type ? esc_html__( 'None', 'ultimate-dashboard' ) : wp_kses_post( '<span class="udb-list-icon"><i class="' . esc_attr( $icon_class ) . '"></i></span>' ) );
+			$icon = get_post_meta( $post_id, 'udb_menu_icon', true );
+			$icon = $icon ? $icon : 'dashicons dashicons-no is-empty';
+
+			// The icon HTML is built and escaped by the icon helper.
+			echo '<span class="udb-list-icon">' . ( new Icon_Helper() )->html( $icon ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			break;
 
 	}

@@ -212,14 +212,6 @@ class Setting_Module extends Base_Module {
 		);
 
 		// Misc fields.
-		add_settings_field(
-			'remove_font_awesome',
-			__( 'Remove Font Awesome', 'ultimate-dashboard' ),
-			array( $this, 'remove_fontawesome_field' ),
-			'udb-misc-settings',
-			'udb-misc-section'
-		);
-
 		$show_data_removal_field = apply_filters( 'udb_show_data_removal_field', true );
 
 		if ( $show_data_removal_field ) {
@@ -272,7 +264,7 @@ class Setting_Module extends Base_Module {
 		 */
 		$schema = array(
 			'flag'  => array_merge(
-				array( 'remove-all', 'welcome_panel', 'remove_help_tab', 'remove_screen_options', 'remove_font_awesome', 'remove-on-uninstall' ),
+				array( 'remove-all', 'welcome_panel', 'remove_help_tab', 'remove_screen_options', 'remove-on-uninstall' ),
 				Widget_Helper::DEFAULT_WIDGETS
 			),
 			'color' => array( 'icon_color', 'headline_color' ),
@@ -340,6 +332,9 @@ class Setting_Module extends Base_Module {
 		}
 
 		unset( $output['welcome_panel_is_default'] );
+
+		// "Remove Font Awesome" setting from before 3.9 (Font Awesome is gone).
+		unset( $output['remove_font_awesome'] );
 
 		return $output;
 
@@ -535,16 +530,6 @@ class Setting_Module extends Base_Module {
 		</p>
 
 		<?php
-
-	}
-
-	/**
-	 * Remove Font Awesome field.
-	 */
-	public function remove_fontawesome_field() {
-
-		$field = require __DIR__ . '/templates/fields/remove-font-awesome.php';
-		$field();
 
 	}
 

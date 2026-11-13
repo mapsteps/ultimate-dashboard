@@ -5,6 +5,8 @@
  * @package Ultimate_Dashboard
  */
 
+use Udb\Helpers\Icon_Helper;
+
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return function () {
@@ -12,7 +14,7 @@ return function () {
 	global $post;
 
 	$icon        = get_post_meta( $post->ID, 'udb_icon_key', true );
-	$icon        = $icon ? $icon : 'dashicons dashicons-menu';
+	$icon        = $icon ? $icon : 'layout-dashboard';
 	$tooltip     = get_post_meta( $post->ID, 'udb_tooltip', true );
 	$link        = get_post_meta( $post->ID, 'udb_link', true );
 	$link_target = get_post_meta( $post->ID, 'udb_link_target', true );
@@ -30,7 +32,7 @@ return function () {
 						<label class="udb-field-label" for="udb_icon_button"><?php esc_html_e( 'Icon', 'ultimate-dashboard' ); ?></label>
 						<div class="udb-icon-field">
 							<button type="button" class="icon-picker" id="udb_icon_button" aria-label="<?php esc_attr_e( 'Change icon', 'ultimate-dashboard' ); ?>">
-								<i class="<?php echo esc_attr( $icon ); ?>" aria-hidden="true"></i>
+								<?php echo ( new Icon_Helper() )->html( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built & escaped by the icon helper. ?>
 							</button>
 							<input type="hidden" name="udb_icon" id="udb_icon" value="<?php echo esc_attr( $icon ); ?>">
 						</div>

@@ -50,6 +50,11 @@
 	font-size: 32px;
 }
 
+.udb-icon-row .icon-picker svg {
+	width: 32px;
+	height: 32px;
+}
+
 #udb-main-metabox .udb-icon-row textarea {
 	display: block;
 	height: 72px;

@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use Udb\Base\Base_Output;
 use Udb\Helpers\Array_Helper;
+use Udb\Helpers\Icon_Helper;
 use WP_Post;
 
 /**
@@ -149,43 +150,7 @@ class Admin_Page_Output extends Base_Output {
 
 		unset( $post );
 
-		if ( 'parent' === $menu_type ) {
-			$this->maybe_enqueue_font_awesome( $posts );
-		}
-
 		return $posts;
-	}
-
-	/**
-	 * Load Font Awesome only where it's needed: when a top-level admin page uses a Font Awesome menu icon
-	 * (the menu is on every screen), or on an admin page itself (its content may use Font Awesome icons).
-	 *
-	 * @param WP_Post[] $parent_pages The active top-level admin pages.
-	 */
-	private function maybe_enqueue_font_awesome( $parent_pages ) {
-
-		if ( ! apply_filters( 'udb_font_awesome', true ) ) {
-			return;
-		}
-
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only reads which admin page is open.
-		$current_page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
-		$needed       = 0 === strpos( $current_page, 'udb_page_' );
-
-		foreach ( $parent_pages as $page ) {
-			if ( $page->icon_class && false === stripos( $page->icon_class, 'dashicons' ) ) {
-				$needed = true;
-				break;
-			}
-		}
-
-		if ( ! $needed ) {
-			return;
-		}
-
-		wp_enqueue_style( 'font-awesome', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/font-awesome.min.css', array(), '5.14.0' );
-		wp_enqueue_style( 'font-awesome-shims', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/v4-shims.min.css', array(), '5.14.0' );
-
 	}
 
 	/**
@@ -224,10 +189,11 @@ class Admin_Page_Output extends Base_Output {
 		$menu_order  = $post->menu_order;
 		$icon_class  = $post->icon_class;
 
-		$is_font_awesome = false === stripos( $icon_class, 'dashicons ' );
+		$icon_helper = new Icon_Helper();
+		$is_svg_icon = $icon_class && ! $icon_helper->is_dashicon( $icon_class );
 
-		// Font Awesome icons are added with CSS (add_menu_icon()). "none" keeps WordPress from printing an image for them.
-		$menu_icon = $is_font_awesome ? 'none' : str_ireplace( 'dashicons ', '', $icon_class );
+		// Lucide icons (and old Font Awesome ones) are added with CSS (add_menu_icon()). "none" keeps WordPress from printing an image for them.
+		$menu_icon = $is_svg_icon ? 'none' : trim( str_ireplace( 'dashicons ', '', (string) $icon_class ) );
 
 		$screen_id = 'udb_page_' . $menu_slug;
 
@@ -244,7 +210,7 @@ class Admin_Page_Output extends Base_Output {
 				$menu_order
 			);
 
-			if ( $is_font_awesome ) {
+			if ( $is_svg_icon ) {
 				add_action(
 					'admin_head',
 					function () use ( $menu_slug, $icon_class ) {
@@ -312,49 +278,34 @@ class Admin_Page_Output extends Base_Output {
 	}
 
 	/**
-	 * Add FontAwesome menu icon.
+	 * Add a Lucide menu icon: drawn with a CSS mask in the menu's own icon color.
 	 *
 	 * @param string $menu_slug The menu slug.
-	 * @param string $icon_class The icon class.
+	 * @param string $icon_class The saved icon: a Lucide name or old Font Awesome classes.
 	 */
 	public function add_menu_icon( $menu_slug, $icon_class ) {
-		$unicodes = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/json/fontawesome5-unicodes.json' );
-		$unicodes = json_decode( $unicodes, true );
-		$unicodes = is_null( $unicodes ) ? array() : $unicodes;
 
-		// Compatibility.
-		$unicodes_fa4 = file_get_contents( ULTIMATE_DASHBOARD_PLUGIN_DIR . '/assets/json/fontawesome4-unicodes.json' );
-		$unicodes_fa4 = json_decode( $unicodes_fa4, true );
-		$unicodes_fa4 = is_null( $unicodes_fa4 ) ? array() : $unicodes_fa4;
-
-		$icon_unicode = '\f013';
-
-		if ( isset( $unicodes[ $icon_class ] ) ) {
-			$icon_unicode = $unicodes[ $icon_class ];
-		} elseif ( isset( $unicodes_fa4[ $icon_class ] ) ) {
-			$icon_unicode = $unicodes_fa4[ $icon_class ];
-		}
+		// The data URL is fully percent-encoded: no quotes or parentheses that could end the CSS value.
+		$mask = 'url(' . ( new Icon_Helper() )->mask_url( $icon_class ) . ')';
 		?>
 
 		<style>
-		#toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> .wp-menu-image::before {
-			content: "<?php echo esc_attr( $icon_unicode ); ?>";
-
-			<?php if ( false !== stripos( $icon_class, 'fab ' ) ) : ?>
-				font-family: "Font Awesome 5 Brands";
-			<?php else : ?>
-				font-family: "Font Awesome 5 Free";
-			<?php endif; ?>
-
-			<?php if ( false !== stripos( $icon_class, 'fas ' ) ) : ?>
-				font-weight: 900;
-			<?php elseif ( false !== stripos( $icon_class, 'far ' ) ) : ?>
-				font-weight: 400;
-			<?php endif; ?>
+		#adminmenu #toplevel_page_udb_page_<?php echo esc_attr( $menu_slug ); ?> div.wp-menu-image::before {
+			content: "";
+			display: block;
+			box-sizing: border-box;
+			width: 20px;
+			height: 20px;
+			margin: 7px auto 0;
+			padding: 0;
+			background-color: currentColor;
+			-webkit-mask: <?php echo esc_attr( $mask ); ?> center / 20px 20px no-repeat;
+			mask: <?php echo esc_attr( $mask ); ?> center / 20px 20px no-repeat;
 		}
 		</style>
 
 		<?php
+
 	}
 
 	/**

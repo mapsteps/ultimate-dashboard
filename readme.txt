@@ -94,6 +94,9 @@ Go to *Ultimate Dashboard → Add Dashboard Widget*. All your widgets are listed
 = I changed the login URL and forgot it. How do I log in? =
 Rename the `ultimate-dashboard` folder in `/wp-content/plugins/` via FTP or your host's file manager. This turns the plugin off and the default `/wp-login.php` works again. Rename it back once you're logged in and check the URL under *Ultimate Dashboard → Login Redirect*.
 
+= Which icons can I use? =
+Any of the 2,000+ [Lucide](https://lucide.dev) icons, or WordPress' own Dashicons. Click the icon on an icon widget or admin page and search by name or topic.
+
 = Can I turn off the parts I don't use? =
 Yes. Go to *Ultimate Dashboard → Modules* and switch off any module, for example the Login Customizer or Admin Pages.
 
@@ -126,6 +129,8 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 = 3.9 | November 13, 2026 =
 * New: Refreshed design on every Ultimate Dashboard screen, incl. the widget & admin page lists and edit screens, also on phones
 * New: Icon picker for icon widgets, admin pages & the menu editors
+* New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon
+* Tweak: Font Awesome is no longer loaded, so the "Remove Font Awesome" setting is gone
 * New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
 * Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
 * Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused

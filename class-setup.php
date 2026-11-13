@@ -411,17 +411,15 @@ class Setup {
 	}
 
 	/**
-	 * Register the icon picker (widget & admin page screens enqueue it).
+	 * Register the icon picker (widget, admin page & menu editor screens enqueue it).
 	 *
-	 * The icon lists are loaded by the picker when it's opened; Font Awesome only if it's loaded.
+	 * The icons are loaded by the picker when it's opened: the Lucide icons, their search words & the Dashicons.
 	 */
 	public function register_icon_picker() {
 
-		$urls = array( ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/json/dashicons.json' );
-
-		if ( apply_filters( 'udb_font_awesome', true ) ) {
-			$urls[] = ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/json/fontawesome5.json';
-		}
+		$url = function ( $path ) {
+			return add_query_arg( 'ver', ULTIMATE_DASHBOARD_PLUGIN_VERSION, ULTIMATE_DASHBOARD_PLUGIN_URL . $path );
+		};
 
 		wp_register_style( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/css/icon-picker.css', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION );
 		wp_register_script( 'icon-picker', ULTIMATE_DASHBOARD_PLUGIN_URL . '/assets/js/icon-picker.js', array(), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
@@ -430,17 +428,16 @@ class Setup {
 			'icon-picker',
 			'udbIconPicker',
 			array(
-				'urls'   => array_map(
-					function ( $url ) {
-						return add_query_arg( 'ver', ULTIMATE_DASHBOARD_PLUGIN_VERSION, $url );
-					},
-					$urls
-				),
-				'labels' => array(
-					'search'  => __( 'Search icons', 'ultimate-dashboard' ),
-					'loading' => __( 'Loading icons…', 'ultimate-dashboard' ),
-					'none'    => __( 'No icons found.', 'ultimate-dashboard' ),
-					'error'   => __( 'The icons could not be loaded.', 'ultimate-dashboard' ),
+				'lucideUrl'    => $url( '/assets/icons/lucide.json' ),
+				'tagsUrl'      => $url( '/assets/icons/lucide-tags.json' ),
+				'dashiconsUrl' => $url( '/assets/json/dashicons.json' ),
+				'labels'       => array(
+					'search'    => __( 'Search icons', 'ultimate-dashboard' ),
+					'loading'   => __( 'Loading icons…', 'ultimate-dashboard' ),
+					'none'      => __( 'No icons found.', 'ultimate-dashboard' ),
+					'error'     => __( 'The icons could not be loaded.', 'ultimate-dashboard' ),
+					'lucide'    => __( 'Icons', 'ultimate-dashboard' ),
+					'dashicons' => __( 'WordPress icons', 'ultimate-dashboard' ),
 				),
 			)
 		);

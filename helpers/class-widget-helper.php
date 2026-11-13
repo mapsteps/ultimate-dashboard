@@ -276,6 +276,9 @@ class Widget_Helper {
 			}
 		}
 
+		// Inline SVG icons (icon widgets).
+		$allowed_tags = array_merge( $allowed_tags, ( new Icon_Helper() )->allowed_svg_tags() );
+
 		return apply_filters( 'udb_html_widget_allowed_tags', $allowed_tags );
 
 	}

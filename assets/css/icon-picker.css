@@ -1,5 +1,5 @@
 /**
- * Icon picker (same picker as Better Admin Bar's).
+ * Icon picker (same picker as Better Admin Bar's): Lucide icons (inline SVG) & Dashicons.
  */
 
 /* The field: the button shows the current icon in a light accent box; the picker opens below it */
@@ -32,6 +32,11 @@
 	width: auto;
 	height: auto;
 	font-size: 20px;
+}
+
+.udb-icon-field .icon-picker svg {
+	width: 20px;
+	height: 20px;
 }
 
 .udb-icon-field .icon-picker:disabled {
@@ -135,6 +140,24 @@
 	width: auto;
 	height: auto;
 	font-size: 18px;
+}
+
+.icon-picker-container .icon-picker-item svg {
+	width: 18px;
+	height: 18px;
+}
+
+/* Heading above each icon set (hidden while searching) */
+.icon-picker-container ul .icon-picker-group {
+	grid-column: 1 / -1;
+	margin: 8px 0 2px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--heatbox-text-muted, #646970);
+}
+
+.icon-picker-container ul .icon-picker-group:first-child {
+	margin-top: 0;
 }
 
 .icon-picker-container .icon-picker-item:hover,

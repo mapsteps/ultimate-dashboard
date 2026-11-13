@@ -44,16 +44,20 @@
 	box-shadow: none;
 }
 
-[id*='ms-udb'] .inside > a > .fa,
-[id*='ms-udb'] .inside > a > .fas,
-[id*='ms-udb'] .inside > a > .fab,
-[id*='ms-udb'] .inside > a > .far,
+[id*='ms-udb'] .inside > a > .udb-icon,
 [id*='ms-udb'] .inside > a > .dashicons {
 	display: block;
 	width: auto;
 	height: auto;
 	font-size: 80px;
 	transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* Lucide icons: a thinner line at this size */
+[id*='ms-udb'] .inside > a > .udb-icon {
+	width: 80px;
+	height: 80px;
+	stroke-width: 1.5;
 }
 
 [id*='ms-udb'] .inside > a:hover > *,

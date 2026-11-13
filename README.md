@@ -31,7 +31,7 @@ Create custom WordPress dashboard widgets and send your clients and users to the
 - Remove all/individual default WordPress dashboard widgets
 - Create your own set of icon widgets
 - Create text widgets
-- Choose between FontAwesome & WordPress Dashicons for your icon widgets
+- Choose from 2,000+ Lucide icons & WordPress Dashicons for your icon widgets & admin pages
 - Import/Export widgets & settings
 - Add custom CSS to your WordPress dashboard
 
@@ -55,7 +55,6 @@ Get even more Features with [Ultimate Dashboard PRO](#ultimate-dashboard-pro).
 ## Available Hooks
 
 #### Filter hooks
-- `udb_font_awesome` : Whether or not to enqueue Font Awesome css.
 - `udb_modules` : Filter to manage what modules should be loaded.
 - `udb_{$module}` : Filter to determine whether or not to enable a module. E.g: `udb_login_customizer`
 

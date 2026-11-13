@@ -31,6 +31,7 @@ udb_admin_menu_not_doing_ajax();
 require __DIR__ . '/helpers/class-screen-helper.php';
 require __DIR__ . '/helpers/class-color-helper.php';
 require __DIR__ . '/helpers/class-widget-helper.php';
+require __DIR__ . '/helpers/class-icon-helper.php';
 require __DIR__ . '/helpers/class-content-helper.php';
 require __DIR__ . '/helpers/class-user-helper.php';
 require __DIR__ . '/helpers/class-array-helper.php';

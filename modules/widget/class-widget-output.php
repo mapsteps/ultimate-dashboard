@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 use WP_Query;
 use Udb\Base\Base_Output;
+use Udb\Helpers\Icon_Helper;
 use Udb\Helpers\Widget_Helper;
 
 /**
@@ -211,11 +212,11 @@ class Widget_Output extends Base_Output {
 				}
 
 				$output = sprintf(
-					'<a href="%1$s" target="%2$s"><i class="%3$s"></i></a>',
+					'<a href="%1$s" target="%2$s">%3$s</a>',
 					// Not esc_url(): it would break relative paths (./post-new.php). Still drop unsafe protocols like javascript:.
 					esc_attr( wp_kses_bad_protocol( $link, wp_allowed_protocols() ) ),
 					esc_attr( $target ),
-					esc_attr( $icon )
+					( new Icon_Helper() )->html( $icon )
 				);
 
 				if ( $tooltip ) {

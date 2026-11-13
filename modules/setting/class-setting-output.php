@@ -81,8 +81,6 @@ class Setting_Output extends Base_Output {
 		add_action( 'admin_head', array( self::get_instance(), 'remove_help_tab' ) );
 		add_filter( 'screen_options_show_screen', array( self::get_instance(), 'remove_screen_options_tab' ) );
 		add_action( 'init', array( self::get_instance(), 'remove_admin_bar' ) );
-		// On init, not admin_init: admin pages load Font Awesome for their menu icons on admin_menu, which runs before admin_init.
-		add_action( 'init', array( self::get_instance(), 'remove_font_awesome' ) );
 
 	}
 
@@ -275,16 +273,10 @@ class Setting_Output extends Base_Output {
 	}
 
 	/**
-	 * Remove Font Awesome.
+	 * Remove Font Awesome: does nothing since 3.9, Font Awesome is gone.
+	 *
+	 * Kept because PRO's multisite settings call it.
 	 */
-	public function remove_font_awesome() {
-
-		$settings = get_option( 'udb_settings' );
-
-		if ( isset( $settings['remove_font_awesome'] ) ) {
-			add_filter( 'udb_font_awesome', '__return_false' );
-		}
-
-	}
+	public function remove_font_awesome() {}
 
 }
