@@ -73,7 +73,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 10px 20px;
+	gap: 10px;
+}
+
+/* Last step: both buttons side by side, half the width each (stacked when they don't fit) */
+[data-udb-step="finished"] .udb-onboarding-actions .button {
+	flex: 1 1 0;
+	min-width: max-content;
+	justify-content: center;
+	text-align: center;
 }
 
 /* Skip, step count and Next below the steps */
