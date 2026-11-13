@@ -44,6 +44,7 @@ class Widget_Module extends Base_Module {
 		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_dropdown' ), 10, 2 );
 		add_filter( 'bulk_actions-edit-udb_widgets', array( $this, 'bulk_actions' ) );
 		add_action( 'in_admin_header', array( $this, 'list_header' ) );
+		add_action( 'manage_posts_extra_tablenav', array( $this, 'add_new_button' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
@@ -161,6 +162,27 @@ class Widget_Module extends Base_Module {
 	public function bulk_actions( $actions ) {
 
 		return array_intersect_key( $actions, array_flip( array( 'trash', 'untrash', 'delete' ) ) );
+
+	}
+
+	/**
+	 * "Add …" button at the right end of the row above the list (instead of next to the title).
+	 *
+	 * @param string $which Which row: "top" or "bottom".
+	 */
+	public function add_new_button( $which ) {
+
+		$post_type = get_post_type_object( 'udb_widgets' );
+
+		if ( 'top' !== $which || ! $this->screen()->is_widget_list() || ! current_user_can( $post_type->cap->create_posts ) ) {
+			return;
+		}
+
+		printf(
+			'<a href="%s" class="udb-add-new">%s</a>',
+			esc_url( admin_url( 'post-new.php?post_type=udb_widgets' ) ),
+			esc_html( $post_type->labels->add_new_item )
+		);
 
 	}
 

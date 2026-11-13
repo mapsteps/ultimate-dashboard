@@ -66,14 +66,19 @@
 	display: none;
 }
 
+/* WordPress' "Add …" next to the title is hidden; ours (udb-add-new) sits at the right end of the row above the table */
+.udb-post-list .wrap > .page-title-action {
+	display: none;
+}
+
 /* "Add …": the main action, as a large primary button */
-.udb-post-list .wrap .page-title-action {
-	position: static;
-	display: flex; /* On its own line, above All / Published */
-	width: fit-content;
+.udb-post-list .wrap .udb-add-new {
+	order: 2;
+	display: inline-flex;
 	align-items: center;
 	min-height: var(--heatbox-control-height);
 	margin: 0;
+	text-decoration: none;
 	padding: 0 18px;
 	font-size: 14px;
 	font-weight: 500;
@@ -84,13 +89,13 @@
 	transition: background-color var(--heatbox-transition), border-color var(--heatbox-transition);
 }
 
-.udb-post-list .wrap .page-title-action:hover {
+.udb-post-list .wrap .udb-add-new:hover {
 	color: var(--heatbox-text-on-accent);
 	background: var(--heatbox-accent-darker);
 	border-color: var(--heatbox-accent-darker);
 }
 
-.udb-post-list .wrap .page-title-action:focus {
+.udb-post-list .wrap .udb-add-new:focus {
 	color: var(--heatbox-text-on-accent);
 	outline: none;
 	box-shadow: 0 0 0 2px var(--heatbox-surface), 0 0 0 4px var(--heatbox-accent);
@@ -98,7 +103,7 @@
 
 /* All / Published / Trash and the search, in one row */
 .udb-post-list .wrap .subsubsub {
-	margin: 24px 0 0;
+	margin: 0;
 	font-size: 14px;
 	line-height: var(--heatbox-control-height);
 }
@@ -115,13 +120,38 @@
 .udb-post-list .wrap .search-box {
 	display: flex;
 	gap: 8px;
-	margin-top: 24px;
+	margin-top: 0;
 }
 
 .udb-post-list .wrap .tablenav {
 	height: auto;
 	margin: 16px 0;
 	padding: 0;
+}
+
+/* Row above the table: bulk actions on the left, item count and "Add …" on the right */
+.udb-post-list .wrap .tablenav.top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 16px;
+}
+
+.udb-post-list .wrap .tablenav.top > * {
+	float: none;
+}
+
+.udb-post-list .wrap .tablenav.top .tablenav-pages {
+	order: 1;
+	margin-left: auto;
+}
+
+.udb-post-list .wrap .tablenav.top:has(.no-pages) .udb-add-new {
+	margin-left: auto;
+}
+
+.udb-post-list .wrap .tablenav.top br.clear {
+	display: none;
 }
 
 .udb-post-list .wrap .tablenav .actions {
