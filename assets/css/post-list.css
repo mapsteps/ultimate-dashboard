@@ -247,10 +247,6 @@
 	border-top: 1px solid var(--heatbox-box-border);
 }
 
-.udb-post-list .wp-list-table tbody > tr:hover {
-	background: var(--heatbox-surface-hover);
-}
-
 .udb-post-list .wp-list-table tbody td,
 .udb-post-list .wp-list-table tbody th {
 	padding-top: 16px;
@@ -279,7 +275,7 @@
 	margin: 0;
 }
 
-/* The row already lights up on hover; no second gray box around the checkbox */
+/* No gray box around the checkbox on hover */
 .udb-post-list .check-column label:hover,
 .udb-post-list .check-column input:hover + label {
 	background: transparent;
