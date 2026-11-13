@@ -46,9 +46,10 @@ return function () {
 
 				<div class="heatbox">
 					<h2><?php esc_html_e( 'Export', 'ultimate-dashboard' ); ?></h2>
-					<form class="heatbox-content" method="post" action="options.php">
+					<form class="heatbox-content" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+						<input type="hidden" name="action" value="udb_tools_export">
 						<?php
-						settings_fields( 'udb-export-group' );
+						wp_nonce_field( 'udb_tools_export', 'udb_tools_nonce' );
 						Udb\Tool\Tool_Module::get_instance()->render_export_field();
 						?>
 						<p>
@@ -59,9 +60,10 @@ return function () {
 
 				<div class="heatbox">
 					<h2><?php esc_html_e( 'Import', 'ultimate-dashboard' ); ?></h2>
-					<form class="heatbox-content" method="post" action="options.php" enctype="multipart/form-data">
+					<form class="heatbox-content" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data">
+						<input type="hidden" name="action" value="udb_tools_import">
 						<?php
-						settings_fields( 'udb-import-group' );
+						wp_nonce_field( 'udb_tools_import', 'udb_tools_nonce' );
 						Udb\Tool\Tool_Module::get_instance()->render_import_field();
 						?>
 						<p>

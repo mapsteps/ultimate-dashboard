@@ -85,7 +85,7 @@ $button_text_color_hover   = isset( $login['button_text_color_hover'] ) ? $login
 $button_bg_color           = isset( $login['button_bg_color'] ) ? $login['button_bg_color'] : '';
 $button_bg_color           = ! $button_bg_color && $has_accent_color ? $accent_color : $button_bg_color; // Additional checking to inherit wp-admin accent color by default.
 $button_bg_color_hover     = isset( $login['button_bg_color_hover'] ) ? $login['button_bg_color_hover'] : '';
-$button_bg_color_hover     = ! $button_bg_color && $has_accent_color ? $accent_color : $button_bg_color_hover; // Additional checking to inherit wp-admin accent color by default.
+$button_bg_color_hover     = ! $button_bg_color_hover && $has_accent_color ? $accent_color : $button_bg_color_hover; // Additional checking to inherit wp-admin accent color by default.
 $button_border_radius      = isset( $login['button_border_radius'] ) ? $login['button_border_radius'] : '';
 
 $footer_link_color       = isset( $login['footer_link_color'] ) ? $login['footer_link_color'] : '';

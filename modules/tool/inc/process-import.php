@@ -13,9 +13,9 @@ return function () {
 
 	$array_helper = new Array_Helper();
 
-	// Runs inside options.php, which already checked the nonce and capability (settings_fields).
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- See above; only name and tmp_name are used, checked below.
-	$import_file = isset( $_FILES['udb_import_file'] ) ? $_FILES['udb_import_file'] : null;
+	// Runs in Tool_Module::process_import(), which already checked the nonce and capability.
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- See above; only name, error and tmp_name are used, checked below.
+	$import_file = isset( $_FILES['udb_import_file'] ) && is_array( $_FILES['udb_import_file'] ) ? $_FILES['udb_import_file'] : null;
 
 	/**
 	 * Build the post data for wp_insert_post() / wp_update_post() from an imported post.
@@ -43,7 +43,7 @@ return function () {
 
 	};
 
-	if ( is_null( $import_file ) ) {
+	if ( is_null( $import_file ) || empty( $import_file['name'] ) || ( isset( $import_file['error'] ) && UPLOAD_ERR_NO_FILE === (int) $import_file['error'] ) ) {
 
 		add_settings_error(
 			'udb_export',
@@ -72,9 +72,9 @@ return function () {
 
 	}
 
-	$tmp_file = $import_file['tmp_name'];
+	$tmp_file = isset( $import_file['tmp_name'] ) ? $import_file['tmp_name'] : '';
 
-	if ( empty( $tmp_file ) ) {
+	if ( empty( $tmp_file ) || ( isset( $import_file['error'] ) && UPLOAD_ERR_OK !== (int) $import_file['error'] ) || ! is_uploaded_file( $tmp_file ) ) {
 
 		add_settings_error(
 			'udb_export',
@@ -131,7 +131,13 @@ return function () {
 
 	}
 
-	if ( $modules_manager_settings || $settings || $branding_settings || $login_customizer_settings || $login_redirect_settings ) {
+	$has_free_settings = $modules_manager_settings || $settings || $branding_settings || $login_customizer_settings || $login_redirect_settings;
+
+	/*
+	 * PRO imports its network settings on "udb_import_settings", so it also runs for a file
+	 * that only holds those (an export of PRO's network settings alone).
+	 */
+	if ( $has_free_settings || ! empty( $imports['multisite_settings'] ) ) {
 
 		if ( $modules_manager_settings ) {
 			update_option( 'udb_modules', $modules_manager_settings );
@@ -155,13 +161,14 @@ return function () {
 
 		do_action( 'udb_import_settings', $imports );
 
-		add_settings_error(
-			'udb_export',
-			esc_attr( 'udb-import' ),
-			__( 'Settings imported', 'ultimate-dashboard' ),
-			'updated'
-		);
-
+		if ( $has_free_settings ) {
+			add_settings_error(
+				'udb_export',
+				esc_attr( 'udb-import' ),
+				__( 'Settings imported', 'ultimate-dashboard' ),
+				'updated'
+			);
+		}
 	}
 
 	if ( $widgets ) {

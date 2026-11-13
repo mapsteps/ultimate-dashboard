@@ -107,13 +107,37 @@ class Tool_Module extends Base_Module {
 	}
 
 	/**
-	 * Add settings.
+	 * Register the export & import form handlers (admin-post.php).
+	 *
+	 * Kept on "admin_init" under this name: PRO's multisite module unhooks it on non-blueprint sites,
+	 * which switches the tools off there. admin-post.php runs "admin_init" before the handlers.
 	 */
 	public function add_settings() {
 
-		// The forms post to options.php; the sanitize callbacks do the work.
-		register_setting( 'udb-export-group', 'udb_export', array( 'sanitize_callback' => array( $this, 'process_export' ) ) );
-		register_setting( 'udb-import-group', 'udb_import', array( 'sanitize_callback' => array( $this, 'process_import' ) ) );
+		add_action( 'admin_post_udb_tools_export', array( $this, 'process_export' ) );
+		add_action( 'admin_post_udb_tools_import', array( $this, 'process_import' ) );
+
+	}
+
+	/**
+	 * Whether the current user may use the tools.
+	 *
+	 * @return bool
+	 */
+	public function can_use_tools() {
+
+		return current_user_can( 'manage_options' ) && current_user_can( apply_filters( 'udb_tools_capability', 'manage_options' ) );
+
+	}
+
+	/**
+	 * The URL of the tools page.
+	 *
+	 * @return string
+	 */
+	public function tools_url() {
+
+		return admin_url( 'edit.php?post_type=udb_widgets&page=udb_tools' );
 
 	}
 
@@ -142,33 +166,36 @@ class Tool_Module extends Base_Module {
 	}
 
 	/**
-	 * Process the export.
+	 * Process the export (admin-post.php?action=udb_tools_export): sends the .json file.
 	 */
 	public function process_export() {
+
+		check_admin_referer( 'udb_tools_export', 'udb_tools_nonce' );
+
+		if ( ! $this->can_use_tools() ) {
+			wp_die( esc_html__( 'Sorry, you are not allowed to export these settings.', 'ultimate-dashboard' ), 403 );
+		}
 
 		$process = require __DIR__ . '/inc/process-export.php';
 		$process();
 
+		exit;
+
 	}
 
 	/**
-	 * Process the import.
+	 * Process the import (admin-post.php?action=udb_tools_import), then go back to the tools page.
 	 *
-	 * Runs as the sanitize callback of the "udb_import" setting. It returns false, which equals the value
-	 * of an option that doesn't exist, so WordPress stores nothing (no empty "udb_import" option) and
-	 * doesn't call the callback a second time through add_option(). The static flag is a safety net.
-	 *
-	 * @return false
+	 * The notices are added with add_settings_error() (PRO adds its own the same way) and shown
+	 * on the tools page, like options.php does it.
 	 */
 	public function process_import() {
 
-		static $done = false;
+		check_admin_referer( 'udb_tools_import', 'udb_tools_nonce' );
 
-		if ( $done ) {
-			return false;
+		if ( ! $this->can_use_tools() ) {
+			wp_die( esc_html__( 'Sorry, you are not allowed to import these settings.', 'ultimate-dashboard' ), 403 );
 		}
-
-		$done = true;
 
 		// Older versions left an empty "udb_import" option behind on every import.
 		delete_option( 'udb_import' );
@@ -176,7 +203,10 @@ class Tool_Module extends Base_Module {
 		$process = require __DIR__ . '/inc/process-import.php';
 		$process();
 
-		return false;
+		set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+		wp_safe_redirect( add_query_arg( 'settings-updated', 'true', $this->tools_url() ) );
+		exit;
 
 	}
 

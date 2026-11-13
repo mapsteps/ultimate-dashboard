@@ -13,7 +13,7 @@ return function () {
 
 	$array_helper = new Array_Helper();
 
-	// Runs inside options.php, which already checked the nonce and capability (settings_fields).
+	// Runs in Tool_Module::process_export(), which already checked the nonce and capability.
 	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- See above; sanitized by map_deep().
 	$selected_modules = isset( $_POST['udb_export_modules'] ) && is_array( $_POST['udb_export_modules'] ) ? map_deep( wp_unslash( $_POST['udb_export_modules'] ), 'sanitize_key' ) : array();
 
