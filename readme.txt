@@ -130,6 +130,7 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * New: Refreshed design on every Ultimate Dashboard screen, incl. the widget & admin page lists and edit screens, also on phones
 * New: Icon picker for icon widgets, admin pages & the menu editors
 * New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon
+* New: Icon widgets show their icon in a soft color chip, tinted with the icon color
 * Tweak: Font Awesome is no longer loaded, so the "Remove Font Awesome" setting is gone
 * New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
 * Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages

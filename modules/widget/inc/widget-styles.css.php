@@ -12,7 +12,7 @@ $icon_color     = isset( $settings['icon_color'] ) ? $settings['icon_color'] : '
 $headline_color = isset( $settings['headline_color'] ) ? $settings['headline_color'] : '#23282d';
 ?>
 
-<?php if ( $icon_color && '#555555' !== $icon_color ) : ?>
+<?php if ( $icon_color && '#555555' !== strtolower( $icon_color ) ) : ?>
 
 	[id*='ms-udb'] .udb-icon,
 	[id*='ms-udb'] .dashicons,
