@@ -356,6 +356,9 @@ class Admin_Bar_Module extends Base_Module {
 				} else {
 					$pos = array_search( $prev_id, array_keys( $saved_menu ), true );
 
+					// Insert right after the previous item.
+					$pos = false === $pos ? 0 : $pos + 1;
+
 					$saved_menu = array_slice( $saved_menu, 0, $pos, true ) +
 						array( $menu_id => $new_item ) +
 						array_slice( $saved_menu, $pos, count( $saved_menu ) - 1, true );
