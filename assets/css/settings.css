@@ -24,16 +24,24 @@
 	display: none;
 }
 
-.dark-mode .heatbox .heatbox-overlay {
-	background-color: rgba(255, 255, 255, 0.75);
-}
-
+/* White Label off: the box stays white, its contents fade, and a note says why (clicks are blocked). */
 .heatbox .heatbox-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: inherit;
 	width: 100%;
 	height: 100%;
 	z-index: 100;
+}
+
+.heatbox .heatbox-overlay-note {
+	position: absolute;
+	top: 0;
+	right: 24px;
+	margin: 0;
+	line-height: 56px;
+	font-size: 13px;
+	color: #646970;
 }

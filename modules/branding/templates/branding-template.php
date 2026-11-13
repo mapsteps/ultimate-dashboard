@@ -95,7 +95,9 @@ return function () {
 					if ( $is_pro ) {
 						?>
 
-						<div class="heatbox-overlay"></div>
+						<div class="heatbox-overlay">
+							<p class="heatbox-overlay-note"><?php esc_html_e( 'Enable White Label above to use these settings.', 'ultimate-dashboard' ); ?></p>
+						</div>
 
 						<?php
 					}
@@ -113,7 +115,9 @@ return function () {
 					if ( $is_pro ) {
 						?>
 
-						<div class="heatbox-overlay"></div>
+						<div class="heatbox-overlay">
+							<p class="heatbox-overlay-note"><?php esc_html_e( 'Enable White Label above to use these settings.', 'ultimate-dashboard' ); ?></p>
+						</div>
 
 						<?php
 					}
