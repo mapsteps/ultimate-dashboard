@@ -7,7 +7,7 @@
 	align-items: start;
 }
 
-/* Below the checkbox list; holds what the "udb_export_fields" hook adds (the script moves PRO's checkboxes into the list) */
-.udb-export-more {
+/* The export checkboxes (PRO's are printed right in the list): room above "Select All" */
+.udb-tools-page .setting-fields {
 	margin-bottom: 20px;
 }
