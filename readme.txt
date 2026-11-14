@@ -126,21 +126,28 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * New: Icon picker for icon widgets, admin pages & the menu editors
 * New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon
 * New: Icon widgets show their icon in a soft color chip, tinted with the icon color
+* New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
+* New: Try out the Admin Bar Editor in the free version
 * Tweak: The default icon/text & headline colors now match WordPress' own text & headline colors
 * Tweak: Font Awesome is no longer loaded, so the "Remove Font Awesome" setting is gone
-* New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
 * Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
 * Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
 * Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
+* Tweak: Login Customizer footer links use WordPress' own colors by default
+* Tweak: Dashboard widgets & admin pages need a title
+* Tweak: Admin pages are left out of sitemaps and are not indexed by search engines
 * Tweak: Requires PHP 7.4 & WordPress 5.0
 * Fixed: Several security issues
 * Fixed: Custom login URL could be bypassed with password-protected post requests. Reported by Panagis Sarantos
 * Fixed: Custom login URL could be revealed with an encoded wp-login.php request. Reported by Panagis Sarantos
 * Fixed: Login Customizer preview not loading
+* Fixed: Login Customizer "Side Padding" and "Log In" button height not applied on the login page
+* Fixed: Custom dashboard headline not working on translated sites
 * Fixed: Export & import (data saved twice, import running twice)
 * Fixed: Welcome panel changes made in the Text tab were lost
 * Fixed: "Hide admin bar" roles were reset when saving the settings
 * Fixed: Lists and images in admin pages made with the default editor
+
 = 3.8.18 | October 10, 2026 =
 * Tested up to WordPress 7.1
 * Tweak: Added webp & avif support
