@@ -254,13 +254,10 @@ body:not(.udb-pro-active) #customize-control-udb_login-form_position {
 #customize-theme-controls .udb-pro-control-section .accordion-section-title {
 	display: block;
 	font-weight: 600;
-	/*color: #fff;*/
 	font-size: 16px;
 	text-decoration: none;
-	border-left-color: #3ba9d2;
-	border-bottom-color: #3ba9d2;
-	border-top: 1px solid #3ba9d2;
-	color: #3ba9d2;
+	border-left-color: #2271b1;
+	color: #2271b1;
 }
 
 #customize-theme-controls
@@ -269,9 +266,9 @@ body:not(.udb-pro-active) #customize-control-udb_login-form_position {
 #customize-theme-controls
 	.udb-pro-control-section
 	.accordion-section-title:focus {
-	color: #0071a1;
+	color: #135e96;
 	background-color: #fff;
-	border-color: #3ba9d2;
+	border-left-color: #135e96;
 }
 
 #customize-theme-controls
