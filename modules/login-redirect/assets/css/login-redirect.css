@@ -2,32 +2,48 @@
  * Login Redirect page. The URL fields are heatbox's .heatbox-input-group.
  */
 
-/* "Redirect After Login": one row per role (name, URL field, remove button), the role dropdown below */
+/*
+ * "Redirect After Login": one block per role, the role name above its URL field (the field as wide as
+ * the Change Login URL fields, the remove button next to it), the role dropdown below.
+ */
 .udb-login-redirect--repeater-item {
 	display: grid;
-	grid-template-columns: 140px minmax(0, 1fr) auto;
+	grid-template-columns: minmax(0, 480px) auto;
+	justify-content: start;
 	align-items: center;
-	gap: 10px;
-	margin-bottom: 10px;
+	gap: 6px 10px;
+	margin-bottom: 16px;
 }
 
-@media screen and (max-width: 782px) {
-	.udb-login-redirect--repeater-item {
-		grid-template-columns: minmax(0, 1fr) auto;
-	}
-
-	.udb-login-redirect--field-label {
-		grid-column: 1 / -1;
-	}
+.udb-login-redirect--field-label {
+	grid-column: 1 / -1;
+	font-weight: 600;
 }
 
+/* A role's remove button: a small, quiet "x", red on hover (like the Admin Menu Editor's) */
 .heatbox .udb-login-redirect--remove-field {
-	display: flex;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	padding: 0;
 	color: var(--heatbox-text-muted);
 	text-decoration: none;
+	border-radius: var(--heatbox-radius-small);
+	transition: color var(--heatbox-transition), background-color var(--heatbox-transition);
+}
+
+.heatbox .udb-login-redirect--remove-field .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
 }
 
 .heatbox .udb-login-redirect--remove-field:hover,
-.heatbox .udb-login-redirect--remove-field:focus {
+.heatbox .udb-login-redirect--remove-field:focus-visible {
 	color: var(--heatbox-error);
+	background: var(--heatbox-error-soft);
+	outline: none;
+	box-shadow: none;
 }

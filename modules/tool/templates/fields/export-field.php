@@ -32,10 +32,8 @@ return function () {
 				</label>
 			</div>
 		<?php endforeach; ?>
-	</div>
 
-	<?php // PRO adds its own checkboxes here. ?>
-	<div class="udb-export-more">
+		<?php // PRO adds its own checkboxes here, right in the list (PRO 3.11's older markup gets heatbox's in tools.js). ?>
 		<?php do_action( 'udb_export_fields' ); ?>
 	</div>
 

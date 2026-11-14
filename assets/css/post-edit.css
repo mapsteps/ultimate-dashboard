@@ -264,17 +264,27 @@
 	box-shadow: 0 0 0 3px var(--heatbox-accent-soft-border);
 }
 
+/* A picked item: a small "×" part, then the name */
 .udb-post-edit .select2-container--default .select2-selection--multiple .select2-selection__choice {
+	align-items: stretch;
 	margin: 4px 6px 4px 0;
-	padding: 2px 8px 2px 24px;
+	padding: 0 8px 0 0;
 	background: var(--heatbox-surface-muted);
 	border-color: var(--heatbox-box-border);
 	border-radius: var(--heatbox-radius-small);
 }
 
 .udb-post-edit .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-	height: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0 6px;
 	border-right-color: var(--heatbox-box-border);
+	border-radius: var(--heatbox-radius-small) 0 0 var(--heatbox-radius-small);
+}
+
+.udb-post-edit .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+	padding: 0 0 0 8px;
+	line-height: 24px;
 }
 
 /* Text editor: rounded like the fields */

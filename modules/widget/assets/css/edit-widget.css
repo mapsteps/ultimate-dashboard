@@ -77,7 +77,8 @@
 #udb-main-metabox input[type="email"],
 #udb-main-metabox input[type="url"],
 #udb-main-metabox textarea,
-#udb-main-metabox select {
+#udb-main-metabox select,
+#udb-widget-type-metabox select {
 	width: 100%;
 }
 

@@ -244,6 +244,7 @@ class Widget_Module extends Base_Module {
 		// Our Publish box (Active toggle, save, trash) instead of WordPress'.
 		remove_meta_box( 'submitdiv', 'udb_widgets', 'side' );
 		add_meta_box( 'udb-active-status-metabox', __( 'Publish', 'ultimate-dashboard' ), array( $this, 'active_status_metabox' ), 'udb_widgets', 'side', 'high' );
+		add_meta_box( 'udb-widget-type-metabox', __( 'Widget Type', 'ultimate-dashboard' ), array( $this, 'widget_type_metabox' ), 'udb_widgets', 'side', 'high' );
 
 		if ( ! udb_is_pro_active() ) {
 			add_meta_box( 'udb-pro-link-metabox', __( 'PRO Features Available', 'ultimate-dashboard' ), array( $this, 'pro_link_metabox' ), 'udb_widgets', 'side' );
@@ -255,12 +256,24 @@ class Widget_Module extends Base_Module {
 	}
 
 	/**
-	 * Widget type metabox.
+	 * Main metabox: the box per widget type.
 	 */
 	public function main_metabox() {
 
 		$metabox = require __DIR__ . '/templates/metaboxes/main.php';
 		$metabox();
+
+	}
+
+	/**
+	 * Widget type metabox (sidebar).
+	 *
+	 * @param WP_Post $post The WP_Post object.
+	 */
+	public function widget_type_metabox( $post ) {
+
+		$metabox = require __DIR__ . '/templates/metaboxes/widget-type.php';
+		$metabox( $post );
 
 	}
 

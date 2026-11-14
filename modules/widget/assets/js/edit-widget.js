@@ -3,6 +3,19 @@
 		setupMetaboxes();
 		setupWidgetType();
 		setupCodeEditor();
+		requireTitle();
+	}
+
+	/**
+	 * The title is required: without it (and without text) WordPress doesn't save the widget at all.
+	 * The browser stops Publish / Update and points at the empty field.
+	 */
+	function requireTitle() {
+		const title = document.getElementById("title");
+
+		if (title) {
+			title.required = true;
+		}
 	}
 
 	function setupMetaboxes() {
