@@ -108,21 +108,11 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 
 == Screenshots ==
 1. A custom dashboard with your own welcome panel, icon, text and HTML widgets
-2. Icon widgets with tooltips, next to text and HTML widgets
-3. All your dashboard widgets at a glance
-4. Creating a dashboard widget
-5. Settings: remove default widgets, set widget colors and edit the welcome panel
-6. Settings: general options
-7. Settings: custom CSS for the dashboard and the whole admin area
-8. Turn each module on or off
-9. White Label
-10. A custom admin page
-11. Creating a custom admin page with HTML & CSS
-12. Login Customizer: background image
-13. Login Customizer: log in button
-14. Change the login URL and redirect users after login
-15. Admin Menu Editor
-16. Admin Bar Editor
+2. All your dashboard widgets at a glance
+3. Creating an icon widget
+4. Settings: remove default widgets, set widget colors and edit the welcome panel
+5. Login Customizer: design your own login page
+6. Turn each module on or off
 
 == Changelog ==
 
