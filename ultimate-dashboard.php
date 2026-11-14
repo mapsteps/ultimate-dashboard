@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ultimate Dashboard
  * Plugin URI: https://ultimatedashboard.io/
- * Description: Create a custom Dashboard and give the WordPress admin area a more meaningful use.
+ * Description: Replace the default dashboard widgets with your own, customize the login screen, change the login URL & clean up the WordPress admin area.
  * Version: 4.0
  * Requires at least: 5.0
  * Requires PHP: 7.4

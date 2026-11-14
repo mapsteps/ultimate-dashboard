@@ -25,7 +25,7 @@ Remove all or individual default WordPress dashboard widgets with a single click
 Create **icon**, **text** & **HTML widgets** to build a custom **client dashboard** that sends your clients to the key areas of their website – or anywhere else.
 
 = 🎨 Login Customizer =
-Customize the **WordPress login screen** with your own logo, background, colors & layout, with a live preview in the WordPress Customizer.
+Create a **custom WordPress login page** with your own logo, background, colors & form styles, with a live preview in the WordPress Customizer.
 
 = ↔️ Login Redirect =
 **Change the WordPress login URL**, **hide /wp-admin/** from logged-out visitors and **redirect users after login** based on their user role.
@@ -61,7 +61,6 @@ Take it further with **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?ut
 * Create admin pages & a custom dashboard with the Block Editor, Elementor, Divi, Bricks, Breakdance, Beaver Builder, Oxygen & Brizy
 * Video & contact form widgets
 * WordPress multisite support
-* Dark mode
 
 [youtube https://youtu.be/w0oEQF3C6v0]
 
