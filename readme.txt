@@ -145,7 +145,6 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * Fixed: Welcome panel changes made in the Text tab were lost
 * Fixed: "Hide admin bar" roles were reset when saving the settings
 * Fixed: Lists and images in admin pages made with the default editor
-
 = 3.8.18 | October 10, 2026 =
 * Tested up to WordPress 7.1
 * Tweak: Added webp & avif support
