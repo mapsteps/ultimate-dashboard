@@ -273,7 +273,7 @@ class Setting_Output extends Base_Output {
 	}
 
 	/**
-	 * Remove Font Awesome: does nothing since 3.9, Font Awesome is gone.
+	 * Remove Font Awesome: does nothing since 4.0, Font Awesome is gone.
 	 *
 	 * Kept because PRO's multisite settings call it.
 	 */

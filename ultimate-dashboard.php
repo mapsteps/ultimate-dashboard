@@ -3,7 +3,7 @@
  * Plugin Name: Ultimate Dashboard
  * Plugin URI: https://ultimatedashboard.io/
  * Description: Create a custom Dashboard and give the WordPress admin area a more meaningful use.
- * Version: 3.9
+ * Version: 4.0
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Author: David Vongries
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 // Plugin constants.
 define( 'ULTIMATE_DASHBOARD_PLUGIN_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
-define( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION', '3.9' );
+define( 'ULTIMATE_DASHBOARD_PLUGIN_VERSION', '4.0' );
 define( 'ULTIMATE_DASHBOARD_PLUGIN_FILE', plugin_basename( __FILE__ ) );
 
 // Admin menu specific support.

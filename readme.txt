@@ -4,7 +4,7 @@ Tags: custom dashboard, dashboard widgets, custom login, white label, login url
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.9
+Stable tag: 4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,7 +116,7 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 
 == Changelog ==
 
-= 3.9 | November 13, 2026 =
+= 4.0 | November 13, 2026 =
 * New: Refreshed design on every Ultimate Dashboard screen, incl. the widget & admin page lists and edit screens, also on phones
 * New: Icon picker for icon widgets, admin pages & the menu editors
 * New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon

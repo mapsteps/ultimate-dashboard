@@ -333,7 +333,7 @@ class Setting_Module extends Base_Module {
 
 		unset( $output['welcome_panel_is_default'] );
 
-		// "Remove Font Awesome" setting from before 3.9 (Font Awesome is gone).
+		// "Remove Font Awesome" setting from before 4.0 (Font Awesome is gone).
 		unset( $output['remove_font_awesome'] );
 
 		return $output;

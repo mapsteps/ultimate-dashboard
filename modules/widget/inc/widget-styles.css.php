@@ -12,7 +12,7 @@ $icon_color     = isset( $settings['icon_color'] ) ? strtolower( $settings['icon
 $headline_color = isset( $settings['headline_color'] ) ? strtolower( $settings['headline_color'] ) : '';
 
 // The defaults are WordPress' own text & headline colors (dashboard.css, WordPress), so nothing is printed for them.
-// #555555 & #23282d were the defaults before 3.9: saved untouched, they mean "default" too.
+// #555555 & #23282d were the defaults before 4.0: saved untouched, they mean "default" too.
 $icon_color     = in_array( $icon_color, array( '#3c434a', '#555555' ), true ) ? '' : $icon_color;
 $headline_color = in_array( $headline_color, array( '#1d2327', '#23282d' ), true ) ? '' : $headline_color;
 

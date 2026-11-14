@@ -3,9 +3,9 @@
  * Icon helper: icon widgets & admin page menu icons.
  *
  * Saved icons are one of:
- * - a Lucide icon name ("gauge"), drawn as inline SVG (since 3.9),
+ * - a Lucide icon name ("gauge"), drawn as inline SVG (since 4.0),
  * - Dashicons classes ("dashicons dashicons-admin-post"),
- * - Font Awesome classes from before 3.9 ("fas fa-tachometer-alt", "fa fa-dashboard"). Font Awesome is gone,
+ * - Font Awesome classes from before 4.0 ("fas fa-tachometer-alt", "fa fa-dashboard"). Font Awesome is gone,
  *   these are shown as the closest Lucide icon, or the fallback icon (brand icons, unknown names).
  *   Saved values aren't changed: picking a new icon saves a Lucide name.
  *

@@ -134,7 +134,7 @@ class Login_Customizer_Output extends Base_Output {
 		/**
 		 * Filters the login styles before the user's custom CSS is added, so the custom CSS still wins.
 		 *
-		 * @since 3.9
+		 * @since 4.0
 		 *
 		 * @param string $css The login styles built so far.
 		 */
