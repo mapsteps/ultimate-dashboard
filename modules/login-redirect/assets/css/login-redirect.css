@@ -2,23 +2,22 @@
  * Login Redirect page. The URL fields are heatbox's .heatbox-input-group.
  */
 
-/* "Redirect After Login": one row per role (name, URL field, remove button), the role dropdown below */
+/*
+ * "Redirect After Login": one block per role, the role name above its URL field (the field as wide as
+ * the Change Login URL fields, the remove button next to it), the role dropdown below.
+ */
 .udb-login-redirect--repeater-item {
 	display: grid;
-	grid-template-columns: 140px minmax(0, 1fr) auto;
+	grid-template-columns: minmax(0, 480px) auto;
+	justify-content: start;
 	align-items: center;
-	gap: 10px;
-	margin-bottom: 10px;
+	gap: 6px 10px;
+	margin-bottom: 16px;
 }
 
-@media screen and (max-width: 782px) {
-	.udb-login-redirect--repeater-item {
-		grid-template-columns: minmax(0, 1fr) auto;
-	}
-
-	.udb-login-redirect--field-label {
-		grid-column: 1 / -1;
-	}
+.udb-login-redirect--field-label {
+	grid-column: 1 / -1;
+	font-weight: 600;
 }
 
 .heatbox .udb-login-redirect--remove-field {
