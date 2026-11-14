@@ -88,6 +88,12 @@ The setup wizard offers an optional newsletter sign-up. Only if you enter your n
 = Where do I create dashboard widgets? =
 Go to *Ultimate Dashboard → Add Dashboard Widget*. All your widgets are listed under *Ultimate Dashboard → All Widgets*.
 
+= Can I build the dashboard with a page builder? =
+Yes, with [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb). Build the whole dashboard or custom admin pages with the Block Editor, Elementor, Divi, Bricks, Breakdance, Beaver Builder, Oxygen or Brizy.
+
+= Can I white label WordPress for my clients? =
+Yes. The free version lets you change the admin footer & version text, the "Howdy" text and the login page. [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb) adds your own admin colors, logo, admin menu and admin bar.
+
 = I changed the login URL and forgot it. How do I log in? =
 Rename the `ultimate-dashboard` folder in `/wp-content/plugins/` via FTP or your host's file manager. This turns the plugin off and the default `/wp-login.php` works again. Rename it back once you're logged in and check the URL under *Ultimate Dashboard → Login Redirect*.
 
@@ -96,6 +102,9 @@ Any of the 2,000+ [Lucide](https://lucide.dev) icons, or WordPress' own Dashicon
 
 = Can I turn off the parts I don't use? =
 Yes. Go to *Ultimate Dashboard → Modules* and switch off any module, for example the Login Customizer or Admin Pages.
+
+= Does it slow down my website? =
+No. Ultimate Dashboard loads nothing on the frontend of your website, only in the WordPress admin area and on the login page.
 
 = Is my data deleted when I deactivate the plugin? =
 No. Your widgets and settings are only removed if you turn on *Remove Data on Uninstall* under *Ultimate Dashboard → Settings* and then delete the plugin.
