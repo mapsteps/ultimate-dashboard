@@ -13,10 +13,11 @@ return function () {
 	$is_checked = isset( $settings['remove_screen_options'] ) ? 1 : 0;
 	?>
 
-	<label for="udb_settings[remove_screen_options]" class="label checkbox-label">
-		&nbsp;
+	<label for="udb_settings[remove_screen_options]" class="toggle-switch">
 		<input type="checkbox" name="udb_settings[remove_screen_options]" id="udb_settings[remove_screen_options]" value="1" <?php checked( $is_checked, 1 ); ?>>
-		<div class="indicator"></div>
+		<div class="switch-track">
+			<div class="switch-thumb"></div>
+		</div>
 	</label>
 
 	<?php
