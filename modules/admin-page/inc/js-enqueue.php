@@ -30,6 +30,14 @@ return function ( $module ) {
 		// Edit admin page.
 		wp_enqueue_script( 'udb-edit-admin-page', $module->url . '/assets/js/edit-admin-page.js', array( 'select2', 'wp-escape-html' ), ULTIMATE_DASHBOARD_PLUGIN_VERSION, true );
 
+		wp_localize_script(
+			'udb-edit-admin-page',
+			'udbEditAdminPage',
+			array(
+				'titleRequired' => __( 'Add a title to publish this admin page. It\'s the page\'s menu name.', 'ultimate-dashboard' ),
+			)
+		);
+
 	} elseif ( $module->screen()->is_admin_page_list() ) {
 
 		// Admin page list.

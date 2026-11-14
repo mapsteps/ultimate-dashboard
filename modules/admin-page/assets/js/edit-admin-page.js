@@ -8,6 +8,57 @@
 		setupWidgetRoles();
 		setupCodeMirror();
 		setupContentType();
+		requireTitle();
+	}
+
+	/**
+	 * The title is required: it's the page's menu name.
+	 *
+	 * Classic editor: the browser stops Publish / Update and points at the empty field.
+	 * Block editor (PRO): saving is locked and a note says why, until there's a title.
+	 */
+	function requireTitle() {
+		const title = document.getElementById("title");
+
+		if (title) {
+			title.required = true;
+			return;
+		}
+
+		const data = window.wp && window.wp.data;
+
+		if (!data || !data.select("core/editor")) {
+			return;
+		}
+
+		const lockName = "udb-title-required";
+		const noticeId = "udb-title-required";
+		const message = (window.udbEditAdminPage && window.udbEditAdminPage.titleRequired) || "";
+		let isLocked = null;
+
+		function check() {
+			const isEmpty = !String(data.select("core/editor").getEditedPostAttribute("title") || "").trim();
+
+			if (isEmpty === isLocked) {
+				return;
+			}
+
+			isLocked = isEmpty;
+
+			if (isEmpty) {
+				data.dispatch("core/editor").lockPostSaving(lockName);
+
+				if (message) {
+					data.dispatch("core/notices").createWarningNotice(message, { id: noticeId, isDismissible: false });
+				}
+			} else {
+				data.dispatch("core/editor").unlockPostSaving(lockName);
+				data.dispatch("core/notices").removeNotice(noticeId);
+			}
+		}
+
+		check();
+		data.subscribe(check);
 	}
 
 	/**
