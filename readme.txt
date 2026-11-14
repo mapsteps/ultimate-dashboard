@@ -122,26 +122,26 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 == Changelog ==
 
 = 4.0 | November 13, 2026 =
-* New: Refreshed design on every Ultimate Dashboard screen, incl. the widget & admin page lists and edit screens, also on phones
+* New: Refreshed design on every Ultimate Dashboard screen, also on phones
 * New: Icon picker for icon widgets, admin pages & the menu editors
-* New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon
+* New: 2,000+ Lucide icons replace Font Awesome for icon widgets & admin page menu icons. WordPress' own icons are still there, and icons you picked before get the closest Lucide icon
 * New: Icon widgets show their icon in a soft color chip, tinted with the icon color
 * New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
-* Tweak: The default icon/text & headline colors now match WordPress' own text & headline colors
-* Tweak: Font Awesome is no longer loaded, so the "Remove Font Awesome" setting is gone
-* Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
-* Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
+* Tweak: Default icon/text & headline colors now match WordPress' own
+* Tweak: Login Redirect: /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
 * Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
 * Tweak: Dashboard widgets & admin pages need a title
-* Tweak: Admin pages are left out of sitemaps and are not indexed by search engines
 * Tweak: Requires PHP 7.4 & WordPress 5.0
 * Fixed: Several security issues
 * Fixed: Custom login URL could be bypassed with password-protected post requests. Reported by Panagis Sarantos
 * Fixed: Custom login URL could be revealed with an encoded wp-login.php request. Reported by Panagis Sarantos
+* Fixed: Login Redirect: role redirects overrode the page a user asked for
+* Fixed: "Remove Data on Uninstall" removed data on deactivation and left widgets & admin pages behind
+* Fixed: Admin pages showed up in sitemaps and search engines
 * Fixed: Login Customizer preview not loading
-* Fixed: Login Customizer "Side Padding" and "Log In" button height not applied on the login page
+* Fixed: Login Customizer "Side Padding" & "Log In" button height not applied on the login page
 * Fixed: Custom dashboard headline not working on translated sites
-* Fixed: Export & import (data saved twice, import running twice)
+* Fixed: Export & import saving data twice
 * Fixed: Welcome panel changes made in the Text tab were lost
 * Fixed: "Hide admin bar" roles were reset when saving the settings
 * Fixed: Lists and images in admin pages made with the default editor
