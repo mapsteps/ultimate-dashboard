@@ -20,7 +20,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => '#555d66',
+		'default'           => '#50575e',
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)
@@ -43,7 +43,7 @@ $wp_customize->add_setting(
 	array(
 		'type'              => 'option',
 		'capability'        => 'edit_theme_options',
-		'default'           => ( $has_accent_color ? $accent_color : '#00a0d2' ),
+		'default'           => ( $has_accent_color ? $accent_color : '#135e96' ),
 		'transport'         => 'postMessage',
 		'sanitize_callback' => 'sanitize_hex_color',
 	)

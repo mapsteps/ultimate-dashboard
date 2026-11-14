@@ -1393,7 +1393,7 @@
 	const listenFooterLinkColorFieldChange = () => {
 		wp.customize("udb_login[footer_link_color]", function (setting) {
 			setting.bind(function (val) {
-				val = val ? val : "#555d66";
+				val = val ? val : "#50575e";
 
 				document.querySelector(
 					'[data-listen-value="udb_login[footer_link_color]"]'
@@ -1407,7 +1407,7 @@
 	const listenFooterLinkColorHoverFieldChange = () => {
 		wp.customize("udb_login[footer_link_color_hover]", function (setting) {
 			setting.bind(function (val) {
-				val = val ? val : "#00a0d2";
+				val = val ? val : "#135e96";
 
 				document.querySelector(
 					'[data-listen-value="udb_login[footer_link_color_hover]"]'
