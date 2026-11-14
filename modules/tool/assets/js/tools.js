@@ -37,19 +37,16 @@
 	updateButton();
 
 	/**
-	 * Checkboxes added through the "udb_export_fields" hook join the list, so all of them look and line up the same.
-	 * Newer PRO prints heatbox's markup (.setting-field), PRO 3.11 plain <p><label><input> Text</label></p>, which gets heatbox's markup here.
+	 * Checkboxes added through the "udb_export_fields" hook are printed right in the list.
+	 * Newer PRO prints heatbox's markup (.setting-field); PRO 3.11 prints plain <p><label><input> Text</label></p>,
+	 * which gets heatbox's markup here, in its place.
 	 */
 	function adoptAddedCheckboxes() {
 		const list = document.querySelector(".udb-tools-page .setting-fields");
 
 		if (!list) return;
 
-		document.querySelectorAll(".udb-export-more .setting-field").forEach(function (field) {
-			list.append(field);
-		});
-
-		document.querySelectorAll(".udb-export-more label").forEach(function (label) {
+		list.querySelectorAll("label").forEach(function (label) {
 			const input = label.querySelector('input[type="checkbox"]');
 
 			if (!input || label.classList.contains("checkbox-label")) return;
@@ -62,11 +59,15 @@
 			indicator.className = "indicator";
 			label.classList.add("label", "checkbox-label");
 			label.append(input, indicator);
-			field.append(label);
-			list.append(field);
 
-			// The now empty <p> it came in.
-			if (wrapper.matches(".udb-export-more p") && !wrapper.textContent.trim()) wrapper.remove();
+			// In place of the <p> it came in (when that only held it), otherwise at the end of the list.
+			if (wrapper !== list && wrapper.matches("p") && 1 === wrapper.children.length) {
+				wrapper.replaceWith(field);
+			} else {
+				list.append(field);
+			}
+
+			field.append(label);
 		});
 	}
 })();
