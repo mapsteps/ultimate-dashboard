@@ -107,12 +107,17 @@ No. Your widgets and settings are only removed if you turn on *Remove Data on Un
 Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb).
 
 == Screenshots ==
-1. A custom dashboard with your own welcome panel, icon, text and HTML widgets
+1. A custom dashboard with your own welcome panel and icon widgets
 2. All your dashboard widgets at a glance
 3. Creating an icon widget
 4. Settings: remove default widgets, set widget colors and edit the welcome panel
-5. Login Customizer: design your own login page
-6. Turn each module on or off
+5. A custom admin page
+6. Login Customizer: design your own login page
+7. Login Redirect: change the login URL and redirect users after login
+8. White Label
+9. Admin Menu Editor (PRO)
+10. Admin Bar Editor (PRO)
+11. Turn each module on or off
 
 == Changelog ==
 
