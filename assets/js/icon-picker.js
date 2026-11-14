@@ -17,6 +17,7 @@
  * - data-value="name": store the short name ("dashicons-menu") instead of the classes.
  * - data-sync: the button's icon is set from the input (value, or its data-default), also for
  *   fields added later by a script. A .icon-picker-clear button inside empties the input.
+ *   With neither, the input's data-default-html (icon markup) is shown, if it has one.
  *
  * Used global object: udbIconPicker { lucideUrl, tagsUrl, dashiconsUrl, labels }.
  */
@@ -186,9 +187,24 @@
 		if (!input) return;
 
 		const value = input.value || input.dataset.default || "";
+		// An icon the field can't store itself (an admin page's Lucide icon in the menu editor), as trusted HTML.
+		const fallback = !value && input.dataset.defaultHtml ? input.dataset.defaultHtml : "";
 
-		if (button) setPreview(button, toIcon(field, value));
-		field.classList.toggle("is-empty", !value);
+		if (button && fallback) {
+			const template = document.createElement("template");
+			template.innerHTML = fallback.trim();
+			const preview = template.content.firstElementChild;
+			const current = button.querySelector("i, svg");
+
+			if (preview) {
+				preview.setAttribute("aria-hidden", "true");
+				current ? current.replaceWith(preview) : button.append(preview);
+			}
+		} else if (button) {
+			setPreview(button, toIcon(field, value));
+		}
+
+		field.classList.toggle("is-empty", !value && !fallback);
 		if (clear) clear.hidden = !input.value || input.disabled;
 	}
 
