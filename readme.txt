@@ -139,6 +139,8 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
 * Tweak: Requires PHP 7.4 & WordPress 5.0
 * Fixed: Several security issues
+* Fixed: Custom login URL could be bypassed with password-protected post requests. Reported by Panagis Sarantos
+* Fixed: Custom login URL could be revealed with an encoded wp-login.php request. Reported by Panagis Sarantos
 * Fixed: Login Customizer preview not loading
 * Fixed: Export & import (data saved twice, import running twice)
 * Fixed: Welcome panel changes made in the Text tab were lost
