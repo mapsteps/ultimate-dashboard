@@ -62,8 +62,6 @@ Take it further with **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?ut
 * Video & contact form widgets
 * WordPress multisite support
 
-[youtube https://youtu.be/w0oEQF3C6v0]
-
 Get **[Ultimate Dashboard PRO](https://ultimatedashboard.io/?utm_source=repository&utm_medium=link&utm_campaign=udb)** today!
 
 ---------
