@@ -127,13 +127,11 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * New: 2,000+ Lucide line icons replace Font Awesome for icon widgets & admin page menu icons, WordPress' own icons are still there. Icons you picked before get the closest Lucide icon
 * New: Icon widgets show their icon in a soft color chip, tinted with the icon color
 * New: One simpler setup wizard (replaces the separate setup wizard & onboarding screens)
-* New: Try out the Admin Bar Editor in the free version
 * Tweak: The default icon/text & headline colors now match WordPress' own text & headline colors
 * Tweak: Font Awesome is no longer loaded, so the "Remove Font Awesome" setting is gone
 * Tweak: "Remove Data on Uninstall" now only removes data when you delete the plugin, never on deactivation, and includes widgets & admin pages
 * Tweak: Login Redirect: role redirects no longer override the page a user asked for, /wp-admin/ shows "not found" while a custom login URL is set, and login URLs that clash with existing pages are refused
 * Tweak: Login Customizer preview now matches the WordPress 7.1 login screen
-* Tweak: Login Customizer footer links use WordPress' own colors by default
 * Tweak: Dashboard widgets & admin pages need a title
 * Tweak: Admin pages are left out of sitemaps and are not indexed by search engines
 * Tweak: Requires PHP 7.4 & WordPress 5.0
