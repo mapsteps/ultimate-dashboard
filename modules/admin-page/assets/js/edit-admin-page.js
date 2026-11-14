@@ -389,7 +389,15 @@
 						"et_pb_post_body_hidden"
 					)
 				) {
-					if (normalEditor) normalEditor.style.display = "block";
+					const wasHidden = "none" === normalEditor.style.display;
+
+					normalEditor.style.display = "block";
+
+					// WordPress sizes the editor's toolbar while it's hidden (0 wide) and only
+					// measures again on scroll / resize: let it measure now that it shows.
+					if (wasHidden) {
+						$(window).trigger("resize");
+					}
 				}
 			}
 		}
