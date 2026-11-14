@@ -36,6 +36,13 @@ class Login_Redirect_Output extends Base_Output {
 	public $is_old_login_page = false;
 
 	/**
+	 * Whether current page is the new login page or not.
+	 *
+	 * @var bool
+	 */
+	public $is_new_login_page = false;
+
+	/**
 	 * The new login slug.
 	 *
 	 * @var string
@@ -168,7 +175,16 @@ class Login_Redirect_Output extends Base_Output {
 			return;
 		}
 
-		$uri = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
+		global $pagenow;
+
+		/*
+		 * WordPress sets $pagenow from the script that's actually running, before plugins load.
+		 * The new login URL always runs through index.php, so here 'wp-login.php' means
+		 * wp-login.php was requested directly, whatever the URI looks like.
+		 */
+		$is_wp_login_script = 'wp-login.php' === $pagenow;
+
+		$uri = $this->get_request_uri();
 
 		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' );
 		$has_activate_slug = false !== stripos( $uri, 'wp-activate' );
@@ -186,9 +202,8 @@ class Login_Redirect_Output extends Base_Output {
 
 		$has_register_slug = false !== stripos( $uri, 'wp-register.php' );
 
-		global $pagenow;
-
-		if ( ! is_admin() && ( $has_old_slug || site_url( 'wp-login', 'relative' ) === $request_path ) ) {
+		// $is_wp_login_script catches what the URI doesn't (e.g. "/wp-log%69n.php"): fail closed.
+		if ( ! is_admin() && ( $has_old_slug || $is_wp_login_script || site_url( 'wp-login', 'relative' ) === $request_path ) ) {
 			// If current page is old login page, set $pagenow to be index.php, so it's not login page anymore.
 			$pagenow = 'index.php';
 
@@ -197,12 +212,30 @@ class Login_Redirect_Output extends Base_Output {
 		} elseif ( site_url( $this->new_login_slug, 'relative' ) === $request_path || ( ! $using_permalink && $has_new_slug ) ) {
 			// If current page is new login page, let WordPress know if this is a login page.
 			$pagenow = 'wp-login.php';
+
+			$this->is_new_login_page = true;
 		} elseif ( ! is_admin() && ( $has_register_slug || site_url( 'wp-register', 'relative' ) === $request_path ) ) {
 			$pagenow = 'index.php';
 
 			$this->is_old_login_page = true;
 			$_SERVER['REQUEST_URI']  = $this->maybe_trailingslashit( '/' . str_repeat( '-/', 10 ) );
 		}
+
+	}
+
+	/**
+	 * Get the decoded request URI, to compare paths with.
+	 *
+	 * Not passed through sanitize_text_field(): it deletes percent-encoded characters instead of
+	 * decoding them, so "/wp-log%69n.php" would become "/wp-logn.php" while the server runs wp-login.php.
+	 * The value is only compared, never output or stored.
+	 *
+	 * @return string
+	 */
+	public function get_request_uri() {
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Only compared, see above.
+		return isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
 	}
 
@@ -218,7 +251,7 @@ class Login_Redirect_Output extends Base_Output {
 		$login_url = site_url( $this->new_login_slug, $scheme );
 
 		if ( is_multisite() ) {
-			$uri = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
+			$uri = $this->get_request_uri();
 
 			$has_install_slug = false !== stripos( $uri, '/wp-admin/install.php' );
 
@@ -272,8 +305,7 @@ class Login_Redirect_Output extends Base_Output {
 
 		global $pagenow;
 
-		$uri          = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
-		$request      = wp_parse_url( rawurldecode( $uri ) );
+		$request      = wp_parse_url( $this->get_request_uri() );
 		$request_path = isset( $request['path'] ) ? $request['path'] : '';
 
 		if ( is_admin() && ! is_user_logged_in() && ! wp_doing_ajax() && 'admin-post.php' !== $pagenow && '/wp-admin/options.php' !== $request_path ) {
@@ -299,14 +331,14 @@ class Login_Redirect_Output extends Base_Output {
 
 		global $pagenow;
 
-		$request_uri  = isset( $_SERVER['REQUEST_URI'] ) ? rawurldecode( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) : '';
-		$request      = wp_parse_url( rawurldecode( $request_uri ) );
+		$request      = wp_parse_url( $this->get_request_uri() );
 		$request_path = isset( $request['path'] ) ? $request['path'] : '';
 
 		$query_string     = isset( $_SERVER['QUERY_STRING'] ) ? sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ) : '';
 		$add_query_string = $query_string ? '?' . $query_string : '';
 
-		if ( 'wp-login.php' === $pagenow && $request_path !== $this->maybe_trailingslashit( $request_path ) && $this->permalink_structure ) {
+		// Only the new login URL itself gets the trailing slash redirect, so no other request can be sent to it.
+		if ( $this->is_new_login_page && $request_path !== $this->maybe_trailingslashit( $request_path ) && $this->permalink_structure ) {
 			wp_safe_redirect(
 				$this->maybe_trailingslashit( $this->new_login_url() ) . $add_query_string
 			);
