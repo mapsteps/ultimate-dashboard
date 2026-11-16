@@ -186,10 +186,8 @@ class Login_Redirect_Output extends Base_Output {
 
 		$uri = $this->get_request_uri();
 
-		$has_signup_slug   = false !== stripos( $uri, 'wp-signup' );
-		$has_activate_slug = false !== stripos( $uri, 'wp-activate' );
-
-		if ( ! is_multisite() && ( $has_signup_slug || $has_activate_slug ) ) {
+		// Match the running script exactly: "wp-signup" anywhere in the URI (e.g. "/wp-login.php?wp-signup=1") must not skip the checks below.
+		if ( ! is_multisite() && ( 'wp-signup.php' === $pagenow || 'wp-activate.php' === $pagenow ) ) {
 			return;
 		}
 

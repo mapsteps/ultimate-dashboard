@@ -141,6 +141,7 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 * Fixed: Several security issues
 * Fixed: Custom login URL could be bypassed with password-protected post requests. Reported by Panagis Sarantos
 * Fixed: Custom login URL could be revealed with an encoded wp-login.php request. Reported by Panagis Sarantos
+* Fixed: Custom login URL could be bypassed with "wp-signup" or "wp-activate" in the wp-login.php address. Reported by Hamza Tlili
 * Fixed: Login Redirect: role redirects overrode the page a user asked for
 * Fixed: "Remove Data on Uninstall" removed data on deactivation and left widgets & admin pages behind
 * Fixed: Admin pages showed up in sitemaps and search engines
