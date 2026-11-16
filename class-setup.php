@@ -18,7 +18,7 @@ use Udb\Helpers\Content_Helper;
 class Setup {
 
 	/**
-	 * Year of the Black Friday sale notice (November 24 – December 1).
+	 * Year of the Black Friday sale notice (November 23 – 30).
 	 * Set by hand each year on purpose, so an old release never shows a sale that isn't running.
 	 *
 	 * @var string
@@ -561,7 +561,7 @@ class Setup {
 
 		$this_year = self::BFCM_YEAR;
 		$last_year = $this_year - 1;
-		$start     = strtotime( 'november 24th, ' . $this_year );
+		$start     = strtotime( 'november 23rd, ' . $this_year );
 		$end       = strtotime( 'december 1st, ' . $this_year );
 		$now       = time();
 
