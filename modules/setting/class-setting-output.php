@@ -198,12 +198,16 @@ class Setting_Output extends Base_Output {
 
 	/**
 	 * Remove screen options on admin area.
+	 *
+	 * @param bool $show_screen Whether to show the Screen Options tab.
+	 * @return bool
 	 */
-	public function remove_screen_options_tab() {
+	public function remove_screen_options_tab( $show_screen = true ) {
 
 		$settings = get_option( 'udb_settings' );
 
-		return ! isset( $settings['remove_screen_options'] );
+		// Only hide it when the setting is on. Never force it onto screens that have nothing to show in it.
+		return isset( $settings['remove_screen_options'] ) ? false : $show_screen;
 
 	}
 
