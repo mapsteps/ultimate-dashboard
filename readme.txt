@@ -4,7 +4,7 @@ Tags: custom dashboard, dashboard widgets, custom login, white label, login url
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.0
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,8 +127,9 @@ Multisite support is available in [Ultimate Dashboard PRO](https://ultimatedashb
 
 == Changelog ==
 
-= 4.0.1 | Unreleased =
+= 4.0.1 | November 19, 2026 =
 * Fixed: Custom login URL could be bypassed with "wp-signup" or "wp-activate" in the wp-login.php address. Reported by Hamza Tlili
+* Fixed: The Screen Options tab appeared on admin screens that have no options
 
 = 4.0 | November 13, 2026 =
 * New: Refreshed design on every Ultimate Dashboard screen, also on phones
