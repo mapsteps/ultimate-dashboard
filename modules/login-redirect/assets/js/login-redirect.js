@@ -1,5 +1,6 @@
 /**
- * Login Redirect page: "Redirect After Login" rows.
+ * Login Redirect page: "Redirect After Login" rows (heatbox's .heatbox-repeater; the udb-login-redirect--* classes are
+ * only this script's hooks).
  *
  * Picking a role in the dropdown adds a row with its URL field; the role is then disabled in the
  * dropdown until its row is removed. PRO's multisite page has two of these (blueprint and subsites).
@@ -52,13 +53,14 @@
 		const namePrefix = "subsites" === siteType ? "subsites_" : "";
 		const fieldId = "udb-login-redirect--" + siteType + "-" + roleKey;
 
-		const row = element("div", "udb-login-redirect--repeater-item");
+		const row = element("div", "heatbox-repeater-item udb-login-redirect--repeater-item");
 		row.dataset.udbRoleKey = roleKey;
 		row.dataset.udbRoleName = roleName;
 
-		const label = element("label", "udb-login-redirect--field-label", roleName);
+		const label = element("label", "heatbox-repeater-label", roleName);
 		label.htmlFor = fieldId;
 
+		const fields = element("div", "heatbox-repeater-fields");
 		const group = element("div", "heatbox-input-group");
 		const prefix = element("span", "heatbox-input-prefix", select.dataset.udbFieldPrefix);
 		prefix.title = select.dataset.udbFieldPrefix;
@@ -69,13 +71,14 @@
 		input.name = "udb_login_redirect[" + namePrefix + "login_redirect_slugs][" + roleKey + "]";
 		input.placeholder = "wp-admin/";
 
-		const button = element("button", "button-link udb-login-redirect--remove-field");
+		const button = element("button", "heatbox-remove-button udb-login-redirect--remove-field");
 		button.type = "button";
 		button.append(element("span", "dashicons dashicons-no-alt"), element("span", "screen-reader-text", (select.dataset.udbRemoveLabel || "%s").replace("%s", roleName)));
 		button.firstChild.setAttribute("aria-hidden", "true");
 
 		group.append(prefix, input);
-		row.append(label, group, button);
+		fields.append(group);
+		row.append(label, fields, button);
 
 		return row;
 	}

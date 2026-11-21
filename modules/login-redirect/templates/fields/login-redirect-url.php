@@ -36,7 +36,7 @@ return function ( $site_type = 'blueprint' ) {
 	<div class="udb-login-redirect--wrapper udb-login-redirect--<?php echo esc_attr( $site_type ); ?>-wrapper">
 
 		<?php // Rows of the roles that have a redirect. ?>
-		<div class="udb-login-redirect--repeater">
+		<div class="heatbox-repeater udb-login-redirect--repeater">
 
 			<?php
 			foreach ( $redirect_slugs as $role_key => $redirect_slug ) {
@@ -50,14 +50,16 @@ return function ( $site_type = 'blueprint' ) {
 				$field_id  = 'udb-login-redirect--' . $site_type . '-' . $role_key;
 				?>
 
-				<div class="udb-login-redirect--repeater-item" data-udb-role-key="<?php echo esc_attr( $role_key ); ?>" data-udb-role-name="<?php echo esc_attr( $role_name ); ?>">
-					<label class="udb-login-redirect--field-label" for="<?php echo esc_attr( $field_id ); ?>"><?php echo esc_html( $role_name ); ?></label>
-					<div class="heatbox-input-group">
-						<span class="heatbox-input-prefix" title="<?php echo esc_attr( $field_prefix ); ?>"><?php echo esc_html( $field_prefix ); ?></span>
-						<input type="text" id="<?php echo esc_attr( $field_id ); ?>" name="udb_login_redirect[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo $can_edit ? '' : ' readonly'; ?>>
+				<div class="heatbox-repeater-item udb-login-redirect--repeater-item" data-udb-role-key="<?php echo esc_attr( $role_key ); ?>" data-udb-role-name="<?php echo esc_attr( $role_name ); ?>">
+					<label class="heatbox-repeater-label" for="<?php echo esc_attr( $field_id ); ?>"><?php echo esc_html( $role_name ); ?></label>
+					<div class="heatbox-repeater-fields">
+						<div class="heatbox-input-group">
+							<span class="heatbox-input-prefix" title="<?php echo esc_attr( $field_prefix ); ?>"><?php echo esc_html( $field_prefix ); ?></span>
+							<input type="text" id="<?php echo esc_attr( $field_id ); ?>" name="udb_login_redirect[<?php echo esc_attr( $site_type_prefix ); ?>login_redirect_slugs][<?php echo esc_attr( $role_key ); ?>]" value="<?php echo esc_attr( $redirect_slug ); ?>" placeholder="wp-admin/"<?php echo $can_edit ? '' : ' readonly'; ?>>
+						</div>
 					</div>
 					<?php if ( $can_edit ) : ?>
-						<button type="button" class="button-link udb-login-redirect--remove-field">
+						<button type="button" class="heatbox-remove-button udb-login-redirect--remove-field">
 							<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
 							<span class="screen-reader-text">
 								<?php

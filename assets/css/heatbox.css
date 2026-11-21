@@ -743,6 +743,96 @@ body {
 	box-shadow: none;
 }
 
+/**
+ * Rows people add and remove (e.g. a redirect per role, a code per group). Each row: its fields, then a remove
+ * button lined up with the other rows'; an optional label above. Below the rows, whatever adds one (a button, a select).
+ *
+ * <div class="heatbox-repeater">
+ *   <div class="heatbox-repeater-item">
+ *     <label class="heatbox-repeater-label">Optional</label>
+ *     <div class="heatbox-repeater-fields">…fields, or a .heatbox-input-group…</div>
+ *     <button type="button" class="heatbox-remove-button"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="screen-reader-text">Remove …</span></button>
+ *   </div>
+ * </div>
+ * <button type="button" class="button">Add …</button>
+ */
+.heatbox-repeater {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+
+/* No rows yet: no gap above the add button (works with the whitespace templates leave, and rows added later show it) */
+.heatbox-repeater:not(:has(.heatbox-repeater-item)) {
+	display: none;
+}
+
+/* Every row's fields get the same width (480px, less when the space is narrower), so the remove buttons line up */
+.heatbox-repeater-item {
+	display: grid;
+	grid-template-columns: min(480px, 100% - 32px) auto;
+	justify-content: start;
+	align-items: center;
+	gap: 6px 10px;
+}
+
+.heatbox-repeater-label {
+	grid-column: 1 / -1;
+	font-weight: 600;
+}
+
+.heatbox-repeater-fields {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 0;
+}
+
+.heatbox-repeater-fields > .heatbox-input-group {
+	flex: 1;
+}
+
+/* Remove: a small, quiet "x", red on hover */
+.heatbox .heatbox-remove-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	min-height: 0;
+	padding: 0;
+	color: var(--heatbox-text-muted);
+	text-decoration: none;
+	background: none;
+	border: 0;
+	border-radius: var(--heatbox-radius-small);
+	box-shadow: none;
+	cursor: pointer;
+	transition: color var(--heatbox-transition), background-color var(--heatbox-transition);
+}
+
+.heatbox .heatbox-remove-button .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+}
+
+.heatbox .heatbox-remove-button:hover,
+.heatbox .heatbox-remove-button:focus-visible {
+	color: var(--heatbox-error);
+	background: var(--heatbox-error-soft);
+	outline: none;
+	box-shadow: none;
+}
+
+/* Phones: a row's fields wrap below each other; the remove button stays beside them, centered */
+@media screen and (max-width: 782px) {
+	.heatbox-repeater-fields {
+		flex-wrap: wrap;
+	}
+}
+
 /* WordPress' code editor (wp.codeEditor / CodeMirror), styled like the fields */
 .heatbox .CodeMirror {
 	border: 1px solid var(--heatbox-border);
