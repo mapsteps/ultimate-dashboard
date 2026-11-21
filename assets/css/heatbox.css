@@ -248,8 +248,8 @@ body {
 	width: 156px;
 }
 
-/* The logo keeps its size; the title wraps instead. */
-.heatbox-header .logo-container > div:last-child {
+/* The logo keeps its size; the title wraps instead (a header without a logo has only the title, which must wrap). */
+.heatbox-header .logo-container > div:last-child:not(:first-child) {
 	flex-shrink: 0;
 }
 
@@ -358,6 +358,15 @@ body {
 	font-size: 18px;
 	line-height: 1.5;
 	color: var(--heatbox-text-muted);
+}
+
+.heatbox-wrap .subtitle a {
+	color: var(--heatbox-accent);
+	text-decoration: none;
+}
+
+.heatbox-wrap .subtitle a:hover {
+	text-decoration: underline;
 }
 
 .heatbox-wrap .version {
@@ -576,7 +585,12 @@ body {
 
 /* Toggles line up with the row label */
 .heatbox .form-table td > .toggle-switch {
-	margin-top: 10px;
+	margin-top: 7px;
+}
+
+/* Checkboxes & radios at the top of a cell: the first one lines up with the row label */
+.heatbox .form-table td > :is(.setting-fields, .choice-list, .label):first-child {
+	margin-top: var(--heatbox-label-offset);
 }
 
 /* Small number field with a unit: <input type="number" class="small-text"> <span class="heatbox-unit">px</span> */
@@ -603,6 +617,10 @@ body {
 
 	.heatbox .form-table td {
 		padding: 8px var(--heatbox-box-padding) 16px;
+	}
+
+	.heatbox .form-table td > :is(.toggle-switch, .setting-fields, .choice-list, .label):first-child {
+		margin-top: 0;
 	}
 }
 
@@ -1426,6 +1444,11 @@ body {
 	gap: 8px;
 }
 
+/* Several groups of tags, each under its own explanation: a paragraph's space below each */
+.tags-heatbox .tags-wrapper:not(:last-child) {
+	margin-bottom: var(--heatbox-gap);
+}
+
 .tags-heatbox .heatbox-content p:last-child {
 	margin-bottom: 0;
 }
@@ -1443,10 +1466,17 @@ body {
 	transition: border-color var(--heatbox-transition), color var(--heatbox-transition), background-color var(--heatbox-transition);
 }
 
-.heatbox .tags-wrapper code:hover {
+.heatbox .tags-wrapper code:hover,
+.heatbox .tags-wrapper code:focus-visible {
 	color: var(--heatbox-accent);
 	background-color: var(--heatbox-accent-soft);
 	border-color: var(--heatbox-accent-soft-border);
+}
+
+/* Tags reached with the keyboard (tabindex="0" role="button") */
+.heatbox .tags-wrapper code:focus-visible {
+	outline: 2px solid var(--heatbox-accent);
+	outline-offset: 2px;
 }
 
 .tags-heatbox .action-status {
@@ -1543,6 +1573,11 @@ body {
 	align-items: stretch;
 	gap: 8px;
 	max-width: 100%;
+}
+
+/* Space below it like a paragraph's, when more follows (e.g. the next shortcode's explanation) */
+.heatbox-copy:not(:last-child) {
+	margin-bottom: var(--heatbox-gap);
 }
 
 .heatbox-copy code {
@@ -1730,6 +1765,7 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
+	margin-bottom: var(--heatbox-gap); /* e.g. the sidebar stacked below it on small screens */
 }
 
 .heatbox-form-footer > div {
