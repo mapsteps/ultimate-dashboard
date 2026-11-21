@@ -744,13 +744,15 @@ body {
 }
 
 /**
- * Rows people add and remove (e.g. a redirect per role, a code per group). Each row: its fields, then a remove
- * button lined up with the other rows'; an optional label above. Below the rows, whatever adds one (a button, a select).
+ * Rows people add and remove (e.g. a redirect per role, a code per group, old → new addresses). Each row: its
+ * fields, then a remove button lined up with the other rows'; an optional label above. Below the rows, whatever adds
+ * one (a button, a select). The fields share the row's width; a .heatbox-repeater-separator (e.g. →) sits between
+ * them and is left out on phones, where the fields stack. .is-wide: rows as wide as the box instead of 480px.
  *
  * <div class="heatbox-repeater">
  *   <div class="heatbox-repeater-item">
  *     <label class="heatbox-repeater-label">Optional</label>
- *     <div class="heatbox-repeater-fields">…fields, or a .heatbox-input-group…</div>
+ *     <div class="heatbox-repeater-fields">…fields or .heatbox-input-group, optionally <span class="heatbox-repeater-separator" aria-hidden="true">→</span> between…</div>
  *     <button type="button" class="heatbox-remove-button"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="screen-reader-text">Remove …</span></button>
  *   </div>
  * </div>
@@ -789,8 +791,17 @@ body {
 	min-width: 0;
 }
 
-.heatbox-repeater-fields > .heatbox-input-group {
-	flex: 1;
+.heatbox-repeater.is-wide .heatbox-repeater-item {
+	grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.heatbox-repeater-fields > :is(.heatbox-input-group, input, select) {
+	flex: 1 1 0;
+	min-width: 0;
+}
+
+.heatbox-repeater-separator {
+	color: var(--heatbox-text-muted);
 }
 
 /* Remove: a small, quiet "x", red on hover */
@@ -826,10 +837,18 @@ body {
 	box-shadow: none;
 }
 
-/* Phones: a row's fields wrap below each other; the remove button stays beside them, centered */
+/* Phones: a row's fields below each other, without the separator; the remove button stays beside them, centered */
 @media screen and (max-width: 782px) {
 	.heatbox-repeater-fields {
 		flex-wrap: wrap;
+	}
+
+	.heatbox-repeater-fields > :is(.heatbox-input-group, input, select) {
+		flex-basis: 100%;
+	}
+
+	.heatbox-repeater-separator {
+		display: none;
 	}
 }
 
