@@ -634,6 +634,7 @@ body {
 .heatbox input[type="password"],
 .heatbox input[type="search"],
 .heatbox input[type="tel"],
+.heatbox input[type="datetime-local"],
 .heatbox select,
 .heatbox textarea {
 	min-height: var(--heatbox-control-height);
@@ -662,6 +663,7 @@ body {
 .heatbox input[type="password"]:hover,
 .heatbox input[type="search"]:hover,
 .heatbox input[type="tel"]:hover,
+.heatbox input[type="datetime-local"]:hover,
 .heatbox select:hover,
 .heatbox textarea:hover {
 	border-color: var(--heatbox-control-border);
@@ -674,6 +676,7 @@ body {
 .heatbox input[type="password"]:focus,
 .heatbox input[type="search"]:focus,
 .heatbox input[type="tel"]:focus,
+.heatbox input[type="datetime-local"]:focus,
 .heatbox select:focus,
 .heatbox textarea:focus {
 	border-color: var(--heatbox-accent);
@@ -875,6 +878,22 @@ body {
 	background-color: var(--heatbox-control-disabled);
 }
 
+/*
+ * Choices below each other, for longer labels:
+ * <div class="choice-list" role="radiogroup" aria-labelledby="…"><label class="label radio-label">…</label>…</div>
+ * Works the same for checkbox labels.
+ */
+.heatbox .choice-list {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 14px;
+}
+
+.heatbox .choice-list .label {
+	margin-inline-end: 0;
+}
+
 /**
  * Toggle switch.
  *
@@ -957,8 +976,9 @@ body {
 /**
  * WP buttons, modernized: rounded like the fields, a little roomier, medium weight.
  * Colors, hover & focus stay WordPress' own (primary follows the admin color scheme).
+ * WordPress also draws .button-primary / .button-secondary without .button as buttons (older markup): those too.
  */
-.heatbox-wrap .button {
+.heatbox-wrap :is(.button, .button-primary, .button-secondary) {
 	border-radius: var(--heatbox-radius-control);
 	font-weight: 500;
 	transition: background-color var(--heatbox-transition), border-color var(--heatbox-transition), color var(--heatbox-transition);
@@ -966,12 +986,14 @@ body {
 
 /* WP already enlarges buttons below 783px */
 @media screen and (min-width: 783px) {
-	.heatbox-wrap .button:not(.button-small) {
+	.heatbox-wrap :is(.button, .button-primary, .button-secondary):not(.button-small) {
 		min-height: 34px;
 		padding: 0 14px;
 		line-height: 32px;
 	}
 
+	/* A button next to a text field (e.g. "Upload" after a URL field, a license key's buttons) matches its height */
+	.heatbox-wrap :is(input[type="text"], input[type="url"], input[type="email"], input[type="number"], input[type="password"], input[type="search"]) ~ :is(.button, .button-primary, .button-secondary):not(.button-small),
 	.heatbox-wrap .button-large,
 	.heatbox-wrap .button-larger {
 		min-height: var(--heatbox-control-height);
@@ -979,6 +1001,12 @@ body {
 		font-size: 14px;
 		line-height: calc(var(--heatbox-control-height) - 2px);
 		vertical-align: middle;
+	}
+
+	/* …and lines up with it (the field sits on its text baseline, which put the button 2px lower) */
+	.heatbox-wrap :is(input[type="text"], input[type="url"], input[type="email"], input[type="number"], input[type="password"], input[type="search"]):has(~ :is(.button, .button-primary, .button-secondary):not(.button-small)),
+	.heatbox-wrap :is(input[type="text"], input[type="url"], input[type="email"], input[type="number"], input[type="password"], input[type="search"]) ~ :is(.button, .button-primary, .button-secondary):not(.button-small) {
+		vertical-align: top;
 	}
 }
 
